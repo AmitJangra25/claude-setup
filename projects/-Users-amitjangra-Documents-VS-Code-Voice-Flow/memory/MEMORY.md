@@ -1,0 +1,10 @@
+- [CLAUDE.md stays out of git](claude-md-not-in-git.md) — untrack and gitignore it during repo setup, don't wait to be asked
+- [Verify the shipped bundle, not source](verify-shipped-bundle-not-source.md) — Amit tests the installed .app; green tests prove nothing about what shipped
+- [Don't delete reference docs](dont-delete-reference-docs.md) — relocate stale specs to docs/ and mark what's superseded; deletion is for dead code, not documents
+- [Report findings, don't chase them](report-findings-dont-chase-them.md) — finish the ask, then list what you noticed; Amit picks what's worth doing
+- [Recorder page becomes chat](recorder-page-becomes-chat.md) — it's removed in Phase 2/3; don't polish it, fix the shared pieces the chat route inherits
+- [Amit uses voice input](amit-uses-voice-input.md) — read through transcription typos; a later typed message overrides an earlier picker answer
+- [Docs are products, not logs](docs-are-products-not-logs.md) — write about the app, not its history; append-only dated logs mean it's time to rewrite
+- [History cap: 5000 now, uncapped deferred](history-must-be-unlimited.md) — no arbitrary ceiling; don't lower it to fix slowness
+- [Check history.json before chasing a polish bug](check-history-json-before-chasing-polish.md) — raw/polished is ground truth; the feature was fine twice
+- [Fix from root, flag workarounds](fix-root-cause-flag-workarounds.md) — say "this is a workaround" out loud; Amit rejects patchwork and checks blast radius

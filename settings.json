@@ -1,0 +1,122 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth status*)",
+      "Bash(gh repo view*)",
+      "Bash(gh run list*)",
+      "Bash(rtk df *)",
+      "Bash(rtk du *)",
+      "Bash(rtk find *)",
+      "Bash(rtk gain*)",
+      "Bash(rtk git branch *)",
+      "Bash(rtk git diff *)",
+      "Bash(rtk git log *)",
+      "Bash(rtk git rev-parse *)",
+      "Bash(rtk git show *)",
+      "Bash(rtk git status*)",
+      "Bash(rtk grep *)",
+      "Bash(rtk ls *)",
+      "Bash(rtk proxy cat *)",
+      "Bash(rtk proxy find *)",
+      "Bash(rtk proxy grep *)",
+      "Bash(rtk proxy ls *)",
+      "Bash(rtk ps *)",
+      "Bash(rtk read *)",
+      "Bash(rtk wc *)",
+      "Bash(tree *)",
+      "Bash(xxd *)",
+      "WebFetch(domain:api.github.com)",
+      "WebFetch(domain:code.claude.com)",
+      "WebFetch(domain:developer.android.com)",
+      "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:www.npmjs.com)",
+      "WebSearch"
+    ],
+    "deny": [
+      "Read(//**/.env)",
+      "Read(//**/.env.*)"
+    ],
+    "ask": [
+      "Bash(curl *)",
+      "Bash(git checkout *)",
+      "Bash(git clean *)",
+      "Bash(git merge *)",
+      "Bash(git push *)",
+      "Bash(git rebase *)",
+      "Bash(git reset *)",
+      "Bash(git rm *)",
+      "Bash(kill *)",
+      "Bash(npm add *)",
+      "Bash(npm i *)",
+      "Bash(npm install *)",
+      "Bash(npx --yes *)",
+      "Bash(npx -y *)",
+      "Bash(pkill *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm install *)",
+      "Bash(rm *)",
+      "Bash(rtk curl *)",
+      "Bash(rtk git checkout *)",
+      "Bash(rtk git clean *)",
+      "Bash(rtk git merge *)",
+      "Bash(rtk git push *)",
+      "Bash(rtk git rebase *)",
+      "Bash(rtk git reset *)",
+      "Bash(rtk git rm *)",
+      "Bash(rtk npm add *)",
+      "Bash(rtk npm install *)",
+      "Bash(rtk npx --yes *)",
+      "Bash(rtk npx -y *)",
+      "Bash(rtk proxy curl *)",
+      "Bash(rtk proxy git checkout *)",
+      "Bash(rtk proxy git clean *)",
+      "Bash(rtk proxy git merge *)",
+      "Bash(rtk proxy git push *)",
+      "Bash(rtk proxy git rebase *)",
+      "Bash(rtk proxy git reset *)",
+      "Bash(rtk proxy git rm *)",
+      "Bash(rtk proxy kill *)",
+      "Bash(rtk proxy npm add *)",
+      "Bash(rtk proxy npm install *)",
+      "Bash(rtk proxy npx --yes *)",
+      "Bash(rtk proxy npx -y *)",
+      "Bash(rtk proxy pkill *)",
+      "Bash(rtk proxy pnpm install *)",
+      "Bash(rtk proxy rm *)",
+      "Bash(rtk proxy wget *)",
+      "Bash(rtk proxy yarn install *)",
+      "Bash(rtk rm *)",
+      "Bash(wget *)",
+      "Bash(yarn add *)",
+      "Bash(yarn install *)"
+    ],
+    "blockReadsOutsideWorkingDirectories": true
+  },
+  "model": "opus[1m]",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "python3 ~/.claude/statusline/context.py",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "swift-lsp@claude-plugins-official": true
+  },
+  "effortLevel": "high",
+  "theme": "dark",
+  "switchModelsOnFlag": true
+}

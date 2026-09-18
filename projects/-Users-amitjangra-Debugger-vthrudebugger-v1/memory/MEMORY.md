@@ -1,0 +1,2 @@
+- [V-Thru customer app debug toggle](vthru_customer_app_debug_toggle.md) — host app already has enable/disable UI for the debugger
+- [Debugger workflow preferences](vthru_debugger_workflow_preferences.md) — plan-first, ask-don't-guess, one PR per feature off main

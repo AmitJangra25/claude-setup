@@ -1,0 +1,47 @@
+# =============================================================================
+# ~/.claude — what may be committed
+#
+# DESIGN: block everything, then allow named files only.
+# Written this way on purpose. If a new file appears in this folder later —
+# a cache, a log, a credential — it is excluded automatically instead of
+# relying on someone remembering to exclude it.
+#
+# NEVER let these in (all blocked by the rule below; listed so the reason is on record):
+#   .claude.json         account UUIDs, machine ID, every folder ever opened
+#   history.jsonl        every prompt typed, plus pasted content
+#   projects/**/*.jsonl  ~158 MB of full session transcripts
+#   .credentials.json    login token (not present today — creds are in the macOS Keychain)
+#   backups/             copies of .claude.json
+#   plugins/ skills/     account-keyed; regenerate on login. Committing them
+#                        would carry one account's UUID into another.
+#   file-history/ paste-cache/   snapshots of your files and clipboard
+# =============================================================================
+
+# Block everything
+*
+
+# --- allow: the ignore file itself, and the rebuild instructions
+!.gitignore
+!README.md
+
+# --- allow: global rules (the point of this repo)
+!CLAUDE.md
+!STANDARDS.md
+!RTK.md
+!REPOS.md
+!PROJECTS.md
+!OLLAMA.md
+!ENVIRONMENT.md
+!SETUP-PLAN.md
+
+# --- allow: settings and statusline
+!settings.json
+!statusline/
+!statusline/context.py
+
+# --- allow: memory files ONLY. Session transcripts sit in the same tree
+#     and must stay out, so this walks in by directory and takes .md only.
+!projects/
+!projects/*/
+!projects/*/memory/
+!projects/*/memory/*.md
