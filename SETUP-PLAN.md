@@ -24,23 +24,22 @@ conversation to refer back to — this file is the handoff.
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
 | | Phase 5 Structure (Voice Flow split, etc.) | |
-| ⚠️ | **Phase 6 remainder — no GitHub remote exists yet** | **portability goal NOT met** |
+| ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private, 40 files |
 
-## ⚠️ The git repo is LOCAL ONLY — read this
+## The git repo — where it lives
 
-`~/.claude` is a git repository on this Mac and nothing more. **There is no
-GitHub repository. Nothing has been pushed. Nothing has left the machine.**
+- **Local:** `~/.claude` is a git repository (4 commits).
+- **Remote:** `https://github.com/AmitJangra25/claude-setup` — **private**,
+  owned by GitHub account `AmitJangra25`. Pushed 2026-09-18.
 
-What that means:
+**Verified after the push:** GitHub holds exactly 40 files, byte-for-byte the
+same list as `git ls-files` locally — no more. Zero matches for any excluded
+pattern (`.claude.json`, `history.jsonl`, `*.jsonl` transcripts, credentials,
+`backups/`, `plugins/`, `skills/`, `file-history`, `paste-cache`). Confirmed
+against GitHub's own file listing, not the local `.gitignore`.
 
-- It gives version history and per-step undo **on this Mac**. Useful, working.
-- It does **not** survive losing or replacing the Mac.
-- It does **not** carry the setup to another machine or another Claude account.
-
-Since account portability is the reason this plan exists, **Phase 6 is half
-done.** The remaining half is step 6.2 below: create a private GitHub repo, add
-it as a remote, push. Until that happens the stated goal is not met, and
-"commit and push before logging out" in the switch checklist cannot be followed.
+To resume on another machine: `git clone` it into `~/.claude`. That covers
+everything in the "survives account switch" table below.
 
 ## Verify that state rather than trust it
 
@@ -437,11 +436,9 @@ present on account B's claude.ai side. That is a web-side action, not a file.
 
 Run in this order. Steps 1-3 need no work if the git repo from Phase 6 exists.
 
-1. **Before logging out** — commit and push the dotfiles repo. This is the only
-   step that cannot be done afterwards.
-   **⚠️ Not currently possible: there is no remote.** Step 6.2 must be done
-   first. Until then, the local repo protects you against a bad edit but not
-   against losing the Mac, and it will not follow you to another machine.
+1. **Before logging out** — `git -C ~/.claude add -A && git commit && git push`.
+   This is the only step that cannot be done afterwards. The remote exists
+   (6.2 DONE), so this now works.
 2. `/logout`, then `/login` with account B.
 3. **Verify the files are untouched** — `/status`, then check `~/.claude/CLAUDE.md`
    still loads and one project's `CLAUDE.md` is still read. Nothing should have
@@ -513,19 +510,20 @@ Keychain is ever unavailable.
 40 files, 90 KB. Verified: no `.claude.json`, no `history.jsonl`, no session
 transcripts, no credentials staged — 14 danger patterns checked, all clean.
 
-### 6.2 Remote  ·  **NOT DONE — this is what makes it portable**
+### 6.2 Remote  ·  **DONE 2026-09-18**
 
-Nothing below has been run. It is an outward-facing action, so it needs explicit
-approval each time (see D4 and the rule on confirming before publishing).
-
-```bash
-gh auth status                         # confirm which GitHub account is logged in
-gh repo create claude-setup --private  # MUST be --private
-git -C ~/.claude remote add origin <url>
-git -C ~/.claude push -u origin main   # global 'ask' rule prompts here, by design
+```
+repo       AmitJangra25/claude-setup
+visibility PRIVATE  (confirmed via gh repo view before pushing)
+branch     main, tracking origin/main
+commits    4
+files      40, verified identical to local git ls-files
 ```
 
-**Before the first push, check three things:**
+Approved explicitly before running, as an outward-facing action. `gh` was
+authenticated as `AmitJangra25` with `repo` scope.
+
+**For any future push, check three things:**
 
 1. **The repo is private.** This folder holds your rules, your working
    preferences and 27 memory files about your projects and how you work. Not
@@ -549,7 +547,7 @@ found — changing it was not asked for. Worth a decision before adding a remote
 since it determines which GitHub account owns the repo and whose name is on
 every commit.
 
-### 6.3 Project rules into this repo  ·  NOT DONE
+### 6.3 Project rules into this repo  ·  NOT DONE — next git step
 Per D13, copy each project's `CLAUDE.md` to `project-rules/<project>/CLAUDE.md`
 in this repo, so they travel without going into the project's own repo. Needs a
 sync step so the copy does not drift from the live file. Do after Phase 5.1, so
