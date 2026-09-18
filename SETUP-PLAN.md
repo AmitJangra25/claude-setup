@@ -20,7 +20,8 @@ conversation to refer back to — this file is the handoff.
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
 | ⬅ | **Phase 2 Permission cleanup** | **NEXT — needs line-by-line approval** |
-| | Phase 7 Promote working preferences to STANDARDS.md | HIGH |
+| ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
+| ⬅ | **Phase 7b Promote working preferences to STANDARDS.md** | **NEXT — decisions taken, wording not yet written** |
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
 | | Phase 5 Structure (Voice Flow split, etc.) | |
@@ -186,6 +187,10 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D12 | rtk stays. The fault was my verification, not rtk: anything feeding a decision to delete, move or overwrite a file must be re-run through `rtk proxy` first | 2026-09-18 |
 | D13 | **Supersedes D11.** Project `CLAUDE.md` files stay out of their own project repos (August preference holds). A copy lives in the private `~/.claude` repo under `project-rules/<project>/` so they still travel | 2026-09-18 |
 | D14 | Read the memory files before recommending anything that touches a project | 2026-09-18 |
+| D17 | Session size is managed at the **task boundary, not a number**. Past ~300k finish the current piece, then suggest a fresh session. Never clear mid-task — measured 3% saving there against 45–54% at a boundary | 2026-09-18 |
+| D18 | Priority is **P1** broken/blocking/losing data · **P2** works but wrong, or blocks the next piece · **P3** everything else. Assign before dividing the work | 2026-09-18 |
+| D19 | Before writing code: state what the change is for, find what depends on it, and say what it cannot affect | 2026-09-18 |
+| D20 | A rule already in `STANDARDS.md` is **not** restated in different words. Four of Amit's 2026-09-18 rules were already covered; re-adding them would double the file and let two phrasings drift apart | 2026-09-18 |
 | D15 | **`npx` stays out of `ask`.** Confirms the existing `ENVIRONMENT.md` exclusion against a fresh measurement: 231 of 235 calls are build/test. Only `npx --yes|-y` is fenced | 2026-09-18 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 
@@ -670,9 +675,13 @@ not a workaround.
 
 ### The problem
 
-Memory is stored **per project folder**. But 11 of the 16 memories are not about
-a project at all — they are standing instructions about how the work should be
-done. They only load in the one project they happen to be filed under.
+Memory is stored **per project folder**. Most memories are not about a project
+at all — they are standing instructions about how the work should be done. They
+only load in the one project they happen to be filed under.
+
+**Measured 2026-09-18** (the earlier "11 of 16" was an estimate): 23 memory
+files, **18 unique**, across 6 directories. Nine are cross-project working
+preferences filed under a single project.
 
 | Preference | Loads only in | Should apply |
 |---|---|---|
@@ -688,7 +697,38 @@ So: working in Packbly or Emp portal today, none of the above is in context.
 `always-recommend-an-option` loads in FinNode only. `amit-uses-voice-input`
 explains "bs4" meaning "VS Code" — and it was not loaded in this session.
 
-### The fix
+### 7a — Repair where memories are stored  ·  **DONE 2026-09-18**
+
+A worse problem sat underneath the filing one, found by checking each memory
+directory against the filesystem. **Three of the six directories pointed at
+project folders that no longer exist**, so 10 of the 23 files could never load
+at all:
+
+| Orphaned directory | Files | Sessions | Fate |
+|---|---|---|---|
+| `…VS-Code-Voice-Flow-Pro` | 6 | 0 | **Deleted.** All 5 memories byte-identical to live Voice-Flow copies; its index was a strict subset |
+| `…VS-Code-Debugger` | 4 | 0 | **Migrated** to `…VS-Code-Debugger-v2` |
+| `…Debugger-vthrudebugger-v1` | 3 | 0 | **Migrated** to `…VS-Code-vthrudebugger-v1` |
+
+`~/Debugger/` and `~/Documents/VS Code/Debugger/` do not exist anywhere under
+`~` — searched, not assumed. The projects moved; the memories stayed behind.
+
+**The sharpest example:** `vthru_debugger_workflow_preferences` holds *"share a
+written plan, let the user review, only then implement"* — the plan-first rule
+Amit asked for on 2026-09-18 as if it were new. It was already recorded, and had
+been unable to load since the folder moved.
+
+Also: `Debugger v2` had no `CLAUDE.md` **and** no reachable memories — the least
+instructed project on the machine. It now has 3 memories.
+
+**Method:** copy → `filecmp` verify → only then remove. Deletions confined to
+files with a proven identical live counterpart.
+**Result:** 5 memory directories, all mapping to a project folder that exists;
+18 unique memories, none lost.
+**Undo:** `git -C ~/.claude checkout -- projects/` — all 29 memory files are
+tracked and were already pushed.
+
+### 7b — The fix for where preferences live
 
 Promote the universal ones into `~/.claude/STANDARDS.md`, which loads in every
 project and is already in the git repo. Leave genuinely project-specific

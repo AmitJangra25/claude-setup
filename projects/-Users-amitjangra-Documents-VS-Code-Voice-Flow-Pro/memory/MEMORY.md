@@ -1,5 +1,0 @@
-- [CLAUDE.md stays out of git](claude-md-not-in-git.md) — untrack and gitignore it during repo setup, don't wait to be asked
-- [Verify the shipped bundle, not source](verify-shipped-bundle-not-source.md) — Amit tests the installed .app; green tests prove nothing about what shipped
-- [Don't delete reference docs](dont-delete-reference-docs.md) — relocate stale specs to docs/ and mark what's superseded; deletion is for dead code, not documents
-- [Report findings, don't chase them](report-findings-dont-chase-them.md) — finish the ask, then list what you noticed; Amit picks what's worth doing
-- [Recorder page becomes chat](recorder-page-becomes-chat.md) — it's removed in Phase 2/3; don't polish it, fix the shared pieces the chat route inherits
