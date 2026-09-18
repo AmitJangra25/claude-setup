@@ -33,16 +33,23 @@ conversation to refer back to — this file is the handoff.
 ls -1 ~/.claude/backups/2026-09-18-setup/global | wc -l      # expect 10
 find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
 
-# git repo exists, baseline committed, tree clean
-git -C ~/.claude log --oneline                               # expect 14883fa baseline
+# git repo exists, both commits present, tree clean
+git -C ~/.claude log --oneline                               # expect 01ec525 then 14883fa
 git -C ~/.claude status --porcelain                          # expect empty
-git -C ~/.claude ls-files | wc -l                            # expect 38
+git -C ~/.claude ls-files | wc -l                            # expect 40
 
-# 1.2 not yet done: these should return NOTHING
-grep -E 'tccutil|Bash\(sudo|gh repo|Bash\(security' ~/.claude/settings.json
+# settings.json not yet touched — this is the real proof no behaviour changed
+cmp ~/.claude/settings.json \
+    ~/.claude/backups/2026-09-18-setup/global/settings.json  # expect silence
+
+# 1.2 not yet done: expect NOTHING. `tccutil` appears nowhere today, so it is
+# the unambiguous marker. Do NOT grep for `gh repo` — `Bash(gh repo view*)`
+# is an existing read-only ALLOW rule and gives a false positive.
+grep -c tccutil ~/.claude/settings.json                      # expect 0
 ```
 
-If the last command returns lines, 1.2 has already been done — check the git log.
+If `tccutil` is found, or `cmp` reports a difference, 1.2 has already been
+done — check `git log` and `git diff 01ec525 -- settings.json`.
 
 ## How to work on this, in one line each
 
