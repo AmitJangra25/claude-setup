@@ -19,13 +19,14 @@ conversation to refer back to — this file is the handoff.
 | ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
-| ⬅ | **Phase 2 Permission cleanup** | **NEXT — needs line-by-line approval. Two checks first: re-count group B by hand; confirm no group-B rule is load-bearing for a build script** |
+| ⬅ | **Phase 2a + 2b Permission cleanup** | **ANALYSED, AWAITING APPROVAL.** 142 rules listed in `PHASE2-REMOVALS.md`. Nothing removed yet |
+| | Phase 2c Group B one-off leftovers | not analysed — needs per-rule reading |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
 | | Phase 5 Structure (Voice Flow split, etc.) | |
-| ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private, 40 files |
+| ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
 
 ## The git repo — where it lives
 
@@ -33,8 +34,10 @@ conversation to refer back to — this file is the handoff.
 - **Remote:** `https://github.com/AmitJangra25/claude-setup` — **private**,
   owned by GitHub account `AmitJangra25`. Pushed 2026-09-18.
 
-**Verified after the push:** GitHub holds exactly 40 files, byte-for-byte the
-same list as `git ls-files` locally — no more. Zero matches for any excluded
+**Verified after every push:** GitHub holds byte-for-byte the same file list as
+`git ls-files` locally — no more. The count has moved as work landed: 40 at 6.2,
+34 after 7a removed six duplicate memory files, 35 once `PHASE2-REMOVALS.md` was
+added. Check it against `git ls-files | wc -l`, not against a number in this file. Zero matches for any excluded
 pattern (`.claude.json`, `history.jsonl`, `*.jsonl` transcripts, credentials,
 `backups/`, `plugins/`, `skills/`, `file-history`, `paste-cache`). Confirmed
 against GitHub's own file listing, not the local `.gitignore`.
@@ -52,7 +55,7 @@ find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
 # git repo exists, both commits present, tree clean
 git -C ~/.claude log --oneline                               # newest first; 14883fa is the baseline
 git -C ~/.claude status --porcelain                          # expect empty
-git -C ~/.claude ls-files | wc -l                            # expect 40
+git -C ~/.claude ls-files | wc -l                            # expect 35
 
 # settings.json after 1.2. It NO LONGER matches the 1.1 backup — that is
 # expected. The real proof is that the change was additions only:
@@ -139,7 +142,8 @@ Only system 2 was deliberately authored. The rest accumulated.
 
 3. SETTINGS       ~/.claude/settings.json + .claude/ in each project
    model opus[1m], effort high, 1 hook (rtk on every Bash), statusline script
-   560 permission rules across 7 projects / 11 files
+   562 permission rules across 8 projects / 12 files (measured 2026-09-18;
+   all 562 are `allow` — there is not one project-level `ask` or `deny`)
 
 4. PROJECT RULES  CLAUDE.md per project — 6 of 8 projects have one
    Voice-Flow 110 KB · FinNode 16 KB · rest 2-6 KB
@@ -360,27 +364,59 @@ either — it is at `~/.local/bin/rtk` (0.48.0); install rtk first, then clone.
 
 ## PHASE 2 — Permission cleanup  (HIGH, needs line-by-line approval)
 
-Four groups. Group D is the important one and involves **no deletion**.
+### Measured 2026-09-18 — supersedes the estimates below
 
-| Group | Count | Action | Behaviour change |
+**Nothing has been removed. This is analysis awaiting approval.**
+
+The single most important fact: **all 562 project rules are `allow`. Zero `ask`,
+zero `deny`.** Removing any of them can only ever *add* a prompt — it cannot
+remove a protection or unblock anything. That is what makes 2a and 2b safe.
+
+| Group | Measured | Action | Behaviour change |
 |---|---|---|---|
-| A — Dead | 41 | Remove | **None.** All 41 point at session folders verified gone. They cannot match any command. |
-| B — One-off debugging leftovers | 53 | Remove | Small. Each was saved during one session. If one is needed again you get a prompt. |
-| C — Redundant | 18 | Remove | **None.** Global `ask` already overrides them, so they have no effect today. |
-| D — Broad and currently silent | 40 | **Keep. Fence via 1.2 instead.** | They start prompting. Nothing is deleted. |
-| E — Narrow and safe | ~408 | Keep | None. These are what stop constant prompting. |
+| A — Dead | **53** | Remove (2a) | **None, provably.** The path each names is gone; it can never match again |
+| C — Redundant | **93** | Remove (2b) | **None today.** A global `ask` rule already overrides it |
+| A ∩ C | 4 | — | counted once |
+| **Union proposed** | **142** | | 562 → ~413 rules |
+| Exact duplicates | 7 | Remove (2b) | Same 7 rules listed twice in Voice-Flow `settings.json` |
+| Dormant — **excluded** | 1 | **Keep** | `release/mac-arm64/Voice Flow.app` is build output: gone now, returns on the next build |
+| B — One-off leftovers | not analysed | 2c | Needs reading each rule; different work from A and C |
+| D — Broad and silent | 40 | **Keep.** Fenced by 1.2 | |
 
-Groups A, B and C total **112 rules removed**, and by the reasoning above,
-A and C (59 rules) change nothing at all about how anything behaves.
+**Why 142 and not the 112 estimated:** group C grew from 18 to 93 when 1.2
+expanded the global `ask` list from 52 to 87. Every project `allow` rule that a
+new `ask` rule covers became a dead letter. Four were live until 1.2 landed
+(`security`, `sqlite3`, `open`, `gh`) — a consequence of an approved change, not
+a pre-existing condition.
 
-**Before removing:** print every rule with its project, file, and the reason it
-is in that group. You approve the list. Nothing goes without that.
-**Undo:** restore from 1.1.
+**Evidence for group A:** 6 distinct session scratchpad directories referenced,
+**0 still exist**. Plus 10 literal paths tested individually and confirmed gone:
+`~/vthrudebugger_v1`, `~/Debugger/vthrudebugger_v1`, `~/vthru-debugger-demo`,
+`Voice_Flow_v2.1`, four `/tmp/vf_*.cjs` scripts, a rotated rtk tee log, and a
+SecondBrain subfolder.
+
+**Nine rules that looked dead are live and stay:** the Android SDK symlink,
+`com.apple.TCC/TCC.db` ×3, the Whisper model ×2, and Voice-Flow's own
+`git -C` commands ×2.
+
+> **Warning for whoever runs this.** Two classifier passes wrongly flagged those
+> nine. Both bugs were the same: a regex that split paths at spaces, turning
+> `/Users/amitjangra/Documents/VS Code/…` into `/Users/amitjangra/Documents/VS`
+> and calling it missing. **Do not classify by parsing paths out of rule text.**
+> The only unambiguous signal is the session-scratchpad UUID pattern, which
+> contains no spaces. Everything else was confirmed by testing the literal path.
+
+**The list to approve:** `PHASE2-REMOVALS.md` in this directory — 144 rows, each
+with project, file, group and reason. It is committed, so it survives a restart.
 
 ### Still to check before Phase 2 runs
-- [ ] Re-count B by hand. 53 came from a pattern match, not a reading of each one.
+- [x] Group A re-derived by measurement, not pattern guess — 53, evidence above.
+- [x] Group C recomputed against the **current** 87-rule global ask list — 93.
+- [ ] **Amit's approval of the 142.** D4 — nothing goes without it.
+- [ ] Re-count B by hand. The old figure of 53 came from a pattern match.
 - [ ] Confirm no group-B rule is load-bearing for a build or test script.
 - [ ] Confirm each file stays valid JSON after editing.
+- [ ] Back up the 12 project settings files before the first edit (D6).
 
 ### Non-Bash permissions — surveyed, no action proposed yet
 

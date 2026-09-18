@@ -12,9 +12,9 @@ Started 2026-09-18. The plan is also the rebuild runbook for switching Claude
 accounts, which is why it exists.
 
 **Why:** the setup grew by accident over ~120 sessions and nobody designed it.
-The plan file holds the verified inventory, all 14 decisions with their
-reasoning, and a record of the six claims that turned out to be wrong when
-checked — so work resumes from a known state rather than a guess.
+The plan file holds the verified inventory, all 20 decisions with their
+reasoning, and a record of every claim that turned out to be wrong when checked
+— so work resumes from a known state rather than a guess.
 
 **How to apply:** read `~/.claude/SETUP-PLAN.md` in full before changing any
 rule, setting, permission, hook or memory, and update it when they change. Its

@@ -75,9 +75,26 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   32 rules    read-only things stop prompting
-    ask     52 rules    ~4.5 prompts per session, all on things that change something
+    allow   35 rules    read-only things stop prompting
+    ask     87 rules    ~5.0 prompts per session, all on things that change something
     deny     2 rules    .env files unreadable anywhere
+
+**Changed 2026-09-18** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
+`ask` went 52 → 87: 15 commands that ran silently in at least one project are now
+fenced — `tccutil`, `sudo`, `security`, `killall`, `sqlite3`, `open`, `git mv`,
+`gem install`, `ollama pull|rm|signin`, `gh api|pr|auth|repo` — each in bare and
+`rtk proxy` spelling, plus `rtk ` for `git mv` and the four `gh` forms. Measured cost
+by replaying 5,734 historical Bash calls: **+0.46 prompts per session**; 25 of the 35
+never fire against history at all.
+
+`allow` went 32 → 35: `rtk discover`, `rtk --version`, and read access to rtk's tee
+directory. That last one matters — `blockReadsOutsideWorkingDirectories` is true and
+rtk's tee directory sits outside every project, so until this was made global, rtk
+could write overflow logs everywhere but read them back only in Voice-Flow.
+
+Two consequences to know about: `Bash(gh auth status*)` and `Bash(gh repo view*)` are
+now **dead letters**, because the broader `ask` rules override them. They were left in
+place rather than removed.
 
 **`allow`** — read-only `rtk` wrappers, `tree`, `xxd`, read-only `gh`, `WebSearch`, and
 docs domains. Purely additive: permission lists merge across files, so a global allow
