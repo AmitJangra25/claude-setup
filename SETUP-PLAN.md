@@ -20,7 +20,7 @@ conversation to refer back to — this file is the handoff.
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
 | ✅ | **Phase 2a + 2b Permission cleanup** | **DONE** 2026-09-18. All 144 rules removed from 9 files; allow 560 → 416, verified against the `2026-09-18-phase2` backup: 0 added, `ask`/`deny` untouched, every file still valid JSON |
-| | Phase 2c Group B one-off leftovers | not analysed — needs per-rule reading |
+| ◐ | **Phase 2c Group B one-off leftovers** | **PARTLY DONE** 2026-09-18. B1 (14) + B2 (9) removed; allow 416 → 393, verified. **B3 (74 pipeline fragments) held by choice** — removing them only tidies, and can only add a prompt on a read-only stage. 3 `*` rules still flagged |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
 | | Phase 3 The deliberate set | |
@@ -196,6 +196,8 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D19 | Before writing code: state what the change is for, find what depends on it, and say what it cannot affect | 2026-09-18 |
 | D20 | A rule already in `STANDARDS.md` is **not** restated in different words. Four of Amit's 2026-09-18 rules were already covered; re-adding them would double the file and let two phrasings drift apart | 2026-09-18 |
 | D15 | **`npx` stays out of `ask`.** Confirms the existing `ENVIRONMENT.md` exclusion against a fresh measurement: 231 of 235 calls are build/test. Only `npx --yes|-y` is fenced | 2026-09-18 |
+| D21 | **B3 pipeline fragments stay.** 74 `echo`/`awk`/`grep`/`sort` rules are one-off but harmless; removing them buys tidiness and costs prompts mid-task on read-only commands | 2026-09-18 |
+| D22 | A rule containing a literal `*` is **not** removed until it is known whether Claude Code's matcher globs it. 3 spent `sed` rules are held on this | 2026-09-18 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
@@ -380,7 +382,7 @@ remove a protection or unblock anything. That is what makes 2a and 2b safe.
 | **Union proposed** | **144** | | 560 → 416 rules (measured after the fact) |
 | Exact duplicates | 7 | Remove (2b) | Same 7 rules listed twice in Voice-Flow `settings.json` |
 | Dormant — **excluded** | 1 | **Keep** | `release/mac-arm64/Voice Flow.app` is build output: gone now, returns on the next build |
-| B — One-off leftovers | not analysed | 2c | Needs reading each rule; different work from A and C |
+| B — One-off leftovers | **97** | 23 removed (2c), 74 held | B1 dead operand 14 ✅ · B2 spent edit 9 ✅ · B3 pipeline fragment 74 **kept**. Old estimate of 53 was a pattern guess |
 | D — Broad and silent | 40 | **Keep.** Fenced by 1.2 | |
 
 **Why 144 and not the 112 estimated:** group C grew from 18 to 93 when 1.2
@@ -413,8 +415,8 @@ with project, file, group and reason. It is committed, so it survives a restart.
 - [x] Group A re-derived by measurement, not pattern guess — 53, evidence above.
 - [x] Group C recomputed against the **current** 87-rule global ask list — 93.
 - [x] **Amit's approval of the 144.** Given 2026-09-18 ("approve the 142 removals" — the list held 144).
-- [ ] Re-count B by hand. The old figure of 53 came from a pattern match.
-- [ ] Confirm no group-B rule is load-bearing for a build or test script.
+- [x] Re-count B by hand. **97**, not 53, read rule by rule against the 416 survivors.
+- [x] Confirm no group-B rule is load-bearing for a build or test script. Every operand tested; `scripts/audit.sh`, `create-signing-cert.sh`, `reset-permissions.js`, `uninstall-app.js`, `electron/main.js` are live and **kept**.
 - [x] Confirm each file stays valid JSON after editing. All 11 re-parsed clean.
 - [x] Back up the project settings files before the first edit (D6). There are **11**, not 12; copied to `backups/2026-09-18-phase2/`, verified with `cmp`.
 

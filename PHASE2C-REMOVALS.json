@@ -1,0 +1,778 @@
+[
+ {
+  "proj": "Debugger v2",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"IDENTICAL \u2014 exit $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 1
+ },
+ {
+  "proj": "Debugger v2",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(node out/rules.test.js)",
+  "why": "operand gone: out/rules.test.js",
+  "num": 2
+ },
+ {
+  "proj": "Debugger v2",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(sed -e \"s#\\\\.\\\\/requestRules'#./requestRules'#\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 3
+ },
+ {
+  "proj": "Debugger v2",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' -e 's|INTEGRATION.md#step-7--tune-the-ignore-rules-for-your-stage-environment|INTEGRATION.md#step-7-tune-the-ignore-rules-for-your-stage-environment|g' -e 's|INTEGRATION.md#step-6--wire-the-api-layer|INTEGRATION.md#step-6-wire-the-api-layer|g' README.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 4
+ },
+ {
+  "proj": "Debugger v2",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(sort -u -t: -k3)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 5
+ },
+ {
+  "proj": "FinNode",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"EXIT=$?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 6
+ },
+ {
+  "proj": "FinNode",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(unzip -q -o gradle.zip)",
+  "why": "operand gone: gradle.zip",
+  "num": 7
+ },
+ {
+  "proj": "FinNode",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"--- emulator bin ---\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 8
+ },
+ {
+  "proj": "FinNode",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"push_exit=$?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 9
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"started with pid $!\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 10
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -v \"ExperimentalWarning\\\\|--import\\\\|Use \\\\`node\\\\|^$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 11
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -n \"^import { useState, useEffect }\" src/app/pages/History.tsx)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 12
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -viE \"ExperimentalWarning|Use \\\\`node|^\\\\\\(node:|^$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 13
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(cat)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 14
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(swiftc extract_frames.swift -o extract_frames -framework AVFoundation -framework AppKit)",
+  "why": "operand gone: extract_frames.swift",
+  "num": 15
+ },
+ {
+  "proj": "Voice Flow_v1",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(./extract_frames ~/Documents/\"VoiceFlow recording.mov\" ./frames)",
+  "why": "operand gone: the extract_frames binary",
+  "num": 16
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(xargs -0 du -k)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 17
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"\\(exit $?\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 18
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"\\(tsc exit $?\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 19
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"--- exit: $? ---\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 20
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"exit=$?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 21
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"=== exit code: $? ===\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 22
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"EXIT CODE = $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 23
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(env)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 24
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print \"ahead:\",$1,\" behind:\",$2}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 25
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print \"ahead:\",$1,\"  behind:\",$2}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 26
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -i '\\\\.app$')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 27
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"launched, exit $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 28
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $2, $11, $12, $13}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 29
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"EXIT CODE: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 30
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"EXIT: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 31
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(:)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 32
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $2, $11, $12}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 33
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $2, $11}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 34
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -v \"duplicate dependency\\\\|^$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 35
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $1, $2}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 36
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -E \"\\\\.app$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 37
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"exit:$?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 38
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -iB0 -A0 \"voice\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 39
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '/^-+$/{blk=\"\"} {blk=blk\"\\\\n\"$0} /com\\\\.voiceflow\\\\.desktop/{print blk\"\\\\n====\"; blk=\"\"}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 40
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"=== exit: $? ===\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 41
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '/^-+$/{blk=\"\"} {blk=blk\"\\\\n\"$0} /com\\\\.voiceflow\\\\.desktop/{print blk; blk=\"\"}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 42
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print \"installed:\", $6, $7, $8}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 43
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $1/1073741824\" GB\"}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 44
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"RAM bytes: $\\(sysctl -n hw.memsize\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 45
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"open exit: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 46
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' 's|Rather than guess, the path was instrumented. After a dictation the Recorder|Rather than guess, the path was instrumented. After a dictation the Compose page|; s|badge on the Recorder and saved into `history.json`. This is what makes the|badge on the Compose page and saved into `history.json`. This is what makes the|' docs/backlog.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 47
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' 's|\\\\[package-upgrade-log\\\\.md\\\\]\\(package-upgrade-log\\\\.md\\)|[package-upgrade-log.md]\\(archive/package-upgrade-log.md\\)|g' docs/backlog.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 48
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' 's|`product-specification\\\\.md` \\(design system|`archive/product-specification.md` \\(design system|' docs/code-conventions.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 49
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' 's|\\\\[docs/product-specification\\\\.md\\\\]\\(docs/product-specification\\\\.md\\)|[docs/archive/product-specification.md]\\(docs/archive/product-specification.md\\)|' README.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 50
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(sed -i '' \"s|import { describe, it } from 'vitest';|import { describe, it } from 'vitest';\\\\nimport { writeFileSync } from 'node:fs';\\\\nconst lines: string[] = [];|\" src/app/lib/__tests__/zz-doc-audit.test.ts)",
+  "why": "operand gone: src/app/lib/__tests__/zz-doc-audit.test.ts",
+  "num": 51
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(sed -i '' \"s|      console.log\\(\\\\`\\\\\\\\\\\\\\\\n--- \\\\${label} ---\\\\\\\\\\\\\\\\n\\\\${JSON.stringify\\(out\\)}\\\\\\\\\\\\\\\\n\\\\${out}\\\\`\\);|      lines.push\\(\\\\`--- \\\\${label} ---\\\\\\\\\\\\\\\\n\\\\${JSON.stringify\\(out\\)}\\\\`\\);|\" src/app/lib/__tests__/zz-doc-audit.test.ts)",
+  "why": "operand gone: src/app/lib/__tests__/zz-doc-audit.test.ts",
+  "num": 52
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' 's|Ten documents live in `docs/`, indexed in|Seven live documents and three archived ones sit in `docs/`, indexed in|' README.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 53
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(chmod +x whisper-flags.sh)",
+  "why": "operand gone: whisper-flags.sh",
+  "num": 54
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(./whisper-flags.sh)",
+  "why": "operand gone: whisper-flags.sh",
+  "num": 55
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(chmod +x whisper-flags2.sh)",
+  "why": "operand gone: whisper-flags2.sh",
+  "num": 56
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B1",
+  "rule": "Bash(./whisper-flags2.sh)",
+  "why": "operand gone: whisper-flags2.sh",
+  "num": 57
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(break)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 58
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(grep -vE \"^[+-]{2,}\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 59
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' -e 's|\\\\[backlog\\\\.md\\\\]\\(backlog\\\\.md\\) \u00a74|[archive/backlog-old.md]\\(archive/backlog-old.md\\) \u00a74|g' docs/local-models.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 60
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' -e 's|\\\\[backlog\\\\.md\\\\]\\(backlog\\\\.md\\) \u00a73|[archive/backlog-old.md]\\(archive/backlog-old.md\\) \u00a73|g' -e 's|`backlog\\\\.md` \u00a73|`archive/backlog-old.md` \u00a73|g' docs/manual-testing.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 61
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B2",
+  "rule": "Bash(sed -i '' -e 's|`docs/backlog\\\\.md` \u00a73|`docs/archive/backlog-old.md` \u00a73|g' -e 's|`docs/backlog\\\\.md` \u00a70\\\\.1|`docs/archive/backlog-old.md` \u00a70.1|g' -e 's|`docs/backlog\\\\.md` \u00a70\\\\.2|`docs/archive/backlog-old.md` \u00a70.2|g' -e 's|`docs/backlog\\\\.md` \u00a70\\\\.3|`docs/archive/backlog-old.md` \u00a70.3|g' -e 's|`roadmap\\\\.md` \u00a76|`docs/roadmap.md`'\"'\"'s security table|g' CLAUDE.md)",
+  "why": "spent: each search string verified absent from its live target file",
+  "num": 62
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(python3 -m json.tool)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 63
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print \"RAM:\", $1/1e9, \"GB\"}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 64
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(echo \"EXIT=$?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 65
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $2}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 66
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"---exit $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 67
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(grep -iE \"\\\\.DS_Store|^dist/|^release/|\\\\.bak$|\\\\.orig$|copy|old\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 68
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(grep -nE \"^#{1,3} \")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 69
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"  running? $\\(pgrep -f 'MacOS/Voice Flow$' >/dev/null && echo yes || echo no\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 70
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"unregister exit: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 71
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"gc exit: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 72
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"package.json name:      $\\(node -p \"require\\('./package.json'\\).name\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 73
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"package-lock.json name: $\\(node -p \"require\\('./package-lock.json'\\).name\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 74
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"exit: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 75
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"npm version: $\\(npm -v\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 76
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"lockfileVersion in our lock: $\\(node -p \"require\\('./package-lock.json'\\).lockfileVersion\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 77
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"--- new lockfileVersion: $\\(node -p \"require\\('./package-lock.json'\\).lockfileVersion\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 78
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"lockfileVersion now: $\\(node -p \"require\\('./package-lock.json'\\).lockfileVersion\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 79
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"--- lockfileVersion restored: $\\(node -p \"require\\('./package-lock.json'\\).lockfileVersion\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 80
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"package.json version: $\\(node -p \"require\\('./package.json'\\).version\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 81
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"package.json version -> $\\(node -p \"require\\('./package.json'\\).version\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 82
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"lockfileVersion -> $\\(node -p \"require\\('./package-lock.json'\\).lockfileVersion\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 83
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"lock version field -> $\\(node -p \"require\\('./package-lock.json'\\).version\"\\)\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 84
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"exit code: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 85
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B1",
+  "rule": "Bash(sed -i '' 's|> Groq is the fastest but the free tier rate limits under load.|> Groq is the fastest but the free tier rate limits under heavy load.|' docs/testing.md)",
+  "why": "operand gone: docs/testing.md",
+  "num": 86
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B1",
+  "rule": "Bash(BASE=http://localhost:5173 OUT=./shots2 node shoot.mjs)",
+  "why": "operand gone: shoot.mjs",
+  "num": 87
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B1",
+  "rule": "Bash(BASE=http://localhost:5173 OUT=./shots3 node shoot.mjs)",
+  "why": "operand gone: shoot.mjs",
+  "num": 88
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B1",
+  "rule": "Bash(awk 'NR>=856' docs/plan.md)",
+  "why": "operand gone: docs/plan.md",
+  "num": 89
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print $1}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 90
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(grep -c \"com.voiceflow.desktop$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 91
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(grep -i \"\\\\.app$\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 92
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"=== exit: $? \\(empty = nothing in retained logs\\) ===\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 93
+ },
+ {
+  "proj": "Voice-Flow",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(awk '{print \" \"$4\" available\"}')",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 94
+ },
+ {
+  "proj": "Vthru_Emp_v2.1_jun26",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(jobs)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 95
+ },
+ {
+  "proj": "v1.1-Packbly",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(sort -t: -k2 -n -r)",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 96
+ },
+ {
+  "proj": "vthrudebugger_v1",
+  "file": "settings.local.json",
+  "group": "B3",
+  "rule": "Bash(echo \"exit: $?\")",
+  "why": "pipeline fragment \u2014 read-only, tied to one past command",
+  "num": 97
+ }
+]
