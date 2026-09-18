@@ -198,6 +198,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D15 | **`npx` stays out of `ask`.** Confirms the existing `ENVIRONMENT.md` exclusion against a fresh measurement: 231 of 235 calls are build/test. Only `npx --yes|-y` is fenced | 2026-09-18 |
 | D21 | **B3 pipeline fragments stay.** 74 `echo`/`awk`/`grep`/`sort` rules are one-off but harmless; removing them buys tidiness and costs prompts mid-task on read-only commands | 2026-09-18 |
 | D22 | A rule containing a literal `*` is **not** removed until it is known whether Claude Code's matcher globs it. 3 spent `sed` rules are held on this | 2026-09-18 |
+| D23 | **A project may read its own tree silently. Another project — never, not by any rule. Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing grant.** Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects." Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is another project, so it goes too | 2026-09-18 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
@@ -484,7 +485,7 @@ and why · undo. It is not reliably happening. Per D3 and D5, strengthen it:
 | # | Item | Priority | Notes |
 |---|---|---|---|
 | 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | MEDIUM | `Known pitfalls` is lines 759-1446 and `Working rules` 161-646. Those two are 80% of the file and are reference, not rules. **Per `dont-delete-reference-docs`: relocate and mark stale, never delete.** Move the reference half into `docs/`, prepend a header splitting "still authoritative" from "superseded", with evidence for each. |
-| 5.2 | Voice Flow `Read(//Documents/VS Code/**)` + 5 extra dirs | MEDIUM | Grants a Voice Flow session read access to Packbly (customer records) and Emp portal (employee records). Narrow to what it needs. Full list in "Non-Bash permissions" below. |
+| 5.2 | Voice Flow `Read(//Documents/VS Code/**)` | **DONE** 2026-09-18 | **Removed, not narrowed** — D23. It reached `Emp portal/.../server/data/vthru.db` (employee records) and Packbly (customer records), and the global `deny` is only `.env`, so nothing covered the database. Voice Flow's rules and docs reference no other project except one line about `Voice Flow_v1`, which goes too under D23. Verified: **no cross-project grant survives anywhere in the setup.** The 5 `additionalDirectories` are a separate item — none point at another project. |
 | 5.3 | Emp portal `.claude/CLAUDE.md` → `CLAUDE.md` | LOW | Works where it is; it is just the odd one out. |
 | 5.4 | Add pointer to ENVIRONMENT.md from PROJECTS.md | LOW | D8. One line. |
 | 5.5 | Update PROJECTS.md — 9 folders opened that it does not list | LOW | Includes home and `~/Documents` themselves. |
