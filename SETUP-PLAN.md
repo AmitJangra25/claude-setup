@@ -19,9 +19,9 @@ conversation to refer back to — this file is the handoff.
 | ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
-| ⬅ | **Phase 2 Permission cleanup** | **NEXT — needs line-by-line approval** |
+| ⬅ | **Phase 2 Permission cleanup** | **NEXT — needs line-by-line approval. Two checks first: re-count group B by hand; confirm no group-B rule is load-bearing for a build script** |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
-| ⬅ | **Phase 7b Promote working preferences to STANDARDS.md** | **NEXT — decisions taken, wording not yet written** |
+| ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
 | | Phase 5 Structure (Voice Flow split, etc.) | |
@@ -747,6 +747,42 @@ memory that also exists in STANDARDS.md is harmless duplication until you say
 otherwise.
 
 **Undo:** revert `STANDARDS.md` from the git repo or the 1.1 backup.
+
+#### 7b — what was actually written  ·  **DONE 2026-09-18**
+
+`STANDARDS.md` 85 → 145 lines, **60 insertions, 3 deletions**. Five new sections
+and three edits to existing ones, in this order:
+
+| Section | Source |
+|---|---|
+| **Plan before building** *(new)* | Amit's rules 1, 10, 11, 12, 13 + D17, D18 |
+| **Evidence, not assumption** *(+1 para)* | rtk rewrites output — re-verify via `rtk proxy` (D12) |
+| **Fix the cause** *(+1 para)* | label a fix workaround vs root-cause — `fix-root-cause-flag-workarounds` |
+| **Reuse what is already there** *(new)* | Amit's rules 4, 9 |
+| **Know what the change touches** *(new)* | Amit's rules 7, 8 + blast radius, per D19 |
+| **Stay on the task** *(1 para reworded)* | reconciled with `report-findings-dont-chase-them` |
+| **When something is unclear** *(new)* | Amit's rule 14 + `always-recommend-an-option` + `amit-uses-voice-input` |
+| **Docs are products** *(new)* | `docs-are-products-not-logs` + `dont-delete-reference-docs` |
+
+**Deliberately not added:** Amit's rules 2, 3, 5 and 6 — already covered by
+§ *Fix the cause* and § *Build the smallest thing*. Restating them would have
+doubled the file and let two phrasings drift apart. This is D20.
+
+**The one deletion** was the paragraph *"...do not end a task by talking me into
+a list of other things to fix"*, which contradicted the
+`report-findings-dont-chase-them` memory. The memory's version won, because it
+was given directly. Flagged before the edit, not after.
+
+**Cost:** +626 tokens per turn, `STANDARDS.md` ~988 → ~1,614. The always-loaded
+set goes from ~3,469 to ~4,095. **My pre-write estimate was +340 — wrong by
+most of a factor of two.** The wording was reviewed and approved as written, so
+the content is what was wanted; the estimate was the error. If the per-turn cost
+proves too high, § *When something is unclear* and § *Docs are products* are the
+two most compressible.
+
+**Originals kept.** The nine promoted memories still exist in their project
+folders — per D4 nothing is removed without approval, and duplication between a
+memory and `STANDARDS.md` is harmless.
 
 ---
 

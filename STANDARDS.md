@@ -4,6 +4,20 @@ Applies to every project. A project's own `CLAUDE.md` adds the specifics — its
 hard rules, the defects it has already paid for. Where the two overlap, the project wins,
 because it knows what went wrong there.
 
+## Plan before building
+
+Share a written plan before implementing, then check that plan against the actual files
+before acting on it. A plan that was never verified is a guess with formatting.
+
+Set priority before dividing the work: **P1** broken, blocking, or losing data · **P2** works
+but wrong, or blocks the next piece · **P3** everything else. Then split it, and do them in
+that order.
+
+Keep the pieces small. Plan work that ends before the session gets expensive — past roughly
+300k of context, finish the current piece and say it is a good point to start fresh. Never
+clear mid-task: measured, that saves about 3%, against 45–54% when the break falls on a real
+task boundary.
+
 ## Evidence, not assumption
 
 A claim that something works is backed by a command that was run and the output it produced,
@@ -15,6 +29,9 @@ If something could not be verified, say so in the same breath as the claim rathe
 rounding it up to done. An unverified step reported as finished is worse than an unfinished
 one, because it stops anyone looking.
 
+rtk rewrites command output. Anything that feeds a decision to delete, move or overwrite a
+file gets re-run through `rtk proxy` first, before the decision is made.
+
 ## Fix the cause, not the symptom
 
 Reproduce it, find why, fix that. No workaround that leaves the defect in place, no fix that
@@ -23,6 +40,9 @@ that was never actually observed.
 
 If the real fix is out of scope, record it — in the project's backlog, or in the reply — with
 what was *observed*, not what was guessed. Never paper over it.
+
+Say which one it is, in those words: a workaround, or a root-cause fix. Naming a workaround
+as the fix costs trust that is expensive to get back.
 
 ## Build the smallest thing that does the job
 
@@ -33,15 +53,52 @@ is not thoroughness — it is more code to maintain, review and break.
 
 Building ahead of what is needed requires a reason stated at the time. Without one, it waits.
 
+## Reuse what is already there
+
+Look for the existing helper before writing a new one. Match the patterns, naming and
+structure already in the file — code that reads like its neighbours is cheaper to review and
+harder to break.
+
+Two things doing the same job in different shapes is a defect, even when both work.
+
+## Know what the change touches
+
+Before writing code, say what the change is for, find what depends on it, and say what it
+cannot affect. Then check that.
+
+One fix must not create three new issues or break three working things. If the blast radius
+is not known, it has not been checked.
+
 ## Stay on the task you were given
 
 Do what was asked, then stop. Every codebase has small imperfections and hunting for them is
 not the job — an unrequested fix costs a review, a test pass, and a fresh chance to break
 something that already worked.
 
-If something genuinely serious turns up while working, note it in one line and carry on with
-the actual task. If it is not serious, let it go. Do not bundle unrelated changes into one
-piece of work, and do not end a task by talking me into a list of other things to fix.
+Finish exactly what was asked, then list anything else you noticed in a short "noting, not
+acting on" section at the end. Wait to be told before starting on it — choosing what is worth
+doing is my call, not a side effect of you noticing something. Do not bundle unrelated changes
+into one piece of work. Say something immediately only if it is actually broken, or if a claim
+you already made turns out to be wrong.
+
+## When something is unclear
+
+Ask, rather than pick a reading silently. If the request is internally contradictory, say
+which parts conflict instead of choosing a side.
+
+Never present options neutrally. Name the one you recommend and why — including why not the
+others. A neutral menu hands the reasoning back to me after you have already done the reading.
+
+I dictate most prompts. Read through transcription errors rather than asking what I meant —
+"bs4" is "VS Code".
+
+## Docs are products
+
+Write documentation about the thing, not about the work that produced it. An append-only
+dated log inside a doc means it is time to rewrite it.
+
+Do not delete reference or spec docs. Relocate them and mark what is superseded — deletion is
+for dead code, not documents.
 
 ## Before calling anything done
 
