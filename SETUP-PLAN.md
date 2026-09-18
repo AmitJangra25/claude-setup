@@ -1,10 +1,63 @@
 # Claude Code setup — specification, repair plan, and rebuild runbook
 
-Written 2026-09-18. Owner: Amit. Status: **awaiting approval on Phase 1.**
+Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
-This file is not loaded automatically. It is a working document and it is meant
-to outlive the work. Nothing in it has been done yet unless a line says DONE
-with a date.
+---
+
+# ► START HERE — resuming in a new session
+
+**Read this whole file before doing anything.** It is the complete state. The
+session that produced it was ended deliberately to save tokens, so there is no
+conversation to refer back to — this file is the handoff.
+
+## Status at handoff (2026-09-18)
+
+| | Step | State |
+|---|---|---|
+| ✅ | 1.1 Back up 27 files | **DONE**, verified byte-identical with `cmp` |
+| ✅ | 6.1 `git init` + `.gitignore` + baseline commit | **DONE**, commit `14883fa`, 38 files, 90 KB |
+| ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
+| ⬅ | **1.2 Close the holes in the global ask list** | **NEXT — needs approval before editing** |
+| | 1.3 Add two global entries rtk needs | after 1.2 |
+| | Phase 2 Permission cleanup | needs line-by-line approval |
+| | Phase 7 Promote working preferences to STANDARDS.md | HIGH |
+| | Phase 3 The deliberate set | |
+| | Phase 4 Make the prompts readable | |
+| | Phase 5 Structure (Voice Flow split, etc.) | |
+| | Phase 6 rest of git (remote, project-rules/) | |
+
+## Verify that state rather than trust it
+
+```bash
+# backup exists, 27 files
+ls -1 ~/.claude/backups/2026-09-18-setup/global | wc -l      # expect 10
+find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
+
+# git repo exists, baseline committed, tree clean
+git -C ~/.claude log --oneline                               # expect 14883fa baseline
+git -C ~/.claude status --porcelain                          # expect empty
+git -C ~/.claude ls-files | wc -l                            # expect 38
+
+# 1.2 not yet done: these should return NOTHING
+grep -E 'tccutil|Bash\(sudo|gh repo|Bash\(security' ~/.claude/settings.json
+```
+
+If the last command returns lines, 1.2 has already been done — check the git log.
+
+## How to work on this, in one line each
+
+- **Nothing is removed or blocked without explicit approval.** This is D4 and it
+  governs everything. List it, explain it, wait.
+- **Explain every permission request in four lines** before the prompt appears:
+  what it does · what changes · risk and why · how to undo. This is D3.
+- **Verify with a command and its output, or do not claim it.** Four claims in
+  the first session turned out to be wrong; see "What I got wrong".
+- **Re-run anything through `rtk proxy`** if it feeds a decision to delete, move
+  or overwrite a file. rtk rewrites command output. This is D12.
+- **List incidental findings at the end, do not chase them.** Amit sets the pace.
+- **Recommend one option and say why — including why not the others.**
+- **Amit dictates his prompts.** Read through transcription errors rather than
+  asking what he meant. "bs4" meant "VS Code".
 
 ---
 
@@ -36,6 +89,8 @@ Recorded so the same mistake is not repeated.
 | A project's `allow` overrides a global `ask`, so the git safety rule was cancelled | **Backwards.** Rules are evaluated deny → ask → allow, and rule type beats file location. The global `ask` wins. | I assumed instead of reading the documentation. |
 | 350 saved permissions | 560 | 350 was Voice Flow alone, not the total. |
 | 8 rules ran without prompting | 40 | My risk categories put arbitrary-code and Keychain access in the "low risk" bucket. |
+| `ENVIRONMENT.md` never loading was a problem to fix | **Deliberate and already documented.** A comment in `CLAUDE.md` explains it: reference material, and every `@import` is re-read every turn. | I read `CLAUDE.md`'s imports but not the file itself. |
+| Voice Flow's `CLAUDE.md` being gitignored was an oversight | A standing preference from 2026-08-11, recorded in memory as `claude-md-not-in-git` | Did not read the memory files before recommending. Fixed by D14. |
 
 **Root cause:** each answer came from a fresh narrow query instead of one
 complete inventory. Fixed by completing the inventory before planning — this
@@ -104,6 +159,8 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D10 | `python3 -c` / `node -e` / `awk` / `osascript` stay allowed. Accepted as arbitrary code execution; fencing them costs many daily prompts and blocks nothing real | 2026-09-18 |
 | D11 | Voice Flow + Emp portal rules get committed to git, but **after** the Voice Flow split (5.1), so the repo gets the clean version | 2026-09-18 |
 | D12 | rtk stays. The fault was my verification, not rtk: anything feeding a decision to delete, move or overwrite a file must be re-run through `rtk proxy` first | 2026-09-18 |
+| D13 | **Supersedes D11.** Project `CLAUDE.md` files stay out of their own project repos (August preference holds). A copy lives in the private `~/.claude` repo under `project-rules/<project>/` so they still travel | 2026-09-18 |
+| D14 | Read the memory files before recommending anything that touches a project | 2026-09-18 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
@@ -148,6 +205,13 @@ preserved: 8 global `.md` + global `settings.json` + `statusline/context.py`
 **Undo:** n/a, nothing was changed.
 
 ### 1.2 Close the holes in the global ask list  ·  ADD ONLY, remove nothing
+
+> **PREREQUISITE — do this first.** `~/.claude/CLAUDE.md` carries an instruction
+> in a comment: *"Read ~/.claude/ENVIRONMENT.md before changing settings.json or
+> the thresholds."* `ENVIRONMENT.md` is 15 KB and holds the measurements behind
+> the current permission and rtk choices. Read it before editing `settings.json`,
+> and check whether anything in it already covers or contradicts the additions
+> below.
 Add to `permissions.ask` in `~/.claude/settings.json`. Each makes an action
 visible that currently runs silently in at least one project.
 
@@ -253,7 +317,7 @@ and why · undo. It is not reliably happening. Per D3 and D5, strengthen it:
 
 | # | Item | Priority | Notes |
 |---|---|---|---|
-| 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | MEDIUM | `Known pitfalls` is lines 759-1446 and `Working rules` 161-646. Those two are 80% of the file and are reference, not rules. Nothing deleted without approval; stale entries listed for your call. |
+| 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | MEDIUM | `Known pitfalls` is lines 759-1446 and `Working rules` 161-646. Those two are 80% of the file and are reference, not rules. **Per `dont-delete-reference-docs`: relocate and mark stale, never delete.** Move the reference half into `docs/`, prepend a header splitting "still authoritative" from "superseded", with evidence for each. |
 | 5.2 | Voice Flow `Read(//Documents/VS Code/**)` + 5 extra dirs | MEDIUM | Grants a Voice Flow session read access to Packbly (customer records) and Emp portal (employee records). Narrow to what it needs. |
 | 5.3 | Emp portal `.claude/CLAUDE.md` → `CLAUDE.md` | LOW | Works where it is; it is just the odd one out. |
 | 5.4 | Add pointer to ENVIRONMENT.md from PROJECTS.md | LOW | D8. One line. |
@@ -429,3 +493,77 @@ answer to "how do I make this portable" is a git repo, and that is not a tool.
 Sources: [claude-mem](https://github.com/thedotmack/claude-mem) ·
 [claude-memory-skill](https://github.com/hanfang/claude-memory-skill) ·
 [claude-code-dotfiles](https://github.com/Povaz/claude-code-dotfiles)
+
+---
+
+## PHASE 7 — Fix where the working preferences live  (HIGH)
+
+Found while reading the 27 memory files, 2026-09-18. This is a root-cause fix,
+not a workaround.
+
+### The problem
+
+Memory is stored **per project folder**. But 11 of the 16 memories are not about
+a project at all — they are standing instructions about how the work should be
+done. They only load in the one project they happen to be filed under.
+
+| Preference | Loads only in | Should apply |
+|---|---|---|
+| `always-recommend-an-option` — name a recommendation and say why, **including why not the others** | FinNode | everywhere |
+| `report-findings-dont-chase-them` — list incidental findings at the end; Amit sets the pace | Voice-Flow, Voice-Flow-Pro | everywhere |
+| `fix-root-cause-flag-workarounds` — always label a fix workaround vs root-cause | Voice-Flow | everywhere |
+| `dont-delete-reference-docs` — relocate and mark stale, don't delete | Voice-Flow-Pro | everywhere |
+| `docs-are-products-not-logs` — write docs about the thing, not about their own history | Voice-Flow | everywhere |
+| `claude-md-not-in-git` | Voice-Flow-Pro | everywhere |
+| `amit-uses-voice-input` — Amit dictates; read through transcription errors | Voice-Flow | **everywhere** — this is a `type: user` memory sitting in one project |
+
+So: working in Packbly or Emp portal today, none of the above is in context.
+`always-recommend-an-option` loads in FinNode only. `amit-uses-voice-input`
+explains "bs4" meaning "VS Code" — and it was not loaded in this session.
+
+### The fix
+
+Promote the universal ones into `~/.claude/STANDARDS.md`, which loads in every
+project and is already in the git repo. Leave genuinely project-specific
+memories where they are:
+
+**Stays as project memory:** `verify-shipped-bundle-not-source`,
+`check-history-json-before-chasing-polish`, `history-must-be-unlimited`,
+`recorder-page-becomes-chat`, `project-debugger-ui-frozen`,
+`project-debugger-repo-fresh-start`, `feedback-debugger-overlay-intentional`,
+`vthru-customer-app-debug-toggle`, `vthru-debugger-workflow-preferences`.
+
+**Moves to STANDARDS.md:** the seven in the table above.
+
+Originals are not deleted — per D4 nothing is removed without approval, and a
+memory that also exists in STANDARDS.md is harmless duplication until you say
+otherwise.
+
+**Undo:** revert `STANDARDS.md` from the git repo or the 1.1 backup.
+
+---
+
+## Findings not acted on
+
+Listed rather than chased, per `report-findings-dont-chase-them`. Nothing here
+is being worked on; they are recorded so they are not lost.
+
+1. **`docs-are-products-not-logs` may apply to this file.** That memory says
+   docs should be about the thing, not about their own history, and that
+   append-only dated logs are not wanted. This file has a "What I got wrong"
+   section and a dated decisions table. Both were asked for explicitly on
+   2026-09-18, so they stay — but flagging the tension rather than quietly
+   deciding it.
+2. **`rtk-proxy-suppresses-dry-run-output` may be stale.** It says rtk prints
+   nothing for `git add --dry-run`. On rtk 0.48.0 today it printed all 38 paths.
+   Verified independently with `git ls-files`, which also returned 38.
+3. **Two memory folders are duplicates, not just orphans.** `Voice-Flow` (11
+   files) and `Voice-Flow-Pro` (6) share 4 identical memories.
+   `Debugger-vthrudebugger-v1` sits under `/Users/amitjangra/Debugger/`, a path
+   that no longer exists.
+4. **The `always-recommend-an-option` memory is not being followed in full.** It
+   asks for a recommendation *and why not the others*. The "why not" has been
+   missing from most option lists in this session.
+5. **FinNode's `CLAUDE.md` is committed to its repo**, which contradicts
+   `claude-md-not-in-git`. Not resolved by D13 either way — worth a decision
+   when Phase 5 reaches it.
