@@ -23,10 +23,19 @@ conversation to refer back to — this file is the handoff.
 | ◐ | **Phase 2c Group B one-off leftovers** | **PARTLY DONE** 2026-09-18. B1 (14) + B2 (9) removed; allow 416 → 393, verified. **B3 (74 pipeline fragments) held by choice** — removing them only tidies, and can only add a prompt on a read-only stage. 3 `*` rules still flagged |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
-| | Phase 3 The deliberate set | |
-| | Phase 4 Make the prompts readable | |
-| | Phase 5 Structure (Voice Flow split, etc.) | |
+| | Phase 3 The deliberate set | not started |
+| | Phase 4 Make the prompts readable | not started |
+| ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18. Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. **No cross-project grant survives anywhere.** D23 |
+| ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
+| ⬅ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **NEXT.** The big one. 6.3 waits on it (D13) |
+| | 5.3 – 5.8 Low-priority tidying | not started |
 | ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
+| ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
+
+**Where the numbers stand now** — project `allow` rules **560 → 384**:
+560 as found · **416** after 2a+2b (−144) · **393** after 2c (−23) · **392**
+after 5.2 (−1) · **384** after 5.2b (−8, plus 4 `additionalDirectories`
+entries). Global is unchanged at allow 35 / ask 87 / deny 2.
 
 ## The git repo — where it lives
 
@@ -55,7 +64,7 @@ find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
 # git repo exists, both commits present, tree clean
 git -C ~/.claude log --oneline                               # newest first; 14883fa is the baseline
 git -C ~/.claude status --porcelain                          # expect empty
-git -C ~/.claude ls-files | wc -l                            # expect 35
+git -C ~/.claude ls-files | wc -l                            # expect 37
 
 # settings.json after 1.2. It NO LONGER matches the 1.1 backup — that is
 # expected. The real proof is that the change was additions only:
@@ -71,6 +80,43 @@ grep -c tccutil ~/.claude/settings.json                      # expect 2
 
 If `tccutil` returns 0, 1.2 has been reverted — check `git log` and
 `git diff 885c1d4 -- settings.json`.
+
+```bash
+# Five dated backups, one per editing step. All verified with `cmp` when made.
+ls -1d ~/.claude/backups/*/
+#   2026-09-18-setup     before 1.1   (27 files, the original state)
+#   2026-09-18-phase2    before 2a+2b (11 project settings files)
+#   2026-09-18-phase2c   before 2c
+#   2026-09-18-phase5.2  before 5.2   (Voice-Flow only)
+#   2026-09-18-phase5.2b before 5.2b  (Voice-Flow + FinNode)
+
+# Project allow rules, and D23's invariant: no project may reach another.
+# Prints the current total, then every cross-project grant. The second list
+# MUST be empty — if it is not, D23 has been breached and it is a P1.
+python3 - <<'EOF'
+import json, os
+VS = os.path.expanduser("~/Documents/VS Code"); tot = 0; bad = []
+for root, dirs, fs in os.walk(VS):
+    dirs[:] = [d for d in dirs if d != "node_modules"]
+    if os.path.basename(root) != ".claude": continue
+    dirs[:] = []
+    top = os.path.relpath(os.path.dirname(root), VS).split(os.sep)[0]
+    for fn in sorted(fs):
+        if not (fn.startswith("settings") and fn.endswith(".json")): continue
+        pm = json.load(open(os.path.join(root, fn)))["permissions"]
+        tot += len(pm["allow"])
+        for a in pm["allow"]:
+            if "Documents/VS Code" in a and a.startswith(("Read(", "Edit(", "Write(")):
+                inner = a[a.index("(") + 1:-1].lstrip("/")
+                if not inner.startswith(f"Users/amitjangra/Documents/VS Code/{top}"):
+                    bad.append(f"{top}/{fn}: {a}")
+        for x in pm.get("additionalDirectories") or []:
+            if x.startswith(VS) and not x.startswith(os.path.join(VS, top)):
+                bad.append(f"{top}/{fn}: additionalDirectories {x}")
+print("project allow rules:", tot, " (expect 384)")
+print("cross-project grants:", bad or "NONE — D23 holds")
+EOF
+```
 
 ## How to work on this, in one line each
 
@@ -142,8 +188,10 @@ Only system 2 was deliberately authored. The rest accumulated.
 
 3. SETTINGS       ~/.claude/settings.json + .claude/ in each project
    model opus[1m], effort high, 1 hook (rtk on every Bash), statusline script
-   562 permission rules across 8 projects / 12 files (measured 2026-09-18;
-   all 562 are `allow` — there is not one project-level `ask` or `deny`)
+   AS FOUND: 560 permission rules across 8 projects / 11 files (the "562 / 12
+   files" first written here was wrong; measured again it is 560 / 11).
+   All 560 are `allow` — not one project-level `ask` or `deny`.
+   NOW: 384, after phases 2a, 2b, 2c, 5.2 and 5.2b.
 
 4. PROJECT RULES  CLAUDE.md per project — 6 of 8 projects have one
    Voice-Flow 110 KB · FinNode 16 KB · rest 2-6 KB
@@ -369,9 +417,10 @@ either — it is at `~/.local/bin/rtk` (0.48.0); install rtk first, then clone.
 
 ### Measured 2026-09-18 — supersedes the estimates below
 
-**Nothing has been removed. This is analysis awaiting approval.**
+**Written before phase 2 ran. 2a, 2b and 2c have since been applied — see the
+status table. Kept because the reasoning is what makes the result reviewable.**
 
-The single most important fact: **all 562 project rules are `allow`. Zero `ask`,
+The single most important fact: **all 560 project rules are `allow`. Zero `ask`,
 zero `deny`.** Removing any of them can only ever *add* a prompt — it cannot
 remove a protection or unblock anything. That is what makes 2a and 2b safe.
 
