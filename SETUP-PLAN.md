@@ -18,8 +18,8 @@ conversation to refer back to — this file is the handoff.
 | ✅ | 6.1 `git init` + `.gitignore` + baseline commit | **DONE**, commit `14883fa`, 38 files, 90 KB |
 | ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
-| ⬅ | **1.3 Add two global entries rtk needs** | **NEXT — add-only, same pattern as 1.2** |
-| | Phase 2 Permission cleanup | needs line-by-line approval |
+| ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
+| ⬅ | **Phase 2 Permission cleanup** | **NEXT — needs line-by-line approval** |
 | | Phase 7 Promote working preferences to STANDARDS.md | HIGH |
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
@@ -57,7 +57,7 @@ git -C ~/.claude ls-files | wc -l                            # expect 40
 # expected. The real proof is that the change was additions only:
 git -C ~/.claude diff 885c1d4 -- settings.json | grep -c '^-[^-]'   # expect 0
 python3 -c "import json;p=json.load(open('$HOME/.claude/settings.json'))['permissions'];print(len(p['allow']),len(p['ask']),len(p['deny']))"
-                                                             # expect 32 87 2
+                                                             # expect 35 87 2
 
 # 1.2 marker: `tccutil` now appears TWICE — `Bash(tccutil *)` and
 # `Bash(rtk proxy tccutil *)`. Do NOT grep for `gh repo` — `Bash(gh repo view*)`
@@ -304,7 +304,7 @@ history at all — they are pure fences. The only real `tccutil` call ever made 
 `tccutil reset All …` against the Claude install directory, which is exactly the
 case D5 wanted visible.
 
-### 1.3 Add two global entries rtk needs  ·  ADD ONLY
+### 1.3 Add two global entries rtk needs  ·  **DONE 2026-09-18**
 - `Read(//Users/amitjangra/Library/Application Support/rtk/tee/**)` — rtk writes
   overflow output there and refers to it. Currently granted in Voice-Flow only,
   while the rtk hook runs in every project. This is why output went missing
@@ -312,7 +312,44 @@ case D5 wanted visible.
 - `Bash(rtk gain*)`, `Bash(rtk discover*)`, `Bash(rtk --version)` — already
   partly present; confirm all three.
 
-**Undo:** delete the lines.
+**Undo:** `git -C ~/.claude checkout settings.json`, or delete the three lines.
+
+#### What was added, and the root cause it fixes
+
+3 rules, `allow` 32 → 35. Verified: 3 insertions, **0 deletions**; `ask` (87),
+`deny` (2) and every non-permission key byte-identical.
+
+```
+Bash(rtk --version)
+Bash(rtk discover*)
+Read(//Users/amitjangra/Library/Application Support/rtk/tee/**)
+```
+
+`Bash(rtk gain*)` was already present, so only two of the three Bash entries
+were actually missing.
+
+**Root cause of the missing output, now confirmed.** `permissions` sets
+`blockReadsOutsideWorkingDirectories: true`. rtk's tee directory sits outside
+every project, so reading it was blocked in **every** project except Voice-Flow,
+which was the only file granting the path. The rtk hook itself is global — it is
+`hooks.PreToolUse` → `rtk hook claude` in this same file, and applies to every
+project automatically. So the hook wrote overflow logs everywhere and could read
+them back in exactly one place.
+
+**Verified, not assumed:** the directory exists with 20 log files, mode 700; the
+newest were written by rtk during the session that made this change; and a real
+file path was matched against the rule prefix. `find` confirmed Voice-Flow's
+`settings.json` was the only project file granting it.
+
+**Note the two leading slashes** in the `Read(...)` rule. A single slash anchors
+at `~/.claude/`, not at the filesystem root — see the deny-rule note in
+`ENVIRONMENT.md`. The spelling here is copied from Voice-Flow's working rule.
+
+**Portability caveat for an account or machine switch:** this rule hardcodes
+`/Users/amitjangra`. There is no home-relative spelling for an absolute path in
+a permission rule, so on a different machine or username this one line must be
+edited by hand after cloning. The rtk **binary** does not travel in this repo
+either — it is at `~/.local/bin/rtk` (0.48.0); install rtk first, then clone.
 
 ---
 
