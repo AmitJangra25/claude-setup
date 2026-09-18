@@ -27,7 +27,8 @@ conversation to refer back to — this file is the handoff.
 | | Phase 4 Make the prompts readable | not started |
 | ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18. Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. **No cross-project grant survives anywhere.** D23 |
 | ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
-| ⬅ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **NEXT.** The big one. 6.3 waits on it (D13) |
+| ◐ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **PART ONE DONE** 2026-09-18. The relocation: `CLAUDE.md` **110 KB → 29 KB**, its two reference sections moved verbatim to `docs/working-rules.md` (42 entries) and `docs/known-pitfalls.md` (47 entries). All 89 rules keep their one-line claim in `CLAUDE.md`; only the evidence moved. Verified equal to the backup, 0 rules lost. **Part two — mark what is superseded, with evidence — not started.** D24 |
+| ⬅ | **5.1 part two: check the 89 entries against the code** | **NEXT.** ~90 KB of reference prose plus the files it cites. Nothing is marked stale yet and both docs say so at the top |
 | | 5.3 – 5.8 Low-priority tidying | not started |
 | ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
 | ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
@@ -89,6 +90,18 @@ ls -1d ~/.claude/backups/*/
 #   2026-09-18-phase2c   before 2c
 #   2026-09-18-phase5.2  before 5.2   (Voice-Flow only)
 #   2026-09-18-phase5.2b before 5.2b  (Voice-Flow + FinNode)
+#   2026-09-18-phase5.1  before 5.1  (Voice-Flow CLAUDE.md + docs/README.md)
+
+# 5.1 part one: the split lost nothing. Each doc body must still equal the
+# line range it came from in the backup. Both MUST print True.
+python3 - <<'EOF'
+import os
+V = os.path.expanduser("~/Documents/VS Code/Voice-Flow")
+orig = open(os.path.expanduser("~/.claude/backups/2026-09-18-phase5.1/CLAUDE.md")).read().split("\n")
+for slug, (a, b) in (("working-rules", (162, 646)), ("known-pitfalls", (760, 1446))):
+    body = open(f"{V}/docs/{slug}.md").read().split("\n---\n", 1)[1].strip()
+    print(slug, body == "\n".join(orig[a-1:b]).strip())
+EOF
 
 # Project allow rules, and D23's invariant: no project may reach another.
 # Prints the current total, then every cross-project grant. The second list
@@ -247,6 +260,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D21 | **B3 pipeline fragments stay.** 74 `echo`/`awk`/`grep`/`sort` rules are one-off but harmless; removing them buys tidiness and costs prompts mid-task on read-only commands | 2026-09-18 |
 | D22 | A rule containing a literal `*` is **not** removed until it is known whether Claude Code's matcher globs it. 3 spent `sed` rules are held on this | 2026-09-18 |
 | D23 | **A project may read its own tree silently. Another project — never, not by any rule. Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing grant.** Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects." Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is another project, so it goes too | 2026-09-18 |
+| D24 | **Voice Flow's rule claims live in `CLAUDE.md`, the evidence in `docs/`.** This knowingly bends `docs/README.md`'s own rule 4 ("the moment two files carry the same rule, one of them starts lying"): each claim line now exists twice. Accepted because D7 asked for "short rules + separate docs" and a pointer-only `CLAUDE.md` would leave every Voice Flow session with no rules in context. Tie-breaker written into both files: if they disagree, **`CLAUDE.md` is the rule** and the document is the record of why — fix the document | 2026-09-18 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
@@ -533,7 +547,7 @@ and why · undo. It is not reliably happening. Per D3 and D5, strengthen it:
 
 | # | Item | Priority | Notes |
 |---|---|---|---|
-| 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | MEDIUM | `Known pitfalls` is lines 759-1446 and `Working rules` 161-646. Those two are 80% of the file and are reference, not rules. **Per `dont-delete-reference-docs`: relocate and mark stale, never delete.** Move the reference half into `docs/`, prepend a header splitting "still authoritative" from "superseded", with evidence for each. |
+| 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | **PART ONE DONE** 2026-09-18 | Split in two on purpose: the relocation is verifiable in minutes, the staleness pass needs file-by-file evidence and is where a session gets expensive. **Part one, done:** `Working rules` (lines 161-646, 42 bullets) → `docs/working-rules.md`, `Known pitfalls` (759-1446, 47 bullets) → `docs/known-pitfalls.md`, both moved **verbatim**; `CLAUDE.md` keeps the section order, `Stack`/`Architecture map`/`Commands` untouched, and each rule's one-line claim with a pointer. 110 KB → 29 KB, a 73% cut. Two rows added to `docs/README.md` per its own rule 2. **Verified:** each doc body compares *equal* to the corresponding line range of the backup, all 89 claims found in their doc, and `git status` showed exactly the 3 expected changes. Restore point: `backups/2026-09-18-phase5.1/`. **Part two, not started:** read all 89 against the code and mark each still authoritative or superseded, with evidence — per `dont-delete-reference-docs`, relocate and mark, never delete. |
 | 5.2 | Voice Flow `Read(//Documents/VS Code/**)` | **DONE** 2026-09-18 | **Removed, not narrowed** — D23. It reached `Emp portal/.../server/data/vthru.db` (employee records) and Packbly (customer records), and the global `deny` is only `.env`, so nothing covered the database. Voice Flow's rules and docs reference no other project except one line about `Voice Flow_v1`, which goes too under D23. Verified: **no cross-project grant survives anywhere in the setup.** The 5 `additionalDirectories` are a separate item — none point at another project. |
 | 5.2b | Standing grants over other folders | **DONE** 2026-09-18 | D23's second half. 12 entries removed across Voice-Flow and FinNode: SecondBrain vault ×2, `.continue`, rtk tee (redundant — the global rule is `settings.json:30`, verified), 3 duplicate `Voice Flow.app` spellings subsumed by `Voice Flow.app/**`, and the `additionalDirectories` for `.continue`, `.local/bin` and `~/.claude` (both projects). **Voice-Flow now reaches only** `/private/tmp`, `/tmp`, `/Applications/Voice Flow.app` and its own tree; **FinNode only its own tree.** Kept `/private/tmp` — the session scratchpad is needed every turn. |
 | 5.3 | Emp portal `.claude/CLAUDE.md` → `CLAUDE.md` | LOW | Works where it is; it is just the odd one out. |
