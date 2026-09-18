@@ -24,7 +24,23 @@ conversation to refer back to — this file is the handoff.
 | | Phase 3 The deliberate set | |
 | | Phase 4 Make the prompts readable | |
 | | Phase 5 Structure (Voice Flow split, etc.) | |
-| | Phase 6 rest of git (remote, project-rules/) | |
+| ⚠️ | **Phase 6 remainder — no GitHub remote exists yet** | **portability goal NOT met** |
+
+## ⚠️ The git repo is LOCAL ONLY — read this
+
+`~/.claude` is a git repository on this Mac and nothing more. **There is no
+GitHub repository. Nothing has been pushed. Nothing has left the machine.**
+
+What that means:
+
+- It gives version history and per-step undo **on this Mac**. Useful, working.
+- It does **not** survive losing or replacing the Mac.
+- It does **not** carry the setup to another machine or another Claude account.
+
+Since account portability is the reason this plan exists, **Phase 6 is half
+done.** The remaining half is step 6.2 below: create a private GitHub repo, add
+it as a remote, push. Until that happens the stated goal is not met, and
+"commit and push before logging out" in the switch checklist cannot be followed.
 
 ## Verify that state rather than trust it
 
@@ -285,6 +301,30 @@ is in that group. You approve the list. Nothing goes without that.
 - [ ] Confirm no group-B rule is load-bearing for a build or test script.
 - [ ] Confirm each file stays valid JSON after editing.
 
+### Non-Bash permissions — surveyed, no action proposed yet
+
+The 560 count is Bash rules. These are the rest, and they were not examined
+until late in the survey.
+
+| Project | Grant | Note |
+|---|---|---|
+| Voice-Flow | `Read(//Users/amitjangra/Documents/VS Code/**)` | Reads **every** project, incl. Packbly and Emp portal — 5.2 |
+| Voice-Flow | `Read(//private/tmp/**)`, `Read(//tmp/**)` | Whole temp directories |
+| Voice-Flow | `Read(//Applications/Voice Flow.app/**)` ×3 | The installed app bundle |
+| Voice-Flow | `Read(//Users/amitjangra/.continue/**)`, `.claude/**`, SecondBrain ×3 | Other tools' config and the Obsidian vault |
+| Voice-Flow | `Read(.../rtk/tee/**)` | rtk's overflow logs — **should be global**, see 1.3 |
+| Voice-Flow | `Skill(claude-api)`, `Skill(claude-api:*)` | Pre-approves that skill |
+| Voice-Flow | 5 × `additionalDirectories`: the project, `.continue`, `.local/bin`, `.claude`, `/private/tmp` | Widens the working directory |
+| FinNode | `Read(//Users/amitjangra/.claude/**)` + `additionalDirectories: ~/.claude` | Can read global config |
+| FinNode | `Edit(docs/**)`, `Write(docs/**)`, `Edit(CLAUDE.md)` | Write access, scoped |
+| FinNode | `WebFetch(github.com)`, `WebFetch(kotl.in)` | |
+| Voice Flow_v1 | `Read(//private/tmp/**)`, `Read(//tmp/**)`, `Read(~/.npm/_npx/**)` | |
+| Voice-Flow `.local` | `WebSearch` + 7 `WebFetch` domains (github, morphllm, promptquorum, ollama ×2, continue) | Accumulated, harmless |
+| Voice Flow_v1 `.local` | `WebSearch` + 8 `WebFetch` domains (wisprflow ×4, wikipedia, substack, alternativeto, github) | Research leftovers from competitor work |
+
+Nothing here is urgent. 5.2 is the only one worth changing, and the rtk read
+grant is worth promoting to global (1.3).
+
 ---
 
 ## PHASE 3 — The deliberate set  (MEDIUM)
@@ -325,7 +365,7 @@ and why · undo. It is not reliably happening. Per D3 and D5, strengthen it:
 | # | Item | Priority | Notes |
 |---|---|---|---|
 | 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | MEDIUM | `Known pitfalls` is lines 759-1446 and `Working rules` 161-646. Those two are 80% of the file and are reference, not rules. **Per `dont-delete-reference-docs`: relocate and mark stale, never delete.** Move the reference half into `docs/`, prepend a header splitting "still authoritative" from "superseded", with evidence for each. |
-| 5.2 | Voice Flow `Read(//Documents/VS Code/**)` + 5 extra dirs | MEDIUM | Grants a Voice Flow session read access to Packbly (customer records) and Emp portal (employee records). Narrow to what it needs. |
+| 5.2 | Voice Flow `Read(//Documents/VS Code/**)` + 5 extra dirs | MEDIUM | Grants a Voice Flow session read access to Packbly (customer records) and Emp portal (employee records). Narrow to what it needs. Full list in "Non-Bash permissions" below. |
 | 5.3 | Emp portal `.claude/CLAUDE.md` → `CLAUDE.md` | LOW | Works where it is; it is just the odd one out. |
 | 5.4 | Add pointer to ENVIRONMENT.md from PROJECTS.md | LOW | D8. One line. |
 | 5.5 | Update PROJECTS.md — 9 folders opened that it does not list | LOW | Includes home and `~/Documents` themselves. |
@@ -397,8 +437,11 @@ present on account B's claude.ai side. That is a web-side action, not a file.
 
 Run in this order. Steps 1-3 need no work if the git repo from Phase 6 exists.
 
-1. **Before logging out** — commit and push the dotfiles repo (Phase 6). This is
-   the only step that cannot be done afterwards.
+1. **Before logging out** — commit and push the dotfiles repo. This is the only
+   step that cannot be done afterwards.
+   **⚠️ Not currently possible: there is no remote.** Step 6.2 must be done
+   first. Until then, the local repo protects you against a bad edit but not
+   against losing the Mac, and it will not follow you to another machine.
 2. `/logout`, then `/login` with account B.
 3. **Verify the files are untouched** — `/status`, then check `~/.claude/CLAUDE.md`
    still loads and one project's `CLAUDE.md` is still read. Nothing should have
@@ -465,14 +508,56 @@ your login lives in the macOS Keychain, so the repo cannot leak it. That is
 worth re-checking before the first push, because the file appears if the
 Keychain is ever unavailable.
 
-### Steps
+### 6.1 Local repo  ·  **DONE 2026-09-18**
+`git init`, deny-by-default `.gitignore` written first, 3 commits, tree clean,
+40 files, 90 KB. Verified: no `.claude.json`, no `history.jsonl`, no session
+transcripts, no credentials staged — 14 danger patterns checked, all clean.
 
-1. `git init` in `~/.claude`, write the `.gitignore` above **first**.
-2. `git status` and read every file it proposes to add, by name, before the
-   first commit. Approval required (D4).
-3. Confirm the repo is **private** before the first push.
-4. Optional: a shell function to pull on open and push on close. Not in scope
-   until Phases 1-2 are done.
+### 6.2 Remote  ·  **NOT DONE — this is what makes it portable**
+
+Nothing below has been run. It is an outward-facing action, so it needs explicit
+approval each time (see D4 and the rule on confirming before publishing).
+
+```bash
+gh auth status                         # confirm which GitHub account is logged in
+gh repo create claude-setup --private  # MUST be --private
+git -C ~/.claude remote add origin <url>
+git -C ~/.claude push -u origin main   # global 'ask' rule prompts here, by design
+```
+
+**Before the first push, check three things:**
+
+1. **The repo is private.** This folder holds your rules, your working
+   preferences and 27 memory files about your projects and how you work. Not
+   secret, but not public either.
+2. **`git status` shows nothing unexpected.** The `.gitignore` is
+   deny-by-default, so it should hold — but verify rather than trust, because a
+   push cannot be undone once GitHub has it. Content sent to GitHub may be
+   cached or indexed even if the repo is deleted afterwards.
+3. **Which GitHub account.** See the identity note below.
+
+### Git identity is your personal Gmail, not your work address
+
+```
+user.name  : AmitJangra25
+user.email : amitjangra044@gmail.com
+```
+
+Your Claude account is `amit@v-thru.com`. The two commits so far are authored by
+the Gmail address, because that is the global git config on this Mac. Left as
+found — changing it was not asked for. Worth a decision before adding a remote,
+since it determines which GitHub account owns the repo and whose name is on
+every commit.
+
+### 6.3 Project rules into this repo  ·  NOT DONE
+Per D13, copy each project's `CLAUDE.md` to `project-rules/<project>/CLAUDE.md`
+in this repo, so they travel without going into the project's own repo. Needs a
+sync step so the copy does not drift from the live file. Do after Phase 5.1, so
+Voice Flow's copy is the cleaned version.
+
+### 6.4 Optional  ·  NOT DONE
+A shell function to pull on open and push on close. Out of scope until Phases
+1-2 are done.
 
 ### Project rules are separate
 The 8 projects' `CLAUDE.md` and `.claude/settings.json` belong in each
