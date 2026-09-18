@@ -1,6 +1,8 @@
 # Phase 2a + 2b — rules proposed for removal
 
-Generated 2026-09-18. **Nothing has been removed.** This is the list to approve.
+Generated 2026-09-18. **APPLIED 2026-09-18** — all 144 rules below were approved
+and removed. Kept as the record of what went and why. Restore point:
+`~/.claude/backups/2026-09-18-phase2/`.
 
 Every rule below is an `allow` rule. Removing one can only ever ADD a prompt —
 it cannot remove a protection or unblock anything.

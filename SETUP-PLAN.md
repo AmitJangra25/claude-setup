@@ -19,7 +19,7 @@ conversation to refer back to — this file is the handoff.
 | ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
-| ⬅ | **Phase 2a + 2b Permission cleanup** | **ANALYSED, AWAITING APPROVAL.** 142 rules listed in `PHASE2-REMOVALS.md`. Nothing removed yet |
+| ✅ | **Phase 2a + 2b Permission cleanup** | **DONE** 2026-09-18. All 144 rules removed from 9 files; allow 560 → 416, verified against the `2026-09-18-phase2` backup: 0 added, `ask`/`deny` untouched, every file still valid JSON |
 | | Phase 2c Group B one-off leftovers | not analysed — needs per-rule reading |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
@@ -377,13 +377,13 @@ remove a protection or unblock anything. That is what makes 2a and 2b safe.
 | A — Dead | **53** | Remove (2a) | **None, provably.** The path each names is gone; it can never match again |
 | C — Redundant | **93** | Remove (2b) | **None today.** A global `ask` rule already overrides it |
 | A ∩ C | 4 | — | counted once |
-| **Union proposed** | **142** | | 562 → ~413 rules |
+| **Union proposed** | **144** | | 560 → 416 rules (measured after the fact) |
 | Exact duplicates | 7 | Remove (2b) | Same 7 rules listed twice in Voice-Flow `settings.json` |
 | Dormant — **excluded** | 1 | **Keep** | `release/mac-arm64/Voice Flow.app` is build output: gone now, returns on the next build |
 | B — One-off leftovers | not analysed | 2c | Needs reading each rule; different work from A and C |
 | D — Broad and silent | 40 | **Keep.** Fenced by 1.2 | |
 
-**Why 142 and not the 112 estimated:** group C grew from 18 to 93 when 1.2
+**Why 144 and not the 112 estimated:** group C grew from 18 to 93 when 1.2
 expanded the global `ask` list from 52 to 87. Every project `allow` rule that a
 new `ask` rule covers became a dead letter. Four were live until 1.2 landed
 (`security`, `sqlite3`, `open`, `gh`) — a consequence of an approved change, not
@@ -412,11 +412,11 @@ with project, file, group and reason. It is committed, so it survives a restart.
 ### Still to check before Phase 2 runs
 - [x] Group A re-derived by measurement, not pattern guess — 53, evidence above.
 - [x] Group C recomputed against the **current** 87-rule global ask list — 93.
-- [ ] **Amit's approval of the 142.** D4 — nothing goes without it.
+- [x] **Amit's approval of the 144.** Given 2026-09-18 ("approve the 142 removals" — the list held 144).
 - [ ] Re-count B by hand. The old figure of 53 came from a pattern match.
 - [ ] Confirm no group-B rule is load-bearing for a build or test script.
-- [ ] Confirm each file stays valid JSON after editing.
-- [ ] Back up the 12 project settings files before the first edit (D6).
+- [x] Confirm each file stays valid JSON after editing. All 11 re-parsed clean.
+- [x] Back up the project settings files before the first edit (D6). There are **11**, not 12; copied to `backups/2026-09-18-phase2/`, verified with `cmp`.
 
 ### Non-Bash permissions — surveyed, no action proposed yet
 
