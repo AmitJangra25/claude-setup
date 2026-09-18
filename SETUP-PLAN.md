@@ -32,6 +32,7 @@ conversation to refer back to — this file is the handoff.
 | | 5.3 – 5.8 Low-priority tidying | not started |
 | ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
 | ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
+| ✅ | **6.3 Project rules into this repo** | **DONE** 2026-09-18. All 7 project `CLAUDE.md` files copied to `project-rules/`, with `sync.sh` + `manifest.tsv` as the anti-drift step. All 7 read in full first. Drift detection proven by breaking a copy on purpose |
 
 **Where the numbers stand now** — project `allow` rules **560 → 384**:
 560 as found · **416** after 2a+2b (−144) · **393** after 2c (−23) · **392**
@@ -732,20 +733,41 @@ found — changing it was not asked for. Worth a decision before adding a remote
 since it determines which GitHub account owns the repo and whose name is on
 every commit.
 
-### 6.3 Project rules into this repo  ·  NOT DONE — next git step
-Per D13, copy each project's `CLAUDE.md` to `project-rules/<project>/CLAUDE.md`
-in this repo, so they travel without going into the project's own repo. Needs a
-sync step so the copy does not drift from the live file. Do after Phase 5.1, so
-Voice Flow's copy is the cleaned version.
+### 6.3 Project rules into this repo  ·  **DONE 2026-09-18**
+Per D13, all **7** project `CLAUDE.md` files are copied to
+`project-rules/<project>/CLAUDE.md`. Seven, not the six `PROJECTS.md` implies —
+the SecondBrain vault schema has one too. Voice Flow's copy is the 29 KB cleaned
+version from 5.1 part one, which is why this waited.
+
+**The sync step:** `project-rules/sync.sh` reports which copies have drifted from
+their live files and exits non-zero if any have; `--pull` copies the live files
+over. `manifest.tsv` maps each copy to its source path, so a project that moves
+is one edited line and says `MISSING SOURCE` until it is fixed. Report mode
+changes nothing.
+
+**Verified:** all 7 copies byte-identical to their sources by `cmp` run
+independently of the script; drift detection proven by breaking one copy on
+purpose and watching *only* that project report `DRIFTED`, exit 1; `git status
+--porcelain -uall` lists exactly the 10 intended files and `git ls-files
+--others --ignored` shows nothing in `project-rules/` being silently dropped.
+
+**Before adding an eighth:** all 7 were read in full first, because this repo is
+pushed. They carry architecture, conventions and pitfalls — env var *names* but
+no values, and no customer, employee or account record, including from the two
+projects whose databases hold real ones. A regex scan is not a substitute for
+reading the file.
 
 ### 6.4 Optional  ·  NOT DONE
 A shell function to pull on open and push on close. Out of scope until Phases
 1-2 are done.
 
-### Project rules are separate
-The 8 projects' `CLAUDE.md` and `.claude/settings.json` belong in each
-project's own repo, not in this one. Two are not committed today (5.7) — which
-means on a new machine or account those projects would start with no rules.
+### Project rules are separate — `settings.json` only, since 6.3
+Each project's `.claude/settings.json` belongs in that project's own repo, not
+in this one. **`CLAUDE.md` no longer does:** D13 supersedes the original line
+here, and since 6.3 a copy of every project's rules lives in `project-rules/`.
+The concern this paragraph was written about — that on a new machine or account
+those projects start with no rules — is what 6.3 answers for `CLAUDE.md`. It is
+still true of `settings.json`, and 5.7 is still open.
 
 ---
 

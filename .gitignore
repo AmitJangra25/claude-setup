@@ -40,6 +40,16 @@
 !statusline/
 !statusline/context.py
 
+# --- allow: copies of each project's CLAUDE.md (6.3 / D13), so the rules
+#     travel without going into each project's own repo. Named files only —
+#     a project folder here must never pull in anything but its rules file.
+!project-rules/
+!project-rules/*/
+!project-rules/*/CLAUDE.md
+!project-rules/README.md
+!project-rules/manifest.tsv
+!project-rules/sync.sh
+
 # --- allow: memory files ONLY. Session transcripts sit in the same tree
 #     and must stay out, so this walks in by directory and takes .md only.
 !projects/

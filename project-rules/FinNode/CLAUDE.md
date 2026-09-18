@@ -1,0 +1,238 @@
+# FinNode — project instructions
+
+Offline-first personal Android finance tracker for Indian users. Kotlin + Jetpack Compose, single module, package-by-feature. Solo build.
+
+**Read [docs/ROADMAP.md](docs/ROADMAP.md) before starting work** — it says which phase is
+active and what its success criteria are. Full reference docs are indexed in
+[README.md](README.md). Phase history lives in the roadmap, not here.
+
+## How to work on this project
+
+These four come before the technical rules because every defect this project has shipped got
+past a compiler and a green test suite first.
+
+**Evidence, not assumption.** A claim that something works is backed by a command that was
+run and the output it produced, or it is not made. Compiling is not passing. A test that has
+never been seen to fail is a guess — break the code again and watch the new test fail, and
+watch that *only* it fails. "Should be unreachable" is not the same as "is". If something
+could not be verified, say so in the same breath as the claim rather than rounding it to
+done: four defects in Phase 0, five in 1b, three and two in 1c, one in 2a all hid behind the
+assumption that a build means a working app.
+
+**Fix the cause, not the symptom.** No workaround that leaves the defect in place, no fix
+that only holds while a condition nobody checked stays true, no hypothetical fix for a
+failure that was never reproduced. Reproduce it, find why, fix that. If the real fix is out
+of scope, the defect goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was actually
+observed — it does not get papered over and it does not get guessed at.
+
+**Build the smallest thing that satisfies the checkpoint.** No abstraction with one caller,
+no parameter nobody passes, no flag nothing reads, no interface with one implementation, no
+"while I'm here" refactor folded into a fix. Building ahead of the phase is allowed *only*
+with a reason recorded at the time — `DiaryDao`, `ReminderDao` and `last4Digits` are the
+precedent, and each wrote down why a form with nothing behind it throws the user's input
+away. Everything else waits for the phase that owns it. Scope for *features* is
+[docs/BACKLOG.md](docs/BACKLOG.md); ask *is this required to use the app daily?* and if the
+answer is no, don't build it.
+
+**Stay on the task you were given.** Do what was asked, then stop. This codebase has small
+imperfections in it and hunting for them is not the job — an unrequested fix costs a review,
+a device pass, and a fresh chance to break something that already worked. If something
+genuinely serious turns up while working, write it in [docs/BACKLOG.md](docs/BACKLOG.md)
+with what was seen and carry on with the actual task; if it is not serious, let it go. Do
+not bundle unrelated changes together, and do not end a piece of work by talking the user
+into a list of other things to fix.
+
+### Before any change is called done
+
+Not once per checkpoint — once per change. The checkpoint gate is days wide, and a single
+fix needs its own.
+
+```bash
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+./gradlew testDebugUnitTest lint assembleDebug assembleRelease
+./scripts/audit.sh
+```
+
+- All four Gradle tasks green, and **zero lint errors** (warnings are tolerated — see
+  [docs/SETUP.md](docs/SETUP.md)).
+- `./scripts/audit.sh` passes. It is the mechanical form of the hard rules below — the two
+  money-math greps plus the `Double`, dynamic-colour, KAPT and bare-`.dp` checks. It has a
+  ratchet on bare `.dp`: that number may go down, never up.
+- **If a screen now reads or writes a transaction, add it to `CrossScreenPropagationTest`.**
+  That suite *is* the list of surfaces the live-data contract covers, and the one defect 2a
+  shipped was on the single surface missing from it.
+- **If it touches UI or data, walk it on device.** Not the Preview panel, not a passing
+  test. Every phase of this project has hidden defects that compiled clean.
+  `adb shell am start -n com.finnode.debug/com.finnode.ui.gallery.GalleryActivity` shows
+  every component and all four states in both themes.
+
+## Hard rules
+
+- **Money is `Long` in paise.** Never `Double` for an amount — not in entities, DTOs, ViewModels, or test fixtures.
+- **No network dependencies in v1.** No Retrofit/OkHttp, no cloud SDKs, no Firebase. Bank SMS never leaves the device.
+- **KSP, never KAPT.**
+- **Room 2.8.x** — do not upgrade to the 3.0 alpha.
+- **AGP 9 compiles Kotlin itself.** Never add `org.jetbrains.kotlin.android` — it is a
+  hard build error, not a redundancy. The Compose compiler plugin is still needed.
+- **compileSdk 37, targetSdk 36.** Current AndroidX refuses compileSdk below 37; targetSdk
+  stays 36 by product decision. Don't "fix" the mismatch.
+- **Every Room schema version bump needs a migration test.** `@AutoMigration` from version 1; commit the exported schema JSON.
+- **No hardcoded colors or spacing outside `ui/theme/`.** Spacing uses 4dp grid multiples,
+  with one recorded exception: the 14dp list-row padding used on every row in the design.
+- **All user-facing strings in `strings.xml`.**
+- **Semantic colors** (credit/debit/refund/warning) are hardcoded and exempt from *all*
+  theming — a debit must never read as a credit. They were exempt from dynamic theming;
+  dynamic theming is now gone entirely, and they stay fixed regardless.
+- **`docs/Design/src/` is the visual source of truth**, with two exceptions where specified
+  and tested behaviour wins: money formatting (`MoneyFormatter` — always 2 decimals, U+2212,
+  never the mockups' `₹680` and ASCII hyphen) and the 48dp minimum touch target.
+- **Nothing sensitive in logs.** Timber's release tree drops below WARN.
+- **`core/parser` stays pure JVM** — no Android imports, so its SMS corpus tests run on the JVM.
+- **Manual transactions get a random hash, parsed ones a deterministic digest.** Never
+  unify these — a shared formula makes two identical manual entries collide on the UNIQUE
+  index and the second silently fails. See `core/db/TransactionHasher`.
+- **Direction lives in `TransactionType`, never in the sign of `amountMinor`.** Stored
+  amounts are always positive; `MoneyFormatter.formatSigned` applies the sign at render, and
+  `MoneyMath.signedMinor` takes the magnitude rather than trusting it.
+- **A background job verifies nothing by existing.** WorkManager's delay is elapsed-realtime,
+  so moving the device clock forward does *not* fire a pending sweep, and forcing a periodic
+  job that already ran in its period is refused outright. The recipe that does work — fresh
+  install with the clock just before 9, then wait — is in
+  [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) under 2c-ii. A sweep that was never seen to
+  run is a sweep that does not run.
+- **Only `core/domain/MoneyMath` derives a figure from transactions.** No ViewModel sums,
+  nets, balances or compares amounts itself. `MoneyMath` is pure JVM so every figure the user
+  sees is unit-tested rather than eyeballed. Checkpoint 3 found six copies of `signedMinor`
+  and 2a found four more, including `AmountText` — a rendering helper does not look like
+  arithmetic, which is exactly why it survived the first sweep.
+- **Nothing holds a snapshot of database state.** Room `Flow` → repository → `StateFlow` →
+  `collectAsStateWithLifecycle()`, unbroken. A list copied into a `var`, a value read once in
+  `init`, or a stray `.first()` on a read path is a second source of truth and severs live
+  updates silently. A snapshot is not wrong when it is taken — it is wrong later, which is
+  why the rule is absolute rather than "be careful".
+- **A screen that *displays* a row observes it; a form that *edits* one reads it once.** The
+  repository offers both — `observeById` and `getById` — and picking the wrong one is a
+  defect in either direction. A read surface on `getById` goes stale the moment anything
+  writes; a form on `observeById` overwrites what the user is halfway through typing. This
+  cost checkpoint 2a a real bug: transaction detail was on `getById`, harmlessly, until it
+  grew an Edit button.
+- **A write confirms itself from its `Result`, never from the tap.** Success raises the top
+  toast; refusal states its reason on the field that caused it.
+- **A refusal is an outcome, not a failure.** An action the app declines on purpose — deleting
+  an account that still has transactions — is not a `Result.failure`; nothing went wrong.
+  `core/data/CatalogOutcome` is the shape: `Result` answers "did the write reach the
+  database", the outcome answers "should it have happened", and the refusal carries the number
+  the guard actually decided on so the message cannot disagree with it.
+- **A guard that protects a reference counts soft-deleted rows.** Every *read* surface hides
+  `isDeleted` rows, and every *guard* must not: a soft-deleted transaction is one Undo away
+  from being live, so it is still a live reference. Getting this backwards lets an account be
+  deleted and an Undo restore a row pointing at nothing — silently, because the ledger renders
+  an unresolved row as a blank subtitle. See `core/db/dao/TransactionDao.countForAccount`.
+- **`isArchived` is observed on a form; the editable fields are read once.** Not an exception
+  to the rule above it — the rule protects the user's draft, and nothing on the form edits
+  `isArchived`. Read once, an archive button still reads "Un-archive" immediately after
+  un-archiving, and the second tap does nothing at all.
+- **A control that silently does nothing is a defect, not a safeguard.** Prefer making an
+  action wait for the state it needs over disabling it and dropping the input. An affordance
+  whose destination does not exist yet is not on screen yet. This one cost Phase 1b a week:
+  the Add sheet disabled its own Save button for the first few hundred milliseconds of every
+  open, so a tap in that window vanished, and both "failing tests" were that one bug.
+- **Empty is not the same as not-yet-loaded.** Any state read from Room or DataStore carries
+  a loading flag, or the UI confidently asserts something false about the user's own data.
+
+## Use what already exists
+
+Check here before writing something new — most of it is one import away.
+
+- **`core/notification/ReminderNotifier`** — the only thing that builds, posts or cancels a
+  notification. `ReminderRepository` cancels through it whenever a reminder is settled or
+  deleted, so no caller has to remember to.
+- **`ui/theme/`** — `FinNodeTheme.colors` (`FinNodeColors` carries the neutrals M3 has no
+  slot for: `elevated`, `nav`, `subtle`, the `paper*` family; the M3 scheme is mapped from
+  the same values so stock and hand-built components cannot drift). `FinNodeType` — twelve
+  named roles, so **never set `fontSize` in a screen**. `Spacing`, `Sizes`, `Radii` in
+  `Dimens.kt` — never a bare `.dp` outside `ui/theme/`. `FinNodeIcons` — the design's
+  stroked 1.8-weight glyphs; add to this set rather than reaching for a Material Symbol, or
+  two icon weights end up in the same row.
+- **`ui/components/`** — scaffolds, containers, list rows, chips, buttons, amount text,
+  toggle, keypad, sheet, toast, charts, dialogs.
+- **`ScreenState` + `ScreenStateHost`** — a sealed interface, so loading, ready, error and
+  permission-denied all have to be answered. The design supplies only *empty*, and an
+  unloaded list rendering as "you have nothing" is exactly what cost Phase 1b.
+- **`core/domain/MoneyMath`** — every derived figure. **`core/format/`** — `MoneyFormatter`,
+  `DateFormatter`, `CategoryEmoji`. Nothing formats money inline in a Composable.
+- **Chrome is decided in one place, the nav host** — status-bar icon colour from
+  `FinNodeTheme.colors.isLight` (never `isSystemInDarkTheme()`), and full-screen overlays
+  inside a tab report themselves via `onOverlayChange`. See
+  [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md).
+- **`app/src/debug/`** — the two debug-only surfaces, neither compiled into release:
+  `ui/gallery/GalleryActivity` (every component, all four states, both themes) and
+  `debug/SeedActivity` + `DemoDataSeeder` (1,168 transactions over 18 months, fixed random
+  seed so two runs agree, and a clear that removes only its own rows). Launch them with
+  `adb shell am start -n com.finnode.debug/com.finnode.debug.SeedActivity`. Being declared only
+  in the debug manifest *is* the guarantee they cannot fire on a real install — verified by
+  checking the release APK's dex and manifest, not by asserting it.
+- **`core/debug/Measure.phase`** — the timing used for 2d-i's baseline, debug-only and
+  `BuildConfig.DEBUG`-guarded. 2d-ii-a must re-measure through the same helper, or it is
+  comparing two methods and calling the difference Paging.
+- **Instrumented tests share the app's real encrypted database**, which survives between
+  runs. Any test asserting on a count, an empty state, or a node that must be unique resets
+  first — `TransactionRepository.deleteAll()` in `@Before`, and cleanup goes in `@After`
+  where a failure cannot skip it. A suite that only passes on a fresh install will fail the
+  first time someone clicks through the app by hand.
+
+## Architecture summary
+
+MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` for one-shot events. Repositories return `Flow`; Compose collects with `collectAsStateWithLifecycle()`. Hilt for all DI. Errors as `Result`/sealed classes — no exceptions across layer boundaries. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## Current state
+
+**Phase 2, checkpoint 2d-ii-a is next** — re-measuring typing over a longer query and a larger
+frame sample, and cutting what `LedgerScreen`'s `LazyColumn` does per keystroke. Paging 3 is
+**2d-ii-b**, and only if 2d-ii-a's numbers still ask for it; 2d-ii was split on 2026-09-18.
+Read [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first. 2d-i's baseline says where to aim:
+the arithmetic is not the problem (every derivation is single-digit milliseconds at 1,168 rows,
+and the balance pass is under 1.3 ms, so **the balance cache is not justified**), while
+**typing** in the Ledger hits a P95 of 48 ms — and since filtering *and* grouping together are
+only 1.2–4.9 ms of that, the cost is in rendering the regrouped list rather than in producing
+it. That is the number 2d-ii-a has to move, and the reason it gets to try before Paging does.
+
+Done and device-verified: Phase 0, 1b, 1c (three checkpoints, 15 of 22 screens) and Phase 2
+checkpoints 2a, 2b, 2c-i, 2c-ii and 2d-i. 233 unit tests, 136/136 instrumented on
+`finnode_api36`, no lint errors, audit clean, both variants building. `PlaceholderScreen` is
+gone — every screen is real, on real data.
+
+**The app now declares one permission.** `POST_NOTIFICATIONS`, requested from the Reminders
+screen. READ_SMS and the notification listener stay undeclared until Phase 3 builds their
+disclosure — declaring a sensitive permission before the feature exists is what gets a Play
+Store submission rejected.
+
+Two standing items that are not checkpoints:
+
+- **Collect anonymised bank SMS from your own phone, starting now.** Target 100+ across the
+  banks, cards and UPI apps you actually use; strip names and account numbers, keep the
+  structure. It is the only Phase 3 input that cannot be caught up later — code can be
+  reordered, a month of real messages cannot.
+- **The design changed on 2026-09-03** and `docs/Design/src/` is the final visual reference,
+  read for layout, spacing, colour and copy and **never ported line-by-line**. The
+  consequences that bite — hand-tuned near-black neutrals, no dynamic colour, Compose
+  `Canvas` charts, no calendar library — are in
+  [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and [docs/TECH_STACK.md](docs/TECH_STACK.md).
+
+## Commands
+
+```bash
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
+
+./gradlew assembleDebug
+./gradlew testDebugUnitTest          # JVM unit tests — no device needed
+./gradlew connectedDebugAndroidTest  # instrumented + Compose UI tests — needs the emulator
+./gradlew lint
+./scripts/audit.sh                   # the hard rules a compiler cannot check
+```
+
+Toolchain lives outside the defaults: JDK 17 at
+`/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`, Android SDK at
+`/opt/homebrew/share/android-commandlinetools`. `JAVA_HOME` must be exported before any
+`./gradlew` invocation. Java 17 is required by AGP 9.4.0. Booting `finnode_api36` and the
+rest of the setup is in [docs/SETUP.md](docs/SETUP.md).
