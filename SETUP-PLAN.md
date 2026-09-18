@@ -17,8 +17,8 @@ conversation to refer back to — this file is the handoff.
 | ✅ | 1.1 Back up 27 files | **DONE**, verified byte-identical with `cmp` |
 | ✅ | 6.1 `git init` + `.gitignore` + baseline commit | **DONE**, commit `14883fa`, 38 files, 90 KB |
 | ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
-| ⬅ | **1.2 Close the holes in the global ask list** | **NEXT — needs approval before editing** |
-| | 1.3 Add two global entries rtk needs | after 1.2 |
+| ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
+| ⬅ | **1.3 Add two global entries rtk needs** | **NEXT — add-only, same pattern as 1.2** |
 | | Phase 2 Permission cleanup | needs line-by-line approval |
 | | Phase 7 Promote working preferences to STANDARDS.md | HIGH |
 | | Phase 3 The deliberate set | |
@@ -49,22 +49,24 @@ ls -1 ~/.claude/backups/2026-09-18-setup/global | wc -l      # expect 10
 find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
 
 # git repo exists, both commits present, tree clean
-git -C ~/.claude log --oneline                               # expect 01ec525 then 14883fa
+git -C ~/.claude log --oneline                               # newest first; 14883fa is the baseline
 git -C ~/.claude status --porcelain                          # expect empty
 git -C ~/.claude ls-files | wc -l                            # expect 40
 
-# settings.json not yet touched — this is the real proof no behaviour changed
-cmp ~/.claude/settings.json \
-    ~/.claude/backups/2026-09-18-setup/global/settings.json  # expect silence
+# settings.json after 1.2. It NO LONGER matches the 1.1 backup — that is
+# expected. The real proof is that the change was additions only:
+git -C ~/.claude diff 885c1d4 -- settings.json | grep -c '^-[^-]'   # expect 0
+python3 -c "import json;p=json.load(open('$HOME/.claude/settings.json'))['permissions'];print(len(p['allow']),len(p['ask']),len(p['deny']))"
+                                                             # expect 32 87 2
 
-# 1.2 not yet done: expect NOTHING. `tccutil` appears nowhere today, so it is
-# the unambiguous marker. Do NOT grep for `gh repo` — `Bash(gh repo view*)`
-# is an existing read-only ALLOW rule and gives a false positive.
-grep -c tccutil ~/.claude/settings.json                      # expect 0
+# 1.2 marker: `tccutil` now appears TWICE — `Bash(tccutil *)` and
+# `Bash(rtk proxy tccutil *)`. Do NOT grep for `gh repo` — `Bash(gh repo view*)`
+# is a pre-existing ALLOW rule and gives a false positive.
+grep -c tccutil ~/.claude/settings.json                      # expect 2
 ```
 
-If `tccutil` is found, or `cmp` reports a difference, 1.2 has already been
-done — check `git log` and `git diff 01ec525 -- settings.json`.
+If `tccutil` returns 0, 1.2 has been reverted — check `git log` and
+`git diff 885c1d4 -- settings.json`.
 
 ## How to work on this, in one line each
 
@@ -113,6 +115,7 @@ Recorded so the same mistake is not repeated.
 | 8 rules ran without prompting | 40 | My risk categories put arbitrary-code and Keychain access in the "low risk" bucket. |
 | `ENVIRONMENT.md` never loading was a problem to fix | **Deliberate and already documented.** A comment in `CLAUDE.md` explains it: reference material, and every `@import` is re-read every turn. | I read `CLAUDE.md`'s imports but not the file itself. |
 | Voice Flow's `CLAUDE.md` being gitignored was an oversight | A standing preference from 2026-08-11, recorded in memory as `claude-md-not-in-git` | Did not read the memory files before recommending. Fixed by D14. |
+| `sudo` ran 2× and `killall` 3× in history, so both needed fencing | **Neither has ever been run.** Every hit was the *word* inside a python regex or a `grep -n "a\|killall\|b"` pattern | My probe split compound commands on `\|` and matched heredoc contents. Fixed by replaying with full-token glob matching, which is what the permission system actually does. |
 
 **Root cause:** each answer came from a fresh narrow query instead of one
 complete inventory. Fixed by completing the inventory before planning — this
@@ -183,6 +186,8 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D12 | rtk stays. The fault was my verification, not rtk: anything feeding a decision to delete, move or overwrite a file must be re-run through `rtk proxy` first | 2026-09-18 |
 | D13 | **Supersedes D11.** Project `CLAUDE.md` files stay out of their own project repos (August preference holds). A copy lives in the private `~/.claude` repo under `project-rules/<project>/` so they still travel | 2026-09-18 |
 | D14 | Read the memory files before recommending anything that touches a project | 2026-09-18 |
+| D15 | **`npx` stays out of `ask`.** Confirms the existing `ENVIRONMENT.md` exclusion against a fresh measurement: 231 of 235 calls are build/test. Only `npx --yes|-y` is fenced | 2026-09-18 |
+| D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
@@ -226,7 +231,7 @@ preserved: 8 global `.md` + global `settings.json` + `statusline/context.py`
 **Verified:** all 27 confirmed byte-identical to their originals with `cmp`.
 **Undo:** n/a, nothing was changed.
 
-### 1.2 Close the holes in the global ask list  ·  ADD ONLY, remove nothing
+### 1.2 Close the holes in the global ask list  ·  **DONE 2026-09-18**
 
 > **PREREQUISITE — do this first.** `~/.claude/CLAUDE.md` carries an instruction
 > in a comment: *"Read ~/.claude/ENVIRONMENT.md before changing settings.json or
@@ -262,7 +267,42 @@ this file. Fencing them costs many prompts a day and stops nothing, per the
 "not a security boundary" note above. **Flagged for your call, not decided.**
 
 **Impact:** a handful of extra prompts, only for the actions listed.
-**Undo:** delete the added lines. Nothing else is touched.
+**Undo:** `git -C ~/.claude checkout settings.json`, or delete the added lines.
+
+#### What was actually added, and how it differs from the table above
+
+35 rules, `ask` 52 → 87. Verified: 35 insertions, **0 deletions**; `allow` (32),
+`deny` (2), `hooks`, `statusLine` and every other key byte-identical.
+
+15 commands — `tccutil` · `sudo` · `security` · `killall` · `sqlite3` · `open` ·
+`git mv` · `gem install` · `ollama pull|rm|signin` · `gh api|pr|auth|repo` —
+each in bare and `rtk proxy` spelling, plus `rtk ` for `git mv` and the four `gh`
+forms.
+
+Three deliberate departures from the table above, all found by the
+`ENVIRONMENT.md` prerequisite:
+
+1. **`npx *` and `rtk npx *` were NOT added.** Of 235 `npx` calls in history, 231
+   are `vitest` (165), `tsc` (55), `vite` (7) and `asar` (4) — routine build and
+   test. Only 4 are `--yes`, which `ask` already catches. The rule would have
+   added ~231 prompts and caught nothing new. `ENVIRONMENT.md` had already
+   excluded these deliberately; the 1.2 table had silently reversed that.
+2. **`gh auth *` and `gh repo *` were kept broad**, knowing they override the
+   existing `Bash(gh auth status*)` and `Bash(gh repo view*)` allow rules. Cost
+   is 7 prompts across 56 sessions. The alternative — 11 narrow subcommand rules
+   — costs the same to avoid and `ENVIRONMENT.md` warns argument-constrained
+   patterns are fragile. **Those two allow rules are now dead letters.** Left in
+   place, not removed; removing them is a Phase 2 decision.
+3. **`rtk proxy` spellings were added**, which the table omitted. Confirmed by
+   `find`: four project files carry blanket `Bash(rtk proxy *)` —
+   `vthrudebugger_v1`, `Voice-Flow`, `Voice Flow_v1`, `Debugger v2`. Without the
+   third spelling, `rtk proxy sudo …` would still run silently in those four.
+
+**Measured cost:** replaying 5,734 historical Bash calls across 56 sessions,
+**+26 prompts total = +0.46 per session**. 25 of the 35 rules never fire against
+history at all — they are pure fences. The only real `tccutil` call ever made was
+`tccutil reset All …` against the Claude install directory, which is exactly the
+case D5 wanted visible.
 
 ### 1.3 Add two global entries rtk needs  ·  ADD ONLY
 - `Read(//Users/amitjangra/Library/Application Support/rtk/tee/**)` — rtk writes
