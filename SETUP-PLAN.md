@@ -10,17 +10,20 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 Amit's whole Claude Code setup is being reviewed **project by project**, one at a
 time, and the global rules come **last** — only after every project has been seen.
-**Voice-Flow and FinNode are done; six projects remain.** The method, the cost
-model and both results are in § *PHASE 10*.
+**Voice-Flow and FinNode are done. Three projects remain** — narrowed 2026-09-20;
+two were dropped and two were never projects. The method, the cost model and both
+results are in § *PHASE 10*.
 
 ## Next session: start here, not at the top
 
-**Do not read this whole file.** It is ~79 KB and reading it costs about 20k
+**Do not read this whole file.** It is ~107 KB and reading it costs roughly 27k
 tokens, which is the opposite of the point. Read, in this order:
 
 1. **This block** and the status table below it.
-2. **§ PHASE 10 — Project-by-project review** — the method and what Voice-Flow
-   produced. This is the only section that governs the current work.
+2. **§ PHASE 10 — Project-by-project review** — the method, and what the Voice-Flow
+   and FinNode passes produced. This is the only section that governs the current
+   work. FinNode's entry carries a **method correction**: measure a section before
+   proposing its fix, because the Voice-Flow shape did not transfer.
 3. The specific phase section only if the work touches it.
 
 Everything else is reference. Search it when you need it.
@@ -36,12 +39,20 @@ trapped in a single project** — *never commit without being asked* and *one PR
 per branch off main*. Neither is in `STANDARDS.md` at all. Doing this project
 finishes Phase 8 step 1, which has been half-done since 2026-09-20.
 
-Run it exactly as the Voice-Flow and FinNode passes ran — the six steps are in
-§ PHASE 10. **Survey and ask before touching anything.** Amit wants 8–10
-questions a project; every removal is a question, never an inference.
+**But the rename comes first.** Amit named this project at random and will rename
+it — repo, local folder, and the name inside the code — as the first act of working
+on it. The pass runs *after*, so it records the final name. **Do not start the rename
+unprompted**; wait for him to say so. Read § *Project names, and what a rename costs*
+before anything else — a rename orphans this project's 3 memories unless the memory
+folder moves in the same step.
+
+Then run it exactly as the Voice-Flow and FinNode passes ran — the six steps are in
+§ PHASE 10. **Survey and ask before touching anything.** Amit wants 8–10 questions a
+project; every removal is a question, never an inference.
 
 **First command of the session:** back up, into `backups/<date>-vthrudebugger/`,
-verified with `cmp`. Nothing else happens first.
+verified with `cmp`. Nothing else happens first. Note the tree is **not clean** —
+9 uncommitted files, parked on branch `alert-swipe-to-dismiss`.
 
 **Carry these in:** `Bash(python3 -c ' *)` is still open in **Debugger v2** and
 **Voice Flow_v1** (FinNode's two were closed 2026-09-20). Note what FinNode
