@@ -84,6 +84,10 @@ doing is my call, not a side effect of you noticing something. Do not bundle unr
 into one piece of work. Say something immediately only if it is actually broken, or if a claim
 you already made turns out to be wrong.
 
+**That list is observations, not a menu of work.** Defects and facts only — never suggested
+tasks, never "worth checking", never extra verification of what you just built. Another
+project's issues wait for that project's turn. Empty is a normal outcome.
+
 ## When something is unclear
 
 Ask, rather than pick a reading silently. If the request is internally contradictory, say
