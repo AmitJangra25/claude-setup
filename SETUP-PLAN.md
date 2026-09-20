@@ -6,9 +6,66 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-**Read this whole file before doing anything.** It is the complete state. The
-session that produced it was ended deliberately to save tokens, so there is no
-conversation to refer back to — this file is the handoff.
+## What we are doing, in three lines
+
+Amit's whole Claude Code setup is being reviewed **project by project**, one at a
+time, and the global rules come **last** — only after every project has been seen.
+Voice-Flow is done. **FinNode is next.** The method, the cost model and the
+Voice-Flow result are in § *PHASE 10*.
+
+## Next session: start here, not at the top
+
+**Do not read this whole file.** It is ~79 KB and reading it costs about 20k
+tokens, which is the opposite of the point. Read, in this order:
+
+1. **This block** and the status table below it.
+2. **§ PHASE 10 — Project-by-project review** — the method and what Voice-Flow
+   produced. This is the only section that governs the current work.
+3. The specific phase section only if the work touches it.
+
+Everything else is reference. Search it when you need it.
+
+## The next piece of work — FinNode
+
+`~/Documents/VS Code/FinNode` — offline-first Android finance tracker for Indian
+users (Kotlin + Compose, Room + SQLCipher, bank-SMS parsing). Active, phase 2.
+
+Run it exactly as the Voice-Flow pass ran — the six steps are in § PHASE 10.
+**Survey and ask before touching anything.** Amit wants 8–10 questions a project;
+every removal is a question, never an inference.
+
+What is already known to be waiting there:
+
+| | |
+|---|---|
+| `CLAUDE.md` | 2,501 words — second largest, and it re-states four `STANDARDS.md` sections in substance. Phase 8 step 4 says keep the project evidence, drop the general paragraph |
+| Permissions | 25 rules. **`Bash(python3 -c ' *)` runs any code** — the same hole closed in Voice-Flow. Also `git -c user.name=Amit … commit -q -m ' *`, now overridden by the global ask but still sitting there |
+| Memory | 2 files. **`rtk-proxy-suppresses-dry-run-output` is the third of the five trapped rules** — rtk runs on every Bash call in every project, so an rtk gotcha is global by definition. Promoting it finishes Phase 8 step 1. `always-recommend-an-option` is already in `STANDARDS.md` § *When something is unclear* and needs the same pointer line the Voice-Flow duplicates got |
+| Docs | It has its own `docs/` indexed from `README.md`, so the claim/evidence split may already be half done. Check before proposing it |
+
+**First command of the session:** back up, into
+`backups/2026-09-20-finnode/` (or the day's date), verified with `cmp`. Nothing
+else happens first.
+
+## The order after FinNode
+
+Amit's call each time. The remaining seven, with what is known:
+
+- **vthrudebugger_v1** — holds `vthru_debugger_workflow_preferences`, one memory
+  carrying five rules, two of them the last trapped global ones (*never commit
+  without being asked*, *one PR per branch off main*). Phase 8 step 3.
+- **Voice Flow_v1** — 50 permission rules incl. `python3 -c ' *`; an old tree.
+- **Emp portal** — real employee records. 11 rules.
+- **Packbly_web** — real customer and courier records. 8 rules.
+- **Debugger v2** — 17 rules, **no `CLAUDE.md` yet**. Starts from a blank page.
+- **Packbly_v2** — no `CLAUDE.md`, no `.claude/`. Likely a Figma export, not an app.
+- **SecondBrain schema** — not really a separate project: it is Voice-Flow's vault
+  (`electron/vaultStore.js:22` sets it as `DEFAULT_VAULT_ROOT`). `PROJECTS.md`
+  still lists it as its own project, which is wrong and worth fixing in the
+  global pass.
+
+**Then, and only then, the global pass:** `STANDARDS.md`, the other four imported
+files, the global permission list, and whatever turned out to be universal.
 
 ## Status at handoff (2026-09-18)
 

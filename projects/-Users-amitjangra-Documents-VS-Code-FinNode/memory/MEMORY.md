@@ -1,2 +1,3 @@
+- [Setup review: FinNode is next](setup-review-finnode-is-next.md) — project-by-project pass; read START HERE + PHASE 10 of ~/.claude/SETUP-PLAN.md first
 - [Always recommend an option](always-recommend-an-option.md) — never hand over a neutral menu; name the pick and why not the others.
 - [rtk hides --dry-run output](rtk-proxy-suppresses-dry-run-output.md) — empty output from `git add --dry-run` is the proxy, not a broken git.
