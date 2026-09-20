@@ -3,7 +3,7 @@
 One line per project: path, what it is, and whether it has its own `CLAUDE.md`.
 A project without one gets it by running the per-project setup prompt inside it.
 
-Verified against the filesystem 2026-09-15. Branch state, duplicate trees and the
+Verified against the filesystem 2026-09-20. Branch state, duplicate trees and the
 open questions are in `ENVIRONMENT.md` — this file stays an index.
 
 ## Active
@@ -17,6 +17,10 @@ open questions are in `ENVIRONMENT.md` — this file stays an index.
 
 ## Idle, has a `CLAUDE.md`
 
+- [x] **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26`
+  — multi-tenant HR portal (React 18 + Vite, Express 5 + better-sqlite3, role-based
+  dashboards). **Real employee records.** Its rules sat in `.claude/CLAUDE.md` until
+  2026-09-20 and are now at the project root, like every other project.
 - [x] **Debugger** (vthrudebugger) — `~/Documents/VS Code/vthrudebugger_v1` — drop-in
   in-app debugger library for React Native: network/console/error capture, QA alert
   toasts, network inspector, client-side mocks.
@@ -29,13 +33,17 @@ open questions are in `ENVIRONMENT.md` — this file stays an index.
 
 ## No `CLAUDE.md` yet
 
-- [ ] **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26`
-  — multi-tenant HR portal (React 18 + Vite, Express 5 + better-sqlite3, role-based
-  dashboards). **Real employee records.**
 - [ ] **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for
   React Native. Successor to `vthrudebugger_v1`.
 - [ ] **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma code
   export, likely a design bundle rather than an app.
 
-Not projects: `~/Documents/Voice-Flow-main`, `~/Documents/extra/v1.1-Packbly`,
-`~/Documents/Skils/PM-skills-Amit`. See `ENVIRONMENT.md`.
+Not projects: `~/Documents/extra/v1.1-Packbly`, `~/Documents/Skils/PM-skills-Amit`.
+`~/Documents/Voice-Flow-main` was listed here until 2026-09-20 and no longer exists.
+See `ENVIRONMENT.md`.
+
+Claude also opens `~` and `~/Documents` themselves as working directories. They are
+not projects, get no `CLAUDE.md`, and are covered by the global rules. Ten further
+paths appear in `~/.claude.json` from past sessions and no longer exist on disk —
+old Voice Flow trees, `Packbly_Admin`, `claudetr` and a `Downloads` copy of Emp
+Portal. They are history, not projects, and are deliberately not listed here.
