@@ -8,6 +8,8 @@ metadata:
   modified: 2026-07-28T16:44:48.707Z
 ---
 
+**Four of these five rules are global now** — see `STANDARDS.md` § *Plan before building*, § *When something is unclear* and § *Git*. Kept here for the dated evidence of where each came from. Only the stash-and-branch technique at the end is not written down globally.
+
 For UI/bug-fix work on this repo, follow this loop: understand the problem, share a written plan (issue-by-issue, with file:line references), let the user review, only then implement.
 
 **Why:** Stated explicitly at the start of a multi-issue session ("before you start fixing it, do share with me. I will review, and then we'll move forward") and reinforced every time a new issue was added to the list — the user consistently wants to review scope/approach before code changes happen, even mid-session for a single new issue.

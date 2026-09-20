@@ -8,7 +8,7 @@ metadata:
   modified: 2026-07-25T09:05:08.213Z
 ---
 
-The V-Thru customer app (the intended first consumer of `@amitjangra25/vthru-debugger`, see [[vthru-debugger-plan]]) already has its own toggle button for QA/testers to enable or disable the debugger.
+The V-Thru customer app (the intended first consumer of `@amitjangra25/vthru-debugger`, see the repo's `PLAN.md`) already has its own toggle button for QA/testers to enable or disable the debugger.
 
 **Why:** This confirms PLAN.md's open decision #4 ("QA build flag") should stay resolved as "host app decides" — `DebuggerProvider`'s `enabled` prop is host-controlled by design (see `src/react-native/DebuggerProvider.tsx`), not baked into the library via MMKV or any storage mechanism of its own.
 

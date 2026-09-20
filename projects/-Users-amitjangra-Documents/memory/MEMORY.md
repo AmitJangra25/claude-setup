@@ -1,1 +1,2 @@
 - [Claude setup plan in progress](claude-setup-plan-in-progress.md) — read ~/.claude/SETUP-PLAN.md before touching rules, settings or permissions
+- [Keep explanations short](keep-explanations-short.md) — plain words, few lines, conclusion first

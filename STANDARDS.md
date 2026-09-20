@@ -122,6 +122,13 @@ travel with the project and nothing is at risk, because `~/.claude/project-rules
 them all anyway. **Before the repo goes public, raise taking them out**: they name internal
 paths, shipped defects and reasoning. Raise it — never do it silently.
 
+**Never commit or push without being asked.** Preparing a commit is not permission to make
+one. Branch, commit, push and open the PR only once I say "send it for review" or the
+equivalent — and nothing lands on `main` directly.
+
+**One PR per feature, on its own branch off `main`.** Never stacked on an earlier PR's
+branch that hasn't merged yet.
+
 ## Explaining a permission request
 
 **This is a hard rule, not a preference.** When an action is going to stop and ask for

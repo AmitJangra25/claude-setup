@@ -1,9 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rtk git *)",
-      "Bash(rtk npm *)",
-      "Bash(rtk lint *)"
+      "Bash(rtk lint *)",
+      "Bash(rtk git add *)",
+      "Bash(rtk npm run *)"
     ]
   }
 }

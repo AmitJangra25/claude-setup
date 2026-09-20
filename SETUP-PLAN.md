@@ -9,8 +9,9 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 ## What we are doing, in three lines
 
 Amit's whole Claude Code setup is being reviewed **project by project**, one at a
-time, and the global files come **last**. Voice-Flow and FinNode are done; **three
-projects remain and are the current work** (§ *PHASE 10*).
+time, and the global files come **last**. Voice-Flow, FinNode, `vthrudebugger_v1` and
+`Debugger v2` and `Emp portal` are done.
+**All project passes are complete; the global pass is next** (§ *PHASE 11*).
 
 **Renames are decoupled — ignore them.** Amit will rename each project whenever he
 actually opens it to work on. A pass does **not** wait for a rename and must not
@@ -37,38 +38,29 @@ tokens, which is the opposite of the point. Read, in this order:
 
 Everything else is reference. Search it when you need it.
 
-## The next piece of work — `vthrudebugger_v1`
+## The next piece of work — the global files
 
-`~/Documents/VS Code/vthrudebugger_v1` — a drop-in in-app debugger library for
-React Native. Idle, has a `CLAUDE.md`, 39 permission rules.
+**Every project pass is done.** Voice-Flow, FinNode, `vthrudebugger_v1`, `Debugger v2`
+and `Emp portal` have all been walked. What is left is § *PHASE 11*: the six global
+files, the global permission list, and whatever turned out to be universal.
 
-**Do not rename it, and do not raise renaming.** Amit renames a project when he
-opens it to work on. The pass runs on the current name. This was briefly written up
-as a prerequisite on 2026-09-20 and that was wrong — it turned a project chore into
-a blocker on setup work.
+**`STANDARDS.md` goes last within it.** The two universal rules it was waiting on —
+*never commit or push without being asked* and *one PR per feature on its own branch
+off `main`* — were added during the `vthrudebugger_v1` pass, so Phase 8 step 1 is
+complete and `STANDARDS.md` can now be trimmed in one opening rather than two.
 
-First because it holds `vthru_debugger_workflow_preferences`, **one memory carrying
-five rules, two of which are the last universal rules still trapped in a single
-project** — *never commit without being asked* and *one PR per branch off main*.
-Neither is in `STANDARDS.md` at all. Doing this project finishes Phase 8 step 1,
-and it is why `STANDARDS.md` must be trimmed **after** the projects, not before:
-those two rules have to be added to it.
+**Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
+that was accurate and far too long: conclusion first, findings grouped into a few
+buckets with counts, two or three questions — not twelve.
 
-Run it exactly as the Voice-Flow and FinNode passes ran — the six steps are below.
-**Survey and ask before touching anything.** Amit wants 8–10 questions a project;
-every removal is a question, never an inference. **Measure a section before
-proposing its fix** — FinNode's biggest section looked like Voice-Flow's problem
-and measurement said otherwise.
+**Carry in — two open items, both recorded in § PHASE 10:**
 
-**First command of the session:** back up, into `backups/<date>-vthrudebugger/`,
-verified with `cmp`. Nothing else happens first. Note the tree is **not clean** —
-9 uncommitted files, parked on branch `alert-swipe-to-dismiss`. Leave both alone.
-
-**Then `Emp portal`, then `Debugger v2`.** Only after all three: the global files,
-with `STANDARDS.md` last.
-
-**Carry in:** `Bash(python3 -c ' *)` is still open in **Debugger v2** and
-**Voice Flow_v1** (FinNode's two were closed 2026-09-20).
+1. **Voice-Flow still holds `Bash(rtk proxy *)` and `Bash(rtk npx *)`**, two
+   arbitrary-code rules, in a project whose pass is marked DONE. Found 2026-09-20 by
+   the end-of-session cross-check. Not a carry-in from a dropped project — this is an
+   active project with a finished pass, and the holes were never looked at.
+2. `Bash(python3 -c ' *)` remains open in **Voice Flow_v1**, which is dropped from the
+   review by Amit's decision, so it stays open deliberately.
 
 ### Renames are Amit's, and they are not part of any pass
 
@@ -154,15 +146,14 @@ for when he does; it is **not** a step in the review, and must not be raised as 
 Briefly written up as a prerequisite on 2026-09-20; that was reversed the same day
 because it made setup work wait on a project chore.
 
-- **vthrudebugger_v1** — 39 rules, holds `vthru_debugger_workflow_preferences`, the
-  memory carrying the **last two trapped universal rules** (*never commit without
-  being asked*, *one PR per branch off main*). Reviewing it finishes Phase 8 step 1.
-  **9 uncommitted files** and parked on branch `alert-swipe-to-dismiss`.
-- **Emp portal** — **real employee records.** 11 rules. **2 uncommitted files**,
-  parked on `fix/dead-code-cleanup-and-test-fix`; one of them is the 5.7 `.gitignore`
-  change, still open. Has no Claude memory folder yet.
-- **Debugger v2** — 17 rules, **no `CLAUDE.md` at all**, so it starts from a blank
-  page rather than an untangling. Clean tree, on `main`.
+- ~~**vthrudebugger_v1**~~ — **DONE 2026-09-20.** 39 → 20 rules. Its two trapped
+  universal rules went into `STANDARDS.md` § *Git*, which finishes Phase 8 step 1.
+  `CLAUDE.md` measured lean and was left untouched.
+- ~~**Debugger v2**~~ — **DONE 2026-09-20.** 17 → 9 rules, closing both `python3`
+  arbitrary-code holes. Still has **no `CLAUDE.md`** — offered and declined.
+- ~~**Emp portal**~~ — **DONE 2026-09-20.** 11 → 6 rules. `CLAUDE.md` measured lean
+  and left untouched; all 8 of its must-follow rules are app-specific, so nothing was
+  promoted. The 5.7 `.gitignore` change is **still uncommitted by Amit's decision**.
 
 **Dropped from the review — Amit's call, 2026-09-20.** He has never worked in either,
 so there is nothing there to untangle. **The global rules still apply to them; they
@@ -226,8 +217,8 @@ split test that applies to a file which really does govern every turn.
 | ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/` |
 | ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/` |
 | ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/` |
-| ◐ | **PHASE 8 Where rules live** | **PARTLY DONE 2026-09-20 — step 1 is 3 of 5, step 2 done for two projects.** Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into `RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. Steps 3 and 4 not started. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
-| ◐ | **PHASE 10 Project-by-project review** | **IN PROGRESS. Voice-Flow and FinNode done; 3 projects remain and are the current work** — `vthrudebugger_v1`, then `Emp portal`, then `Debugger v2`, one at a time. **Renames are decoupled and must be ignored** — Amit renames a project when he opens it to work on. Briefly made a prerequisite on 2026-09-20 and reversed the same day; making setup work wait on a project chore had turned it into a blocker. Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
+| ◐ | **PHASE 8 Where rules live** | **PARTLY DONE 2026-09-20 — step 1 is COMPLETE (5 of 5), step 2 done for three projects.** Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into `RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. Steps 3 and 4 not started. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
+| ◐ | **PHASE 10 Project-by-project review** | **COMPLETE 2026-09-20. All five projects passed** — Voice-Flow, FinNode, `vthrudebugger_v1`, `Debugger v2`, `Emp portal`, one at a time, in that order. **`vthrudebugger_v1`:** 39 → 19 rules, `CLAUDE.md` measured lean and left alone, and its two trapped universal rules promoted to `STANDARDS.md` § *Git*, finishing Phase 8 step 1. **`Debugger v2`:** 17 → 9 rules, both `python3` arbitrary-code holes closed, still no `CLAUDE.md` by choice. **`Emp portal`:** 11 → 6 rules, nothing promoted — all 8 of its rules are app-specific. Project `allow` totals **318 → 285**, counted live. An end-of-session cross-check found one defect introduced and fixed (trailing-`*` rules) and one miss in an already-DONE pass (**Voice-Flow still holds `rtk proxy *` and `rtk npx *`**, not fixed). **Renames are decoupled and must be ignored** — Amit renames a project when he opens it to work on. Briefly made a prerequisite on 2026-09-20 and reversed the same day; making setup work wait on a project chore had turned it into a blocker. Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
 | ◐ | **PHASE 11 The global pass** | **PARKED 2026-09-20 until the three projects are done. `OLLAMA.md` done out of order; `STANDARDS.md` is LAST, not next** — it receives the universal rules still trapped in `vthrudebugger_v1`, so trimming it first means opening it twice. `OLLAMA.md` was safe to do early because no project pass can change what belongs in it. The six global files are loaded every turn in every project, so a word cut here is paid back eight times. **`OLLAMA.md` 797 → 133 words**; the detail moved verbatim to `~/.claude/skills/ollama/SKILL.md`, byte-identical to the backup by `diff` and MD5. Global files **3,139 → 2,474 words / ~4,144 → ~3,266 tokens a turn — ~878 saved, everywhere, forever.** Also fixed a real hole: `.gitignore` blocked `skills/` because `skills/synced/` is account-keyed, but that reason does not hold for a hand-written skill, which would have been **lost on an account switch** — the exact failure this repo exists to prevent. Allowed by name; `synced/` still blocked, proven both ways with `git add --dry-run`. Commit `06951be`, pushed. Backup: `backups/2026-09-20-ollama/` |
 | | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20, nothing actioned. **18 rules execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
@@ -247,7 +238,9 @@ split test that applies to a file which really does govern every turn.
 560 as found · **416** after 2a+2b (−144) · **393** after 2c (−23) · **392**
 after 5.2 (−1) · **384** after 5.2b (−8, plus 4 `additionalDirectories`
 entries) · **330** after the Voice-Flow pass (−54) · **318** after the FinNode
-pass (−12). Global `allow` is unchanged
+pass (−12) · **299** after the `vthrudebugger_v1` pass (−19) · **291** after the
+`Debugger v2` pass (−8) · **285** after the `Emp portal` pass (−6). Verified live by
+walking every `.claude/settings*.json` under `VS Code/`, not by arithmetic. Global `allow` is unchanged
 at 35 and `deny` at 2; **`ask` is 107** — 87 after 1.2, 101 after Phase 3 gaps,
 107 after the Voice-Flow pass added the three `git * commit *` spellings.
 
@@ -1442,8 +1435,13 @@ deciding it early means reopening it. So the rule is now:
 1. **Read it and say what it is** — in plain English, one short page: what the
    project does, what its `CLAUDE.md` says, what its permissions actually let a
    session do, what is missing. Amit reads and decides; nothing is assumed.
-2. **Ask, and keep asking.** Eight to ten questions a project is normal and wanted.
-   Every removal is a question, never an inference.
+2. **Ask — but few, and short.** Every removal is a question, never an inference.
+   **Corrected 2026-09-20:** this step used to say eight to ten questions a project was
+   normal and wanted. Amit reversed it during the `vthrudebugger_v1` pass — "how many
+   times do I have to tell you, explain in simple and short" — after a report that was
+   accurate and unreadable. Group the findings into a few named buckets with counts and
+   ask **two or three** questions covering them. The rule that every removal needs
+   consent has not changed; asking for it twelve times separately is what changed.
 3. **Back up first**, into `backups/<date>-<project>/`, verified with `cmp`.
 4. **Cross-check twice before any deletion, by two different methods.** This is
    Amit's standing instruction and it has already earned itself — see below.
@@ -1618,8 +1616,9 @@ still instructed the old behaviour in both its body and its `description` — an
 
 Found while cross-checking Voice-Flow, deliberately **not** fixed out of order:
 
-- `Bash(python3 -c ' *)` — the same arbitrary-code hole — is still open in
-  **Debugger v2** and **Voice Flow_v1**. ~~FinNode~~ closed 2026-09-20, along with
+- `Bash(python3 -c ' *)` — the same arbitrary-code hole — is now open **only in
+  Voice Flow_v1**, which is dropped from the review by Amit's decision. ~~FinNode~~
+  closed 2026-09-20 and ~~**Debugger v2**~~ on 2026-09-20, both along with
   `Bash(python3 -)`, the stdin form of the same hole.
 - ~~**FinNode** still holds `git -c user.name=Amit … commit -q -m ' *` as an allow.~~
   Removed 2026-09-20. It was already dead by rule-type precedence; it went because a
@@ -1768,6 +1767,176 @@ re-tracking its three files is a small separate action.
 
 
 ---
+
+### vthrudebugger_v1  ·  **DONE 2026-09-20**
+
+Backup: `backups/2026-09-20-vthrudebugger/` — 6 files, all five live files verified
+byte-identical with `cmp`, plus one historical memory an earlier session had preserved.
+
+**The headline is that the `CLAUDE.md` was left alone, and that was the right call.**
+Measured at **1,087 words / ~1,435 tokens**, it is claim-only throughout — no evidence
+inline, no war stories. Per-turn cost in this project is ~4,701 tokens, already cheaper
+than Voice-Flow *after* its pass (6,003) and FinNode *after* its (6,966). This is the
+FinNode lesson holding a second time: measure before proposing, because the fix that
+worked elsewhere had nothing to do here.
+
+| | Before | After |
+|---|---|---|
+| `CLAUDE.md` | 1,087 words | **unchanged — nothing to trim** |
+| `allow` rules | 39 | **19** |
+
+**Permissions: 26 removed, 7 narrow ones added.**
+
+- **7 exact duplicates of global allow** — `rtk --version`, `rtk gain *`, `rtk ls *`,
+  `rtk grep *`, `rtk df *`, `rtk wc *`, `rtk ps *`. Zero behavioural effect; removed
+  because noise makes the real rules harder to see.
+- **2 dead on arrival** — `git commit *` and `git commit -m ' *`, both already
+  overridden by the global `ask` list on rule-type precedence.
+- **10 Xcode/CocoaPods rules with nothing to run against** — `xcrun simctl *`,
+  `xcodebuild *`, `ruby`, `gem`, `pod`, `xcode-select -p`. There is no `ios/` or
+  `android/` folder in this repo; it is a `tsc`-built library. Spent session residue.
+- **2 spent one-off literals** — `echo "exit: $?"` and an `osascript` one-liner
+  checking whether Simulator was running.
+- **5 over-broad, replaced by 7 narrow** — `rtk proxy *` → `rtk proxy cmp *`;
+  `rtk npx *` → `rtk npx vitest *`; `rtk npm *` → the four scripts that exist;
+  `rtk git *` → `rtk git add *`; `rtk gh *` → removed outright. `rtk proxy *` was one
+  of the 18 arbitrary-code rules Phase 9 named, and `rtk npm *` allowed `npm publish`
+  to GitHub Packages, which cannot be taken back.
+
+Verified against the backup: `ask` and `deny` absent before and after, no other key
+touched, still valid JSON.
+
+**Phase 8 step 1 is finished here.** The last two trapped universal rules were promoted
+from `vthru_debugger_workflow_preferences` into `STANDARDS.md` § *Git* — *never commit
+or push without being asked*, and *one PR per feature on its own branch off `main`*.
+Additions only, 0 lines deleted, verified by `diff`.
+
+The memory keeps its body and dated evidence, with a **pointer line at the top** naming
+the three governing `STANDARDS.md` sections — the method Voice-Flow's pass established.
+Its dangling `[[vthru-debugger-plan]]` link, which pointed at a memory that has never
+existed, now points at the repo's `PLAN.md`.
+
+**Deliberately not done:** the stash-and-branch technique (the fifth rule in that
+memory) was *not* promoted. It is arguably universal but was never approved as such, so
+it stays project-scoped. `CLAUDE.md` is **untracked** in this repo and was left that
+way — `STANDARDS.md` § *Git* says it should be in the repo, but the tree is parked
+mid-feature on `alert-swipe-to-dismiss` with 9 uncommitted files and adding it would
+land in Amit's branch. Both are open, not closed.
+
+**Not verified:** that the tightened rules actually prompt. This session had prompts
+disabled, the same gap already recorded for the 20 unproven `ask` rules.
+
+### Debugger v2  ·  **DONE 2026-09-20**
+
+Backup: `backups/2026-09-20-debugger-v2/` — 5 files, all verified byte-identical.
+
+A flat repo — sources at the root, no `src/` — and its permission file is
+`.claude/settings.json`, not `settings.local.json` like the others. Clean tree, on
+`main`.
+
+| | Before | After |
+|---|---|---|
+| `CLAUDE.md` | none | **still none — offered, declined** |
+| `allow` rules | 17 | **9** |
+
+**Permissions: 13 removed, 4 narrow ones added.**
+
+- **4 exact duplicates of global** — `rtk wc *`, `rtk ls *`, `rtk du *`, `rtk grep *`.
+- **1 dead rule** — the pinned `tsc` path under `VS Code/Debugger/node_modules/`. That
+  folder does not exist; only `Debugger v2` does. Confirmed dead by `ls`, as Phase 10's
+  survey had predicted.
+- **3 spent one-off literals** — `echo "IDENTICAL — exit $?"`, a `sed -e` expression
+  and `sort -u -t: -k3`.
+- **5 over-broad, replaced by 4 narrow** — `rtk proxy *` → `rtk proxy cmp *`;
+  **`python3 -c ' *` and `python3 -` removed outright**, closing both arbitrary-code
+  holes this project was carrying; `rtk npm *` → `rtk npm run typecheck *` and
+  `rtk npm test *`; `rtk git *` → `rtk git add *`.
+
+Verified against the backup: `ask`/`deny` absent before and after, no other key touched,
+valid JSON.
+
+**`CLAUDE.md` was offered and declined.** The project's three memories already carry the
+real rules — the overlay UI is frozen, the broken imports in `DebugProvider.tsx` are
+intentional, and its internal design choices are not to be refactored. A session only
+sees those if it recalls them; a `CLAUDE.md` would state them every turn. Amit's call to
+leave it.
+
+**Open, unresolved — and it matters for the next person in there.** On 2026-09-20 Amit
+said Debugger v2 is "similar, a copy of vthrudebugger". The project's own memory
+`project-debugger-repo-fresh-start`, saved 2026-08-03, says the opposite in as many
+words: *"Fresh start, unrelated to `vthrudebugger_v1` … deliberately out of scope: don't
+copy from it or cite it as prior art."* The contradiction was raised and left open by
+Amit's decision. It did not affect the permission work. It will affect any work on the
+code.
+
+**Not verified:** that the tightened rules prompt — same gap as every other pass.
+
+### Emp portal  ·  **DONE 2026-09-20**
+
+Backup: `backups/2026-09-20-emp-portal/` — 4 files, all verified byte-identical.
+**Real employee records**, so nothing outside `CLAUDE.md` and `.claude/` was opened;
+`server/data/vthru.db` was never read.
+
+| | Before | After |
+|---|---|---|
+| `CLAUDE.md` | 1,178 words | **unchanged — nothing to trim** |
+| `allow` rules | 11 (3 + 8, across two files) | **6** |
+
+**Nothing was promoted to global, and that is the finding.** All 8 of its must-follow
+rules are app-specific — cookie/session auth rather than tokens, every mutation through
+`lib/api.ts` for the `X-Requested-With` header, `org_id` filtering for tenant isolation,
+`ensureColumn()` instead of migrations. None generalises. The third lean `CLAUDE.md` in
+a row, after `vthrudebugger_v1`; the trimming problem really was confined to Voice-Flow
+and FinNode.
+
+**Permissions: 5 removed, 2 over-broad replaced by 2 narrow.**
+
+- **3 copies of global allow** — `rtk grep *`, `rtk ls *`, `rtk wc *`.
+- **2 redundant `lsof` spellings** — ports 4000 and 5173 were each written twice, as
+  `-i :PORT -sTCP:LISTEN` and `-iTCP:PORT -sTCP:LISTEN -n -P`. The explicit form kept.
+- **`rtk git *` → `rtk git add *`** and **`rtk npm *` → `rtk npm run *`**, which keeps
+  every script in `package.json` working while leaving `npm install`/`publish` to the
+  global `ask` list.
+
+`launch.json` was not touched, verified byte-identical afterwards. **No arbitrary-code
+rule was found here** — the only project of the five where there was none.
+
+**Still open, by Amit's decision:** the 5.7 `.gitignore` change is uncommitted on branch
+`fix/dead-code-cleanup-and-test-fix`. It adds one line, `CLAUDE.md`, which stops git
+storing this project's rules file. Verified 2026-09-20 that `CLAUDE.md` is **not
+tracked** here, so the line does take effect. Note it now **contradicts `STANDARDS.md`
+§ *Git***, which says `CLAUDE.md` stays in the repo while it is private and solo —
+that section was written after this change was made. Amit's call, not resolved.
+
+### End-of-session cross-check  ·  2026-09-20
+
+Run after the last three passes, at Amit's request. Four results.
+
+1. **Project `allow` rules total 285**, counted live by walking every
+   `.claude/settings*.json` under `VS Code/` rather than by arithmetic: Voice-Flow 180,
+   Voice Flow_v1 50, FinNode 13, `vthrudebugger_v1` 19, `Debugger v2` 9, Packbly_web 8,
+   Emp portal 6.
+2. **D23 holds.** No project grants access to another, and no `additionalDirectories`
+   entry reaches outside its own tree.
+3. **A defect introduced this session, found and fixed.** Several rules written during
+   the `vthrudebugger_v1` and `Debugger v2` passes ended in a trailing ` *` —
+   `Bash(rtk npm test *)`, `Bash(rtk npm run build *)`. If the matcher does not treat
+   `*` as matching an empty suffix, then plain `rtk npm test` — the normal way to
+   invoke it — would not match, and the project's own test command would prompt. **The
+   matcher was not verified**; the rules were made robust instead, replaced by
+   `Bash(rtk npm run *)` plus both `Bash(rtk npm test)` and `Bash(rtk npm test *)`.
+   `vthrudebugger_v1` 20 → 19, `Debugger v2` 8 → 9. **Worth checking the older passes
+   for the same shape** — this was not looked for in Voice-Flow or FinNode.
+4. **A miss in a pass already marked DONE.** **Voice-Flow still holds
+   `Bash(rtk proxy *)` and `Bash(rtk npx *)`** — two of the 18 arbitrary-code rules
+   Phase 9 named. Its pass removed 54 rules and did not touch these, and the carry-in
+   note only ever tracked `python3 -c` elsewhere, so nothing was watching them.
+   **Voice-Flow is an active project.** Not fixed — it was out of scope for this
+   session. Voice Flow_v1 holds the same plus both `python3` forms and stays open
+   deliberately, being dropped from the review.
+
+**Not verified, in every pass so far:** that any tightened rule actually prompts. Every
+session doing this work has had prompts disabled. Unchanged from the standing note.
 
 ## PHASE 11 — The global pass  (PARKED until the projects are done)
 
