@@ -61,3 +61,13 @@
 !projects/*/
 !projects/*/memory/
 !projects/*/memory/*.md
+
+# --- allow: hand-written global skills, by name.
+#     `skills/` is blocked above because `skills/synced/` is account-keyed and
+#     regenerates on login. A skill written by hand here is neither — it carries
+#     no account UUID, and it would simply be lost on an account switch, which is
+#     the thing this repo exists to prevent. Named files only, so `synced/` and
+#     anything else that appears under `skills/` stay out automatically.
+!skills/
+!skills/ollama/
+!skills/ollama/SKILL.md
