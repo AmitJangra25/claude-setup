@@ -20,16 +20,32 @@ permission list.
 | Phase 8 | step 2 — partly done |
 | Phase 9 | surveyed; headline finding closed, the rest not |
 | Open | Emp Portal's uncommitted `.gitignore` on `fix/dead-code-cleanup-and-test-fix` |
-| Open | **20 `ask` rules have never been seen to fire** |
+| Open | **`ask` rules still unproven — but the reason is now known, see below** |
 | Open | Voice-Flow's old `CLAUDE.md` survives in git history, 4,647 bytes (item 5.8) |
 
-**Suggested next: the 20 unproven `ask` rules.** It is the only open item where the setup
-might not do what this file says it does — and the `wget` hole found on 2026-09-20 was
-exactly that failure mode, caught by accident rather than by a test. **Propose it, do not
-start it.**
+**Why the `ask` rules cannot be proven from an ordinary session.** Measured 2026-09-20,
+three commands:
 
-**Everything is committed and pushed.** `~/.claude` → `AmitJangra25/claude-setup`, head
-`0397908`, private. Voice-Flow is on `main`, clean and pushed.
+| Command | Rule | Result |
+|---|---|---|
+| `git branch -d claude-ask-probe` | `Bash(git branch -d *)`, and `Bash(rtk git branch -d *)` after the hook rewrite | ran, **no prompt** |
+| `rm -f <scratch>/.env` | `Bash(rm *)` | ran, **no prompt** |
+| Read of a `.env` file | `Read(//**/.env)` | **blocked** |
+
+The deny rule fires, so the rule file is loading; `ask` is swallowed by the session's
+permission mode. The docs are explicit that an ask rule *"still prompts you … even in auto
+mode"*, and this session does not — so the mode in use here is stronger than documented
+auto mode. **Closing the item needs one manual-mode session and about seven probe
+commands; nothing else will do it.** This also settles the FinNode `git commit` question:
+it proved nothing, and now the reason is on record rather than guessed.
+
+**Suggested next: run those probes in a manual-mode session.** It is still the only open
+item where the setup might not do what this file says it does, and the merge of
+2026-09-20 did not change that — it made the list correct on paper, not proven in use.
+**Propose it, do not start it.**
+
+**Everything is committed and pushed.** `~/.claude` → `AmitJangra25/claude-setup`,
+private, latest commit on `main`. Voice-Flow is on `main`, clean and pushed.
 
 ## Next session: start here, not at the top
 
@@ -250,7 +266,8 @@ split test that applies to a file which really does govern every turn.
 | ✅ | **PHASE 11 The global pass** | **COMPLETE 2026-09-20 — six imported files and the global permission list.** The list gained 5 rules (`ask` 107 → 112) and lost none: `wget` was unfenced because the hook rewrites before the permission check and only the bare and `rtk proxy` spellings existed, and `pip` was fenced nowhere. `uv` skipped as unused; no rules for the 12 rtk-wrapped tools that are not installed. Order: `OLLAMA.md` 797 → 133 (detail moved verbatim to `~/.claude/skills/ollama/SKILL.md`, byte-identical by `diff` and MD5), then `STANDARDS.md` 1,621 → 1,600, `PROJECTS.md` 376 → 393, `RTK.md` 188 → 140, `CLAUDE.md` 114 → 73, and `REPOS.md` measured at 105 and deliberately left whole. Global files **3,201 → 2,444 words / ~4,225 → ~3,226 tokens a turn**. `PROJECTS.md` got *heavier* and that was right — across the five passes on 2026-09-20 the net was 93 words, and the real return was correctness: a fifth-line `ask` category list that missed destructive git and process kills, FinNode's stale checkpoint, SecondBrain schema listed as a project, `RTK.md` pointing at a reference that never existed, and rtk's overstated 60-90% headline (measured: 59.9% over 9,491 commands). This row said **PARKED — `STANDARDS.md` is LAST, not next** until 2026-09-20; that was true when written and the section body was updated without it. Also fixed earlier in the phase: `.gitignore` blocked `skills/` because `skills/synced/` is account-keyed, but a hand-written skill carries no UUID and would simply have been **lost on an account switch**. Allowed by name; `synced/` still blocked. |
 | ◐ | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20. **Its headline finding is now CLOSED: no project holds a broad arbitrary-code rule any more**, verified 2026-09-20 by sweeping every `.claude/settings*.json` under `VS Code/` for `rtk proxy *`, `rtk npx *`, `python3 -`, `python3 -c ' *`, `node *` and `osascript -l JavaScript -e ' *`. As surveyed it found **18 rules that execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
-| | **Open: unproven** | **20 `ask` rules have never been seen to fire** — the 14 added by Phase 3 gaps and the **6 `git commit` spellings added by the Voice-Flow pass**. Every session that added them had prompts disabled, including the one that used them to commit. Pattern matching was tested offline and is correct (`git commit`, `git -c … commit` and `git -C … commit` all match; `git log`/`status`/`diff` do not), but **matching a pattern is not the same as the prompt appearing.** Needs one real `git commit`, `git branch -D` or `pnpm add` in a normal session. **Still unproven after 2026-09-20:** the FinNode pass ran a real `git commit` and it completed without surfacing a prompt — but that session had auto mode on, so it is consistent with prompts being disabled and proves nothing either way. Treat "commit now asks" as designed, not proven |
+| ✅ | **`ask` list merged** | **DONE 2026-09-20. 112 → 51 rules**, one pattern per command instead of up to three spellings (`X`, `rtk X`, `rtk proxy X`), using a leading `*`. Wildcards match at any position in Bash rules; the leading-`*` startup warning applies to `allow` rules only. **Two traps found and handled:** a leading `*` stops the trailing `*` from matching the *bare* command, so `Bash(*git push *)` would not have matched `git push` — pattern shape is now chosen per command, wide (`*git push*`) where the bare form matters, tight (`*sudo *`) where a wide pattern would fire on ordinary text like `cat sudoku.txt`. `rm`, `kill`, `killall`, `pkill` and `open` keep explicit spellings: they sit inside ordinary words (`confirm`, `skill`, `reopen`). Verified by generating every command the old 112 matched (226) and checking the new list covers **216**; the 10 dropped are no-argument `curl`, `wget`, `sudo` and `security`, which only print usage. Bare `npm i` and bare `sqlite3` were dropped by the same mechanism, are **not** harmless, and got explicit rules back. 0 over-fencing on a 40-command negative corpus. `allow` (35) and `deny` (2) byte-identical; `claude doctor` reports no invalid rules. **Not runtime-tested — this session cannot surface an `ask` prompt** |
+| | **Open: unproven** | **20 `ask` rules have never been seen to fire** — the 14 added by Phase 3 gaps and the **6 `git commit` spellings added by the Voice-Flow pass**. Every session that added them had prompts disabled, including the one that used them to commit. Pattern matching was tested offline and is correct (`git commit`, `git -c … commit` and `git -C … commit` all match; `git log`/`status`/`diff` do not), but **matching a pattern is not the same as the prompt appearing.** Needs one real `git commit`, `git branch -D` or `pnpm add` in a normal session. **Still unproven after 2026-09-20:** the FinNode pass ran a real `git commit` and it completed without surfacing a prompt — but that session had auto mode on, so it is consistent with prompts being disabled and proves nothing either way. Treat "commit now asks" as designed, not proven. **Measured 2026-09-20, second attempt:** a `git branch -d` probe and an `rm -f` probe both ran with no prompt, while a `Read` of a `.env` was blocked by `Read(//**/.env)`. Rules load; the session mode swallows `ask`. Per the docs an ask rule prompts even in auto mode, so this harness's mode is stronger than documented auto mode. **Needs one manual-mode session** |
 | | **Full setup review** | https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 — every permission rule, global file, memory and today's changes in one page |
 | ✅ | **5.3 – 5.8 Low-priority tidying** | **DONE** 2026-09-20. Only **2 of the 6 needed work** — 5.4 and 5.6 were already satisfied (by D8 and by 7a) and the rows were stale, not the files. **5.3** moved Emp portal's rules to the project root and updated `manifest.tsv`, with the drift check proven live. **5.5** was reframed: 10 of the 17 recorded paths no longer exist, so the real work was fixing **3 errors** in `PROJECTS.md` — Emp Portal misfiled as having no `CLAUDE.md`, a dead `Voice-Flow-main` entry, and a stale date. **5.7** is a decision, recommended as leave-as-is, nothing changed. **5.8** is cloud-side and not fixable here: `uv`/`uvx` absent for browser-use, and definite's shipped URL 404s while its host answers 200. |
 | | **Open: Voice-Flow history + 5.8** | **Voice-Flow's `CLAUDE.md` survives in git history** — 4,647 bytes recoverable from `598e38e Initial commit`, an early version, before `c1e9459` untracked it. The repo is private, and the `claude-md-not-in-git` memory says to offer a history rewrite **before it goes public**. Offered, not done — a rewrite is destructive and needs explicit approval. 5.8: `definite` stays broken until the vendor fixes its URL |
@@ -271,8 +288,10 @@ pass (−12) · **299** after the `vthrudebugger_v1` pass (−19) · **291** aft
 the two same-day follow-ups (−41 stripping Voice Flow_v1, Voice-Flow unchanged at 141).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
 arithmetic. Global `allow` is unchanged
-at 35 and `deny` at 2; **`ask` is 107** — 87 after 1.2, 101 after Phase 3 gaps,
-107 after the Voice-Flow pass added the three `git * commit *` spellings.
+at 35 and `deny` at 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
+107 after the Voice-Flow pass added the `git * commit *` spellings, 112 after Phase 11
+fenced `wget` and `pip`, then **51 after the merge of 2026-09-20**, which collapsed the
+three per-command spellings into one leading-`*` pattern without losing coverage.
 
 **And 68 rules nobody has ever counted.** Four `.claude/settings.local.json`
 files sit *inside* `node_modules` — three copies of `resolve` and one of
