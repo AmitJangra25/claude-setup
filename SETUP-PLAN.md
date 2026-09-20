@@ -19,9 +19,8 @@ propose one. This was briefly made a prerequisite on 2026-09-20 and it was wrong
 
 Phase 11 is under way. `OLLAMA.md` was done first, out of order but safely, because no
 project pass can change what belongs in it. `STANDARDS.md` and the `RTK.md` pointer were
-and `PROJECTS.md` were all done on 2026-09-20. **`RTK.md` itself is next** — only its dead
-pointer was repaired, the file has had no pass — then `REPOS.md` and `CLAUDE.md`, then the
-global permission list.
+`PROJECTS.md` and `RTK.md` were all done on 2026-09-20. **`REPOS.md` and `CLAUDE.md` are
+next** — 219 words between them — then the global permission list.
 
 ## Next session: start here, not at the top
 
@@ -53,7 +52,8 @@ in § *PHASE 11*, and its headline is worth carrying: **the measurement said the
 not an `OLLAMA.md`, and nothing was reworded.**
 
 **`PROJECTS.md` is done too — 376 → 393 words.** It got *heavier*, and that was the right
-outcome: the pass bought two corrected facts, not weight. **`RTK.md` is next.**
+outcome: the pass bought two corrected facts, not weight. **`RTK.md` followed — 186 → 140.**
+**`REPOS.md` and `CLAUDE.md` are next.**
 
 **Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
 that was accurate and far too long: conclusion first, findings grouped into a few
@@ -2041,11 +2041,11 @@ Same six steps as the project passes, with one difference that matters.
 | **`STANDARDS.md`** | **1,621** | **1,600** |
 | **`OLLAMA.md`** | **797** | **133** |
 | **`PROJECTS.md`** | **376** | **393** |
-| **`RTK.md`** | **188** | **186** |
+| **`RTK.md`** | **188** | **140** |
 | `CLAUDE.md` | 114 | 114 |
 | `REPOS.md` | 105 | 105 |
-| **Total** | **3,201** | **2,531** |
-| **~Tokens every turn** | **~4,225** | **~3,341** |
+| **Total** | **3,201** | **2,485** |
+| **~Tokens every turn** | **~4,225** | **~3,280** |
 
 **Two corrections to earlier counts in this file.** The original 3,097 words / 4,089
 tokens was wrong by ~42 words. The 2026-09-20 re-measure then recorded `STANDARDS.md` at
@@ -2158,9 +2158,34 @@ the six project `CLAUDE.md` files mention rtk at all, and `ENVIRONMENT.md` § 1 
 the hook and its permission rules rather than commands. Replaced with `rtk --help`, which
 lists all **85** commands on 0.48.0. 188 → 186 words.
 
-**This was a one-line repair, not the pass.** `RTK.md` stays in the queue below; its 186
-words have never been measured section by section. Recorded here because the fix was made
-during the `STANDARDS.md` sitting, not because the file is finished.
+**The pass itself followed the same day: 186 → 140 words.**
+
+**Nothing that changes rtk's behaviour was touched.** This file is documentation loaded
+into context; it does not configure rtk. The savings come from the `PreToolUse` hook in
+`settings.json`, which was not opened — confirmed by the diff. The only risk was
+behavioural: removing something that makes Claude *choose* to use rtk. The three things
+that do that all stayed — the hook description, `rtk proxy` (which `STANDARDS.md`
+§ *Evidence* requires before any delete/move/overwrite decision), and the `--dry-run`
+gotcha.
+
+**Cut: `rtk gain`, `rtk gain --history`, `rtk discover` and the three installation-check
+commands.** All six are discovery or troubleshooting, and `rtk --help` lists the first
+three — verified. The name-collision warning stayed: it is genuinely non-obvious and would
+cost an hour if it ever bit.
+
+**The headline number was wrong.** It claimed *"60-90% savings on dev operations"*. Measured
+on this machine: **59.9% across 9,491 commands, 7.0M tokens saved**, with the two most-used
+wrappers at 22% (`rtk grep`) and 10.5% (`rtk read`). Replaced with the measured figure and
+the real 10–98% range.
+
+**Verified after the edit, not assumed.** `rtk hook claude` still rewrites — `git status`
+→ `rtk git status`, `grep -rn foo .` → `rtk grep -rn foo .` — and `settings.json` never
+appeared in the diff.
+
+**The hook is global and unoverridden.** Checked every project `settings.json` and
+`settings.local.json`: none defines hooks, so rtk applies in every project. Two caveats
+stand: it only rewrites the 85 commands it wraps, and the one observed non-firing recorded
+in § *Findings not acted on* is still unexplained.
 
 ### `PROJECTS.md` — DONE 2026-09-20
 
@@ -2191,9 +2216,8 @@ named set. The `[x]`/`[ ]` boxes were dropped as duplicates of the section headi
 
 ### Still to do in this phase
 
-- **`RTK.md`** — 186 words, the next piece. Its dead pointer was fixed 2026-09-20; the
-  file itself has had no measure-and-split pass.
-- `REPOS.md`, `CLAUDE.md` — 219 words between them; likely little to win.
+- `REPOS.md`, `CLAUDE.md` — 219 words between them, and the next piece; likely little
+  to win.
 - The global permission list, and whatever turns out to be universal.
 
 ## Findings not acted on
