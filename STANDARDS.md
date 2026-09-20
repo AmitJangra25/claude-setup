@@ -4,6 +4,14 @@ Applies to every project. A project's own `CLAUDE.md` adds the specifics — its
 hard rules, the defects it has already paid for. Where the two overlap, the project wins,
 because it knows what went wrong there.
 
+## Write plainly
+
+Everything you write to me — answers, reports, plans, permission explanations — is short
+sentences in ordinary English, conclusion first. No jargon unless the word is the thing
+itself, and then say what it means. Group findings into a few buckets with counts rather
+than listing every one, and ask two or three questions, not twelve. Never pad it out, and
+never trim so far the answer isn't in there.
+
 ## Plan before building
 
 Share a written plan before implementing, then check that plan against the actual files
@@ -88,6 +96,10 @@ you already made turns out to be wrong.
 tasks, never "worth checking", never extra verification of what you just built. Another
 project's issues wait for that project's turn. Empty is a normal outcome.
 
+This applies to investigation too: work out what the answer actually needs, check that,
+and stop. An adjacent check nobody asked for costs tokens twice — once to run, once to
+read — and buries the answer in a longer report.
+
 ## When something is unclear
 
 Ask, rather than pick a reading silently. If the request is internally contradictory, say
@@ -145,7 +157,9 @@ Four short lines, in this order:
 - **Undo** — how to reverse it, or say plainly that it can't be reversed.
 
 **A fifth line when the command is on the global `ask` list** — installs, downloads,
-deletions, pushing code, GitHub, `sudo`, the Keychain, macOS privacy, `sqlite3`:
+deletions, git that rewrites or discards work (`reset`, `clean`, `checkout`, `rebase`,
+`merge`, `rm`), pushing code, GitHub, killing processes, `open`, `sudo`, the Keychain,
+macOS privacy, `sqlite3`:
 
 - **Why now** — what I asked for that needs this, in my terms. "You asked to see the
   test failures and the runner isn't installed", not "installing dependencies".
@@ -154,10 +168,7 @@ Those commands ask because they were judged consequential once, in advance. The 
 is the last point where that judgement gets checked against what is actually happening,
 so it has to carry the reason, not just the command.
 
-Write it the way you'd explain it to someone standing next to you. Short sentences.
-No jargon unless the word is the thing itself, and then say what it means. Never pad it
-out, and never trim it so far that the answer isn't in there — brevity that drops the
-detail has failed at the only job it had.
+Write it the way you'd explain it to someone standing next to you.
 
 Example:
 
@@ -173,19 +184,6 @@ Not this:
 
 Same length. The first one answers the question; the second one just restates the command.
 
-### `tccutil reset` — name the apps and the permissions, every time
-
-`tccutil reset` revokes macOS privacy permissions. It is not reversible from the
-terminal: each one has to be re-granted by hand in System Settings → Privacy &
-Security, per app, and some apps must be quit and reopened before they ask again.
-
-Never write "resets permissions". Say which **service** and which **app**, and what
-stops working until it is re-granted. If the command names no bundle id, say that it
-hits **every app on the machine**, not just the one being worked on.
-
-> I'm going to reset Voice Flow's Accessibility permission.
-> macOS will forget that Voice Flow is allowed to send keystrokes, so auto-paste stops
-> working until it's re-granted. Microphone and Input Monitoring are untouched.
-> Risk: medium — nothing is lost, but it can't be undone from here.
-> Undo: System Settings → Privacy & Security → Accessibility, switch Voice Flow back on,
-> then quit and reopen the app.
+**macOS privacy (`tccutil reset`)** — never write "resets permissions". Name the
+**service** and the **app**, and say so when the command names no bundle id and
+therefore hits **every app on the machine**.
