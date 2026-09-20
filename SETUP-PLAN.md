@@ -19,8 +19,9 @@ propose one. This was briefly made a prerequisite on 2026-09-20 and it was wrong
 
 Phase 11 is under way. `OLLAMA.md` was done first, out of order but safely, because no
 project pass can change what belongs in it. `STANDARDS.md` and the `RTK.md` pointer were
-`PROJECTS.md` and `RTK.md` were all done on 2026-09-20. **`REPOS.md` and `CLAUDE.md` are
-next** — 219 words between them — then the global permission list.
+`PROJECTS.md`, `RTK.md` and `CLAUDE.md` were all done on 2026-09-20, and `REPOS.md` was
+measured and deliberately left whole. **All six global files are done. The global
+permission list is the only thing left in Phase 11.**
 
 ## Next session: start here, not at the top
 
@@ -52,8 +53,9 @@ in § *PHASE 11*, and its headline is worth carrying: **the measurement said the
 not an `OLLAMA.md`, and nothing was reworded.**
 
 **`PROJECTS.md` is done too — 376 → 393 words.** It got *heavier*, and that was the right
-outcome: the pass bought two corrected facts, not weight. **`RTK.md` followed — 186 → 140.**
-**`REPOS.md` and `CLAUDE.md` are next.**
+outcome: the pass bought two corrected facts, not weight. **`RTK.md` followed — 186 → 140,
+then `CLAUDE.md` 114 → 73 and `REPOS.md` left whole on measurement.** **All six files are
+done; only the global permission list remains.**
 
 **Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
 that was accurate and far too long: conclusion first, findings grouped into a few
@@ -2042,10 +2044,10 @@ Same six steps as the project passes, with one difference that matters.
 | **`OLLAMA.md`** | **797** | **133** |
 | **`PROJECTS.md`** | **376** | **393** |
 | **`RTK.md`** | **188** | **140** |
-| `CLAUDE.md` | 114 | 114 |
-| `REPOS.md` | 105 | 105 |
-| **Total** | **3,201** | **2,485** |
-| **~Tokens every turn** | **~4,225** | **~3,280** |
+| **`CLAUDE.md`** | **114** | **73** |
+| `REPOS.md` | 105 | 105 (left whole) |
+| **Total** | **3,201** | **2,444** |
+| **~Tokens every turn** | **~4,225** | **~3,226** |
 
 **Two corrections to earlier counts in this file.** The original 3,097 words / 4,089
 tokens was wrong by ~42 words. The 2026-09-20 re-measure then recorded `STANDARDS.md` at
@@ -2214,11 +2216,32 @@ its `package.json` is named `@figma/my-make-file`, so it is a Figma Make export.
 "ten stale paths in `~/.claude.json`" claim is exact — 17 entries, 10 dead, matching the
 named set. The `[x]`/`[ ]` boxes were dropped as duplicates of the section headings.
 
+### `CLAUDE.md` and `REPOS.md` — DONE 2026-09-20
+
+**`CLAUDE.md` 114 → 73 words. `REPOS.md` 105, left whole on measurement.**
+
+`CLAUDE.md` is five `@` imports — 5 words — and two HTML comments, 109. The comments do two
+jobs and both are load-bearing: they name `ENVIRONMENT.md` and `SETUP-PLAN.md` and say when
+to read each, and they stop a later session "helpfully" adding them as imports, which would
+put two large reference files into every turn. Both jobs kept, said in half the words. The
+five imports and both `~/.claude/` paths are untouched, verified after the edit.
+
+**`REPOS.md` was measured and deliberately left whole.** Its job is to surface options that
+would otherwise be forgotten, so moving it to a skill defeats it — nothing would ever load
+it. It fails the split test in the direction that matters, and 105 words is cheap for that.
+One nuance recorded rather than changed: the shadcn entry says *"already used in Voice
+Flow"*; Voice-Flow carries the Radix packages shadcn is built on, but has no
+`components.json` and never names shadcn itself.
+
+**The six imported files are now done: 3,201 → 2,444 words, ~4,225 → ~3,226 tokens every
+turn.** Of that, `OLLAMA.md` alone accounts for 664 words. The five passes on 2026-09-20
+moved 2,537 → 2,444, a net 93 words — the return on those was correctness, not weight, and
+the records above say so in each case.
+
 ### Still to do in this phase
 
-- `REPOS.md`, `CLAUDE.md` — 219 words between them, and the next piece; likely little
-  to win.
-- The global permission list, and whatever turns out to be universal.
+- The global permission list, and whatever turns out to be universal. **This is all
+  that remains of Phase 11** — the six imported files are done.
 
 ## Findings not acted on
 
