@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk grep *)",
+      "Bash(rtk ls *)",
+      "Bash(lsof -i :4000 -sTCP:LISTEN)",
+      "Bash(lsof -i :5173 -sTCP:LISTEN)",
+      "Bash(jobs)",
+      "Bash(rtk wc *)",
+      "Bash(lsof -iTCP:5173 -sTCP:LISTEN -n -P)",
+      "Bash(lsof -iTCP:4000 -sTCP:LISTEN -n -P)"
+    ]
+  }
+}

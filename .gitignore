@@ -40,12 +40,17 @@
 !statusline/
 !statusline/context.py
 
-# --- allow: copies of each project's CLAUDE.md (6.3 / D13), so the rules
-#     travel without going into each project's own repo. Named files only —
-#     a project folder here must never pull in anything but its rules file.
+# --- allow: copies of what each project keeps out of its own repo (6.3 / D13) —
+#     its CLAUDE.md and its permission rules — so they travel without going into
+#     each project's own git. Named files only: a project folder here must never
+#     pull in anything except the files listed below. Skills are deliberately
+#     absent; they are not gitignored in the projects, so they travel there.
 !project-rules/
 !project-rules/*/
 !project-rules/*/CLAUDE.md
+!project-rules/*/.claude/
+!project-rules/*/.claude/settings.json
+!project-rules/*/.claude/settings.local.json
 !project-rules/README.md
 !project-rules/manifest.tsv
 !project-rules/sync.sh

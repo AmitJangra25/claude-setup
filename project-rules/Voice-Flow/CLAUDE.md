@@ -52,7 +52,9 @@ anything in `electron/` or `src/app/lib/`.
   `threadStore.ts`, and `voiceflowSettings.ts` / `dataStore.ts`.
 - `src/app/hooks/useDictationPipeline.ts` — the shared record→transcribe→polish→paste
   state machine, used by Compose and the widget. `autoPaste` is opt-in, not inherited.
-- **`src/app/hooks/useCopyToClipboard.ts` is the only place that copies.** A sixth
+- **`src/app/hooks/useCopyToClipboard.ts` is the only place a *copy control*
+  copies** — `useDictationPipeline.ts` also writes to the clipboard, for
+  auto-paste, which is a different job. A sixth
   hand-rolled `useState` + `setTimeout` is the thing not to write.
 - **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
   decides for itself. Styles is the exception in *wording* only — it resets a built-in.

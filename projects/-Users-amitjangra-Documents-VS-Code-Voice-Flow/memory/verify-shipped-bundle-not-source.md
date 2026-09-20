@@ -1,6 +1,6 @@
 ---
 name: verify-shipped-bundle-not-source
-description: "Amit tests Voice Flow Pro against the installed /Applications copy — verify the packaged artifact, not just source and green tests"
+description: "Amit tests the app against the installed /Applications copy — verify the packaged artifact, not just source and green tests"
 metadata: 
   node_type: memory
   type: feedback
@@ -10,7 +10,7 @@ metadata:
 
 
 > **Now global** — `STANDARDS.md` § Evidence, not assumption. The global copy governs; this file is kept for the evidence behind the rule.
-Amit validates Voice Flow Pro by using the installed `/Applications/Voice Flow Pro.app`,
+Amit validates the app by using the installed `/Applications/Voice Flow.app`,
 not by reading source or trusting `npm test`. When he reports a fix didn't work, he is
 reporting on the packaged artifact.
 
@@ -23,8 +23,14 @@ Accessibility), and a prompt rule added to the wrong pipeline stage that unit te
 not catch because they fed the stage pre-split input.
 
 **How to apply:** before claiming a fix reached him, extract the installed bundle
-(`npx @electron/asar extract "/Applications/Voice Flow Pro.app/Contents/Resources/app.asar" <dir>`)
+(`npx @electron/asar extract "/Applications/Voice Flow.app/Contents/Resources/app.asar" <dir>`)
 and grep it for a distinctive string from the change. Compare the `app.asar` mtime against
 the source file mtimes. Check `codesign --verify --deep` on the installed bundle. Green
 tests plus correct source is not evidence the app changed. Read TESTING.md before
 debugging by hand — it already documents traps like the `ELECTRON_RUN_AS_NODE=1` one.
+
+
+**Renamed since this was written.** The app was `Voice Flow Pro` in Aug 2026 and
+has been `Voice Flow` since the 19 Aug 2026 rename — `productName` in `package.json`
+is now the only place the name lives. The paths above are the current ones; the
+evidence below is from when it was still called Pro.

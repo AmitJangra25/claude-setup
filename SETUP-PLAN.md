@@ -904,7 +904,9 @@ in this one. **`CLAUDE.md` no longer does:** D13 supersedes the original line
 here, and since 6.3 a copy of every project's rules lives in `project-rules/`.
 The concern this paragraph was written about — that on a new machine or account
 those projects start with no rules — is what 6.3 answers for `CLAUDE.md`. It is
-still true of `settings.json`, and 5.7 is still open.
+still true of `settings.json` — **it was, until 2026-09-20.** They are mirrored
+here now too, for the same reason `CLAUDE.md` is: gitignored in the project means
+no version history anywhere else.
 
 **Skills are a third category, decided 2026-09-20.** A project's
 `.claude/skills/` travels in **that project's own repo**, not here and not in
@@ -922,7 +924,19 @@ split is deliberate rather than accidental:
 |---|---|---|
 | `CLAUDE.md` | this repo, `project-rules/` | gitignored in the project (`claude-md-not-in-git`), so this is its only history |
 | `.claude/skills/` | the project's own repo | not ignored; travels with the code it describes |
-| `.claude/settings*.json` | **nowhere under version control** | gitignored in the project, excluded here. Backed up only by dated copies in `backups/`. This is 5.7, decided as leave-as-is — but it means 330 permission rules have no history |
+| `.claude/settings*.json` | this repo, `project-rules/<name>/.claude/` | gitignored in the project, so this is their only history. **Added 2026-09-20**, reversing the earlier leave-as-is: until then **330 permission rules existed in no repo at all**, and the decision had been taken before anyone counted them |
+
+`manifest.tsv` changed shape in the same step. Its second column was the path to a
+project's `CLAUDE.md`; it is now the **project root**, and `sync.sh` derives all
+three tracked files from it. Same format, same tab-separated line per project — but
+a project can now be mirrored when it has permissions and no rules file yet, which
+is how **Debugger v2** and its 17 rules got covered. The `CLAUDE.md` half was
+proved to behave identically before the change was trusted: same 6 current, same
+one drift, same exit code.
+
+**Still outside it:** the 2 rules in `~/Documents/.claude/`, and the 68 inside
+`node_modules` — the first because it is not a project, the second because they
+return on every `npm install`.
 
 ---
 

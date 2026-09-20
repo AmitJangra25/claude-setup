@@ -1,0 +1,37 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk npm *)",
+      "Bash(npm run *)",
+      "Bash(echo \"started with pid $!\")",
+      "Read(//private/tmp/**)",
+      "Bash(env -u ELECTRON_RUN_AS_NODE npm run electron:dev)",
+      "Read(//tmp/**)",
+      "Bash(rtk ps *)",
+      "Bash(rtk git *)",
+      "Bash(rtk proxy *)",
+      "Bash(osascript -l JavaScript -e 'ObjC.import\\(\"AppKit\"\\); $.NSWorkspace.sharedWorkspace.frontmostApplication.processIdentifier')",
+      "Bash(osascript -l JavaScript -e ' *)",
+      "Bash(grep \"Voice_Flow_v2.1 *$\")",
+      "Bash(grep -v \"ExperimentalWarning\\\\|--import\\\\|Use \\\\`node\\\\|^$\")",
+      "Bash(python3 -)",
+      "Bash(grep -n \"^import { useState, useEffect }\" src/app/pages/History.tsx)",
+      "Read(//Users/amitjangra/.npm/_npx/**)",
+      "Bash(VF_ROUTE_SMOKE=1 env -u ELECTRON_RUN_AS_NODE npm run electron:dev)",
+      "Bash(grep -viE \"ExperimentalWarning|Use \\\\`node|^\\\\\\(node:|^$\")",
+      "Bash(node --check electron/main.js)",
+      "Bash(lsof -ti:5173)",
+      "Bash(xargs kill -9)",
+      "Bash(cat)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git stash *)",
+      "Bash(rtk vitest *)",
+      "Bash(mdls ~/Documents/\"VoiceFlow recording.mov\")",
+      "Bash(python3 -c \"import cv2\")",
+      "Bash(xcrun -f avfoundation)",
+      "Bash(python3 -m pip --version)",
+      "Bash(mkdir -p frames)"
+    ]
+  }
+}

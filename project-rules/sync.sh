@@ -1,43 +1,69 @@
 #!/bin/bash
-# 6.3 / D13 — keep this repo's copies of each project's CLAUDE.md from drifting.
+# 6.3 / D13 — keep this repo's copies of each project's rules and permissions
+# from drifting.
 #
 #   ./project-rules/sync.sh          report drift; exit 1 if anything differs
 #   ./project-rules/sync.sh --pull   copy the live files over the copies here
 #
 # The live file in each project is the source of truth. This repo holds a copy
-# so the rules travel to another machine or account, per D13 — the projects'
-# own repos do not carry them.
+# so those files survive a new machine or account, per D13 — they are gitignored
+# in the projects themselves, so this is their only version history.
+#
+# Files mirrored per project, each skipped if the project does not have it:
+#     CLAUDE.md · .claude/settings.json · .claude/settings.local.json
+#
+# Skills are deliberately NOT mirrored: they are not gitignored, so they travel
+# in the project's own repo. A second copy of a tracked file is the drift this
+# script exists to prevent.
 set -uo pipefail
 cd "$(dirname "$0")" || exit 2
 MANIFEST=manifest.tsv
 [ -f "$MANIFEST" ] || { echo "no $MANIFEST next to this script"; exit 2; }
 
+TRACKED=("CLAUDE.md" ".claude/settings.json" ".claude/settings.local.json")
+
 mode=report
 [ "${1-}" = "--pull" ] && mode=pull
 [ "${1-}" = "--pull" ] || [ $# -eq 0 ] || { echo "usage: $0 [--pull]"; exit 2; }
 
-drift=0 missing=0 same=0 pulled=0
-while IFS=$'\t' read -r name src; do
+drift=0 missing=0 same=0 pulled=0 stale=0
+while IFS=$'\t' read -r name root; do
   case "$name" in \#*|"") continue ;; esac
-  [ -n "${src-}" ] || continue
-  copy="$name/CLAUDE.md"
-  if [ ! -f "$src" ]; then
-    printf 'MISSING SOURCE  %s\n                %s\n' "$name" "$src"; missing=$((missing+1)); continue
-  fi
-  if [ "$mode" = pull ]; then
-    mkdir -p "$name"
-    if [ -f "$copy" ] && cmp -s "$src" "$copy"; then same=$((same+1))
-    else cp "$src" "$copy"; printf 'PULLED          %s\n' "$name"; pulled=$((pulled+1)); fi
-  else
-    if [ ! -f "$copy" ]; then printf 'NO COPY YET     %s\n' "$name"; drift=$((drift+1))
-    elif cmp -s "$src" "$copy"; then same=$((same+1))
-    else printf 'DRIFTED         %s  (live file differs from the copy here)\n' "$name"; drift=$((drift+1)); fi
+  [ -n "${root-}" ] || continue
+  found=0
+  for rel in "${TRACKED[@]}"; do
+    src="$root/$rel"
+    copy="$name/$rel"
+    if [ ! -f "$src" ]; then
+      # source absent: only a problem if we are holding a copy of something gone
+      if [ -f "$copy" ]; then
+        printf 'STALE COPY      %-22s %s  (source no longer exists)\n' "$name" "$rel"
+        stale=$((stale+1))
+      fi
+      continue
+    fi
+    found=$((found+1))
+    if [ "$mode" = pull ]; then
+      mkdir -p "$(dirname "$copy")"
+      if [ -f "$copy" ] && cmp -s "$src" "$copy"; then same=$((same+1))
+      else cp "$src" "$copy"; printf 'PULLED          %-22s %s\n' "$name" "$rel"; pulled=$((pulled+1)); fi
+    else
+      if [ ! -f "$copy" ]; then printf 'NO COPY YET     %-22s %s\n' "$name" "$rel"; drift=$((drift+1))
+      elif cmp -s "$src" "$copy"; then same=$((same+1))
+      else printf 'DRIFTED         %-22s %s\n' "$name" "$rel"; drift=$((drift+1)); fi
+    fi
+  done
+  if [ "$found" -eq 0 ]; then
+    printf 'MISSING SOURCE  %-22s none of the tracked files exist under\n                %s\n' "$name" "$root"
+    missing=$((missing+1))
   fi
 done < "$MANIFEST"
 
 if [ "$mode" = pull ]; then
-  printf '\n%d pulled, %d already current, %d missing source\n' "$pulled" "$same" "$missing"
-  [ "$missing" -gt 0 ] && exit 1 || exit 0
+  printf '\n%d pulled, %d already current, %d stale copies, %d projects with nothing to mirror\n' \
+    "$pulled" "$same" "$stale" "$missing"
+  [ $((missing + stale)) -gt 0 ] && exit 1 || exit 0
 fi
-printf '\n%d current, %d drifted, %d missing source\n' "$same" "$drift" "$missing"
-[ $((drift + missing)) -gt 0 ] && exit 1 || exit 0
+printf '\n%d current, %d drifted, %d stale copies, %d projects with nothing to mirror\n' \
+  "$same" "$drift" "$stale" "$missing"
+[ $((drift + missing + stale)) -gt 0 ] && exit 1 || exit 0

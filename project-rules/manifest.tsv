@@ -1,10 +1,19 @@
-# 6.3 / D13 — project CLAUDE.md files that travel with this repo.
-# One line per project: <repo folder><TAB><absolute source path>
-# The copy under project-rules/ is a COPY. The live file is the source of truth.
-FinNode	/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md
-Voice-Flow	/Users/amitjangra/Documents/VS Code/Voice-Flow/CLAUDE.md
-Voice Flow_v1	/Users/amitjangra/Documents/VS Code/Voice Flow_v1/CLAUDE.md
-vthrudebugger_v1	/Users/amitjangra/Documents/VS Code/vthrudebugger_v1/CLAUDE.md
-Packbly_web	/Users/amitjangra/Documents/VS Code/Packbly_web/v1.1-Packbly/CLAUDE.md
-Emp portal	/Users/amitjangra/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26/CLAUDE.md
-SecondBrain schema	/Users/amitjangra/Documents/SecondBrain Obsidian/schema/CLAUDE.md
+# 6.3 / D13 — what travels with this repo, per project.
+# One line per project: <repo folder><TAB><absolute project root>
+#
+# sync.sh mirrors these files from each root, and skips any that do not exist:
+#     CLAUDE.md                      the project's rules (gitignored in the project)
+#     .claude/settings.json          permission rules (gitignored in the project)
+#     .claude/settings.local.json    permission rules added by clicking allow
+#
+# The copies under project-rules/ are COPIES. The live files are the source of truth.
+# Skills are NOT here on purpose — they are not gitignored, so they travel in the
+# project's own repo. See SETUP-PLAN.md § 'Project rules are separate'.
+FinNode	/Users/amitjangra/Documents/VS Code/FinNode
+Voice-Flow	/Users/amitjangra/Documents/VS Code/Voice-Flow
+Voice Flow_v1	/Users/amitjangra/Documents/VS Code/Voice Flow_v1
+vthrudebugger_v1	/Users/amitjangra/Documents/VS Code/vthrudebugger_v1
+Packbly_web	/Users/amitjangra/Documents/VS Code/Packbly_web/v1.1-Packbly
+Emp portal	/Users/amitjangra/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26
+SecondBrain schema	/Users/amitjangra/Documents/SecondBrain Obsidian/schema
+Debugger v2	/Users/amitjangra/Documents/VS Code/Debugger v2

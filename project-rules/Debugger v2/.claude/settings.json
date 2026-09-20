@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk wc *)",
+      "Bash(rtk proxy *)",
+      "Bash(echo \"IDENTICAL \u2014 exit $?\")",
+      "Bash(rtk ls *)",
+      "Bash(rtk du *)",
+      "Bash(rtk tsc *)",
+      "Bash(\"/Users/amitjangra/Documents/VS Code/Debugger/node_modules/.bin/tsc\" --target ES2020 --module commonjs --strict --esModuleInterop --skipLibCheck --outDir out *.ts)",
+      "Bash(sed -e \"s#\\\\.\\\\/requestRules'#./requestRules'#\")",
+      "Bash(python3 -)",
+      "Bash(npm test *)",
+      "Bash(rtk npm *)",
+      "Bash(rtk grep *)",
+      "Bash(python3 -c ' *)",
+      "Bash(sort -u -t: -k3)",
+      "Bash(rtk git *)",
+      "Bash(git check-ignore *)",
+      "Bash(git remote *)"
+    ]
+  }
+}

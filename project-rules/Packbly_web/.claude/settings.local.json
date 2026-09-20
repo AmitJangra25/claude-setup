@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rtk ls *)",
+      "Bash(rtk wc *)",
+      "Bash(rtk grep *)",
+      "Bash(rtk git *)",
+      "Bash(sort -t: -k2 -n -r)",
+      "Bash(npm audit *)",
+      "Bash(awk ' *)",
+      "Bash(grep -n \"^\\\\s\\\\{0,6\\\\}set[A-Z]\\\\w*\\(\\\\|^\\\\s\\\\{0,6\\\\}if\\\\b\")"
+    ]
+  }
+}
