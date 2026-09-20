@@ -8,6 +8,8 @@ metadata:
   modified: 2026-09-09T12:17:31.733Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Fix the cause, not the symptom. The global copy governs; this file is kept for the evidence behind the rule.
 Say explicitly whether a proposed fix is a **workaround** or a **root-cause
 fix**. Amit will reject patchwork once he spots it, and he spots it. Prefer
 closing the underlying gap even when it is more work.

@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-13T13:19:15.995Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Stay on the task you were given. The global copy governs; this file is kept for the evidence behind the rule.
 Amit pushed back with "you always find 1 things" after a chain where each fix
 surfaced the next (version number → no tsconfig → deprecated baseUrl). The
 findings were real, but acting on each one in turn meant I was setting the pace

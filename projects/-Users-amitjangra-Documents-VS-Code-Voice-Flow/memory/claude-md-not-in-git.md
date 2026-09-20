@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-11T09:40:14.359Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Git. The global copy governs; this file is kept for the evidence behind the rule.
 When setting up or pushing a repo, keep `CLAUDE.md` out of git: `git rm --cached CLAUDE.md` and add it to `.gitignore`. Stated as a standing preference ("from now onwards") on 2026-08-11 while pushing Voice Flow Pro.
 
 **Why:** Claude Code reads `CLAUDE.md` from disk, so tracking it gains nothing, and it documents internal/in-progress state (advisory reasoning, known-stale copy, placeholder controls) the user doesn't want shipping with the repo.

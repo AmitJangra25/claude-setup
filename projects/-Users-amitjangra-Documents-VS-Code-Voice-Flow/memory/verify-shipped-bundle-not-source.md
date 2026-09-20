@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-12T13:34:49.293Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Evidence, not assumption. The global copy governs; this file is kept for the evidence behind the rule.
 Amit validates Voice Flow Pro by using the installed `/Applications/Voice Flow Pro.app`,
 not by reading source or trusting `npm test`. When he reports a fix didn't work, he is
 reporting on the packaged artifact.

@@ -25,6 +25,9 @@ or it is not made. Compiling is not passing. A test that has never been seen to 
 guess — break the code again, watch the new test fail, and watch that *only* it fails.
 "Should be unreachable" is not the same as "is".
 
+Where the thing ships as a build, verify the build. Green tests and correct source say
+nothing about what is inside the installed bundle.
+
 If something could not be verified, say so in the same breath as the claim rather than
 rounding it up to done. An unverified step reported as finished is worse than an unfinished
 one, because it stops anyone looking.
@@ -107,6 +110,11 @@ for dead code, not documents.
 - If it changes what a user sees or what gets stored, it was actually exercised, not just
   compiled.
 - Say plainly what was verified and what was not. If a step was skipped, say that.
+
+## Git
+
+Keep `CLAUDE.md` out of git — `git rm --cached` plus `.gitignore` — when the repo is set
+up, not when asked.
 
 ## Explaining a permission request
 

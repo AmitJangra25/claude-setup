@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-13T11:42:09.638Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Docs are products. The global copy governs; this file is kept for the evidence behind the rule.
 When a cleanup turns up a stale reference document (a product spec, a design
 doc), Amit's instinct is to keep it. He challenged deleting
 `voiceflow-product-spec.md` with "what is the harm in keeping it, we still have

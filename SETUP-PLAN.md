@@ -26,7 +26,8 @@ conversation to refer back to — this file is the handoff.
 | ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/`
 | ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/`
 | ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/`
-| ⬅ | **PHASE 8 Where rules live** | **NEXT — surveyed 2026-09-20, nothing actioned.** The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
+| ◐ | **PHASE 8 Where rules live** | **PARTLY DONE 2026-09-20 — step 1 half done, step 2 done for one project.** Step 1: **2 of the 5** trapped rules promoted, both Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git*. Additions only, **0 deleted lines**, +47 words / ~62 tokens per turn. The other **3 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*, FinNode's rtk dry-run gotcha) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. Steps 3 and 4 not started. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
+| ◐ | **PHASE 10 Project-by-project review** | **STARTED 2026-09-20. Voice-Flow done, 7 projects to go.** Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
 | | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20, nothing actioned. **18 rules execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
 | | **Open: unproven** | The 14 `ask` rules added 2026-09-20 have **never been seen to fire** — this session had prompts disabled. Needs one real `git branch -D` / `pnpm add` in a normal session |
@@ -41,10 +42,20 @@ conversation to refer back to — this file is the handoff.
 | ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
 | ✅ | **6.3 Project rules into this repo** | **DONE** 2026-09-18. All 7 project `CLAUDE.md` files copied to `project-rules/`, with `sync.sh` + `manifest.tsv` as the anti-drift step. All 7 read in full first. Drift detection proven by breaking a copy on purpose |
 
-**Where the numbers stand now** — project `allow` rules **560 → 384**:
+**Where the numbers stand now** — project `allow` rules **560 → 330**:
 560 as found · **416** after 2a+2b (−144) · **393** after 2c (−23) · **392**
 after 5.2 (−1) · **384** after 5.2b (−8, plus 4 `additionalDirectories`
-entries). Global is unchanged at allow 35 / ask 87 / deny 2.
+entries) · **330** after the Voice-Flow pass (−54). Global `allow` is unchanged
+at 35 and `deny` at 2; **`ask` is 107** — 87 after 1.2, 101 after Phase 3 gaps,
+107 after the Voice-Flow pass added the three `git * commit *` spellings.
+
+**And 68 rules nobody has ever counted.** Four `.claude/settings.local.json`
+files sit *inside* `node_modules` — three copies of `resolve` and one of
+`nanoid` — carrying **68 `allow` rules** that arrived by `npm install`, not from
+this machine. They are the package maintainer's own grants, published to npm by
+accident, and one of them ships a `notes.md` of their house style. The 384 count
+never included them. Found 2026-09-20 while cross-checking the Voice-Flow pass;
+see Phase 9.
 
 ## The git repo — where it lives
 
@@ -150,6 +161,9 @@ EOF
   the first session turned out to be wrong; see "What I got wrong".
 - **Re-run anything through `rtk proxy`** if it feeds a decision to delete, move
   or overwrite a file. rtk rewrites command output. This is D12.
+- **Cross-check twice, by two different methods, before deleting anything.** Amit's
+  standing instruction since 2026-09-20. It has already caught a wrong claim and an
+  incomplete fix in work reported as done — see Phase 10.
 - **List incidental findings at the end, do not chase them.** Amit sets the pace.
 - **Recommend one option and say why — including why not the others.**
 - **Amit dictates his prompts.** Read through transcription errors rather than
@@ -1134,6 +1148,17 @@ Surveyed 2026-09-20, **nothing actioned.**
 the permission system, never sent to Claude. Only the `.md` files load into context.
 The two were conflated when first reported to Amit.
 
+**Second correction, 2026-09-20: the audit missed 68 rules.** Four
+`.claude/settings.local.json` files live *inside* `node_modules` — three copies of
+`resolve`, one of `nanoid` — and the 384 count never saw them. They are not Amit's:
+they are the package maintainers' own Claude Code grants, published to npm by
+accident, and `resolve`'s folder also ships a `notes.md` describing that project's
+house style. Practically they are inert, because Claude Code reads settings from the
+project root and the working directory's parents, not from an arbitrary dependency —
+but **a dependency can ship permission grants, and `npm install` delivers them
+silently.** That is worth a decision of its own, not a cleanup: the files reappear
+on every install. Found while cross-checking the Voice-Flow pass; see Phase 10.
+
 **Second correction:** "duplicates" was the wrong frame. Rules are per-project, so
 `Bash(rtk ls *)` in 7 projects is 7 projects each needing it, not 6 wasted copies.
 Deleting them would break those projects. The fix for those is promotion to global.
@@ -1166,6 +1191,159 @@ identified then and never closed.
 | Look fine as they are | 210 | Leave |
 
 Categories overlap; the totals do not sum to 384.
+
+---
+
+## PHASE 10 — Project-by-project review  (IN PROGRESS)
+
+Opened 2026-09-20 at Amit's direction, and it **changes the order of everything
+left**. Phases 8 and 9 both proposed a global pass first. That is backwards: what
+belongs in `STANDARDS.md` cannot be decided until every project has been seen, and
+deciding it early means reopening it. So the rule is now:
+
+**Walk the projects one at a time. Promote to global only at the end.**
+
+### How a project pass runs
+
+1. **Read it and say what it is** — in plain English, one short page: what the
+   project does, what its `CLAUDE.md` says, what its permissions actually let a
+   session do, what is missing. Amit reads and decides; nothing is assumed.
+2. **Ask, and keep asking.** Eight to ten questions a project is normal and wanted.
+   Every removal is a question, never an inference.
+3. **Back up first**, into `backups/<date>-<project>/`, verified with `cmp`.
+4. **Cross-check twice before any deletion, by two different methods.** This is
+   Amit's standing instruction and it has already earned itself — see below.
+5. **Verify after**, against the backup: what was removed, what was added, and that
+   `ask`/`deny` and every unrelated setting are untouched.
+6. **Report what was not verified** as plainly as what was.
+
+### The cost model that drives the trimming
+
+Three tiers, and confusing them is what made the setup expensive:
+
+| | Cost |
+|---|---|
+| `CLAUDE.md` and every file it `@import`s | **every turn, forever** |
+| `docs/`, `skills/`, `agents/`, memory bodies | only when actually opened |
+| `settings.json` permissions, hooks | **zero, always** — never sent to a model |
+
+So the shape of every pass is the same: **claim in `CLAUDE.md`, evidence in
+`docs/`, and a skill to force the doc open at the moment it matters.** That is the
+pattern 5.1 invented in Voice-Flow; Phase 10 applies it everywhere.
+
+A skill is the important half. Trimming a rule out of `CLAUDE.md` makes it
+invisible until something opens the document. A skill named for the dangerous job —
+not for a file — costs nothing until called and puts the right document in front of
+the session at the right moment.
+
+### Order
+
+Voice-Flow first (biggest `CLAUDE.md`, most to save, proves the method), then the
+rest by Amit's call. Two projects — **Debugger v2** and **Packbly_v2** — have no
+`CLAUDE.md` at all and start from a blank page rather than an untangling.
+
+### Voice-Flow  ·  **DONE 2026-09-20**
+
+Backup: `backups/2026-09-20-voiceflow/` — 18 files, all verified byte-identical.
+
+**Per-turn cost in this project: ~10,056 → ~6,003 tokens.**
+
+| | Before | After |
+|---|---|---|
+| `CLAUDE.md` | 4,650 words / ~6,140 tokens | **1,534 words / ~2,024 tokens** |
+| `allow` rules | 234 | **180** |
+| Documents in `docs/` | 11 | **13** |
+| Skills | 0 | **3** |
+
+**The diagnosis was wrong the first time, and the correction matters.** The first
+report said the 42 working rules were most of the file. Measured, they were 687
+words of 4,650. The real weight was **Architecture map (1,629) and Commands
+(1,339)** — 64% of the file — because those two sections had *never* been split and
+still carried every war story inline. Rules and pitfalls were already claim-only.
+The lesson is the one from 7b: measure the section before proposing the fix.
+
+**What was done.**
+
+- **Permissions, 234 → 180.** Two `git commit` allows removed and the rule made
+  global instead. Five wildcards that execute arbitrary code removed — `node *`,
+  `node -e ' *`, `node --input-type=module -e ' *`, `python3 -c ' *`, `python3 -` —
+  leaving the named scripts and `npm run *`, which covers all 18 package scripts.
+  47 dead one-offs removed (32 `echo`, 15 `awk`); `sed`/`perl` kept at Amit's call.
+  One wildcard **narrowed rather than removed**:
+  `osascript -e 'tell application "System Events" *` became `… to get *`, which
+  still answers every read-only query the paste debugging needs and refuses
+  `keystroke`, `key code`, `click` and `delete login item`.
+- **Global `ask` 101 → 107.** `git commit` now asks everywhere, in six spellings.
+- **`STANDARDS.md` +2 rules**, additions only — see Phase 8.
+- **7 memories marked** with a pointer to the governing global section. **0 lines
+  deleted** across all 11 files in the folder.
+- **`CLAUDE.md` split.** `Architecture map` and `Commands` moved verbatim into new
+  `docs/architecture.md` and `docs/commands.md`; the condensed map and command list
+  stay. Working rules trimmed 42 → 20, pitfalls 47 → 15. **All 89 remain in `docs/`
+  in full** — every dropped line was proved present there before removal.
+  `docs/README.md` gained both rows and an honest account of the trade.
+- **3 skills**, in `.claude/skills/`: `verify-app` (prove a change reached the
+  installed `.app`), `vault-work` (this code writes into a real Obsidian vault),
+  `polish-work` (fourteen identical runs once produced five different shapes).
+
+**The trade, stated because it is real:** 22 rules and 32 pitfalls are no longer in
+front of a session automatically. Each trimmed section names the document holding
+the rest and says to read it first, and the three skills cover the three areas where
+a missed rule actually costs something.
+
+### What the cross-check found — and why it is now a fixed step
+
+Amit asked for a cross-check before any of this was recorded. It found **two real
+errors in work already reported as done**:
+
+1. **A factual error introduced while rewriting.** The condensed Architecture map
+   called eight vault modules "the pure ones". Measured against the code,
+   `vaultTree` (3 filesystem references) and `vaultLint` (2) are not. The original
+   text had only ever marked `vaultPlan` pure; the generalisation was invented.
+   Fixed — the seven with zero references are now named explicitly, and so are the
+   five that read or write.
+2. **The `git commit` fix was two-thirds of a fix.** `Bash(git commit *)` does not
+   match `git -c user.name=… commit`, and **FinNode has exactly that rule saved as
+   an allow.** Closed with `git * commit *` in three spellings, tested to catch the
+   `-c` and `-C` forms while still letting `git log`, `git status` and `git diff`
+   run. `cd X && git commit` still slips — that is the structural limit already
+   documented under *Why permissions cannot be made airtight*, not a new hole.
+
+It also found **one miss in the review itself**: the first pass listed five things
+worth looking at in Voice-Flow's permissions and did not include the
+`System Events` wildcard, which could send keystrokes to any application. It was
+narrowed once shown.
+
+**Conclusion: the cross-check is not optional.** Two of the three findings were in
+work already called done and verified. A pass is not finished until it has been
+re-read against the code by a second method.
+
+### Voice-Flow — open, not acted on
+
+- `docs/architecture.md` says "Eleven files" for the vault modules; there are
+  **twelve** on disk. Stale in the original text, moved verbatim, so `CLAUDE.md`
+  (twelve) and the document (eleven) now disagree.
+- `CLAUDE.md` says `useCopyToClipboard.ts` is "the only place that copies";
+  `useDictationPipeline.ts` also calls `clipboard.writeText`, for auto-paste. The
+  wording is the original's and reads as absolute.
+- The `verify-shipped-bundle-not-source` memory points at
+  `/Applications/Voice Flow Pro.app`. The app has been `Voice Flow.app` since the
+  19 Aug 2026 rename, so following the memory literally fails. The new
+  `verify-app` skill uses the correct path; the memory was left alone.
+- `.claude/` is untracked in Voice-Flow's git. `settings.local.json` should stay
+  that way; `settings.json` and the three new skills probably should not.
+
+### Carried to the projects they belong to
+
+Found while cross-checking Voice-Flow, deliberately **not** fixed out of order:
+
+- `Bash(python3 -c ' *)` — the same arbitrary-code hole — is still open in
+  **FinNode**, **Debugger v2** and **Voice Flow_v1**.
+- **FinNode** still holds `git -c user.name=Amit -c user.email=… commit -q -m ' *`
+  as an allow. The new global `ask` overrides it by rule-type precedence, so it is
+  covered, but the rule itself is still there.
+- The 68 `allow` rules inside `node_modules` — see the counts note at the top and
+  Phase 9.
 
 ---
 

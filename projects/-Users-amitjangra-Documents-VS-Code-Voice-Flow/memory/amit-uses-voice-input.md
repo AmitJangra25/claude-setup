@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-16T08:55:55.877Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § When something is unclear. The global copy governs; this file is kept for the evidence behind the rule.
 Amit frequently uses voice input for prompts (he dictates into the terminal —
 fitting, given [[recorder-page-becomes-chat]] and that this project *is* a
 dictation app). Expect homophone and near-miss transcription errors in his

@@ -8,6 +8,8 @@ metadata:
   modified: 2026-08-19T12:01:56.208Z
 ---
 
+
+> **Now global** — `STANDARDS.md` § Docs are products. The global copy governs; this file is kept for the evidence behind the rule.
 Docs must read like a senior writer wrote them for *this application*: what it is,
 what it does, what's next. Not "a corrected replacement for the original blueprint",
 not a section correcting a document that no longer exists, and not a changelog with
