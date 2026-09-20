@@ -8,58 +8,63 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 ## What we are doing, in three lines
 
-Amit's whole Claude Code setup is being reviewed **project by project**, one at a
-time, and the global rules come **last** — only after every project has been seen.
-**Voice-Flow and FinNode are done. Three projects remain** — narrowed 2026-09-20;
-two were dropped and two were never projects. The method, the cost model and both
-results are in § *PHASE 10*.
+Amit's whole Claude Code setup is being reviewed and trimmed. **The order changed
+on 2026-09-20 — the global pass runs now, and the three remaining projects are
+reviewed whenever Amit next opens them.** Each of those needs a rename first, the
+rename is his to do, and setup work must not wait on it. Voice-Flow and FinNode are
+done (§ *PHASE 10*). The global pass has started: **`OLLAMA.md` is done**
+(§ *PHASE 11*), and `STANDARDS.md` is next.
 
 ## Next session: start here, not at the top
 
-**Do not read this whole file.** It is ~107 KB and reading it costs roughly 27k
+**Do not read this whole file.** It is ~123 KB and reading it costs roughly 31k
 tokens, which is the opposite of the point. Read, in this order:
 
 1. **This block** and the status table below it.
-2. **§ PHASE 10 — Project-by-project review** — the method, and what the Voice-Flow
-   and FinNode passes produced. This is the only section that governs the current
-   work. FinNode's entry carries a **method correction**: measure a section before
-   proposing its fix, because the Voice-Flow shape did not transfer.
-3. The specific phase section only if the work touches it.
+2. **§ PHASE 11 — The global pass** — this is the section that governs the current
+   work, and what the `OLLAMA.md` split produced.
+3. **§ PHASE 10 — Project-by-project review** — the method, for whenever a project
+   is next opened. FinNode's entry carries a **method correction that applies to the
+   global pass too**: measure a section before proposing its fix, because the
+   Voice-Flow shape did not transfer.
+4. The specific phase section only if the work touches it.
 
 Everything else is reference. Search it when you need it.
 
-## The next piece of work — Amit's call, recommended: vthrudebugger_v1
+## The next piece of work — Amit's call, recommended: `STANDARDS.md`
 
-`~/Documents/VS Code/vthrudebugger_v1` — a drop-in in-app debugger library for
-React Native. Idle, has a `CLAUDE.md`, 39 permission rules.
+`~/.claude/STANDARDS.md` — **1,559 words / ~2,058 tokens, loaded every turn in
+every project.** The largest single item left anywhere in this setup.
 
-Recommended next because it holds `vthru_debugger_workflow_preferences`, **one
-memory carrying five rules, two of which are the last universal rules still
-trapped in a single project** — *never commit without being asked* and *one PR
-per branch off main*. Neither is in `STANDARDS.md` at all. Doing this project
-finishes Phase 8 step 1, which has been half-done since 2026-09-20.
+Recommended next because it is the biggest remaining per-turn cost and, unlike the
+projects, it needs nothing from Amit first. `OLLAMA.md` proved the method works:
+797 words → 133, ~878 tokens back on every turn, nothing lost (§ *PHASE 11*).
 
-**But the rename comes first.** Amit named this project at random and will rename
-it — repo, local folder, and the name inside the code — as the first act of working
-on it. The pass runs *after*, so it records the final name. **Do not start the rename
-unprompted**; wait for him to say so. Read § *Project names, and what a rename costs*
-before anything else — a rename orphans this project's 3 memories unless the memory
-folder moves in the same step.
+**But `STANDARDS.md` is not `OLLAMA.md`, and the difference is the whole job.**
+`OLLAMA.md` described a tool used occasionally, so almost all of it could wait
+behind a skill. `STANDARDS.md` genuinely governs *every* turn — that is what it is
+for. So the split test is different: a section stays global if it must reach me
+**before I would know to load anything**, and moves only if it is detail I would
+consult once already engaged on that kind of work.
 
-Then run it exactly as the Voice-Flow and FinNode passes ran — the six steps are in
-§ PHASE 10. **Survey and ask before touching anything.** Amit wants 8–10 questions a
-project; every removal is a question, never an inference.
+**Measure before proposing.** This is FinNode's method correction and it applies
+here harder than anywhere: FinNode's biggest section looked like Voice-Flow's
+problem and measurement said otherwise. Produce the per-section word count first,
+show it, and let the numbers pick the targets.
 
-**First command of the session:** back up, into `backups/<date>-vthrudebugger/`,
-verified with `cmp`. Nothing else happens first. Note the tree is **not clean** —
-9 uncommitted files, parked on branch `alert-swipe-to-dismiss`.
+**Survey and ask before touching anything.** Every removal is a question, never an
+inference. Amit wants the proposal shown before the edit, as with `OLLAMA.md`.
 
-**Carry these in:** `Bash(python3 -c ' *)` is still open in **Debugger v2** and
-**Voice Flow_v1** (FinNode's two were closed 2026-09-20). Note what FinNode
-changed about method — see § PHASE 10, *the Voice-Flow diagnosis does not
-transfer automatically*. And **read § *Project names, and what a rename costs*
-below before touching vthrudebugger_v1** — Amit intends to rename it, and a
-rename is not just a folder.
+**First command:** the tree is committed and clean, so `git checkout SETUP-PLAN.md`
+and `git checkout STANDARDS.md` are the backup — verify `git status` is clean and
+say so, rather than making a redundant dated copy.
+
+**After `STANDARDS.md`:** `PROJECTS.md` (376 words, and it still wrongly lists
+SecondBrain schema as its own project), then Phase 9 — the **18 permission rules
+that execute arbitrary code and bypass the entire ask list**.
+
+**Carry in:** `Bash(python3 -c ' *)` is still open in **Debugger v2** and
+**Voice Flow_v1** (FinNode's two were closed 2026-09-20).
 
 ### Names first, then the pass — Amit's stated order
 
@@ -133,12 +138,16 @@ also parked on non-`main` branches, listed above.
 
 ## The order from here
 
-Amit's call each time. **Three projects to review, two dropped, two that are not
-projects.** Narrowed 2026-09-20 on his instruction.
+Amit's call each time. **The global pass runs now; the three remaining projects
+are reviewed whenever he next opens them.** Reversed 2026-09-20 on his instruction,
+and the reason is worth keeping: each remaining project needs a rename first, the
+rename is his to do when he starts work there, and making setup work wait on it
+had turned a project chore into a blocker. Two projects were dropped and two were
+never projects.
 
-**Rename first, then review — these three.** Amit has said he will rename each one
-as the first act of working on it. See § *Project names, and what a rename costs*
-for the map and what a rename breaks.
+**These three, whenever they are next opened — rename first, then review.** See
+§ *Project names, and what a rename costs* for the map and what a rename breaks.
+Do not start any of them unprompted.
 
 - **vthrudebugger_v1** — 39 rules, holds `vthru_debugger_workflow_preferences`, the
   memory carrying the **last two trapped universal rules** (*never commit without
@@ -168,21 +177,30 @@ them to "check something quickly".
   still lists it as its own project, which is wrong and worth fixing in the global
   pass.
 
-**Then, and only then, the global pass:** `STANDARDS.md`, the other four imported
-files, the global permission list, and whatever turned out to be universal.
+**The global pass — running now.** `STANDARDS.md`, the other four imported files,
+the global permission list, and whatever turned out to be universal.
 
-**Measured 2026-09-20, and it changes what the global pass is for.** The six global
-files are now **3,097 words / ~4,089 tokens, loaded every turn in every project** —
-**59% of a turn in FinNode and 66% in Voice-Flow**. They are the largest single item
-left, and they are paid eight times over. 100 words cut there saves ~132 tokens in
+**Why it goes first.** The six global files are loaded every turn in **every**
+project — they are paid eight times over. 100 words cut there saves ~132 tokens in
 *every* project, forever; 100 words cut in a project saves it once.
 
-Where that weight sits: `STANDARDS.md` 1,518 · `OLLAMA.md` **797** · `PROJECTS.md`
-376 · `RTK.md` 187 · `REPOS.md` 105 · `CLAUDE.md` 114. **`OLLAMA.md` is the obvious
-first look** — ~1,052 tokens a turn, in every project, for a tool used occasionally.
-It is the exact shape the project passes have been splitting: a short claim in the
-global file, the detail in a skill that costs nothing until called. Not acted on —
-the order still says projects first.
+**Re-measured 2026-09-20 after the `OLLAMA.md` pass.** Note the earlier figure in
+this file was **3,097 words / 4,089 tokens** and it was wrong by ~42 words —
+`STANDARDS.md` had grown to 1,559 when Phase 4 added the "Why now" rule, after the
+original count was taken. The corrected before-figure is **3,139**.
+
+| | Words | ~Tokens/turn |
+|---|---|---|
+| Six global files, as found | 3,139 | ~4,144 |
+| **After the `OLLAMA.md` pass** | **2,474** | **~3,266** |
+| Saved, every turn, every project | 665 | **~878** |
+
+Where the remaining weight sits: **`STANDARDS.md` 1,559** · `PROJECTS.md` 376 ·
+`RTK.md` 188 · `OLLAMA.md` 133 · `REPOS.md` 105 · `CLAUDE.md` 114.
+
+**`STANDARDS.md` is now 63% of the global weight and the obvious next target** —
+but it is not the same shape as `OLLAMA.md`. See § *The next piece of work* for the
+split test that applies to a file which really does govern every turn.
 
 ## Status at handoff (2026-09-18)
 
@@ -201,7 +219,8 @@ the order still says projects first.
 | ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/` |
 | ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/` |
 | ◐ | **PHASE 8 Where rules live** | **PARTLY DONE 2026-09-20 — step 1 is 3 of 5, step 2 done for two projects.** Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into `RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. Steps 3 and 4 not started. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
-| ◐ | **PHASE 10 Project-by-project review** | **STARTED 2026-09-20. Voice-Flow and FinNode done, 6 projects to go.** Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
+| ◐ | **PHASE 10 Project-by-project review** | **STARTED 2026-09-20. Voice-Flow and FinNode done; 3 projects remain and are now DEFERRED** — each is reviewed whenever Amit next opens it, because each needs a rename first and the rename is his to do. **The order was reversed the same day: the global pass runs now (Phase 11), not last** — making setup work wait on a project chore had turned it into a blocker. The original reasoning, kept because it still governs each project's own pass: walk the project, decide what is universal only after seeing it. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
+| ◐ | **PHASE 11 The global pass** | **STARTED 2026-09-20. `OLLAMA.md` done, `STANDARDS.md` next.** The six global files are loaded every turn in every project, so a word cut here is paid back eight times. **`OLLAMA.md` 797 → 133 words**; the detail moved verbatim to `~/.claude/skills/ollama/SKILL.md`, byte-identical to the backup by `diff` and MD5. Global files **3,139 → 2,474 words / ~4,144 → ~3,266 tokens a turn — ~878 saved, everywhere, forever.** Also fixed a real hole: `.gitignore` blocked `skills/` because `skills/synced/` is account-keyed, but that reason does not hold for a hand-written skill, which would have been **lost on an account switch** — the exact failure this repo exists to prevent. Allowed by name; `synced/` still blocked, proven both ways with `git add --dry-run`. Commit `06951be`, pushed. Backup: `backups/2026-09-20-ollama/` |
 | | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20, nothing actioned. **18 rules execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
 | | **Open: unproven** | **20 `ask` rules have never been seen to fire** — the 14 added by Phase 3 gaps and the **6 `git commit` spellings added by the Voice-Flow pass**. Every session that added them had prompts disabled, including the one that used them to commit. Pattern matching was tested offline and is correct (`git commit`, `git -c … commit` and `git -C … commit` all match; `git log`/`status`/`diff` do not), but **matching a pattern is not the same as the prompt appearing.** Needs one real `git commit`, `git branch -D` or `pnpm add` in a normal session. **Still unproven after 2026-09-20:** the FinNode pass ran a real `git commit` and it completed without surfacing a prompt — but that session had auto mode on, so it is consistent with prompts being disabled and proves nothing either way. Treat "commit now asks" as designed, not proven |
@@ -1741,6 +1760,112 @@ re-tracking its three files is a small separate action.
 
 
 ---
+
+## PHASE 11 — The global pass  (IN PROGRESS)
+
+The six files imported by `~/.claude/CLAUDE.md` are loaded **every turn, in every
+project**. A word cut here is paid back eight times; a word cut in a project is
+paid back once. That ratio is the whole reason this phase exists.
+
+Order reversed 2026-09-20 on Amit's instruction: this runs **now**, and the three
+remaining projects are reviewed whenever he next opens them. Each of those needs a
+rename first, the rename is his to do, and setup work must not wait on it.
+
+### The method
+
+Same six steps as the project passes, with one difference that matters.
+
+1. **Measure the file section by section before proposing anything.** This is
+   FinNode's correction and it is not optional — FinNode's biggest section looked
+   exactly like Voice-Flow's problem and measurement said otherwise.
+2. **Apply the split test.** A section stays global if it must reach me *before I
+   would know to load anything*. It moves to a skill if it is detail I would
+   consult only once already engaged on that kind of work.
+3. **Show the proposal and the numbers before editing.** Every removal is a
+   question, never an inference.
+4. **Back up, verified.** Where the file is committed and the tree is clean, git
+   *is* the backup — say so rather than making a redundant dated copy.
+5. **Move verbatim, prove it verbatim.** Two independent methods, as below.
+6. **Re-measure, then record the real figure**, not the estimate.
+
+### Where the weight sits — re-measured 2026-09-20
+
+| File | Words before | Words after |
+|---|---|---|
+| `STANDARDS.md` | 1,559 | 1,559 |
+| **`OLLAMA.md`** | **797** | **133** |
+| `PROJECTS.md` | 376 | 376 |
+| `RTK.md` | 188 | 188 |
+| `CLAUDE.md` | 114 | 114 |
+| `REPOS.md` | 105 | 105 |
+| **Total** | **3,139** | **2,474** |
+| **~Tokens every turn** | **~4,144** | **~3,266** |
+
+The earlier figure recorded in this file — 3,097 words / 4,089 tokens — was wrong
+by ~42 words. `STANDARDS.md` grew to 1,559 when Phase 4 added the "Why now" rule,
+after the original count was taken.
+
+### `OLLAMA.md` — DONE 2026-09-20
+
+**797 → 133 words. ~878 tokens back on every turn, in every project.**
+
+`OLLAMA.md` described `ollama-do`, a script that hands small chores to a local
+model. Real and installed — `ollama` at `/usr/local/bin/ollama`, `ollama-do` at
+`~/.local/bin/ollama-do`, six models, ~18 GB. But a full instruction manual was
+being read before every reply, in every project, for a tool used occasionally.
+
+**What stayed global, and why.** A skill only loads when I decide to reach for it,
+so two things could not move:
+
+1. **The trigger** — without it I never know the tool exists, and never load the
+   skill.
+2. **The hard prohibitions** — secrets, `.env`, credentials, customer and employee
+   records, shipped code, code review, anything auth/payment/migration. The failure
+   mode is a quick `ollama-do summarize` on an Emp Portal file fired as a shortcut
+   without loading anything first. A ban that lives only inside the skill does not
+   stop that.
+
+Everything else — the full task list, the reasoning behind each prohibition, the
+reporting convention, the facts about this machine — moved to
+`~/.claude/skills/ollama/SKILL.md`, which costs nothing until called.
+
+**Verified verbatim, two methods.** `diff` against
+`backups/2026-09-20-ollama/OLLAMA.md` (88 lines vs 88, clean), and matching MD5
+`d39aa393fd6871b3bb07e78653003fb3` on both. All 7 headings confirmed present.
+**Nothing reworded, summarised or dropped.**
+
+**The skill is picked up immediately**, not at next session start — it appeared in
+the session's skill list the moment the file was written. The earlier caution in
+this file that a hand-written skill might not be reachable until a restart is
+wrong, and is corrected here.
+
+### The `.gitignore` hole this pass found
+
+`.gitignore` blocks `skills/` with a stated reason: *account-keyed; regenerate on
+login; committing them would carry one account's UUID into another.* True of
+`skills/synced/`. **False of a hand-written skill** — it carries no UUID and does
+not regenerate, so it would simply be **lost on an account switch**, which is the
+one failure this repo exists to prevent. Project skills travel in each project's
+own git; a *global* skill had no repo at all.
+
+Fixed by allowing `skills/ollama/SKILL.md` **by name**, matching the file's
+block-everything-then-allow design. Proven both directions with `git add
+--dry-run`: the skill stages, `skills/synced/` is refused as ignored.
+
+**Note for the account-switch checklist** (§ *Rebuilding on another account*): hand
+-written global skills now survive a switch via this repo. Cloud-synced ones still
+do not. Each new hand-written global skill must be added to `.gitignore` by name or
+it is silently excluded.
+
+### Still to do in this phase
+
+- **`STANDARDS.md`** — 1,559 words, 63% of the remaining global weight, and the
+  next piece. Not the same shape as `OLLAMA.md`: it genuinely governs every turn.
+  See § *The next piece of work* for the split test.
+- **`PROJECTS.md`** — 376 words, and it still lists SecondBrain schema as its own
+  project, which is wrong.
+- `RTK.md`, `REPOS.md`, `CLAUDE.md` — 407 words between them; likely little to win.
+- The global permission list, and whatever turns out to be universal.
 
 ## Findings not acted on
 
