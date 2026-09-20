@@ -17,10 +17,10 @@ time, and the global files come **last**. Voice-Flow, FinNode, `vthrudebugger_v1
 actually opens it to work on. A pass does **not** wait for a rename and must not
 propose one. This was briefly made a prerequisite on 2026-09-20 and it was wrong.
 
-One global file was done out of order — `OLLAMA.md` (§ *PHASE 11*), which was safe
-because no project pass can change what belongs in it. **The rest of Phase 11 is
-parked**, and `STANDARDS.md` is explicitly **last**: it is the destination for the
-universal rules still trapped in the remaining projects.
+Phase 11 is under way. `OLLAMA.md` was done first, out of order but safely, because no
+project pass can change what belongs in it. `STANDARDS.md` and the `RTK.md` pointer were
+done on 2026-09-20. **`PROJECTS.md` is next**, then `REPOS.md` and `CLAUDE.md`, then the
+global permission list.
 
 ## Next session: start here, not at the top
 
@@ -44,10 +44,12 @@ Everything else is reference. Search it when you need it.
 and `Emp portal` have all been walked. What is left is § *PHASE 11*: the six global
 files, the global permission list, and whatever turned out to be universal.
 
-**`STANDARDS.md` goes last within it.** The two universal rules it was waiting on —
-*never commit or push without being asked* and *one PR per feature on its own branch
-off `main`* — were added during the `vthrudebugger_v1` pass, so Phase 8 step 1 is
-complete and `STANDARDS.md` can now be trimmed in one opening rather than two.
+**`STANDARDS.md` is done — 2026-09-20, 1,621 → 1,570 words.** It went last within the
+phase as planned, because the two universal rules it was waiting on — *never commit or
+push without being asked* and *one PR per feature on its own branch off `main`* — were
+added during the `vthrudebugger_v1` pass. Phase 8 step 1 is complete. The full record is
+in § *PHASE 11*, and its headline is worth carrying: **the measurement said the file was
+not an `OLLAMA.md`, and nothing was reworded.** **`PROJECTS.md` is next.**
 
 **Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
 that was accurate and far too long: conclusion first, findings grouped into a few
@@ -2032,18 +2034,19 @@ Same six steps as the project passes, with one difference that matters.
 
 | File | Words before | Words after |
 |---|---|---|
-| `STANDARDS.md` | 1,559 | 1,559 |
+| **`STANDARDS.md`** | **1,621** | **1,570** |
 | **`OLLAMA.md`** | **797** | **133** |
 | `PROJECTS.md` | 376 | 376 |
-| `RTK.md` | 188 | 188 |
+| **`RTK.md`** | **188** | **186** |
 | `CLAUDE.md` | 114 | 114 |
 | `REPOS.md` | 105 | 105 |
-| **Total** | **3,139** | **2,474** |
-| **~Tokens every turn** | **~4,144** | **~3,266** |
+| **Total** | **3,201** | **2,484** |
+| **~Tokens every turn** | **~4,225** | **~3,279** |
 
-The earlier figure recorded in this file — 3,097 words / 4,089 tokens — was wrong
-by ~42 words. `STANDARDS.md` grew to 1,559 when Phase 4 added the "Why now" rule,
-after the original count was taken.
+**Two corrections to earlier counts in this file.** The original 3,097 words / 4,089
+tokens was wrong by ~42 words. The 2026-09-20 re-measure then recorded `STANDARDS.md` at
+1,559; measured again on the same day before the pass, it was **1,621**. Both figures in
+this row are now measured, not estimated.
 
 ### `OLLAMA.md` — DONE 2026-09-20
 
@@ -2097,14 +2100,63 @@ block-everything-then-allow design. Proven both directions with `git add
 do not. Each new hand-written global skill must be added to `.gitignore` by name or
 it is silently excluded.
 
+### `STANDARDS.md` — DONE 2026-09-20
+
+**1,621 → 1,570 words. ~67 tokens back on every turn.** Measured, not estimated — and far
+below the ~180 first quoted, because two of the four changes added words back.
+
+**The measurement said this was not an `OLLAMA.md`, before anything was cut.** Section by
+section: the permission section was 517 words (32%), of which the `tccutil` subsection was
+166; everything else runs 48–158 words and is already tight. **Nothing was reworded.**
+Every compression candidate — the 300k-context figures, the six-example list in *Build the
+smallest thing*, the private-and-solo paragraph in *Git* — measured at 7–18 words each and
+put a working rule at risk. All rejected. The honest ceiling was ~7%, not 83%.
+
+**Four changes.**
+
+1. **`tccutil reset` (166 words) moved to Voice-Flow**, into the existing TCC cluster in
+   `docs/known-pitfalls.md` — *not* its `CLAUDE.md`, which is a one-line-per-rule index
+   the block would not have matched. Voice-Flow is the only project of six that mentions
+   macOS privacy, the only one that ever carried a `tccutil` permission rule, and this
+   file records exactly one real `tccutil` call ever made. A 36-word rule stays global:
+   the *rule* is about explaining a permission request, and only the worked example and
+   the re-grant path are Voice-Flow facts. This reverses part of Phase 4, with approval.
+2. **The fifth-line `ask` categories were wrong, not merely long.** They named installs,
+   downloads, deletions, pushing code, GitHub, `sudo`, Keychain, macOS privacy, `sqlite3`.
+   The real list is 107 rules and also covers destructive git (`reset`, `clean`,
+   `checkout`, `rebase`, `merge`, `rm`), process kills and `open` — so `git reset --hard`
+   got no "Why now" line under the old wording. Fixed at +16 words: a correctness fix that
+   costs weight, which is the right trade.
+3. **"Stay on the task you were given" now covers investigation.** It banned unrequested
+   *fixes*; it did not ban wandering into adjacent *checks*, which costs tokens twice —
+   once to run, once to read — and buries the answer.
+4. **"Write plainly" promoted to its own section.** The rule already existed twice and
+   both were too narrow: scoped to permission prompts inside `STANDARDS.md`, and in a
+   per-project memory that cannot travel because **there is no global memory**. Lifted out
+   of the permission section so it governs everything. The `keep-explanations-short`
+   memory was then deleted, after its buckets-with-counts and two-or-three-questions
+   detail was absorbed into the new section.
+
+**Verified verbatim.** The moved example diffed clean once the missing end-of-file newline
+was normalised — md5 `95561f01…` on both sides.
+
+**Committed.** `~/.claude` `aa70d4b` on `main`, matching every other setup commit here.
+Voice-Flow `ad38b97` on branch `docs/tccutil-explanation`, because § *Git* says nothing
+lands on `main` directly. Neither is pushed.
+
+### `RTK.md` — dead pointer fixed 2026-09-20
+
+Its last line read *"Refer to CLAUDE.md for full command reference."* No such reference
+exists anywhere: the global `CLAUDE.md` is five `@` imports and two comments, **none** of
+the six project `CLAUDE.md` files mention rtk at all, and `ENVIRONMENT.md` § 1 documents
+the hook and its permission rules rather than commands. Replaced with `rtk --help`, which
+lists all **85** commands on 0.48.0. 188 → 186 words.
+
 ### Still to do in this phase
 
-- **`STANDARDS.md`** — 1,559 words, 63% of the remaining global weight, and the
-  next piece. Not the same shape as `OLLAMA.md`: it genuinely governs every turn.
-  See § *The next piece of work* for the split test.
-- **`PROJECTS.md`** — 376 words, and it still lists SecondBrain schema as its own
-  project, which is wrong.
-- `RTK.md`, `REPOS.md`, `CLAUDE.md` — 407 words between them; likely little to win.
+- **`PROJECTS.md`** — 376 words, the next piece, and it still lists SecondBrain schema
+  as its own project, which is wrong.
+- `REPOS.md`, `CLAUDE.md` — 219 words between them; likely little to win.
 - The global permission list, and whatever turns out to be universal.
 
 ## Findings not acted on
