@@ -906,6 +906,24 @@ The concern this paragraph was written about — that on a new machine or accoun
 those projects start with no rules — is what 6.3 answers for `CLAUDE.md`. It is
 still true of `settings.json`, and 5.7 is still open.
 
+**Skills are a third category, decided 2026-09-20.** A project's
+`.claude/skills/` travels in **that project's own repo**, not here and not in
+`project-rules/`. The reason `CLAUDE.md` needs a mirror is that it is
+gitignored in every project; skills are not, so they already have version
+history and a remote where they live. Voice-Flow's three are on
+`AmitJangra25/Voice-Flow` as of `d106eda`, verified present in `origin/main`.
+**Do not add them to `manifest.tsv`** — a second copy of a file that is already
+tracked is the drift `sync.sh` exists to prevent.
+
+So the three project-level things now sit in three different places, and the
+split is deliberate rather than accidental:
+
+| | Lives in | Why |
+|---|---|---|
+| `CLAUDE.md` | this repo, `project-rules/` | gitignored in the project (`claude-md-not-in-git`), so this is its only history |
+| `.claude/skills/` | the project's own repo | not ignored; travels with the code it describes |
+| `.claude/settings*.json` | **nowhere under version control** | gitignored in the project, excluded here. Backed up only by dated copies in `backups/`. This is 5.7, decided as leave-as-is — but it means 330 permission rules have no history |
+
 ---
 
 ## Tools considered, and the decision
