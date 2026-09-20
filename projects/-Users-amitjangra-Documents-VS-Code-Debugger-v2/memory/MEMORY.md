@@ -1,3 +1,4 @@
 - [Debugger overlay is intentional](feedback_debugger_overlay_intentional.md) — don't propose refactors to DebugProvider, extend it additively
 - [Debugger repo is a fresh start](project_debugger_repo_fresh_start.md) — verbatim snapshot, broken imports expected, vthrudebugger_v1 out of scope
 - [Debugger UI is frozen](project_debugger_ui_frozen.md) — keep the overlay's look exactly as-is; no styling/layout changes
+- [Rename before the next pass](rename-before-the-next-pass.md) — Amit renames repo, folder and code first; setup pass comes after, then drop the rules it made pointless

@@ -90,6 +90,31 @@ Verified live 2026-09-20 by reading each project's `git remote`, not from memory
 3. **`PROJECTS.md`** and any project `settings.json` holding an absolute path.
 4. **The GitHub repo URL**, which breaks existing clones and any link to it.
 
+**The rename needs no new permission, and will strand almost nothing.** Checked
+2026-09-20 by reading all three projects' rules: `vthrudebugger_v1` (39 rules) and
+`Emp portal` (11) contain **zero** rules holding a path or their own current name, so
+renaming them leaves no dead rule behind. `Debugger v2` has exactly **one** —
+`Bash("…/VS Code/Debugger/node_modules/.bin/tsc" …)` — and it is *already* dead, since
+that path no longer exists. `gh repo *` and `git mv *` are on the global `ask` list and
+a bare `mv` prompts by default, which is the right setting for an irreversible,
+outward-facing change.
+
+**Recorded where each project will see it.** `vthrudebugger_v1` and `Debugger v2`
+each gained a `rename-before-the-next-pass` memory saying the rename comes first and
+the pass second. **`Emp portal` did not**, deliberately: it has no Claude memory
+folder yet, and the folder name is derived from the absolute path — every existing one
+maps `/`, space and `_` to `-`, but no existing folder contains a `.`, and
+`Vthru_Emp_v2.1_jun26` does. Guessing that mangling risks creating an orphan, which is
+the exact failure Phase 7a repaired. Its note lives here instead, and the folder will
+be created correctly by simply opening the project once.
+
+**After each rename, drop what the rename made pointless.** Not because paths went
+stale — they mostly did not — but because these three have never had a pass, so they
+still carry the category FinNode's pass removed and Voice-Flow's did not: **spent
+one-off literals**, a single exact command left over from a finished session. Remove
+those in the same sitting as the rename, plus Debugger v2's dead `tsc` rule and any
+rule that names the old project name. Then run the pass proper.
+
 **Uncommitted work sitting in the remaining projects, measured 2026-09-20** — check
 before renaming anything: vthrudebugger_v1 **9 files**, Emp portal **2**,
 Packbly_web **1**. FinNode, Voice-Flow and Debugger v2 are clean. Three projects are
@@ -97,16 +122,40 @@ also parked on non-`main` branches, listed above.
 
 ## The order from here
 
-Amit's call each time. The remaining six, with what is known:
-- **Voice Flow_v1** — 50 permission rules incl. `python3 -c ' *`; an old tree.
-- **Emp portal** — real employee records. 11 rules.
-- **Packbly_web** — real customer and courier records. 8 rules.
-- **Debugger v2** — 17 rules, **no `CLAUDE.md` yet**. Starts from a blank page.
+Amit's call each time. **Three projects to review, two dropped, two that are not
+projects.** Narrowed 2026-09-20 on his instruction.
+
+**Rename first, then review — these three.** Amit has said he will rename each one
+as the first act of working on it. See § *Project names, and what a rename costs*
+for the map and what a rename breaks.
+
+- **vthrudebugger_v1** — 39 rules, holds `vthru_debugger_workflow_preferences`, the
+  memory carrying the **last two trapped universal rules** (*never commit without
+  being asked*, *one PR per branch off main*). Reviewing it finishes Phase 8 step 1.
+  **9 uncommitted files** and parked on branch `alert-swipe-to-dismiss`.
+- **Emp portal** — **real employee records.** 11 rules. **2 uncommitted files**,
+  parked on `fix/dead-code-cleanup-and-test-fix`; one of them is the 5.7 `.gitignore`
+  change, still open. Has no Claude memory folder yet.
+- **Debugger v2** — 17 rules, **no `CLAUDE.md` at all**, so it starts from a blank
+  page rather than an untangling. Clean tree, on `main`.
+
+**Dropped from the review — Amit's call, 2026-09-20.** He has never worked in either,
+so there is nothing there to untangle. **The global rules still apply to them; they
+are simply not getting a pass.** Do not survey them, do not trim them, do not open
+them to "check something quickly".
+
+- ~~**Voice Flow_v1**~~ — 50 rules incl. `python3 -c ' *`. An old tree, never worked
+  on. The arbitrary-code rule stays open there by that decision, not by oversight.
+- ~~**Packbly_web**~~ — 8 rules. Holds **real customer and courier records**, which
+  is another reason not to go poking.
+
+**Not projects, and not getting a pass.**
+
 - **Packbly_v2** — no `CLAUDE.md`, no `.claude/`. Likely a Figma export, not an app.
-- **SecondBrain schema** — not really a separate project: it is Voice-Flow's vault
-  (`electron/vaultStore.js:22` sets it as `DEFAULT_VAULT_ROOT`). `PROJECTS.md`
-  still lists it as its own project, which is wrong and worth fixing in the
-  global pass.
+- **SecondBrain schema** — Voice-Flow's vault (`electron/vaultStore.js:22` sets it as
+  `DEFAULT_VAULT_ROOT`), not a separate project, and not a git repo. `PROJECTS.md`
+  still lists it as its own project, which is wrong and worth fixing in the global
+  pass.
 
 **Then, and only then, the global pass:** `STANDARDS.md`, the other four imported
 files, the global permission list, and whatever turned out to be universal.
