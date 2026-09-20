@@ -19,7 +19,8 @@ propose one. This was briefly made a prerequisite on 2026-09-20 and it was wrong
 
 Phase 11 is under way. `OLLAMA.md` was done first, out of order but safely, because no
 project pass can change what belongs in it. `STANDARDS.md` and the `RTK.md` pointer were
-done on 2026-09-20. **`PROJECTS.md` is next**, then `REPOS.md` and `CLAUDE.md`, then the
+and `PROJECTS.md` were all done on 2026-09-20. **`RTK.md` itself is next** — only its dead
+pointer was repaired, the file has had no pass — then `REPOS.md` and `CLAUDE.md`, then the
 global permission list.
 
 ## Next session: start here, not at the top
@@ -49,7 +50,10 @@ phase as planned, because the two universal rules it was waiting on — *never c
 push without being asked* and *one PR per feature on its own branch off `main`* — were
 added during the `vthrudebugger_v1` pass. Phase 8 step 1 is complete. The full record is
 in § *PHASE 11*, and its headline is worth carrying: **the measurement said the file was
-not an `OLLAMA.md`, and nothing was reworded.** **`PROJECTS.md` is next.**
+not an `OLLAMA.md`, and nothing was reworded.**
+
+**`PROJECTS.md` is done too — 376 → 393 words.** It got *heavier*, and that was the right
+outcome: the pass bought two corrected facts, not weight. **`RTK.md` is next.**
 
 **Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
 that was accurate and far too long: conclusion first, findings grouped into a few
@@ -2036,12 +2040,12 @@ Same six steps as the project passes, with one difference that matters.
 |---|---|---|
 | **`STANDARDS.md`** | **1,621** | **1,570** |
 | **`OLLAMA.md`** | **797** | **133** |
-| `PROJECTS.md` | 376 | 376 |
+| **`PROJECTS.md`** | **376** | **393** |
 | **`RTK.md`** | **188** | **186** |
 | `CLAUDE.md` | 114 | 114 |
 | `REPOS.md` | 105 | 105 |
-| **Total** | **3,201** | **2,484** |
-| **~Tokens every turn** | **~4,225** | **~3,279** |
+| **Total** | **3,201** | **2,501** |
+| **~Tokens every turn** | **~4,225** | **~3,301** |
 
 **Two corrections to earlier counts in this file.** The original 3,097 words / 4,089
 tokens was wrong by ~42 words. The 2026-09-20 re-measure then recorded `STANDARDS.md` at
@@ -2152,10 +2156,41 @@ the six project `CLAUDE.md` files mention rtk at all, and `ENVIRONMENT.md` § 1 
 the hook and its permission rules rather than commands. Replaced with `rtk --help`, which
 lists all **85** commands on 0.48.0. 188 → 186 words.
 
+**This was a one-line repair, not the pass.** `RTK.md` stays in the queue below; its 186
+words have never been measured section by section. Recorded here because the fix was made
+during the `STANDARDS.md` sitting, not because the file is finished.
+
+### `PROJECTS.md` — DONE 2026-09-20
+
+**376 → 393 words. It got heavier by 17, and that is the honest result** — the estimate
+beforehand was ~330. Explaining why SecondBrain schema stays mirrored costs more than the
+checkboxes and the stale checkpoint saved. Like `STANDARDS.md`, the return here was
+correctness.
+
+**Two wrong facts, both verified against the filesystem before being changed.**
+
+1. **FinNode was stale.** The file said *"Phase 2, checkpoint 2c-i next"*; FinNode's own
+   `README.md` lists 2c-i as done and its `CLAUDE.md:174` says **2d-ii-a** is next. The
+   checkpoint was removed rather than updated — it went stale within days, and the
+   project's own files are the authority. The header now says so explicitly.
+2. **SecondBrain schema is not a project.** `~/Documents/SecondBrain Obsidian/schema`
+   holds exactly one file — a 229-line `CLAUDE.md` — no code and no git. It is an agent
+   brief for an Obsidian vault. Moved to the *Not projects* note. **It stays in
+   `project-rules/manifest.tsv` and is still mirrored**, because that mirror exists to
+   carry rule files through an account switch and that folder is nothing but a rule file.
+
+**One hedge became a fact.** Packbly v2 was *"likely a design bundle rather than an app"*;
+its `package.json` is named `@figma/my-make-file`, so it is a Figma Make export.
+
+**Everything else was verified and left alone.** All 11 paths exist as described, all 7
+`CLAUDE.md` claims are right, `~/Documents/Voice-Flow-main` is genuinely gone, and the
+"ten stale paths in `~/.claude.json`" claim is exact — 17 entries, 10 dead, matching the
+named set. The `[x]`/`[ ]` boxes were dropped as duplicates of the section headings.
+
 ### Still to do in this phase
 
-- **`PROJECTS.md`** — 376 words, the next piece, and it still lists SecondBrain schema
-  as its own project, which is wrong.
+- **`RTK.md`** — 186 words, the next piece. Its dead pointer was fixed 2026-09-20; the
+  file itself has had no measure-and-split pass.
 - `REPOS.md`, `CLAUDE.md` — 219 words between them; likely little to win.
 - The global permission list, and whatever turns out to be universal.
 

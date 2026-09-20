@@ -141,6 +141,9 @@ equivalent — and nothing lands on `main` directly.
 **One PR per feature, on its own branch off `main`.** Never stacked on an earlier PR's
 branch that hasn't merged yet.
 
+**`~/.claude` is the exception.** The setup repo has no reviewer and no PR flow, so its
+commits land on `main` directly. Everything else branches.
+
 ## Explaining a permission request
 
 **This is a hard rule, not a preference.** When an action is going to stop and ask for
@@ -184,6 +187,7 @@ Not this:
 
 Same length. The first one answers the question; the second one just restates the command.
 
-**macOS privacy (`tccutil reset`)** — never write "resets permissions". Name the
+**macOS privacy (`tccutil reset`)** — it revokes macOS privacy permissions, so never
+write "resets permissions". Name the
 **service** and the **app**, and say so when the command names no bundle id and
 therefore hits **every app on the machine**.
