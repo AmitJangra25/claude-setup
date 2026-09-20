@@ -132,13 +132,29 @@ one you stop reading — which is worse than not having it.
 | `adb` | 3.9 | Your own emulator. |
 | `git commit` | 2.0 | Local and reversible. `git push`, which publishes, is in `ask`. |
 
-**`rtk proxy` is in `allow`, not removed.** `rtk proxy <cmd>` runs any command it's
-given, so `Bash(rtk proxy *)` is effectively a blanket approval — but it's used 230 times
-for real work (`grep` 81, `sed` 67, `git` 41, `npx` 15). Removing it would have caused
-230 prompts. Instead the dangerous inner forms are named individually in `ask`:
-`rtk proxy rm`, `rtk proxy git push`, `rtk proxy git reset`, `rtk proxy npm install`, and
-the rest. The wide rule still exists in four project files; it is not promoted globally,
-so new projects don't inherit it.
+**`rtk proxy` — superseded 2026-09-20. `Bash(rtk proxy *)` is now gone from every
+project.** The reasoning below is kept as the record of why it was left in place for as
+long as it was; it no longer describes the machine.
+
+What replaced it: global `allow` carries only the four read-only inner forms —
+`rtk proxy cat`, `find`, `grep`, `ls` — and a project adds a named spelling when it
+genuinely needs one, as `rtk proxy cmp *` was added for backup verification. The
+dangerous inner forms stay named individually in `ask` exactly as described below; that
+part did not change. Verified by sweeping every `.claude/settings*.json` under
+`VS Code/`: zero occurrences of the wide rule.
+
+> **The original decision, 2026-09-18 — `rtk proxy` is in `allow`, not removed.**
+> `rtk proxy <cmd>` runs any command it's given, so `Bash(rtk proxy *)` is effectively a
+> blanket approval — but it's used 230 times for real work (`grep` 81, `sed` 67,
+> `git` 41, `npx` 15). Removing it would have caused 230 prompts. Instead the dangerous
+> inner forms are named individually in `ask`: `rtk proxy rm`, `rtk proxy git push`,
+> `rtk proxy git reset`, `rtk proxy npm install`, and the rest. The wide rule still
+> exists in four project files; it is not promoted globally, so new projects don't
+> inherit it.
+>
+> **Why it was reversed.** The 230-prompts figure was the cost of removing it *without
+> replacing it*. Naming the four read-only inner forms globally covers almost all of
+> that usage at no prompt cost, which was not considered at the time.
 
 ---
 

@@ -19,14 +19,12 @@
       "Bash(osascript -l JavaScript -e 'ObjC.import\\(\"AppKit\"\\); const a=$.NSWorkspace.sharedWorkspace.frontmostApplication; JSON.stringify\\({pid: a.processIdentifier, bundleId: ObjC.unwrap\\(a.bundleIdentifier\\), name: ObjC.unwrap\\(a.localizedName\\)}\\)')",
       "Bash(npm test *)",
       "Bash(rtk vitest *)",
-      "Bash(rtk proxy *)",
       "Bash(rtk tsc *)",
       "Bash(rtk npm *)",
       "Bash(cd \"/Users/amitjangra/Documents/SecondBrain Obsidian\" && echo \"=== index.md ===\" && rtk read wiki/index.md && echo \"=== log.md ===\" && rtk read wiki/log.md && echo \"=== tree ===\" && find raw wiki -type f -name \"*.md\" | head -30)",
       "Bash(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"/Applications/Voice Flow.app/Contents/Info.plist\")",
       "Read(//private/tmp/**)",
       "Bash(node -e \"const p=require\\('./package.json'\\); console.log\\('JSON valid'\\); console.log\\('repository:', p.repository.url\\); console.log\\('homepage:', p.homepage\\);\")",
-      "Bash(rtk npx *)",
       "Read(//tmp/**)",
       "Bash(rtk ps *)",
       "Bash(mdfind -name \"Voice Flow.app\")",
@@ -141,7 +139,9 @@
       "Bash(grep -vE \"^[+-]\\\\s*\\(//|$\\)\")",
       "Bash(ollama-do)",
       "Bash(ollama-do models *)",
-      "Bash(python3 -m json.tool)"
+      "Bash(python3 -m json.tool)",
+      "Bash(rtk npx tsc *)",
+      "Bash(rtk npx vitest *)"
     ],
     "additionalDirectories": [
       "/Users/amitjangra/Documents/VS Code/Voice-Flow",
