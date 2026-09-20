@@ -55,6 +55,13 @@ That is why 615 permission entries had accumulated across the projects: safe com
 were being approved by hand, one project at a time. The global `allow` list now covers
 the read-only `rtk` wrappers, so this stops happening.
 
+**Hook auditing is on, from 2026-09-20.** `settings.json` → `env` sets
+`RTK_HOOK_AUDIT=1`, so rtk writes one line per hook call to
+`~/.local/share/rtk/hook-audit.log`; read it with `rtk hook-audit`. `env` is read at
+session start, so it never covers the session that set it. It is there to catch the one
+observed case where the hook did **not** rewrite a command — see `SETUP-PLAN.md`
+§ *Findings not acted on*. Either it recurs with evidence, or it closes itself.
+
 ### 2. Status line — live context size
 
 `statusline/context.py` reads the real token counts from the session transcript and
@@ -76,8 +83,14 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   35 rules    read-only things stop prompting
-    ask     87 rules    ~5.0 prompts per session, all on things that change something
+    ask    107 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
+
+**Counts measured against the live file 2026-09-20.** `ask` was recorded here as 87
+from the 2026-09-18 snapshot, and `SETUP-PLAN.md` records it reaching 101 when Phase 3's
+gaps were closed. The live file holds **107**, and the extra 6 are not accounted for in
+either document. The old "~5.0 prompts per session" figure was measured against 87 rules
+and has been dropped rather than carried forward, because it was never re-measured.
 
 **Changed 2026-09-18** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
 `ask` went 52 → 87: 15 commands that ran silently in at least one project are now

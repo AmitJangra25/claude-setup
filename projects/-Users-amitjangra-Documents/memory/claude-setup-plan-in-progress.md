@@ -16,20 +16,20 @@ The plan file holds the verified inventory, all 20 decisions with their
 reasoning, and a record of every claim that turned out to be wrong when checked
 — so work resumes from a known state rather than a guess.
 
-**Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done. The work is
-**Phase 10 — the project-by-project review**, three projects left, one at a time:
-`vthrudebugger_v1`, then `Emp portal`, then `Debugger v2`. Voice-Flow and FinNode
-are done. **The global files come last**, and **`STANDARDS.md` last of all** — it
-receives the universal rules still trapped in `vthrudebugger_v1`, so trimming it
-first means opening it twice.
+**Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done, **all five project
+passes are done**, and **Phase 11's six global files are done** — 3,201 → 2,444 words,
+~4,225 → ~3,226 tokens every turn. **Only the global permission list remains** in
+Phase 11: 107 `ask`, 35 `allow`, 2 `deny`. Phases 2c, 8 and 9 are still partial.
+The lesson from the global pass: **measure before proposing, and expect correctness
+rather than weight** — the five files on 2026-09-20 netted 93 words but fixed five
+wrong or dead facts, and `PROJECTS.md` got *heavier* for the right reason.
 
 **Renames are decoupled — ignore them.** Amit renames a project when he opens it
 to work on. A pass runs on the current name and must never propose a rename or
 wait for one. This was briefly made a prerequisite on 2026-09-20, which turned a
 project chore into a blocker and sent a session off to global files instead. Both
-were reversed the same day. **Do not propose global-file work while projects
-remain** — `OLLAMA.md` was the one safe exception (797 -> 133 words, ~878 tokens
-saved every turn) because no project pass can change what belongs in it.
+were reversed the same day. That sequencing question is now moot: every project pass
+is finished, and the global files after them.
 
 Four facts worth carrying. **There is no global memory**, so a universal
 preference saved in a project is structurally trapped there — which is why this
