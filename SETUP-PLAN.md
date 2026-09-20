@@ -23,8 +23,9 @@ conversation to refer back to — this file is the handoff.
 | ◐ | **Phase 2c Group B one-off leftovers** | **PARTLY DONE** 2026-09-18. B1 (14) + B2 (9) removed; allow 416 → 393, verified. **B3 (74 pipeline fragments) held by choice** — removing them only tidies, and can only add a prompt on a read-only stage. 3 `*` rules still flagged |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
-| ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — proven in a throwaway repo. Backup: `backups/2026-09-20-phase3/`
+| ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/`
 | ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/`
+| ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/`
 | ⬅ | **5.3 – 5.8 Low-priority tidying** | **NEXT**, all LOW — nothing blocks on them |
 | ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18. Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. **No cross-project grant survives anywhere.** D23 |
 | ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
@@ -174,6 +175,7 @@ Recorded so the same mistake is not repeated.
 
 | I claimed | The truth | Why I got it wrong |
 |---|---|---|
+| `rtk git branch -D` runs with no prompt, proven by running it | **The test could not show that.** The session had `ask` enforcement off — `rm -rf` in the same command line matches `Bash(rm *)` and was also silent. The *rule-list* defect is real; the runtime claim was not earned | Read the absence of a prompt as evidence about one rule, without checking whether any rule was being enforced. A control was available and free — an already-asking command in the same command line — and I did not look at it |
 | A stray rules file at `Documents/Voice-Flow-main/` | It is at `Documents/extra/Voice-Flow-main/` | rtk rewrote my search output and dropped a path segment. I did not re-verify. |
 | A project's `allow` overrides a global `ask`, so the git safety rule was cancelled | **Backwards.** Rules are evaluated deny → ask → allow, and rule type beats file location. The global `ask` wins. | I assumed instead of reading the documentation. |
 | 350 saved permissions | 560 | 350 was Voice Flow alone, not the total. |
@@ -590,11 +592,21 @@ Writing the lists out is what surfaced these. Per D4 nothing was changed.
 2. **`yarn add`** — `rtk proxy yarn add *` missing, while `rtk proxy yarn install *` is present.
 3. **`npm i`** — the bare short form asks, but neither `rtk npm i *` nor
    `rtk proxy npm i *` exists, and rtk wraps `npm`.
-4. **`rtk git branch *` is in `allow`, but `-D` deletes.** Tested in a throwaway
-   repo on 2026-09-20: `rtk git branch -D scratch` removed the branch with no
-   prompt. rtk passes the flag straight through. This is the only one of the
-   four that sits in the *always fine* list, so it is the one worth fixing
-   first — the other three are missing spellings of a rule that already asks.
+4. **`rtk git branch *` is in `allow`, but `-D` deletes.** Established by
+   *reading* the rule: the glob covers every flag, and `-D` force-deletes a
+   branch, so a deleting command sits inside the "always fine" list. Confirmed
+   separately that rtk passes the flag through to git rather than filtering it
+   (throwaway repo, 2026-09-20 — the branch was removed).
+
+   **What was NOT established, and what I first claimed wrongly:** that it runs
+   *unprompted*. The session used for that test does not enforce the `ask` list
+   at all — the same command line contained `rm -rf`, which matches the existing
+   `Bash(rm *)` ask rule, and that ran silently too. So "no prompt appeared"
+   distinguished nothing. The defect is real and visible in the rule list; the
+   runtime proof is still outstanding and needs a session that enforces `ask`.
+   This is the only one of the four that sits in the *always fine* list, so it
+   is still the one worth fixing first — the other three are missing spellings
+   of a rule that already asks.
 
 1–3 are installs, which the table says always ask; closing them is 3 additions
 and removes nothing. 4 wants either an `ask` on the destructive flags or a
