@@ -2038,14 +2038,14 @@ Same six steps as the project passes, with one difference that matters.
 
 | File | Words before | Words after |
 |---|---|---|
-| **`STANDARDS.md`** | **1,621** | **1,570** |
+| **`STANDARDS.md`** | **1,621** | **1,600** |
 | **`OLLAMA.md`** | **797** | **133** |
 | **`PROJECTS.md`** | **376** | **393** |
 | **`RTK.md`** | **188** | **186** |
 | `CLAUDE.md` | 114 | 114 |
 | `REPOS.md` | 105 | 105 |
-| **Total** | **3,201** | **2,501** |
-| **~Tokens every turn** | **~4,225** | **~3,301** |
+| **Total** | **3,201** | **2,531** |
+| **~Tokens every turn** | **~4,225** | **~3,341** |
 
 **Two corrections to earlier counts in this file.** The original 3,097 words / 4,089
 tokens was wrong by ~42 words. The 2026-09-20 re-measure then recorded `STANDARDS.md` at
@@ -2106,8 +2106,10 @@ it is silently excluded.
 
 ### `STANDARDS.md` — DONE 2026-09-20
 
-**1,621 → 1,570 words. ~67 tokens back on every turn.** Measured, not estimated — and far
-below the ~180 first quoted, because two of the four changes added words back.
+**1,621 → 1,570 words at the end of the pass; 1,600 after the audit fixes below.**
+Measured, not estimated — and far below the ~180 tokens first quoted, because two of the
+four changes added words back, and the audit then added 30 more. Net across the whole
+sitting: **1,621 → 1,600**, essentially flat.
 
 **The measurement said this was not an `OLLAMA.md`, before anything was cut.** Section by
 section: the permission section was 517 words (32%), of which the `tccutil` subsection was
