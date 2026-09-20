@@ -6,62 +6,71 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-## What we are doing, in three lines
+## Where this stands — 2026-09-20
 
-Amit's whole Claude Code setup is being reviewed **project by project**, one at a
-time, and the global files come **last**. Voice-Flow, FinNode, `vthrudebugger_v1` and
-`Debugger v2` and `Emp portal` are done.
-**All project passes are complete; the global pass is next** (§ *PHASE 11*).
+**Everything through Phase 11 is done.** All five project passes (Voice-Flow, FinNode,
+`vthrudebugger_v1`, `Debugger v2`, `Emp portal`), all six global files, and the global
+permission list.
 
-**Renames are decoupled — ignore them.** Amit will rename each project whenever he
-actually opens it to work on. A pass does **not** wait for a rename and must not
-propose one. This was briefly made a prerequisite on 2026-09-20 and it was wrong.
+**What is left. Nothing is blocked; Amit has not chosen the next piece.**
 
-Phase 11 is under way. `OLLAMA.md` was done first, out of order but safely, because no
-project pass can change what belongs in it. `STANDARDS.md` and the `RTK.md` pointer were
-`PROJECTS.md`, `RTK.md` and `CLAUDE.md` were all done on 2026-09-20, and `REPOS.md` was
-measured and deliberately left whole, and the **global permission list** was passed the
-same day. **Phase 11 is complete.** What remains of the plan as a whole: Phases 2c, 8 and
-9 are partial, and three items are open — Emp Portal's uncommitted `.gitignore`, the 20
-`ask` rules never seen to fire, and Voice-Flow's old `CLAUDE.md` in git history.
+| | |
+|---|---|
+| Phase 2c | Group B one-off leftovers — partly done |
+| Phase 8 | step 2 — partly done |
+| Phase 9 | surveyed; headline finding closed, the rest not |
+| Open | Emp Portal's uncommitted `.gitignore` on `fix/dead-code-cleanup-and-test-fix` |
+| Open | **20 `ask` rules have never been seen to fire** |
+| Open | Voice-Flow's old `CLAUDE.md` survives in git history, 4,647 bytes (item 5.8) |
+
+**Suggested next: the 20 unproven `ask` rules.** It is the only open item where the setup
+might not do what this file says it does — and the `wget` hole found on 2026-09-20 was
+exactly that failure mode, caught by accident rather than by a test. **Propose it, do not
+start it.**
+
+**Everything is committed and pushed.** `~/.claude` → `AmitJangra25/claude-setup`, head
+`0397908`, private. Voice-Flow is on `main`, clean and pushed.
 
 ## Next session: start here, not at the top
 
-**Do not read this whole file.** It is ~123 KB and reading it costs roughly 31k
-tokens, which is the opposite of the point. Read, in this order:
+**Do not read this whole file.** It is ~123 KB and reading it costs roughly 31k tokens,
+which is the opposite of the point. Read, in this order:
 
 1. **This block** and the status table below it.
-2. **§ PHASE 10 — Project-by-project review** — the method, and what the Voice-Flow
-   and FinNode passes produced. This is the section that governs the current work.
-   FinNode's entry carries a **method correction**: measure a section before
-   proposing its fix, because the Voice-Flow shape did not transfer.
-3. **§ PHASE 11 — The global pass** — parked until the projects are done. Read it
-   only for the `OLLAMA.md` record and the re-measured global figures.
-4. The specific phase section only if the work touches it.
+2. **§ PHASE 11 — The global pass** — the per-file records, the method that governs any
+   remaining pass, and the permission-list findings.
+3. The specific phase section only if the work touches it.
 
 Everything else is reference. Search it when you need it.
 
-## The next piece of work — the global files
+## How a pass is run — the method that has held
 
-**Every project pass is done.** Voice-Flow, FinNode, `vthrudebugger_v1`, `Debugger v2`
-and `Emp portal` have all been walked. What is left is § *PHASE 11*: the six global
-files, the global permission list, and whatever turned out to be universal.
+1. **Measure before proposing.** Section by section, with a word count. FinNode's
+   correction: the biggest section is not automatically the problem.
+2. **Apply the split test.** Something stays global only if it must arrive *before*
+   Claude would know to load anything. Detail consulted once already engaged moves out.
+3. **Show the proposal and the numbers before editing.** Every removal is a question,
+   never an inference.
+4. **Back up, verified.** Where the tree is clean, git *is* the backup — say so rather
+   than making a redundant dated copy.
+5. **Move verbatim, prove it verbatim** — two independent methods.
+6. **Re-measure, then record the real figure**, not the estimate.
 
-**`STANDARDS.md` is done — 2026-09-20, 1,621 → 1,570 words.** It went last within the
-phase as planned, because the two universal rules it was waiting on — *never commit or
-push without being asked* and *one PR per feature on its own branch off `main`* — were
-added during the `vthrudebugger_v1` pass. Phase 8 step 1 is complete. The full record is
-in § *PHASE 11*, and its headline is worth carrying: **the measurement said the file was
-not an `OLLAMA.md`, and nothing was reworded.**
+**Three things learned on 2026-09-20, worth carrying into any pass:**
 
-**`PROJECTS.md` is done too — 376 → 393 words.** It got *heavier*, and that was the right
-outcome: the pass bought two corrected facts, not weight. **`RTK.md` followed — 186 → 140,
-then `CLAUDE.md` 114 → 73 and `REPOS.md` left whole on measurement.** **The permission
-list followed and Phase 11 is complete.**
+- **Expect correctness, not weight.** The five global files netted 93 words between them,
+  and fixed five wrong or dead facts. `PROJECTS.md` got *heavier* and that was right.
+- **The rtk hook rewrites a command before the permission check.** A fence needs every
+  spelling the hook can produce — `wget` was fenced bare and via `rtk proxy` but not
+  `rtk `, and so was not fenced at all.
+- **Keep the report short.** Amit said so directly, twice: conclusion first, findings
+  grouped into a few buckets with counts, two or three questions — not twelve.
 
-**Keep the report short.** Amit said so directly on 2026-09-20 after a survey report
-that was accurate and far too long: conclusion first, findings grouped into a few
-buckets with counts, two or three questions — not twelve.
+## Standing context
+
+**Renames are decoupled — ignore them.** Amit renames a project when he opens it to work
+on. A pass runs on whatever the project is called today, must not propose a rename, and
+must not wait for one. This was briefly made a prerequisite on 2026-09-20 and it was wrong.
 
 **Carry in — nothing outstanding on arbitrary code.** Both items that were open at
 the end of the project passes were closed the same day, 2026-09-20, at Amit's
@@ -154,8 +163,9 @@ also parked on non-`main` branches, listed above.
 
 ## The order from here
 
-Amit's call each time. **Three projects to review, one at a time, then the global
-files.** Two projects were dropped and two were never projects.
+Amit's call each time. **All five project passes and the whole of Phase 11 are done**
+— the entries below are the record, not a queue. Two projects were dropped and two were
+never projects.
 
 **Renames are not part of a pass — ignore them.** Amit renames a project when he
 opens it to work on. § *Project names, and what a rename costs* stays as reference
