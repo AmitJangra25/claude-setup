@@ -110,9 +110,10 @@ for dead code, not documents.
 
 ## Explaining a permission request
 
-When an action is going to stop and ask for approval, say what it is first, in plain
-English, before the prompt appears. Not because the command is hard — because deciding
-without knowing what it touches is.
+**This is a hard rule, not a preference.** When an action is going to stop and ask for
+approval, the explanation comes first, in plain English, before the prompt appears. A
+prompt that arrives unexplained is a failure even if I approve it — deciding without
+knowing what it touches is the whole problem.
 
 Four short lines, in this order:
 
@@ -121,6 +122,16 @@ Four short lines, in this order:
   project is affected.
 - **Risk** — low, medium or high, and *why* that level, not just the word.
 - **Undo** — how to reverse it, or say plainly that it can't be reversed.
+
+**A fifth line when the command is on the global `ask` list** — installs, downloads,
+deletions, pushing code, GitHub, `sudo`, the Keychain, macOS privacy, `sqlite3`:
+
+- **Why now** — what I asked for that needs this, in my terms. "You asked to see the
+  test failures and the runner isn't installed", not "installing dependencies".
+
+Those commands ask because they were judged consequential once, in advance. The prompt
+is the last point where that judgement gets checked against what is actually happening,
+so it has to carry the reason, not just the command.
 
 Write it the way you'd explain it to someone standing next to you. Short sentences.
 No jargon unless the word is the thing itself, and then say what it means. Never pad it
@@ -140,3 +151,20 @@ Not this:
 > directory. Risk: LOW. Proceed?
 
 Same length. The first one answers the question; the second one just restates the command.
+
+### `tccutil reset` — name the apps and the permissions, every time
+
+`tccutil reset` revokes macOS privacy permissions. It is not reversible from the
+terminal: each one has to be re-granted by hand in System Settings → Privacy &
+Security, per app, and some apps must be quit and reopened before they ask again.
+
+Never write "resets permissions". Say which **service** and which **app**, and what
+stops working until it is re-granted. If the command names no bundle id, say that it
+hits **every app on the machine**, not just the one being worked on.
+
+> I'm going to reset Voice Flow's Accessibility permission.
+> macOS will forget that Voice Flow is allowed to send keystrokes, so auto-paste stops
+> working until it's re-granted. Microphone and Input Monitoring are untouched.
+> Risk: medium — nothing is lost, but it can't be undone from here.
+> Undo: System Settings → Privacy & Security → Accessibility, switch Voice Flow back on,
+> then quit and reopen the app.

@@ -23,13 +23,13 @@ conversation to refer back to — this file is the handoff.
 | ◐ | **Phase 2c Group B one-off leftovers** | **PARTLY DONE** 2026-09-18. B1 (14) + B2 (9) removed; allow 416 → 393, verified. **B3 (74 pipeline fragments) held by choice** — removing them only tidies, and can only add a prompt on a read-only stage. 3 `*` rules still flagged |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
-| ⬅ | **Phase 3 The deliberate set** | **NEXT**, and smaller than it reads: step 1.2 already delivered most of it (`ask` 52 → 87). What is left is writing the three lists down in plain English so they can be argued with — documentation of a change already made, not a new safety fix. Rewrite the Phase 3 section's scope before starting it |
-| | Phase 4 Make the prompts readable | not started |
+| ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — proven in a throwaway repo. Backup: `backups/2026-09-20-phase3/`
+| ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/`
+| ⬅ | **5.3 – 5.8 Low-priority tidying** | **NEXT**, all LOW — nothing blocks on them |
 | ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18. Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. **No cross-project grant survives anywhere.** D23 |
 | ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
 | ✅ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **DONE** 2026-09-18, both parts. Part one: `CLAUDE.md` **110 KB → 29 KB**, evidence moved verbatim to `docs/working-rules.md` (42 entries) and `docs/known-pitfalls.md` (47 entries), 0 rules lost. **Part two: all 89 checked against the code — 0 superseded, 7 re-measured.** D24, D25 |
 | ✅ | **5.1 part two: check the 89 entries against the code** | **DONE** 2026-09-18. Every cited path, symbol, constant, version and build setting resolved; `npm test` 76 files / 1764 tests and `npm run typecheck` green; `doctor:polish` and `doctor:vault` re-run. **No rule or pitfall is superseded.** 7 entries carry a dated re-measurement note (5 in working-rules, 2 in known-pitfalls) — the rules held, the numbers had drifted. Both docs' "not yet checked" headers replaced; `docs/README.md` rows updated. Backup: `backups/2026-09-18-phase5.1-part2/`. One open app defect confirmed still open: `electron/main.js:387` `fullScreenable`. **Addendum 2026-09-19:** the same figures were found in 20 more places across 6 Voice Flow docs, all outside 5.1's scope. 18 were left alone — they read as dated records of decisions made on those numbers, which is what D25 says to keep. The 2 that were annotated are in `docs/manual-testing.md` (Test 23's live baseline and the 10 Sep pass record), because a tester reads them at the moment of deciding whether a run passed. So the note count is **9 places in 3 docs**, not 7 in 2. The 4 stale code comments (`doctor-polish.js:64`/`:500`, `polishPrompt.ts:171`, `polishGuard.ts:25`) are still untouched — a source change wants its own commit. Backup: `backups/2026-09-19-manual-testing-baseline/`; Voice Flow commit `f91c399` |
-| | 5.3 – 5.8 Low-priority tidying | not started |
 | ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
 | ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
 | ✅ | **6.3 Project rules into this repo** | **DONE** 2026-09-18. All 7 project `CLAUDE.md` files copied to `project-rules/`, with `sync.sh` + `manifest.tsv` as the anti-drift step. All 7 read in full first. Drift detection proven by breaking a copy on purpose |
@@ -513,36 +513,139 @@ grant is worth promoting to global (1.3).
 
 ---
 
-## PHASE 3 — The deliberate set  (MEDIUM)
+## PHASE 3 — The deliberate set  ·  **DONE 2026-09-20**
 
-Replace "whatever got clicked" with three written lists in global settings, in
-plain English, so it can be read back and argued with.
+**Scope rewritten before starting, as the status table instructed.** The
+original scope said "write three lists into `~/.claude/settings.json`". Step 1.2
+already did that — `ask` went 52 → 87 and the rules are in place. What was
+missing was the *plain-English* version: the rules as named groups with a reason
+each, so the set can be read back and argued with instead of re-derived from 87
+globs. That is what this phase delivers. **It changed no permission rule.**
 
-- **Always fine** — reading, searching, building, running tests, git read-only,
-  rtk read-only commands.
-- **Always ask** — installs, downloads, deletions, pushing code, anything
-  touching GitHub, macOS privacy or the Keychain, anything run as administrator.
-- **Never** — reading `.env` files (already in place).
+Verified against `settings.json` on 2026-09-20: **allow 35 · ask 87 · deny 2**.
+Every rule falls into one of the groups below; nothing is left over.
 
-Written into `~/.claude/settings.json` with a short companion note in this file
-explaining each choice. After this, clicking "allow, don't ask again" on
-something consequential cannot create a silent hole, because the global `ask`
-outranks it.
+### Never — `deny`, 2 rules
+
+`Read(//**/.env)` and `Read(//**/.env.*)` — credentials. The only outright block
+in the setup, and the only one no `allow` anywhere can override, because deny is
+evaluated first.
+
+Narrower than it sounds: it stops *reading* a `.env`, not a program that loads
+one, and it does not cover a database holding real records. That is why D23
+removed cross-project read access instead of leaning on `deny`.
+
+### Always ask — `ask`, 87 rules in 11 groups
+
+The count looks large because most commands appear up to three times: bare
+(`sudo *`), rtk-wrapped (`rtk git push *`) and proxied (`rtk proxy sudo *`). The
+`rtk hook claude` PreToolUse hook rewrites Bash commands, so a rule covering
+only the bare spelling can be walked around by the rewritten one. **36 distinct
+commands, 87 spellings.**
+
+| n | Group | Why it asks |
+|---|---|---|
+| 24 | Git history / tree rewrite — `checkout` `clean` `merge` `mv` `push` `rebase` `reset` `rm` | Each can destroy uncommitted work or rewrite shared history. `push` also leaves the machine. |
+| 21 | Package installs — `npm`/`pnpm`/`yarn` add+install, `npx -y`, `gem install` | Runs arbitrary third-party code as me, and edits the lockfile. |
+| 12 | GitHub — the account, not the repo: `gh api` `gh auth` `gh pr` `gh repo` | Acts as my GitHub identity and is visible to other people. |
+| 6 | Process termination — `kill` `killall` `pkill` | Kills work that is not mine to kill; a loose pattern takes the editor with it. |
+| 6 | Ollama models — `pull` `rm` `signin` | A pull is a multi-GB download, `rm` deletes a model, `signin` is an account action. |
+| 5 | Network fetch — `curl` `wget` | Reaches the network and can write a file to disk. |
+| 4 | macOS privacy + Keychain — `security` `tccutil` | `security` reads stored credentials; `tccutil` revokes app permissions that must then be re-granted by hand. |
+| 3 | Deletion — `rm` | The obvious one. |
+| 2 | Administrator — `sudo` | Anything at all, outside the project, without the usual limits. |
+| 2 | Local database — `sqlite3` | Two projects hold real records (Emp Portal, Packbly). A write is silent and not reversible. |
+| 2 | Launching apps / files — `open` | Hands a file to whatever app claims the type, outside Claude's control. |
+
+### Always fine — `allow`, 35 rules in 6 groups
+
+Everything here is read-only, or reversible and confined to this setup.
+
+| n | Group | Why it is fine |
+|---|---|---|
+| 14 | Read-only shell — `ls` `read` `cat` `find` `grep` `wc` `du` `df` `ps` `tree` `xxd` | Observation only; none of them writes. |
+| 8 | Web — 7 pinned domains + `WebSearch` | Named domains only: github.com, api.github.com, raw.githubusercontent.com, docs.claude.com, code.claude.com, developer.android.com, npmjs.com. Reading, not posting. |
+| 6 | Git, read-only — `branch` `diff` `log` `rev-parse` `show` `status` | Reports state rather than changing it — **except `branch`, see gap 4.** |
+| 3 | GitHub, read-only — `gh auth status` `gh repo view` `gh run list` | Reads only; every writing `gh` verb is in `ask`. |
+| 3 | rtk meta — `--version` `gain` `discover` | Reports rtk's own analytics. |
+| 1 | rtk tee output — `Read(.../rtk/tee/**)` | rtk's own captured output, needed to re-read a filtered result. |
+
+Also on: `blockReadsOutsideWorkingDirectories: true`.
+
+### Why this holds
+
+Rules are evaluated **deny → ask → allow**, and rule *type* beats file
+*location*. A project-level `allow` therefore cannot cancel a global `ask` —
+clicking "allow, don't ask again" inside a project still hits the global ask.
+That is the entire point of the set, and it is the thing I had backwards in the
+first session; see "What I got wrong".
+
+### Gaps found while writing this down — none closed
+
+Writing the lists out is what surfaced these. Per D4 nothing was changed.
+
+1. **`pnpm add`** — no rtk spelling at all. rtk wraps `pnpm`, so `rtk pnpm add x`
+   is reachable and matches no `ask` rule. `rtk proxy pnpm install` exists,
+   `rtk proxy pnpm add` does not.
+2. **`yarn add`** — `rtk proxy yarn add *` missing, while `rtk proxy yarn install *` is present.
+3. **`npm i`** — the bare short form asks, but neither `rtk npm i *` nor
+   `rtk proxy npm i *` exists, and rtk wraps `npm`.
+4. **`rtk git branch *` is in `allow`, but `-D` deletes.** Tested in a throwaway
+   repo on 2026-09-20: `rtk git branch -D scratch` removed the branch with no
+   prompt. rtk passes the flag straight through. This is the only one of the
+   four that sits in the *always fine* list, so it is the one worth fixing
+   first — the other three are missing spellings of a rule that already asks.
+
+1–3 are installs, which the table says always ask; closing them is 3 additions
+and removes nothing. 4 wants either an `ask` on the destructive flags or a
+narrowing of the allow rule — a narrowing is a removal, so it needs approval
+either way.
+
+The other 15 asymmetries in the rtk coverage table are **not** gaps: rtk does
+not wrap `sudo`, `tccutil`, `security`, `kill`, `killall`, `pkill`, `open`,
+`rm`, `sqlite3`, `gem`, `ollama` or `yarn`, so the missing `rtk <cmd>` spelling
+is unreachable and `rtk proxy` alone covers it. Verified against `rtk --help`,
+rtk 0.48.0.
+
+**Undo:** `backups/2026-09-20-phase3/`.
 
 ---
 
-## PHASE 4 — Make the prompts readable  (MEDIUM)
+## PHASE 4 — Make the prompts readable  ·  **DONE 2026-09-20**
 
-`STANDARDS.md` already specifies four lines: what it does · what changes · risk
-and why · undo. It is not reliably happening. Per D3 and D5, strengthen it:
+All three changes landed in `STANDARDS.md`, in the "Explaining a permission
+request" section. The four lines — what it does · what changes · risk and why ·
+undo — are unchanged and still the core of it.
 
-- State it as a hard rule rather than guidance.
-- For an `ask` rule, say **why this command is needed right now**, in the user's
-  own terms, not the command restated.
-- For `tccutil reset` specifically, spell out exactly which apps lose which
-  permissions and that they must be re-granted by hand.
+**1. Stated as a hard rule.** The opening now reads "This is a hard rule, not a
+preference", and names the failure explicitly: a prompt that arrives unexplained
+is a failure *even if it is approved*. Previously it read as guidance and, per
+D5, was not reliably happening.
 
-**Undo:** revert `STANDARDS.md` from 1.1.
+**2. A fifth line — "Why now" — whenever the command is on the global `ask`
+list.** What was asked for that needs this, in Amit's terms, not the command
+restated. The example contrasts "You asked to see the test failures and the
+runner isn't installed" against "installing dependencies". The reasoning is
+written into the section itself: those commands ask because they were judged
+consequential *in advance*, so the prompt is the last point where that judgement
+meets what is actually happening, and it has to carry the reason.
+
+**3. `tccutil reset` has its own subsection.** "Resets permissions" is banned
+outright. It must name the **service** and the **app**, say what stops working
+until re-granted, and — when the command carries no bundle id — say that it hits
+**every app on the machine**. It also records that the fix is by hand in System
+Settings → Privacy & Security, per app, and that some apps must be quit and
+reopened before they ask again. Worked example uses Voice Flow's Accessibility
+permission and auto-paste.
+
+**Cost:** `STANDARDS.md` 1164 → 1438 words, about +360 tokens per turn, on top
+of 7b's +626. It loads in every session in every project.
+
+**Verified:** all 10 preceding sections byte-identical — the diff touches only
+line 113 onward (3 lines removed, 31 added), and the section list is unchanged
+apart from the new `tccutil` subsection.
+
+**Undo:** `cp backups/2026-09-20-phase3/STANDARDS.md STANDARDS.md`.
 
 ---
 
