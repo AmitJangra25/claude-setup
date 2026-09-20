@@ -16,19 +16,20 @@ The plan file holds the verified inventory, all 20 decisions with their
 reasoning, and a record of every claim that turned out to be wrong when checked
 — so work resumes from a known state rather than a guess.
 
-**Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done. The order was
-**reversed on 2026-09-20**: the work is now **Phase 11 — the global pass**, and
-the three remaining projects are reviewed only when Amit next opens them. Each
-needs a rename first, the rename is his to do, and setup work must not wait on
-it. **Do not propose project work as the next setup step** — that mistake was
-made once and corrected.
+**Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done. The work is
+**Phase 10 — the project-by-project review**, three projects left, one at a time:
+`vthrudebugger_v1`, then `Emp portal`, then `Debugger v2`. Voice-Flow and FinNode
+are done. **The global files come last**, and **`STANDARDS.md` last of all** — it
+receives the universal rules still trapped in `vthrudebugger_v1`, so trimming it
+first means opening it twice.
 
-Phase 10 (projects) is done for **Voice-Flow** and **FinNode**; `vthrudebugger_v1`,
-`Emp portal` and `Debugger v2` are deferred, not queued. Phase 11 has done
-**`OLLAMA.md`** — 797 → 133 words, detail moved verbatim to
-`~/.claude/skills/ollama/SKILL.md`, **~878 tokens saved on every turn in every
-project** (global files 3,139 → 2,474 words). **`STANDARDS.md` is next** — 1,559
-words, 63% of the remaining global weight.
+**Renames are decoupled — ignore them.** Amit renames a project when he opens it
+to work on. A pass runs on the current name and must never propose a rename or
+wait for one. This was briefly made a prerequisite on 2026-09-20, which turned a
+project chore into a blocker and sent a session off to global files instead. Both
+were reversed the same day. **Do not propose global-file work while projects
+remain** — `OLLAMA.md` was the one safe exception (797 -> 133 words, ~878 tokens
+saved every turn) because no project pass can change what belongs in it.
 
 Four facts worth carrying. **There is no global memory**, so a universal
 preference saved in a project is structurally trapped there — which is why this
