@@ -21,6 +21,12 @@ which rtk             # Verify correct binary
 
 ⚠️ **Name collision**: If `rtk gain` fails, you may have reachingforthejack/rtk (Rust Type Kit) installed instead.
 
+## Gotcha — `--dry-run` prints nothing
+
+rtk's git filter reports only real index changes, so `git add --dry-run` prints **nothing at
+all**. That is the proxy, not git doing nothing. Preview a staging operation with
+`rtk proxy git add -A --dry-run`; verify a real one with `git diff --cached --name-only`.
+
 ## Hook-Based Usage
 
 All other commands are automatically rewritten by the Claude Code hook.

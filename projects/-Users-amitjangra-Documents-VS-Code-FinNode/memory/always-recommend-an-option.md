@@ -5,6 +5,10 @@ metadata:
   type: feedback
 ---
 
+> **Governed globally by `~/.claude/STANDARDS.md` § *When something is unclear*.** This
+> copy is kept for its dated evidence, not as a second source of truth. Marked 2026-09-20
+> during the FinNode pass.
+
 When offering the user a choice, never present options neutrally. Say which one I recommend,
 why it is right, and why each of the others is not.
 

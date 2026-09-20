@@ -8,39 +8,23 @@ active and what its success criteria are. Full reference docs are indexed in
 
 ## How to work on this project
 
-These four come before the technical rules because every defect this project has shipped got
-past a compiler and a green test suite first.
+`~/.claude/STANDARDS.md` governs — **Evidence, not assumption** · **Fix the cause, not the
+symptom** · **Build the smallest thing that does the job** · **Stay on the task you were
+given**. Read them there. This section records only what they have cost *here*.
 
-**Evidence, not assumption.** A claim that something works is backed by a command that was
-run and the output it produced, or it is not made. Compiling is not passing. A test that has
-never been seen to fail is a guess — break the code again and watch the new test fail, and
-watch that *only* it fails. "Should be unreachable" is not the same as "is". If something
-could not be verified, say so in the same breath as the claim rather than rounding it to
-done: four defects in Phase 0, five in 1b, three and two in 1c, one in 2a all hid behind the
+Every defect this project has shipped got past a compiler and a green test suite first —
+four in Phase 0, five in 1b, three and two in 1c, one in 2a, all hiding behind the
 assumption that a build means a working app.
 
-**Fix the cause, not the symptom.** No workaround that leaves the defect in place, no fix
-that only holds while a condition nobody checked stays true, no hypothetical fix for a
-failure that was never reproduced. Reproduce it, find why, fix that. If the real fix is out
-of scope, the defect goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was actually
-observed — it does not get papered over and it does not get guessed at.
-
-**Build the smallest thing that satisfies the checkpoint.** No abstraction with one caller,
-no parameter nobody passes, no flag nothing reads, no interface with one implementation, no
-"while I'm here" refactor folded into a fix. Building ahead of the phase is allowed *only*
-with a reason recorded at the time — `DiaryDao`, `ReminderDao` and `last4Digits` are the
-precedent, and each wrote down why a form with nothing behind it throws the user's input
-away. Everything else waits for the phase that owns it. Scope for *features* is
-[docs/BACKLOG.md](docs/BACKLOG.md); ask *is this required to use the app daily?* and if the
-answer is no, don't build it.
-
-**Stay on the task you were given.** Do what was asked, then stop. This codebase has small
-imperfections in it and hunting for them is not the job — an unrequested fix costs a review,
-a device pass, and a fresh chance to break something that already worked. If something
-genuinely serious turns up while working, write it in [docs/BACKLOG.md](docs/BACKLOG.md)
-with what was seen and carry on with the actual task; if it is not serious, let it go. Do
-not bundle unrelated changes together, and do not end a piece of work by talking the user
-into a list of other things to fix.
+- A defect that cannot be fixed now goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was
+  **observed**, not guessed. So does anything serious noticed while working: write it down,
+  then carry on with the task you were given. An unrequested fix costs a review, a device
+  pass, and a fresh chance to break something that already worked.
+- Building ahead of the phase needs a reason recorded at the time. `DiaryDao`, `ReminderDao`
+  and `last4Digits` are the precedent — each wrote down why a form with nothing behind it
+  throws the user's input away.
+- Feature scope is [docs/BACKLOG.md](docs/BACKLOG.md). Ask *is this required to use the app
+  daily?* If the answer is no, it waits for the phase that owns it.
 
 ### Before any change is called done
 
@@ -187,37 +171,25 @@ MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` fo
 
 ## Current state
 
-**Phase 2, checkpoint 2d-ii-a is next** — re-measuring typing over a longer query and a larger
-frame sample, and cutting what `LedgerScreen`'s `LazyColumn` does per keystroke. Paging 3 is
-**2d-ii-b**, and only if 2d-ii-a's numbers still ask for it; 2d-ii was split on 2026-09-18.
-Read [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first. 2d-i's baseline says where to aim:
-the arithmetic is not the problem (every derivation is single-digit milliseconds at 1,168 rows,
-and the balance pass is under 1.3 ms, so **the balance cache is not justified**), while
-**typing** in the Ledger hits a P95 of 48 ms — and since filtering *and* grouping together are
-only 1.2–4.9 ms of that, the cost is in rendering the regrouped list rather than in producing
-it. That is the number 2d-ii-a has to move, and the reason it gets to try before Paging does.
+**Phase 2, checkpoint 2d-ii-a is next.** Read
+[docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first — the active phase, what is done and
+device-verified, the 2d-i baseline numbers and what 2d-ii-a has to move are all kept current
+there, not here.
 
-Done and device-verified: Phase 0, 1b, 1c (three checkpoints, 15 of 22 screens) and Phase 2
-checkpoints 2a, 2b, 2c-i, 2c-ii and 2d-i. 233 unit tests, 136/136 instrumented on
-`finnode_api36`, no lint errors, audit clean, both variants building. `PlaceholderScreen` is
-gone — every screen is real, on real data.
-
-**The app now declares one permission.** `POST_NOTIFICATIONS`, requested from the Reminders
-screen. READ_SMS and the notification listener stay undeclared until Phase 3 builds their
-disclosure — declaring a sensitive permission before the feature exists is what gets a Play
-Store submission rejected.
-
-Two standing items that are not checkpoints:
+Two standing items that are not checkpoints, and one constraint that is neither:
 
 - **Collect anonymised bank SMS from your own phone, starting now.** Target 100+ across the
   banks, cards and UPI apps you actually use; strip names and account numbers, keep the
   structure. It is the only Phase 3 input that cannot be caught up later — code can be
   reordered, a month of real messages cannot.
-- **The design changed on 2026-09-03** and `docs/Design/src/` is the final visual reference,
-  read for layout, spacing, colour and copy and **never ported line-by-line**. The
-  consequences that bite — hand-tuned near-black neutrals, no dynamic colour, Compose
-  `Canvas` charts, no calendar library — are in
-  [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and [docs/TECH_STACK.md](docs/TECH_STACK.md).
+- **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
+  for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
+  bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and
+  [docs/TECH_STACK.md](docs/TECH_STACK.md).
+- **The app declares one permission, `POST_NOTIFICATIONS`**, requested from the Reminders
+  screen. READ_SMS and the notification listener stay undeclared until Phase 3 builds their
+  disclosure — declaring a sensitive permission before the feature exists is what gets a
+  Play Store submission rejected.
 
 ## Commands
 

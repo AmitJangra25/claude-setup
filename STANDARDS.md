@@ -113,8 +113,10 @@ for dead code, not documents.
 
 ## Git
 
-Keep `CLAUDE.md` out of git — `git rm --cached` plus `.gitignore` — when the repo is set
-up, not when asked.
+While a repo is private and solo, `CLAUDE.md` and `.claude/settings.json` stay in it — they
+travel with the project and nothing is at risk, because `~/.claude/project-rules/` mirrors
+them all anyway. **Before the repo goes public, raise taking them out**: they name internal
+paths, shipped defects and reasoning. Raise it — never do it silently.
 
 ## Explaining a permission request
 
