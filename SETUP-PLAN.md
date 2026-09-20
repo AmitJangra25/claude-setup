@@ -64,6 +64,19 @@ Amit's call each time. The remaining six, with what is known:
 **Then, and only then, the global pass:** `STANDARDS.md`, the other four imported
 files, the global permission list, and whatever turned out to be universal.
 
+**Measured 2026-09-20, and it changes what the global pass is for.** The six global
+files are now **3,097 words / ~4,089 tokens, loaded every turn in every project** —
+**59% of a turn in FinNode and 66% in Voice-Flow**. They are the largest single item
+left, and they are paid eight times over. 100 words cut there saves ~132 tokens in
+*every* project, forever; 100 words cut in a project saves it once.
+
+Where that weight sits: `STANDARDS.md` 1,518 · `OLLAMA.md` **797** · `PROJECTS.md`
+376 · `RTK.md` 187 · `REPOS.md` 105 · `CLAUDE.md` 114. **`OLLAMA.md` is the obvious
+first look** — ~1,052 tokens a turn, in every project, for a tool used occasionally.
+It is the exact shape the project passes have been splitting: a short claim in the
+global file, the detail in a skill that costs nothing until called. Not acted on —
+the order still says projects first.
+
 ## Status at handoff (2026-09-18)
 
 | | Step | State |
@@ -81,7 +94,7 @@ files, the global permission list, and whatever turned out to be universal.
 | ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/`
 | ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/`
 | ◐ | **PHASE 8 Where rules live** | **PARTLY DONE 2026-09-20 — step 1 is 3 of 5, step 2 done for two projects.** Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into `RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. Steps 3 and 4 not started. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
-| ◐ | **PHASE 10 Project-by-project review** | **STARTED 2026-09-20. Voice-Flow and FinNode done, 6 projects to go.** Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,948 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
+| ◐ | **PHASE 10 Project-by-project review** | **STARTED 2026-09-20. Voice-Flow and FinNode done, 6 projects to go.** Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
 | | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20, nothing actioned. **18 rules execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
 | | **Open: unproven** | **20 `ask` rules have never been seen to fire** — the 14 added by Phase 3 gaps and the **6 `git commit` spellings added by the Voice-Flow pass**. Every session that added them had prompts disabled, including the one that used them to commit. Pattern matching was tested offline and is correct (`git commit`, `git -c … commit` and `git -C … commit` all match; `git log`/`status`/`diff` do not), but **matching a pattern is not the same as the prompt appearing.** Needs one real `git commit`, `git branch -D` or `pnpm add` in a normal session. **Still unproven after 2026-09-20:** the FinNode pass ran a real `git commit` and it completed without surfacing a prompt — but that session had auto mode on, so it is consistent with prompts being disabled and proves nothing either way. Treat "commit now asks" as designed, not proven |
@@ -1438,8 +1451,14 @@ Found while cross-checking Voice-Flow, deliberately **not** fixed out of order:
 Backup: `backups/2026-09-20-finnode/` — 18 files, all verified byte-identical with
 `cmp`. Committed in FinNode as `725ca2e`.
 
-**Per-turn cost in this project: ~7,363 → ~6,948 tokens.** A 6% cut, against
+**Per-turn cost in this project: ~7,363 → ~6,966 tokens** (−396). A 5% cut, against
 Voice-Flow's 40% — and that difference is the finding, not a disappointment.
+
+**Stated honestly, the pass also spent.** The `STANDARDS.md` and `RTK.md` edits grew
+the global files by 83 words / ~110 tokens, and those are paid **in every project**.
+So FinNode is −396 a turn and the other seven are **+110 each**. The net is only
+favourable because FinNode is where the work continues; recorded so the global pass
+starts from the true number.
 
 | | Before | After |
 |---|---|---|
