@@ -2264,6 +2264,14 @@ is being worked on; they are recorded so they are not lost.
    same session the rewrite did not fire for that call. So the rule about rtk
    holds; *whether the hook fires in a given session* was not pinned down, and
    that is the open question, not the memory. The claim now lives in `RTK.md`.
+   **Audit switched on 2026-09-20.** `RTK_HOOK_AUDIT=1` added to `settings.json`
+   → `env`, so rtk writes one line per hook call to
+   `~/.local/share/rtk/hook-audit.log`. It takes effect from the **next** session,
+   not the one that set it — `env` is read at start. Chasing it without a
+   reproduction was rejected: the failure is benign (the raw command still runs,
+   the output is merely bigger) and one instance in 9,491 commands gives nothing
+   to work from. If it recurs there will be evidence; if it does not, this closes
+   itself. Read with `rtk hook-audit`.
 3. **Two memory folders are duplicates, not just orphans.** `Voice-Flow` (11
    files) and `Voice-Flow-Pro` (6) share 4 identical memories.
    `Debugger-vthrudebugger-v1` sits under `/Users/amitjangra/Debugger/`, a path

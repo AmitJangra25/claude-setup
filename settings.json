@@ -1,4 +1,7 @@
 {
+  "env": {
+    "RTK_HOOK_AUDIT": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(gh auth status*)",
