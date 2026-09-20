@@ -44,9 +44,56 @@ questions a project; every removal is a question, never an inference.
 verified with `cmp`. Nothing else happens first.
 
 **Carry these in:** `Bash(python3 -c ' *)` is still open in **Debugger v2** and
-**Voice Flow_v1** (FinNode's two were closed 2026-09-20). And note what FinNode
-changed about method — see § PHASE 10 — *the Voice-Flow diagnosis does not
-transfer automatically*.
+**Voice Flow_v1** (FinNode's two were closed 2026-09-20). Note what FinNode
+changed about method — see § PHASE 10, *the Voice-Flow diagnosis does not
+transfer automatically*. And **read § *Project names, and what a rename costs*
+below before touching vthrudebugger_v1** — Amit intends to rename it, and a
+rename is not just a folder.
+
+### Names first, then the pass — Amit's stated order
+
+Every project after Voice-Flow and FinNode carries a name Amit picked at random
+when he started, and **he intends to rename each one as the first act of working
+on it** — GitHub repo, local folder, and the name inside the code. So for the
+remaining six the pass is: **rename, then review.** Voice-Flow and FinNode are
+the two he considers correctly named and they are both done.
+
+**Nothing blocks a rename today and no permission needs adding.** `gh repo *` is
+already on the global `ask` list (so `gh repo rename` prompts), `git mv *` is on
+`ask`, and a plain `mv` has no rule so it prompts by default. That is the right
+setting for an irreversible, outward-facing change — it is not friction to remove.
+
+## Project names, and what a rename costs
+
+Verified live 2026-09-20 by reading each project's `git remote`, not from memory.
+
+| Manifest name | Local folder | GitHub repo | Branch |
+|---|---|---|---|
+| FinNode | `VS Code/FinNode` | `FinNode` | main |
+| Voice-Flow | `VS Code/Voice-Flow` | `Voice-Flow` | main |
+| Voice Flow_v1 | `VS Code/Voice Flow_v1` | `Voice-Flow_v1` **≠ folder** | `rename-voice-flow-v1` |
+| vthrudebugger_v1 | `VS Code/vthrudebugger_v1` | `vthrudebugger_v1` | `alert-swipe-to-dismiss` |
+| Packbly_web | `VS Code/Packbly_web/`**`v1.1-Packbly`** | **`v1.1-Packbly`** — a version, not a name | main |
+| Emp portal | `VS Code/Emp portal/`**`Vthru_Emp_v2.1_jun26`** | **`Vthru_Emp_v2.1_jun26`** — version + month | `fix/dead-code-cleanup-and-test-fix` |
+| Debugger v2 | `VS Code/Debugger v2` | **`vthrudebugger_v2`** ≠ folder | main |
+| SecondBrain schema | `SecondBrain Obsidian/schema` | **not a git repo at all** | — |
+
+**Four things a rename breaks, and the memory one is the expensive one.**
+
+1. **Claude's memory folder is named from the absolute path.** Renaming
+   `VS Code/Debugger v2` orphans `~/.claude/projects/-Users-amitjangra-Documents-VS-Code-Debugger-v2`
+   and its **4 memories**; `vthrudebugger_v1` has **3**, Voice-Flow **11**. This is
+   exactly the breakage Phase 7a had to repair by hand. **Move the memory folder in
+   the same step as the rename**, or the project silently loses its history.
+2. **`project-rules/manifest.tsv`** holds an absolute path per project, and `sync.sh`
+   reports `MISSING SOURCE` once it is wrong.
+3. **`PROJECTS.md`** and any project `settings.json` holding an absolute path.
+4. **The GitHub repo URL**, which breaks existing clones and any link to it.
+
+**Uncommitted work sitting in the remaining projects, measured 2026-09-20** — check
+before renaming anything: vthrudebugger_v1 **9 files**, Emp portal **2**,
+Packbly_web **1**. FinNode, Voice-Flow and Debugger v2 are clean. Three projects are
+also parked on non-`main` branches, listed above.
 
 ## The order from here
 
@@ -1432,6 +1479,53 @@ re-read against the code by a second method.
   `verify-app` skill uses the correct path; the memory was left alone.
 - `.claude/` is untracked in Voice-Flow's git. `settings.local.json` should stay
   that way; `settings.json` and the three new skills probably should not.
+
+### Voice-Flow re-checked 2026-09-20, after the FinNode pass
+
+Asked for directly: was the Voice-Flow pass done well, and does anything transfer
+between the two? Checked against both projects' live files.
+
+**What held.** The dangerous rules really were closed. The surviving `node -e` and
+`python3 -c` entries there are **fully-specified literal commands**, not wildcards —
+`node -e "const p=require('./package.json') …"` is one exact string, not `node -e *`.
+The `System Events` wildcard is narrowed to `… to get *` as recorded. And
+`verify-shipped-bundle-not-source` already carries a dated "**Renamed since this was
+written**" note giving the current `Voice Flow.app` paths, so the plan's open item
+saying the memory was "left alone" is out of date — it was annotated. No
+`Voice Flow Pro` string survives anywhere in the working tree; `productName` in
+`package.json` is the only place the name lives.
+
+**The one real inconsistency between the two passes.** Voice-Flow still holds **180
+allow rules to FinNode's 13**, and the split explains it: **127 of the 180 are
+fully-literal spent one-offs** — a single exact command from a finished session, 40
+of them over 80 characters, the longest **433**. Only 53 are reusable wildcards. The
+Voice-Flow pass removed the *dangerous* rules and 47 dead `echo`/`awk` entries; the
+FinNode pass removed the dangerous rules **and** every spent one-off. Same method,
+applied to different depths. They cost zero tokens either way — the cost is that a
+180-line list cannot be audited, which is what Phase 3 exists to make possible.
+
+**Structure — the two projects settled differently, and both are defensible.**
+
+| | Voice-Flow | FinNode |
+|---|---|---|
+| `CLAUDE.md` | 1,573 words | 2,118 words |
+| Rules live in | `docs/working-rules.md` + `docs/known-pitfalls.md` | `CLAUDE.md`, measured as already 62% claim |
+| Docs index | `docs/README.md` | root `README.md` |
+| Skills | 3, tracked in git | 3, tracked in git |
+| `CLAUDE.md` in git | no — gitignored | **yes**, per the 2026-09-20 reversal |
+
+**Nothing needs copying between them.** The rules-ledger split earned its place in
+Voice-Flow because its rules sections were narrative; FinNode's were not, and
+measuring said so. The one thing that *should* match and does not is where
+`CLAUDE.md` lives, and that is now a deliberate asymmetry: Amit reversed the rule,
+Voice-Flow was left as it is, and re-tracking its three files is a small separate
+action if symmetry is ever wanted.
+
+**Fixed here, because it was actively wrong.** The `claude-md-not-in-git` memory
+still instructed the old behaviour in both its body and its `description` — and
+`description` is what surfaces during recall, so the next session would have read
+"untrack it, don't wait to be asked". Marked **SUPERSEDED**, pointed at
+`STANDARDS.md` § *Git*, evidence kept, index line rewritten.
 
 ### Carried to the projects they belong to
 

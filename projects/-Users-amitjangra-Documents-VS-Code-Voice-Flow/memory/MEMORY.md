@@ -1,4 +1,4 @@
-- [CLAUDE.md stays out of git](claude-md-not-in-git.md) — untrack and gitignore it during repo setup, don't wait to be asked
+- [CLAUDE.md in git — SUPERSEDED](claude-md-not-in-git.md) — reversed 2026-09-20; tracked while private, raise before public. STANDARDS.md § Git governs.
 - [Verify the shipped bundle, not source](verify-shipped-bundle-not-source.md) — Amit tests the installed .app; green tests prove nothing about what shipped
 - [Don't delete reference docs](dont-delete-reference-docs.md) — relocate stale specs to docs/ and mark what's superseded; deletion is for dead code, not documents
 - [Report findings, don't chase them](report-findings-dont-chase-them.md) — finish the ask, then list what you noticed; Amit picks what's worth doing
