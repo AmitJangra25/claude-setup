@@ -83,14 +83,24 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   35 rules    read-only things stop prompting
-    ask    107 rules    all on things that change something
+    ask    112 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 2026-09-20.** `ask` was recorded here as 87
-from the 2026-09-18 snapshot, and `SETUP-PLAN.md` records it reaching 101 when Phase 3's
-gaps were closed. The live file holds **107**, and the extra 6 are not accounted for in
-either document. The old "~5.0 prompts per session" figure was measured against 87 rules
-and has been dropped rather than carried forward, because it was never re-measured.
+**Counts measured against the live file 2026-09-20.** This block read `ask 87` until
+then, from the 2026-09-18 snapshot. The path since: **87 → 101** when Phase 3's gaps were
+closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
+`SETUP-PLAN.md` § *Open: unproven*), **→ 112** when the permission-list pass added
+`rtk wget` and four `pip` spellings. The old "~5.0 prompts per session" figure was
+measured against 87 rules and has been dropped rather than carried forward, because it
+was never re-measured.
+
+**Why the `rtk ` spellings exist — and the hole that proved it.** The rtk hook rewrites a
+command *before* the permission check, so fencing `wget *` alone fences nothing: the
+engine only ever sees `rtk wget …`. `curl` carried all three spellings; `wget` carried
+the bare and `rtk proxy` forms but **not** `rtk `, so downloads ran unprompted until
+2026-09-20. Probed live rather than reasoned — `wget …` → `rtk wget …`, and
+`pip3 install …` → `rtk pip install …`. **Any new fence needs every spelling the hook
+can produce.**
 
 **Changed 2026-09-18** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
 `ask` went 52 → 87: 15 commands that ran silently in at least one project are now

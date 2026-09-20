@@ -18,8 +18,12 @@ reasoning, and a record of every claim that turned out to be wrong when checked
 
 **Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done, **all five project
 passes are done**, and **Phase 11's six global files are done** — 3,201 → 2,444 words,
-~4,225 → ~3,226 tokens every turn. **Only the global permission list remains** in
-Phase 11: 107 `ask`, 35 `allow`, 2 `deny`. Phases 2c, 8 and 9 are still partial.
+~4,225 → ~3,226 tokens every turn. **Phase 11 is complete** — the permission list was
+passed too, adding 5 rules and removing none (`ask` 107 → 112, `allow` 35, `deny` 2).
+**Phases 2c, 8 and 9 are still partial.** The permission lesson worth carrying: **the
+rtk hook rewrites a command before the permission check**, so a fence needs every
+spelling the hook can produce — `wget` was fenced bare and via `rtk proxy` but not
+`rtk `, and so was not fenced at all.
 The lesson from the global pass: **measure before proposing, and expect correctness
 rather than weight** — the five files on 2026-09-20 netted 93 words but fixed five
 wrong or dead facts, and `PROJECTS.md` got *heavier* for the right reason.
