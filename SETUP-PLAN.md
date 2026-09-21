@@ -20,29 +20,49 @@ permission list.
 | Phase 8 | step 2 — partly done |
 | Phase 9 | surveyed; headline finding closed, the rest not |
 | Open | Emp Portal's uncommitted `.gitignore` on `fix/dead-code-cleanup-and-test-fix` |
-| Open | **`ask` rules still unproven — but the reason is now known, see below** |
 | Open | Voice-Flow's old `CLAUDE.md` survives in git history, 4,647 bytes (item 5.8) |
 
-**Why the `ask` rules cannot be proven from an ordinary session.** Measured 2026-09-20,
-three commands:
+**The `ask` rules are proven. Closed 2026-09-21.** They fire, and they override `allow`.
 
-| Command | Rule | Result |
-|---|---|---|
-| `git branch -d claude-ask-probe` | `Bash(git branch -d *)`, and `Bash(rtk git branch -d *)` after the hook rewrite | ran, **no prompt** |
-| `rm -f <scratch>/.env` | `Bash(rm *)` | ran, **no prompt** |
-| Read of a `.env` file | `Read(//**/.env)` | **blocked** |
+First attempt, 2026-09-20, failed and showed why: a `git branch -d` probe and an `rm -f`
+probe both ran with no prompt, while a `Read` of a `.env` was blocked by
+`Read(//**/.env)`. The rule file loads; the session's permission mode was swallowing
+`ask`.
 
-The deny rule fires, so the rule file is loading; `ask` is swallowed by the session's
-permission mode. The docs are explicit that an ask rule *"still prompts you … even in auto
-mode"*, and this session does not — so the mode in use here is stronger than documented
-auto mode. **Closing the item needs one manual-mode session and about seven probe
-commands; nothing else will do it.** This also settles the FinNode `git commit` question:
-it proved nothing, and now the reason is on record rather than guessed.
+Second attempt, 2026-09-21, in manual mode. **A naive probe proves nothing** — in manual
+mode every Bash command prompts anyway, so a prompt on `git branch -d` is not evidence the
+rule matched. The discriminator is a command that an `allow` rule already covers, because
+those run silently; if such a command still prompts, only an `ask` rule can be the cause.
+Two such commands exist, plus a baseline that must stay silent:
 
-**Suggested next: run those probes in a manual-mode session.** It is still the only open
-item where the setup might not do what this file says it does, and the merge of
-2026-09-20 did not change that — it made the list correct on paper, not proven in use.
-**Propose it, do not start it.**
+| Command | `allow` | `ask` | Result |
+|---|---|---|---|
+| `git branch --list` | `Bash(rtk git branch *)` | — | **no prompt** (baseline) |
+| `git branch -d claude-ask-probe` | `Bash(rtk git branch *)` | `Bash(*git branch -d*)` | **prompt** |
+| `gh auth status` | `Bash(gh auth status*)` | `Bash(*gh auth*)` | **prompt** |
+
+Four things this establishes, none of them previously observed:
+
+1. **`ask` rules fire.**
+2. **`ask` beats `allow`**, by observation rather than by reading the precedence table. This
+   closes the Phase 3 gap directly — `rtk git branch *` sits in `allow` while `-D` deletes,
+   and the `ask` rule added to override it does override it.
+3. **The merged leading-`*` patterns match.** The rule that fired was written in the
+   2026-09-20 merge, so the merge is runtime-confirmed on a representative rule, not only
+   on paper.
+4. **The permission check runs on the hook-rewritten command.** `git branch --list` was
+   silenced by `Bash(rtk git branch *)`, which matches only the `rtk `-prefixed form. Until
+   now this was inferred from the `wget` hole; it is now measured.
+
+**Method note for any future probe.** Manual mode prompts on everything, so a probe is only
+conclusive when an `allow` rule covers the command. Where no `allow` rule collides with the
+`ask` rule under test — `sudo`, `curl`, `wget`, `rm`, `open` and most others — no
+conclusive probe exists without temporarily adding one. Those rules rest on the offline
+coverage check plus the two confirmations above; the matcher is the same for all of them.
+
+**Suggested next: Phase 2c, Phase 8 step 2, or Phase 9's remainder.** No item is blocked
+and none carries a known correctness risk, so this is a priority call rather than a
+discovery. **Propose it, do not start it.**
 
 **Everything is committed and pushed.** `~/.claude` → `AmitJangra25/claude-setup`,
 private, latest commit on `main`. Voice-Flow is on `main`, clean and pushed.
@@ -76,7 +96,7 @@ Everything else is reference. Search it when you need it.
 
 - **Expect correctness, not weight.** The five global files netted 93 words between them,
   and fixed five wrong or dead facts. `PROJECTS.md` got *heavier* and that was right.
-- **The rtk hook rewrites a command before the permission check.** A fence needs every
+- **The rtk hook rewrites a command before the permission check** — measured 2026-09-21, not just inferred: an `allow` rule that matches only the `rtk `-prefixed spelling silenced the command. A fence needs every
   spelling the hook can produce — `wget` was fenced bare and via `rtk proxy` but not
   `rtk `, and so was not fenced at all.
 - **Keep the report short.** Amit said so directly, twice: conclusion first, findings
@@ -267,7 +287,7 @@ split test that applies to a file which really does govern every turn.
 | ◐ | **PHASE 9 The 384 permission rules** | Surveyed 2026-09-20. **Its headline finding is now CLOSED: no project holds a broad arbitrary-code rule any more**, verified 2026-09-20 by sweeping every `.claude/settings*.json` under `VS Code/` for `rtk proxy *`, `rtk npx *`, `python3 -`, `python3 -c ' *`, `node *` and `osascript -l JavaScript -e ' *`. As surveyed it found **18 rules that execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
 | | **Open: Emp portal working tree** | `.gitignore` change from 5.7 is **uncommitted** on branch `fix/dead-code-cleanup-and-test-fix`. A `git add -A` there sweeps it into Amit's own commit. His call: commit separately, or revert |
 | ✅ | **`ask` list merged** | **DONE 2026-09-20. 112 → 51 rules**, one pattern per command instead of up to three spellings (`X`, `rtk X`, `rtk proxy X`), using a leading `*`. Wildcards match at any position in Bash rules; the leading-`*` startup warning applies to `allow` rules only. **Two traps found and handled:** a leading `*` stops the trailing `*` from matching the *bare* command, so `Bash(*git push *)` would not have matched `git push` — pattern shape is now chosen per command, wide (`*git push*`) where the bare form matters, tight (`*sudo *`) where a wide pattern would fire on ordinary text like `cat sudoku.txt`. `rm`, `kill`, `killall`, `pkill` and `open` keep explicit spellings: they sit inside ordinary words (`confirm`, `skill`, `reopen`). Verified by generating every command the old 112 matched (226) and checking the new list covers **216**; the 10 dropped are no-argument `curl`, `wget`, `sudo` and `security`, which only print usage. Bare `npm i` and bare `sqlite3` were dropped by the same mechanism, are **not** harmless, and got explicit rules back. 0 over-fencing on a 40-command negative corpus. `allow` (35) and `deny` (2) byte-identical; `claude doctor` reports no invalid rules. **Not runtime-tested — this session cannot surface an `ask` prompt** |
-| | **Open: unproven** | **20 `ask` rules have never been seen to fire** — the 14 added by Phase 3 gaps and the **6 `git commit` spellings added by the Voice-Flow pass**. Every session that added them had prompts disabled, including the one that used them to commit. Pattern matching was tested offline and is correct (`git commit`, `git -c … commit` and `git -C … commit` all match; `git log`/`status`/`diff` do not), but **matching a pattern is not the same as the prompt appearing.** Needs one real `git commit`, `git branch -D` or `pnpm add` in a normal session. **Still unproven after 2026-09-20:** the FinNode pass ran a real `git commit` and it completed without surfacing a prompt — but that session had auto mode on, so it is consistent with prompts being disabled and proves nothing either way. Treat "commit now asks" as designed, not proven. **Measured 2026-09-20, second attempt:** a `git branch -d` probe and an `rm -f` probe both ran with no prompt, while a `Read` of a `.env` was blocked by `Read(//**/.env)`. Rules load; the session mode swallows `ask`. Per the docs an ask rule prompts even in auto mode, so this harness's mode is stronger than documented auto mode. **Needs one manual-mode session** |
+| ✅ | **`ask` rules proven** | **CLOSED 2026-09-21.** The 20 rules that had never been seen to fire — the 14 Phase 3 gap rules and the 6 `git commit` spellings — are covered by the merged list and the mechanism is now measured. Manual-mode probes: `git branch --list` (covered by `allow`) ran **silently**, while `git branch -d` and `gh auth status` (covered by `allow` *and* `ask`) both **prompted**. So `ask` fires, `ask` beats `allow`, a merged leading-`*` pattern matches at runtime, and the check is applied to the **hook-rewritten** command — the `wget` lesson, measured rather than inferred. A naive probe proves nothing here: manual mode prompts on every Bash command, so only a command an `allow` rule covers can discriminate. Rules with no `allow` collision (`sudo`, `curl`, `wget`, `rm`, `open`) have no conclusive probe and rest on the offline coverage check |
 | | **Full setup review** | https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 — every permission rule, global file, memory and today's changes in one page |
 | ✅ | **5.3 – 5.8 Low-priority tidying** | **DONE** 2026-09-20. Only **2 of the 6 needed work** — 5.4 and 5.6 were already satisfied (by D8 and by 7a) and the rows were stale, not the files. **5.3** moved Emp portal's rules to the project root and updated `manifest.tsv`, with the drift check proven live. **5.5** was reframed: 10 of the 17 recorded paths no longer exist, so the real work was fixing **3 errors** in `PROJECTS.md` — Emp Portal misfiled as having no `CLAUDE.md`, a dead `Voice-Flow-main` entry, and a stale date. **5.7** is a decision, recommended as leave-as-is, nothing changed. **5.8** is cloud-side and not fixable here: `uv`/`uvx` absent for browser-use, and definite's shipped URL 404s while its host answers 200. |
 | | **Open: Voice-Flow history + 5.8** | **Voice-Flow's `CLAUDE.md` survives in git history** — 4,647 bytes recoverable from `598e38e Initial commit`, an early version, before `c1e9459` untracked it. The repo is private, and the `claude-md-not-in-git` memory says to offer a history rewrite **before it goes public**. Offered, not done — a rewrite is destructive and needs explicit approval. 5.8: `definite` stays broken until the vendor fixes its URL |
