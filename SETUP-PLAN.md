@@ -6,7 +6,7 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-## Where this stands — 2026-09-20
+## Where this stands — 2026-09-21
 
 **Everything through Phase 11 is done.** All five project passes (Voice-Flow, FinNode,
 `vthrudebugger_v1`, `Debugger v2`, `Emp portal`), all six global files, and the global
@@ -57,12 +57,17 @@ conclusive when an `allow` rule covers the command. Where no `allow` rule collid
 conclusive probe exists without temporarily adding one. Those rules rest on the offline
 coverage check plus the two confirmations above; the matcher is the same for all of them.
 
-**Suggested next: Phase 8 step 2 or Phase 9's remainder.** No item is blocked
-and none carries a known correctness risk, so this is a priority call rather than a
-discovery. **Propose it, do not start it.**
+**Suggested next: Phase 8 step 4** — trim FinNode's four re-stated `STANDARDS.md`
+sections down to their project evidence. It is the only remaining work item; the other
+open row is a destructive git-history rewrite that only matters before Voice-Flow goes
+public. Neither carries a known correctness risk. **Propose it, do not start it.**
 
-**Everything is committed and pushed.** `~/.claude` → `AmitJangra25/claude-setup`,
-private, latest commit on `main`. Voice-Flow is on `main`, clean and pushed.
+**`~/.claude` is committed and pushed** → `AmitJangra25/claude-setup`, private, latest
+commit on `main`. Voice-Flow is on `main`, clean and in sync. **Two project commits are
+unpushed, both deliberate:** FinNode's `4fb453f` on `chore/drop-duplicate-permission-rules`
+(no upstream, no PR) and Emp portal's `53c4aba` on `fix/dead-code-cleanup-and-test-fix`.
+Emp portal's `.claude/settings.json` is still untracked and unignored there — a `git add -A`
+would sweep it in. `backups/` is gitignored, so every backup is local to this machine.
 
 ## Next session: start here, not at the top
 
