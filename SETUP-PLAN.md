@@ -74,18 +74,40 @@ and 10 already read COMPLETE in their own rows and only their markers were wrong
 request — see the status block at the top. **Nothing is open. There is no next piece to
 suggest, and none should be invented.**
 
-**`~/.claude` is committed and pushed** → `AmitJangra25/claude-setup`, private, latest
-commit on `main`. Voice-Flow is on `main`, clean and in sync. **FinNode's `4fb453f` was pushed
-2026-09-21** at Amit's request — `chore/drop-duplicate-permission-rules` now tracks
-`origin`, and **PR #1 was merged 2026-09-21** — FinNode's first — squashed onto `main` as `5fd4ddc`. Emp portal's `53c4aba`
-was **pushed 2026-09-21** to `fix/dead-code-cleanup-and-test-fix`, no PR opened. **Nothing
-is unpushed anywhere now.**
-Emp portal's `.claude/settings.json` is untracked and, since
-2026-09-21, **gitignored too** — one line added at Amit's request, matching Voice-Flow's
-shape and verified with `git check-ignore`. That edit was **committed as `4a5a263`
-and pushed** the same day, so nothing is outstanding in that project either. **`backups/` was deleted on 2026-09-21** — see
-§ *Where the backups went*. What could not be recreated moved into `archive/`, which is
-tracked and pushed precisely so it survives the Mac.
+### Git state is not recorded here — read it from git
+
+**This plan records dated events, not current state.** Whether a branch is clean, checked
+out, ahead of its remote or merged changes the moment anyone touches a repo, and on
+2026-09-21 four separate edits each left a sentence here wrong within minutes. Restating
+it was the defect; the fix is to stop.
+
+Run this instead. It takes one command and is always right:
+
+```bash
+for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,Voice\ Flow_v1,FinNode,vthrudebugger_v1,Debugger\ v2} \
+         ~/Documents/VS\ Code/Packbly_web/v1.1-Packbly \
+         ~/Documents/VS\ Code/Emp\ portal/Vthru_Emp_v2.1_jun26; do
+  printf '%-22s %s\n' "$(basename "$r")" "$(git -C "$r" status -sb | head -1)"
+done
+```
+
+Anything the output does not show — an open PR, a stashed change — comes from
+`gh pr list` in that repo, not from this file.
+
+**What belongs here instead, and does not rot:** the dated record of what was done and
+why. *"FinNode's duplicate-rule removal was committed as `4fb453f`, merged via PR #1 and
+squashed onto `main` as `5fd4ddc` on 2026-09-21"* stays true forever. *"FinNode is clean
+and in sync"* was true for about four minutes. The phase sections below follow the first
+form; if a future edit is tempted into the second, that is the mistake this section
+exists to prevent.
+
+**The one structural fact worth stating**, because it is a decision rather than a state:
+`~/.claude` commits to `main` directly, since it has no reviewer and no PR flow. Every
+project branches, one PR per feature off `main`. That is in `STANDARDS.md` § *Git*.
+
+**`backups/` was deleted on 2026-09-21** — see § *Where the backups went*. What could not
+be recreated moved into `archive/`, which is tracked and pushed precisely so it survives
+the Mac.
 
 ## Next session: start here, not at the top
 
@@ -212,10 +234,10 @@ one-off literals**, a single exact command left over from a finished session. Re
 those in the same sitting as the rename, plus Debugger v2's dead `tsc` rule and any
 rule that names the old project name. Then run the pass proper.
 
-**Uncommitted work sitting in the remaining projects, measured 2026-09-20** — check
-before renaming anything: vthrudebugger_v1 **9 files**, Emp portal **2**,
-Packbly_web **1**. FinNode, Voice-Flow and Debugger v2 are clean. Three projects are
-also parked on non-`main` branches, listed above.
+**Check for uncommitted work and the current branch before renaming anything** — a rename
+moves a folder out from under whatever is in flight. Use the one-command sweep in
+§ *Git state is not recorded here*; the figures that used to sit in this paragraph went
+stale the same week they were written, which is the reason that section exists.
 
 ## The order from here
 
