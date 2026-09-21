@@ -12,11 +12,17 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 `vthrudebugger_v1`, `Debugger v2`, `Emp portal`), all six global files, and the global
 permission list.
 
-**What is left. One item, and it is not work for now.**
+**Nothing is left. The plan is complete, 2026-09-21.**
 
-| | |
-|---|---|
-| Open | Voice-Flow's old `CLAUDE.md` survives in git history, 4,647 bytes (item 5.8). A destructive history rewrite; it only matters before that repo goes public |
+The last item — Voice-Flow's old `CLAUDE.md` in git history — was closed that day at Amit's
+request, ahead of the repo going public rather than because it did. `git-filter-repo` 2.47.0
+was installed for it and all **162 commits on both branches** were rewritten, then
+force-pushed with `--force-with-lease` pinned to the recorded tips. **Verified two ways:**
+`git log --all -- CLAUDE.md` is empty, and no object named `CLAUDE.md` exists in any commit.
+The old initial commit `598e38e` is not fetchable from GitHub by SHA. The live file is
+untouched on disk, still gitignored, byte-identical to the `project-rules/` copy, and the
+mirror backup with all 162 original commits is at
+`backups/2026-09-21-voice-flow-history/Voice-Flow.git` with both original tips beside it.
 
 **The `ask` rules are proven. Closed 2026-09-21.** They fire, and they override `allow`.
 
@@ -64,8 +70,9 @@ project evidence kept — the Phase 0/1b/1c/2a defect counts, the `DiaryDao` pre
 "observed, not guessed" into `docs/BACKLOG.md`, and what an unrequested fix costs. Phases 9
 and 10 already read COMPLETE in their own rows and only their markers were wrong.
 
-**The one open item is the Voice-Flow git-history rewrite**, and it waits for that repo
-going public. There is no next piece to suggest.
+**And the Voice-Flow git-history rewrite is done too**, closed 2026-09-21 at Amit's
+request — see the status block at the top. **Nothing is open. There is no next piece to
+suggest, and none should be invented.**
 
 **`~/.claude` is committed and pushed** → `AmitJangra25/claude-setup`, private, latest
 commit on `main`. Voice-Flow is on `main`, clean and in sync. **FinNode's `4fb453f` was pushed
@@ -301,7 +308,7 @@ split test that applies to a file which really does govern every turn.
 | ✅ | **`ask` rules proven** | **CLOSED 2026-09-21.** The 20 rules that had never been seen to fire — the 14 Phase 3 gap rules and the 6 `git commit` spellings — are covered by the merged list and the mechanism is now measured. Manual-mode probes: `git branch --list` (covered by `allow`) ran **silently**, while `git branch -d` and `gh auth status` (covered by `allow` *and* `ask`) both **prompted**. So `ask` fires, `ask` beats `allow`, a merged leading-`*` pattern matches at runtime, and the check is applied to the **hook-rewritten** command — the `wget` lesson, measured rather than inferred. A naive probe proves nothing here: manual mode prompts on every Bash command, so only a command an `allow` rule covers can discriminate. Rules with no `allow` collision (`sudo`, `curl`, `wget`, `rm`, `open`) have no conclusive probe and rest on the offline coverage check |
 | | **Full setup review** | https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 — every permission rule, global file, memory and today's changes in one page |
 | ✅ | **5.3 – 5.8 Low-priority tidying** | **DONE** 2026-09-20. Only **2 of the 6 needed work** — 5.4 and 5.6 were already satisfied (by D8 and by 7a) and the rows were stale, not the files. **5.3** moved Emp portal's rules to the project root and updated `manifest.tsv`, with the drift check proven live. **5.5** was reframed: 10 of the 17 recorded paths no longer exist, so the real work was fixing **3 errors** in `PROJECTS.md` — Emp Portal misfiled as having no `CLAUDE.md`, a dead `Voice-Flow-main` entry, and a stale date. **5.7** is a decision, recommended as leave-as-is, nothing changed. **5.8** is cloud-side and not fixable here: `uv`/`uvx` absent for browser-use, and definite's shipped URL 404s while its host answers 200. |
-| | **Open: Voice-Flow history + 5.8** | **Voice-Flow's `CLAUDE.md` survives in git history** — 4,647 bytes recoverable from `598e38e Initial commit`, an early version, before `c1e9459` untracked it. The repo is private, and the `claude-md-not-in-git` memory says to offer a history rewrite **before it goes public**. Offered, not done — a rewrite is destructive and needs explicit approval. 5.8: `definite` stays broken until the vendor fixes its URL |
+| ✅ | **Voice-Flow history + 5.8** | **DONE 2026-09-21.** `CLAUDE.md` had survived in git history — 4,647 bytes recoverable from `598e38e Initial commit`, before `c1e9459` untracked it. Rewritten at Amit's request with `git-filter-repo` 2.47.0 (installed for this), `--invert-paths --path CLAUDE.md`: **162 commits on `main` and `phase-2.75-stop-losing-words`**, force-pushed with `--force-with-lease` pinned to the recorded tips `ad38b97` and `34ad3cd`. New tips `e0be479` and `6fb7c91`, remote confirmed to match. **Verified two ways before pushing** — `git log --all -- CLAUDE.md` empty, and no object named `CLAUDE.md` in any commit — and the old commit is not fetchable from GitHub by SHA afterwards. The working file is untouched, still gitignored, byte-identical to the `project-rules/` copy; upstream tracking restored on both branches. Mirror backup of all 162 original commits at `backups/2026-09-21-voice-flow-history/Voice-Flow.git`. The standing recommendation had been to wait until the repo went public; Amit chose to do it now. 5.8: `definite` stays broken until the vendor fixes its URL |
 | ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18. Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. **No cross-project grant survives anywhere.** D23 |
 | ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
 | ✅ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **DONE** 2026-09-18, both parts. Part one: `CLAUDE.md` **110 KB → 29 KB**, evidence moved verbatim to `docs/working-rules.md` (42 entries) and `docs/known-pitfalls.md` (47 entries), 0 rules lost. **Part two: all 89 checked against the code — 0 superseded, 7 re-measured.** D24, D25 |
