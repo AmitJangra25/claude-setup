@@ -16,7 +16,6 @@ permission list.
 
 | | |
 |---|---|
-| Phase 2c | Group B one-off leftovers — partly done |
 | Phase 8 | step 2 — partly done |
 | Phase 9 | surveyed; headline finding closed, the rest not |
 | Open | Voice-Flow's old `CLAUDE.md` survives in git history, 4,647 bytes (item 5.8) |
@@ -59,7 +58,7 @@ conclusive when an `allow` rule covers the command. Where no `allow` rule collid
 conclusive probe exists without temporarily adding one. Those rules rest on the offline
 coverage check plus the two confirmations above; the matcher is the same for all of them.
 
-**Suggested next: Phase 2c, Phase 8 step 2, or Phase 9's remainder.** No item is blocked
+**Suggested next: Phase 8 step 2 or Phase 9's remainder.** No item is blocked
 and none carries a known correctness risk, so this is a priority call rather than a
 discovery. **Propose it, do not start it.**
 
@@ -274,7 +273,7 @@ split test that applies to a file which really does govern every turn.
 | ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
 | ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
 | ✅ | **Phase 2a + 2b Permission cleanup** | **DONE** 2026-09-18. All 144 rules removed from 9 files; allow 560 → 416, verified against the `2026-09-18-phase2` backup: 0 added, `ask`/`deny` untouched, every file still valid JSON |
-| ◐ | **Phase 2c Group B one-off leftovers** | **PARTLY DONE** 2026-09-18. B1 (14) + B2 (9) removed; allow 416 → 393, verified. **B3 (74 pipeline fragments) held by choice** — removing them only tidies, and can only add a prompt on a read-only stage. 3 `*` rules still flagged |
+| ✅ | **Phase 2c Group B one-off leftovers** | **CLOSED 2026-09-21 — nothing was left to do.** B1 (14) + B2 (9) removed 2026-09-18, allow 416 → 393, verified. **B3 (74 pipeline fragments) stays by decision D21**, not as pending work: removing them only tidies and costs a prompt mid-task on read-only commands. The **3 `*` rules still flagged** row was stale — a scan of all 394 rules across 15 settings files, including the three inside `node_modules`, found **zero** bare-`*` rules in `allow`, `ask` or `deny`. Stale like 5.4 and 5.6 were: the row was wrong, not the files |
 | ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
 | ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
 | ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/` |
