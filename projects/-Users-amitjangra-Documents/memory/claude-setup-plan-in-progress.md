@@ -16,11 +16,11 @@ The plan file holds the verified inventory, all 20 decisions with their
 reasoning, and a record of every claim that turned out to be wrong when checked
 — so work resumes from a known state rather than a guess.
 
-**Where it stands 2026-09-20.** Phases 1-7 and 5.1-5.8 are done, **all five project
+**Where it stands 2026-09-21. Every phase is closed** — 2c, 8 and 9 were confirmed done on 2026-09-21, the last three markers having been stale rather than open work; the only item left is the Voice-Flow git-history rewrite, which waits for that repo going public. Earlier: Phases 1-7 and 5.1-5.8 are done, **all five project
 passes are done**, and **Phase 11's six global files are done** — 3,201 → 2,444 words,
 ~4,225 → ~3,226 tokens every turn. **Phase 11 is complete** — the permission list was
 passed too, adding 5 rules and removing none (`ask` 107 → 112, `allow` 35, `deny` 2).
-**Phases 2c, 8 and 9 are still partial.** The permission lesson worth carrying: **the
+The permission lesson worth carrying: **the
 rtk hook rewrites a command before the permission check**, so a fence needs every
 spelling the hook can produce — `wget` was fenced bare and via `rtk proxy` but not
 `rtk `, and so was not fenced at all.
