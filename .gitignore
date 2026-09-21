@@ -55,6 +55,13 @@
 !project-rules/manifest.tsv
 !project-rules/sync.sh
 
+# --- allow: archive/ — things that cannot be recreated, so they must survive this
+#     machine. backups/ stays ignored and local; anything that has to outlive the
+#     Mac goes here instead. Named files only, same rule as project-rules/.
+!archive/
+!archive/README.md
+!archive/*.bundle
+
 # --- allow: memory files ONLY. Session transcripts sit in the same tree
 #     and must stay out, so this walks in by directory and takes .md only.
 !projects/
