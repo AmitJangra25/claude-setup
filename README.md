@@ -1,0 +1,43 @@
+# claude-setup
+
+Amit's Claude Code configuration, kept in git so it survives a machine or an account
+switch. Private, and it needs to stay that way — see *Why this stays private* below.
+
+Clone it into `~/.claude`. Nothing here is generated; every file is written by hand or
+mirrored deliberately.
+
+## What is in here
+
+| Path | What it is |
+|---|---|
+| `CLAUDE.md` | The five `@`-imports that load on every turn, in every project. Nothing else. |
+| `STANDARDS.md` | How to work — the rulebook. The largest of the imported files, and the one to think twice before growing. |
+| `RTK.md` · `OLLAMA.md` · `REPOS.md` · `PROJECTS.md` | The other four imports: the rtk proxy, the local-model chores, reference repos, and the project index. |
+| `ENVIRONMENT.md` | Reference on this machine and these projects. **Deliberately not imported** — it explains decisions rather than driving work, so it stays out of the per-turn budget. |
+| `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~27,000 words: **start at its `► START HERE` block, not the top.** |
+| `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net; projects hold only `allow` rules. |
+| `project-rules/` | A mirror of every project's `CLAUDE.md` and `.claude/settings*.json`. Those files are gitignored in the projects themselves, so this is their only version history. `sync.sh` reports drift. |
+| `archive/` | Things that cannot be recreated. See `archive/README.md`. |
+| `statusline/` | The context-usage status line. |
+
+Everything else in `~/.claude` — sessions, caches, plugins, skills synced from the
+account — is gitignored. The ignore file blocks everything by default and names what is
+allowed, so **adding a file here means adding an allow-line**.
+
+## Where to start
+
+- **Changing a rule, a permission or a hook?** Read `SETUP-PLAN.md`'s START HERE block
+  first. It carries the decisions and the reasons, including several claims that turned
+  out to be wrong when they were finally checked.
+- **Rebuilding on a new machine or account?** `SETUP-PLAN.md` § *Rebuilding on another
+  account*, which lists what travels, what regenerates, and what is stranded.
+- **Wondering what state a repo is in?** Ask git. This repo deliberately does not record
+  branches, sync state or what is committed — that rots within minutes. The one-command
+  sweep is in `SETUP-PLAN.md` § *Git state is not recorded here*.
+
+## Why this stays private
+
+`project-rules/` holds every project's `CLAUDE.md` verbatim, and `archive/` holds
+Voice-Flow's git history from before its rules file was stripped out of it. Two of the
+mirrored projects are ones with real customer and employee records, and their rules
+describe that. None of it is secret material, but all of it is internal.

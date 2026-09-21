@@ -230,33 +230,36 @@ them, and a guess that replaces a measurement is how the 150K threshold and the
 Surveyed 2026-09-15. `PROJECTS.md` is the index; this is the state behind it, kept here
 so the index doesn't have to carry it into every turn's context.
 
-### Branch state at survey
+### Branch state — read it from git, not from here
 
-| Project | Branch | Last commit |
-|---|---|---|
-| FinNode | `main` | 2026-09-15 |
-| Voice Flow | `main` | 2026-09-11 |
-| Voice Flow v1 | `rename-voice-flow-v1` | 2026-08-14 |
-| vthrudebugger_v1 | `alert-swipe-to-dismiss` | 2026-07-28 |
-| Debugger v2 | `main` | 2026-08-05 |
-| Packbly Web | `main` | 2026-07-17 |
-| Packbly v2 | `main` | 2026-08-09 |
-| Emp Portal | `fix/dead-code-cleanup-and-test-fix` | 2026-08-05 |
-| SecondBrain Obsidian | `main` | 2026-09-08 |
+This section used to hold a table of each project's branch and last commit date. It was
+accurate on the day it was written and wrong within weeks, which is the same defect
+`SETUP-PLAN.md` § *Git state is not recorded here* exists to prevent. One command answers
+it properly, and is never out of date:
 
-Two projects sit on a feature branch with months of no commits — `vthrudebugger_v1` and
-`Emp Portal`. Worth checking whether that work was finished, merged, or abandoned before
-starting anything new in either.
+```bash
+for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,Voice\ Flow_v1,FinNode,vthrudebugger_v1,Debugger\ v2} \
+         ~/Documents/VS\ Code/Packbly_web/v1.1-Packbly \
+         ~/Documents/VS\ Code/Emp\ portal/Vthru_Emp_v2.1_jun26; do
+  printf '%-22s %-46s %s\n' "$(basename "$r")" \
+    "$(git -C "$r" status -sb | head -1)" "$(git -C "$r" log -1 --format=%ad --date=short)"
+done
+```
+
+**What is worth knowing, and does not rot:** a project parked on a feature branch for
+months is worth a question before starting anything new in it — was that work finished,
+merged, or abandoned? Which projects those are changes; that it is worth asking does not.
 
 ### Duplicate trees
 
-**Three Voice Flow trees exist.** The risk is editing the wrong one and losing work.
+**Two Voice Flow trees exist**, down from three. The risk is editing the wrong one and
+losing work.
 
 | Path | State |
 |---|---|
 | `~/Documents/VS Code/Voice-Flow` | **Current.** 39 Claude sessions, last commit 2026-09-11 |
 | `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August |
-| `~/Documents/Voice-Flow-main` | **No git repo at all.** Has a `CLAUDE.md`. Looks like a downloaded or extracted archive |
+| `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 2026-09-20 and again 2026-09-21 |
 
 **Two Packbly trees exist.**
 
@@ -275,8 +278,9 @@ Not guesses to act on — things to confirm before treating either answer as tru
 - **Can `Voice Flow_v1` be archived?** `Voice-Flow` appears to have superseded it.
 - **Is `Packbly v2` a real project?** The README describes it as a Figma code export
   ("Website Redesign Proposal"), which reads as a design bundle, not an app.
-- **What is `~/Documents/Voice-Flow-main`?** No git history, so nothing there is
-  recoverable if it is overwritten.
+- ~~**What is `~/Documents/Voice-Flow-main`?**~~ **Answered by it disappearing** — the
+  folder no longer exists, confirmed 2026-09-20 and 2026-09-21. Nothing in it was
+  recoverable, since it had no git history; whatever it was, it is not a question now.
 
 ### Corrections made on 2026-09-15
 
@@ -346,8 +350,8 @@ The detail lives here.
   ("Website Redesign Proposal"), **shadcn theme + assets**. Reads as a design bundle
   rather than an app; confirm whether it is a real project.
 
-- `~/Documents/Voice-Flow-main` — a **third** Voice Flow copy. No git repo, has a
-  `CLAUDE.md`. Most likely a downloaded or extracted archive.
+- ~~`~/Documents/Voice-Flow-main`~~ — was a **third** Voice Flow copy with no git repo.
+  **No longer on disk**, confirmed 2026-09-20 and 2026-09-21.
 
 - `~/Documents/extra/v1.1-Packbly` — a Next.js tree, apparently an older copy of Packbly
   Web. Last commit 2026-06-23.
