@@ -384,6 +384,12 @@ everything in the "survives account switch" table below.
 
 ## Verify that state rather than trust it
 
+**These commands verify the state as it was on 2026-09-18, after steps 1.1 and 1.2** —
+they are the record of that checkpoint, not a health check for today. Their expected
+values have all since moved: the repo tracks 64 files rather than 37, and the permission
+counts are 35 `allow` / 51 `ask` / 2 `deny` after the `ask` list was merged. Run them
+against that date's commits, or read them as history.
+
 **The first two commands no longer apply** — `backups/` was deleted 2026-09-21 and that
 snapshot now lives in `archive/pre-setup-originals-2026-09-18.tar.gz`. Extract it to
 somewhere temporary if you need to run them.
