@@ -1,9 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rtk ls *)",
-      "Bash(rtk wc *)",
-      "Bash(rtk grep *)",
       "Bash(rtk git *)",
       "Bash(sort -t: -k2 -n -r)",
       "Bash(npm audit *)",

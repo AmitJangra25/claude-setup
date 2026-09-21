@@ -302,7 +302,8 @@ after 5.2 (−1) · **384** after 5.2b (−8, plus 4 `additionalDirectories`
 entries) · **330** after the Voice-Flow pass (−54) · **318** after the FinNode
 pass (−12) · **299** after the `vthrudebugger_v1` pass (−19) · **291** after the
 `Debugger v2` pass (−8) · **285** after the `Emp portal` pass (−6) · **244** after
-the two same-day follow-ups (−41 stripping Voice Flow_v1, Voice-Flow unchanged at 141).
+the two same-day follow-ups (−41 stripping Voice Flow_v1, Voice-Flow unchanged at 141)
+· **221** after Phase 9 on 2026-09-21 (−23).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
 arithmetic. Global `allow` is unchanged
 at 35 and `deny` at 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
@@ -310,10 +311,11 @@ at 35 and `deny` at 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 g
 fenced `wget` and `pip`, then **51 after the merge of 2026-09-20**, which collapsed the
 three per-command spellings into one leading-`*` pattern without losing coverage.
 
-**And 68 rules nobody has ever counted.** Four `.claude/settings.local.json`
-files sit *inside* `node_modules` — three copies of `resolve` and one of
-`nanoid` — carrying **68 `allow` rules** that arrived by `npm install`, not from
-this machine. They are the package maintainer's own grants, published to npm by
+**And rules nobody has ever counted.** `.claude/settings.local.json` files sit
+*inside* `node_modules`, carrying `allow` rules that arrived by `npm install`, not
+from this machine. **Re-counted 2026-09-21: three files, 60 rules** — three copies
+of `resolve`. As first found on 2026-09-20 it was four files and 68 rules; `nanoid`'s
+copy is gone. They are the package maintainer's own grants, published to npm by
 accident, and one of them ships a `notes.md` of their house style. The 384 count
 never included them. Found 2026-09-20 while cross-checking the Voice-Flow pass;
 see Phase 9.
@@ -1344,8 +1346,8 @@ memory and `STANDARDS.md` is harmless.
 ## PHASE 8 — Where rules live: divide, standardise, restructure  (HIGH)
 
 Opened 2026-09-20 at Amit's request: review **everything built in the setup**, not
-just the day's work, and decide what is universal versus project-specific. Nothing
-in this phase has been actioned — it is a survey plus a proposal.
+just the day's work, and decide what is universal versus project-specific. **Steps 1, 2
+and 3 have since been actioned** — step 4 has not. The survey below is unchanged.
 
 **Full write-up:** https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy
 
@@ -1410,7 +1412,8 @@ Packbly_web's 6, Voice Flow_v1's 5, FinNode's hard rules and architecture, and a
 
 ### The cost, and the shape of the fix
 
-Six global files load **every turn**: 2,968 words, ≈3,900 tokens before Amit types.
+Six global files load **every turn**: 2,968 words when this was written, ≈3,900 tokens.
+**Now 2,478 words** — Phase 11 cut them and step 3 added one sentence back.
 Promoting a rule is not free — it loads in every session of every project forever.
 
 **The fix is the pattern already invented in Voice-Flow:** state the rule as a
@@ -1432,9 +1435,10 @@ arbitrary-code-execution rules. Separate problem, separate page — see Phase 9.
 
 ---
 
-## PHASE 9 — The 384 project permission rules  (HIGH — one safety item)
+## PHASE 9 — The 384 project permission rules  (DONE — the safety item is closed)
 
-Surveyed 2026-09-20, **nothing actioned.**
+Surveyed 2026-09-20; **actioned 2026-09-21** — see the Phase 9 rows in the status table.
+The category counts below are the original survey and were already stale when acted on.
 **Full audit, all 384 rules searchable:** https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD
 
 **Correction recorded first:** the 384 rules cost **zero tokens**. They are read by
@@ -1443,7 +1447,8 @@ The two were conflated when first reported to Amit.
 
 **Second correction, 2026-09-20: the audit missed 68 rules.** Four
 `.claude/settings.local.json` files live *inside* `node_modules` — three copies of
-`resolve`, one of `nanoid` — and the 384 count never saw them. They are not Amit's:
+`resolve`, one of `nanoid` — and the 384 count never saw them. **Re-counted
+2026-09-21: three files, 60 rules; `nanoid`'s copy is gone.** They are not Amit's:
 they are the package maintainers' own Claude Code grants, published to npm by
 accident, and `resolve`'s folder also ships a `notes.md` describing that project's
 house style. Practically they are inert, because Claude Code reads settings from the
@@ -1487,7 +1492,7 @@ Categories overlap; the totals do not sum to 384.
 
 ---
 
-## PHASE 10 — Project-by-project review  (IN PROGRESS)
+## PHASE 10 — Project-by-project review  (COMPLETE 2026-09-20 — all five projects)
 
 Opened 2026-09-20 at Amit's direction, and it **changes the order of everything
 left**. Phases 8 and 9 both proposed a global pass first. That is backwards: what
@@ -1981,7 +1986,8 @@ Run after the last three passes, at Amit's request. Four results.
 1. **Project `allow` rules totalled 285** at that point, counted live by walking every
    `.claude/settings*.json` under `VS Code/` rather than by arithmetic. **After the two
    follow-ups below it is 244**: Voice-Flow 180, `vthrudebugger_v1` 19, FinNode 13,
-   `Debugger v2` 9, Voice Flow_v1 9, Packbly_web 8, Emp portal 6.
+   `Debugger v2` 9, Voice Flow_v1 9, Packbly_web 8, Emp portal 6. **Phase 9 then took
+   it to 221 on 2026-09-21** — Voice-Flow 165, FinNode 8, Packbly_web 5, rest unchanged.
 2. **D23 holds.** No project grants access to another, and no `additionalDirectories`
    entry reaches outside its own tree.
 3. **A defect introduced this session, found and fixed.** Several rules written during
@@ -2047,10 +2053,10 @@ grants. It was left in place by the "leave the rest" instruction.
 
 **Phase 9's headline is now closed.** Its survey found 18 rules that execute arbitrary
 code and bypass the entire ask list. **No project holds a broad one any more**, verified
-by sweeping every `.claude/settings*.json` under `VS Code/`. Project `allow` rules stand
-at **244**.
+by sweeping every `.claude/settings*.json` under `VS Code/`. Project `allow` rules stood
+at **244** then, and at **221** after Phase 9 on 2026-09-21.
 
-## PHASE 11 — The global pass  (six imported files DONE; permission list remains)
+## PHASE 11 — The global pass  (COMPLETE — six imported files and the permission list)
 
 **Parked 2026-09-20.** Only `OLLAMA.md` was done, and only because it describes a
 local tool that no project pass can have an opinion about. Everything else waits

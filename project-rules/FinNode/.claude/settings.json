@@ -1,14 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rtk ls *)",
-      "Bash(rtk df *)",
-      "WebFetch(domain:github.com)",
       "WebFetch(domain:kotl.in)",
       "Bash(git add *)",
       "Bash(rtk git *)",
-      "Bash(rtk grep *)",
-      "Bash(rtk du *)",
       "Edit(docs/**)",
       "Write(docs/**)",
       "Edit(CLAUDE.md)",
