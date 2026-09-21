@@ -8,7 +8,7 @@ metadata:
   modified: 2026-07-28T16:44:48.707Z
 ---
 
-**Four of these five rules are global now** — see `STANDARDS.md` § *Plan before building*, § *When something is unclear* and § *Git*. Kept here for the dated evidence of where each came from. Only the stash-and-branch technique at the end is not written down globally.
+**All five of these rules are global now** — see `STANDARDS.md` § *Plan before building*, § *When something is unclear* and § *Git*. Kept here for the dated evidence of where each came from. The stash-and-branch technique was the last one outstanding and was promoted to § *Git* on 2026-09-21.
 
 For UI/bug-fix work on this repo, follow this loop: understand the problem, share a written plan (issue-by-issue, with file:line references), let the user review, only then implement.
 

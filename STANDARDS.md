@@ -139,7 +139,9 @@ one. Branch, commit, push and open the PR only once I say "send it for review" o
 equivalent — and nothing lands on `main` directly.
 
 **One PR per feature, on its own branch off `main`.** Never stacked on an earlier PR's
-branch that hasn't merged yet.
+branch that hasn't merged yet. If another branch is checked out with uncommitted work,
+stash only the files for the new change, branch fresh off `main`, and pop the stash there
+— never carry the other PR's commits along.
 
 **`~/.claude` is the exception.** The setup repo has no reviewer and no PR flow, so its
 commits land on `main` directly. Everything else branches.
