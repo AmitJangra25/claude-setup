@@ -1,6 +1,6 @@
 ---
 name: claude-setup-plan-in-progress
-description: The Claude Code setup is being repaired against a written plan at ~/.claude/SETUP-PLAN.md — read it before touching rules, settings or permissions
+description: The Claude Code setup repair is COMPLETE — the plan at ~/.claude/SETUP-PLAN.md is now the finished record and the rebuild runbook; read it before touching rules, settings or permissions
 metadata:
   type: project
 ---
@@ -16,7 +16,7 @@ The plan file holds the verified inventory, all 20 decisions with their
 reasoning, and a record of every claim that turned out to be wrong when checked
 — so work resumes from a known state rather than a guess.
 
-**Where it stands 2026-09-21. Every phase is closed** — 2c, 8 and 9 were confirmed done on 2026-09-21, the last three markers having been stale rather than open work; the only item left is the Voice-Flow git-history rewrite, which waits for that repo going public. Earlier: Phases 1-7 and 5.1-5.8 are done, **all five project
+**COMPLETE 2026-09-21. Every phase is closed, and so is the last open item** — Voice-Flow's git history was rewritten that day at Amit's request, stripping `CLAUDE.md` from all 162 commits on both branches, with a mirror backup of the originals in `~/.claude/backups/2026-09-21-voice-flow-history/`. **Nothing is open; do not invent a next piece.** Earlier status: **every phase closed** — 2c, 8 and 9 were confirmed done on 2026-09-21, the last three markers having been stale rather than open work; the only item left is the Voice-Flow git-history rewrite, which waits for that repo going public. Earlier: Phases 1-7 and 5.1-5.8 are done, **all five project
 passes are done**, and **Phase 11's six global files are done** — 3,201 → 2,444 words,
 ~4,225 → ~3,226 tokens every turn. **Phase 11 is complete** — the permission list was
 passed too, adding 5 rules and removing none (`ask` 107 → 112, `allow` 35, `deny` 2).
