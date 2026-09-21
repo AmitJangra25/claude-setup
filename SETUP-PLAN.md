@@ -83,9 +83,9 @@ is unpushed anywhere now.**
 Emp portal's `.claude/settings.json` is untracked and, since
 2026-09-21, **gitignored too** — one line added at Amit's request, matching Voice-Flow's
 shape and verified with `git check-ignore`. That `.gitignore` edit is **uncommitted** in
-that repo, and is the only thing left outstanding there. `backups/` is gitignored, so every backup is
-local to this machine — **except what is in `archive/`**, which is tracked and pushed
-precisely so it survives the Mac. Today that is Voice-Flow's pre-rewrite history.
+that repo, and is the only thing left outstanding there. **`backups/` was deleted on 2026-09-21** — see
+§ *Where the backups went*. What could not be recreated moved into `archive/`, which is
+tracked and pushed precisely so it survives the Mac.
 
 ## Next session: start here, not at the top
 
@@ -362,10 +362,14 @@ everything in the "survives account switch" table below.
 
 ## Verify that state rather than trust it
 
+**The first two commands no longer apply** — `backups/` was deleted 2026-09-21 and that
+snapshot now lives in `archive/pre-setup-originals-2026-09-18.tar.gz`. Extract it to
+somewhere temporary if you need to run them.
+
 ```bash
-# backup exists, 27 files
-ls -1 ~/.claude/backups/2026-09-18-setup/global | wc -l      # expect 10
-find ~/.claude/backups/2026-09-18-setup -type f | wc -l      # expect 27
+# backup exists, 27 files — HISTORICAL, backups/ is gone
+# ls -1 ~/.claude/backups/2026-09-18-setup/global | wc -l    # expected 10
+# find ~/.claude/backups/2026-09-18-setup -type f | wc -l    # expected 27
 
 # git repo exists, both commits present, tree clean
 git -C ~/.claude log --oneline                               # newest first; 14883fa is the baseline
@@ -389,6 +393,7 @@ If `tccutil` returns 0, 1.2 has been reverted — check `git log` and
 
 ```bash
 # Five dated backups, one per editing step. All verified with `cmp` when made.
+# HISTORICAL — backups/ was deleted 2026-09-21; this lists nothing now.
 ls -1d ~/.claude/backups/*/
 #   2026-09-18-setup     before 1.1   (27 files, the original state)
 #   2026-09-18-phase2    before 2a+2b (11 project settings files)
@@ -925,7 +930,7 @@ not wrap `sudo`, `tccutil`, `security`, `kill`, `killall`, `pkill`, `open`,
 is unreachable and `rtk proxy` alone covers it. Verified against `rtk --help`,
 rtk 0.48.0.
 
-**Undo:** `backups/2026-09-20-phase3/`.
+**Undo:** was `backups/2026-09-20-phase3/`; that folder is gone since 2026-09-21, and this state is recoverable from git history instead — it was verified as such before the delete.
 
 ---
 
@@ -963,7 +968,7 @@ of 7b's +626. It loads in every session in every project.
 line 113 onward (3 lines removed, 31 added), and the section list is unchanged
 apart from the new `tccutil` subsection.
 
-**Undo:** `cp backups/2026-09-20-phase3/STANDARDS.md STANDARDS.md`.
+**Undo:** was `cp backups/2026-09-20-phase3/STANDARDS.md STANDARDS.md`; `backups/` is gone since 2026-09-21, so use `git show <commit>:STANDARDS.md` — that file is tracked and every version is in this repo.
 
 ---
 
@@ -1072,19 +1077,45 @@ re-clone the 8 projects. The projects carry their own `CLAUDE.md` and
 `.claude/settings.json` in their own repos — except two, see 5.7.
 
 **What comes back with the clone, and what does not.** `archive/` is tracked, so it
-arrives with the repo. `backups/` is gitignored and does **not** — every dated backup
-under it dies with the machine it was made on, by design, because they are working
-snapshots rather than records.
+arrives with the repo. `backups/` no longer exists: it was deleted on 2026-09-21 once
+its contents were proven recoverable, and anything that has to outlive a machine goes in
+`archive/` instead.
 
 `archive/` holds what cannot be recreated:
 
 | File | What it is |
 |---|---|
+| `archive/pre-setup-originals-2026-09-18.tar.gz` | The 29 files from the old `backups/` that existed in **no git repo at all** — 127 KB. Voice-Flow's original 110 KB `CLAUDE.md`, the eight pre-Phase-2 project settings files from when the projects held 560 `allow` rules, and the original `SETUP-PLAN.md`. Established by hashing all 135 backup files as git blobs against every commit in this repo and all eight project repos: 101 were recoverable, 34 were not, 5 of those were Claude Code's own `.claude.json` app state and were deliberately dropped. |
 | `archive/voice-flow-pre-rewrite-2026-09-21.bundle` | Voice-Flow's complete history **before** the 2026-09-21 rewrite — 162 commits, both branches, 2.2 MB. The rewrite made those commits unreachable on GitHub, so this is the only durable copy. Restore with `git clone <bundle> voice-flow-original`. It contains the 4,647-byte `CLAUDE.md` the rewrite removed, which is **why this repo must stay private** — the same reason `project-rules/` holds every project's current `CLAUDE.md`. |
 
 `archive/README.md` carries the same facts next to the file, so they survive being read
 out of context. Adding to `archive/` needs a named allow-line in `.gitignore`, which
 blocks everything by default.
+
+### Where the backups went
+
+**`~/.claude/backups/` was deleted on 2026-09-21**, at Amit's request, after its contents
+were proven recoverable rather than assumed to be. It had grown to 21 dated folders,
+5.2 MB, one per editing step.
+
+The test, run before anything was removed: every one of the **135 files** was hashed as a
+git blob and looked up in every commit of this repo and of all eight project repos.
+
+| | |
+|---|---|
+| **101** | recoverable from git — the mirrored project rules, the global files, the memories |
+| **29** | recoverable from nowhere → archived as `pre-setup-originals-2026-09-18.tar.gz`, then verified by extracting and comparing all 29 byte-for-byte |
+| **5** | Claude Code's own `.claude.json.backup.*` app state — account info and caches it rewrites itself. **Dropped deliberately**, and they are the one thing that is genuinely gone |
+
+The 3.0 MB `2026-09-21-voice-flow-history/` mirror went too, superseded by
+`archive/voice-flow-pre-rewrite-2026-09-21.bundle`, which was verified to restore all 162
+commits before the mirror was touched.
+
+**The rule going forward:** a working snapshot taken during an edit is disposable and
+belongs nowhere permanent. Anything that cannot be reconstructed from a git repo goes in
+`archive/`, tracked, with its provenance written into `archive/README.md` at the same
+time. Every older § in this plan that says *"Backup: `backups/<date>-<name>/`"* is a
+record of what was done that day, not a path that still exists.
 
 ---
 
@@ -1118,7 +1149,7 @@ README.md                     <- new: how to rebuild, points at this file
 | `.claude.json` | 92 KB | Account UUIDs, machine ID, every folder you have opened, all cached state |
 | `history.jsonl` | 348 KB | **Every prompt you have typed, plus pasted content** |
 | `projects/**/*.jsonl` | ~158 MB | 61 full session transcripts — entire conversations |
-| `backups/` | 460 KB | Copies of `.claude.json` |
+| `backups/` | — | **Deleted 2026-09-21.** Held copies of `.claude.json` plus every dated pre-change snapshot. What was irreplaceable is in `archive/`; the rest was recoverable from git |
 | `plugins/`, `skills/synced/` | 24 MB | Account-keyed; regenerate on login. Committing them would carry A's UUID into B |
 | `file-history/`, `paste-cache/` | 6 MB | Snapshots of your files and clipboard |
 | `shell-snapshots/`, `session-env/`, `sessions/`, `cache/`, `tmp/`, `jobs/`, `tasks/`, `ide/`, `downloads/`, `feedback/`, `daemon*` | — | Machine state, no value elsewhere |

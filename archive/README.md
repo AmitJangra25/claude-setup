@@ -30,3 +30,32 @@ git -C voice-flow-original log --all --oneline -- CLAUDE.md   # proves it is all
 To put that history back on GitHub, add the remote and force-push both branches — which
 undoes the rewrite for everyone. Verified 2026-09-21: `git bundle verify` reports a
 complete history, and a test clone returned all 162 commits with both original tips.
+
+## pre-setup-originals-2026-09-18.tar.gz
+
+The 29 files from `backups/` that existed in **no git repository at all** — 127 KB
+compressed, 390 KB raw. Kept when `backups/` was deleted on 2026-09-21, because
+everything else in it was recoverable and these were not.
+
+Established by hashing all 135 backup files as git blobs and testing membership
+against every commit in this repo and all eight project repos: 101 were recoverable,
+34 were not, and 5 of those 34 were Claude Code's own `.claude.json.backup.*` app
+state — account info and caches the app rewrites itself — deliberately not kept.
+
+What is in it:
+
+- **Voice-Flow's original `CLAUDE.md`, 110 KB** — the file item 5.1 cut to 29 KB. It was
+  never in any git repo, because `CLAUDE.md` is gitignored in that project. This is the
+  only copy of the version the evidence in `docs/working-rules.md` was extracted from.
+- **The pre-cleanup permission state** — eight project `settings.json` /
+  `settings.local.json` files as they stood before Phase 2, when the projects held 560
+  `allow` rules. `project-rules/` only began mirroring after that cleanup, so the repo
+  has no record of what was removed.
+- **The original `SETUP-PLAN.md`**, from before the baseline commit `14883fa`.
+
+Verified 2026-09-21: extracted to a temp directory and compared file by file — all 29
+byte-identical to the originals, before `backups/` was removed.
+
+```bash
+tar -xzf archive/pre-setup-originals-2026-09-18.tar.gz -C /tmp   # restores under backups/
+```

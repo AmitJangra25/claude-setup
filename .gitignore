@@ -61,6 +61,7 @@
 !archive/
 !archive/README.md
 !archive/*.bundle
+!archive/*.tar.gz
 
 # --- allow: memory files ONLY. Session transcripts sit in the same tree
 #     and must stay out, so this walks in by directory and takes .md only.
