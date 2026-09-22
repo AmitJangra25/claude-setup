@@ -195,7 +195,7 @@ part did not change. Verified by sweeping every `.claude/settings*.json` under
 Measured 2026-09-22 from the `usage` counts in 68 session transcripts, then cut the same
 day. The headline: **the rule files were never the load.**
 
-    before          after      what it is
+    before       projected     what it is
     ~58,300        ~36,800     total first-turn input, no prompt typed yet
     ~30,000        ~30,000     Claude Code's system prompt, tool schemas, built-in
                                skills — arrives before any file here. Not settable.
@@ -203,6 +203,17 @@ day. The headline: **the rule files were never the load.**
      20,480             0      10 plugin skill catalogues
       2,359           ~500     account-level synced skills (8 turned off)
           0             0      Sentry, Claude Docs kept; ClickUp, Figma, Slack cut
+
+**Measured after the cut — 45,102, on 2026-09-22.** The `projected` column is arithmetic:
+the before figure minus the component estimates. It was **8,302 low**. The first real
+post-cut session reads 45,102 against the last pre-cut session's 58,335 in the same
+project 96 minutes earlier — a saving of **13,233, or 62% of the 21,500 projected**.
+Which component is optimistic is not known, because `usage` records totals and not a
+split; settling it needs a live per-component breakdown. What was re-checked does hold:
+10 plugins disabled and 4 kept, and the imported rule files at ~3,077 tokens against the
+3,166 recorded. **n = 1 on each side** — the before and after are each a single session —
+so 45,102 is the right order of magnitude, not a figure to ±1,000. The projection is left
+standing above rather than overwritten, per **D25**.
 
 **Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
 what a session costs — and it is the part that decides how work gets done. The 93% that
@@ -217,8 +228,9 @@ already lazy; disabling it does not make it lazier, it makes it undiscoverable.
 
 **Caching changes what the number means.** Across 14,048 model calls, **98.3% of input
 tokens were cache reads**, billed at 0.1×. Effective input cost is **12% of raw**, so
-~58,300 raw was ~5,800 effective per turn and ~36,800 is ~3,700. The saving is real but
-it compounds slowly — worth doing once, not worth chasing in 200-token increments.
+~58,300 raw was ~5,800 effective per turn and the measured 45,102 is ~4,500. The
+saving is real but it compounds slowly — worth doing once, not worth chasing in
+200-token increments.
 
 **What is not worth cutting**, measured rather than assumed: FinNode's `CLAUDE.md` is
 3,748 tokens, and splitting its rule claims from their evidence looked like a 41% win on

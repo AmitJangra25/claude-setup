@@ -17,13 +17,16 @@ measurements:
    Every session opened at **~58,300 input tokens** before a prompt was typed, of which
    the global rule files were **7%**. ~30,000 is Claude Code's own system prompt and tool
    schemas and is not settable. **98.3% of all input tokens are cache reads**, so
-   effective cost is 12% of raw.
-2. **10 unused plugins disabled**, `~20,480 tokens a turn` — `small-business` alone was
-   11,678. Kept `engineering`, `pdf-viewer`, `browser-use`, `swift-lsp`. Checked first
-   that no project depends on them: every grep hit was prose, and the only `Skill()`
-   permission rules anywhere name `claude-api`, which is built in. 8 account-level synced
-   skills turned off the same day, and the ClickUp, Figma and Slack connectors
-   disconnected at claude.ai. Sentry kept by choice.
+   effective cost is 12% of raw. **Re-measured the same day, after the cuts:
+   45,102** — a real saving of 13,233 against the 21,500 that was projected by
+   subtracting the component estimates. The components over-predict; which one is
+   optimistic is not known. `ENVIRONMENT.md` holds the detail and the n=1 caveat.
+2. **10 unused plugins disabled**, `~20,480 tokens a turn` (estimated — see item 1) —
+   `small-business` alone was 11,678. Kept `engineering`, `pdf-viewer`, `browser-use`,
+   `swift-lsp`. Checked first that no project depends on them: every grep hit was prose,
+   and the only `Skill()` permission rules anywhere name `claude-api`, which is built
+   in. 8 account-level synced skills turned off the same day, and the ClickUp, Figma and
+   Slack connectors disconnected at claude.ai. Sentry kept by choice.
 3. **`CLAUDE.md` imports 3 files, not 5.** `PROJECTS.md` and `REPOS.md` are reference,
    not rules, so they joined `ENVIRONMENT.md` and this file in the "not imported on
    purpose" block. Global block **4,214 → 3,166**.
