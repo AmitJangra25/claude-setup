@@ -1,8 +1,13 @@
 # Phase 2a + 2b — rules proposed for removal
 
 Generated 2026-09-18. **APPLIED 2026-09-18** — all 144 rules below were approved
-and removed. Kept as the record of what went and why. Restore point:
-`~/.claude/backups/2026-09-18-phase2/`.
+and removed. Kept as the record of what went and why.
+
+> **Restore point gone, 2026-09-21.** This read `~/.claude/backups/2026-09-18-phase2/`.
+> `backups/` was deleted that day after all 135 files were hashed against every commit
+> in this repo and the eight project repos: 101 were recoverable, and the 29 that were
+> not are in `archive/pre-setup-originals-2026-09-18.tar.gz`, which includes the
+> pre-Phase-2 settings files this list was generated against.
 
 Every rule below is an `allow` rule. Removing one can only ever ADD a prompt —
 it cannot remove a protection or unblock anything.

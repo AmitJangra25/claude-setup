@@ -40,10 +40,15 @@ preference saved in a project is structurally trapped there — which is why thi
 note exists in more than one project folder. **A hand-written global skill is
 picked up immediately**, not at next session start, but it is gitignored unless
 added to `.gitignore` by name, and would otherwise be lost on an account switch.
-**Project rules that execute arbitrary code are still open in Debugger v2 and
-Voice Flow_v1** (`python3 -c ' *`). And **measure a section before proposing its
+**The arbitrary-code rules are closed** — this note said they were still open in
+Debugger v2 and Voice Flow_v1 (`python3 -c ' *`) until 2026-09-22, when a sweep of
+both files found **zero**; Phase 10 had already removed them. Voice-Flow keeps two
+`python3` rules, but each spells the whole command out with no wildcard, so neither
+is a hole. And **measure a section before proposing its
 fix** — FinNode's biggest section looked like Voice-Flow's problem and
-measurement said otherwise.
+measurement said otherwise. That held a second time on 2026-09-22: see decision D26 in
+`SETUP-PLAN.md` — trim a rule file only where the content is a *procedure*, never
+where it is a *rule*.
 
 Three review pages: setup https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 · permissions https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD · structure https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy
 

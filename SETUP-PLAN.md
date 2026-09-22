@@ -6,7 +6,49 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-## Where this stands — 2026-09-21
+## Where this stands — 2026-09-22
+
+**The plan is still complete.** 2026-09-22 was a maintenance pass on top of it, not a
+reopening: no phase was added and no decision reversed. Five things changed, all recorded
+in `ENVIRONMENT.md` § *What every session loads before you type*, which now holds the
+measurements:
+
+1. **Startup context measured for the first time** — 68 transcripts, real `usage` counts.
+   Every session opened at **~58,300 input tokens** before a prompt was typed, of which
+   the global rule files were **7%**. ~30,000 is Claude Code's own system prompt and tool
+   schemas and is not settable. **98.3% of all input tokens are cache reads**, so
+   effective cost is 12% of raw.
+2. **10 unused plugins disabled**, `~20,480 tokens a turn` — `small-business` alone was
+   11,678. Kept `engineering`, `pdf-viewer`, `browser-use`, `swift-lsp`. Checked first
+   that no project depends on them: every grep hit was prose, and the only `Skill()`
+   permission rules anywhere name `claude-api`, which is built in. 8 account-level synced
+   skills turned off the same day, and the ClickUp, Figma and Slack connectors
+   disconnected at claude.ai. Sentry kept by choice.
+3. **`CLAUDE.md` imports 3 files, not 5.** `PROJECTS.md` and `REPOS.md` are reference,
+   not rules, so they joined `ENVIRONMENT.md` and this file in the "not imported on
+   purpose" block. Global block **4,214 → 3,166**.
+4. **9 dead or duplicate `allow` rules removed**, global `allow` **35 → 33**. Two global
+   `gh` rules could never fire — an `ask` rule matches first — and this plan had recorded
+   them as dead letters since 2026-09-18 without removing them. `ask` (51) and `deny` (2)
+   verified byte-identical; diffed against pre-edit copies, **9 lines out, 0 in**.
+5. **`cleanupPeriodDays` set to 60.** Transcripts are the evidence base for every measured
+   number in these docs, so they get retention rather than a delete. Nothing was removed
+   when it was set; the oldest transcript was 21 days old.
+
+**Two things were measured and deliberately NOT done.** FinNode's `CLAUDE.md` splits into
+573 tokens of rule claims and 990 of supporting prose, which looked like the Voice-Flow
+110 KB win again — but reading it showed the prose is mostly operative, not historical.
+**That diagnosis has now failed to transfer to FinNode twice**; D26 records it. And the
+`engineering` plugin's 871 tokens are catalogue entries, not skill bodies, so disabling it
+would not make it lazier — only undiscoverable.
+
+**Still open, carried from the 2026-09-22 audit:** the three documentation defects fixed
+that day are closed, but **Voice-Flow still holds one standing grant into another folder**
+— a `Bash(cd "…/SecondBrain Obsidian" && …)` rule that contradicts **D23**. Item 5.2 swept
+`Read()` rules and this is a `Bash()` rule, so it survived. Read-only and pinned to two
+files, so it is small, but it is the one place the config and a written decision disagree.
+
+## Where this stood — 2026-09-21
 
 **Everything through Phase 11 is done.** All five project passes (Voice-Flow, FinNode,
 `vthrudebugger_v1`, `Debugger v2`, `Emp portal`), all six global files, and the global
@@ -350,8 +392,8 @@ pass (−12) · **299** after the `vthrudebugger_v1` pass (−19) · **291** aft
 the two same-day follow-ups (−41 stripping Voice Flow_v1, Voice-Flow unchanged at 141)
 · **221** after Phase 9 on 2026-09-21 (−23).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
-arithmetic. Global `allow` is unchanged
-at 35 and `deny` at 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
+arithmetic. Global `allow` is **33** since 2026-09-22 (two dead `gh` rules removed; it
+read 35 from 2026-09-18 until then) and `deny` is 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
 107 after the Voice-Flow pass added the `git * commit *` spellings, 112 after Phase 11
 fenced `wget` and `pip`, then **51 after the merge of 2026-09-20**, which collapsed the
 three per-command spellings into one leading-`*` pattern without losing coverage.
@@ -606,6 +648,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D24 | **Voice Flow's rule claims live in `CLAUDE.md`, the evidence in `docs/`.** This knowingly bends `docs/README.md`'s own rule 4 ("the moment two files carry the same rule, one of them starts lying"): each claim line now exists twice. Accepted because D7 asked for "short rules + separate docs" and a pointer-only `CLAUDE.md` would leave every Voice Flow session with no rules in context. Tie-breaker written into both files: if they disagree, **`CLAUDE.md` is the rule** and the document is the record of why — fix the document | 2026-09-18 |
 | D25 | **A stale measurement is annotated, never overwritten.** When 5.1 part two found a figure the code had outgrown, the original sentence and its date were left standing and a dated `> **Measured again**` note was added beside it. Overwriting the number would destroy the thing the document exists for — what was true when the rule was made, and how far it has moved since. Same principle as `dont-delete-reference-docs`, applied inside a file rather than to it | 2026-09-18 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
+| D26 | **A rule file is trimmed only where the content is a *procedure*, never where it is a *rule*.** A procedure is "how to do X" — you know you are doing X, so a skill's description fires reliably. A rule is "don't do Y" — you do not know you are about to do Y, so there is no trigger and lazy-loading it means it silently never loads. Anything moved out of an always-loaded file leaves a one-line pointer naming the skill and when to load it, the way `OLLAMA.md` does, so the load is an instruction rather than a judgement call. Applied 2026-09-22 to decline the FinNode split: measured 573 tokens of rule claims against 990 of supporting prose, but the prose is mostly operative — which of `observeById`/`getById` fails which way, that moving the device clock does not fire a pending sweep. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode twice.** Measure the sections before proposing the fix | 2026-09-22 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

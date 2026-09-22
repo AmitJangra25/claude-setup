@@ -2,7 +2,11 @@
 
 Generated 2026-09-18. **B1 (14) and B2 (9) were approved and removed on 2026-09-18.**
 **B3 (74) was held by choice — see D21.** The 3 flagged rules at the end are
-still undecided. Restore point: `~/.claude/backups/2026-09-18-phase2c/`.
+still undecided.
+
+> **Restore point gone, 2026-09-21.** This read
+> `~/.claude/backups/2026-09-18-phase2c/`. See the same note in `PHASE2-REMOVALS.md`:
+> the pre-Phase-2 settings files are in `archive/pre-setup-originals-2026-09-18.tar.gz`.
 
 Every rule below is an `allow` rule, so removing one can only ever ADD a prompt.
 The exact rule text lives in `PHASE2C-REMOVALS.json` beside this file — the 2a/2b

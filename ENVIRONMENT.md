@@ -3,12 +3,14 @@
 How Claude Code is set up here, and why each choice was made. Reference material —
 read it when you're about to change something, not on every session.
 
-**Not imported by `CLAUDE.md` on purpose.** The five files that *are* imported cost
-roughly 6,000 tokens on every turn of every session. A file explaining why a threshold
+**Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
+~3,166 tokens on every turn of every session. A file explaining why a threshold
 is 250K doesn't change how work gets done, so it stays out of that budget.
+`PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
+on 2026-09-22, for the same reason — reference, not rules.
 
-Last reviewed: 2026-09-15. Every number below was measured from session history on that
-date, not estimated — the commands are in the section at the end.
+Last reviewed: 2026-09-22. Every number below was measured from session history, not
+estimated — the commands are in the section at the end.
 
 ---
 
@@ -82,12 +84,15 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   35 rules    read-only things stop prompting
-    ask    112 rules    all on things that change something
+    allow   33 rules    read-only things stop prompting
+    ask     51 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 2026-09-20.** This block read `ask 87` until
-then, from the 2026-09-18 snapshot. The path since: **87 → 101** when Phase 3's gaps were
+**Counts measured against the live file 2026-09-22.** Two corrections this block carried
+for a while: it read `ask 87` until 2026-09-20, and then `ask 112` until 2026-09-22,
+having missed the merge that took **112 → 51** on 2026-09-20 (one pattern per command
+instead of up to three spellings — `SETUP-PLAN.md` § *`ask` list merged*). `allow` went
+**35 → 33** on 2026-09-22. The path before that: **87 → 101** when Phase 3's gaps were
 closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
 `SETUP-PLAN.md` § *Open: unproven*), **→ 112** when the permission-list pass added
 `rtk wget` and four `pip` spellings. The old "~5.0 prompts per session" figure was
@@ -115,9 +120,13 @@ directory. That last one matters — `blockReadsOutsideWorkingDirectories` is tr
 rtk's tee directory sits outside every project, so until this was made global, rtk
 could write overflow logs everywhere but read them back only in Voice-Flow.
 
-Two consequences to know about: `Bash(gh auth status*)` and `Bash(gh repo view*)` are
-now **dead letters**, because the broader `ask` rules override them. They were left in
-place rather than removed.
+Two consequences followed: `Bash(gh auth status*)` and `Bash(gh repo view*)` became
+**dead letters**, because the broader `ask` rules override them. They were left in place
+until **2026-09-22, when both were removed** — a rule that can never fire is a file
+claiming a permission it does not grant. Removing an `allow` rule can only ever add a
+prompt, and these already prompted. The same sweep removed two more in Voice-Flow
+(`GIT_EDITOR=true git rebase --continue`, `tccutil`), four exact duplicates, and one
+`lsregister` rule naming a `release/mac-arm64` path that no longer exists.
 
 **`allow`** — read-only `rtk` wrappers, `tree`, `xxd`, read-only `gh`, `WebSearch`, and
 docs domains. Purely additive: permission lists merge across files, so a global allow
@@ -178,6 +187,50 @@ part did not change. Verified by sweeping every `.claude/settings*.json` under
 > **Why it was reversed.** The 230-prompts figure was the cost of removing it *without
 > replacing it*. Naming the four read-only inner forms globally covers almost all of
 > that usage at no prompt cost, which was not considered at the time.
+
+---
+
+## What every session loads before you type
+
+Measured 2026-09-22 from the `usage` counts in 68 session transcripts, then cut the same
+day. The headline: **the rule files were never the load.**
+
+    before          after      what it is
+    ~58,300        ~36,800     total first-turn input, no prompt typed yet
+    ~30,000        ~30,000     Claude Code's system prompt, tool schemas, built-in
+                               skills — arrives before any file here. Not settable.
+      4,214         3,166      the imported global rules
+     20,480             0      10 plugin skill catalogues
+      2,359           ~500     account-level synced skills (8 turned off)
+          0             0      Sentry, Claude Docs kept; ClickUp, Figma, Slack cut
+
+**Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
+what a session costs — and it is the part that decides how work gets done. The 93% that
+is not your files is where the savings were, and they came from turning off plugins and
+connectors, not from editing prose.
+
+**A plugin's catalogue cost is not its skill bodies.** `claude plugin details <name>`
+splits the two: `engineering` costs 871 tokens always-on for 10 skills (~87 each, name
+and description), while each body — `code-review` 1,200, `debug` 1,200,
+`incident-response` 1,700 — loads only when that skill fires. A skill you keep is
+already lazy; disabling it does not make it lazier, it makes it undiscoverable.
+
+**Caching changes what the number means.** Across 14,048 model calls, **98.3% of input
+tokens were cache reads**, billed at 0.1×. Effective input cost is **12% of raw**, so
+~58,300 raw was ~5,800 effective per turn and ~36,800 is ~3,700. The saving is real but
+it compounds slowly — worth doing once, not worth chasing in 200-token increments.
+
+**What is not worth cutting**, measured rather than assumed: FinNode's `CLAUDE.md` is
+3,748 tokens, and splitting its rule claims from their evidence looked like a 41% win on
+paper. Reading it showed most of that prose is operative — which of `observeById` /
+`getById` fails which way, that moving the device clock does *not* fire a pending sweep.
+Only ~600 tokens are genuinely historical, in one project, at 0.1× — about 70 effective
+tokens a turn. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode
+twice.** Measure the sections before proposing the fix.
+
+**Retention.** `cleanupPeriodDays` is 60, set 2026-09-22. Transcripts are not junk: every
+number in this section came from them. Nothing was deleted when it was set — the oldest
+transcript was 21 days old.
 
 ---
 
