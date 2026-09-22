@@ -12,7 +12,6 @@
       "Bash([ -e \"$LIVE\" ])",
       "Bash(pgrep -f 'MacOS/Voice Flow$')",
       "Bash([ \"$STALE\" = \"$LIVE\" ])",
-      "Bash(/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -u '/Users/amitjangra/Documents/VS Code/Voice-Flow/release/mac-arm64/Voice Flow.app')",
       "Bash(/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -gc)",
       "Bash(npm run *)",
       "Bash(npm view *)",

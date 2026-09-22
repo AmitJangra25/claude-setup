@@ -4,8 +4,6 @@
   },
   "permissions": {
     "allow": [
-      "Bash(gh auth status*)",
-      "Bash(gh repo view*)",
       "Bash(gh run list*)",
       "Bash(rtk --version)",
       "Bash(rtk df *)",
@@ -119,9 +117,20 @@
     "padding": 0
   },
   "enabledPlugins": {
-    "swift-lsp@claude-plugins-official": true
+    "swift-lsp@claude-plugins-official": true,
+    "small-business@synced": false,
+    "figma@synced": false,
+    "sanity@synced": false,
+    "marketing@synced": false,
+    "product-management@synced": false,
+    "finance@synced": false,
+    "design@synced": false,
+    "cowork-plugin-management@synced": false,
+    "data@synced": false,
+    "productivity@synced": false
   },
   "effortLevel": "high",
   "theme": "dark",
-  "switchModelsOnFlag": true
+  "switchModelsOnFlag": true,
+  "cleanupPeriodDays": 60
 }
