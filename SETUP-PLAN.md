@@ -393,7 +393,10 @@ entries) · **330** after the Voice-Flow pass (−54) · **318** after the FinNo
 pass (−12) · **299** after the `vthrudebugger_v1` pass (−19) · **291** after the
 `Debugger v2` pass (−8) · **285** after the `Emp portal` pass (−6) · **244** after
 the two same-day follow-ups (−41 stripping Voice Flow_v1, Voice-Flow unchanged at 141)
-· **221** after Phase 9 on 2026-09-21 (−23).
+· **221** after Phase 9 on 2026-09-21 (−23) · **213** after the 2026-09-22
+maintenance pass (−8, all Voice-Flow: 2 dead, 4 duplicates, 1 naming a
+`release/mac-arm64` path that no longer exists, and the `SecondBrain Obsidian`
+cross-project grant D23 forbids).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
 arithmetic. Global `allow` is **33** since 2026-09-22 (two dead `gh` rules removed; it
 read 35 from 2026-09-18 until then) and `deny` is 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
@@ -1506,8 +1509,10 @@ project wins. **The files simply do not follow the rule that is already written.
 `~/.claude/projects/<project-path>/memory/`; there is no `~/.claude/memory/`.
 A preference stated once while working in Voice-Flow is saved into Voice-Flow's
 folder and only ever loads there, however universally it was meant. The only
-surface a universal rule can occupy is one of the five files `CLAUDE.md` imports.
-This is a storage fact, verified, not a judgement call.
+surface a universal rule can occupy is one of the files `CLAUDE.md` imports — five until
+2026-09-22, three since (`STANDARDS.md`, `RTK.md`, `OLLAMA.md`; `PROJECTS.md` and
+`REPOS.md` moved out as reference). This is a storage fact, verified, not a judgement
+call.
 
 ### A · Ten rules written in two places
 
@@ -2198,7 +2203,8 @@ grants. It was left in place by the "leave the rest" instruction.
 **Phase 9's headline is now closed.** Its survey found 18 rules that execute arbitrary
 code and bypass the entire ask list. **No project holds a broad one any more**, verified
 by sweeping every `.claude/settings*.json` under `VS Code/`. Project `allow` rules stood
-at **244** then, and at **221** after Phase 9 on 2026-09-21.
+at **244** then, at **221** after Phase 9 on 2026-09-21, and at **213** after the
+2026-09-22 maintenance pass.
 
 ## PHASE 11 — The global pass  (COMPLETE — six imported files and the permission list)
 
