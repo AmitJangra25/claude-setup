@@ -215,6 +215,14 @@ split; settling it needs a live per-component breakdown. What was re-checked doe
 so 45,102 is the right order of magnitude, not a figure to ±1,000. The projection is left
 standing above rather than overwritten, per **D25**.
 
+> **Measured again 25 Sep 2026 — post-Block-1 first-reply baseline: 44,700.** Fresh
+> sessions from the home folder, auto mode, Claude Code 2.1.282, `opus[1m]` at high
+> effort, prompt `Reply with the single word: ok`. Two runs were planned; a third
+> matching fresh session was found and included. Totals: **44,699 · 44,701 · 44,700**.
+> This is a baseline for later changes, not a measure of Block 1: 45,102 above is one
+> session under unrecorded conditions, so no Block 1 saving or cost is calculated from
+> it. Compare later figures only under the same version, model, mode, folder and prompt.
+
 **Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
 what a session costs — and it is the part that decides how work gets done. The 93% that
 is not your files is where the savings were, and they came from turning off plugins and
@@ -283,6 +291,11 @@ All from the session transcripts in `~/.claude/projects/*/*.jsonl`, which record
   splitting compound commands on `&& || ; | &` and stripping the documented wrappers.
   Measured 4.5 per session across 5,188 commands in 49 sessions.
 - **Command frequency** — count matches per tool call, divided by distinct sessions.
+- **Startup baseline** — fresh sessions only: new Terminal window, `cd ~`, bare `claude`,
+  the prompt `Reply with the single word: ok`, then `/exit`. Sum the three fields above
+  on that session's **first** assistant reply. A log counts only if it is new and its
+  first user message is that prompt — an attached or resumed session fails this. Record
+  version, model, effort, mode and folder with the figure.
 
 Re-run these before changing a threshold or a rule. Every number in this file came from
 them, and a guess that replaces a measurement is how the 150K threshold and the
