@@ -12,6 +12,52 @@ itself, and then say what it means. Group findings into a few buckets with count
 than listing every one, and ask two or three questions, not twelve. Never pad it out, and
 never trim so far the answer isn't in there.
 
+## Which project
+
+- **General mode is the default.** With no active project, answer from these global
+  rules only. Do not open, search or list any project, and read `PROJECTS.md` only
+  when I name one.
+- **Reading a file is not selecting a project.** Reading a file I point to, or
+  answering a question about the working folder, is a one-off: nothing else in that
+  project is opened and no project becomes active. Selecting a project is what allows
+  project work — planning, changing, recording.
+- **Select on evidence.** The main evidence is the working folder and the git
+  repository that contains it (`git rev-parse --show-toplevel`); the working folder
+  may be a subfolder. Where they help, also check the remote, the project's
+  `CLAUDE.md` and its `PROJECTS.md` entry. A project with no `CLAUDE.md`, ID or
+  registry entry can still be selected. Say in one line what was checked and what
+  was not available.
+- **If I name a project from general mode, do not open it.** Say which folder you
+  would use and what you would read there, and wait for me to confirm.
+- **If the evidence conflicts, stop and ask.** A check that cannot run — no git, no
+  remote, no entry yet — is reported as unavailable, not treated as a mismatch.
+- Never switch projects, and never look inside another project to settle a question.
+
+## How a task runs
+
+A small request — explain something, read a file, check status — is orient, answer,
+stop. No plan.
+
+Anything that changes something runs in this order. Most steps are sections of this
+file; the list only fixes the order.
+
+1. **Orient** — mode, project, folder, and the exact task. See *Which project*.
+2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
+3. **Plan** — *Plan before building.*
+4. **Approve** — nothing is changed, installed, run against anything outside the
+   folder, or sent online until I approve the plan.
+5. **Execute** — only what was approved. *Stay on the task you were given.*
+6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
+7. **Record** — in project mode, and only if the plan said so: verified results and
+   decisions in the project's roadmap, out-of-task findings in its backlog.
+8. **Handoff** — when the work is unfinished, or at the point *Plan before building*
+   says to start fresh, write a handoff note.
+9. **Stop** — what is done, what is not verified, what is deferred. Then wait.
+
+Templates for new-project discovery, the roadmap, the backlog and the handoff note are
+in `~/.claude/templates/`. Read one only when a step needs it. A project that already
+has a roadmap or backlog file keeps using it.
+
 ## Plan before building
 
 Share a written plan before implementing, then check that plan against the actual files
@@ -93,8 +139,10 @@ into one piece of work. Say something immediately only if it is actually broken,
 you already made turns out to be wrong.
 
 **That list is observations, not a menu of work.** Defects and facts only — never suggested
-tasks, never "worth checking", never extra verification of what you just built. Another
-project's issues wait for that project's turn. Empty is a normal outcome.
+tasks, never "worth checking", never extra verification of what you just built. In project
+mode, out-of-scope findings are also added to the project's backlog — only when the approved
+plan included that recording — and there each entry may carry a next step. Another project's
+issues wait for that project's turn. Empty is a normal outcome.
 
 This applies to investigation too: work out what the answer actually needs, check that,
 and stop. An adjacent check nobody asked for costs tokens twice — once to run, once to

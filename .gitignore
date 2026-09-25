@@ -81,3 +81,11 @@
 !skills/
 !skills/ollama/
 !skills/ollama/SKILL.md
+
+# --- allow: templates read on demand (STANDARDS.md § How a task runs).
+#     Named files only, same rule as project-rules/.
+!templates/
+!templates/new-project.md
+!templates/roadmap.md
+!templates/deferred-improvements.md
+!templates/handoff.md
