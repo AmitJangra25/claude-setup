@@ -284,10 +284,32 @@ standing above rather than overwritten, per **D25**.
 > tokens. **15 prefixed plugin keys do nothing**, having already done nothing as bare
 > names. **3 `artifact-*` keys** name skills that no longer load at all, since
 > `enableArtifact: false` removed them; harmless, left in place. So bare keys are
-> reliable and plugin skills are not reachable by this setting in either form tried.
-> Whether they can be reached at all is **open**: the `/skills` menu writes
-> `skillOverrides` itself, so whatever key it writes is the answer by definition. Not
-> yet run.
+> reliable and plugin skills are not reachable by this setting in any form.
+>
+> **Answered 2026-09-26, by Claude Code itself.** Searching `/skills` for `debug`
+> returns:
+>
+>     engineering:debug   locked by plugin · plugin · ~90 tok
+>     Plugin skills are managed via /plugin
+>
+> **`skillOverrides` cannot reach plugin skills by design.** The key format was never
+> the problem and no key would ever have worked — three guesses were spent before the
+> menu was asked. The menu is authoritative: it writes the file, and twice it saved
+> (mtime moved) while writing no entry for `engineering:debug`. The only lever on a
+> plugin skill is `/plugin`, whole-plugin on or off.
+>
+> **Use the menus, not hand-edited keys.** `/skills` writes the correct key by
+> definition — it produced `anthropic-skills:doc-coauthoring`, a prefix `/context`
+> never prints, so the key cannot be derived from what `/context` shows. Same for
+> `/plugin`.
+>
+> **`/skills` writes to `~/.claude/settings.local.json`, which is gitignored.** Verified
+> 2026-09-26: its `skillOverrides` block **merges** with the one in `settings.json`
+> rather than replacing it — after `doc-coauthoring` was set there, all 18 overrides in
+> `settings.json` still read <20 tokens. But because the file is gitignored it is **not
+> in this repo and does not travel to a second account** — see the Block 4 runbook.
+> `user-invocable-only` was confirmed working the same way: the skill count went 49 → 48
+> and `doc-coauthoring` left the list entirely, still typable as `/doc-coauthoring`.
 >
 > **Why this is not comparable with 44,700 above.** That figure is the sum of the
 > `usage` fields on a session's first assistant reply, which includes the first user
@@ -301,6 +323,17 @@ standing above rather than overwritten, per **D25**.
 > per **D26** a rule file is not trimmed. The system prompt, 3.2k, is not settable. It
 > grew 2.2k → 3.2k when the model changed from Opus 5.5 to Opus 5, so hold the model
 > fixed when comparing.
+
+> **Measured again later the same day — 22.0k.** `RTK.md` grew 374 → **491 tokens**
+> when the hook's real rewrite behaviour and the plain-form habit were added to it;
+> memory files 5.0k → 5.1k, total 21.9k → 22.0k. A deliberate +117, not a regression.
+> The 21.9k above stands as Block 2's result; this is the cost of a change made after it.
+>
+> **The estimate was within 1%, which makes the method usable.** The new size was
+> predicted at ~486 by scaling chars against the known 374-token reading
+> (915 → 1,190 chars); `/context` then reported 491. So a rule file's token cost can be
+> estimated from its character count without burning a fresh session — good to ±1% at
+> this size. Confirm with `/context` anyway when the change is large.
 
 **Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
 what a session costs — and it is the part that decides how work gets done. The 93% that

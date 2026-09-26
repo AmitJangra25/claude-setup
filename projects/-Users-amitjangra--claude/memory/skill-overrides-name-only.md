@@ -1,6 +1,6 @@
 ---
 name: skill-overrides-name-only
-description: skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are not reachable by either key format
+description: skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are locked and only /plugin reaches them
 metadata:
   type: reference
 ---
@@ -20,11 +20,21 @@ names, and failed again when rewritten with the prefix `/context` prints
 (`engineering:debug`, `pdf-viewer:view-pdf`). A wrong key is a no-op, not an error, so
 both attempts looked like success until a fresh session was measured.
 
-**Whether plugin skills can be overridden at all is unresolved.** Do not guess a third
-key format. The `/skills` menu writes `skillOverrides` itself — set one plugin skill
-there with Space, press Esc, and read what it wrote. Whatever key appears is correct by
-definition. If the menu refuses, the answer is that plugin skills are on or the plugin
-is off, and there is no middle state.
+**Plugin skills cannot be overridden at all — settled 2026-09-26.** `/skills` shows
+`engineering:debug` as **"locked by plugin · Plugin skills are managed via /plugin"**,
+and saved twice without writing an entry for it. There is no middle state for a plugin
+skill: it is on, or the whole plugin is off via `/plugin`.
+
+**Ask the menu before editing a key by hand.** `/skills` writes the correct key by
+definition, and it is not the name `/context` prints — `/context` shows
+`doc-coauthoring` under "claude.ai sync", while the menu wrote
+`anthropic-skills:doc-coauthoring`. Three key formats were guessed here before the menu
+was asked, and every one was a silent no-op.
+
+**`/skills` writes to `~/.claude/settings.local.json`, which is gitignored.** Its
+`skillOverrides` **merges** with the block in `settings.json` rather than replacing it
+— verified. But it is not in the repo, so skill state set through the menu does **not**
+travel to a second account. See [[claude-setup-status]] for Block 4.
 
 **What `skillOverrides` cannot reach.** A plugin whose cost is MCP *server
 instructions* rather than skill descriptions — `browser-use` — is only removed by

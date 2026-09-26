@@ -21,8 +21,9 @@ since then is a second pass on the same repo, organised as blocks:
   and the task order are in `STANDARDS.md`; four templates load on demand.
 - **Block 2 — startup context.** Done and measured. **58.3k → 34.3k → 21.9k.**
   See [[skill-overrides-name-only]] for the mechanism that did most of it, and for
-  the one part left open: plugin skills resist `skillOverrides` in every key format
-  tried, which is ~1.1k of the remaining 21.9k.
+  the part settled 2026-09-26: plugin skills are **locked by plugin** and no
+  `skillOverrides` key reaches them, so the only lever is `/plugin`. That is ~1.1k of
+  the remaining 22.0k.
 - **Block 3 — fix verified local defects, then test.** Three defects fixed
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports

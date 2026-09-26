@@ -1,3 +1,3 @@
 - [Claude setup status](claude-setup-status.md) — where the setup stands; read ~/.claude/SETUP-PLAN.md before touching rules, settings or permissions
-- [skillOverrides has four states](skill-overrides-name-only.md) — name-only keeps a skill usable for ~15 tokens; bare keys work, plugin skills are not reachable
+- [skillOverrides has four states](skill-overrides-name-only.md) — name-only keeps a skill usable for ~15 tokens; bare keys work, plugin skills are locked — use /skills and /plugin, never a hand-guessed key
 - [Stay on the asked task](stay-on-the-asked-task.md) — asked task only, reported short; extras go in "noting, not acting on"
