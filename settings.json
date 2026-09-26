@@ -203,8 +203,8 @@
       "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment",
       "### User-specific",
       "**Primary use of Claude Code**: software development",
-      "**Trusted repo**: The git repository the agent started in (its working directory) and its configured remote(s) — no remotes are currently configured for this checkout (/Users/amitjangra/Documents), and it has 0 tracked files",
-      "**Org-specific CLIs**: None configured — `rtk` appears frequently in this project's transcripts but no org affiliation was found for it"
+      "**Trusted repo**: The git repository the agent started in (its working directory) and its configured remote(s). Setup work runs in /Users/amitjangra/.claude, a private repo whose remote is github.com/AmitJangra25/claude-setup; project work runs in that project's own repo under /Users/amitjangra/Documents/VS Code/. /Users/amitjangra/Documents itself is not a repo and is not a working directory to start from",
+      "**Org-specific CLIs**: `rtk`, a local token-compressing command proxy on PATH — personal tooling, not an org service"
     ]
   }
 }

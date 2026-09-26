@@ -223,6 +223,39 @@ standing above rather than overwritten, per **D25**.
 > session under unrecorded conditions, so no Block 1 saving or cost is calculated from
 > it. Compare later figures only under the same version, model, mode, folder and prompt.
 
+> **Measured again 26 Sep 2026, and cut — 34.3k → 21.5k.** Method changed, so read the
+> caveat below before comparing with anything above. Figures are `/context` in a fresh
+> session from `~/.claude`, Opus 5, auto mode, no prompt typed.
+>
+> | | before | after |
+> |---|---|---|
+> | system tools | 17.1k | **9.7k** |
+> | skills (52 → 49) | 7.2k | **3.9k** |
+> | MCP server instructions | 1.5k | **0** |
+> | MCP tools | 725 | **0** |
+> | memory files | 4.6k | 4.6k |
+> | system prompt | 3.2k | 3.2k |
+> | **total** | **34.3k** | **21.5k** |
+>
+> Four changes in `settings.json`, each reversible by deleting its line:
+> `enableArtifact: false` (the largest single item), `disableClaudeAiConnectors: true`,
+> `browser-use@synced` disabled, and `skillOverrides` with 35 entries at `name-only`.
+> A second edit the same day fixed 15 plugin keys that needed a prefix and had silently
+> done nothing; **that fix is not yet re-measured** — expected near 20.6k.
+>
+> **Why this is not comparable with 44,700 above.** That figure is the sum of the
+> `usage` fields on a session's first assistant reply, which includes the first user
+> message and the system reminders around it. This one is `/context` with nothing typed.
+> The two methods differed by ~10k on the same day before any change was made, and which
+> is the better proxy for a real session is **not settled**. `/context` is used from here
+> on because it itemises and repeats; the 34.3k → 21.5k comparison is method-consistent
+> and is the one to trust.
+>
+> **What was deliberately not cut.** Memory files, 4.6k, of which `STANDARDS.md` is 4k —
+> per **D26** a rule file is not trimmed. The system prompt, 3.2k, is not settable. It
+> grew 2.2k → 3.2k when the model changed from Opus 5.5 to Opus 5, so hold the model
+> fixed when comparing.
+
 **Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
 what a session costs — and it is the part that decides how work gets done. The 93% that
 is not your files is where the savings were, and they came from turning off plugins and
@@ -291,7 +324,13 @@ All from the session transcripts in `~/.claude/projects/*/*.jsonl`, which record
   splitting compound commands on `&& || ; | &` and stripping the documented wrappers.
   Measured 4.5 per session across 5,188 commands in 49 sessions.
 - **Command frequency** — count matches per tool call, divided by distinct sessions.
-- **Startup baseline** — fresh sessions only: new Terminal window, `cd ~`, bare `claude`,
+- **Startup breakdown — use this one.** `/context all` in a fresh session, nothing typed:
+  it itemises every tool, skill and rule file with its own size, so a change can be
+  attributed rather than guessed. Settings load at startup, so **the session that makes a
+  change cannot measure it** — always open a new one. Record model and folder with the
+  figure; the system prompt alone moved 1k between Opus 5.5 and Opus 5.
+- **Startup baseline** — the older first-reply method, kept because the 2026-09-22 and
+  2026-09-25 figures use it. Fresh sessions only: new Terminal window, `cd ~`, bare `claude`,
   the prompt `Reply with the single word: ok`, then `/exit`. Sum the three fields above
   on that session's **first** assistant reply. A log counts only if it is new and its
   first user message is that prompt — an attached or resumed session fails this. Record

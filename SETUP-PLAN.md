@@ -6,7 +6,37 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-## Where this stands — 2026-09-22
+## Where this stands — 2026-09-26
+
+**Start setup sessions from `~/.claude`.** Memory is stored per starting folder, so
+sessions run from `~/Documents` wrote their notes into a folder that setup sessions
+never read. `~/Documents` is also not a repo and holds every project at once, which is
+the widest possible working directory — the opposite of the one-project boundary **D27**
+exists to keep.
+
+A second pass on this repo is running, organised as four blocks:
+
+| Block | What it is | State |
+|---|---|---|
+| 1 | Rules, task workflow, templates, permissions, startup baseline | **Done** — D27, and the baseline below |
+| 2 | Measure what loads at startup, and cut it | **Done and measured** — 34.3k → 21.5k, **D28** |
+| 3 | Fix verified local defects, then test a simple and a project task | **Defects fixed 2026-09-26; task tests not run** |
+| 4 | Review what is safe to keep in the repo, then switch accounts | **Not started** |
+
+Block 3's three defects, all found by audit on 2026-09-26 and fixed the same day: the
+`autoMode` trusted-repo line described `/Users/amitjangra/Documents` ("no remotes, 0
+tracked files") because `/auto-mode-setup` ran from there on 2026-09-22; the two memory
+notes lived only in the `~/Documents` memory folder; and `README.md` still said
+`CLAUDE.md` holds five `@`-imports, which has been three since 2026-09-22.
+
+**Block 4 has a definition now.** "User B" means a second Claude account used by Amit on
+this same Mac — not another macOS user. That is exactly what § *Rebuilding on another
+account* below was written for, so the runbook applies as written. Two of its facts are
+stale: ClickUp and Figma were disconnected on 2026-09-22, and **D28** turned the
+claude.ai connectors off wholesale, so step 5's list is now Sentry and Claude Docs only
+if they are wanted back. **The switch has never been tested.**
+
+## Where this stood — 2026-09-22
 
 **The plan is still complete.** 2026-09-22 was a maintenance pass on top of it, not a
 reopening: no phase was added and no decision reversed. Five things changed, all recorded
@@ -24,6 +54,11 @@ measurements:
    > **Measured again 25 Sep 2026:** post-Block-1 first-reply baseline **44,700**
    > (three fresh sessions: 44,699 · 44,701 · 44,700). Not comparable with 45,102 —
    > see `ENVIRONMENT.md` § *What every session loads before you type*.
+   > **Measured and cut again 26 Sep 2026: `/context` 34.3k → 21.5k**, by switching the
+   > Artifact tool off, disconnecting the claude.ai connectors, disabling `browser-use`,
+   > and setting 35 skills to `name-only`. Method changed — `/context` with nothing
+   > typed, not the first-reply sum — so it is **not** comparable with the figures above;
+   > `ENVIRONMENT.md` holds the table and the caveat. **D28.**
 2. **10 unused plugins disabled**, `~20,480 tokens a turn` (estimated — see item 1) —
    `small-business` alone was 11,678. Kept `engineering`, `pdf-viewer`, `browser-use`,
    `swift-lsp`. Checked first that no project depends on them: every grep hit was prose,
@@ -659,6 +694,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D23 | **A project may read its own tree silently. Another project — never, not by any rule. Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing grant.** Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects." Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is another project, so it goes too | 2026-09-18 |
 | D24 | **Voice Flow's rule claims live in `CLAUDE.md`, the evidence in `docs/`.** This knowingly bends `docs/README.md`'s own rule 4 ("the moment two files carry the same rule, one of them starts lying"): each claim line now exists twice. Accepted because D7 asked for "short rules + separate docs" and a pointer-only `CLAUDE.md` would leave every Voice Flow session with no rules in context. Tie-breaker written into both files: if they disagree, **`CLAUDE.md` is the rule** and the document is the record of why — fix the document | 2026-09-18 |
 | D25 | **A stale measurement is annotated, never overwritten.** When 5.1 part two found a figure the code had outgrown, the original sentence and its date were left standing and a dated `> **Measured again**` note was added beside it. Overwriting the number would destroy the thing the document exists for — what was true when the rule was made, and how far it has moved since. Same principle as `dont-delete-reference-docs`, applied inside a file rather than to it | 2026-09-18 |
+| D28 | **A capability is made cheap, not removed.** `skillOverrides` has four states, and `name-only` keeps a skill working and suggestable for ~15 tokens instead of 100–350 — so the answer to an unused skill is `name-only`, never deletion. What that cannot reach is removed instead, and only then: a plugin whose cost is MCP *server instructions* (`browser-use`), the claude.ai connectors (no per-connector setting exists), and a built-in **tool**, which is not a skill at all — `enableArtifact: false` was the single largest cut. Every one is reversible by deleting its line. **The key format is the trap:** bare names match synced and built-in skills, plugin skills need the prefix `/context` prints, and a wrong key is a silent no-op — 15 of 35 entries did nothing on the first attempt and only the measurement showed it. Measured `/context` **34.3k → 21.5k**; `ENVIRONMENT.md` holds the table, the method change and why it is not comparable with 44,700 | 2026-09-26 |
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 | D26 | **A rule file is trimmed only where the content is a *procedure*, never where it is a *rule*.** A procedure is "how to do X" — you know you are doing X, so a skill's description fires reliably. A rule is "don't do Y" — you do not know you are about to do Y, so there is no trigger and lazy-loading it means it silently never loads. Anything moved out of an always-loaded file leaves a one-line pointer naming the skill and when to load it, the way `OLLAMA.md` does, so the load is an instruction rather than a judgement call. Applied 2026-09-22 to decline the FinNode split: measured 573 tokens of rule claims against 990 of supporting prose, but the prose is mostly operative — which of `observeById`/`getById` fails which way, that moving the device clock does not fire a pending sweep. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode twice.** Measure the sections before proposing the fix | 2026-09-22 |
 | D27 | **Two modes and one task order are rules in `STANDARDS.md`; the templates they use are procedures, loaded on demand.** General mode is the default and opens no project. Reading one file is not selecting a project. A project is selected on evidence — the working folder and the git repository that contains it — with the remote, the project's `CLAUDE.md` and its `PROJECTS.md` entry as supporting checks. A check that cannot run is reported, not treated as a mismatch; conflicting evidence stops and asks. Naming a project from general mode needs confirmation before it is opened. Templates sit in `templates/` behind a one-line pointer, per D26. `STANDARDS.md` 1,634 → 2,120 words. **Startup measurement pending.** **Clarified 2026-09-25:** the **pre-Block-1** startup measurement was never taken and is **unavailable**, so Block 1's own startup cost cannot be measured. The **post-Block-1** first-reply baseline **was measured**: **44,700** (three fresh sessions: 44,699 · 44,701 · 44,700). Nothing remains pending. | 2026-09-25 |

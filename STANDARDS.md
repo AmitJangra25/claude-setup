@@ -48,15 +48,37 @@ file; the list only fixes the order.
    folder, or sent online until I approve the plan.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
-7. **Record** — in project mode, and only if the plan said so: verified results and
+7. **Review** — check the result against the project's own rules and against what the
+   task was accepted as doing. Verify asks "does it work"; review asks "is it the thing
+   that was asked for, done the way this project does things".
+8. **Record** — in project mode, and only if the plan said so: verified results and
    decisions in the project's roadmap, out-of-task findings in its backlog.
-8. **Handoff** — when the work is unfinished, or at the point *Plan before building*
+9. **Handoff** — when the work is unfinished, or at the point *Plan before building*
    says to start fresh, write a handoff note.
-9. **Stop** — what is done, what is not verified, what is deferred. Then wait.
+10. **Stop** — what is done, what is not verified, what is deferred. Then wait.
 
 Templates for new-project discovery, the roadmap, the backlog and the handoff note are
 in `~/.claude/templates/`. Read one only when a step needs it. A project that already
 has a roadmap or backlog file keeps using it.
+
+## Load a capability only when the task needs it
+
+Skills, plugins, connectors and reference documents are not loaded because they exist.
+At **Scope**, name the ones the task actually needs and say why, in one line each. They
+are loaded at **Approve**, with everything else. If a project's roadmap names what a
+task needs, that is the list — read it rather than guessing.
+
+Most are deliberately listed by name only, so the name is all there is to go on: say
+what you expect it to do and that you have not read it yet. Never claim what an unread
+skill contains.
+
+## What may happen without asking
+
+Only reads: opening a file, running a read-only command, re-reading something that
+changed, retrying a failed read. Nothing else — no edit, install, permission change,
+service start, external request, commit, push or delete, however small and however
+obvious the fix. Finding the cause is a read; fixing it is a change. Propose it and
+wait.
 
 ## Plan before building
 

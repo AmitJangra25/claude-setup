@@ -10,9 +10,10 @@ mirrored deliberately.
 
 | Path | What it is |
 |---|---|
-| `CLAUDE.md` | The five `@`-imports that load on every turn, in every project. Nothing else. |
+| `CLAUDE.md` | The three `@`-imports that load on every turn, in every project, and a comment block naming the reference files that deliberately do not. Nothing else. |
 | `STANDARDS.md` | How to work — the rulebook. The largest of the imported files, and the one to think twice before growing. |
-| `RTK.md` · `OLLAMA.md` · `REPOS.md` · `PROJECTS.md` | The other four imports: the rtk proxy, the local-model chores, reference repos, and the project index. |
+| `RTK.md` · `OLLAMA.md` | The other two imports: the rtk proxy and the local-model chores. Both are short triggers; the detail sits in `skills/ollama/` and is loaded on demand. |
+| `REPOS.md` · `PROJECTS.md` | Reference, not rules, so they are **not** imported: go-to repos, and the project index. Read when a project has to be located by name. |
 | `ENVIRONMENT.md` | Reference on this machine and these projects. **Deliberately not imported** — it explains decisions rather than driving work, so it stays out of the per-turn budget. |
 | `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~27,000 words: **start at its `► START HERE` block, not the top.** |
 | `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net; projects hold only `allow` rules. |
