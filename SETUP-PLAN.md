@@ -61,8 +61,11 @@ measurements:
    > typed, not the first-reply sum — so it is **not** comparable with the figures above;
    > `ENVIRONMENT.md` holds the table and the caveat. **D28.**
 2. **10 unused plugins disabled**, `~20,480 tokens a turn` (estimated — see item 1) —
-   `small-business` alone was 11,678. Kept `engineering`, `pdf-viewer`, `browser-use`,
-   `swift-lsp`. Checked first that no project depends on them: every grep hit was prose,
+   `small-business` alone was 11,678. Kept at the time: `engineering`, `pdf-viewer`,
+   `browser-use`, `swift-lsp` — **two of those are gone since**: `browser-use` by
+   **D28** on 2026-09-26 (its cost was MCP server instructions, which `skillOverrides`
+   cannot reach) and `engineering` by **D29** the same day. **Enabled now: `pdf-viewer`
+   and `swift-lsp`, with 12 disabled.** Checked first that no project depends on them: every grep hit was prose,
    and the only `Skill()` permission rules anywhere name `claude-api`, which is built
    in. 8 account-level synced skills turned off the same day, and the ClickUp, Figma and
    Slack connectors disconnected at claude.ai. Sentry kept by choice.

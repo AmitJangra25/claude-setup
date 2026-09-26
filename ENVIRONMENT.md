@@ -5,7 +5,7 @@ read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
 ~3,166 tokens on every turn of every session. A file explaining why a threshold
-is 250K doesn't change how work gets done, so it stays out of that budget.
+is 220K doesn't change how work gets done, so it stays out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
 
@@ -102,8 +102,13 @@ observed case where the hook did **not** rewrite a command — see `SETUP-PLAN.m
 prints the current context size. It never estimates. Thresholds and the data behind them
 are documented at the top of that file.
 
-Short version: grey under 250K, amber to 400K, red to 600K, then suggests `/compact`.
-Half of all sessions never pass 250K, so the colour means something when it changes.
+Short version: grey under 220K, amber to 300K, red to 450K, then suggests `/compact`.
+**Lowered from 250K/400K/600K on 2026-09-26** at Amit's request — he restarts somewhere
+around 300–400K and wants the warning *before* that point, not at it. The old 250K
+almost never fired; 220K fires on roughly half of sessions, which is the intent.
+
+**It costs nothing in tokens.** The status line is a shell command the terminal renders;
+its output never enters the model's context. Changing it is free, so tune it freely.
 
 **What it's for.** Claude re-reads the whole conversation on every step, so a long
 session pays for its entire history on every small action. Sessions start around 48K and
@@ -242,7 +247,9 @@ post-cut session reads 45,102 against the last pre-cut session's 58,335 in the s
 project 96 minutes earlier — a saving of **13,233, or 62% of the 21,500 projected**.
 Which component is optimistic is not known, because `usage` records totals and not a
 split; settling it needs a live per-component breakdown. What was re-checked does hold:
-10 plugins disabled and 4 kept, and the imported rule files at ~3,077 tokens against the
+10 plugins disabled and 4 kept **as of that date — now 12 disabled and 2 kept, after
+D28 dropped `browser-use` and D29 dropped `engineering` on 2026-09-26** — and the
+imported rule files at ~3,077 tokens against the
 3,166 recorded. **n = 1 on each side** — the before and after are each a single session —
 so 45,102 is the right order of magnitude, not a figure to ±1,000. The projection is left
 standing above rather than overwritten, per **D25**.

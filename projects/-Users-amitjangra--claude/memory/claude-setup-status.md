@@ -43,4 +43,7 @@ directory — the opposite of the one-project boundary the rules exist to keep.
 **How to apply:** read the START HERE block of `~/.claude/SETUP-PLAN.md` before
 changing any rule, setting, permission, hook or memory, and update the plan when
 they change. Nothing is removed or blocked without Amit's explicit approval. See
-[[stay-on-the-asked-task]] and [[always-recommend-an-option]].
+[[stay-on-the-asked-task]] and [[propose-skills-from-observed-work]]. The
+always-recommend-an-option rule is not a note here — it is global, in
+`STANDARDS.md` § *When something is unclear*: never present options neutrally,
+name the one you recommend and why not the others.
