@@ -271,7 +271,8 @@ standing above rather than overwritten, per **D25**.
 >
 > Four changes in `settings.json`, each reversible by deleting its line:
 > `enableArtifact: false` (the largest single item), `disableClaudeAiConnectors: true`,
-> `browser-use@synced` disabled, and `skillOverrides` at `name-only`, now 36 entries.
+> `browser-use@synced` disabled, and `skillOverrides` at `name-only`, **21 entries**
+> since the 15 dead plugin keys were removed on 2026-09-26.
 >
 > **The second edit failed, and this is the measured proof.** It rewrote the 15 plugin
 > keys with the prefix `/context` prints, expecting ~20.6k. Measured: **21.9k**, with
@@ -279,11 +280,12 @@ standing above rather than overwritten, per **D25**.
 > full description. The 0.4k rise is `STANDARDS.md` growing 4.0k → 4.3k when three
 > harness rules were added; it is not a regression from the edit.
 >
-> **What the 36 entries actually do**, counted against `/context all` on 26 Sep:
+> **What the entries do**, counted against `/context all` on 26 Sep. There were 36:
 > **18 bare keys work** — 15 claude.ai-synced skills and 3 built-in, every one now <20
-> tokens. **15 prefixed plugin keys do nothing**, having already done nothing as bare
-> names. **3 `artifact-*` keys** name skills that no longer load at all, since
-> `enableArtifact: false` removed them; harmless, left in place. So bare keys are
+> tokens. **15 prefixed plugin keys did nothing**, having already done nothing as bare
+> names; **removed the same day** once `/skills` confirmed they never could, leaving
+> **21**. **3 `artifact-*` keys** name skills that no longer load at all, since
+> `enableArtifact: false` removed them; harmless, kept at Amit's direction. So bare keys are
 > reliable and plugin skills are not reachable by this setting in any form.
 >
 > **Answered 2026-09-26, by Claude Code itself.** Searching `/skills` for `debug`
