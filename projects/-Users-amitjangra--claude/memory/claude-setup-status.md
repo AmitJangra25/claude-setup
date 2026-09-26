@@ -22,8 +22,11 @@ since then is a second pass on the same repo, organised as blocks:
 - **Block 2 — startup context.** Done and measured. **58.3k → 34.3k → 21.9k.**
   See [[skill-overrides-name-only]] for the mechanism that did most of it, and for
   the part settled 2026-09-26: plugin skills are **locked by plugin** and no
-  `skillOverrides` key reaches them, so the only lever is `/plugin`. That is ~1.1k of
-  the remaining 22.0k.
+  `skillOverrides` key reaches them, so the only lever is `/plugin`. The `engineering`
+  plugin was disabled that day (**D29**) — skills 3.9k → 3.0k — but the total held at
+  **22.0k**, because system tools rose by the same 0.9k when Claude Code updated to
+  2.1.283. **Use `/skills` and `/plugin` to write these settings; they know the key
+  format and no guess has ever been right.**
 - **Block 3 — fix verified local defects, then test.** Three defects fixed
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports

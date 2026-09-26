@@ -248,7 +248,7 @@ so 45,102 is the right order of magnitude, not a figure to ±1,000. The projecti
 standing above rather than overwritten, per **D25**.
 
 > **Measured again 25 Sep 2026 — post-Block-1 first-reply baseline: 44,700.** Fresh
-> sessions from the home folder, auto mode, Claude Code 2.1.282, `opus[1m]` at high
+> sessions from the home folder, auto mode, Claude Code 2.1.282 (now 2.1.283), `opus[1m]` at high
 > effort, prompt `Reply with the single word: ok`. Two runs were planned; a third
 > matching fresh session was found and included. Totals: **44,699 · 44,701 · 44,700**.
 > This is a baseline for later changes, not a measure of Block 1: 45,102 above is one
@@ -336,6 +336,35 @@ standing above rather than overwritten, per **D25**.
 > (915 → 1,190 chars); `/context` then reported 491. So a rule file's token cost can be
 > estimated from its character count without burning a fresh session — good to ±1% at
 > this size. Confirm with `/context` anyway when the change is large.
+
+> **Measured again 26 Sep 2026, after disabling the `engineering` plugin — still 22.0k.**
+> The cut worked and an unrelated upgrade ate it, in the same measurement.
+>
+> | | before | after | |
+> |---|---|---|---|
+> | skills (48 → 39) | 3.9k | **3.0k** | −0.9k, the 10 `engineering:` skills |
+> | system tools | 9.7k | **10.6k** | +0.9k, **not ours** |
+> | MCP tools (19 → 3) | 0 | 0 | the 16 engineering auth tools cost nothing |
+> | **total** | **22.0k** | **22.0k** | **net zero** |
+>
+> **The 930 tokens came off exactly as predicted.** What replaced them is the only
+> other variable that moved: **Claude Code 2.1.282 → 2.1.283**, which updated
+> mid-session. `enableArtifact: false` and `disableClaudeAiConnectors: true` were both
+> verified still set, and the only semantic change to `settings.json` was
+> `engineering@synced: false` — the rest of that 27-line diff is the `/plugin` menu
+> reordering keys. **Causation is inferred, not proven**; if a later version drops
+> system tools back to 9.7k, that settles it.
+>
+> **The key is `engineering@synced`, and the menu chose it.** `engineering` is
+> registered twice — `@inline` and `@synced` — so the suffix was a coin-flip after three
+> failed guesses at skill keys. `/plugin` wrote it, the same way `/skills` wrote
+> `anthropic-skills:doc-coauthoring`. **Ask the menu; it is the only thing that knows.**
+>
+> **Also moved, deliberately:** the status-line thresholds in
+> `statusline/context.py`, 250K/400K/600K → **220K/300K/450K**, at Amit's request —
+> he wants the warning before the point he would act, not at it. All four colour bands
+> tested. The status line costs **nothing in tokens**: it is a shell command the
+> terminal renders and its output never enters context.
 
 **Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
 what a session costs — and it is the part that decides how work gets done. The 93% that

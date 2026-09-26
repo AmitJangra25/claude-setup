@@ -7,16 +7,19 @@ No estimation.
 """
 import json, os, sys
 
-# Thresholds, calibrated against 50 real sessions / 12,623 turns (2026-09-15):
+# Thresholds set by Amit on 2026-09-26, lowered from the calibrated defaults
+# because he wants the warning before the point he'd act, not at it:
+#   220K - first warning; he restarts somewhere around 300-400K
+#   300K - act at the next task boundary
+#   450K - too deep to /clear safely mid-task, so /compact instead
+# Measured against 50 real sessions / 12,623 turns (2026-09-15), for reference:
 #   floor at session start ..... 33K-86K (typical ~48K)
 #   growth ..................... ~1,200 tokens per turn
 #   median session peak ........ 251K      max observed ..... 588K
-# Chosen so the colour means something rather than being always-on:
-#   250K - half of all sessions never reach this; below it, ignore context
-#   400K - top 16% of sessions; a task boundary is now worth taking
-#   600K - top 8%; too deep to /clear safely, so /compact instead
-# The number itself is always shown (grey) - it costs nothing to glance at.
-QUIET, WARN, HIGH = 250_000, 400_000, 600_000
+# So 220K now fires on roughly half of all sessions, by intent - the old 250K
+# almost never did. The number itself is always shown (grey); it costs nothing
+# to glance at, and nothing in tokens: the status line never enters context.
+QUIET, WARN, HIGH = 220_000, 300_000, 450_000
 TAIL = 400_000  # bytes of transcript to scan from the end
 
 
