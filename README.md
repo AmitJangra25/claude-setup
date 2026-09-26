@@ -15,9 +15,12 @@ mirrored deliberately.
 | `RTK.md` · `OLLAMA.md` | The other two imports: the rtk proxy and the local-model chores. Both are short triggers; the detail sits in `skills/ollama/` and is loaded on demand. |
 | `REPOS.md` · `PROJECTS.md` | Reference, not rules, so they are **not** imported: go-to repos, and the project index. Read when a project has to be located by name. |
 | `ENVIRONMENT.md` | Reference on this machine and these projects. **Deliberately not imported** — it explains decisions rather than driving work, so it stays out of the per-turn budget. |
-| `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~27,000 words: **start at its `► START HERE` block, not the top.** |
+| `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~29,000 words: **start at its `► START HERE` block, not the top.** |
 | `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net; projects hold only `allow` rules. |
 | `project-rules/` | A mirror of every project's `CLAUDE.md` and `.claude/settings*.json`. Those files are gitignored in the projects themselves, so this is their only version history. `sync.sh` reports drift. |
+| `templates/` | The new-project, roadmap, backlog and handoff forms. **Not** imported — `STANDARDS.md` points at them and one is read only when a step needs it. |
+| `skills/ollama/` | The one hand-written global skill. Everything else under `skills/` is account-keyed and gitignored. |
+| `projects/*/memory/` | Memory notes only — the session transcripts beside them are gitignored. Memory is stored per starting folder and there is no global memory, so a note is only read by sessions started in that folder. Setup notes live under `-Users-amitjangra--claude`, which means **start setup sessions from `~/.claude`**. |
 | `archive/` | Things that cannot be recreated. See `archive/README.md`. |
 | `statusline/` | The context-usage status line. |
 

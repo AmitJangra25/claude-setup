@@ -1142,7 +1142,7 @@ on disk, and files do not care which account is logged in.
 | rtk, ollama-do, statusline script | **Yes** | Installed in `~/.local/bin` and `~/.claude/statusline/` |
 | The 18 cloud skills | **No** | See below |
 | The 13 cloud plugins | **No** | See below |
-| 4 MCP connectors (ClickUp, Figma, Sentry, Claude Docs) | **No** | Authorised per account |
+| MCP connectors | **No** | Authorised per account. Moot since **D28** — `disableClaudeAiConnectors: true` turns the channel off for every account, and that setting *does* travel, because it is in `settings.json` |
 | Artifacts and Claude Docs you have made | **No** | Live in the account |
 
 ### Why the cloud skills and plugins do not survive — verified
@@ -1180,8 +1180,12 @@ Run in this order. Steps 1-3 need no work if the git repo from Phase 6 exists.
 4. **Re-enable the marketplace plugin**: `/plugin install swift-lsp@claude-plugins-official`.
    `settings.json` already lists it under `enabledPlugins`, but the plugin files
    install per account.
-5. **Re-authorise the 4 MCP connectors** on claude.ai for account B: ClickUp,
-   Figma, Sentry, Claude Docs.
+5. **Re-authorise MCP connectors only if they are wanted back.** ClickUp, Figma and
+   Slack were disconnected on 2026-09-22, and **D28** set
+   `disableClaudeAiConnectors: true`, which turns the whole claude.ai connector
+   channel off for every account — so nothing is authorised until that line is
+   deleted from `settings.json`. Sentry and Claude Docs were the two still in use
+   before D28. Leaving this step undone is the cheaper default.
 6. **Check which cloud skills and plugins arrived.** Compare against the list in
    the "Five systems" section above. Anything missing has to be added on
    claude.ai for account B — it cannot be copied across.
