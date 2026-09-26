@@ -1,5 +1,45 @@
 {
   "cleanupPeriodDays": 60,
+  "enableArtifact": false,
+  "disableClaudeAiConnectors": true,
+  "skillOverrides": {
+    "pptx": "name-only",
+    "learn": "name-only",
+    "docs": "name-only",
+    "doc-coauthoring": "name-only",
+    "algorithmic-art": "name-only",
+    "canvas-design": "name-only",
+    "slack-gif-creator": "name-only",
+    "brand-guidelines": "name-only",
+    "theme-factory": "name-only",
+    "web-artifacts-builder": "name-only",
+    "morning": "name-only",
+    "internal-comms": "name-only",
+    "import-memory": "name-only",
+    "mcp-builder": "name-only",
+    "skill-creator": "name-only",
+    "engineering:architecture": "name-only",
+    "engineering:documentation": "name-only",
+    "engineering:incident-response": "name-only",
+    "engineering:debug": "name-only",
+    "engineering:code-review": "name-only",
+    "engineering:deploy-checklist": "name-only",
+    "engineering:system-design": "name-only",
+    "engineering:standup": "name-only",
+    "engineering:testing-strategy": "name-only",
+    "engineering:tech-debt": "name-only",
+    "pdf-viewer:view-pdf": "name-only",
+    "pdf-viewer:annotate": "name-only",
+    "pdf-viewer:fill-form": "name-only",
+    "pdf-viewer:sign": "name-only",
+    "pdf-viewer:open": "name-only",
+    "artifact-design": "name-only",
+    "artifact-diagramming": "name-only",
+    "artifact-capabilities": "name-only",
+    "claude-in-chrome": "name-only",
+    "dataviz": "name-only",
+    "workflow-authoring": "name-only"
+  },
   "env": {
     "RTK_HOOK_AUDIT": "1"
   },
@@ -98,7 +138,7 @@
     ],
     "blockReadsOutsideWorkingDirectories": true
   },
-  "model": "opus[1m]",
+  "model": "claude-opus-5",
   "hooks": {
     "PreToolUse": [
       {
@@ -119,6 +159,7 @@
   },
   "enabledPlugins": {
     "swift-lsp@claude-plugins-official": true,
+    "browser-use@synced": false,
     "small-business@synced": false,
     "figma@synced": false,
     "sanity@synced": false,
@@ -131,6 +172,11 @@
     "productivity@synced": false
   },
   "effortLevel": "high",
+  "modelSettings": {
+    "claude-opus-5": {
+      "effortLevel": "high"
+    }
+  },
   "theme": "dark",
   "switchModelsOnFlag": true,
   "autoMode": {
