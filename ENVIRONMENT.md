@@ -48,6 +48,38 @@ This is where the token saving comes from. It is **completely separate from
 permissions** — changing permission rules cannot affect it, and disabling it would not
 change what Claude is allowed to do.
 
+> **What the hook actually rewrites, tested 2026-09-26.** It handles a plain command
+> and the `&&` and `;` chain operators, and nothing else. Every other shell construct
+> makes the *whole line* run raw:
+>
+> | shape | result |
+> |---|---|
+> | `grep -rn foo .` · `cd /tmp && git log` · `cat a; cat b` | rewritten |
+> | `grep foo . \| head` — any pipe | **raw** |
+> | `cat a > /tmp/x` — any redirect | **raw** |
+> | `echo $(cat a)` — any subshell | **raw** |
+> | `for f in a b; do cat $f; done` · `f(){ cat $1; }` | **raw** |
+> | `python3 …` · `sed …` — not handled in any form | **raw** |
+>
+> **This is why adoption was 26%**, not because rtk failed: `rtk session` reported
+> 24–34% across four sessions on 2026-09-26, and `rtk discover` found ~36.3K tokens
+> left on the table over 279 scanned commands — mostly `grep -B` (21), `gh api` (13)
+> and `git log` (11). The habit that closes it is in `RTK.md`: prefer the plain form
+> over piping into `head` when the output is small enough to read anyway.
+>
+> **Treat 36.3K as a floor.** `rtk discover` said it scanned 279 commands over 30 days
+> while `rtk session` counted 555 on 2026-09-26 alone, so the two disagree about their
+> own window.
+>
+> **Savings are lopsided by command**, measured over 10,017 commands (59.6% overall):
+> `ps aux` 98.3%, `eslint` 95.2%, `gradlew` 95.9%, `vitest` 89.4% — but `grep` 22.0%
+> and `read` 10.9%. The low figures are correct. rtk saves by stripping redundancy, and
+> a file read or a grep hit is signal, not boilerplate. `ps aux` saved 2.6M tokens in 49
+> runs; 2,694 greps saved 473K. **Do not read a low percentage as a fault.**
+>
+> Monthly: Jul 539K saved (63.3%), Aug 5.3M (65.7%), Sep 1.3M (42.3%). September is
+> lower because the work was docs and setup — grep and read — not test runs.
+
 **The catch worth knowing.** Claude Code has a built-in list of commands that never
 prompt: `ls`, `cat`, `echo`, `pwd`, `head`, `tail`, `grep`, `find`, `wc`, `which`,
 `diff`, `stat`, `du`, `cd`, and read-only `git`. RTK renames them to `rtk ls`, `rtk grep`

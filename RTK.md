@@ -1,7 +1,7 @@
 # RTK - Rust Token Killer
 
-**Usage**: Token-optimized CLI proxy. ~60% saved, measured across 9,491 commands —
-10–98% depending on the command.
+**Usage**: Token-optimized CLI proxy. 59.6% saved across 10,017 commands — 10–98% by
+command. File reads and greps save only 11–22%; correct, not a fault.
 
 ## `rtk proxy` — raw output, no filtering
 
@@ -19,7 +19,10 @@ all**. That is the proxy, not git doing nothing. Preview a staging operation wit
 
 ## Hook-Based Usage
 
-All other commands are automatically rewritten by the Claude Code hook.
-Example: `git status` → `rtk git status` (transparent, 0 tokens overhead)
+The hook rewrites a recognised command in place — `git status` → `rtk git status`,
+0 tokens overhead. It handles plain commands, `&&` and `;` — **nothing else.** One pipe,
+redirect, subshell, loop or function and the whole line runs raw; `python3` and `sed`
+never rewrite. **So prefer the plain form** over piping into `head`. Measured
+2026-09-26; detail in `ENVIRONMENT.md`.
 
 Full command list: `rtk --help`.

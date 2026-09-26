@@ -959,6 +959,18 @@ globs. That is what this phase delivers. **It changed no permission rule.**
 Verified against `settings.json` on 2026-09-20: **allow 35 · ask 87 · deny 2**.
 Every rule falls into one of the groups below; nothing is left over.
 
+> **The counts below are superseded; the reasoning is not.** Checked 2026-09-26.
+> Live now: **ask 51 · allow 33 · deny 2**. Two changes did it — on 2026-09-20 the
+> `ask` list merged from 112 spellings to **51 wildcard patterns**, one per command
+> instead of the three (`X`, `rtk X`, `rtk proxy X`) the next paragraph describes; and
+> on 2026-09-22 two dead `gh` rules took `allow` 35 → 33. The groups and the reason
+> given for each still hold, and this is the only plain-English pass over every rule,
+> which is why it is kept rather than rewritten. **Take counts and spellings from
+> `settings.json`, never from here.** One consequence worth carrying: because the
+> merged patterns lead with `*`, a rule matches the bare command, the `rtk` rewrite and
+> a piped or chained form alike — verified 2026-09-26 against `git push`, `git reset`,
+> `git clean`, `sudo`, `gh auth` and `rm`.
+
 ### Never — `deny`, 2 rules
 
 `Read(//**/.env)` and `Read(//**/.env.*)` — credentials. The only outright block
@@ -969,7 +981,7 @@ Narrower than it sounds: it stops *reading* a `.env`, not a program that loads
 one, and it does not cover a database holding real records. That is why D23
 removed cross-project read access instead of leaning on `deny`.
 
-### Always ask — `ask`, 87 rules in 11 groups
+### Always ask — `ask`, 87 rules in 11 groups *(2026-09-20 snapshot; now 51)*
 
 The count looks large because most commands appear up to three times: bare
 (`sudo *`), rtk-wrapped (`rtk git push *`) and proxied (`rtk proxy sudo *`). The
@@ -991,7 +1003,7 @@ commands, 87 spellings.**
 | 2 | Local database — `sqlite3` | Two projects hold real records (Emp Portal, Packbly). A write is silent and not reversible. |
 | 2 | Launching apps / files — `open` | Hands a file to whatever app claims the type, outside Claude's control. |
 
-### Always fine — `allow`, 35 rules in 6 groups
+### Always fine — `allow`, 35 rules in 6 groups *(2026-09-20 snapshot; now 33)*
 
 Everything here is read-only, or reversible and confined to this setup.
 
