@@ -223,32 +223,46 @@ standing above rather than overwritten, per **D25**.
 > session under unrecorded conditions, so no Block 1 saving or cost is calculated from
 > it. Compare later figures only under the same version, model, mode, folder and prompt.
 
-> **Measured again 26 Sep 2026, and cut — 34.3k → 21.5k.** Method changed, so read the
+> **Measured again 26 Sep 2026, and cut — 34.3k → 21.9k.** Method changed, so read the
 > caveat below before comparing with anything above. Figures are `/context` in a fresh
 > session from `~/.claude`, Opus 5, auto mode, no prompt typed.
 >
-> | | before | after |
-> |---|---|---|
-> | system tools | 17.1k | **9.7k** |
-> | skills (52 → 49) | 7.2k | **3.9k** |
-> | MCP server instructions | 1.5k | **0** |
-> | MCP tools | 725 | **0** |
-> | memory files | 4.6k | 4.6k |
-> | system prompt | 3.2k | 3.2k |
-> | **total** | **34.3k** | **21.5k** |
+> | | before | after edit 1 | final |
+> |---|---|---|---|
+> | system tools | 17.1k | **9.7k** | 9.7k |
+> | skills (52 → 49) | 7.2k | **3.9k** | 3.9k |
+> | MCP server instructions | 1.5k | **0** | 0 |
+> | MCP tools | 725 | **0** | 0 |
+> | memory files | 4.6k | 4.6k | 5.0k |
+> | system prompt | 3.2k | 3.2k | 3.2k |
+> | **total** | **34.3k** | **21.5k** | **21.9k** |
 >
 > Four changes in `settings.json`, each reversible by deleting its line:
 > `enableArtifact: false` (the largest single item), `disableClaudeAiConnectors: true`,
-> `browser-use@synced` disabled, and `skillOverrides` with 35 entries at `name-only`.
-> A second edit the same day fixed 15 plugin keys that needed a prefix and had silently
-> done nothing; **that fix is not yet re-measured** — expected near 20.6k.
+> `browser-use@synced` disabled, and `skillOverrides` at `name-only`, now 36 entries.
+>
+> **The second edit failed, and this is the measured proof.** It rewrote the 15 plugin
+> keys with the prefix `/context` prints, expecting ~20.6k. Measured: **21.9k**, with
+> every plugin skill unchanged — `engineering:architecture` still ~100 tokens, still its
+> full description. The 0.4k rise is `STANDARDS.md` growing 4.0k → 4.3k when three
+> harness rules were added; it is not a regression from the edit.
+>
+> **What the 36 entries actually do**, counted against `/context all` on 26 Sep:
+> **18 bare keys work** — 15 claude.ai-synced skills and 3 built-in, every one now <20
+> tokens. **15 prefixed plugin keys do nothing**, having already done nothing as bare
+> names. **3 `artifact-*` keys** name skills that no longer load at all, since
+> `enableArtifact: false` removed them; harmless, left in place. So bare keys are
+> reliable and plugin skills are not reachable by this setting in either form tried.
+> Whether they can be reached at all is **open**: the `/skills` menu writes
+> `skillOverrides` itself, so whatever key it writes is the answer by definition. Not
+> yet run.
 >
 > **Why this is not comparable with 44,700 above.** That figure is the sum of the
 > `usage` fields on a session's first assistant reply, which includes the first user
 > message and the system reminders around it. This one is `/context` with nothing typed.
 > The two methods differed by ~10k on the same day before any change was made, and which
 > is the better proxy for a real session is **not settled**. `/context` is used from here
-> on because it itemises and repeats; the 34.3k → 21.5k comparison is method-consistent
+> on because it itemises and repeats; the 34.3k → 21.9k comparison is method-consistent
 > and is the one to trust.
 >
 > **What was deliberately not cut.** Memory files, 4.6k, of which `STANDARDS.md` is 4k —

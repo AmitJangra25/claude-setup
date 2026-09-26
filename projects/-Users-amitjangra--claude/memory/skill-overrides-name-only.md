@@ -1,6 +1,6 @@
 ---
 name: skill-overrides-name-only
-description: skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; plugin skills need the prefixed key
+description: skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are not reachable by either key format
 metadata:
   type: reference
 ---
@@ -13,13 +13,18 @@ metadata:
 working and keeps Claude able to suggest it for a task. About 15 tokens instead of
 100–350. Nothing is deleted, and removing the line restores the skill.
 
-**The key format is what to remember.** Bare names match claude.ai-synced and
-built-in skills. **Plugin skills need the prefix `/context` prints** —
-`engineering:debug`, `pdf-viewer:view-pdf`. Measured 2026-09-26: 35 bare keys were
-written, the 19 synced and the built-in ones took effect, and all 15 plugin entries
-silently did nothing. A wrong key is a no-op, not an error, so it fails quietly.
-The prefix also disambiguates: `engineering:code-review` can be shortened without
-touching the built-in `code-review` of the same name.
+**Plugin skills are what to remember.** Bare names work: measured 2026-09-26, all 18
+bare keys took effect — 15 claude.ai-synced skills and 3 built-in — each dropping to
+<20 tokens in `/context all`. **The 15 plugin skills did not.** They failed as bare
+names, and failed again when rewritten with the prefix `/context` prints
+(`engineering:debug`, `pdf-viewer:view-pdf`). A wrong key is a no-op, not an error, so
+both attempts looked like success until a fresh session was measured.
+
+**Whether plugin skills can be overridden at all is unresolved.** Do not guess a third
+key format. The `/skills` menu writes `skillOverrides` itself — set one plugin skill
+there with Space, press Esc, and read what it wrote. Whatever key appears is correct by
+definition. If the menu refuses, the answer is that plugin skills are on or the plugin
+is off, and there is no middle state.
 
 **What `skillOverrides` cannot reach.** A plugin whose cost is MCP *server
 instructions* rather than skill descriptions — `browser-use` — is only removed by

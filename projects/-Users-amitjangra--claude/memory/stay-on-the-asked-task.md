@@ -22,4 +22,4 @@ already decisive. Anything noticed but not asked about goes in the "noting, not 
 list, never in the body of the report. Do not re-answer an earlier question because new
 evidence touches it — say it in one line if it changes a decision, otherwise leave it.
 
-Related: [[claude-setup-plan-in-progress]]
+Related: [[claude-setup-status]]
