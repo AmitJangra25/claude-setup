@@ -126,10 +126,13 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   33 rules    read-only things stop prompting
-    ask     51 rules    all on things that change something
+    ask     58 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 2026-09-22.** Two corrections this block carried
+**Counts measured against the live file 2026-09-27.** `ask` went **51 → 58** that day:
+seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
+`SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
+fenced. Before that, two corrections this block carried
 for a while: it read `ask 87` until 2026-09-20, and then `ask 112` until 2026-09-22,
 having missed the merge that took **112 → 51** on 2026-09-20 (one pattern per command
 instead of up to three spellings — `SETUP-PLAN.md` § *`ask` list merged*). `allow` went
@@ -174,8 +177,11 @@ docs domains. Purely additive: permission lists merge across files, so a global 
 entry can only ever remove a prompt, never add one.
 
 **`ask`** — git operations that publish or discard work (`push`, `reset`, `rebase`,
-`clean`, `rm`, `merge`, `checkout`), dependency installs, `npx --yes`, `rm`, `curl`,
-`wget`, `pkill`, `kill`, plus the `rtk` and `rtk proxy` spellings of all of them.
+`clean`, `rm`, `merge`, `checkout`, `restore`, `stash drop`, `stash clear`), dependency
+installs including brew's `install`, `uninstall`, `upgrade` and `reinstall`, `npx --yes`,
+`rm`, `curl`, `wget`, `pkill`, `kill`, plus the `rtk` and `rtk proxy` spellings of all of
+them. Plain `git stash`, `git tag` and `git remote` are deliberately out — see
+`SETUP-PLAN.md` § *FinNode — open, not acted on*.
 
 An `ask` rule prompts in **every** permission mode, including auto mode, and it overrides
 any `allow` rule that also matches. That is why the session can stay in auto mode without

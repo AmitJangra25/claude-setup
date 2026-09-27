@@ -332,10 +332,12 @@ maintenance pass (−8, all Voice-Flow: 2 dead, 4 duplicates, 1 naming a
 cross-project grant D23 forbids).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
 arithmetic. Global `allow` is **33** since 2026-09-22 (two dead `gh` rules removed; it
-read 35 from 2026-09-18 until then) and `deny` is 2; **`ask` is 51** — 87 after 1.2, 101 after the Phase 3 gaps,
+read 35 from 2026-09-18 until then) and `deny` is 2; **`ask` is 58** — 87 after 1.2, 101 after the Phase 3 gaps,
 107 after the Voice-Flow pass added the `git * commit *` spellings, 112 after Phase 11
 fenced `wget` and `pip`, then **51 after the merge of 2026-09-20**, which collapsed the
-three per-command spellings into one leading-`*` pattern without losing coverage.
+three per-command spellings into one leading-`*` pattern without losing coverage, and
+**58 on 2026-09-27** when seven rules closed the `git restore`, `git stash drop`/`clear`
+and brew gaps.
 
 **And rules nobody has ever counted.** `.claude/settings.local.json` files sit
 *inside* `node_modules`, carrying `allow` rules that arrived by `npm install`, not
@@ -389,7 +391,9 @@ everything in the "survives account switch" table below.
 **These commands verify the state as it was on 2026-09-18, after steps 1.1 and 1.2** —
 they are the record of that checkpoint, not a health check for today. Their expected
 values have all since moved: the repo tracks 64 files rather than 37, and the permission
-counts are 35 `allow` / 51 `ask` / 2 `deny` after the `ask` list was merged. Run them
+counts are 33 `allow` / 58 `ask` / 2 `deny`, after the `ask` list was merged on
+2026-09-20, two dead `gh` rules went on 2026-09-22, and seven rules were added on
+2026-09-27. Run them
 against that date's commits, or read them as history.
 
 **The first two commands no longer apply** — `backups/` was deleted 2026-09-21 and that
@@ -872,11 +876,13 @@ globs. That is what this phase delivers. **It changed no permission rule.**
 Verified against `settings.json` on 2026-09-20: **allow 35 · ask 87 · deny 2**.
 Every rule falls into one of the groups below; nothing is left over.
 
-> **The counts below are superseded; the reasoning is not.** Checked 2026-09-26.
-> Live now: **ask 51 · allow 33 · deny 2**. Two changes did it — on 2026-09-20 the
+> **The counts below are superseded; the reasoning is not.** Checked 2026-09-27.
+> Live now: **ask 58 · allow 33 · deny 2**. Three changes did it — on 2026-09-20 the
 > `ask` list merged from 112 spellings to **51 wildcard patterns**, one per command
-> instead of the three (`X`, `rtk X`, `rtk proxy X`) the next paragraph describes; and
-> on 2026-09-22 two dead `gh` rules took `allow` 35 → 33. The groups and the reason
+> instead of the three (`X`, `rtk X`, `rtk proxy X`) the next paragraph describes;
+> on 2026-09-22 two dead `gh` rules took `allow` 35 → 33; and on 2026-09-27 seven rules
+> took `ask` **51 → 58**, closing the `git restore`, `git stash drop`/`clear` and brew
+> gaps. The groups and the reason
 > given for each still hold, and this is the only plain-English pass over every rule,
 > which is why it is kept rather than rewritten. **Take counts and spellings from
 > `settings.json`, never from here.** One consequence worth carrying: because the
@@ -894,7 +900,7 @@ Narrower than it sounds: it stops *reading* a `.env`, not a program that loads
 one, and it does not cover a database holding real records. That is why D23
 removed cross-project read access instead of leaning on `deny`.
 
-### Always ask — `ask`, 87 rules in 11 groups *(2026-09-20 snapshot; now 51)*
+### Always ask — `ask`, 87 rules in 11 groups *(2026-09-20 snapshot; now 58)*
 
 The count looks large because most commands appear up to three times: bare
 (`sudo *`), rtk-wrapped (`rtk git push *`) and proxied (`rtk proxy sudo *`). The
