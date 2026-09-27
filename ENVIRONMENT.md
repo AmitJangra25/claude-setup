@@ -4,13 +4,17 @@ How Claude Code is set up here, and why each choice was made. Reference material
 read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
-~3,166 tokens on every turn of every session. A file explaining why a threshold
-is 220K doesn't change how work gets done, so it stays out of that budget.
+~3,166 tokens on every turn of every session — measured 2026-09-22, not a current
+figure. A file explaining why a threshold is 220K doesn't change how work gets done,
+so it stays out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
 
-Last reviewed: 2026-09-22. Every number below was measured from session history, not
-estimated — the commands are in the section at the end.
+Last full review: 2026-09-22. § *What every session loads before you type* was rewritten
+2026-09-27; no other section was re-checked then.
+
+Figures below include measurements, estimates and projections. Each should state its date
+and method — the commands are in § *How the numbers were measured*.
 
 ---
 
@@ -229,178 +233,139 @@ part did not change. Verified by sweeping every `.claude/settings*.json` under
 
 ## What every session loads before you type
 
-Measured 2026-09-22 from the `usage` counts in 68 session transcripts, then cut the same
-day. The headline: **the rule files were never the load.**
+**Latest verified total: 22.0k, measured 2026-09-26.** `/context` in a fresh session from
+`~/.claude`, Opus 5, auto mode, nothing typed. Two readings that day both returned 22.0k:
+one on Claude Code 2.1.282 after `RTK.md` grew, one on 2.1.283 after the `engineering`
+plugin was disabled.
 
-    before       projected     what it is
-    ~58,300        ~36,800     total first-turn input, no prompt typed yet
-    ~30,000        ~30,000     Claude Code's system prompt, tool schemas, built-in
-                               skills — arrives before any file here. Not settable.
-      4,214         3,166      the imported global rules
-     20,480             0      10 plugin skill catalogues
-      2,359           ~500     account-level synced skills (8 turned off)
-          0             0      Sentry, Claude Docs kept; ClickUp, Figma, Slack cut
+The last complete category breakdown was recorded at 21.9k before later changes; a
+complete breakdown of the final setup has not been recorded.
 
-**Measured after the cut — 45,102, on 2026-09-22.** The `projected` column is arithmetic:
-the before figure minus the component estimates. It was **8,302 low**. The first real
-post-cut session reads 45,102 against the last pre-cut session's 58,335 in the same
-project 96 minutes earlier — a saving of **13,233, or 62% of the 21,500 projected**.
-Which component is optimistic is not known, because `usage` records totals and not a
-split; settling it needs a live per-component breakdown. What was re-checked does hold:
-10 plugins disabled and 4 kept **as of that date — now 12 disabled and 2 kept, after
-D28 dropped `browser-use` and D29 dropped `engineering` on 2026-09-26** — and the
-imported rule files at ~3,077 tokens against the
-3,166 recorded. **n = 1 on each side** — the before and after are each a single session —
-so 45,102 is the right order of magnitude, not a figure to ±1,000. The projection is left
-standing above rather than overwritten, per **D25**.
+### What is switched off to get there
 
-> **Measured again 25 Sep 2026 — post-Block-1 first-reply baseline: 44,700.** Fresh
-> sessions from the home folder, auto mode, Claude Code 2.1.282 (now 2.1.283), `opus[1m]` at high
-> effort, prompt `Reply with the single word: ok`. Two runs were planned; a third
-> matching fresh session was found and included. Totals: **44,699 · 44,701 · 44,700**.
-> This is a baseline for later changes, not a measure of Block 1: 45,102 above is one
-> session under unrecorded conditions, so no Block 1 saving or cost is calculated from
-> it. Compare later figures only under the same version, model, mode, folder and prompt.
+Five changes, each reversible. Four are lines in `settings.json`; the fifth was written by
+the `/plugin` menu.
 
-> **Measured again 26 Sep 2026, and cut — 34.3k → 21.9k.** Method changed, so read the
-> caveat below before comparing with anything above. Figures are `/context` in a fresh
-> session from `~/.claude`, Opus 5, auto mode, no prompt typed.
->
-> | | before | after edit 1 | final |
-> |---|---|---|---|
-> | system tools | 17.1k | **9.7k** | 9.7k |
-> | skills (52 → 49) | 7.2k | **3.9k** | 3.9k |
-> | MCP server instructions | 1.5k | **0** | 0 |
-> | MCP tools | 725 | **0** | 0 |
-> | memory files | 4.6k | 4.6k | 5.0k |
-> | system prompt | 3.2k | 3.2k | 3.2k |
-> | **total** | **34.3k** | **21.5k** | **21.9k** |
->
-> Four changes in `settings.json`, each reversible by deleting its line:
-> `enableArtifact: false` (the largest single item), `disableClaudeAiConnectors: true`,
-> `browser-use@synced` disabled, and `skillOverrides` at `name-only`, **21 entries**
-> since the 15 dead plugin keys were removed on 2026-09-26.
->
-> **The second edit failed, and this is the measured proof.** It rewrote the 15 plugin
-> keys with the prefix `/context` prints, expecting ~20.6k. Measured: **21.9k**, with
-> every plugin skill unchanged — `engineering:architecture` still ~100 tokens, still its
-> full description. The 0.4k rise is `STANDARDS.md` growing 4.0k → 4.3k when three
-> harness rules were added; it is not a regression from the edit.
->
-> **What the entries do**, counted against `/context all` on 26 Sep. There were 36:
-> **18 bare keys work** — 15 claude.ai-synced skills and 3 built-in, every one now <20
-> tokens. **15 prefixed plugin keys did nothing**, having already done nothing as bare
-> names; **removed the same day** once `/skills` confirmed they never could, leaving
-> **21**. **3 `artifact-*` keys** name skills that no longer load at all, since
-> `enableArtifact: false` removed them; harmless, kept at Amit's direction. So bare keys are
-> reliable and plugin skills are not reachable by this setting in any form.
->
-> **Answered 2026-09-26, by Claude Code itself.** Searching `/skills` for `debug`
-> returns:
->
->     engineering:debug   locked by plugin · plugin · ~90 tok
->     Plugin skills are managed via /plugin
->
-> **`skillOverrides` cannot reach plugin skills by design.** The key format was never
-> the problem and no key would ever have worked — three guesses were spent before the
-> menu was asked. The menu is authoritative: it writes the file, and twice it saved
-> (mtime moved) while writing no entry for `engineering:debug`. The only lever on a
-> plugin skill is `/plugin`, whole-plugin on or off.
->
-> **Use the menus, not hand-edited keys.** `/skills` writes the correct key by
-> definition — it produced `anthropic-skills:doc-coauthoring`, a prefix `/context`
-> never prints, so the key cannot be derived from what `/context` shows. Same for
-> `/plugin`.
->
-> **`/skills` writes to `~/.claude/settings.local.json`, which is gitignored.** Verified
-> 2026-09-26: its `skillOverrides` block **merges** with the one in `settings.json`
-> rather than replacing it — after `doc-coauthoring` was set there, all 18 overrides in
-> `settings.json` still read <20 tokens. But because the file is gitignored it is **not
-> in this repo and does not travel to a second account** — see the Block 4 runbook.
-> `user-invocable-only` was confirmed working the same way: the skill count went 49 → 48
-> and `doc-coauthoring` left the list entirely, still typable as `/doc-coauthoring`.
->
-> **Why this is not comparable with 44,700 above.** That figure is the sum of the
-> `usage` fields on a session's first assistant reply, which includes the first user
-> message and the system reminders around it. This one is `/context` with nothing typed.
-> The two methods differed by ~10k on the same day before any change was made, and which
-> is the better proxy for a real session is **not settled**. `/context` is used from here
-> on because it itemises and repeats; the 34.3k → 21.9k comparison is method-consistent
-> and is the one to trust.
->
-> **What was deliberately not cut.** Memory files, 4.6k, of which `STANDARDS.md` is 4k —
-> per **D26** a rule file is not trimmed. The system prompt, 3.2k, is not settable. It
-> grew 2.2k → 3.2k when the model changed from Opus 5.5 to Opus 5, so hold the model
-> fixed when comparing.
+| Change | What it did | Undo |
+|---|---|---|
+| `enableArtifact: false` | The single largest cut. Removes the Artifact tool, and with it the three `artifact-*` skills | delete the line |
+| `disableClaudeAiConnectors: true` | Turned the claude.ai connectors off wholesale — no per-connector setting exists | delete the line |
+| `browser-use@synced` disabled | Its cost was MCP **server instructions**, which `skillOverrides` cannot reach | re-enable in `/plugin` |
+| `engineering@synced` disabled | −0.9k of skill catalogue, and its 16 MCP auth tools cost nothing either way. See the history table: an upgrade took the same amount back the same hour | re-enable in `/plugin` |
+| `skillOverrides: name-only`, 21 entries | Keeps a skill working and suggestable at under 20 tokens instead of 100–350 | delete an entry |
 
-> **Measured again later the same day — 22.0k.** `RTK.md` grew 374 → **491 tokens**
-> when the hook's real rewrite behaviour and the plain-form habit were added to it;
-> memory files 5.0k → 5.1k, total 21.9k → 22.0k. A deliberate +117, not a regression.
-> The 21.9k above stands as Block 2's result; this is the cost of a change made after it.
->
-> **The estimate was within 1%, which makes the method usable.** The new size was
-> predicted at ~486 by scaling chars against the known 374-token reading
-> (915 → 1,190 chars); `/context` then reported 491. So a rule file's token cost can be
-> estimated from its character count without burning a fresh session — good to ±1% at
-> this size. Confirm with `/context` anyway when the change is large.
+**Plugins now: `pdf-viewer` and `swift-lsp` enabled, 12 disabled.**
 
-> **Measured again 26 Sep 2026, after disabling the `engineering` plugin — still 22.0k.**
-> The cut worked and an unrelated upgrade ate it, in the same measurement.
->
-> | | before | after | |
-> |---|---|---|---|
-> | skills (48 → 39) | 3.9k | **3.0k** | −0.9k, the 10 `engineering:` skills |
-> | system tools | 9.7k | **10.6k** | +0.9k, **not ours** |
-> | MCP tools (19 → 3) | 0 | 0 | the 16 engineering auth tools cost nothing |
-> | **total** | **22.0k** | **22.0k** | **net zero** |
->
-> **The 930 tokens came off exactly as predicted.** What replaced them is the only
-> other variable that moved: **Claude Code 2.1.282 → 2.1.283**, which updated
-> mid-session. `enableArtifact: false` and `disableClaudeAiConnectors: true` were both
-> verified still set, and the only semantic change to `settings.json` was
-> `engineering@synced: false` — the rest of that 27-line diff is the `/plugin` menu
-> reordering keys. **Causation is inferred, not proven**; if a later version drops
-> system tools back to 9.7k, that settles it.
->
-> **The key is `engineering@synced`, and the menu chose it.** `engineering` is
-> registered twice — `@inline` and `@synced` — so the suffix was a coin-flip after three
-> failed guesses at skill keys. `/plugin` wrote it, the same way `/skills` wrote
-> `anthropic-skills:doc-coauthoring`. **Ask the menu; it is the only thing that knows.**
->
-> **Also moved, deliberately:** the status-line thresholds in
-> `statusline/context.py`, 250K/400K/600K → **220K/300K/450K**, at Amit's request —
-> he wants the warning before the point he would act, not at it. All four colour bands
-> tested. The status line costs **nothing in tokens**: it is a shell command the
-> terminal renders and its output never enters context.
+**What the 21 `skillOverrides` entries are.** 18 bare keys, every one confirmed working.
+3 `artifact-*` keys naming skills that no longer load at all since `enableArtifact:
+false` — harmless, kept at Amit's direction. There were 36: the other 15 were plugin keys,
+removed on 2026-09-26 once `/skills` confirmed they never could work. `user-invocable-only`
+was confirmed working too, on a separate skill: the skill count went 49 → 48 and the skill
+left the list entirely, still typable as `/doc-coauthoring`.
 
-**Read this before trying to trim a rule file.** `STANDARDS.md` is 2,472 tokens — 4% of
-what a session costs — and it is the part that decides how work gets done. The 93% that
-is not your files is where the savings were, and they came from turning off plugins and
-connectors, not from editing prose.
+**`/skills` writes to `settings.local.json`, which is gitignored.** Its `skillOverrides`
+block **merges** with the one in `settings.json` rather than replacing it — verified
+2026-09-26. But because the file is gitignored it is **not in this repo and does not travel
+to a second account.** Block 4's runbook needs this.
 
-**A plugin's catalogue cost is not its skill bodies.** `claude plugin details <name>`
-splits the two: `engineering` costs 871 tokens always-on for 10 skills (~87 each, name
-and description), while each body — `code-review` 1,200, `debug` 1,200,
-`incident-response` 1,700 — loads only when that skill fires. A skill you keep is
-already lazy; disabling it does not make it lazier, it makes it undiscoverable.
+**Also changed on 2026-09-26, at no token cost:** the status-line thresholds, 250K/400K/600K
+→ 220K/300K/450K. See § *Status line* — the status line is a shell command the terminal
+renders, and its output never enters context.
 
-**Caching changes what the number means.** Across 14,048 model calls, **98.3% of input
-tokens were cache reads**, billed at 0.1×. Effective input cost is **12% of raw**, so
-~58,300 raw was ~5,800 effective per turn and the measured 45,102 is ~4,500. The
-saving is real but it compounds slowly — worth doing once, not worth chasing in
-200-token increments.
+### How the numbers moved
 
-**What is not worth cutting**, measured rather than assumed: FinNode's `CLAUDE.md` is
-3,748 tokens, and splitting its rule claims from their evidence looked like a 41% win on
-paper. Reading it showed most of that prose is operative — which of `observeById` /
-`getById` fails which way, that moving the device clock does *not* fire a pending sweep.
-Only ~600 tokens are genuinely historical, in one project, at 0.1× — about 70 effective
-tokens a turn. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode
-twice.** Measure the sections before proposing the fix.
+**Two methods are in this table and they are not directly comparable.** The first-reply sum
+adds the `usage` fields on a session's first assistant reply, which includes the first user
+message and the system reminders around it. `/context` is read with nothing typed. On the
+same day, before any change, the two differed by about 10k. Which is the better proxy for a
+real session is **not settled**. `/context` is used from here on, because it itemises and
+repeats.
 
-**Retention.** `cleanupPeriodDays` is 60, set 2026-09-22. Transcripts are not junk: every
-number in this section came from them. Nothing was deleted when it was set — the oldest
-transcript was 21 days old.
+| Date | Figure | Method | What it was |
+|---|---|---|---|
+| 22 Sep | ~58,300 | first-reply sum | Before any cut. n = 1. Of it: ~30,000 Claude Code's own system prompt, tool schemas and built-in skills (not settable), 4,214 the imported rule files, 20,480 ten plugin catalogues, 2,359 account-level synced skills |
+| 22 Sep | ~36,800 | **arithmetic** | A projection, not a measurement — the before figure minus component estimates. It was **8,302 low** |
+| 22 Sep | 45,102 | first-reply sum | After the cut. n = 1. A real saving of 13,233, or 62% of the 21,500 projected. Re-checked at the time: imported rule files ~3,077 against the 3,166 recorded |
+| 25 Sep | 44,700 | first-reply sum | Post-Block-1 baseline — 44,699 · 44,701 · 44,700, three fresh sessions from the home folder, Claude Code 2.1.282, `opus[1m]` at high effort. A baseline for later changes, **not** a measure of Block 1 |
+| 26 Sep | 34.3k | `/context` | **26 Sep 2026, before the startup cut:** system tools 17.1k, skills 7.2k, memory files 4.6k, system prompt 3.2k, MCP server instructions 1.5k, MCP tools 725 |
+| 26 Sep | 21.5k | `/context` | After the four `settings.json` changes |
+| 26 Sep | **21.9k** | `/context` | **The last complete category breakdown:** system tools 9.7k, skills 3.9k, memory files 4.6k, system prompt 3.2k, MCP server instructions 0, MCP tools 0 |
+| 26 Sep | 22.0k | `/context` | `RTK.md` grew 374 → 491 tokens; memory files 5.0k → 5.1k. A deliberate +117, not a regression |
+| 26 Sep | 22.0k | `/context` | `engineering` disabled. Skills 48 → 39, 3.9k → 3.0k; system tools 9.7k → **10.6k**. Net zero |
+
+**34.3k → 21.9k is the method-consistent pair, and the one to trust.** It is Block 2's
+result. The two readings after it are the cost of changes made afterwards, not a drift in
+the result.
+
+**The 930 tokens came off `engineering` exactly as predicted, and system tools rose by the
+same amount in the same measurement.** The only other variable that moved was Claude Code
+2.1.282 → 2.1.283, which updated mid-session. `enableArtifact: false` and
+`disableClaudeAiConnectors: true` were both verified still set, and the only semantic change
+to `settings.json` was `engineering@synced: false`. **Causation is inferred, not proven.** If
+a later version drops system tools back to 9.7k, that settles it.
+
+**Two things this table cannot tell you.** Which component of the 22 Sep projection was
+optimistic — `usage` records totals, not a split, and settling it needs a live
+per-component breakdown. And what the current setup's category breakdown is, because no
+complete reading was taken after the last two changes.
+
+### What holds, whatever the numbers do
+
+- **Caching changes what a number means.** Across 14,048 model calls, 98.3% of input tokens
+  were cache reads, billed at 0.1×. Effective input cost is about **12% of raw**. The saving
+  is real but compounds slowly — worth doing once, not worth chasing in 200-token increments.
+- **The rule files were never the load.** `STANDARDS.md` is about 4% of what a session costs,
+  and it is the part that decides how work gets done. The savings came from turning off
+  plugins and connectors, not from editing prose.
+- **A plugin's catalogue cost is not its skill bodies.** `claude plugin details <name>` splits
+  them: `engineering` cost 871 tokens always-on for 10 skills, while each body —
+  `code-review` 1,200, `debug` 1,200, `incident-response` 1,700 — loaded only when that skill
+  fired. A skill you keep is already lazy; disabling it does not make it lazier, it makes it
+  undiscoverable.
+- **`skillOverrides` cannot reach plugin skills at all.** `/skills` shows them as *"locked by
+  plugin · Plugin skills are managed via /plugin"*, and saved twice without writing an entry.
+  Bare names are reliable; a plugin key is a silent no-op in any format. The only lever is
+  `/plugin`, whole-plugin on or off. **D28.**
+- **Ask the menu, never guess the key.** `/skills` and `/plugin` write the correct key by
+  definition. `/skills` produced `anthropic-skills:doc-coauthoring`, a prefix `/context` never
+  prints, so a key cannot be derived from what `/context` shows. `/plugin` produced
+  `engineering@synced`, where the suffix was otherwise a coin-flip. **D29.**
+- **A rule file's token cost can be estimated from its character count**, good to about 1% at
+  this size: `RTK.md` at 915 → 1,190 chars was predicted at ~486 and measured 491. Confirm
+  with `/context` anyway when the change is large.
+- **Hold the conditions fixed before comparing anything** — version, model, effort, mode,
+  folder and prompt. The system prompt alone moved 2.2k → 3.2k on the change from Opus 5.5 to
+  Opus 5.
+- **The session that makes a change cannot measure it.** Settings load at session start.
+  Always open a new one.
+
+**A prediction that failed, and why it is kept.** A second `skillOverrides` edit rewrote the
+15 plugin keys using the prefix `/context` prints, expecting ~20.6k. It measured **21.9k**,
+with every plugin skill unchanged and still carrying its full description. The 0.4k rise was
+`STANDARDS.md` growing 4.0k → 4.3k when three harness rules were added — not a regression
+from the edit. **A wrong key is a silent no-op, not an error**, so the attempt looked like
+success until a fresh session was measured. Three guesses were spent before the menu was
+asked.
+
+`SETUP-PLAN.md`'s decision table holds the full history behind **D28** and **D29**.
+
+### What was deliberately not cut
+
+- **Memory files** — 5.1k at the latest reading, most of it `STANDARDS.md` at 4.3k. Per
+  **D26**, a rule file is not trimmed.
+- **The system prompt** — 3.2k. Not settable.
+- **FinNode's `CLAUDE.md`** — 3,748 tokens. Splitting its rule claims from their evidence
+  looked like a 41% win on paper. Reading it showed most of that prose is operative: which of
+  `observeById` / `getById` fails which way, that moving the device clock does *not* fire a
+  pending sweep. Only ~600 tokens are genuinely historical, in one project, at 0.1× — about
+  70 effective tokens a turn. **The Voice-Flow 110 KB diagnosis has now failed to transfer to
+  FinNode twice.** Measure the sections before proposing the fix.
+
+### Retention
+
+`cleanupPeriodDays` is 60, set 2026-09-22. Transcripts are not junk: every first-reply figure
+in this section came from them. Nothing was deleted when it was set — the oldest transcript
+was 21 days old.
 
 ---
 
