@@ -6,165 +6,51 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 # ► START HERE — resuming in a new session
 
-## Where this stands — 2026-09-26
+## Where this stands
 
-**Start setup sessions from `~/.claude`.** Memory is stored per starting folder, so
-sessions run from `~/Documents` wrote their notes into a folder that setup sessions
-never read. `~/Documents` is also not a repo and holds every project at once, which is
-the widest possible working directory — the opposite of the one-project boundary **D27**
-exists to keep.
+**Last updated: 2026-09-27.**
+
+**Start setup sessions from `~/.claude`, not from `~/Documents`.** Memory is stored per
+starting folder, so sessions run from `~/Documents` wrote their notes into a folder that
+setup sessions never read. `~/Documents` is also not a repo and holds every project at
+once, which is the widest possible working directory — the opposite of the one-project
+boundary **D27** exists to keep.
 
 A second pass on this repo is running, organised as four blocks:
 
 | Block | What it is | State |
 |---|---|---|
-| 1 | Rules, task workflow, templates, permissions, startup baseline | **Done** — D27, and the baseline below |
-| 2 | Measure what loads at startup, and cut it | **Done and measured** — 34.3k → 22.0k, **D28**, **D29** |
-| 3 | Fix verified local defects, then test a simple and a project task | **Defects fixed 2026-09-26; task tests not run** |
+| 1 | Rules, task workflow, templates, permissions, startup baseline | **Done** — D27, and the baseline in `ENVIRONMENT.md` |
+| 2 | Measure what loads at startup, and cut it | **Done and measured** — `/context` 34.3k → 21.9k, 2026-09-26, **D28**, **D29**. A later reading the same day was 22.0k, after other changes |
+| 3 | Fix verified local defects, then test a simple and a project task | **Local defects fixed 2026-09-26; the two task tests are not done** |
 | 4 | Review what is safe to keep in the repo, then switch accounts | **Not started** |
 
-Block 3's three defects, all found by audit on 2026-09-26 and fixed the same day: the
+**Block 3's three defects**, all found by audit on 2026-09-26 and fixed the same day: the
 `autoMode` trusted-repo line described `/Users/amitjangra/Documents` ("no remotes, 0
 tracked files") because `/auto-mode-setup` ran from there on 2026-09-22; the two memory
 notes lived only in the `~/Documents` memory folder; and `README.md` still said
 `CLAUDE.md` holds five `@`-imports, which has been three since 2026-09-22.
 
-**Block 4 has a definition now.** "User B" means a second Claude account used by Amit on
-this same Mac — not another macOS user. That is exactly what § *Rebuilding on another
-account* below was written for, so the runbook applies as written. Two of its facts are
-stale: ClickUp and Figma were disconnected on 2026-09-22, and **D28** turned the
-claude.ai connectors off wholesale, so step 5's list is now Sentry and Claude Docs only
-if they are wanted back. **The switch has never been tested.**
+**The finish order — Amit's current order, set 2026-09-27.** Blocks 3 and 4 are last *in
+this plan*. That is the order chosen now, not an unchangeable rule.
 
-## Where this stood — 2026-09-22
+1. **Agreed cleanup** — retire the three `PHASE2-REMOVALS` files to `archive/`, and settle
+   item 5.8: its `browser-use` half was superseded by **D28**, while the `definite` half is
+   a broken vendor URL and stays open. (`ENVIRONMENT.md`'s startup section and this status
+   block were done 2026-09-27.)
+2. **Individual-project decisions** — which Debugger tree is current, whether
+   `Voice Flow_v1` can be archived, whether `Packbly v2` is a real project; then update
+   `PROJECTS.md` and `REPOS.md`.
+3. **Block 3 — the workflow tests.** Run a simple task and a project task end to end, and
+   check the `STANDARDS.md` task order holds.
+4. **Block 4 — the repository review, then the same-Mac account-switch test.**
 
-**The plan is still complete.** 2026-09-22 was a maintenance pass on top of it, not a
-reopening: no phase was added and no decision reversed. Five things changed, all recorded
-in `ENVIRONMENT.md` § *What every session loads before you type*, which now holds the
-measurements:
+**Where the record is.** Everything already done is recorded dated, and not here.
+§ *Status at handoff (2026-09-18)* holds the step-by-step table, the phase sections below
+hold each pass in full, and `ENVIRONMENT.md` holds every startup measurement. This block
+is current state only: when it changes it is replaced, not added to.
 
-1. **Startup context measured for the first time** — 68 transcripts, real `usage` counts.
-   Every session opened at **~58,300 input tokens** before a prompt was typed, of which
-   the global rule files were **7%**. ~30,000 is Claude Code's own system prompt and tool
-   schemas and is not settable. **98.3% of all input tokens are cache reads**, so
-   effective cost is 12% of raw. **Re-measured the same day, after the cuts:
-   45,102** — a real saving of 13,233 against the 21,500 that was projected by
-   subtracting the component estimates. The components over-predict; which one is
-   optimistic is not known. `ENVIRONMENT.md` holds the detail and the n=1 caveat.
-   > **Measured again 25 Sep 2026:** post-Block-1 first-reply baseline **44,700**
-   > (three fresh sessions: 44,699 · 44,701 · 44,700). Not comparable with 45,102 —
-   > see `ENVIRONMENT.md` § *What every session loads before you type*.
-   > **Measured and cut again 26 Sep 2026: `/context` 34.3k → 21.9k**, by switching the
-   > Artifact tool off, disconnecting the claude.ai connectors, disabling `browser-use`,
-   > and setting skills to `name-only` — where 18 bare keys took effect and the 15
-   > plugin keys did not, in either format tried. Method changed — `/context` with nothing
-   > typed, not the first-reply sum — so it is **not** comparable with the figures above;
-   > `ENVIRONMENT.md` holds the table and the caveat. **D28.**
-2. **10 unused plugins disabled**, `~20,480 tokens a turn` (estimated — see item 1) —
-   `small-business` alone was 11,678. Kept at the time: `engineering`, `pdf-viewer`,
-   `browser-use`, `swift-lsp` — **two of those are gone since**: `browser-use` by
-   **D28** on 2026-09-26 (its cost was MCP server instructions, which `skillOverrides`
-   cannot reach) and `engineering` by **D29** the same day. **Enabled now: `pdf-viewer`
-   and `swift-lsp`, with 12 disabled.** Checked first that no project depends on them: every grep hit was prose,
-   and the only `Skill()` permission rules anywhere name `claude-api`, which is built
-   in. 8 account-level synced skills turned off the same day, and the ClickUp, Figma and
-   Slack connectors disconnected at claude.ai. Sentry kept by choice.
-3. **`CLAUDE.md` imports 3 files, not 5.** `PROJECTS.md` and `REPOS.md` are reference,
-   not rules, so they joined `ENVIRONMENT.md` and this file in the "not imported on
-   purpose" block. Global block **4,214 → 3,166**.
-4. **9 dead or duplicate `allow` rules removed**, global `allow` **35 → 33**. Two global
-   `gh` rules could never fire — an `ask` rule matches first — and this plan had recorded
-   them as dead letters since 2026-09-18 without removing them. `ask` (51) and `deny` (2)
-   verified byte-identical; diffed against pre-edit copies, **9 lines out, 0 in**.
-5. **`cleanupPeriodDays` set to 60.** Transcripts are the evidence base for every measured
-   number in these docs, so they get retention rather than a delete. Nothing was removed
-   when it was set; the oldest transcript was 21 days old.
-
-**Two things were measured and deliberately NOT done.** FinNode's `CLAUDE.md` splits into
-573 tokens of rule claims and 990 of supporting prose, which looked like the Voice-Flow
-110 KB win again — but reading it showed the prose is mostly operative, not historical.
-**That diagnosis has now failed to transfer to FinNode twice**; D26 records it. And the
-`engineering` plugin's 871 tokens are catalogue entries, not skill bodies, so disabling it
-would not make it lazier — only undiscoverable.
-
-**Nothing from the 2026-09-22 audit is left open.** The three documentation defects were
-fixed that day, and so was the last one: Voice-Flow held a `Bash(cd "…/SecondBrain
-Obsidian" && …)` rule — a standing grant into another project, contradicting **D23**. It
-survived item 5.2 because that swept `Read()` rules and this is a `Bash()` rule. Removed
-rather than narrowed, as D23 requires. Voice-Flow `allow` 123 → 122; diffed at 1 line out,
-0 in. **Re-verified by walking every rule in all 17 settings files for a path outside its
-own project tree: 0 cross-project grants remain**, which is the first time that has been
-checked as a rule rather than assumed from 5.2's `Read()` sweep.
-
-## Where this stood — 2026-09-21
-
-**Everything through Phase 11 is done.** All five project passes (Voice-Flow, FinNode,
-`vthrudebugger_v1`, `Debugger v2`, `Emp portal`), all six global files, and the global
-permission list.
-
-**Nothing is left. The plan is complete, 2026-09-21.**
-
-The last item — Voice-Flow's old `CLAUDE.md` in git history — was closed that day at Amit's
-request, ahead of the repo going public rather than because it did. `git-filter-repo` 2.47.0
-was installed for it and all **162 commits on both branches** were rewritten, then
-force-pushed with `--force-with-lease` pinned to the recorded tips. **Verified two ways:**
-`git log --all -- CLAUDE.md` is empty, and no object named `CLAUDE.md` exists in any commit.
-The old initial commit `598e38e` is not fetchable from GitHub by SHA. The live file is
-untouched on disk, still gitignored, byte-identical to the `project-rules/` copy, and the
-mirror backup with all 162 original commits is at
-`backups/2026-09-21-voice-flow-history/Voice-Flow.git` with both original tips beside it.
-
-**The `ask` rules are proven. Closed 2026-09-21.** They fire, and they override `allow`.
-
-First attempt, 2026-09-20, failed and showed why: a `git branch -d` probe and an `rm -f`
-probe both ran with no prompt, while a `Read` of a `.env` was blocked by
-`Read(//**/.env)`. The rule file loads; the session's permission mode was swallowing
-`ask`.
-
-Second attempt, 2026-09-21, in manual mode. **A naive probe proves nothing** — in manual
-mode every Bash command prompts anyway, so a prompt on `git branch -d` is not evidence the
-rule matched. The discriminator is a command that an `allow` rule already covers, because
-those run silently; if such a command still prompts, only an `ask` rule can be the cause.
-Two such commands exist, plus a baseline that must stay silent:
-
-| Command | `allow` | `ask` | Result |
-|---|---|---|---|
-| `git branch --list` | `Bash(rtk git branch *)` | — | **no prompt** (baseline) |
-| `git branch -d claude-ask-probe` | `Bash(rtk git branch *)` | `Bash(*git branch -d*)` | **prompt** |
-| `gh auth status` | `Bash(gh auth status*)` | `Bash(*gh auth*)` | **prompt** |
-
-Four things this establishes, none of them previously observed:
-
-1. **`ask` rules fire.**
-2. **`ask` beats `allow`**, by observation rather than by reading the precedence table. This
-   closes the Phase 3 gap directly — `rtk git branch *` sits in `allow` while `-D` deletes,
-   and the `ask` rule added to override it does override it.
-3. **The merged leading-`*` patterns match.** The rule that fired was written in the
-   2026-09-20 merge, so the merge is runtime-confirmed on a representative rule, not only
-   on paper.
-4. **The permission check runs on the hook-rewritten command.** `git branch --list` was
-   silenced by `Bash(rtk git branch *)`, which matches only the `rtk `-prefixed form. Until
-   now this was inferred from the `wget` hole; it is now measured.
-
-**Method note for any future probe.** Manual mode prompts on everything, so a probe is only
-conclusive when an `allow` rule covers the command. Where no `allow` rule collides with the
-`ask` rule under test — `sudo`, `curl`, `wget`, `rm`, `open` and most others — no
-conclusive probe exists without temporarily adding one. Those rules rest on the offline
-coverage check plus the two confirmations above; the matcher is the same for all of them.
-
-**Every phase is closed. Checked 2026-09-21** — Phase 8's step 4 was found already done,
-and the three `◐` rows were stale markers rather than open work. Step 4 landed inside
-FinNode's own Phase 10 pass, commit `725ca2e` on `main`: the four re-stated sections went
-426 → 204 words, replaced by one pointer line to `STANDARDS.md`, with every piece of
-project evidence kept — the Phase 0/1b/1c/2a defect counts, the `DiaryDao` precedent,
-"observed, not guessed" into `docs/BACKLOG.md`, and what an unrequested fix costs. Phases 9
-and 10 already read COMPLETE in their own rows and only their markers were wrong.
-
-**And the Voice-Flow git-history rewrite is done too**, closed 2026-09-21 at Amit's
-request — see the status block at the top. **Nothing is open. There is no next piece to
-suggest, and none should be invented.**
-
-### Git state is not recorded here — read it from git
+## Git state is not recorded here — read it from git
 
 **This plan records dated events, not current state.** Whether a branch is clean, checked
 out, ahead of its remote or merged changes the moment anyone touches a repo, and on
@@ -204,7 +90,8 @@ the Mac.
 **Do not read this whole file.** It is ~123 KB and reading it costs roughly 31k tokens,
 which is the opposite of the point. Read, in this order:
 
-1. **This block** and the status table below it.
+1. **§ *Where this stands*** at the top — the current state and the finish order —
+   then the status table in § *Status at handoff (2026-09-18)*.
 2. **§ PHASE 11 — The global pass** — the per-file records, the method that governs any
    remaining pass, and the permission-list findings.
 3. The specific phase section only if the work touches it.
@@ -457,6 +344,27 @@ copy is gone. They are the package maintainer's own grants, published to npm by
 accident, and one of them ships a `notes.md` of their house style. The 384 count
 never included them. Found 2026-09-20 while cross-checking the Voice-Flow pass;
 see Phase 9.
+
+**The runtime probe behind "`ask` rules proven", 2026-09-21.** The evidence for that row,
+kept because the conclusions are worth less without it. Run in manual mode.
+
+| Command | `allow` | `ask` | Result |
+|---|---|---|---|
+| `git branch --list` | `Bash(rtk git branch *)` | — | **no prompt** (baseline) |
+| `git branch -d claude-ask-probe` | `Bash(rtk git branch *)` | `Bash(*git branch -d*)` | **prompt** |
+| `gh auth status` | `Bash(gh auth status*)` | `Bash(*gh auth*)` | **prompt** |
+
+**Method note.** Manual mode prompts on every Bash command, so a probe is conclusive only
+when an `allow` rule already covers the command — those run silently, so a prompt can then
+only come from an `ask` rule. Where no `allow` rule collides with the `ask` rule under test
+— `sudo`, `curl`, `wget`, `rm`, `open` and most others — no conclusive probe exists without
+temporarily adding one. Those rules rest on the offline coverage check plus these two
+confirmations; the matcher is the same for all of them.
+
+**Dated evidence from the 2026-09-22 plugin pass**, recorded here rather than re-checked
+since: before the unused plugins were disabled, no project was found to depend on them —
+every grep hit was prose, and the only `Skill()` permission rules anywhere named
+`claude-api`, which is built in.
 
 ## The git repo — where it lives
 
@@ -1149,6 +1057,9 @@ the decision recorded in the table above once made.
 
 **Same Mac, different email: you lose very little.** Almost everything is files
 on disk, and files do not care which account is logged in.
+
+**"User B" means another Claude account for Amit on this same Mac** — not another
+macOS user. **The switch has not been tested.**
 
 | What | Survives account switch? | Why |
 |---|---|---|

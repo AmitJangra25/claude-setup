@@ -235,8 +235,8 @@ part did not change. Verified by sweeping every `.claude/settings*.json` under
 
 **Latest verified total: 22.0k, measured 2026-09-26.** `/context` in a fresh session from
 `~/.claude`, Opus 5, auto mode, nothing typed. Two readings that day both returned 22.0k:
-one on Claude Code 2.1.282 after `RTK.md` grew, one on 2.1.283 after the `engineering`
-plugin was disabled.
+one after `RTK.md` grew, on a version that was not recorded, and one on Claude Code
+2.1.283 after the `engineering` plugin was disabled.
 
 The last complete category breakdown was recorded at 21.9k before later changes; a
 complete breakdown of the final setup has not been recorded.
@@ -252,7 +252,7 @@ the `/plugin` menu.
 | `disableClaudeAiConnectors: true` | Turned the claude.ai connectors off wholesale — no per-connector setting exists | delete the line |
 | `browser-use@synced` disabled | Its cost was MCP **server instructions**, which `skillOverrides` cannot reach | re-enable in `/plugin` |
 | `engineering@synced` disabled | −0.9k of skill catalogue, and its 16 MCP auth tools cost nothing either way. See the history table: an upgrade took the same amount back the same hour | re-enable in `/plugin` |
-| `skillOverrides: name-only`, 21 entries | Keeps a skill working and suggestable at under 20 tokens instead of 100–350 | delete an entry |
+| `skillOverrides: name-only`, 21 entries | Keeps a skill working and suggestable at under 20 tokens instead of its full cost | delete an entry |
 
 **Plugins now: `pdf-viewer` and `swift-lsp` enabled, 12 disabled.**
 
@@ -314,9 +314,9 @@ complete reading was taken after the last two changes.
 - **Caching changes what a number means.** Across 14,048 model calls, 98.3% of input tokens
   were cache reads, billed at 0.1×. Effective input cost is about **12% of raw**. The saving
   is real but compounds slowly — worth doing once, not worth chasing in 200-token increments.
-- **The rule files were never the load.** `STANDARDS.md` is about 4% of what a session costs,
-  and it is the part that decides how work gets done. The savings came from turning off
-  plugins and connectors, not from editing prose.
+- **The rule files were never the load.** The savings came from turning off plugins and
+  connectors, not from editing prose — and `STANDARDS.md` is the part that decides how
+  work gets done.
 - **A plugin's catalogue cost is not its skill bodies.** `claude plugin details <name>` splits
   them: `engineering` cost 871 tokens always-on for 10 skills, while each body —
   `code-review` 1,200, `debug` 1,200, `incident-response` 1,700 — loaded only when that skill
