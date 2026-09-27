@@ -477,12 +477,22 @@ losing work.
 
 Not guesses to act on — things to confirm before treating either answer as true.
 
-- **Which Debugger tree is current?** `vthrudebugger_v1` has the `CLAUDE.md` and is on a
-  feature branch; `Debugger v2` has newer commits and its own `ARCHITECTURE.md`,
-  `INTEGRATION.md` and `PLAN.md`, but no `CLAUDE.md`.
-- **Can `Voice Flow_v1` be archived?** `Voice-Flow` appears to have superseded it.
-- **Is `Packbly v2` a real project?** The README describes it as a Figma code export
-  ("Website Redesign Proposal"), which reads as a design bundle, not an app.
+- ~~**Which Debugger tree is current?**~~ **Settled by decision on 2026-09-27, not by a
+  check.** Amit is working on `~/Documents/VS Code/vthrudebugger_v1`; `Debugger v2` is
+  parked. Neither replaced the other — both were seeded from V-Thru's
+  `DebugProvider.tsx` and then kept deliberately independent, so "successor" was never
+  right. **Unknown, and not investigated:** whether `vthrudebugger_v1` is the newest or
+  most complete Debugger tree. The 2026-08-03 memory
+  `project-debugger-repo-fresh-start` says `~/Debugger/vthrudebugger_v1` was the
+  furthest-ahead clone — mocks, storage, filter, InfoPanel, report — and `~/Debugger` is
+  gone. Amit deleted a tree and does not recall which; whatever survives is either in
+  `~/Documents/VS Code/vthrudebugger_v1` or on GitHub. No tree was opened to find out,
+  and whether that work survived is not known.
+- ~~**Can `Voice Flow_v1` be archived?**~~ **Amit's decision, 2026-09-27.** It is
+  superseded by `Voice-Flow` and is not being worked on, but it stays on disk as it is.
+  No files moved.
+- ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 2026-09-27.** Yes, it is. He
+  is not working on it and the entry stays exactly as it is; someone else may pick it up.
 - ~~**What is `~/Documents/Voice-Flow-main`?**~~ **Answered by it disappearing** — the
   folder no longer exists, confirmed 2026-09-20 and 2026-09-21. Nothing in it was
   recoverable, since it had no git history; whatever it was, it is not a question now.
@@ -528,7 +538,8 @@ The detail lives here.
 - **Debugger** (vthrudebugger) — `~/Documents/VS Code/vthrudebugger_v1` — drop-in in-app
   debugger library for React Native. **TypeScript + RN peer deps, RN Gesture
   Handler/Reanimated**. **Auto-captures network, console and errors**; **QA-facing alert
-  toasts**, network inspector, **client-side mocks**.
+  toasts**, network inspector, **client-side mocks**. **The Debugger tree Amit is
+  working on** — his decision, 2026-09-27, not a check of which tree is furthest ahead.
 
 - **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics platform:
   intracity courier product plus a **B2B relocation and warehousing ticket system**.
@@ -536,7 +547,8 @@ The detail lives here.
   auth**. Holds real customer and courier records.
 
 - **Voice Flow v1** — `~/Documents/VS Code/Voice Flow_v1` — the earlier Voice Flow tree.
-  Superseded by `Voice-Flow`; confirm whether it can be archived.
+  Superseded by `Voice-Flow`. **Not worked on; stays on disk, not archived** — Amit's
+  call, 2026-09-27.
 
 - **SecondBrain schema** — `~/Documents/SecondBrain Obsidian/schema` — schema for an
   Obsidian vault. **The vault itself is the parent directory**, which holds `raw`,
@@ -547,13 +559,15 @@ The detail lives here.
   **backend**, role-based dashboards. Holds real employee records.
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React
-  Native, built so **a developer can drop it into an app**. Successor to
-  `vthrudebugger_v1`; **carries its own** `ARCHITECTURE.md`, `INTEGRATION.md`, `PLAN.md`,
-  `DEPENDENCIES.md`.
+  Native, built so **a developer can drop it into an app**. **Parked 2026-09-27.** Not a
+  successor to `vthrudebugger_v1` — both were seeded from V-Thru's `DebugProvider.tsx`
+  and then kept deliberately independent. **Carries its own** `ARCHITECTURE.md`,
+  `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 
 - **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma code export
   ("Website Redesign Proposal"), **shadcn theme + assets**. Reads as a design bundle
-  rather than an app; confirm whether it is a real project.
+  rather than an app. **It is a real project** — Amit's call, 2026-09-27 — just not one
+  he is working on. The entry stays as it is.
 
 - ~~`~/Documents/Voice-Flow-main`~~ — was a **third** Voice Flow copy with no git repo.
   **No longer on disk**, confirmed 2026-09-20 and 2026-09-21.
@@ -564,5 +578,6 @@ The detail lives here.
 - `~/Documents/Skils/PM-skills-Amit` — **a clone of the public `phuryn/pm-skills`
   repository. Reference material, not your code.**
 
-Three Voice Flow trees and two Packbly trees exist. **Worth settling which is canonical**
+Two Voice Flow trees and two Packbly trees exist — `~/Documents/Voice-Flow-main` was a
+third and is gone. **Worth settling which is canonical**
 — the risk is editing the wrong one and losing the work.

@@ -40,9 +40,13 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    and not ours to fix. Also done that day: `ENVIRONMENT.md`'s startup section, this status
    block, the plan's own size warning, and the permission counts after seven `ask` rules
    were added.
-2. **Individual-project decisions** — which Debugger tree is current, whether
-   `Voice Flow_v1` can be archived, whether `Packbly v2` is a real project; then update
-   `PROJECTS.md` and `REPOS.md`.
+2. ~~**Individual-project decisions**~~ — **done 2026-09-27.** Amit is working on
+   `vthrudebugger_v1` and `Debugger v2` is parked — a decision, not a check of which tree
+   is furthest ahead; `Voice Flow_v1` is superseded but
+   stays on disk, not archived; `Packbly v2` is a real project, left as it is. Written
+   into `PROJECTS.md` and `ENVIRONMENT.md`. The earlier wording here said "`PROJECTS.md`
+   and `REPOS.md`" — that was wrong: `REPOS.md` is a shortlist of third-party GitHub
+   repos and needed no change.
 3. **Block 3 — the workflow tests.** Run a simple task and a project task end to end, and
    check the `STANDARDS.md` task order holds.
 4. **Block 4 — the repository review, then the same-Mac account-switch test.**
@@ -2098,13 +2102,16 @@ intentional, and its internal design choices are not to be refactored. A session
 sees those if it recalls them; a `CLAUDE.md` would state them every turn. Amit's call to
 leave it.
 
-**Open, unresolved — and it matters for the next person in there.** On 2026-09-20 Amit
-said Debugger v2 is "similar, a copy of vthrudebugger". The project's own memory
-`project-debugger-repo-fresh-start`, saved 2026-08-03, says the opposite in as many
-words: *"Fresh start, unrelated to `vthrudebugger_v1` … deliberately out of scope: don't
-copy from it or cite it as prior art."* The contradiction was raised and left open by
-Amit's decision. It did not affect the permission work. It will affect any work on the
-code.
+**Resolved 2026-09-27.** On 2026-09-20 Amit said Debugger v2 is "similar, a copy of
+vthrudebugger". The project's own memory `project-debugger-repo-fresh-start`, saved
+2026-08-03, reads the opposite way in as many words: *"Fresh start, unrelated to
+`vthrudebugger_v1` … deliberately out of scope: don't copy from it or cite it as prior
+art."* Both describe different things and both hold: the two trees were seeded from the
+same file — V-Thru's `DebugProvider.tsx` — and then kept deliberately independent, so
+neither is the other's successor. **Amit is working on `vthrudebugger_v1`; Debugger v2
+is parked** — his decision on 2026-09-27, not a comparison of the two trees. Which tree
+is furthest ahead is still unknown and was not investigated. None of this affected the
+permission work.
 
 **Not verified:** that the tightened rules prompt — same gap as every other pass.
 

@@ -25,16 +25,20 @@ own `README.md`. This file stays an index and carries none of it.
   2026-09-20 and are now at the project root, like every other project.
 - **Debugger** (vthrudebugger) — `~/Documents/VS Code/vthrudebugger_v1` — drop-in
   in-app debugger library for React Native: network/console/error capture, QA alert
-  toasts, network inspector, client-side mocks.
+  toasts, network inspector, client-side mocks. **The Debugger tree being worked on** —
+  Amit's decision, 2026-09-27, not a check of which tree is furthest ahead.
 - **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics
   platform: intracity courier + B2B relocation/warehousing tickets (Next.js 16 +
   React 19, MongoDB, Socket.IO, JWT). **Real customer and courier records.**
 - **Voice Flow v1** — `~/Documents/VS Code/Voice Flow_v1` — earlier Voice Flow tree.
+  **Superseded by `Voice-Flow`.** Not worked on; kept on disk, not archived.
 
 ## No `CLAUDE.md` yet
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for
-  React Native. Successor to `vthrudebugger_v1`.
+  React Native. **Parked.** Not a successor to `vthrudebugger_v1`: both were seeded
+  independently from V-Thru's `DebugProvider.tsx`, and v2's own memory puts
+  `vthrudebugger_v1` deliberately out of scope for it.
 - **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma Make export
   (`package.json` names it `@figma/my-make-file`), a design bundle rather than an app.
 
