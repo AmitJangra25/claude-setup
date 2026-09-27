@@ -965,6 +965,12 @@ Writing the lists out is what surfaced these. Per D4 nothing was changed.
    is still the one worth fixing first — the other three are missing spellings
    of a rule that already asks.
 
+   > **Closed 2026-09-21.** The proof arrived. A manual-mode probe ran `git branch -d`
+   > against `Bash(rtk git branch *)`, which sits in `allow`, and it prompted — so `ask`
+   > beats `allow` at runtime. The three-row table is in § *Status at handoff*. The
+   > paragraph above is the record of what was outstanding on 2026-09-20; it is no
+   > longer open.
+
 1–3 are installs, which the table says always ask; closing them is 3 additions
 and removes nothing. 4 wants either an `ask` on the destructive flags or a
 narrowing of the allow rule — a narrowing is a removal, so it needs approval
@@ -1280,9 +1286,14 @@ no values, and no customer, employee or account record, including from the two
 projects whose databases hold real ones. A regex scan is not a substitute for
 reading the file.
 
-### 6.4 Optional  ·  NOT DONE
+### 6.4 Optional  ·  **DECLINED 2026-09-27**
 A shell function to pull on open and push on close. Out of scope until Phases
 1-2 are done.
+
+> **Declined 2026-09-27, Amit's decision.** Phases 1-2 closed, which lifted the condition
+> above, and he decided not to build it. An automatic push on close would send unreviewed
+> work to `main`, against the standing rule in `STANDARDS.md` § *Git* that nothing is
+> committed or pushed without being asked. Nothing here is blocked or waiting.
 
 ### Project rules are separate — `settings.json` only, since 6.3
 Each project's `.claude/settings.json` belongs in that project's own repo, not
@@ -1953,6 +1964,27 @@ re-tracking its three files is a small separate action.
 - **There is no `brew` rule anywhere in the global `ask` list**, though `npm`,
   `pnpm` and `gem` installs are all covered. Removing `rtk brew *` closes it in
   FinNode only. For the global pass.
+
+> **Re-checked 2026-09-27 — the handoff was dropped, and the finding was partly
+> overstated.** Phase 11 closed as COMPLETE without either item, and re-measured against
+> the live `ask` list on 2026-09-27 all five commands still matched no rule. Three need
+> none: plain `git stash` is recoverable and is prescribed by `STANDARDS.md` § *Git*,
+> `git tag -d` removes a label recreatable from its commit, and `git remote set-url` is
+> fronted by `git push`, which already asks. `git tag` and `git remote` are left alone at
+> Amit's direction.
+>
+> **Measured before adding.** Replayed against 6,662 historical Bash calls in 72 sessions,
+> the proposed patterns would newly prompt on 5 — three real `brew install` runs and two
+> commands that merely quote the patterns — 0.069 per session. `git restore`,
+> `git stash drop` and `git stash clear` have never been run here at all.
+>
+> **Added 2026-09-27**, seven entries, `ask` 51 → 58: `*git restore*`, `*git stash drop*`,
+> `*git stash clear*`, `*brew install*`, `*brew uninstall*`, `*brew upgrade*`,
+> `*brew reinstall*`. Verified as additions only — `allow` (33) and `deny` (2) byte-identical,
+> every other setting unchanged, the file re-parses as valid JSON, and a 35-command corpus
+> matched all 15 that must prompt and none of the 20 that must not. **Not runtime-proven:**
+> no probe was run, by instruction, so these rest on the offline coverage check as `sudo`
+> and `curl` do.
 - **`project-rules/manifest.tsv` and `sync.sh` both say the mirrored files are
   "gitignored in the project"**, which stopped being true for FinNode today. The
   comments are stale, not the mechanism — drift detection was proven live again this
@@ -2459,6 +2491,11 @@ document". They were: the six `git commit` spellings from the Voice-Flow pass, r
 
 Nothing. **Phase 11 is complete** — six imported files and the global permission list.
 
+> **Correction, 2026-09-27.** It closed holding two items handed to it — FinNode's pass
+> had recorded the `git restore`/`git stash` and `brew` gaps as *"For the global pass"*,
+> and neither was added. They were closed separately on 2026-09-27 rather than by
+> reopening the phase; see § *FinNode — open, not acted on*.
+
 ## Findings not acted on
 
 Listed rather than chased, per `report-findings-dont-chase-them`. Nothing here
@@ -2488,7 +2525,12 @@ is being worked on; they are recorded so they are not lost.
    the output is merely bigger) and one instance in 9,491 commands gives nothing
    to work from. If it recurs there will be evidence; if it does not, this closes
    itself. Read with `rtk hook-audit`.
-3. **Two memory folders are duplicates, not just orphans.** `Voice-Flow` (11
+3. **~~Two memory folders are duplicates, not just orphans.~~ Closed 2026-09-27 — the
+   two orphaned folders are gone.** `Voice-Flow-Pro` and `Debugger-vthrudebugger-v1`
+   were confirmed absent by item 5.6 on 2026-09-20 and again on 2026-09-27.
+   **`Voice-Flow` itself is live and unaffected** — it is the working folder, not an
+   orphan. `projects/` now holds seven folders plus a scratchpad, every one mapping to
+   a directory that exists. *The original finding, unchanged:* `Voice-Flow` (11
    files) and `Voice-Flow-Pro` (6) share 4 identical memories.
    `Debugger-vthrudebugger-v1` sits under `/Users/amitjangra/Debugger/`, a path
    that no longer exists.
