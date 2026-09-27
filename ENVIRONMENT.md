@@ -473,9 +473,16 @@ losing work.
 | `~/Documents/VS Code/Packbly_web/v1.1-Packbly` | The one with a `CLAUDE.md` |
 | `~/Documents/extra/v1.1-Packbly` | Same name, last commit 2026-06-23. Looks like an older copy |
 
-### Open questions
+**Two Debugger trees exist.** Amit chose `~/Documents/VS Code/vthrudebugger_v1` as the
+tree to work on, 2026-09-27; `Debugger v2` is parked. A further copy under `~/Debugger`
+is gone, and whether `vthrudebugger_v1` holds its work is unknown — see
+§ *Project-tree decisions*.
 
-Not guesses to act on — things to confirm before treating either answer as true.
+### Project-tree decisions
+
+**All four are answered**, each dated below. They were settled by Amit's decisions and by
+one folder disappearing — not by opening the projects — so where something is still
+unknown, the entry says so rather than rounding it up.
 
 - ~~**Which Debugger tree is current?**~~ **Settled by decision on 2026-09-27, not by a
   check.** Amit is working on `~/Documents/VS Code/vthrudebugger_v1`; `Debugger v2` is
@@ -559,9 +566,9 @@ The detail lives here.
   **backend**, role-based dashboards. Holds real employee records.
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React
-  Native, built so **a developer can drop it into an app**. **Parked 2026-09-27.** Not a
-  successor to `vthrudebugger_v1` — both were seeded from V-Thru's `DebugProvider.tsx`
-  and then kept deliberately independent. **Carries its own** `ARCHITECTURE.md`,
+  Native, built so **a developer can drop it into an app**. **A separate project from
+  `vthrudebugger_v1`, not a successor, parked 2026-09-27** — why, and what is still
+  unknown, is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`,
   `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 
 - **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma code export

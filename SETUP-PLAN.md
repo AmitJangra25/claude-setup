@@ -42,11 +42,10 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    were added.
 2. ~~**Individual-project decisions**~~ — **done 2026-09-27.** Amit is working on
    `vthrudebugger_v1` and `Debugger v2` is parked — a decision, not a check of which tree
-   is furthest ahead; `Voice Flow_v1` is superseded but
-   stays on disk, not archived; `Packbly v2` is a real project, left as it is. Written
-   into `PROJECTS.md` and `ENVIRONMENT.md`. The earlier wording here said "`PROJECTS.md`
-   and `REPOS.md`" — that was wrong: `REPOS.md` is a shortlist of third-party GitHub
-   repos and needed no change.
+   is furthest ahead; `Voice Flow_v1` is superseded but stays on disk, not archived;
+   `Packbly v2` is a real project, left as it is. Written into `PROJECTS.md` and
+   `ENVIRONMENT.md`. The earlier wording here said "`PROJECTS.md` and `REPOS.md`" — that
+   was wrong: `REPOS.md` is a shortlist of third-party GitHub repos and needed no change.
 3. **Block 3 — the workflow tests.** Run a simple task and a project task end to end, and
    check the `STANDARDS.md` task order holds.
 4. **Block 4 — the repository review, then the same-Mac account-switch test.**
