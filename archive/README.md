@@ -59,3 +59,18 @@ byte-identical to the originals, before `backups/` was removed.
 ```bash
 tar -xzf archive/pre-setup-originals-2026-09-18.tar.gz -C /tmp   # restores under backups/
 ```
+
+## PHASE2-REMOVALS.md · PHASE2C-REMOVALS.md · PHASE2C-REMOVALS.json
+
+**Unlike the two above, these are recoverable from git.** They are tracked, and any
+version comes back with `git show <sha>:archive/PHASE2-REMOVALS.md`. They are kept here
+for readability rather than durability: they are the working lists from Phase 2, closed
+2026-09-18, and until 2026-09-27 they sat at the top level among the files you actually
+read.
+
+`PHASE2-REMOVALS.md` is the 144-row approval list — project, file, group and reason for
+every permission rule removed in Phase 2a and 2b. The two `PHASE2C` files are the Group B
+leftovers from Phase 2c, in prose and as JSON.
+
+Moved 2026-09-27, filenames unchanged, content byte-identical — same git blob hashes
+before and after. `SETUP-PLAN.md` § *PHASE 2* points at the new path.

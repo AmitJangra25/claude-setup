@@ -34,10 +34,12 @@ notes lived only in the `~/Documents` memory folder; and `README.md` still said
 **The finish order — Amit's current order, set 2026-09-27.** Blocks 3 and 4 are last *in
 this plan*. That is the order chosen now, not an unchangeable rule.
 
-1. **Agreed cleanup** — retire the three `PHASE2-REMOVALS` files to `archive/`, and settle
-   item 5.8: its `browser-use` half was superseded by **D28**, while the `definite` half is
-   a broken vendor URL and stays open. (`ENVIRONMENT.md`'s startup section and this status
-   block were done 2026-09-27.)
+1. ~~**Agreed cleanup**~~ — **done 2026-09-27.** The three `PHASE2-REMOVALS` files are in
+   `archive/`, moved with `git mv` and verified byte-identical by blob hash. Item 5.8 is
+   half closed: `browser-use` superseded by **D28**, the `definite` vendor URL still open
+   and not ours to fix. Also done that day: `ENVIRONMENT.md`'s startup section, this status
+   block, the plan's own size warning, and the permission counts after seven `ask` rules
+   were added.
 2. **Individual-project decisions** — which Debugger tree is current, whether
    `Voice Flow_v1` can be archived, whether `Packbly v2` is a real project; then update
    `PROJECTS.md` and `REPOS.md`.
@@ -826,8 +828,9 @@ SecondBrain subfolder.
 > The only unambiguous signal is the session-scratchpad UUID pattern, which
 > contains no spaces. Everything else was confirmed by testing the literal path.
 
-**The list to approve:** `PHASE2-REMOVALS.md` in this directory — 144 rows, each
-with project, file, group and reason. It is committed, so it survives a restart.
+**The list to approve:** `archive/PHASE2-REMOVALS.md` — 144 rows, each
+with project, file, group and reason. It is committed, so it survives a restart. It read
+`PHASE2-REMOVALS.md` *in this directory* until 2026-09-27, when it moved to `archive/`.
 
 ### Still to check before Phase 2 runs
 - [x] Group A re-derived by measurement, not pattern guess — 53, evidence above.
@@ -1042,7 +1045,7 @@ apart from the new `tccutil` subsection.
 | 5.5 | Update PROJECTS.md — folders opened that it does not list | **DONE** 2026-09-20 | The row's framing was wrong, so the work changed. Of the **17** paths in `~/.claude.json`, **10 no longer exist** — old Voice Flow trees, `Packbly_Admin`, `claudetr`, a `Downloads` copy of Emp Portal — so listing them would document history, not projects. They are named in `PROJECTS.md` as deliberately excluded. Of the 7 that do exist, 5 were already listed and 2 are `~` and `~/Documents` themselves, now recorded as working directories rather than projects. **Three actual errors found and fixed:** Emp Portal was filed under "No `CLAUDE.md` yet" when it has had one since 6 Aug; `~/Documents/Voice-Flow-main` was listed under "Not projects" and is gone; the verification date said 2026-09-15. |
 | 5.6 | Merge 2 orphaned memory folders | **ALREADY DONE by 7a** — no action 2026-09-20 | Verified rather than assumed: all **5** folders under `projects/` map to a directory that exists on disk, and the two the row names (`-Users-amitjangra-Debugger-vthrudebugger-v1`, `Voice-Flow-Pro`) are gone. **18 memories, none stranded** — corrected 2026-09-20 from "23", which wrongly counted the five `MEMORY.md` index files as memories. Counted with `MEMORY.md` excluded: Voice-Flow 10, Debugger v2 3, FinNode 2, vthrudebugger_v1 2, Documents 1. |
 | 5.7 | Commit Voice Flow + Emp portal rules to git? | **RESOLVED — the question was backwards** 2026-09-20 | Read the `claude-md-not-in-git` memory before recommending this time. It is a standing preference stated "from now onwards" on 2026-08-11: keep `CLAUDE.md` untracked and gitignored, applied **proactively at repo setup rather than on request**. So committing them was never the open question — compliance was. **Both project repos are private** (checked via the API) and **neither file contains a secret**: the credential-shaped grep hits are all prose *describing* auth design that already lives in the same repo's source. **Voice-Flow: already compliant** — `c1e9459 Untrack CLAUDE.md and add it to .gitignore`. **Emp portal: was not, and it was a live risk** — the file was untracked *and* unignored, so `git add -A` on the current feature branch would have committed it. Fixed by adding `CLAUDE.md` to its `.gitignore` with the same comment Voice-Flow uses; the file itself is untouched and `sync.sh` still reports 7 current. Never committed there, so its history is clean. **Cost accepted, unchanged:** a cloud session cloning either repo still gets no project rules; `project-rules/` here is what carries them. |
-| 5.8 | Two cloud plugins fail to connect | **HALF RESOLVED** 2026-09-20 | Both live under `plugins/synced/`, which is **gitignored and cloud-synced**, so a local edit is overwritten on the next sync. **`browser-use`:** ran `uvx --python 3.12 browser-use@latest --cli-mcp` with no `uv` or `uvx` on PATH. **`uv` 0.12.17 installed via Homebrew 2026-09-20 at Amit's instruction**, after I recommended against it — `uv` and `uvx` both resolve to `/opt/homebrew/bin`. **Not yet proven to fix the plugin:** connections are attempted at session start, and the first run must still download CPython 3.12 (not installed locally, `uv python list` shows it as download-available) plus `browser-use@latest`, which is re-fetched from the network on every start. **`definite`:** points at `https://api.definite.app/v3/mcp/http`; checked directly — DNS resolves, the host answers **200 at `/`**, the configured path returns **404**. Stale shipped URL, vendor- or cloud-side, not fixable here. Undo for the install: `brew uninstall uv`. |
+| 5.8 | Two cloud plugins fail to connect | **HALF RESOLVED** 2026-09-20 | Both live under `plugins/synced/`, which is **gitignored and cloud-synced**, so a local edit is overwritten on the next sync. **`browser-use`:** ran `uvx --python 3.12 browser-use@latest --cli-mcp` with no `uv` or `uvx` on PATH. **`uv` 0.12.17 installed via Homebrew 2026-09-20 at Amit's instruction**, after I recommended against it — `uv` and `uvx` both resolve to `/opt/homebrew/bin`. **Not yet proven to fix the plugin:** connections are attempted at session start, and the first run must still download CPython 3.12 (not installed locally, `uv python list` shows it as download-available) plus `browser-use@latest`, which is re-fetched from the network on every start. **`definite`:** points at `https://api.definite.app/v3/mcp/http`; checked directly — DNS resolves, the host answers **200 at `/`**, the configured path returns **404**. Stale shipped URL, vendor- or cloud-side, not fixable here. Undo for the install: `brew uninstall uv`. **Half closed 2026-09-27.** `browser-use` is superseded: **D28** disabled the plugin outright, because its cost was MCP *server instructions*, which `skillOverrides` cannot reach — so whether `uv` would have fixed the connection is moot and was never proven either way. The `uv` install stands; `/opt/homebrew/bin/uv` is present, checked 2026-09-27. **`definite` remains open and is not ours to fix:** as checked on **2026-09-20** its shipped URL returned 404 while the host answered 200, which is vendor- or cloud-side. **Not re-checked since.** The row stays `HALF RESOLVED` for that reason, not from inattention. |
 
 ---
 
