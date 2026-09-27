@@ -87,8 +87,9 @@ the Mac.
 
 ## Next session: start here, not at the top
 
-**Do not read this whole file.** It is ~123 KB and reading it costs roughly 31k tokens,
-which is the opposite of the point. Read, in this order:
+**Do not read this whole file.** It is ~176 KB, measured 2026-09-27; reading it all
+would cost an estimated 44k tokens, scaled from that size rather than measured. Either
+way it is the opposite of the point. Read, in this order:
 
 1. **§ *Where this stands*** at the top — the current state and the finish order —
    then the status table in § *Status at handoff (2026-09-18)*.
