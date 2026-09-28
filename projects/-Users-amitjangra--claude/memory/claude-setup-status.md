@@ -14,7 +14,7 @@ plan file holds the verified inventory, the decisions with their reasoning, and 
 record of every claim that turned out to be wrong when checked — so work resumes
 from a known state rather than a guess.
 
-**Where it stands, 2026-09-26.** The original repair plan closed 2026-09-21. Work
+**Where it stands, 2026-09-28.** The original repair plan closed 2026-09-21. Work
 since then is a second pass on the same repo, organised as blocks:
 
 - **Block 1 — rules, workflow, templates, permissions, baseline.** Done. Two modes
@@ -30,7 +30,10 @@ since then is a second pass on the same repo, organised as blocks:
 - **Block 3 — fix verified local defects, then test.** Three defects fixed
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports
-  when there are three. Task tests not yet run.
+  when there are three. Both task tests were run read-only on 2026-09-28 — 14 prompts
+  and their replies are in `~/.claude/baselines/2026-09-28.md`. **Still untested: a task
+  that changes a file, and one that trips an `ask` rule.** The 58 `ask` rules have never
+  been seen to fire.
 - **Block 4 — repo review, then switch accounts.** Not started. "User B" means a
   second Claude account used by Amit on this same Mac, not another macOS user —
   which is exactly what the runbook in `SETUP-PLAN.md` was written for. Never tested.
