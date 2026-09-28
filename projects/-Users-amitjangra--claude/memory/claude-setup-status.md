@@ -1,8 +1,11 @@
 ---
 name: claude-setup-status
-description: Where the Claude Code setup stands — the spec is ~/.claude/SETUP-PLAN.md; read its START HERE block before changing any rule, setting, permission, hook or memory
+description: "Where the Claude Code setup stands — the spec is ~/.claude/SETUP-PLAN.md; read its START HERE block before changing any rule, setting, permission, hook or memory"
 metadata:
+  node_type: memory
   type: project
+  originSessionId: c68b536f-cba2-4bd5-a222-40996918bc2d
+  modified: 2026-09-28T15:06:01.327Z
 ---
 
 Amit's Claude Code setup lives in `~/.claude`, which is itself the git repo
@@ -31,9 +34,12 @@ since then is a second pass on the same repo, organised as blocks:
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports
   when there are three. Both task tests were run read-only on 2026-09-28 — 14 prompts
-  and their replies are in `~/.claude/baselines/2026-09-28.md`. **Still untested: a live prompt from the
-  eight project `ask` entries added 2026-09-28 — not observed, not failed.** A file-changing
-  task has since run. Two of the 58 global `ask` rules *were* seen to fire in a manual-mode
+  and their replies are in `~/.claude/baselines/2026-09-28.md`. **Voice-Flow's five project
+  `ask` entries were seen to prompt live on 2026-09-28** — each prompt named its matching
+  rule; observed and pasted in by Amit, since Claude cannot see prompts
+  (`~/.claude/baselines/2026-09-28-run2.md`). **FinNode's three are still not observed.**
+  File-changing work has happened as real work, but no designed file-changing test has been
+  run. Two of the 58 global `ask` rules *were* seen to fire in a manual-mode
   probe on 2026-09-21, after the 2026-09-20 merge to the current spellings; the other 56
   have not been probed.
 - **Block 4 — repo review, then switch accounts.** Not started. "User B" means a
