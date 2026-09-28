@@ -22,7 +22,7 @@ A second pass on this repo is running, organised as four blocks:
 |---|---|---|
 | 1 | Rules, task workflow, templates, permissions, startup baseline | **Done** — D27, and the baseline in `ENVIRONMENT.md` |
 | 2 | Measure what loads at startup, and cut it | **Done and measured** — `/context` 34.3k → 21.9k, 2026-09-26, **D28**, **D29**. A later reading the same day was 22.0k, after other changes |
-| 3 | Fix verified local defects, then test a simple and a project task | **Local defects fixed 2026-09-26; the two task tests are not done** |
+| 3 | Fix verified local defects, then test a simple and a project task | **Local defects fixed 2026-09-26. Both task tests run 2026-09-28, read-only — 14 prompts, recorded in `baselines/2026-09-28.md`. No file-changing task and no live permission prompt were tested** |
 | 4 | Review what is safe to keep in the repo, then switch accounts | **Not started** |
 
 **Block 3's three defects**, all found by audit on 2026-09-26 and fixed the same day: the
@@ -46,8 +46,9 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    `Packbly v2` is a real project, left as it is. Written into `PROJECTS.md` and
    `ENVIRONMENT.md`. The earlier wording here said "`PROJECTS.md` and `REPOS.md`" — that
    was wrong: `REPOS.md` is a shortlist of third-party GitHub repos and needed no change.
-3. **Block 3 — the workflow tests.** Run a simple task and a project task end to end, and
-   check the `STANDARDS.md` task order holds.
+3. **Block 3 — the workflow tests.** Both task tests were run read-only on 2026-09-28;
+   the 14 prompts and replies are in `baselines/2026-09-28.md`. Still open: a task that
+   changes a file, and one that trips an `ask` rule — neither has been exercised.
 4. **Block 4 — the repository review, then the same-Mac account-switch test.**
 
 **Where the record is.** Everything already done is recorded dated, and not here.

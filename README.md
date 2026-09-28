@@ -22,6 +22,7 @@ mirrored deliberately.
 | `skills/ollama/` | The one hand-written global skill. Everything else under `skills/` is account-keyed and gitignored. |
 | `projects/*/memory/` | Memory notes only — the session transcripts beside them are gitignored. Memory is stored per starting folder and there is no global memory, so a note is only read by sessions started in that folder. Setup notes live under `-Users-amitjangra--claude`, which means **start setup sessions from `~/.claude`**. |
 | `archive/` | Things that cannot be recreated. See `archive/README.md`. |
+| `baselines/` | Dated behaviour baselines — what the setup actually did, kept so a later run has something to be compared against. Reference, **not** imported. See `baselines/README.md`. |
 | `statusline/` | The context-usage status line. |
 
 Everything else in `~/.claude` — sessions, caches, plugins, skills synced from the

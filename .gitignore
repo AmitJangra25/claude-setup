@@ -65,6 +65,12 @@
 !archive/*.bundle
 !archive/*.tar.gz
 
+# --- allow: baselines/ — dated behaviour baselines, compared run to run. Two
+#     lines because git will not descend into an excluded directory, so the
+#     folder and the file pattern each need an exception.
+!baselines/
+!baselines/*.md
+
 # --- allow: memory files ONLY. Session transcripts sit in the same tree
 #     and must stay out, so this walks in by directory and takes .md only.
 !projects/
