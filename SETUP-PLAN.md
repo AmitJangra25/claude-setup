@@ -8,7 +8,7 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 ## Where this stands
 
-**Last updated: 2026-09-27.**
+**Last updated: 2026-09-28.**
 
 **Start setup sessions from `~/.claude`, not from `~/Documents`.** Memory is stored per
 starting folder, so sessions run from `~/Documents` wrote their notes into a folder that
@@ -44,8 +44,13 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    `vthrudebugger_v1` and `Debugger v2` is parked — a decision, not a check of which tree
    is furthest ahead; `Voice Flow_v1` is superseded but stays on disk, not archived;
    `Packbly v2` is a real project, left as it is. Written into `PROJECTS.md` and
-   `ENVIRONMENT.md`. The earlier wording here said "`PROJECTS.md` and `REPOS.md`" — that
-   was wrong: `REPOS.md` is a shortlist of third-party GitHub repos and needed no change.
+   `ENVIRONMENT.md`, and on 2026-09-28 into `project-rules/README.md` as well — the
+   retired `Voice Flow_v1` mirror had been sitting as a table row directly under
+   `Voice-Flow`, one hyphen apart, and now has its own *Retired* section saying nobody
+   works on it while the tree, its `manifest.tsv` line and its `sync.sh` coverage all
+   stay (commit `0f0d8e1`). The earlier wording here said "`PROJECTS.md` and `REPOS.md`"
+   — that was wrong: `REPOS.md` is a shortlist of third-party GitHub repos and needed no
+   change.
 3. **Block 3 — the workflow tests.** Both task tests were run read-only on 2026-09-28;
    the 14 prompts and replies are in `baselines/2026-09-28.md`. Still open: a task that
    changes a file, and one that trips an `ask` rule — neither has been exercised.
@@ -622,6 +627,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
 | D26 | **A rule file is trimmed only where the content is a *procedure*, never where it is a *rule*.** A procedure is "how to do X" — you know you are doing X, so a skill's description fires reliably. A rule is "don't do Y" — you do not know you are about to do Y, so there is no trigger and lazy-loading it means it silently never loads. Anything moved out of an always-loaded file leaves a one-line pointer naming the skill and when to load it, the way `OLLAMA.md` does, so the load is an instruction rather than a judgement call. Applied 2026-09-22 to decline the FinNode split: measured 573 tokens of rule claims against 990 of supporting prose, but the prose is mostly operative — which of `observeById`/`getById` fails which way, that moving the device clock does not fire a pending sweep. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode twice.** Measure the sections before proposing the fix | 2026-09-22 |
 | D27 | **Two modes and one task order are rules in `STANDARDS.md`; the templates they use are procedures, loaded on demand.** General mode is the default and opens no project. Reading one file is not selecting a project. A project is selected on evidence — the working folder and the git repository that contains it — with the remote, the project's `CLAUDE.md` and its `PROJECTS.md` entry as supporting checks. A check that cannot run is reported, not treated as a mismatch; conflicting evidence stops and asks. Naming a project from general mode needs confirmation before it is opened. Templates sit in `templates/` behind a one-line pointer, per D26. `STANDARDS.md` 1,634 → 2,120 words. **Startup measurement pending.** **Clarified 2026-09-25:** the **pre-Block-1** startup measurement was never taken and is **unavailable**, so Block 1's own startup cost cannot be measured. The **post-Block-1** first-reply baseline **was measured**: **44,700** (three fresh sessions: 44,699 · 44,701 · 44,700). Nothing remains pending. | 2026-09-25 |
+| D30 | **A project rule cannot weaken a global gate.** `STANDARDS.md` line 3 already said the project wins where the two overlap; it now says what that does not cover — approval, recording, safety and permissions hold everywhere, and a project rule may only tighten them. **This closes a guidance gap, not an enforcement one.** The enforced side already held the right way round: rule type beats file location, so a global `ask` beats a project `allow` — § *The precedence rule that makes this work*, and the opposite belief is one of the errors listed in § *What I got wrong while surveying it*. Prose cannot enforce anything (`ENVIRONMENT.md` § *The two kinds of rule*), so this constrains what Claude tries, and `settings.json` is still the only boundary. The same edit adds a pointer to read `ENVIRONMENT.md` before creating or changing a permission rule, because the rtk hook rewrites a command before the permission check and a rule therefore needs every spelling the hook can produce (**D16**). `STANDARDS.md` 265 → 269 lines, ~55 tokens a turn; not measured in a fresh session. Commit `55a9579` | 2026-09-28 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
