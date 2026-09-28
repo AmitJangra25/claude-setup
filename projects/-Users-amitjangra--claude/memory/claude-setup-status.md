@@ -31,9 +31,11 @@ since then is a second pass on the same repo, organised as blocks:
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports
   when there are three. Both task tests were run read-only on 2026-09-28 — 14 prompts
-  and their replies are in `~/.claude/baselines/2026-09-28.md`. **Still untested: a task
-  that changes a file, and one that trips an `ask` rule.** The 58 `ask` rules have never
-  been seen to fire.
+  and their replies are in `~/.claude/baselines/2026-09-28.md`. **Still untested: a live prompt from the
+  eight project `ask` entries added 2026-09-28 — not observed, not failed.** A file-changing
+  task has since run. Two of the 58 global `ask` rules *were* seen to fire in a manual-mode
+  probe on 2026-09-21, after the 2026-09-20 merge to the current spellings; the other 56
+  have not been probed.
 - **Block 4 — repo review, then switch accounts.** Not started. "User B" means a
   second Claude account used by Amit on this same Mac, not another macOS user —
   which is exactly what the runbook in `SETUP-PLAN.md` was written for. Never tested.
