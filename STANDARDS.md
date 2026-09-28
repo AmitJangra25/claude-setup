@@ -2,7 +2,9 @@
 
 Applies to every project. A project's own `CLAUDE.md` adds the specifics — its commands, its
 hard rules, the defects it has already paid for. Where the two overlap, the project wins,
-because it knows what went wrong there.
+because it knows what went wrong there. It wins on craft and workflow only: a project rule
+cannot weaken or bypass a global gate on approval, recording, safety or permissions. It may
+tighten one.
 
 ## Write plainly
 
@@ -263,3 +265,7 @@ Same length. The first one answers the question; the second one just restates th
 write "resets permissions". Name the
 **service** and the **app**, and say so when the command names no bundle id and
 therefore hits **every app on the machine**.
+
+**Before creating or changing a permission rule, read `~/.claude/ENVIRONMENT.md`.** It
+records how the wrappers match: the rtk hook rewrites a command before the permission
+check, so a rule has to cover every spelling the hook can produce.
