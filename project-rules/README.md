@@ -48,8 +48,7 @@ project. A project whose folder moves is fixed by editing that line; until then
 | Copy | Source project |
 |---|---|
 | `FinNode/` | `~/Documents/VS Code/FinNode` |
-| `Voice-Flow/` | `~/Documents/VS Code/Voice-Flow` |
-| `Voice Flow_v1/` | `~/Documents/VS Code/Voice Flow_v1` |
+| `Voice-Flow/` | `~/Documents/VS Code/Voice-Flow` — the live Voice Flow tree, a personal dictation app |
 | `vthrudebugger_v1/` | `~/Documents/VS Code/vthrudebugger_v1` |
 | `Packbly_web/` | `~/Documents/VS Code/Packbly_web/v1.1-Packbly` |
 | `Emp portal/` | `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26` |
@@ -58,6 +57,21 @@ project. A project whose folder moves is fixed by editing that line; until then
 
 `Packbly_v2` is absent on purpose: it has no `CLAUDE.md` and no `.claude/`, so
 there is nothing to mirror. Add a line when it gains one.
+
+### Retired
+
+| Copy | Source project |
+|---|---|
+| `Voice Flow_v1/` | `~/Documents/VS Code/Voice Flow_v1` |
+
+**`Voice Flow_v1` is not the Voice Flow project.** It is an earlier tree, superseded by
+`Voice-Flow` and not worked on — Amit's decision, 2026-09-27. The names are one hyphen
+apart, so check which one you are in before changing anything: `Voice-Flow` is the
+current one.
+
+It stays where it is. The tree was kept on disk rather than archived, its line stays in
+`manifest.tsv`, and `sync.sh` still mirrors it — retired here means nobody is working on
+it, not that it has gone.
 
 ## Before adding another one
 
