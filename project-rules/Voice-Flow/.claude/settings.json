@@ -124,6 +124,13 @@
       "Bash(rtk npx tsc *)",
       "Bash(rtk npx vitest *)"
     ],
+    "ask": [
+      "Bash(*install:app*)",
+      "Bash(*compile:vault*)",
+      "Bash(*signing:cert*)",
+      "Bash(*create-signing-cert*)",
+      "Bash(*reset:permissions*)"
+    ],
     "additionalDirectories": [
       "/Users/amitjangra/Documents/VS Code/Voice-Flow",
       "/private/tmp"

@@ -116,7 +116,7 @@ command is used.
   Read-only, no model, **exits 0 whatever it finds**. `--since`, `--verbose`, `--plans`.
 - `npm run doctor:polish -- --rerun --model <a,b,c>` — produces *new* polishes against
   named **Ollama** models. Writes nothing. `--limit n`, `--runs n`.
-- `npm run doctor:vault` — wiki health check, read-only. Twelve checks; exits 1 on a
+- `npm run doctor:vault` — wiki health check, read-only. Thirteen checks; exits 1 on a
   problem. Same report as **Check my wiki** in Settings → Vault.
 - `npm run compile:vault` — compiles every source in `raw/` no page cites yet.
   **Preview by default; `--apply` writes.** Undo depends on whether it was committed:
@@ -125,7 +125,7 @@ command is used.
 
 ## Known pitfalls
 
-[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 47 with the full story.
+[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 48 with the full story.
 These 15 are the ones that cost time before you would think to look.
 
 - **Small local models need `format: 'json'`, not a prompt asking for JSON.**
