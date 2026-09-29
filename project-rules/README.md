@@ -1,17 +1,23 @@
 # Project rules
 
-A copy of the files each project keeps out of its own git repo — its `CLAUDE.md`
-and its permission rules — so they survive a move to another machine or a switch
-to another Claude account.
+A copy of each project's `CLAUDE.md` and its permission rules, so they survive a
+move to another machine or a switch to another Claude account.
 
-**Why they are here and not in the projects.** A project's `CLAUDE.md` stays out
-of that project's own repo — a standing preference since 11 Aug 2026, recorded in
-memory as `claude-md-not-in-git`, and confirmed as D13 in `../SETUP-PLAN.md`.
-`.claude/settings.json` and `.claude/settings.local.json` are gitignored for the
-same kind of reason: they hold absolute paths from this Mac and a long list of
-one-off grants, and neither belongs in a repo shared with anyone. That keeps all
-three out of anything public — but it also meant they existed in exactly one place
-on one Mac. This folder is the second place.
+**Why they are here.** The policy on tracking these files in a project's own repo
+changed once. Until 2026-09-20 they were deliberately kept out — a standing
+preference from 11 Aug 2026, recorded in memory as `claude-md-not-in-git` and
+confirmed as **D13** in `../SETUP-PLAN.md`. **Both are superseded.** Since
+2026-09-20, `CLAUDE.md` and `.claude/settings.json` **stay tracked while a repo is
+private and solo**; `../STANDARDS.md` § *Git* governs, and taking them out is
+raised before a repo goes public, never done silently.
+
+**The projects were not made uniform.** *Recorded, not freshly checked:* Voice-Flow
+was left untracked and not reverted; FinNode is tracked. So for some projects this
+folder is their only version history, and for others it is a second copy that
+survives a machine or an account switch. `.claude/settings.local.json` stays
+gitignored everywhere — it holds absolute paths from this Mac and a long list of
+one-off grants, and belongs in no repo shared with anyone. Either way, everything
+here travels.
 
 **The live file is the source of truth.** Everything here is a copy. Edit the
 project's own file; never edit the copy and expect it to go anywhere.
@@ -20,8 +26,8 @@ project's own file; never edit the copy and expect it to go anywhere.
 
 | | Mirrored here? | Why |
 |---|---|---|
-| `CLAUDE.md` | yes | gitignored in the project |
-| `.claude/settings.json` | yes | gitignored in the project; holds the permission rules |
+| `CLAUDE.md` | yes | not tracked in every project — see above |
+| `.claude/settings.json` | yes | not tracked in every project; holds the permission rules |
 | `.claude/settings.local.json` | yes | gitignored; this is where clicking **allow** writes |
 | `.claude/skills/` | **no** | *not* gitignored, so it already travels in the project's own repo. A second copy of a tracked file is the drift this script exists to prevent |
 
