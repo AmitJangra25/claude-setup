@@ -2,8 +2,11 @@
 # 6.3 / D13 — keep this repo's copies of each project's rules and permissions
 # from drifting.
 #
-#   ./project-rules/sync.sh          report drift; exit 1 if anything differs
 #   ./project-rules/sync.sh --pull   copy the live files over the copies here
+#   ./project-rules/drift.sh         report drift, read-only; exit 1 if any differs
+#
+# --pull is required. Reporting moved to drift.sh, which has no write path, so
+# that a read-only drift check can be granted without also granting the copy.
 #
 # The live file in each project is the source of truth. This repo holds a copy
 # so those files survive a new machine or account, per D13 — they are gitignored
@@ -22,11 +25,9 @@ MANIFEST=manifest.tsv
 
 TRACKED=("CLAUDE.md" ".claude/settings.json" ".claude/settings.local.json")
 
-mode=report
-[ "${1-}" = "--pull" ] && mode=pull
-[ "${1-}" = "--pull" ] || [ $# -eq 0 ] || { echo "usage: $0 [--pull]"; exit 2; }
+[ "${1-}" = "--pull" ] && [ $# -eq 1 ] || { echo "usage: $0 --pull   (to report instead, use ./drift.sh)"; exit 2; }
 
-drift=0 missing=0 same=0 pulled=0 stale=0
+missing=0 same=0 pulled=0 stale=0
 while IFS=$'\t' read -r name root; do
   case "$name" in \#*|"") continue ;; esac
   [ -n "${root-}" ] || continue
@@ -43,15 +44,9 @@ while IFS=$'\t' read -r name root; do
       continue
     fi
     found=$((found+1))
-    if [ "$mode" = pull ]; then
-      mkdir -p "$(dirname "$copy")"
-      if [ -f "$copy" ] && cmp -s "$src" "$copy"; then same=$((same+1))
-      else cp "$src" "$copy"; printf 'PULLED          %-22s %s\n' "$name" "$rel"; pulled=$((pulled+1)); fi
-    else
-      if [ ! -f "$copy" ]; then printf 'NO COPY YET     %-22s %s\n' "$name" "$rel"; drift=$((drift+1))
-      elif cmp -s "$src" "$copy"; then same=$((same+1))
-      else printf 'DRIFTED         %-22s %s\n' "$name" "$rel"; drift=$((drift+1)); fi
-    fi
+    mkdir -p "$(dirname "$copy")"
+    if [ -f "$copy" ] && cmp -s "$src" "$copy"; then same=$((same+1))
+    else cp "$src" "$copy"; printf 'PULLED          %-22s %s\n' "$name" "$rel"; pulled=$((pulled+1)); fi
   done
   if [ "$found" -eq 0 ]; then
     printf 'MISSING SOURCE  %-22s none of the tracked files exist under\n                %s\n' "$name" "$root"
@@ -59,11 +54,6 @@ while IFS=$'\t' read -r name root; do
   fi
 done < "$MANIFEST"
 
-if [ "$mode" = pull ]; then
-  printf '\n%d pulled, %d already current, %d stale copies, %d projects with nothing to mirror\n' \
-    "$pulled" "$same" "$stale" "$missing"
-  [ $((missing + stale)) -gt 0 ] && exit 1 || exit 0
-fi
-printf '\n%d current, %d drifted, %d stale copies, %d projects with nothing to mirror\n' \
-  "$same" "$drift" "$stale" "$missing"
-[ $((drift + missing + stale)) -gt 0 ] && exit 1 || exit 0
+printf '\n%d pulled, %d already current, %d stale copies, %d projects with nothing to mirror\n' \
+  "$pulled" "$same" "$stale" "$missing"
+[ $((missing + stale)) -gt 0 ] && exit 1 || exit 0

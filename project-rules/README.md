@@ -37,13 +37,17 @@ silently; a copy whose source has disappeared is reported as `STALE COPY`.
 ## Keeping them current
 
 ```bash
-./sync.sh          # report: which copies have drifted from the live files
+./drift.sh         # report: which copies have drifted from the live files
 ./sync.sh --pull   # copy the live files over the copies here
 ```
 
-`sync.sh` exits non-zero when anything has drifted, a copy has gone stale, or a
-project has none of its tracked files where the manifest says to look — so it can
-be run as a check. Report mode changes nothing.
+**Two scripts, not two modes.** `drift.sh` only reads — it has no `cp`, `mkdir`,
+`rm` or redirect anywhere in it — so it can be granted without also granting the
+copy. `sync.sh` writes, requires `--pull`, and stays behind a prompt.
+
+Both exit non-zero when anything has drifted, a copy has gone stale, or a project
+has none of its tracked files where the manifest says to look — so either can be
+run as a check. `drift.sh` changes nothing.
 
 `manifest.tsv` maps each copy to its **project root**, one tab-separated line per
 project. A project whose folder moves is fixed by editing that line; until then
