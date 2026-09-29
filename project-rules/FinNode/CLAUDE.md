@@ -17,8 +17,11 @@ four in Phase 0, five in 1b, three and two in 1c, one in 2a, all hiding behind t
 assumption that a build means a working app.
 
 - A defect that cannot be fixed now goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was
-  **observed**, not guessed. So does anything serious noticed while working: write it down,
-  then carry on with the task you were given. An unrequested fix costs a review, a device
+  **observed**, not guessed — and so does anything serious noticed while working. But writing
+  it down is itself a change, so it happens **only when the approved plan for the task
+  included that recording**. If the plan did not, say what you found in a line or two and ask
+  before writing it anywhere: backlog, roadmap, memory, `CLAUDE.md` or any other doc. Either
+  way, carry on with the task you were given. An unrequested fix costs a review, a device
   pass, and a fresh chance to break something that already worked.
 - Building ahead of the phase needs a reason recorded at the time. `DiaryDao`, `ReminderDao`
   and `last4Digits` are the precedent — each wrote down why a form with nothing behind it
@@ -164,6 +167,10 @@ Check here before writing something new — most of it is one import away.
   first — `TransactionRepository.deleteAll()` in `@Before`, and cleanup goes in `@After`
   where a failure cannot skip it. A suite that only passes on a fresh install will fail the
   first time someone clicks through the app by hand.
+- **So `connectedDebugAndroidTest` deletes every transaction on whichever device `adb` is
+  pointed at.** Run it on the `finnode_api36` emulator only. Never on a phone holding data
+  you use — from Phase 5 that is your own, and the debug build's `.debug` application id is
+  no protection, because that is the build you will be using it in.
 
 ## Architecture summary
 
@@ -198,7 +205,8 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
 ./gradlew assembleDebug
 ./gradlew testDebugUnitTest          # JVM unit tests — no device needed
-./gradlew connectedDebugAndroidTest  # instrumented + Compose UI tests — needs the emulator
+./gradlew connectedDebugAndroidTest  # instrumented + Compose UI tests — finnode_api36 only:
+                                     # it deletes the attached device's transactions
 ./gradlew lint
 ./scripts/audit.sh                   # the hard rules a compiler cannot check
 ```
