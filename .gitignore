@@ -46,7 +46,8 @@
 #     its CLAUDE.md and its permission rules — so they travel without going into
 #     each project's own git. Named files only: a project folder here must never
 #     pull in anything except the files listed below. Skills are deliberately
-#     absent; they are not gitignored in the projects, so they travel there.
+#     absent; they were judged to travel in the projects' own repos. Not verified
+#     per project — see project-rules/README.md.
 !project-rules/
 !project-rules/*/
 !project-rules/*/CLAUDE.md

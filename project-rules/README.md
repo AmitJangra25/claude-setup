@@ -29,7 +29,7 @@ project's own file; never edit the copy and expect it to go anywhere.
 | `CLAUDE.md` | yes | not tracked in every project — see above |
 | `.claude/settings.json` | yes | not tracked in every project; holds the permission rules |
 | `.claude/settings.local.json` | yes | gitignored; this is where clicking **allow** writes |
-| `.claude/skills/` | **no** | *not* gitignored, so it already travels in the project's own repo. A second copy of a tracked file is the drift this script exists to prevent |
+| `.claude/skills/` | **no** | judged to travel in the project's own repo already, so a copy here would be a second copy of a tracked file — the drift this script exists to prevent. **Not verified per project:** no sweep confirmed that every project actually tracks its skills, and the same assumption about `CLAUDE.md` turned out to vary |
 | `.claude/current-task.md` | **no** | live task state, not a rule (**D31**). It is work in progress on one machine, it changes several times a session, and it is deleted when the task closes — mirroring it would report drift constantly and preserve nothing worth keeping |
 
 A project is only expected to have some of these. A missing file is skipped

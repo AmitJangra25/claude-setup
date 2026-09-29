@@ -135,7 +135,7 @@ seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps �
 fenced. Before that, two corrections this block carried
 for a while: it read `ask 87` until 2026-09-20, and then `ask 112` until 2026-09-22,
 having missed the merge that took **112 → 51** on 2026-09-20 (one pattern per command
-instead of up to three spellings — `SETUP-PLAN.md` § *`ask` list merged*). `allow` went
+instead of up to three spellings — `SETUP-PLAN.md`'s **`ask` list merged** row). `allow` went
 **35 → 33** on 2026-09-22. The path before that: **87 → 101** when Phase 3's gaps were
 closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
 `SETUP-PLAN.md`'s **`ask` rules proven** row), **→ 112** when the permission-list pass added
@@ -195,6 +195,16 @@ Note the **two** leading slashes. A single slash in user settings anchors at
 ask because only a deny rule stops the IDE from passing an open `.env` tab to Claude as
 context; an ask rule can't intercept something Claude never requested. This also blocks
 `.env.example`, which is harmless but occasionally inconvenient.
+
+**Auto mode's self-modification classifier, and why the mirror has two scripts.**
+`project-rules/sync.sh` once held both a read-only drift report and a `--pull` that copies.
+Auto mode classified the combined script as self-modification and blocked it, so the
+mirror's only guard could not be run at all. A permission rule would not have fixed that
+honestly — `--pull` is just an argument, and argument-constrained `Bash(...)` patterns do
+not hold. The report path was split out into `project-rules/drift.sh`, which has no `cp`,
+`rm`, `mkdir` or output redirect and can therefore be granted safely; `sync.sh` keeps
+`--pull`, now required, and stays behind a prompt. Split 2026-09-29, and the first run of
+the separated reporter found real drift. **No new permission rule was added.**
 
 ---
 

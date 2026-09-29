@@ -16,9 +16,9 @@
 # Files mirrored per project, each skipped if the project does not have it:
 #     CLAUDE.md · .claude/settings.json · .claude/settings.local.json
 #
-# Skills are deliberately NOT mirrored: they are not gitignored, so they travel
-# in the project's own repo. A second copy of a tracked file is the drift this
-# script exists to prevent.
+# Skills are deliberately NOT mirrored: they were judged to travel in the project's
+# own repo, so a copy here would be a second copy of a tracked file - the drift this
+# script exists to prevent. Not verified per project; see README.md.
 set -uo pipefail
 cd "$(dirname "$0")" || exit 2
 MANIFEST=manifest.tsv
