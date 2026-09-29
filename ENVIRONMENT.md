@@ -138,7 +138,7 @@ having missed the merge that took **112 → 51** on 2026-09-20 (one pattern per 
 instead of up to three spellings — `SETUP-PLAN.md` § *`ask` list merged*). `allow` went
 **35 → 33** on 2026-09-22. The path before that: **87 → 101** when Phase 3's gaps were
 closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
-`SETUP-PLAN.md` § *Open: unproven*), **→ 112** when the permission-list pass added
+`SETUP-PLAN.md`'s **`ask` rules proven** row), **→ 112** when the permission-list pass added
 `rtk wget` and four `pip` spellings. The old "~5.0 prompts per session" figure was
 measured against 87 rules and has been dropped rather than carried forward, because it
 was never re-measured.

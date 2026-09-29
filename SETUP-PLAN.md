@@ -2516,7 +2516,7 @@ path-bearing `allow` rule — rtk's tee directory — exists and holds 20 files.
 **A correction made in the same sitting.** Earlier that day `ENVIRONMENT.md` was updated to
 say the 6 `ask` rules beyond Phase 3's recorded 101 were "not accounted for in either
 document". They were: the six `git commit` spellings from the Voice-Flow pass, recorded in
-§ *Open: unproven* above. 101 + 6 = 107. Corrected.
+the **`ask` rules proven** row above. 101 + 6 = 107. Corrected.
 
 ### Still to do in this phase
 
