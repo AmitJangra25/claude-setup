@@ -8,3 +8,4 @@
 - [History cap: 5000 now, uncapped deferred](history-must-be-unlimited.md) — no arbitrary ceiling; don't lower it to fix slowness
 - [Check history.json before chasing a polish bug](check-history-json-before-chasing-polish.md) — raw/polished is ground truth; the feature was fine twice
 - [Fix from root, flag workarounds](fix-root-cause-flag-workarounds.md) — say "this is a workaround" out loud; Amit rejects patchwork and checks blast radius
+- [I can't see permission prompts](cannot-see-permission-prompts.md) — an approved prompt looks identical to an ungated run; ask Amit, never infer silence from output
