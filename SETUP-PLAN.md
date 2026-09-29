@@ -22,7 +22,7 @@ A second pass on this repo is running, organised as four blocks:
 |---|---|---|
 | 1 | Rules, task workflow, templates, permissions, startup baseline | **Done** — D27, and the baseline in `ENVIRONMENT.md` |
 | 2 | Measure what loads at startup, and cut it | **Done and measured** — `/context` 34.3k → 21.9k, 2026-09-26, **D28**, **D29**. A later reading the same day was 22.0k, after other changes |
-| 3 | Fix verified local defects, then test a simple and a project task | **Local defects fixed 2026-09-26. Both task tests run 2026-09-28, read-only — 14 prompts, recorded in `baselines/2026-09-28.md`. Five of Voice-Flow's `ask` entries were then seen to prompt live, 2026-09-28 — observed and pasted in by Amit, `baselines/2026-09-28-run2.md`. A designed file-changing probe ran 2026-09-29 and held scope across a `/compact` (`baselines/2026-09-29-run2.md`), but it used synthetic markers, not real project work** |
+| 3 | Fix verified local defects, then test a simple and a project task | **Local defects fixed 2026-09-26. Both task tests run 2026-09-28, read-only — 14 prompts, recorded in `baselines/2026-09-28.md`. Five of Voice-Flow's `ask` entries were then seen to prompt live, 2026-09-28 — observed and pasted in by Amit, `baselines/2026-09-28-run2.md`. A designed file-changing probe ran 2026-09-29 and held scope across a `/compact` (`baselines/2026-09-29-run2.md`), but it used synthetic markers, not real project work. Four direct-spelling `ask` rules were then added to Voice-Flow and each was observed prompting, 2026-09-29; real script execution stays unobserved (`baselines/2026-09-29-run4.md`)** |
 | 4 | Review what is safe to keep in the repo, then switch accounts | **Not started** |
 
 **Block 3's three defects**, all found by audit on 2026-09-26 and fixed the same day: the
@@ -97,7 +97,19 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    was executed — so `node scripts/reset-permissions.js --dry-run` is untested and nothing
    here shows it runs ungated. The `sh -c` observation covers that one wrapped harmless
    grep, not `sh -c` in general, and no universal matcher or precedence result follows.
-   Record: `baselines/2026-09-29-run3.md`. The `echo` check run that day also stays
+   Record: `baselines/2026-09-29-run3.md`. **The direct-spelling gap was then closed by
+   rule, not by proof, 2026-09-29:** four `ask` patterns keyed on the *file* spelling were
+   added to Voice-Flow — `Bash(*scripts/install-app*)`, `Bash(*scripts/compile-vault*)`,
+   `Bash(*scripts/reset-permissions*)` and `Bash(*scripts/uninstall-app*)` — taking `ask`
+   5 → 9 with `allow` (122), `deny` (absent) and `additionalDirectories` unchanged. Each was
+   then observed to prompt against a harmless `rtk grep -c 'scripts/<name>' package.json`,
+   each box naming its own rule. **Observed and pasted in by Amit, in separate fresh
+   sessions; Claude cannot see prompts.** Run3's colon/hyphen hypothesis is neither
+   confirmed nor refuted — no real script was run, and that stays deliberate. Two results
+   this repo had previously only asserted now have an observation behind them:
+   **leading-`*` substring matching works**, and **an `ask` overrides an `allow`**, since
+   `Bash(rtk grep *)` is in the global `allow` list and those commands still stopped.
+   Record: `baselines/2026-09-29-run4.md`. The `echo` check run that day also stays
    **not observed**, not failed: manual mode prompts on every Bash command, so it could not
    discriminate. Record: `baselines/2026-09-28-run2.md`.
    **Closed for FinNode 2026-09-29:** its live `ask` list was checked and held exactly the
@@ -1850,6 +1862,17 @@ re-read against the code by a second method.
   `verify-app` skill uses the correct path; the memory was left alone.
 - `.claude/` is untracked in Voice-Flow's git. `settings.local.json` should stay
   that way; `settings.json` and the three new skills probably should not.
+- **Later / unverified, from the 2026-09-29 direct-spelling change.** Recorded, not acted
+  on, and not investigated now:
+  - The two `--dry-run` `allow` entries — `Bash(node scripts/reset-permissions.js
+    --dry-run)` and `Bash(node scripts/uninstall-app.js --dry-run)` — are matched by the
+    new patterns and are **predicted** to prompt from now on. Predicted, not observed.
+  - Real execution of `install:app`, `compile:vault`, `reset:permissions` and
+    `uninstall:app` remains untested, as do the child processes they spawn inside Node
+    (`ditto`, `codesign`, `security`, `osascript`, `tccutil`, `pkill`, `lsregister`),
+    which are not Bash commands and which no rule was exercised against. Deliberate.
+  - `cd scripts && node install-app.js` is **not covered** by the four new rules, nor by
+    any rule in the four settings files. Known, not fixed.
 
 ### Voice-Flow re-checked 2026-09-20, after the FinNode pass
 
@@ -2043,6 +2066,11 @@ re-tracking its three files is a small separate action.
 - **There is no `brew` rule anywhere in the global `ask` list**, though `npm`,
   `pnpm` and `gem` installs are all covered. Removing `rtk brew *` closes it in
   FinNode only. For the global pass.
+- **Mirror drift, found 2026-09-29.** `project-rules/drift.sh` reports FinNode's
+  `.claude/settings.local.json` as DRIFTED from the copy in this repo. Not opened, not
+  investigated and not pulled: the Voice-Flow mirror update that surfaced it was done as a
+  single-file copy precisely so `sync.sh --pull` would not sweep this in unreviewed. Needs
+  its own review.
 
 > **Re-checked 2026-09-27 — the handoff was dropped, and the finding was partly
 > overstated.** Phase 11 closed as COMPLETE without either item, and re-measured against

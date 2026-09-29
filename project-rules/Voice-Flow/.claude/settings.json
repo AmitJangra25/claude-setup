@@ -129,7 +129,11 @@
       "Bash(*compile:vault*)",
       "Bash(*signing:cert*)",
       "Bash(*create-signing-cert*)",
-      "Bash(*reset:permissions*)"
+      "Bash(*reset:permissions*)",
+      "Bash(*scripts/install-app*)",
+      "Bash(*scripts/compile-vault*)",
+      "Bash(*scripts/reset-permissions*)",
+      "Bash(*scripts/uninstall-app*)"
     ],
     "additionalDirectories": [
       "/Users/amitjangra/Documents/VS Code/Voice-Flow",
