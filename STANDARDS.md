@@ -44,6 +44,8 @@ Anything that changes something runs in this order. Most steps are sections of t
 file; the list only fixes the order.
 
 1. **Orient** — mode, project, folder, and the exact task. See *Which project*.
+   In project mode, read `.claude/current-task.md` if it exists. It is the live
+   task record. Write or close it only when the approved plan includes recording.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
 3. **Plan** — *Plan before building.*
 4. **Approve** — nothing is changed, installed, run against anything outside the
