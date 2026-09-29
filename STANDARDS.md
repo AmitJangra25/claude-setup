@@ -58,7 +58,9 @@ file; the list only fixes the order.
 8. **Record** — in project mode, and only if the plan said so: verified results and
    decisions in the project's roadmap, out-of-task findings in its backlog.
 9. **Handoff** — when the work is unfinished, or at the point *Plan before building*
-   says to start fresh, write a handoff note.
+   says to start fresh, write a handoff note. In project mode it goes in the same
+   `.claude/current-task.md` read at Orient, on the `templates/handoff.md` shape, and
+   only when the approved plan included recording.
 10. **Stop** — what is done, what is not verified, what is deferred. Then wait.
 
 Templates for new-project discovery, the roadmap, the backlog and the handoff note are
