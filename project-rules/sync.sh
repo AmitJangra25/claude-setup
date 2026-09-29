@@ -9,8 +9,9 @@
 # that a read-only drift check can be granted without also granting the copy.
 #
 # The live file in each project is the source of truth. This repo holds a copy
-# so those files survive a new machine or account, per D13 — they are gitignored
-# in the projects themselves, so this is their only version history.
+# so those files survive a new machine or account, per D13. Whether a project also
+# tracks them in its own repo varies — the August 2026 keep-them-out preference
+# reversed on 2026-09-20; see README.md. Either way the copy here travels.
 #
 # Files mirrored per project, each skipped if the project does not have it:
 #     CLAUDE.md · .claude/settings.json · .claude/settings.local.json

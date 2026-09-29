@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: c68b536f-cba2-4bd5-a222-40996918bc2d
-  modified: 2026-09-28T15:06:01.327Z
+  modified: 2026-09-29T08:27:05.266Z
 ---
 
 Amit's Claude Code setup lives in `~/.claude`, which is itself the git repo
@@ -17,7 +17,7 @@ plan file holds the verified inventory, the decisions with their reasoning, and 
 record of every claim that turned out to be wrong when checked — so work resumes
 from a known state rather than a guess.
 
-**Where it stands, 2026-09-28.** The original repair plan closed 2026-09-21. Work
+**Where it stands, 2026-09-29.** The original repair plan closed 2026-09-21. Work
 since then is a second pass on the same repo, organised as blocks:
 
 - **Block 1 — rules, workflow, templates, permissions, baseline.** Done. Two modes
@@ -45,6 +45,21 @@ since then is a second pass on the same repo, organised as blocks:
 - **Block 4 — repo review, then switch accounts.** Not started. "User B" means a
   second Claude account used by Amit on this same Mac, not another macOS user —
   which is exactly what the runbook in `SETUP-PLAN.md` was written for. Never tested.
+
+**2026-09-29, outside the blocks.** The mirror's report path was split out of
+`sync.sh` into a read-only `drift.sh`, because auto mode classified the combined
+script as self-modification and the mirror's only guard could not be run. Its first
+run found FinNode's `CLAUDE.md` copy drifted and its `settings.local.json` never
+copied; both were pulled back in. **D31** then settled where a live task record
+lives: `.claude/current-task.md` **inside the selected project**, never under
+`~/.claude` — a central store would need the standing cross-directory grant that
+**D23** removed on 2026-09-18. `templates/handoff.md` was extended as its template
+rather than copied, and `STANDARDS.md` gained one pointer line at *Orient*.
+On 2026-09-29 the FinNode session **reported finding and reading** the record and
+reporting its task and approved scope. The agreed token was in the test prompt, so
+repeating it is not independent proof of recovery, and the exact prompt text was
+not captured. **Recovery after a compaction is still untested**, as is permission
+to continue changing work.
 
 **Start setup sessions from `~/.claude`, not `~/Documents`.** Memory is stored per
 starting folder, which is how these notes ended up in the wrong place. `~/Documents`

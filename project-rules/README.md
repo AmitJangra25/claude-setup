@@ -30,6 +30,7 @@ project's own file; never edit the copy and expect it to go anywhere.
 | `.claude/settings.json` | yes | not tracked in every project; holds the permission rules |
 | `.claude/settings.local.json` | yes | gitignored; this is where clicking **allow** writes |
 | `.claude/skills/` | **no** | *not* gitignored, so it already travels in the project's own repo. A second copy of a tracked file is the drift this script exists to prevent |
+| `.claude/current-task.md` | **no** | live task state, not a rule (**D31**). It is work in progress on one machine, it changes several times a session, and it is deleted when the task closes — mirroring it would report drift constantly and preserve nothing worth keeping |
 
 A project is only expected to have some of these. A missing file is skipped
 silently; a copy whose source has disappeared is reported as `STALE COPY`.
@@ -51,7 +52,7 @@ run as a check. `drift.sh` changes nothing.
 
 `manifest.tsv` maps each copy to its **project root**, one tab-separated line per
 project. A project whose folder moves is fixed by editing that line; until then
-`sync.sh` says `MISSING SOURCE`.
+`drift.sh` says `MISSING SOURCE`.
 
 ## What is here
 
