@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: project
   originSessionId: c68b536f-cba2-4bd5-a222-40996918bc2d
-  modified: 2026-09-29T08:27:05.266Z
+  modified: 2026-09-29T13:25:51.981Z
 ---
 
 Amit's Claude Code setup lives in `~/.claude`, which is itself the git repo
@@ -37,29 +37,33 @@ since then is a second pass on the same repo, organised as blocks:
   and their replies are in `~/.claude/baselines/2026-09-28.md`. **Voice-Flow's five project
   `ask` entries were seen to prompt live on 2026-09-28** — each prompt named its matching
   rule; observed and pasted in by Amit, since Claude cannot see prompts
-  (`~/.claude/baselines/2026-09-28-run2.md`). **FinNode's three are still not observed.**
-  File-changing work has happened as real work, but no designed file-changing test has been
-  run. Two of the 58 global `ask` rules *were* seen to fire in a manual-mode
-  probe on 2026-09-21, after the 2026-09-20 merge to the current spellings; the other 56
-  have not been probed.
+  (`~/.claude/baselines/2026-09-28-run2.md`). **FinNode's three were seen to prompt on
+  2026-09-29**, each box naming its own rule (`baselines/2026-09-29.md`). A **synthetic**
+  file-changing probe ran the same day and held its scope, but **a real project-task test
+  is still unproven** (`baselines/2026-09-29-run2.md`). Two of the 58 global `ask` rules
+  *were* seen to fire in a manual-mode probe on 2026-09-21, after the 2026-09-20 merge to
+  the current spellings; the other 56 have not been probed.
 - **Block 4 — repo review, then switch accounts.** Not started. "User B" means a
   second Claude account used by Amit on this same Mac, not another macOS user —
   which is exactly what the runbook in `SETUP-PLAN.md` was written for. Never tested.
 
-**2026-09-29, outside the blocks.** The mirror's report path was split out of
-`sync.sh` into a read-only `drift.sh`, because auto mode classified the combined
-script as self-modification and the mirror's only guard could not be run. Its first
-run found FinNode's `CLAUDE.md` copy drifted and its `settings.local.json` never
-copied; both were pulled back in. **D31** then settled where a live task record
+**2026-09-29, outside the blocks.** The mirror's read-only report was split out of
+`sync.sh` into `drift.sh` — the reason is in `ENVIRONMENT.md` § *Permissions*. Its first
+run found two FinNode copies drifted; both were pulled back in. **D31** then settled
+where a live task record
 lives: `.claude/current-task.md` **inside the selected project**, never under
 `~/.claude` — a central store would need the standing cross-directory grant that
 **D23** removed on 2026-09-18. `templates/handoff.md` was extended as its template
 rather than copied, and `STANDARDS.md` gained one pointer line at *Orient*.
-On 2026-09-29 the FinNode session **reported finding and reading** the record and
-reporting its task and approved scope. The agreed token was in the test prompt, so
-repeating it is not independent proof of recovery, and the exact prompt text was
-not captured. **Recovery after a compaction is still untested**, as is permission
-to continue changing work.
+`STANDARDS.md` step 9 now points at that same record, so it is read at Orient and written
+at Handoff. A fresh session found and read it, and a same-session `/compact` probe then
+continued the work within scope — but **neither shows the record caused recovery**, since
+the task reached the session before the compaction (`baselines/2026-09-29-run2.md`).
+Four file-spelling `ask` rules were added to Voice-Flow, taking it 5 → 9, and each
+prompted for a harmless grep (`baselines/2026-09-29-run3.md`, `-run4.md`).
+**Not verified:** the real scripts, the child processes they spawn inside Node, every
+direct spelling, or the full approval workflow. FinNode's `settings.local.json` mirror is
+drifted and deliberately not pulled.
 
 **Start setup sessions from `~/.claude`, not `~/Documents`.** Memory is stored per
 starting folder, which is how these notes ended up in the wrong place. `~/Documents`
