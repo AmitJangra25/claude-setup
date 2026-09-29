@@ -86,8 +86,18 @@ this plan*. That is the order chosen now, not an unchangeable rule.
    `signing:cert`, `create-signing-cert`, `reset:permissions` — each prompted in a
    Voice-Flow auto-mode session against a harmless `rtk grep -c <name> package.json`, and
    each prompt named its matching rule. **Observed and pasted in by Amit; Claude cannot see
-   prompts.** Voice-Flow's real npm scripts and the direct `node` and `sh -c` spellings
-   remain **not observed**. The `echo` check run that day also stays
+   prompts.** Voice-Flow's real npm scripts remain **not observed**, and deliberately so —
+   `install:app`, `compile:vault` and `reset:permissions` act on the machine and the
+   installed app, and running a destructive command to prove a prompt appears is a bad
+   trade. **Spelling probed 2026-09-29:** two harmless greps containing `reset:permissions`
+   prompted, one of them wrapped in `sh -c '…'`, each box naming `Bash(*reset:permissions*)`;
+   a harmless grep containing `reset-permissions` — hyphen, not colon — **did not prompt**.
+   That is a spelling-coverage observation for those three commands only, and **not a
+   confirmed bypass**. **The direct `node scripts/…` spellings remain not observed** — none
+   was executed — so `node scripts/reset-permissions.js --dry-run` is untested and nothing
+   here shows it runs ungated. The `sh -c` observation covers that one wrapped harmless
+   grep, not `sh -c` in general, and no universal matcher or precedence result follows.
+   Record: `baselines/2026-09-29-run3.md`. The `echo` check run that day also stays
    **not observed**, not failed: manual mode prompts on every Bash command, so it could not
    discriminate. Record: `baselines/2026-09-28-run2.md`.
    **Closed for FinNode 2026-09-29:** its live `ask` list was checked and held exactly the
