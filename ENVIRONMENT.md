@@ -4,9 +4,15 @@ How Claude Code is set up here, and why each choice was made. Reference material
 read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
-~3,166 tokens on every turn of every session — measured 2026-09-22, not a current
-figure. A file explaining why a threshold is 250K doesn't change how work gets done,
-so it stays out of that budget.
+**~5,355 tokens** on every turn of every session — `/context` in a fresh session from
+`~/.claude`, 2026-09-30, Claude Code 2.1.285. `STANDARDS.md` 4.6k + `RTK.md` 491 +
+`OLLAMA.md` 264; the 4.6k is rounded by `/context`, so the total carries about ±50.
+`CLAUDE.md` itself is a further 32 and is **not** one of the three — it is the file doing
+the importing. Previously ~3,166, measured 2026-09-22; `STANDARDS.md` grew between the two
+readings (**D27**, **D30**), so the +2,189 is real, not a measurement change.
+
+A file explaining why a threshold is 250K doesn't change how work gets done, so it stays
+out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
 
