@@ -65,3 +65,16 @@ answers hold:
 One file per run. If a single run grows past roughly 60 KB, split it by session
 rather than by test — the sessions are the natural boundary, and a reader is
 almost always after one session's behaviour rather than one prompt's.
+
+## Preserving records
+
+Keep past observations intact. Put a later run in a new dated file; if an
+existing record needs a factual correction, add a dated, labelled correction
+that says what changed. Do not silently rewrite the original result.
+
+Name files `YYYY-MM-DD.md`, then `YYYY-MM-DD-run2.md` and so on for further
+runs that day. Link earlier records where that helps explain the result.
+
+Only flat `.md` files are currently allowed by `.gitignore` in this folder.
+Other file types or subfolders need an explicit tracking decision before
+they can be relied on as backed-up evidence.
