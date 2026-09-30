@@ -219,7 +219,7 @@ one you stop reading — which is worse than not having it.
 | `npx vite` / `npx vitest` | 11.3 | Routine build and test. `npx --yes`, the form that installs an arbitrary package, *is* in `ask` and costs 0.2/session. |
 | `./gradlew` | 6.3 | The project's own build. FinNode's own rules require running it before every change. |
 | `adb` | 3.9 | Your own emulator. |
-| `git commit` | 2.0 | Local and reversible. `git push`, which publishes, is in `ask`. |
+| `git commit` | 2.0 | **Superseded — `git commit` is now in `ask`; the live list holds two commit patterns (`*git commit*` and `*git * commit*`).** The original reasoning, kept as the record: local and reversible, while `git push`, which publishes, is in `ask`. |
 
 **`rtk proxy` — superseded 2026-09-20. `Bash(rtk proxy *)` is now gone from every
 project.** The reasoning below is kept as the record of why it was left in place for as
@@ -230,7 +230,9 @@ What replaced it: global `allow` carries only the four read-only inner forms —
 genuinely needs one, as `rtk proxy cmp *` was added for backup verification. The
 dangerous inner forms stay named individually in `ask` exactly as described below; that
 part did not change. Verified by sweeping every `.claude/settings*.json` under
-`VS Code/`: zero occurrences of the wide rule.
+`VS Code/`: zero occurrences of the wide rule. **Scope, added 2026-09-30: that sweep
+covered the project trees only. It did not cover `~/.claude` itself, where the wide rule
+was still present in `.claude/settings.local.json` and was removed that day.**
 
 > **The original decision, 2026-09-18 — `rtk proxy` is in `allow`, not removed.**
 > `rtk proxy <cmd>` runs any command it's given, so `Bash(rtk proxy *)` is effectively a
