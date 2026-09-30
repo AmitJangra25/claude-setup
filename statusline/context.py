@@ -7,19 +7,23 @@ No estimation.
 """
 import json, os, sys
 
-# Thresholds set by Amit on 2026-09-26, lowered from the calibrated defaults
-# because he wants the warning before the point he'd act, not at it:
-#   220K - first warning; he restarts somewhere around 300-400K
-#   300K - act at the next task boundary
-#   450K - too deep to /clear safely mid-task, so /compact instead
+# Thresholds set by Amit on 2026-09-30, raised from 220K/300K/450K because
+# against a 1M context window the old numbers warned far too early - 220K fired
+# while ~94% of the window was still free:
+#   250K - first warning
+#   400K - act at the next task boundary
+#   550K - too deep to /clear safely mid-task, so /compact instead
 # Measured against 50 real sessions / 12,623 turns (2026-09-15), for reference:
 #   floor at session start ..... 33K-86K (typical ~48K)
 #   growth ..................... ~1,200 tokens per turn
 #   median session peak ........ 251K      max observed ..... 588K
-# So 220K now fires on roughly half of all sessions, by intent - the old 250K
-# almost never did. The number itself is always shown (grey); it costs nothing
-# to glance at, and nothing in tokens: the status line never enters context.
-QUIET, WARN, HIGH = 220_000, 300_000, 450_000
+# History: 250K/400K/600K originally; lowered to 220K/300K/450K on 2026-09-26 to
+# fire on roughly half of sessions; raised again 2026-09-30 for the reason above.
+# The warning is about clearing at a TASK BOUNDARY (measured: 45-54% saved) rather
+# than mid-task (~3%) - it is not about running out of room. The number itself is
+# always shown (grey); it costs nothing to glance at, and nothing in tokens: the
+# status line never enters context.
+QUIET, WARN, HIGH = 250_000, 400_000, 550_000
 TAIL = 400_000  # bytes of transcript to scan from the end
 
 

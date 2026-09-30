@@ -5,7 +5,7 @@ read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
 ~3,166 tokens on every turn of every session — measured 2026-09-22, not a current
-figure. A file explaining why a threshold is 220K doesn't change how work gets done,
+figure. A file explaining why a threshold is 250K doesn't change how work gets done,
 so it stays out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
@@ -106,10 +106,12 @@ observed case where the hook did **not** rewrite a command — see `SETUP-PLAN.m
 prints the current context size. It never estimates. Thresholds and the data behind them
 are documented at the top of that file.
 
-Short version: grey under 220K, amber to 300K, red to 450K, then suggests `/compact`.
-**Lowered from 250K/400K/600K on 2026-09-26** at Amit's request — he restarts somewhere
-around 300–400K and wants the warning *before* that point, not at it. The old 250K
-almost never fired; 220K fires on roughly half of sessions, which is the intent.
+Short version: grey under 250K, amber to 400K, red to 550K, then suggests `/compact`.
+**Raised to 250K/400K/550K on 2026-09-30** at Amit's request — against a 1M context window
+the old thresholds warned far too early: 220K fired while roughly 94% of the window was
+still free. The warning exists to nudge a clear at a **task boundary**, where it saves
+45–54%, rather than mid-task, where it saves about 3% — it was never about running out of
+room. Earlier values: 250K/400K/600K, lowered to 220K/300K/450K on 2026-09-26.
 
 **It costs nothing in tokens.** The status line is a shell command the terminal renders;
 its output never enters the model's context. Changing it is free, so tune it freely.
@@ -294,6 +296,10 @@ to a second account.** Block 4's runbook needs this.
 **Also changed on 2026-09-26, at no token cost:** the status-line thresholds, 250K/400K/600K
 → 220K/300K/450K. See § *Status line* — the status line is a shell command the terminal
 renders, and its output never enters context.
+
+**Superseded 2026-09-30:** raised again to **250K/400K/550K**. The 2026-09-26 change above
+is kept as the record of why they were lowered at the time; it no longer describes the
+machine. See § *Status line*.
 
 ### How the numbers moved
 
