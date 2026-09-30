@@ -128,7 +128,19 @@
     "artifact-capabilities": "name-only",
     "claude-in-chrome": "name-only",
     "dataviz": "name-only",
-    "workflow-authoring": "name-only"
+    "workflow-authoring": "name-only",
+    "google-workspace": "name-only",
+    "xlsx": "name-only",
+    "docx": "name-only",
+    "update-config": "name-only",
+    "code-review": "name-only",
+    "pdf": "name-only",
+    "schedule": "name-only",
+    "run": "name-only",
+    "loop": "name-only",
+    "keybindings-help": "name-only",
+    "fewer-permission-prompts": "name-only",
+    "simplify": "name-only"
   },
   "hooks": {
     "PreToolUse": [
