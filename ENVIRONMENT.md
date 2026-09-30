@@ -270,11 +270,16 @@ the `/plugin` menu.
 | `disableClaudeAiConnectors: true` | Turned the claude.ai connectors off wholesale — no per-connector setting exists | delete the line |
 | `browser-use@synced` disabled | Its cost was MCP **server instructions**, which `skillOverrides` cannot reach | re-enable in `/plugin` |
 | `engineering@synced` disabled | −0.9k of skill catalogue, and its 16 MCP auth tools cost nothing either way. See the history table: an upgrade took the same amount back the same hour | re-enable in `/plugin` |
-| `skillOverrides: name-only`, 21 entries | Keeps a skill working and suggestable at under 20 tokens instead of its full cost | delete an entry |
+| `skillOverrides: name-only`, 33 entries | Keeps a skill working and suggestable at under 20 tokens instead of its full cost | delete an entry |
 
 **Plugins now: `pdf-viewer` and `swift-lsp` enabled, 12 disabled.**
 
-**What the 21 `skillOverrides` entries are.** 18 bare keys, every one confirmed working.
+**What the 33 `skillOverrides` entries are.** 30 bare keys. **18 were confirmed working by
+measurement on 2026-09-26; 12 more were added on 2026-09-30 and are NOT yet verified** — a
+wrong key is a silent no-op, so they need `/context all` in a fresh session. The 12 are the
+heaviest remaining skills, ~2.1k between them. `claude-api` was deliberately left at full
+cost: its description is an auto-trigger, and `name-only` would delete it. The 5 `pdf-viewer`
+skills cannot be reached at all.
 3 `artifact-*` keys naming skills that no longer load at all since `enableArtifact:
 false` — harmless, kept at Amit's direction. There were 36: the other 15 were plugin keys,
 removed on 2026-09-26 once `/skills` confirmed they never could work. `user-invocable-only`
