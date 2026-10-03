@@ -15,7 +15,8 @@ Since then: a full read-only setup audit was run, **Part 1 is complete and pushe
 (the small approved change path, the short permission form, an `ENVIRONMENT.md` contents
 list, the first complete startup bucket breakdown of the current setup, and both
 `settings.local.json` files documented), a read-only cleanup review was run as Part 2,
-and **Part 2A** — this note — is correcting stale current-status wording.
+and **Part 2A completed the stale current-status corrections** — the note above is one
+of them.
 
 Still open: Check 2 in `.claude/current-task.md` (needs auto mode off for one command, a
 settings change); re-running the 59-destructive-command review with auto mode in scope;
