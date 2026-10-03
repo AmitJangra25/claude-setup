@@ -22,6 +22,19 @@ Last full review: 2026-09-22. § *What every session loads before you type* was 
 Figures below include measurements, estimates and projections. Each should state its date
 and method — the commands are in § *How the numbers were measured*.
 
+## What's in this file
+
+- § *The two kinds of rule* — global rules against project rules.
+- § *What's set up globally* — settings, permission counts, the local settings files, the
+  hook, the status line, skills.
+- § *Deliberately left out of `ask`* — what was not fenced, and why.
+- § *What every session loads before you type* — startup cost, and what was switched off
+  to get there.
+- § *Known gaps* — what this setup does not protect against.
+- § *Changing any of this* — the method to follow before adding or removing a rule.
+- § *How the numbers were measured* — the commands behind every figure here.
+- § *The project trees on this machine* — the project list and the duplicate trees.
+
 ---
 
 ## The two kinds of rule
@@ -151,6 +164,30 @@ closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow 
 measured against 87 rules and has been dropped rather than carried forward, because it
 was never re-measured.
 
+**Current state — 2026-10-03: the two local settings files.** Two files named
+`settings.local.json` exist under `~/.claude`. Both are **ignored by git**, so neither is
+in this repo and **GitHub cannot show their contents**. Their rules **do not travel** to
+another machine or account. Counts change whenever Amit clicks allow on a prompt, so
+treat the numbers below as of this date only.
+
+| File | allow / ask / deny | Status |
+|---|---|---|
+| `~/.claude/.claude/settings.local.json` | 9 / 0 / 0 | **Active** — confirmed |
+| `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **active or not is unverified** |
+
+The nested file is the project-level overlay for `~/.claude` itself, because the setup
+repo lives at the path Claude Code also uses for its config. It is confirmed active:
+rules that exist **only** in it — `Bash(git ls-remote *)`, `Bash(git check-ignore *)`,
+`Bash(git fetch *)` among them — appear in the live `/permissions` allow list.
+
+The top-level file carries a single rule, `Bash(git add *)`, and an empty
+`skillOverrides` block. **That rule is also present in the nested file**, so nothing
+observable proves the top-level file is being read. It is recorded here as present, with
+its contents as read, and nothing more. Do not state that it is loaded without evidence
+that separates the two.
+
+Neither file is merged, moved or changed by this note.
+
 **Why the `rtk ` spellings exist — and the hole that proved it.** The rtk hook rewrites a
 command *before* the permission check, so fencing `wget *` alone fences nothing: the
 engine only ever sees `rtk wget …`. `curl` carried all three spellings; `wget` carried
@@ -259,13 +296,52 @@ was still present in `.claude/settings.local.json` and was removed that day.**
 
 ## What every session loads before you type
 
-**Latest verified total: 22.0k, measured 2026-09-26.** `/context` in a fresh session from
-`~/.claude`, Opus 5, auto mode, nothing typed. Two readings that day both returned 22.0k:
+**Historical — the 2026-09-26 reading was 22.0k. Superseded by *Current state —
+2026-10-03* below; it is no longer the latest figure and must not be quoted as current.**
+`/context` in a fresh session from `~/.claude`, Opus 5, auto mode, nothing typed. Two
+readings that day both returned 22.0k:
 one after `RTK.md` grew, on a version that was not recorded, and one on Claude Code
 2.1.283 after the `engineering` plugin was disabled.
 
-The last complete category breakdown was recorded at 21.9k before later changes; a
-complete breakdown of the final setup has not been recorded.
+The last complete category breakdown before that was recorded at 21.9k, ahead of later
+changes. A complete breakdown of the **current** setup was missing until 2026-10-03 —
+it is now recorded immediately below, so that gap is closed.
+
+**Current state — 2026-10-03.** First-turn `/context` from `~/.claude`, Opus 5 at high
+effort, auto mode, Claude Code **2.1.288**, `Messages` at 8 tokens — the same method as
+the 22.0k reading above. **Measured, not estimated.**
+
+| Bucket | Tokens |
+|---|---|
+| System prompt | 3.4k |
+| System tools | 12.6k |
+| Memory files | 5.7k |
+| Skills | 1.1k |
+| **Total** | **22.8k** |
+
+This fills the gap described in the paragraph above: it is the first complete bucket
+breakdown **of the current setup**. It is not the first ever recorded here — the 21.9k
+breakdown came earlier, before later changes.
+
+**Do not compare this total with the 22.0k above.** That reading was taken on 2.1.283,
+and this file carries no record of deferred tools. The 2026-10-03 `/context` lists
+deferred tools separately — MCP 3.3k, system tools 17.3k — and does **not** count them in
+the 22.8k. Whether the 22.0k reading counted them the same way is **unverified**. The two
+numbers may be measuring different things, so the buckets above stand on their own and
+any difference between the two totals does not.
+
+**Current state — 2026-10-03: project-work token cost.** **149,112 tokens per assistant
+turn** — 1,018,735,369 tokens over 6,832 turns. Method: sum `input_tokens +
+cache_creation_input_tokens + cache_read_input_tokens + output_tokens` across every
+session transcript under `projects/*/`, dated after 2026-09-17, with `~/.claude` sessions
+excluded so only real project work counts. The comparable figure for the same work before
+that date is **215,251** over 9,680 turns. **Measured and reproducible** — re-running the
+sum returned the identical figure.
+
+Two limits, both real. It is cost per **turn**, not per finished task: nothing in the
+transcripts marks task boundaries, so it does not show whether a task now takes more
+turns than it used to. And the work differed between the two periods, so the drop is
+**not** proof the setup caused it.
 
 ### What is switched off to get there
 
@@ -288,6 +364,12 @@ wrong key is a silent no-op, so they need `/context all` in a fresh session. The
 heaviest remaining skills, ~2.1k between them. `claude-api` was deliberately left at full
 cost: its description is an auto-trigger, and `name-only` would delete it. The 5 `pdf-viewer`
 skills cannot be reached at all.
+
+**Current state — 2026-10-03: the 12 are verified.** The first-turn `/context` recorded
+above reads Skills **1.1k**, against ~3.0k before the keys were added and a prediction of
+~1.1k. Skills is reported on its own `/context` line, so this check does not depend on the
+total and is untouched by the deferred-tools caveat. The sentence above is kept as the
+record of what was still unknown on 2026-09-30.
 3 `artifact-*` keys naming skills that no longer load at all since `enableArtifact:
 false` — harmless, kept at Amit's direction. There were 36: the other 15 were plugin keys,
 removed on 2026-09-26 once `/skills` confirmed they never could work. `user-invocable-only`

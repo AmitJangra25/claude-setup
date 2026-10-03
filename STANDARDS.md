@@ -40,7 +40,25 @@ never trim so far the answer isn't in there.
 A small request — explain something, read a file, check status — is orient, answer,
 stop. No plan.
 
-Anything that changes something runs in this order. Most steps are sections of this
+**A small approved change** — one focused change, in **one** file, in **one** project, no
+new feature and no new structure, plainly reversible, where checking the one thing it
+touched is enough — runs: say the scope in one line, get approval, make the change, check
+that one thing, say the result, stop. Steps 2–3 and 7–9 below are not needed.
+
+This path is **not** available for any of these, however small the edit looks:
+
+- a permission rule, a settings file, a hook, anything under `project-rules/`, or
+  anything that changes a documented invariant;
+- more than one file, or more than one project;
+- publishing, installing, migrating, deleting, or changing network state;
+- anything touching secrets, credentials, or personal data;
+- anything whose result is not obviously reversible, or whose blast radius is not
+  already known.
+
+**If it is arguable whether a change qualifies, it does not.** Those run the full order
+below.
+
+Anything else that changes something runs in this order. Most steps are sections of this
 file; the list only fixes the order.
 
 1. **Orient** — mode, project, folder, and the exact task. See *Which project*.
@@ -245,9 +263,27 @@ macOS privacy, `sqlite3`:
 - **Why now** — what I asked for that needs this, in my terms. "You asked to see the
   test failures and the runner isn't installed", not "installing dependencies".
 
+**Exception:** a command on the `ask` list that only displays information takes the short
+form below instead, not five lines. `rm --help` matches a delete rule but prints usage
+text and touches nothing.
+
 Those commands ask because they were judged consequential once, in advance. The prompt
 is the last point where that judgement gets checked against what is actually happening,
 so it has to carry the reason, not just the command.
+
+**The short form — three lines.** Use it **only** for a command that only displays
+information and cannot change files, settings, network state, or permissions. **If
+unsure, use the full form.**
+
+- **What it runs** — in ordinary words.
+- **That it changes nothing** — say so plainly.
+- **Why the box appeared** — the rule or the command name that triggered it.
+
+Keep the **full** form for any command that may change, delete, install, publish, reach
+secrets, affect privacy, affect the network, or otherwise create risk. A command that
+*looks* read-only but writes takes the full form — `git fetch` updates local refs. A
+command that *looks* destructive but only prints takes the short form — `rm --help` names
+no file and deletes nothing.
 
 Write it the way you'd explain it to someone standing next to you.
 
