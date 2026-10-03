@@ -75,6 +75,11 @@ that says what changed. Do not silently rewrite the original result.
 Name files `YYYY-MM-DD.md`, then `YYYY-MM-DD-run2.md` and so on for further
 runs that day. Link earlier records where that helps explain the result.
 
+**One exception to the naming rule:** `global-open-tests.md` is an index of what is
+still unproven, not a dated run. It carries no results — only one line per open
+item and a pointer to where the detail lives. Project-specific tests appear there
+as pointers only; their records belong inside the project they are about.
+
 Only flat `.md` files are currently allowed by `.gitignore` in this folder.
 Other file types or subfolders need an explicit tracking decision before
 they can be relied on as backed-up evidence.

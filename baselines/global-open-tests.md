@@ -1,0 +1,77 @@
+# Open tests — global index
+
+What is still unproven about this setup, one line each. **An index, not a dated
+run**: the detail stays where it already lives, and this file only says what is
+open and where to look.
+
+Not imported. Read when deciding what to test next.
+
+**Scope.** Global items are setup-wide — permissions, hooks, rtk, the mirror, the
+account switch. Project items belong in that project's own test record and appear
+here as pointers only, because these rules forbid opening another project to
+settle a question.
+
+**Pointers are section names, never line numbers.** Line numbers rot: the pointer
+this file replaced was 44 lines out of date when it was checked on 2026-10-03.
+
+**Durability.** Items 1–4 and 7 point at `.claude/current-task.md`, which is
+untracked and gitignored. This index survives that file; the detail behind those
+items does not.
+
+Last reviewed 2026-10-03.
+
+## Global — setup-wide
+
+1. **Check 2 — an unmatched command with auto mode off.** What happens to a Bash
+   command matching no `allow` and no `ask` rule. Needs auto mode turned off for
+   one command, which is a settings change and needs approval first.
+   Detail: `.claude/current-task.md` § *Check 2*.
+
+2. **Did removing `Bash(rtk proxy *)` close anything?** Not proven either way.
+   Detail: `.claude/current-task.md` § *What the 2026-10-03 run established*.
+
+3. **The 59-destructive-command review, re-run with auto mode in scope.** The
+   original run measured rule coverage, not real exposure — 3 prompted, 56 did
+   not. Do not add a rule without first replaying it against real Bash history.
+   Detail: `.claude/current-task.md` § *Known gaps*. Method:
+   `ENVIRONMENT.md` § *How the numbers were measured*; the last such measurement
+   (0.069 prompts per session over 6,662 calls) is in `SETUP-PLAN.md`
+   § *FinNode — open, not acted on*.
+
+4. **Mirror drift — unknown.** Needs a `drift.sh` run.
+   Detail: `project-rules/drift.sh`; `.claude/current-task.md` § *Still open*.
+
+5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
+   fire in a manual-mode probe on 2026-09-21. Counts verified 2026-10-03:
+   33 `allow`, 58 `ask`, 2 `deny`.
+   Detail: memory note `claude-setup-status`.
+
+6. **The account switch has never been tested.** Block 4 — a second Claude account
+   used by Amit on this same Mac, not another macOS user.
+   Detail: `SETUP-PLAN.md` § *Rebuilding on another account*.
+
+7. **Unexplained, not actioned.** `wc -l ~/.claude/RTK.md` run without `rtk proxy`
+   printed a bare `28` with no filename, and the UI labelled the call "Read 1
+   file". What rewrote it was never determined. Do not write it up as a hook
+   rewrite without checking `hook-audit.log` for that call.
+   Detail: `.claude/current-task.md` § *Known gaps*.
+
+## Project-specific — pointers only
+
+These belong in each project's own test record (`tests/` or `qa/`), created when
+that project is next worked on. Nothing here is actioned from `~/.claude`, because
+these rules forbid opening another project to settle a question.
+
+8. **A real project-task test.** The 2026-09-29 file-changing probe used synthetic
+   markers, not real work, so Block 3's "test a project task" intent is only
+   partly met. **Project: FinNode.**
+   Detail: `SETUP-PLAN.md` § *Where this stands*, item 4;
+   `baselines/2026-09-29-run2.md`.
+
+9. **Voice-Flow's real npm scripts have never been seen to prompt** —
+   `install:app`, `compile:vault`, `reset:permissions`. Deliberate: they act on
+   the machine and the installed app, and running one to prove a prompt appears is
+   a bad trade. Only harmless greps containing those names have been observed.
+   **Project: Voice-Flow.**
+   Detail: `SETUP-PLAN.md` § *Where this stands*, item 4;
+   `baselines/2026-09-29-run4.md`.

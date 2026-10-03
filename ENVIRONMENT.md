@@ -517,7 +517,8 @@ was 21 days old.
 - **Status line thresholds** — the constants at the top of `statusline/context.py`.
 - **Prompt volume feels wrong** — measure before changing. The replay script below tells
   you exactly what would prompt, against real history rather than a guess.
-- **Backups** — `settings.json.bak*` in this directory.
+- **Backups** — git is the backup; this folder's history holds every committed
+  state. Pre-repo copies are in `archive/`.
 
 ## How the numbers were measured
 

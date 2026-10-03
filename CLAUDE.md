@@ -15,5 +15,5 @@
      ~/.claude/SETUP-PLAN.md — the live setup spec, every decision and why, and the
      account-switch runbook. Read before changing any rule, setting, permission,
      hook or memory; update it after. Started 2026-09-18.
-     ~/.claude/baselines/ — dated behaviour baselines. Read when comparing a new
-     run against an older one, and not otherwise. -->
+     ~/.claude/baselines/ — dated behaviour baselines, plus global-open-tests.md,
+     the index of what is still unproven. Read on demand, not every turn. -->

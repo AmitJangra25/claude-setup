@@ -74,3 +74,23 @@ leftovers from Phase 2c, in prose and as JSON.
 
 Moved 2026-09-27, filenames unchanged, content byte-identical — same git blob hashes
 before and after. `SETUP-PLAN.md` § *PHASE 2* points at the new path.
+
+## global-settings-pre-setup-2026-09-15.tar.gz
+
+The global `settings.json` as it stood on 2026-09-15, three days before this repo
+existed — two files, 1 KB.
+
+`settings.json.bak` (17:06) and `settings.json.bak.20260915-194038` (19:40) sat
+loose at the top level until 2026-10-03. Neither is in git: checked by filename
+across every commit, and by content hash as a git blob. The baseline commit
+`14883fa` captured `settings.json` as it stood on **2026-09-18**, which is a later
+and much larger file — so these two are the only record of the state before the
+permission work began. `pre-setup-originals-2026-09-18.tar.gz` covers the
+*project* settings of that era but not the global one.
+
+Like the bundle and the pre-setup tarball, and unlike the three `PHASE2` files,
+this one is **not** recoverable from git.
+
+```bash
+tar -xzf archive/global-settings-pre-setup-2026-09-15.tar.gz -C /tmp
+```
