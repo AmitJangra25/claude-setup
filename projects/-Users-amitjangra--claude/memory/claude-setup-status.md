@@ -30,6 +30,11 @@ since then is a second pass on the same repo, organised as blocks:
   **22.0k**, because system tools rose by the same 0.9k when Claude Code updated to
   2.1.283. **Use `/skills` and `/plugin` to write these settings; they know the key
   format and no guess has ever been right.**
+  **Current state — 2026-10-03:** the 22.0k above is **historical**. The current reading
+  is **22.8k** on Claude Code 2.1.288. Do **not** treat the two as the same measurement —
+  the newer `/context` reports deferred tools separately and outside the total, and
+  whether the older one counted them the same way is unverified. Full buckets, method and
+  limits: `ENVIRONMENT.md` § *What every session loads before you type*.
 - **Block 3 — fix verified local defects, then test.** Three defects fixed
   2026-09-26: the auto-mode trusted-repo line named `~/Documents`, these notes were
   stranded in the `~/Documents` memory folder, and `README.md` said five imports

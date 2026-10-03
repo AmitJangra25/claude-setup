@@ -1,9 +1,18 @@
 ---
 name: setup-review-project-by-project
-description: Amit's Claude setup is being reviewed project by project against ~/.claude/SETUP-PLAN.md; Voice-Flow and FinNode are done, six projects remain
+description: "STATUS SUPERSEDED — the project-by-project review COMPLETED 2026-09-20, all five projects. What still applies is the method: measure a section before proposing to split it, and ask rather than infer"
 metadata:
   type: project
 ---
+
+> **STATUS SUPERSEDED — checked 2026-10-03.** The review **completed on 2026-09-20**,
+> covering all five projects: Voice-Flow, FinNode, `vthrudebugger_v1`, `Debugger v2`,
+> `Emp portal` — `SETUP-PLAN.md` § *PHASE 10*. So "six remain" and the recommendation
+> to do `vthrudebugger_v1` next are both out of date, and **no universal rule is still
+> trapped in one project**: the last two, *Never commit or push without being asked*
+> and *One PR per feature, own branch off `main`*, are in `STANDARDS.md` § *Git*.
+> **Do not act on the status below.** The method and the measurement lessons further
+> down are the part still worth reading.
 
 Amit's whole Claude Code setup — global rules, per-project rules, permissions and
 memory — is being reviewed **one project at a time**, against a written plan at

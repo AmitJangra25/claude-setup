@@ -81,8 +81,9 @@ file; the list only fixes the order.
    only when the approved plan included recording.
 10. **Stop** — what is done, what is not verified, what is deferred. Then wait.
 
-Templates for new-project discovery, the roadmap, the backlog and the handoff note are
-in `~/.claude/templates/`. Read one only when a step needs it. A project that already
+Templates for new-project discovery, the roadmap, the backlog
+(`templates/deferred-improvements.md`) and the handoff note are in `~/.claude/templates/`.
+Read one only when a step needs it. A project that already
 has a roadmap or backlog file keeps using it.
 
 ## Load a capability only when the task needs it
@@ -113,10 +114,12 @@ Set priority before dividing the work: **P1** broken, blocking, or losing data �
 but wrong, or blocks the next piece · **P3** everything else. Then split it, and do them in
 that order.
 
-Keep the pieces small. Plan work that ends before the session gets expensive — past roughly
-300k of context, finish the current piece and say it is a good point to start fresh. Never
-clear mid-task: measured, that saves about 3%, against 45–54% when the break falls on a real
-task boundary.
+Keep the pieces small. Plan work that ends before the session gets expensive. **Use the
+status line as the signal** — it changes colour as context grows, and the current
+thresholds, what each one means and why they were set are in `ENVIRONMENT.md` § *Status
+line*. When it warns, finish the current piece and say it is a good point to start fresh.
+Never clear mid-task: measured, that saves about 3%, against 45–54% when the break falls on
+a real task boundary.
 
 ## Evidence, not assumption
 

@@ -18,7 +18,7 @@ mirrored deliberately.
 | `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~29,000 words: **start at its `► START HERE` block, not the top.** |
 | `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net; projects hold only `allow` rules. |
 | `project-rules/` | A mirror of every project's `CLAUDE.md` and `.claude/settings*.json`. Some projects track those files and some do not — either way the copy here travels, and for the untracked ones it is their only history. `drift.sh` reports drift, read-only; `sync.sh --pull` copies. |
-| `templates/` | The new-project, roadmap, backlog and handoff forms. The handoff form doubles as the live `.claude/current-task.md` task record (**D31**). **Not** imported — `STANDARDS.md` points at them and one is read only when a step needs it. |
+| `templates/` | The new-project, roadmap, backlog (`deferred-improvements.md`) and handoff forms. The handoff form doubles as the live `.claude/current-task.md` task record (**D31**). **Not** imported — `STANDARDS.md` points at them and one is read only when a step needs it. |
 | `skills/ollama/` | The one hand-written global skill. Everything else under `skills/` is account-keyed and gitignored. |
 | `projects/*/memory/` | Memory notes only — the session transcripts beside them are gitignored. Memory is stored per starting folder and there is no global memory, so a note is only read by sessions started in that folder. Setup notes live under `-Users-amitjangra--claude`, which means **start setup sessions from `~/.claude`**. |
 | `archive/` | Things that cannot be recreated. See `archive/README.md`. |

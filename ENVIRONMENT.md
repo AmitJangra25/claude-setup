@@ -94,7 +94,14 @@ change what Claude is allowed to do.
 > while `rtk session` counted 555 on 2026-09-26 alone, so the two disagree about their
 > own window.
 >
-> **Savings are lopsided by command**, measured over 10,017 commands (59.6% overall):
+> **Current state — 2026-10-03:** `rtk gain` reports **59.0% over 11,496 commands**. The
+> overall percentage drifts with the mix of work — it fell from 59.6% to 59.0% during a
+> single docs-heavy session, because grep and read save least. **Treat the overall number
+> as "roughly 60%" and read the live value from `rtk gain`**; the per-command figures below
+> are the stable and useful part. `RTK.md` deliberately copies no total.
+>
+> **Savings are lopsided by command**, measured 2026-09-26 over 10,017 commands (59.6%
+> overall, historical):
 > `ps aux` 98.3%, `eslint` 95.2%, `gradlew` 95.9%, `vitest` 89.4% — but `grep` 22.0%
 > and `read` 10.9%. The low figures are correct. rtk saves by stripping redundancy, and
 > a file read or a grep hit is signal, not boilerplate. `ps aux` saved 2.6M tokens in 49

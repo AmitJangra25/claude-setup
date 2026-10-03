@@ -8,7 +8,23 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 ## Where this stands
 
-**Last updated: 2026-09-29.**
+**Current state — 2026-10-03.** The status block below is **historical**; it was last
+updated 2026-09-29 and stops there.
+
+Since then: a full read-only setup audit was run, **Part 1 is complete and pushed**
+(the small approved change path, the short permission form, an `ENVIRONMENT.md` contents
+list, the first complete startup bucket breakdown of the current setup, and both
+`settings.local.json` files documented), a read-only cleanup review was run as Part 2,
+and **Part 2A** — this note — is correcting stale current-status wording.
+
+Still open: Check 2 in `.claude/current-task.md` (needs auto mode off for one command, a
+settings change); re-running the 59-destructive-command review with auto mode in scope;
+mirror drift, unknown without `drift.sh`; and Part 2B housekeeping.
+
+**For the current commit, branch, remote state and working tree, check git.** None of
+them are recorded here on purpose — see § *Git state is not recorded here*.
+
+**Last updated before that: 2026-09-29.**
 
 **Start setup sessions from `~/.claude`, not from `~/Documents`.** Memory is stored per
 starting folder, so sessions run from `~/Documents` wrote their notes into a folder that
@@ -344,6 +360,11 @@ imported files, the global permission list, and whatever turned out to be
 universal. **`STANDARDS.md` goes last within it**, because the universal rules
 still trapped in `vthrudebugger_v1` have to be added to it — trimming it first
 means opening it twice.
+
+> **Current state — 2026-10-03:** the ordering reason above is **spent**. Both rules
+> have since been added — *Never commit or push without being asked* and *One PR per
+> feature, own branch off `main`* are in `STANDARDS.md` § *Git*. Nothing universal is
+> still trapped in `vthrudebugger_v1`. Kept as the record of why the order was chosen.
 
 **Why it goes first.** The six global files are loaded every turn in **every**
 project — they are paid eight times over. 100 words cut there saves ~132 tokens in
@@ -683,7 +704,7 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D12 | rtk stays. The fault was my verification, not rtk: anything feeding a decision to delete, move or overwrite a file must be re-run through `rtk proxy` first | 2026-09-18 |
 | D13 | **Supersedes D11.** Project `CLAUDE.md` files stay out of their own project repos (August preference holds). A copy lives in the private `~/.claude` repo under `project-rules/<project>/` so they still travel. **Superseded 2026-09-20 — reversed at Amit's direction.** `CLAUDE.md` and `.claude/settings.json` now **stay tracked while a repo is private and solo**, and taking them out is raised before a repo goes public, never done silently; `STANDARDS.md` § *Git* governs. The `project-rules/` mirror stays either way — it is the only version history where a project does not track them, and a second copy that survives a machine or account switch where it does. The projects were **not** made uniform: Voice-Flow was left untracked and not reverted, FinNode is tracked — **recorded, not freshly checked.** The decision above is kept as the record of what held between 2026-09-18 and 2026-09-20 | 2026-09-18 |
 | D14 | Read the memory files before recommending anything that touches a project | 2026-09-18 |
-| D17 | Session size is managed at the **task boundary, not a number**. Past ~300k finish the current piece, then suggest a fresh session. Never clear mid-task — measured 3% saving there against 45–54% at a boundary | 2026-09-18 |
+| D17 | Session size is managed at the **task boundary, not a number**. Past ~300k finish the current piece, then suggest a fresh session. Never clear mid-task — measured 3% saving there against 45–54% at a boundary. **The principle still holds. The ~300k is superseded (2026-09-30): the status line now warns at 250K and says act at the next task boundary at 400K. Current values and their reasons: `ENVIRONMENT.md` § *Status line* and the comment block in `statusline/context.py`.** | 2026-09-18 |
 | D18 | Priority is **P1** broken/blocking/losing data · **P2** works but wrong, or blocks the next piece · **P3** everything else. Assign before dividing the work | 2026-09-18 |
 | D19 | Before writing code: state what the change is for, find what depends on it, and say what it cannot affect | 2026-09-18 |
 | D20 | A rule already in `STANDARDS.md` is **not** restated in different words. Four of Amit's 2026-09-18 rules were already covered; re-adding them would double the file and let two phrasings drift apart | 2026-09-18 |
@@ -1617,6 +1638,22 @@ drop the re-stated general paragraph.
 
 ### B · Five universal rules trapped in one project
 
+> **SUPERSEDED — checked 2026-10-03. All five rows are resolved; the table is kept as
+> history only.** Every rule below has since been promoted to a global file, or reversed.
+> Do not act on it, and do not re-add these rules — they are already in place.
+>
+> - *Never commit or push without being asked* → `STANDARDS.md` § *Git*. The row's claim
+>   that it is **"not in `STANDARDS.md` at all"** is no longer true.
+> - *One PR per feature, own branch off `main`* → `STANDARDS.md` § *Git*.
+> - *`verify-shipped-bundle-not-source`* → `STANDARDS.md` § *Evidence, not assumption*.
+> - *`rtk-proxy-suppresses-dry-run-output`* → `RTK.md` § *Gotcha — `--dry-run` prints
+>   nothing*.
+> - *`claude-md-not-in-git`* → **reversed on 2026-09-20**, not promoted. `CLAUDE.md` and
+>   `.claude/settings.json` now stay tracked while a repo is private and solo;
+>   `STANDARDS.md` § *Git* governs. The memory note carries the same supersede marker.
+>
+> The rows below record why each was worth promoting at the time.
+
 The half that actively costs something. Each is general but only loads in one place.
 
 | Rule | Trapped in | Why global |
@@ -2333,6 +2370,12 @@ for § PHASE 10 to finish. **`STANDARDS.md` is last within this phase**, not fir
 it is where the universal rules still trapped in `vthrudebugger_v1` must land, and
 trimming it beforehand means opening it twice. That mistake was made once already —
 see the note in this section.
+
+> **Current state — 2026-10-03: both blockers above are gone.** § PHASE 10 is
+> **COMPLETE (2026-09-20, all five projects)**, so nothing is waiting on it. And no
+> universal rule is still trapped in `vthrudebugger_v1` — both have been added to
+> `STANDARDS.md` § *Git*. The paragraph is kept as the record of why this phase was
+> parked and why `STANDARDS.md` was ordered last.
 
 The six files imported by `~/.claude/CLAUDE.md` are loaded **every turn, in every
 project**. A word cut here is paid back eight times; a word cut in a project is

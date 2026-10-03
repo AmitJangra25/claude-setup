@@ -1,7 +1,10 @@
 # RTK - Rust Token Killer
 
-**Usage**: Token-optimized CLI proxy. 59.6% saved across 10,017 commands — 10–98% by
-command. File reads and greps save only 11–22%; correct, not a fault.
+**Usage**: Token-optimized CLI proxy. It saves roughly 60% of command output overall, but
+very unevenly — 10–98% depending on the command. File reads and greps save only 11–22%;
+correct, not a fault. **`rtk gain` prints the live figure**; the per-command breakdown and
+the dated measurements are in `ENVIRONMENT.md`. No total is copied here — it moves with
+every wrapped command.
 
 ## `rtk proxy` — raw output, no filtering
 
