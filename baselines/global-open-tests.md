@@ -14,37 +14,37 @@ settle a question.
 **Pointers are section names, never line numbers.** Line numbers rot: the pointer
 this file replaced was 44 lines out of date when it was checked on 2026-10-03.
 
-**Durability.** Items 1–4 and 7 point at `.claude/current-task.md`, which is
-untracked and gitignored. This index survives that file; the detail behind those
-items does not.
+**Durability.** Items 1–3 and 7 point at `baselines/03-10-2026.md`, a tracked copy
+of the record that used to live only in the untracked `.claude/current-task.md`.
 
-Last reviewed 2026-10-03.
+Last reviewed 08-10-2026.
 
 ## Global — setup-wide
 
 1. **Check 2 — an unmatched command with auto mode off.** What happens to a Bash
    command matching no `allow` and no `ask` rule. Needs auto mode turned off for
    one command, which is a settings change and needs approval first.
-   Detail: `.claude/current-task.md` § *Check 2*.
+   Detail: `baselines/03-10-2026.md` § *Check 2*.
 
 2. **Did removing `Bash(rtk proxy *)` close anything?** Not proven either way.
-   Detail: `.claude/current-task.md` § *What the 2026-10-03 run established*.
+   Detail: `baselines/03-10-2026.md` § *What the 2026-10-03 run established*.
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did
    not. Do not add a rule without first replaying it against real Bash history.
-   Detail: `.claude/current-task.md` § *Known gaps*. Method:
+   Detail: `baselines/03-10-2026.md` § *Known gaps*. Method:
    `ENVIRONMENT.md` § *How the numbers were measured*; the last such measurement
    (0.069 prompts per session over 6,662 calls) is in `SETUP-PLAN.md`
    § *FinNode — open, not acted on*.
 
 4. **Mirror drift — unknown.** Needs a `drift.sh` run.
-   Detail: `project-rules/drift.sh`; `.claude/current-task.md` § *Still open*.
+   Detail: `project-rules/drift.sh`.
 
 5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
    fire in a manual-mode probe on 2026-09-21. Counts verified 2026-10-03:
    33 `allow`, 58 `ask`, 2 `deny`.
-   Detail: memory note `claude-setup-status`.
+   Detail: `SETUP-PLAN.md` § *Status at handoff (2026-09-18)* — the **`ask` rules
+   proven** row and the runtime probe recorded after it.
 
 6. **The account switch has never been tested.** Block 4 — a second Claude account
    used by Amit on this same Mac, not another macOS user.
@@ -54,7 +54,7 @@ Last reviewed 2026-10-03.
    printed a bare `28` with no filename, and the UI labelled the call "Read 1
    file". What rewrote it was never determined. Do not write it up as a hook
    rewrite without checking `hook-audit.log` for that call.
-   Detail: `.claude/current-task.md` § *Known gaps*.
+   Detail: `baselines/03-10-2026.md` § *Known gaps*.
 
 ## Project-specific — pointers only
 
