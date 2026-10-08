@@ -8,19 +8,19 @@ git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
 ## Current phase
 
-**P1A — harness control desk.** Built, reviewed, and functionally approved by Amit
-08-10-2026; awaiting commit approval. Plan and scope: `.claude/current-task.md` § *Exact next step*.
-Cross-check 08-10-2026 · Opus · final diff in scope · 2 fixed (D33 reason, a step-4
-contradiction) · 33.4k tokens measured.
+**None in progress.** P1A finished 08-10-2026. P1B is next, not started, and needs its
+own approval.
 
 ## Completed
 
 - Parts 1, 2A, 2B — the small-change path and permission forms, stale-status
   corrections, backup cleanup and the open-tests index.
+- **P1A** — harness control desk (D33). Built, reviewed, approved by Amit and committed
+  08-10-2026. Cross-check 08-10-2026 · Opus · final diff in scope · 2 fixed (D33 reason,
+  a step-4 contradiction) · 33.4k tokens measured.
 
 ## Open
 
-- **P1A commit** — waiting on Amit.
 - **P1B** — move the durable detail out of `.claude/current-task.md`, then make this
   file the only status source. Not started; needs its own approval.
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
