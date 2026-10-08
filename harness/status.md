@@ -8,8 +8,8 @@ git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
 ## Current phase
 
-**None in progress.** P1B-1 finished 08-10-2026 and is waiting for Amit's diff review;
-not committed. P1B-2 is next, not planned, and needs its own approval.
+**None in progress.** P1B-1 finished and committed 08-10-2026; push state is in git.
+P1B-2 is next, not planned, and needs its own approval.
 
 ## Completed
 
@@ -18,7 +18,7 @@ not committed. P1B-2 is next, not planned, and needs its own approval.
 - **P1A** — harness control desk (D33). Built, reviewed, approved by Amit and committed
   08-10-2026. Cross-check 08-10-2026 · Opus · final diff in scope · 2 fixed (D33 reason,
   a step-4 contradiction) · 33.4k tokens measured.
-- **P1B-1** — not committed; waiting for Amit's diff review. The history in
+- **P1B-1** — reviewed by Amit and committed 08-10-2026. The history in
   `.claude/current-task.md` is copied unchanged to `baselines/03-10-2026.md` (checked
   with `cmp`); the status copies in `SETUP-PLAN.md` § *START HERE* and the
   `claude-setup-status` memory note are retired and now point here; the open-tests
@@ -64,8 +64,8 @@ Done: Opus diff review, Amit's review, `/context all` before and after (setup 22
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
 requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
 P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
-usage. P1B-1 done 08-10-2026 after the cold Orient gate passed. Next: Amit reviews the
-P1B-1 diff; commit and push each need separate approval. Then P1B-2, planned and
+usage. P1B-1 done 08-10-2026 after the cold Orient gate passed, and committed after
+Amit's diff review. Pushing needs Amit's separate approval. Then P1B-2, planned and
 approved on its own.
 
 ## Source of truth
