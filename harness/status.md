@@ -37,7 +37,10 @@ own approval.
   open; it is done.
 - Open tests 1–4 and 7 point into `.claude/current-task.md`, which git does not keep.
 - `SETUP-PLAN.md` expects a tracked-file count that no longer matches git.
-- A `SETUP-PLAN.md` pointer still uses a line number (~2077).
+- The handoff's *Known gaps* points to `SETUP-PLAN.md` line ~2077 for the rule-replay
+  method. That measurement is under § *FinNode — open, not acted on*, at about line
+  2124 (checked 08-10-2026). The pointer should use the section name. The concern
+  stands: no new permission rule without replaying it against Bash history first.
 - `archive/README.md` lists the new tarball out of order.
 - `PROJECTS.md` says project progress lives in each `README.md`; FinNode's rules point
   to `docs/ROADMAP.md`. Unverified until a FinNode session checks.
@@ -51,8 +54,10 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 ## Next gate
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
-22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. Next: P1A used in
-two setup sessions, accurate at the end of each, before P1B.
+22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
+requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
+P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
+usage. Next: P1B-1, after a cold Orient gate and its own plan approval.
 
 ## Source of truth
 
