@@ -24,6 +24,8 @@ mirrored deliberately.
 | `archive/` | Things that cannot be recreated. See `archive/README.md`. |
 | `baselines/` | Dated behaviour baselines — what the setup actually did, kept so a later run has something to be compared against. `global-open-tests.md` is the index of what is still unproven, global and per-project; it is an index, not a dated run. Reference, **not** imported. See `baselines/README.md`. |
 | `statusline/` | The context-usage status line. |
+| `harness/` | The control desk (**D33**): `status.md`, the one current setup status, and `cross-check.md`, when a second agent reviews and how it is shown. Not imported. |
+| `.claude/CLAUDE.md` | Setup-only rules — loads only in sessions started in `~/.claude`, never in a project. |
 
 Everything else in `~/.claude` — sessions, caches, plugins, skills synced from the
 account — is gitignored. The ignore file blocks everything by default and names what is

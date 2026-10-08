@@ -72,8 +72,9 @@ Keep past observations intact. Put a later run in a new dated file; if an
 existing record needs a factual correction, add a dated, labelled correction
 that says what changed. Do not silently rewrite the original result.
 
-Name files `YYYY-MM-DD.md`, then `YYYY-MM-DD-run2.md` and so on for further
-runs that day. Link earlier records where that helps explain the result.
+New dated files use DD-MM-YYYY: `DD-MM-YYYY.md`, then `DD-MM-YYYY-run2.md` and so
+on for further runs that day. Existing historical filenames (`YYYY-MM-DD`) are not
+renamed unless a separate migration is approved. Link earlier records where that helps explain the result.
 
 **One exception to the naming rule:** `global-open-tests.md` is an index of what is
 still unproven, not a dated run. It carries no results — only one line per open

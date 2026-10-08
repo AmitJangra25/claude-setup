@@ -14,6 +14,10 @@ itself, and then say what it means. Group findings into a few buckets with count
 than listing every one, and ask two or three questions, not twelve. Never pad it out, and
 never trim so far the answer isn't in there.
 
+For meaningful extra work—large context loading, retries, automation, or agent use—show a
+concise workload marker with the mode and estimated token impact. Do not report ordinary
+low-cost activity.
+
 ## Which project
 
 - **General mode is the default.** With no active project, answer from these global
@@ -67,7 +71,10 @@ file; the list only fixes the order.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
 3. **Plan** — *Plan before building.*
 4. **Approve** — nothing is changed, installed, run against anything outside the
-   folder, or sent online until I approve the plan.
+   folder, or sent online until I approve the plan. **Cross-check** risky or structural
+   plans with one fresh read-only agent; it reports, never approves. Before deleting,
+   confirm the target using two different methods. Consequential deletions also
+   require an independent-agent review and human approval.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
 7. **Review** — check the result against the project's own rules and against what the
@@ -108,7 +115,8 @@ wait.
 ## Plan before building
 
 Share a written plan before implementing, then check that plan against the actual files
-before acting on it. A plan that was never verified is a guess with formatting.
+before acting on it. A plan that was never verified is a guess with formatting. It names
+the model and why — this session's (I set it with `/model`) and any helper agent's.
 
 Set priority before dividing the work: **P1** broken, blocking, or losing data · **P2** works
 but wrong, or blocks the next piece · **P3** everything else. Then split it, and do them in
@@ -187,6 +195,8 @@ doing is my call, not a side effect of you noticing something. Do not bundle unr
 into one piece of work. Say something immediately only if it is actually broken, or if a claim
 you already made turns out to be wrong.
 
+A workflow seen four times: propose a skill, never install one.
+
 **That list is observations, not a menu of work.** Defects and facts only — never suggested
 tasks, never "worth checking", never extra verification of what you just built. In project
 mode, out-of-scope findings are also added to the project's backlog — only when the approved
@@ -212,6 +222,8 @@ I dictate most prompts. Read through transcription errors rather than asking wha
 
 Write documentation about the thing, not about the work that produced it. An append-only
 dated log inside a doc means it is time to rewrite it.
+
+New dates and dated filenames: DD-MM-YYYY. Old names stay.
 
 Do not delete reference or spec docs. Relocate them and mark what is superseded — deletion is
 for dead code, not documents.

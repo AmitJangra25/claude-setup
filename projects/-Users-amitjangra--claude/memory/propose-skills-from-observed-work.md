@@ -1,13 +1,16 @@
 ---
 name: propose-skills-from-observed-work
-description: Amit wants skills proposed from what he actually does repeatedly, not kept because they exist — say so when a pattern repeats, and name what a tailored skill would hold
+description: "Amit wants skills proposed from what he actually does repeatedly, not kept because they exist — say so when a pattern repeats, and name what a tailored skill would hold"
 metadata:
+  node_type: memory
   type: feedback
+  originSessionId: 8c99f20d-8309-4a3e-8323-fa83baf4ce48
+  modified: 2026-10-08T10:38:45.050Z
 ---
 
 Do not treat the installed skill list as the set of skills that should exist. When the
-same shape of task comes up three or four times across sessions, say so and propose a
-skill written for it. Said 2026-09-26, deciding to drop the ten `engineering:` skills:
+same shape of task keeps coming up across sessions, say so and propose a skill written
+for it — the threshold (four repetitions, 08-10-2026) is in `STANDARDS.md`. Said 2026-09-26, deciding to drop the ten `engineering:` skills:
 "you can understand how I'm working, and then, based on that, you can suggest to me
 which skills are required or which we need to create as a new skill."
 

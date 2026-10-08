@@ -97,3 +97,13 @@
 !templates/roadmap.md
 !templates/deferred-improvements.md
 !templates/handoff.md
+
+# --- allow: harness/ — the setup's control desk (D33). Named files only.
+!harness/
+!harness/status.md
+!harness/cross-check.md
+
+# --- allow: the setup-only rules file (D33). .claude/ also holds current-task.md
+#     and settings.local.json, which stay ignored — `*` still matches them.
+!.claude/
+!.claude/CLAUDE.md
