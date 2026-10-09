@@ -69,10 +69,22 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   the session's summary.
   Cross-check of all three checkup records: 09-10-2026 · Opus · 5-file set correct,
   3 overstatements fixed, 2 stale sentences fixed · 35.5k tokens measured.
+- **T3 drift warning** — 09-10-2026. `harness/session-check.sh`, run by a `SessionStart`
+  hook in `.claude/settings.json`, so only sessions started in `~/.claude`. Runs
+  `drift.sh` and searches this repo's settings and every mirror copy for
+  `Bash(rtk proxy *)` or `:*`; prints nothing when clean, warns and changes nothing
+  otherwise. `.claude/CLAUDE.md` makes Claude raise a warning first. Verified: search
+  line on test files, silent at 0 drift, warning on a deliberate break (then undone,
+  `drift.sh` 0); fresh sessions — warning raised first with drift, silent at 0, no
+  check in FinNode (Amit). Cross-check 09-10-2026 · Opus · 1 blocking (script was
+  gitignored) + 4 changes, all taken · 33.0k tokens measured.
 
 ## Open
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
+- **Idea, not planned — for T6 to place:** a per-project `SessionStart` check comparing
+  only that project's own settings with its mirror copy, silent when clean. Settle D23
+  first (see *Known contradictions*): the copies live in `~/.claude`, outside the project.
 
 ## Blocked
 
@@ -95,9 +107,9 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** T1, T2 and all three project checkups done; `drift.sh` 0 drifted. Next: T3 —
-the drift warning — in its own session. Still Amit's to run: the `rtk proxy wc` test
-(open test 2).
+**Now:** T1, T2, all three project checkups and T3 done; `drift.sh` 0 drifted. Next: T4
+— Check 2 in default mode + about 5 sample `ask` probes — in its own session. Still
+Amit's to run: the `rtk proxy wc` test (open test 2).
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier

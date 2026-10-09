@@ -4,3 +4,4 @@
 - At Orient, read `harness/status.md` for setup work. Not for unrelated simple tasks.
 - Every changing setup plan includes: the `harness/status.md` update, the cross-check
   result if one ran, and the next gate. Cross-check procedure: `harness/cross-check.md`.
+- If a *Session-start check* warning is in context, tell Amit before anything else.

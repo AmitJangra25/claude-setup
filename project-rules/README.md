@@ -54,6 +54,10 @@ run as a check. `drift.sh` changes nothing.
 project. A project whose folder moves is fixed by editing that line; until then
 `drift.sh` says `MISSING SOURCE`.
 
+**Checked automatically at the start of every setup session** (T3, 09-10-2026):
+`harness/session-check.sh` runs `drift.sh` and warns if anything drifted. It never
+syncs — fixing stays `./sync.sh --pull`, after review.
+
 ## What is here
 
 | Copy | Source project |
