@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 08-10-2026
+**Last verified:** 09-10-2026
 
 ## Current phase
 
