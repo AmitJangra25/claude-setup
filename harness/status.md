@@ -8,11 +8,12 @@ git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
 ## Current phase
 
-**None in progress.** P1B-1 finished and committed 08-10-2026; push state is in git.
-P1B-2 is next, not planned, and needs its own approval.
+**None in progress.** P1B finished 08-10-2026 — P1B-1 and P1B-2 both done. No next
+phase is planned; the items under *Open* and *Blocked* wait for Amit.
 
 ## Completed
 
+- The read-only setup audit and the Part 2 cleanup review, 03-10-2026.
 - Parts 1, 2A, 2B — the small-change path and permission forms, stale-status
   corrections, backup cleanup and the open-tests index.
 - **P1A** — harness control desk (D33). Built, reviewed, approved by Amit and committed
@@ -25,11 +26,14 @@ P1B-2 is next, not planned, and needs its own approval.
   index points at the tracked copy; D32 records the Part 2B decisions.
   `.claude/current-task.md` was not changed (same SHA-256 before and after).
   Cross-check: none — skipped by Amit's decision, as the approved handoff says.
+- **P1B-2** — done 08-10-2026. `.claude/current-task.md` is now only a live task record
+  on the `templates/handoff.md` shape, at *Status: none*. Its history was removed after
+  two checks against `baselines/03-10-2026.md` (`cmp` and SHA-256), and every other
+  fact in it was first confirmed to have a tracked owner. It stays gitignored (D31).
+  Cross-check: none — skipped by Amit's decision.
 
 ## Open
 
-- **P1B-2** — the rest of P1B, including what becomes of `.claude/current-task.md` now
-  its history is tracked. Not planned; needs its own approval.
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 
 ## Blocked
@@ -39,15 +43,6 @@ P1B-2 is next, not planned, and needs its own approval.
 
 ## Known contradictions
 
-- `.claude/current-task.md` still holds legacy task status that reads as live — its
-  *Complete*, *Still open* and *Exact next step* sections, the last still calling
-  P1B-1 not started. This file wins. That file stays as written until P1B-2, because
-  P1B-1 kept it read-only.
-- `.claude/current-task.md` *Known gaps* still points to `SETUP-PLAN.md` line ~2077 for
-  the rule-replay method; it is in § *FinNode — open, not acted on*. The tracked copy
-  in `baselines/03-10-2026.md` carries that correction in its header. The handoff
-  stays as written until P1B-2. The concern stands: no new permission rule without
-  replaying it against Bash history first.
 - `archive/README.md` lists the new tarball out of order.
 - `PROJECTS.md` says project progress lives in each `README.md`; FinNode's rules point
   to `docs/ROADMAP.md`. Unverified until a FinNode session checks.
@@ -65,8 +60,8 @@ Done: Opus diff review, Amit's review, `/context all` before and after (setup 22
 requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
 P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
 usage. P1B-1 done 08-10-2026 after the cold Orient gate passed, and committed after
-Amit's diff review. Pushing needs Amit's separate approval. Then P1B-2, planned and
-approved on its own.
+Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Committing and
+pushing each need Amit's separate approval.
 
 ## Source of truth
 
@@ -75,7 +70,7 @@ approved on its own.
 | Global rules | `STANDARDS.md` |
 | Setup-only rules | `.claude/CLAUDE.md` |
 | Current setup status | this file |
-| The task in progress | `.claude/current-task.md` |
+| The task in progress — scope, progress, next step; never setup status | `.claude/current-task.md` (gitignored; *Status: none* between tasks) |
 | Decisions and history | `SETUP-PLAN.md` |
 | Setup tests | `baselines/global-open-tests.md` |
 | Machine facts, measurement method | `ENVIRONMENT.md` |
