@@ -21,13 +21,14 @@ Last reviewed 09-10-2026.
 
 ## Global — setup-wide
 
-1. **Check 2 — an unmatched command with auto mode off.** Partly answered
-   09-10-2026: in accept edits mode, an unmatched read-only command ran without a
-   box. Still open: whether accept edits mode, built-in read-only handling or the
-   organisation policy let it through, plain default mode, and a command that
-   changes something. Switching modes needs no settings change — Shift+Tab.
-   Detail: `baselines/09-10-2026.md`; the original design is in
-   `baselines/03-10-2026.md` § *Check 2*.
+1. **Check 2 — an unmatched command with auto mode off.** Answered 09-10-2026 (T4),
+   for a read-only and a changing command outside the project folder: manual mode
+   and accept edits both prompt; auto mode lets both through. Two early manual runs
+   were void — mistaken Yes clicks — and were re-run. One discrepancy remains: the
+   morning run in accept edits ran without a box; T4's prompted. On an unmatched
+   `rtk proxy` command, "don't ask again" offers `rtk proxy *` — see item 2.
+   Detail: `baselines/09-10-2026-run2.md` and `baselines/09-10-2026.md`; the original
+   design is in `baselines/03-10-2026.md` § *Check 2*.
 
 2. **Did removing `Bash(rtk proxy *)` close anything?** Not proven either way.
    The rule had come back by 03-10-2026 and was removed again 09-10-2026 —
@@ -51,6 +52,9 @@ Last reviewed 09-10-2026.
    (0.069 prompts per session over 6,662 calls) is in `SETUP-PLAN.md`
    § *FinNode — open, not acted on*.
    Decision 09-10-2026: run only if T4 (Check 2) shows something unexpected.
+   T4 result: manual and auto mode behaved consistently once mistaken clicks were
+   re-run; one discrepancy remains (item 1). Whether that triggers this — Amit's
+   call. Not yet run.
 
 4. **Mirror drift — closed 09-10-2026.** First run: 2 drifted, both the
    `rtk proxy *` allow rule in FinNode's and Voice-Flow's `settings.local.json`.
@@ -58,12 +62,16 @@ Last reviewed 09-10-2026.
    pulled with `sync.sh --pull`; `drift.sh` then 0 drifted. Ongoing detection is T3.
    Detail: `project-rules/drift.sh`.
 
-5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
-   fire in a manual-mode probe on 2026-09-21. Counts re-verified 09-10-2026,
-   unchanged: 33 `allow`, 58 `ask`, 2 `deny`. Decision 09-10-2026: probe about 5
-   high-risk rules in T4; accept the rest untested.
-   Detail: `SETUP-PLAN.md` § *Status at handoff (2026-09-18)* — the **`ask` rules
-   proven** row and the runtime probe recorded after it.
+5. **51 of the 58 global `ask` rules have never been probed — accepted.** Two
+   fired in a manual-mode probe on 2026-09-21. Five more fired in auto mode
+   09-10-2026 (T4): `rm *`, `*sudo *`, `*curl *` (on the hook-rewritten
+   `rtk curl`), `*git rebase*`, `kill *` — each box named its rule and offered no
+   "don't ask again". Counts re-verified 09-10-2026, unchanged: 33 `allow`, 58 `ask`,
+   2 `deny`. Decision 09-10-2026: accept the rest untested. Still not shown: `ask`
+   beating `allow` on any rule beyond the 21-09 two — T4's planned collision never
+   happened, because the hook did not rewrite `git rebase`.
+   Detail: `baselines/09-10-2026-run2.md`; `SETUP-PLAN.md` § *Status at handoff
+   (2026-09-18)* — the **`ask` rules proven** row and the runtime probe after it.
 
 6. **The account switch has never been tested.** Block 4 — a second Claude account
    used by Amit on this same Mac, not another macOS user.

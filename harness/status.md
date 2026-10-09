@@ -78,6 +78,15 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   `drift.sh` 0); fresh sessions — warning raised first with drift, silent at 0, no
   check in FinNode (Amit). Cross-check 09-10-2026 · Opus · 1 blocking (script was
   gitignored) + 4 changes, all taken · 33.0k tokens measured.
+- **T4 permission-mode runs** — 09-10-2026. 17 runs across manual, accept edits and auto
+  (Shift+Tab, no settings change), three of them void — two mistaken Yes clicks, re-run,
+  and one in the wrong mode. Five never-probed `ask` rules (`rm`, `sudo`, `curl`,
+  `git rebase`, `kill`) all stopped auto mode and named their rule. Unmatched commands:
+  manual and accept edits prompt, auto lets them through; one discrepancy with the
+  morning run remains, and whether it triggers open test 3's replay is Amit's call. The
+  "don't ask again" option on an unmatched `rtk proxy` command offers `rtk proxy *`. Detail:
+  `baselines/09-10-2026-run2.md`; open tests 1, 3, 5. Cross-check: none — harmless
+  commands and doc edits only.
 
 ## Open
 
@@ -107,9 +116,10 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** T1, T2, all three project checkups and T3 done; `drift.sh` 0 drifted. Next: T4
-— Check 2 in default mode + about 5 sample `ask` probes — in its own session. Still
-Amit's to run: the `rtk proxy wc` test (open test 2).
+**Now:** T1–T4 and all three project checkups done; `drift.sh` 0 drifted. Next: T5 —
+`harness/overview.md` and what "finished" means — in its own session. Fold in open
+test 2's stale test line (Amit, 09-10-2026). Whether T4's one remaining discrepancy
+triggers open test 3's replay is Amit's call.
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
