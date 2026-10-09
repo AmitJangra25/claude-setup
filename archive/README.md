@@ -2,6 +2,8 @@
 
 Things kept because they cannot be recreated, and because `backups/` is gitignored
 and therefore local to one machine.
+Sections are ordered by whether git can recover the content: items git cannot
+recover first, then the recoverable ones (Amit's decision, 09-10-2026).
 
 ## voice-flow-pre-rewrite-2026-09-21.bundle
 
@@ -60,21 +62,6 @@ byte-identical to the originals, before `backups/` was removed.
 tar -xzf archive/pre-setup-originals-2026-09-18.tar.gz -C /tmp   # restores under backups/
 ```
 
-## PHASE2-REMOVALS.md · PHASE2C-REMOVALS.md · PHASE2C-REMOVALS.json
-
-**Unlike the two above, these are recoverable from git.** They are tracked, and any
-version comes back with `git show <sha>:archive/PHASE2-REMOVALS.md`. They are kept here
-for readability rather than durability: they are the working lists from Phase 2, closed
-2026-09-18, and until 2026-09-27 they sat at the top level among the files you actually
-read.
-
-`PHASE2-REMOVALS.md` is the 144-row approval list — project, file, group and reason for
-every permission rule removed in Phase 2a and 2b. The two `PHASE2C` files are the Group B
-leftovers from Phase 2c, in prose and as JSON.
-
-Moved 2026-09-27, filenames unchanged, content byte-identical — same git blob hashes
-before and after. `SETUP-PLAN.md` § *PHASE 2* points at the new path.
-
 ## global-settings-pre-setup-2026-09-15.tar.gz
 
 The global `settings.json` as it stood on 2026-09-15, three days before this repo
@@ -94,3 +81,18 @@ this one is **not** recoverable from git.
 ```bash
 tar -xzf archive/global-settings-pre-setup-2026-09-15.tar.gz -C /tmp
 ```
+
+## PHASE2-REMOVALS.md · PHASE2C-REMOVALS.md · PHASE2C-REMOVALS.json
+
+**Unlike the three above, these are recoverable from git.** They are tracked, and any
+version comes back with `git show <sha>:archive/PHASE2-REMOVALS.md`. They are kept here
+for readability rather than durability: they are the working lists from Phase 2, closed
+2026-09-18, and until 2026-09-27 they sat at the top level among the files you actually
+read.
+
+`PHASE2-REMOVALS.md` is the 144-row approval list — project, file, group and reason for
+every permission rule removed in Phase 2a and 2b. The two `PHASE2C` files are the Group B
+leftovers from Phase 2c, in prose and as JSON.
+
+Moved 2026-09-27, filenames unchanged, content byte-identical — same git blob hashes
+before and after. `SETUP-PLAN.md` § *PHASE 2* points at the new path.

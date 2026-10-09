@@ -44,6 +44,7 @@ Last reviewed 09-10-2026.
    `ENVIRONMENT.md` § *How the numbers were measured*; the last such measurement
    (0.069 prompts per session over 6,662 calls) is in `SETUP-PLAN.md`
    § *FinNode — open, not acted on*.
+   Decision 09-10-2026: run only if T4 (Check 2) shows something unexpected.
 
 4. **Mirror drift — run 09-10-2026: 16 current, 2 drifted, 0 stale.** Both drifted
    files are `.claude/settings.local.json` (FinNode, Voice-Flow), and both differ by
@@ -53,19 +54,21 @@ Last reviewed 09-10-2026.
    Detail: `project-rules/drift.sh`.
 
 5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
-   fire in a manual-mode probe on 2026-09-21. Counts verified 2026-10-03:
-   33 `allow`, 58 `ask`, 2 `deny`.
+   fire in a manual-mode probe on 2026-09-21. Counts re-verified 09-10-2026,
+   unchanged: 33 `allow`, 58 `ask`, 2 `deny`. Decision 09-10-2026: probe about 5
+   high-risk rules in T4; accept the rest untested.
    Detail: `SETUP-PLAN.md` § *Status at handoff (2026-09-18)* — the **`ask` rules
    proven** row and the runtime probe recorded after it.
 
 6. **The account switch has never been tested.** Block 4 — a second Claude account
    used by Amit on this same Mac, not another macOS user.
+   **Deferred 09-10-2026 until Amit asks** — not part of the current plan.
    Detail: `SETUP-PLAN.md` § *Rebuilding on another account*.
 
-7. **Unexplained, not actioned.** `wc -l ~/.claude/RTK.md` run without `rtk proxy`
-   printed a bare `28` with no filename, and the UI labelled the call "Read 1
-   file". What rewrote it was never determined. Do not write it up as a hook
-   rewrite without checking `hook-audit.log` for that call.
+7. **Closed 09-10-2026 — it was the hook.** `hook-audit.log` records
+   `2026-10-03T16:03:28 | rewrite | wc -l ~/.claude/RTK.md | rtk wc -l ~/.claude/RTK.md`;
+   rtk's `wc` filter prints the bare count. Why the UI labelled the call "Read 1
+   file" was not determined and changes nothing.
    Detail: `baselines/03-10-2026.md` § *Known gaps*.
 
 ## Project-specific — pointers only

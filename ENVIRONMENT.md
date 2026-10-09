@@ -94,7 +94,8 @@ change what Claude is allowed to do.
 > while `rtk session` counted 555 on 2026-09-26 alone, so the two disagree about their
 > own window.
 >
-> **Current state — 2026-10-03:** `rtk gain` reports **59.0% over 11,496 commands**. The
+> **Current state — 09-10-2026:** `rtk gain` reports **60.9% over 12,104 commands, 8.5M
+> tokens saved** (59.0% over 11,496 on 2026-10-03). The
 > overall percentage drifts with the mix of work — it fell from 59.6% to 59.0% during a
 > single docs-heavy session, because grep and read save least. **Treat the overall number
 > as "roughly 60%" and read the live value from `rtk gain`**; the per-command figures below
@@ -314,19 +315,26 @@ The last complete category breakdown before that was recorded at 21.9k, ahead of
 changes. A complete breakdown of the **current** setup was missing until 2026-10-03 —
 it is now recorded immediately below, so that gap is closed.
 
-**Current state — 2026-10-03.** First-turn `/context` from `~/.claude`, Opus 5 at high
-effort, auto mode, Claude Code **2.1.288**, `Messages` at 8 tokens — the same method as
-the 22.0k reading above. **Measured, not estimated.**
+**Current state — 09-10-2026.** First-turn `/context all` from `~/.claude`, **Opus 5.5**,
+Claude Code **2.1.295**, `Messages` at 10 tokens; effort and mode not recorded. The
+2026-10-03 reading was Opus 5 at high effort, auto mode, 2.1.288. **Measured, not
+estimated.**
 
-| Bucket | Tokens |
-|---|---|
-| System prompt | 3.4k |
-| System tools | 12.6k |
-| Memory files | 5.7k |
-| Skills | 1.1k |
-| **Total** | **22.8k** |
+| Bucket | 2026-10-03 | 09-10-2026 |
+|---|---|---|
+| System prompt | 3.4k | 2.4k |
+| System tools | 12.6k | 12.7k |
+| Memory files | 5.7k | 6.8k |
+| Skills | 1.1k | 1.1k |
+| **Total** | **22.8k** | **22.9k** |
 
-This fills the gap described in the paragraph above: it is the first complete bucket
+**Not a like-for-like pair:** the model and Claude Code version both changed between the
+two columns, and the system prompt has moved with the model before. Memory files is the
+bucket this setup controls. On 09-10-2026 it was `STANDARDS.md` **5.5k** (4.3k on
+2026-09-26), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 151,
+`CLAUDE.md` 34.
+
+The 2026-10-03 column fills the gap described in the paragraph above: it is the first complete bucket
 breakdown **of the current setup**. It is not the first ever recorded here — the 21.9k
 breakdown came earlier, before later changes.
 

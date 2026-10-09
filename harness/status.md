@@ -8,8 +8,12 @@ git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
 ## Current phase
 
-**None in progress.** P1B finished 08-10-2026 — P1B-1 and P1B-2 both done. No next
-phase is planned; the items under *Open* and *Blocked* wait for Amit.
+**Finish plan, approved 09-10-2026.** T1 open-item review + T2 token baseline →
+T0 remove `rtk proxy *` in FinNode's and Voice-Flow's own sessions → T3 drift warning →
+T4 Check 2 + about 5 sample `ask` probes → T5 `harness/overview.md` and what "finished"
+means → T6 cleanup: sort → update → surgical cleanup, then an independent read-only
+check and Amit's review. Reference docs are archived, never deleted. Account switch
+(open test 6) deferred until Amit asks. P1B finished 08-10-2026.
 
 ## Completed
 
@@ -36,6 +40,14 @@ phase is planned; the items under *Open* and *Blocked* wait for Amit.
 - **Mirror drift run** — 09-10-2026. 2 of 18 files drifted, both the `rtk proxy *`
   allow rule in a project `settings.local.json`; not synced — open-tests items 2 and 4.
   Cross-check: none — read-only run.
+- **T1 open-item review** — 09-10-2026. Test 7 closed (the hook rewrote it —
+  `hook-audit.log`), test 6 deferred, decisions recorded for tests 3 and 5, the
+  `archive/README.md` order fixed, sorted by whether git can recover it — Amit's call,
+  09-10-2026. Cross-check: none — reads and doc edits only.
+- **T2 token baseline** — 09-10-2026. `rtk gain` 60.9% over 12,104 commands; fresh-session
+  `/context all` 22.9k (Opus 5.5, 2.1.295), with memory files 6.8k, of which
+  `STANDARDS.md` 5.5k. Both in `ENVIRONMENT.md`. Cross-check: none — measurement and doc
+  edits only.
 
 ## Open
 
@@ -47,17 +59,19 @@ None.
 
 ## Known contradictions
 
-- `archive/README.md` lists the new tarball out of order.
 - `PROJECTS.md` says project progress lives in each `README.md`; FinNode's rules point
-  to `docs/ROADMAP.md`. Unverified until a FinNode session checks.
+  to `docs/ROADMAP.md`. To be checked in the T0 FinNode session.
 - Can a project session read `~/.claude`? D23 and PHASE 1 disagree (see D31). Nothing
-  depends on it.
+  depends on it. Left for T6.
 
 ## Decisions in force
 
 D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md`.
 
 ## Next gate
+
+**Now:** T1 and T2 done. Next is T0 — remove `rtk proxy *` in FinNode's and Voice-Flow's
+own sessions, then re-run `drift.sh` here.
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
