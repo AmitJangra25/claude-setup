@@ -33,6 +33,9 @@ phase is planned; the items under *Open* and *Blocked* wait for Amit.
   Cross-check: none — skipped by Amit's decision.
 - **Check 2 runs** — 09-10-2026. The blanket `Bash(rtk proxy *)` allow rule had come
   back; Amit approved removing it again. Check 2 is partly answered — open-tests item 1.
+- **Mirror drift run** — 09-10-2026. 2 of 18 files drifted, both the `rtk proxy *`
+  allow rule in a project `settings.local.json`; not synced — open-tests items 2 and 4.
+  Cross-check: none — read-only run.
 
 ## Open
 
@@ -61,7 +64,9 @@ Done: Opus diff review, Amit's review, `/context all` before and after (setup 22
 requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
 P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
 usage. P1B-1 done 08-10-2026 after the cold Orient gate passed, and committed after
-Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Committing and
+Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Mirror drift closes when the
+`rtk proxy *` rule is removed in FinNode's and Voice-Flow's own sessions and a
+`drift.sh` re-run shows 0 drifted. Committing and
 pushing each need Amit's separate approval.
 
 ## Source of truth

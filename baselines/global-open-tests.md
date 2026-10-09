@@ -17,7 +17,7 @@ this file replaced was 44 lines out of date when it was checked on 2026-10-03.
 **Durability.** Items 1–3 and 7 point at `baselines/03-10-2026.md`, a tracked copy
 of the record that used to live only in the untracked `.claude/current-task.md`.
 
-Last reviewed 08-10-2026.
+Last reviewed 09-10-2026.
 
 ## Global — setup-wide
 
@@ -33,6 +33,9 @@ Last reviewed 08-10-2026.
    The rule had come back by 03-10-2026 and was removed again 09-10-2026 —
    `baselines/09-10-2026.md` § *Finding — the blanket rule had come back*.
    Detail: `baselines/03-10-2026.md` § *What the 2026-10-03 run established*.
+   Found 09-10-2026 in the project `allow` lists of FinNode and Voice-Flow
+   (`settings.local.json`), which the global removal does not reach — item 4.
+   How or when it was added there was not checked.
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did
@@ -42,7 +45,11 @@ Last reviewed 08-10-2026.
    (0.069 prompts per session over 6,662 calls) is in `SETUP-PLAN.md`
    § *FinNode — open, not acted on*.
 
-4. **Mirror drift — unknown.** Needs a `drift.sh` run.
+4. **Mirror drift — run 09-10-2026: 16 current, 2 drifted, 0 stale.** Both drifted
+   files are `.claude/settings.local.json` (FinNode, Voice-Flow), and both differ by
+   one added `allow` rule: `Bash(rtk proxy *)` — see item 2. Deliberately not
+   synced, so the copies here stay clean. Still open: remove the rule in each
+   project's own session, then re-run `drift.sh` to confirm 0 drifted.
    Detail: `project-rules/drift.sh`.
 
 5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
