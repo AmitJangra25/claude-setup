@@ -53,8 +53,9 @@ Last reviewed 09-10-2026.
    § *FinNode — open, not acted on*.
    Decision 09-10-2026: run only if T4 (Check 2) shows something unexpected.
    T4 result: manual and auto mode behaved consistently once mistaken clicks were
-   re-run; one discrepancy remains (item 1). Whether that triggers this — Amit's
-   call. Not yet run.
+   re-run; one discrepancy remains (item 1). Decision 09-10-2026 (Amit): not
+   triggered — that run may also have been a mistaken click, and the replay is
+   large. Revisit if it matters.
 
 4. **Mirror drift — closed 09-10-2026.** First run: 2 drifted, both the
    `rtk proxy *` allow rule in FinNode's and Voice-Flow's `settings.local.json`.

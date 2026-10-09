@@ -83,7 +83,7 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   and one in the wrong mode. Five never-probed `ask` rules (`rm`, `sudo`, `curl`,
   `git rebase`, `kill`) all stopped auto mode and named their rule. Unmatched commands:
   manual and accept edits prompt, auto lets them through; one discrepancy with the
-  morning run remains, and whether it triggers open test 3's replay is Amit's call. The
+  morning run remains; Amit decided it does not trigger open test 3's replay. The
   "don't ask again" option on an unmatched `rtk proxy` command offers `rtk proxy *`. Detail:
   `baselines/09-10-2026-run2.md`; open tests 1, 3, 5. Cross-check: none — harmless
   commands and doc edits only.
@@ -118,8 +118,8 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 **Now:** T1–T4 and all three project checkups done; `drift.sh` 0 drifted. Next: T5 —
 `harness/overview.md` and what "finished" means — in its own session. Fold in open
-test 2's stale test line (Amit, 09-10-2026). Whether T4's one remaining discrepancy
-triggers open test 3's replay is Amit's call.
+test 2's stale test line (Amit, 09-10-2026). Open test 3's replay: not run for now
+(Amit, 09-10-2026).
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
