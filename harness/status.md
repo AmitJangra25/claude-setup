@@ -9,7 +9,8 @@ git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 ## Current phase
 
 **Finish plan, approved 09-10-2026.** T1 open-item review + T2 token baseline →
-T0 remove `rtk proxy *` in FinNode's and Voice-Flow's own sessions → T3 drift warning →
+project checkups in each project's own session (FinNode, Voice-Flow, Emp-Portal), with
+T0 — remove `rtk proxy *` — in the first two → T3 drift warning →
 T4 Check 2 + about 5 sample `ask` probes → T5 `harness/overview.md` and what "finished"
 means → T6 cleanup: sort → update → surgical cleanup, then an independent read-only
 check and Amit's review. Reference docs are archived, never deleted. Account switch
@@ -48,6 +49,26 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   `/context all` 22.9k (Opus 5.5, 2.1.295), with memory files 6.8k, of which
   `STANDARDS.md` 5.5k. Both in `ENVIRONMENT.md`. Cross-check: none — measurement and doc
   edits only.
+- **FinNode checkup + T0** — 09-10-2026, in FinNode's own session. `Bash(rtk proxy *)`
+  removed from `settings.local.json`; `drift.sh` shows FinNode 0 drifted, no sync needed.
+  No contradictions with `STANDARDS.md`. Deferred items in FinNode's `docs/BACKLOG.md`
+  § *Setup and tooling — deferred*. Uncommitted there, by design.
+- **Voice-Flow checkup + T0** — 09-10-2026, in Voice-Flow's own session. `Bash(rtk proxy *)`
+  removed from `settings.local.json`; broad `settings.json` allows narrowed (`rtk git *`
+  → four read/add forms, `rtk gh *` removed, `rtk npm *` → `rtk npm run *`); mirror
+  pulled with `sync.sh --pull`, `drift.sh` 0 drifted. Then the dead
+  `screencapture … __TRACKED_VAR__` rule removed from `settings.local.json`, pulled the
+  same way. Core rules: `CLAUDE.md` and `settings.json` are gitignored there, against
+  `STANDARDS.md` § *Git*; logged as a decision in its backlog. Deferred items in
+  Voice-Flow's `docs/backlog.md`. Uncommitted there, by design.
+- **Emp-Portal checkup** — 09-10-2026, in its own session; rules, config and structure
+  only, no data files opened. No `rtk proxy *` there. `settings.json`: `rtk lint *`,
+  `rtk git add *` and `rtk npm run *` replaced by six exact lint/typecheck/test commands;
+  builds and `git add` are no longer allowed. Mirror pulled with `sync.sh --pull`,
+  `drift.sh` 0 drifted. No backlog entry. Structure and core-rules results were not in
+  the session's summary.
+  Cross-check of all three checkup records: 09-10-2026 · Opus · 5-file set correct,
+  3 overstatements fixed, 2 stale sentences fixed · 35.5k tokens measured.
 
 ## Open
 
@@ -60,9 +81,13 @@ None.
 ## Known contradictions
 
 - `PROJECTS.md` says project progress lives in each `README.md`; FinNode's rules point
-  to `docs/ROADMAP.md`. To be checked in the T0 FinNode session.
+  to `docs/ROADMAP.md`. Checked 09-10-2026 in FinNode's session: progress lives in
+  `docs/ROADMAP.md` § *Phase 2 → Checkpoints*, with a one-line summary in `README.md`.
+  `PROJECTS.md`'s wording is the part that is wrong — fix in T6.
 - Can a project session read `~/.claude`? D23 and PHASE 1 disagree (see D31). Nothing
   depends on it. Left for T6.
+- `SETUP-PLAN.md` § *Standing context* says no project holds a broad arbitrary-code
+  rule; FinNode and Voice-Flow did until 09-10-2026. Historical text — fix in T6.
 
 ## Decisions in force
 
@@ -70,17 +95,17 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** T1 and T2 done. Next is T0 — remove `rtk proxy *` in FinNode's and Voice-Flow's
-own sessions, then re-run `drift.sh` here.
+**Now:** T1, T2 and all three project checkups done; `drift.sh` 0 drifted. Next: T3 —
+the drift warning — in its own session. Still Amit's to run: the `rtk proxy wc` test
+(open test 2).
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
 requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
 P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
 usage. P1B-1 done 08-10-2026 after the cold Orient gate passed, and committed after
-Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Mirror drift closes when the
-`rtk proxy *` rule is removed in FinNode's and Voice-Flow's own sessions and a
-`drift.sh` re-run shows 0 drifted. Committing and
+Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Mirror drift closed 09-10-2026:
+`rtk proxy *` removed in each project's own session, `drift.sh` 0 drifted. Committing and
 pushing each need Amit's separate approval.
 
 ## Source of truth

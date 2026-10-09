@@ -1,9 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rtk lint *)",
-      "Bash(rtk git add *)",
-      "Bash(rtk npm run *)"
+      "Bash(rtk lint)",
+      "Bash(rtk lint .)",
+      "Bash(rtk npm run lint)",
+      "Bash(rtk npm run typecheck)",
+      "Bash(rtk npm run --prefix server typecheck)",
+      "Bash(rtk npm run --prefix server test)"
     ]
   }
 }

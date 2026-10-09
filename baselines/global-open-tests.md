@@ -35,7 +35,13 @@ Last reviewed 09-10-2026.
    Detail: `baselines/03-10-2026.md` § *What the 2026-10-03 run established*.
    Found 09-10-2026 in the project `allow` lists of FinNode and Voice-Flow
    (`settings.local.json`), which the global removal does not reach — item 4.
-   How or when it was added there was not checked.
+   **Found in three `settings.local.json` files** — this
+   repo's `.claude/` (found 09-10-2026), FinNode's and Voice-Flow's (removed
+   09-10-2026): the file Claude Code writes on "don't ask again". Ruled out
+   09-10-2026: `sync.sh`, `drift.sh`, the one hook, `rtk init` (per its `--help`).
+   Mechanism not proven. Test: in a fresh session run
+   `rtk proxy wc -l ~/.claude/RTK.md`, read the prompt's "don't ask again" option,
+   answer no.
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did
@@ -46,11 +52,10 @@ Last reviewed 09-10-2026.
    § *FinNode — open, not acted on*.
    Decision 09-10-2026: run only if T4 (Check 2) shows something unexpected.
 
-4. **Mirror drift — run 09-10-2026: 16 current, 2 drifted, 0 stale.** Both drifted
-   files are `.claude/settings.local.json` (FinNode, Voice-Flow), and both differ by
-   one added `allow` rule: `Bash(rtk proxy *)` — see item 2. Deliberately not
-   synced, so the copies here stay clean. Still open: remove the rule in each
-   project's own session, then re-run `drift.sh` to confirm 0 drifted.
+4. **Mirror drift — closed 09-10-2026.** First run: 2 drifted, both the
+   `rtk proxy *` allow rule in FinNode's and Voice-Flow's `settings.local.json`.
+   Removed in each project's own session; Voice-Flow's narrowed `settings.json`
+   pulled with `sync.sh --pull`; `drift.sh` then 0 drifted. Ongoing detection is T3.
    Detail: `project-rules/drift.sh`.
 
 5. **56 of the 58 global `ask` rules have never been probed.** Two were seen to
@@ -71,19 +76,30 @@ Last reviewed 09-10-2026.
    file" was not determined and changes nothing.
    Detail: `baselines/03-10-2026.md` § *Known gaps*.
 
+8. **The global `ask` list has no rule for `git pull`, `git stash pop`, `git stash
+   apply` or `git switch`.** Found 09-10-2026 from FinNode's checkup: its broad
+   `Bash(rtk git *)` allow lets them run unprompted there, and nothing global stops
+   them in any project. `git switch --discard-changes` can lose uncommitted work.
+   Read from `settings.json` 09-10-2026: the 16 git `ask` rules cover commit, push,
+   checkout, reset, restore, clean, merge, rebase, rm, mv, branch delete, and stash
+   clear/drop — not these. Not acted on: a global rule change needs the item 3
+   replay first. FinNode's project-side item is in its own `docs/BACKLOG.md`.
+   Also: the global `allow` rule `Bash(gh run list*)` never matches — the hook
+   rewrites it to `rtk gh run list` first (Voice-Flow's checkup, 09-10-2026).
+
 ## Project-specific — pointers only
 
 These belong in each project's own test record (`tests/` or `qa/`), created when
 that project is next worked on. Nothing here is actioned from `~/.claude`, because
 these rules forbid opening another project to settle a question.
 
-8. **A real project-task test.** The 2026-09-29 file-changing probe used synthetic
+9. **A real project-task test.** The 2026-09-29 file-changing probe used synthetic
    markers, not real work, so Block 3's "test a project task" intent is only
    partly met. **Project: FinNode.**
    Detail: `SETUP-PLAN.md` § *Where this stands*, item 4;
    `baselines/2026-09-29-run2.md`.
 
-9. **Voice-Flow's real npm scripts have never been seen to prompt** —
+10. **Voice-Flow's real npm scripts have never been seen to prompt** —
    `install:app`, `compile:vault`, `reset:permissions`. Deliberate: they act on
    the machine and the installed app, and running one to prove a prompt appears is
    a bad trade. Only harmless greps containing those names have been observed.
