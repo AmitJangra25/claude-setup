@@ -31,6 +31,8 @@ phase is planned; the items under *Open* and *Blocked* wait for Amit.
   two checks against `baselines/03-10-2026.md` (`cmp` and SHA-256), and every other
   fact in it was first confirmed to have a tracked owner. It stays gitignored (D31).
   Cross-check: none — skipped by Amit's decision.
+- **Check 2 runs** — 09-10-2026. The blanket `Bash(rtk proxy *)` allow rule had come
+  back; Amit approved removing it again. Check 2 is partly answered — open-tests item 1.
 
 ## Open
 
@@ -38,8 +40,7 @@ phase is planned; the items under *Open* and *Blocked* wait for Amit.
 
 ## Blocked
 
-- **Check 2** — needs auto mode turned off for one command, a settings change.
-  Waiting on Amit.
+None.
 
 ## Known contradictions
 

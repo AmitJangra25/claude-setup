@@ -21,12 +21,17 @@ Last reviewed 08-10-2026.
 
 ## Global — setup-wide
 
-1. **Check 2 — an unmatched command with auto mode off.** What happens to a Bash
-   command matching no `allow` and no `ask` rule. Needs auto mode turned off for
-   one command, which is a settings change and needs approval first.
-   Detail: `baselines/03-10-2026.md` § *Check 2*.
+1. **Check 2 — an unmatched command with auto mode off.** Partly answered
+   09-10-2026: in accept edits mode, an unmatched read-only command ran without a
+   box. Still open: whether accept edits mode, built-in read-only handling or the
+   organisation policy let it through, plain default mode, and a command that
+   changes something. Switching modes needs no settings change — Shift+Tab.
+   Detail: `baselines/09-10-2026.md`; the original design is in
+   `baselines/03-10-2026.md` § *Check 2*.
 
 2. **Did removing `Bash(rtk proxy *)` close anything?** Not proven either way.
+   The rule had come back by 03-10-2026 and was removed again 09-10-2026 —
+   `baselines/09-10-2026.md` § *Finding — the blanket rule had come back*.
    Detail: `baselines/03-10-2026.md` § *What the 2026-10-03 run established*.
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
