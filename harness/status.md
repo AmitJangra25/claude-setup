@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 09-10-2026
+**Last verified:** 10-10-2026
 
 ## Current phase
 
@@ -87,6 +87,12 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   "don't ask again" option on an unmatched `rtk proxy` command offers `rtk proxy *`. Detail:
   `baselines/09-10-2026-run2.md`; open tests 1, 3, 5. Cross-check: none — harmless
   commands and doc edits only.
+- **T5 overview** — 10-10-2026. `harness/overview.md`: how the pieces fit in a session,
+  and what "finished" means (D34, superseding only D33's rejection of `overview.md`).
+  Open tests: item 2's stale test line replaced with the T4 result, item 1 trimmed to a
+  pointer, item 8 decided (deferred with test 3's replay). `README.md` harness row now
+  names `overview.md` and `session-check.sh`. Cross-check 10-10-2026 · Opus · 5 changes,
+  all taken · 46.9k tokens measured.
 
 ## Open
 
@@ -116,10 +122,10 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** T1–T4 and all three project checkups done; `drift.sh` 0 drifted. Next: T5 —
-`harness/overview.md` and what "finished" means — in its own session. Fold in open
-test 2's stale test line (Amit, 09-10-2026). Open test 3's replay: not run for now
-(Amit, 09-10-2026).
+**Now:** T1–T5 and all three project checkups done. Next: T6 cleanup — sort → update →
+surgical cleanup, then an independent read-only check and Amit's review — in its own
+session. The setup is finished when every line of `harness/overview.md` § *What
+"finished" means* is true. Open test 3's replay: not run for now (Amit, 09-10-2026).
 
 Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
 22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier

@@ -17,7 +17,7 @@ this file replaced was 44 lines out of date when it was checked on 2026-10-03.
 **Durability.** Items 1–3 and 7 point at `baselines/03-10-2026.md`, a tracked copy
 of the record that used to live only in the untracked `.claude/current-task.md`.
 
-Last reviewed 09-10-2026.
+Last reviewed 10-10-2026.
 
 ## Global — setup-wide
 
@@ -25,8 +25,8 @@ Last reviewed 09-10-2026.
    for a read-only and a changing command outside the project folder: manual mode
    and accept edits both prompt; auto mode lets both through. Two early manual runs
    were void — mistaken Yes clicks — and were re-run. One discrepancy remains: the
-   morning run in accept edits ran without a box; T4's prompted. On an unmatched
-   `rtk proxy` command, "don't ask again" offers `rtk proxy *` — see item 2.
+   morning run in accept edits ran without a box; T4's prompted. The "don't ask
+   again" finding is in item 2.
    Detail: `baselines/09-10-2026-run2.md` and `baselines/09-10-2026.md`; the original
    design is in `baselines/03-10-2026.md` § *Check 2*.
 
@@ -40,9 +40,11 @@ Last reviewed 09-10-2026.
    repo's `.claude/` (found 09-10-2026), FinNode's and Voice-Flow's (removed
    09-10-2026): the file Claude Code writes on "don't ask again". Ruled out
    09-10-2026: `sync.sh`, `drift.sh`, the one hook, `rtk init` (per its `--help`).
-   Mechanism not proven. Test: in a fresh session run
-   `rtk proxy wc -l ~/.claude/RTK.md`, read the prompt's "don't ask again" option,
-   answer no.
+   T4 09-10-2026: on an unmatched `rtk proxy wc -l …`, manual and accept edits both
+   offered "don't ask again for: rtk proxy *"; auto mode showed no box. Not clicked.
+   Mechanism not proven on two counts: clicking was never shown to write the rule,
+   and no click was shown to be how it came back. Detail:
+   `baselines/09-10-2026-run2.md` § *Not established*.
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did
@@ -93,6 +95,7 @@ Last reviewed 09-10-2026.
    checkout, reset, restore, clean, merge, rebase, rm, mv, branch delete, and stash
    clear/drop — not these. Not acted on: a global rule change needs the item 3
    replay first. FinNode's project-side item is in its own `docs/BACKLOG.md`.
+   Decision 10-10-2026 (Amit): deferred with test 3's replay — revisit if it matters.
    Also: the global `allow` rule `Bash(gh run list*)` never matches — the hook
    rewrites it to `rtk gh run list` first (Voice-Flow's checkup, 09-10-2026).
 

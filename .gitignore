@@ -103,6 +103,7 @@
 !harness/status.md
 !harness/cross-check.md
 !harness/session-check.sh
+!harness/overview.md
 
 # --- allow: the setup-only rules file (D33). .claude/ also holds current-task.md
 #     and settings.local.json, which stay ignored — `*` still matches them.
