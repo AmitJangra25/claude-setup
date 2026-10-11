@@ -81,7 +81,8 @@ open about this setup, not a dated run: one short entry per item — what was fo
 the decision — and a pointer to where the detail lives. Closed items stay, marked
 closed. Project-specific tests appear there as pointers only; their records belong
 inside the project they are about. `t6-removals.md` is the T6 cleanup manifest — every
-removal and fix with its original text — not a run.
+removal and fix with its original text — not a run. `status-completed-11-10-2026.md` is
+the `harness/status.md` § *Completed* log moved out unchanged on 11-10-2026 — not a run.
 
 Only flat `.md` files are currently allowed by `.gitignore` in this folder.
 Other file types or subfolders need an explicit tracking decision before

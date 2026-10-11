@@ -135,12 +135,14 @@ observed case where the hook did **not** rewrite a command — see `SETUP-PLAN.m
 prints the current context size. It never estimates. Thresholds and the data behind them
 are documented at the top of that file.
 
-Short version: grey under 250K, amber to 400K, red to 550K, then suggests `/compact`.
-**Raised to 250K/400K/550K on 2026-09-30** at Amit's request — against a 1M context window
-the old thresholds warned far too early: 220K fired while roughly 94% of the window was
-still free. The warning exists to nudge a clear at a **task boundary**, where it saves
-45–54%, rather than mid-task, where it saves about 3% — it was never about running out of
-room. Earlier values: 250K/400K/600K, lowered to 220K/300K/450K on 2026-09-26.
+Short version: grey under 200K, amber to 300K, red to 400K, then suggests `/compact`.
+**Lowered to 200K/300K/400K on 11-10-2026** at Amit's request, to save tokens: a session
+past 250K costs more per turn and uses more of the usage limit, so the nudge now comes
+sooner; 150K was considered and judged too early. The warning exists to nudge a clear at
+a **task boundary**, where it saves 45–54%, rather than mid-task, where it saves about 3% — it was
+never about running out of room. Earlier values: 250K/400K/600K, lowered to
+220K/300K/450K on 2026-09-26, raised to 250K/400K/550K on 2026-09-30 because against a 1M
+window 220K fired while roughly 94% of it was still free.
 
 **It costs nothing in tokens.** The status line is a shell command the terminal renders;
 its output never enters the model's context. Changing it is free, so tune it freely.
