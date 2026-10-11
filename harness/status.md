@@ -15,7 +15,7 @@ T4 Check 2 + about 5 sample `ask` probes → T5 `harness/overview.md` and what "
 means → T6 cleanup: sort → update → surgical cleanup, then an independent read-only
 check and Amit's review. Reference docs are archived, never deleted. Account switch
 (open test 6) deferred until Amit asks. P1B finished 08-10-2026. T1–T5 and the three
-project checkups are done; T6 is done and waits for Amit's review and commit.
+project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-2026).
 
 ## Completed
 
@@ -158,9 +158,9 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** Amit's review of T6, then the commit and any push, each on his separate approval. The setup is finished when
-every line of `harness/overview.md` § *What "finished" means* is true. Deferred until Amit
-asks: the account switch (open test 6) and open test 3's replay (Amit, 09-10-2026).
+**Now:** nothing in progress — the finish plan is done. The setup is finished when every
+line of `harness/overview.md` § *What "finished" means* is true. Deferred until Amit asks:
+the account switch (open test 6) and open test 3's replay (Amit, 09-10-2026).
 
 ## Source of truth
 
