@@ -11,7 +11,7 @@ and is **not** one of the three — it is the file doing the importing. Earlier 
 ~5,355 on 2026-09-30 (2.1.285) and ~3,166 on 2026-09-22; `STANDARDS.md` grew between
 them (**D27**, **D30**), so the rise is real, not a measurement change.
 
-A file explaining why a threshold is 250K doesn't change how work gets done, so it stays
+A file explaining why a threshold is 200K doesn't change how work gets done, so it stays
 out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
@@ -437,6 +437,9 @@ renders, and its output never enters context.
 **Superseded 2026-09-30:** raised again to **250K/400K/550K**. The 2026-09-26 change above
 is kept as the record of why they were lowered at the time; it no longer describes the
 machine. See § *Status line*.
+
+**11-10-2026: lowered again** to **200K/300K/400K**, to save tokens. The 2026-09-30 values
+above no longer describe the machine either. See § *Status line*.
 
 ### How the numbers moved
 
