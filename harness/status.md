@@ -29,6 +29,7 @@ current state.
   exception added to `baselines/README.md`. `drift.sh` 0 drifted and
   `session-check.sh` silent before and after. Cross-check: none — skipped by Amit's
   decision; no rule, permission or hook changed.
+  Also, wording only: D17 in `SETUP-PLAN.md` and two spots in `ENVIRONMENT.md` (`63b8b2c`).
 
 ## Open
 
