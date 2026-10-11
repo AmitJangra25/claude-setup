@@ -1,8 +1,8 @@
 # Open tests — global index
 
-What is still unproven about this setup, one line each. **An index, not a dated
-run**: the detail stays where it already lives, and this file only says what is
-open and where to look.
+What is still unproven about this setup, and what was closed, one short entry each.
+**An index, not a dated run**: the detail stays where it already lives, and this file
+only says what is open or how it closed, and where to look.
 
 Not imported. Read when deciding what to test next.
 
@@ -17,7 +17,7 @@ this file replaced was 44 lines out of date when it was checked on 2026-10-03.
 **Durability.** Items 1–3 and 7 point at `baselines/03-10-2026.md`, a tracked copy
 of the record that used to live only in the untracked `.claude/current-task.md`.
 
-Last reviewed 10-10-2026.
+Last reviewed 11-10-2026.
 
 ## Global — setup-wide
 
@@ -29,6 +29,7 @@ Last reviewed 10-10-2026.
    again" finding is in item 2.
    Detail: `baselines/09-10-2026-run2.md` and `baselines/09-10-2026.md`; the original
    design is in `baselines/03-10-2026.md` § *Check 2*.
+   **Closed 10-10-2026 (Amit, T6):** answered by T4; the discrepancy stays as recorded.
 
 2. **Did removing `Bash(rtk proxy *)` close anything?** Not proven either way.
    The rule had come back by 03-10-2026 and was removed again 09-10-2026 —
@@ -45,6 +46,8 @@ Last reviewed 10-10-2026.
    Mechanism not proven on two counts: clicking was never shown to write the rule,
    and no click was shown to be how it came back. Detail:
    `baselines/09-10-2026-run2.md` § *Not established*.
+   **Accepted 10-10-2026 (Amit, T6):** the mechanism stays unproven; a return is now
+   detected at the start of every setup session (`harness/session-check.sh`, T3).
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did
@@ -96,8 +99,22 @@ Last reviewed 10-10-2026.
    clear/drop — not these. Not acted on: a global rule change needs the item 3
    replay first. FinNode's project-side item is in its own `docs/BACKLOG.md`.
    Decision 10-10-2026 (Amit): deferred with test 3's replay — revisit if it matters.
-   Also: the global `allow` rule `Bash(gh run list*)` never matches — the hook
-   rewrites it to `rtk gh run list` first (Voice-Flow's checkup, 09-10-2026).
+   **Closed for `~/.claude` only, 10-10-2026 (T6, D36):** four `ask` rules in
+   `.claude/settings.json`; a harmless `rtk grep -c "git pull" …` prompted, naming
+   `Bash(*git pull*)`, in a fresh setup session (Amit). Still open globally and in
+   every project. Not caught: `git -C <path> pull`.
+   The 09-10-2026 note that `Bash(gh run list*)` "never matches" is not proven: rtk's
+   hook passes an `allow` through for it — `SETUP-PLAN.md` **D35**.
+
+11. **Can rtk's hook `allow` beat an `ask` rule? No — closed 10-10-2026 (T6), from the
+   docs.** rtk 0.48.0's hook returns `"permissionDecision": "allow"` on some rewrites
+   (`SETUP-PLAN.md` **D35**). Claude Code's hooks reference, on PreToolUse, quoted:
+   *"Deny and ask rules are still evaluated regardless of what the hook returns."*
+   Source: `code.claude.com/docs/en/hooks`, read 10-10-2026. Consistent with T4's five
+   `ask` probes and the D36 `git pull` probe.
+
+12. **D38's sweep script checks only part of what D38 enforces** — **deferred 11-10-2026**,
+   script unchanged (Amit). Detail: `SETUP-PLAN.md` § *Decisions already made*, row **D38**.
 
 ## Project-specific — pointers only
 

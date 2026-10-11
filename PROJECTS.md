@@ -5,8 +5,8 @@ A project without one gets it by running the per-project setup prompt inside it.
 
 Verified against the filesystem 2026-09-20. Duplicate trees and the open questions are
 in `ENVIRONMENT.md`; branch and sync state is not written down anywhere — read it from
-git, per `ENVIRONMENT.md` § *Branch state*. Per-project progress lives in each project's
-own `README.md`. This file stays an index and carries none of it.
+git, per `ENVIRONMENT.md` § *Branch state*. Per-project progress lives in the project's own
+files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file stays an index and carries none of it.
 
 ## Active
 

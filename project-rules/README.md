@@ -12,7 +12,9 @@ private and solo**; `../STANDARDS.md` § *Git* governs, and taking them out is
 raised before a repo goes public, never done silently.
 
 **The projects were not made uniform.** *Recorded, not freshly checked:* Voice-Flow
-was left untracked and not reverted; FinNode is tracked. So for some projects this
+was left untracked and not reverted; FinNode is tracked. (11-10-2026: Voice-Flow's own
+checkup on 09-10-2026 confirmed `CLAUDE.md` and `settings.json` are gitignored there —
+`../harness/status.md` § *Completed*.) So for some projects this
 folder is their only version history, and for others it is a second copy that
 survives a machine or an account switch. `.claude/settings.local.json` stays
 gitignored everywhere — it holds absolute paths from this Mac and a long list of
@@ -29,8 +31,8 @@ project's own file; never edit the copy and expect it to go anywhere.
 | `CLAUDE.md` | yes | not tracked in every project — see above |
 | `.claude/settings.json` | yes | not tracked in every project; holds the permission rules |
 | `.claude/settings.local.json` | yes | gitignored; this is where clicking **allow** writes |
-| `.claude/skills/` | **no** | judged to travel in the project's own repo already, so a copy here would be a second copy of a tracked file — the drift this script exists to prevent. **Not verified per project:** no sweep confirmed that every project actually tracks its skills, and the same assumption about `CLAUDE.md` turned out to vary |
-| `.claude/current-task.md` | **no** | live task state, not a rule (**D31**). It is work in progress on one machine, it changes several times a session, and it is deleted when the task closes — mirroring it would report drift constantly and preserve nothing worth keeping |
+| `.claude/skills/` | **no** | judged to travel in the project's own repo already, so a copy here would be a second copy of a tracked file — the drift these scripts exist to prevent. **Not verified per project:** no sweep confirmed that every project actually tracks its skills, and the same assumption about `CLAUDE.md` turned out to vary |
+| `.claude/current-task.md` | **no** | live task state, not a rule (**D31**). It is work in progress on one machine, it changes several times a session, and it is closed when the task ends — mirroring it would report drift constantly and preserve nothing worth keeping |
 
 A project is only expected to have some of these. A missing file is skipped
 silently; a copy whose source has disappeared is reported as `STALE COPY`.
@@ -46,9 +48,10 @@ silently; a copy whose source has disappeared is reported as `STALE COPY`.
 `rm` or redirect anywhere in it — so it can be granted without also granting the
 copy. `sync.sh` writes, requires `--pull`, and stays behind a prompt.
 
-Both exit non-zero when anything has drifted, a copy has gone stale, or a project
-has none of its tracked files where the manifest says to look — so either can be
-run as a check. `drift.sh` changes nothing.
+`drift.sh` exits non-zero when anything has drifted, a copy has gone stale, or a
+project has none of its tracked files where the manifest says to look — so it can be
+run as a check, and it changes nothing. `sync.sh --pull` copies drifted files over and
+exits non-zero only for a stale copy or a project with nothing to mirror.
 
 `manifest.tsv` maps each copy to its **project root**, one tab-separated line per
 project. A project whose folder moves is fixed by editing that line; until then

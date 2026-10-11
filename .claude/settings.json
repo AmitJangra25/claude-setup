@@ -1,4 +1,12 @@
 {
+  "permissions": {
+    "ask": [
+      "Bash(*git pull*)",
+      "Bash(*git switch*)",
+      "Bash(*git stash pop*)",
+      "Bash(*git stash apply*)"
+    ]
+  },
   "hooks": {
     "SessionStart": [
       {

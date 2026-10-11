@@ -4,20 +4,19 @@ How Claude Code is set up here, and why each choice was made. Reference material
 read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
-**~5,355 tokens** on every turn of every session — `/context` in a fresh session from
-`~/.claude`, 2026-09-30, Claude Code 2.1.285. `STANDARDS.md` 4.6k + `RTK.md` 491 +
-`OLLAMA.md` 264; the 4.6k is rounded by `/context`, so the total carries about ±50.
-`CLAUDE.md` itself is a further 32 and is **not** one of the three — it is the file doing
-the importing. Previously ~3,166, measured 2026-09-22; `STANDARDS.md` grew between the two
-readings (**D27**, **D30**), so the +2,189 is real, not a measurement change.
+**about 6.3k tokens** on every turn of every session — `/context all` in a fresh session
+from `~/.claude`, 10-10-2026, Claude Code 2.1.296. `STANDARDS.md` 5.5k + `RTK.md` 570 +
+`OLLAMA.md` 266; the 5.5k is rounded by `/context`. `CLAUDE.md` itself is a further 34
+and is **not** one of the three — it is the file doing the importing. Earlier readings:
+~5,355 on 2026-09-30 (2.1.285) and ~3,166 on 2026-09-22; `STANDARDS.md` grew between
+them (**D27**, **D30**), so the rise is real, not a measurement change.
 
 A file explaining why a threshold is 250K doesn't change how work gets done, so it stays
 out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
 on 2026-09-22, for the same reason — reference, not rules.
 
-Last full review: 2026-09-22. § *What every session loads before you type* was rewritten
-2026-09-27; no other section was re-checked then.
+Last full review: 10-10-2026 (T6, batch 6). The one before was 2026-09-22.
 
 Figures below include measurements, estimates and projections. Each should state its date
 and method — the commands are in § *How the numbers were measured*.
@@ -26,7 +25,7 @@ and method — the commands are in § *How the numbers were measured*.
 
 - § *The two kinds of rule* — global rules against project rules.
 - § *What's set up globally* — settings, permission counts, the local settings files, the
-  hook, the status line, skills.
+  hook, the status line, skills, effort on Opus 5.5.
 - § *Deliberately left out of `ask`* — what was not fenced, and why.
 - § *What every session loads before you type* — startup cost, and what was switched off
   to get there.
@@ -67,19 +66,22 @@ before they run:
 
     git status   →   rtk git status
 
-This is where the token saving comes from. It is **completely separate from
-permissions** — changing permission rules cannot affect it, and disabling it would not
-change what Claude is allowed to do.
+This is where the token saving comes from. It is **not fully separate from
+permissions.** rtk 0.48.0's hook returns `"permissionDecision": "allow"` on some
+rewrites — seen on `rtk gh run list` and `rtk tree` (**D35**, `baselines/t6-removals.md`
+entry 3). `ask` and `deny` rules still apply whatever the hook returns — the docs:
+*"Deny and ask rules are still evaluated regardless of what the hook returns."*
+(`baselines/global-open-tests.md` item 11).
 
 > **What the hook actually rewrites, tested 2026-09-26.** It handles a plain command
-> and the `&&` and `;` chain operators, and nothing else. Every other shell construct
-> makes the *whole line* run raw:
+> and the `&&` and `;` chain operators. Nearly every other shell construct makes the
+> *whole line* run raw — redirects are the exception noted in the table:
 >
 > | shape | result |
 > |---|---|
 > | `grep -rn foo .` · `cd /tmp && git log` · `cat a; cat b` | rewritten |
 > | `grep foo . \| head` — any pipe | **raw** |
-> | `cat a > /tmp/x` — any redirect | **raw** |
+> | `cat a > /tmp/x` — a redirect | **usually raw** — not always: on 10-10-2026 `rtk hook check` rewrote `tree . > /tmp/x`, and the hook log holds one real redirect rewritten inside a chained line |
 > | `echo $(cat a)` — any subshell | **raw** |
 > | `for f in a b; do cat $f; done` · `f(){ cat $1; }` | **raw** |
 > | `python3 …` · `sed …` — not handled in any form | **raw** |
@@ -154,11 +156,14 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   33 rules    read-only things stop prompting
+    allow   34 rules    read-only things stop prompting
     ask     58 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 2026-09-27.** `ask` went **51 → 58** that day:
+**Counts measured against the live file 10-10-2026** (`jq`). `allow` went **33 → 34** that
+day (**D35**: `rtk git rev-parse *` out, `rtk gh run list*` and `rtk tree *` in). Sessions
+started in `~/.claude` also load four setup-only `ask` rules from `.claude/settings.json`
+(**D36**); they are not in the counts above. On 2026-09-27 `ask` went **51 → 58**:
 seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
 `SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
 fenced. Before that, two corrections this block carried
@@ -181,7 +186,7 @@ treat the numbers below as of this date only.
 | File | allow / ask / deny | Status |
 |---|---|---|
 | `~/.claude/.claude/settings.local.json` | 9 / 0 / 0 | **Active** — confirmed |
-| `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **active or not is unverified** |
+| `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **undocumented location**. `/skills` is recorded writing here; whether Claude Code reads it is **unverified** |
 
 The nested file is the project-level overlay for `~/.claude` itself, because the setup
 repo lives at the path Claude Code also uses for its config. It is confirmed active:
@@ -192,7 +197,9 @@ The top-level file carries a single rule, `Bash(git add *)`, and an empty
 `skillOverrides` block. **That rule is also present in the nested file**, so nothing
 observable proves the top-level file is being read. It is recorded here as present, with
 its contents as read, and nothing more. Do not state that it is loaded without evidence
-that separates the two.
+that separates the two. **Undocumented, 10-10-2026:** a docs lookup, from search summaries
+rather than quoted text, found `settings.local.json` documented only inside a project's
+`.claude/` — for this folder, the nested file. Left in place by Amit's decision (T6).
 
 Neither file is merged, moved or changed by this note.
 
@@ -232,8 +239,10 @@ entry can only ever remove a prompt, never add one.
 **`ask`** — git operations that publish or discard work (`push`, `reset`, `rebase`,
 `clean`, `rm`, `merge`, `checkout`, `restore`, `stash drop`, `stash clear`), dependency
 installs including brew's `install`, `uninstall`, `upgrade` and `reinstall`, `npx --yes`,
-`rm`, `curl`, `wget`, `pkill`, `kill`, plus the `rtk` and `rtk proxy` spellings of all of
-them. Plain `git stash`, `git tag` and `git remote` are deliberately out — see
+`rm`, `curl`, `wget`, `pkill`, `kill`. Since the 2026-09-20 merge most are one pattern
+with a leading `*`, which covers the bare, `rtk` and `rtk proxy` spellings at once; `rm`,
+`kill`, `killall`, `pkill` and `open` keep explicit spellings, because they sit inside
+ordinary words (`SETUP-PLAN.md`'s **`ask` list merged** row). Plain `git stash`, `git tag` and `git remote` are deliberately out — see
 `SETUP-PLAN.md` § *FinNode — open, not acted on*.
 
 An `ask` rule prompts in **every** permission mode, including auto mode, and it overrides
@@ -258,6 +267,16 @@ not hold. The report path was split out into `project-rules/drift.sh`, which has
 `rm`, `mkdir` or output redirect and can therefore be granted safely; `sync.sh` keeps
 `--pull`, now required, and stays behind a prompt. Split 2026-09-29, and the first run of
 the separated reporter found real drift. **No new permission rule was added.**
+
+### Effort on Opus 5.5 — the old keys are not known to apply
+
+`settings.json` sets `"effortLevel": "high"` and `"modelSettings": {"claude-opus-5":
+{"effortLevel": "high"}}`. The docs (`code.claude.com/docs/en/model-config`, fetched
+10-10-2026): *"Opus 5.5 starts at `medium` unless one of the sources above sets a level
+for it, and a top-level `effortLevel` in your user settings file doesn't count for Opus
+5.5."* Whether the `claude-opus-5` key also covers `claude-opus-5-5` is **not
+documented**. Both keys stay; Amit sets Opus 5.5 effort himself with `/effort` (T6,
+10-10-2026).
 
 ---
 
@@ -315,24 +334,35 @@ The last complete category breakdown before that was recorded at 21.9k, ahead of
 changes. A complete breakdown of the **current** setup was missing until 2026-10-03 —
 it is now recorded immediately below, so that gap is closed.
 
-**Current state — 09-10-2026.** First-turn `/context all` from `~/.claude`, **Opus 5.5**,
-Claude Code **2.1.295**, `Messages` at 10 tokens; effort and mode not recorded. The
-2026-10-03 reading was Opus 5 at high effort, auto mode, 2.1.288. **Measured, not
-estimated.**
+**Current state — 11-10-2026: 23k.** First-turn `/context all` from `~/.claude`,
+**Opus 5.5**, Claude Code **2.1.296**, `Messages` at 10 tokens; effort and mode not shown.
+Pasted by Amit at the end of T6 (`baselines/t6-removals.md`); the 10-10-2026 reading was
+taken at its start, on the same model and version. The 09-10-2026 reading
+was Opus 5.5 on 2.1.295, effort and mode not recorded; the 2026-10-03 reading was Opus 5
+at high effort, auto mode, 2.1.288. **Measured, not estimated.**
 
-| Bucket | 2026-10-03 | 09-10-2026 |
-|---|---|---|
-| System prompt | 3.4k | 2.4k |
-| System tools | 12.6k | 12.7k |
-| Memory files | 5.7k | 6.8k |
-| Skills | 1.1k | 1.1k |
-| **Total** | **22.8k** | **22.9k** |
+| Bucket | 2026-10-03 | 09-10-2026 | 10-10-2026 | 11-10-2026 |
+|---|---|---|---|---|
+| System prompt | 3.4k | 2.4k | 2.4k | 2.4k |
+| System tools | 12.6k | 12.7k | 12.8k | 12.8k |
+| Memory files | 5.7k | 6.8k | 6.8k | 6.8k |
+| Skills | 1.1k | 1.1k | 1.1k | 1.1k |
+| **Total** | **22.8k** | **22.9k** | **23.1k** | **23k** |
 
-**Not a like-for-like pair:** the model and Claude Code version both changed between the
-two columns, and the system prompt has moved with the model before. Memory files is the
-bucket this setup controls. On 09-10-2026 it was `STANDARDS.md` **5.5k** (4.3k on
-2026-09-26), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 151,
-`CLAUDE.md` 34.
+**Not a like-for-like set:** the model and Claude Code version changed between the first
+two columns, and the version again between the second and third — the +0.1k in system
+tools on 10-10-2026 came with 2.1.296, not from this setup. The system prompt has moved
+with the model before. The last two columns are like for like. `/context` printed the
+11-10-2026 total as "23k", without a decimal, so the drop from 23.1k is under the
+display's rounding and not a measured amount. Memory files is the bucket this setup
+controls. On 11-10-2026 it was `STANDARDS.md` **5.4k** (5.5k on 10-10-2026, 4.3k on
+2026-09-26), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 178
+(151 on 09-10-2026, before T3 added its warning line), `CLAUDE.md` 34.
+
+**Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. The 0.1k over the
+old figure is Claude Code's system tools on 2.1.296, not this setup's files, so the
+target moved instead of the files being cut. `harness/overview.md` § *What "finished"
+means* checks against this figure.
 
 The 2026-10-03 column fills the gap described in the paragraph above: it is the first complete bucket
 breakdown **of the current setup**. It is not the first ever recorded here — the 21.9k
@@ -391,9 +421,11 @@ removed on 2026-09-26 once `/skills` confirmed they never could work. `user-invo
 was confirmed working too, on a separate skill: the skill count went 49 → 48 and the skill
 left the list entirely, still typable as `/doc-coauthoring`.
 
-**`/skills` writes to `settings.local.json`, which is gitignored.** Its `skillOverrides`
-block **merges** with the one in `settings.json` rather than replacing it — verified
-2026-09-26. But because the file is gitignored it is **not in this repo and does not travel
+**`/skills` writes to `~/.claude/settings.local.json`, which is gitignored** (memory note
+`skill-overrides-name-only`). Its `skillOverrides` block **merges** with the one in
+`settings.json` rather than replacing it — verified 2026-09-26. **Which file held the
+entries during that check is not recorded**, so it does not prove the top-level file is
+read — see the local-settings table above. And because the file is gitignored it is **not in this repo and does not travel
 to a second account.** Block 4's runbook needs this.
 
 **Also changed on 2026-09-26, at no token cost:** the status-line thresholds, 250K/400K/600K
@@ -436,10 +468,11 @@ same amount in the same measurement.** The only other variable that moved was Cl
 to `settings.json` was `engineering@synced: false`. **Causation is inferred, not proven.** If
 a later version drops system tools back to 9.7k, that settles it.
 
-**Two things this table cannot tell you.** Which component of the 22 Sep projection was
+**What this table cannot tell you.** Which component of the 22 Sep projection was
 optimistic — `usage` records totals, not a split, and settling it needs a live
-per-component breakdown. And what the current setup's category breakdown is, because no
-complete reading was taken after the last two changes.
+per-component breakdown. When written, it also lacked a complete breakdown of the current
+setup; those now exist — 2026-10-03, 09-10-2026 and 10-10-2026, in the *Current state*
+table above.
 
 ### What holds, whatever the numbers do
 
@@ -483,9 +516,9 @@ asked.
 
 ### What was deliberately not cut
 
-- **Memory files** — 5.1k at the latest reading, most of it `STANDARDS.md` at 4.3k. Per
-  **D26**, a rule file is not trimmed.
-- **The system prompt** — 3.2k. Not settable.
+- **Memory files** — 6.8k at the latest reading (10-10-2026), most of it `STANDARDS.md` at
+  5.5k. Per **D26**, a rule file is not trimmed.
+- **The system prompt** — 2.4k on Opus 5.5 (10-10-2026). Not settable.
 - **FinNode's `CLAUDE.md`** — 3,748 tokens. Splitting its rule claims from their evidence
   looked like a 41% win on paper. Reading it showed most of that prose is operative: which of
   `observeById` / `getById` fails which way, that moving the device clock does *not* fire a
@@ -567,7 +600,8 @@ so the index doesn't have to carry it into every turn's context.
 This section used to hold a table of each project's branch and last commit date. It was
 accurate on the day it was written and wrong within weeks, which is the same defect
 `SETUP-PLAN.md` § *Git state is not recorded here* exists to prevent. One command answers
-it properly, and is never out of date:
+it properly, and is never out of date. This is the one copy of the sweep; anywhere
+else that needs it points here:
 
 ```bash
 for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,Voice\ Flow_v1,FinNode,vthrudebugger_v1,Debugger\ v2} \
@@ -589,7 +623,7 @@ losing work.
 
 | Path | State |
 |---|---|
-| `~/Documents/VS Code/Voice-Flow` | **Current.** 39 Claude sessions, last commit 2026-09-11 |
+| `~/Documents/VS Code/Voice-Flow` | **Current.** |
 | `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August |
 | `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 2026-09-20 and again 2026-09-21 |
 
@@ -638,7 +672,8 @@ with a `.git` or a `CLAUDE.md`. Two of its statements were wrong:
 
 - **`Voice-Flow` was missing entirely** — despite being the most-used project on the
   machine, with 39 Claude sessions against FinNode's 15.
-- **Emp Portal was marked as having a `CLAUDE.md`.** It does not.
+- **Emp Portal was marked as having a `CLAUDE.md`.** It does not. *(True on 2026-09-15.
+  Since 2026-09-20 its rules file is at the project root — see `PROJECTS.md`.)*
 
 Both had been carried forward without being checked. Verify against the filesystem rather
 than against the previous version of the file.
@@ -658,10 +693,9 @@ The detail lives here.
 
 - **FinNode** — `~/Documents/VS Code/FinNode` — offline-first personal Android finance
   tracker for Indian users. Kotlin + Compose, Room + SQLCipher, **regex bank-SMS
-  parsing**, **diary linked to transactions**. Phase 2, checkpoint 2c-i next; phases 0,
-  1b and 1c plus checkpoints 2a and 2b done and **device-verified**. **157 unit tests**,
-  105/105 instrumented, **15 of 22 screens** real. Has `CLAUDE.md` and a `docs/` set
-  indexed from `README.md`.
+  parsing**, **diary linked to transactions**. Progress lives in its own
+  `docs/ROADMAP.md`, not here. Has `CLAUDE.md` and a `docs/` set indexed from
+  `README.md`.
 
 - **Voice Flow** — `~/Documents/VS Code/Voice-Flow` — personal macOS dictation app:
   floating mic widget callable from anywhere, global hotkey, real speech-to-text, an AI
@@ -711,7 +745,3 @@ The detail lives here.
 
 - `~/Documents/Skils/PM-skills-Amit` — **a clone of the public `phuryn/pm-skills`
   repository. Reference material, not your code.**
-
-Two Voice Flow trees and two Packbly trees exist — `~/Documents/Voice-Flow-main` was a
-third and is gone. **Worth settling which is canonical**
-— the risk is editing the wrong one and losing the work.

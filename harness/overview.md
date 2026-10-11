@@ -16,8 +16,8 @@ which fact: `harness/status.md` § *Source of truth*. How a task runs:
    `rtk` form first; permission rules are then matched against what it produced
    (`ENVIRONMENT.md` § *Permissions — what stops and asks*).
 4. **Permissions.** The global `ask` list in `settings.json` is the safety net; projects
-   hold only `allow` rules. Auto mode lets unmatched commands through, so `ask` is what
-   stops it (`baselines/09-10-2026-run2.md`).
+   add mostly `allow` rules, and a few their own `ask` rules. Auto mode lets unmatched
+   commands through, so `ask` is what stops it (`baselines/09-10-2026-run2.md`).
 5. **Project rules travel** through `project-rules/`, a mirror of every project's rules
    files. `drift.sh` reports differences; `sync.sh --pull` copies, run in that project's
    own session.
@@ -32,7 +32,7 @@ The setup is finished when every line is true, each checked by a command or a re
 - [ ] `harness/status.md` § *Known contradictions* is empty, D23 included.
 - [ ] The per-project `SessionStart` idea in `harness/status.md` § *Open* is placed or rejected.
 - [ ] `harness/status.md` *Last verified* is the finish date, and every pointer in it resolves.
-- [ ] A fresh `/context all` in a setup session is at or below 22.9k (`ENVIRONMENT.md`).
+- [ ] A fresh `/context all` in a setup session is at or below 23k (`ENVIRONMENT.md`).
 - [ ] T6 is done: independent read-only check, then Amit's review.
 - [ ] The working tree is clean and committed with Amit's approval; `.claude/current-task.md`
       is at *Status: none*.

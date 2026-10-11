@@ -76,10 +76,12 @@ New dated files use DD-MM-YYYY: `DD-MM-YYYY.md`, then `DD-MM-YYYY-run2.md` and s
 on for further runs that day. Existing historical filenames (`YYYY-MM-DD`) are not
 renamed unless a separate migration is approved. Link earlier records where that helps explain the result.
 
-**One exception to the naming rule:** `global-open-tests.md` is an index of what is
-still unproven, not a dated run. It carries no results — only one line per open
-item and a pointer to where the detail lives. Project-specific tests appear there
-as pointers only; their records belong inside the project they are about.
+**Two exceptions to the naming rule.** `global-open-tests.md` is an index of what is
+open about this setup, not a dated run: one short entry per item — what was found, or
+the decision — and a pointer to where the detail lives. Closed items stay, marked
+closed. Project-specific tests appear there as pointers only; their records belong
+inside the project they are about. `t6-removals.md` is the T6 cleanup manifest — every
+removal and fix with its original text — not a run.
 
 Only flat `.md` files are currently allowed by `.gitignore` in this folder.
 Other file types or subfolders need an explicit tracking decision before

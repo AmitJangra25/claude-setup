@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 10-10-2026
+**Last verified:** 11-10-2026
 
 ## Current phase
 
@@ -14,7 +14,8 @@ T0 — remove `rtk proxy *` — in the first two → T3 drift warning →
 T4 Check 2 + about 5 sample `ask` probes → T5 `harness/overview.md` and what "finished"
 means → T6 cleanup: sort → update → surgical cleanup, then an independent read-only
 check and Amit's review. Reference docs are archived, never deleted. Account switch
-(open test 6) deferred until Amit asks. P1B finished 08-10-2026.
+(open test 6) deferred until Amit asks. P1B finished 08-10-2026. T1–T5 and the three
+project checkups are done; T6 is done and waits for Amit's review and commit.
 
 ## Completed
 
@@ -23,15 +24,21 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   corrections, backup cleanup and the open-tests index.
 - **P1A** — harness control desk (D33). Built, reviewed, approved by Amit and committed
   08-10-2026. Cross-check 08-10-2026 · Opus · final diff in scope · 2 fixed (D33 reason,
-  a step-4 contradiction) · 33.4k tokens measured.
-- **P1B-1** — reviewed by Amit and committed 08-10-2026. The history in
+  a step-4 contradiction) · 33.4k tokens measured. Before the commit: Opus diff review,
+  Amit's review, `/context all` before and after (setup 22.6k → 22.9k, FinNode 28.4k →
+  28.6k, measured), setup-only load test passed.
+- **P1B-1** — reviewed by Amit and committed 08-10-2026. Done after the cold Orient gate
+  passed; Amit's approval of P1B-1 in direction, 08-10-2026, replaced the earlier
+  requirement for two P1A setup sessions first, and the cold Orient gate sessions do not
+  count as P1A usage. The history in
   `.claude/current-task.md` is copied unchanged to `baselines/03-10-2026.md` (checked
   with `cmp`); the status copies in `SETUP-PLAN.md` § *START HERE* and the
   `claude-setup-status` memory note are retired and now point here; the open-tests
   index points at the tracked copy; D32 records the Part 2B decisions.
   `.claude/current-task.md` was not changed (same SHA-256 before and after).
   Cross-check: none — skipped by Amit's decision, as the approved handoff says.
-- **P1B-2** — done 08-10-2026. `.claude/current-task.md` is now only a live task record
+- **P1B-2** — done 08-10-2026 after its own plan approval. `.claude/current-task.md` is
+  now only a live task record
   on the `templates/handoff.md` shape, at *Status: none*. Its history was removed after
   two checks against `baselines/03-10-2026.md` (`cmp` and SHA-256), and every other
   fact in it was first confirmed to have a tracked owner. It stays gitignored (D31).
@@ -93,13 +100,47 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
   pointer, item 8 decided (deferred with test 3's replay). `README.md` harness row now
   names `overview.md` and `session-check.sh`. Cross-check 10-10-2026 · Opus · 5 changes,
   all taken · 46.9k tokens measured.
+- **T6 audit and cleanup** — 10–11-10-2026, batches 0–9, plan approved by Amit 10-10-2026.
+  Every change and its original text: `baselines/t6-removals.md`. Settings: fixes A and B
+  (D35), four `ask` rules in `.claude/settings.json` (D36), tested live; fix D dropped.
+  `.gitignore` G1–G4 (D37). D23 reworded (D38). Open tests 1 closed, 2 accepted, 11 added
+  and closed, 12 added and deferred (Amit, 11-10-2026). The per-project `SessionStart` idea
+  rejected (§ *Open*); § *Known contradictions* emptied. Hooks and scripts all working, no
+  fix. Wording, dated-note and pointer fixes in `CLAUDE.md`, `PROJECTS.md`, `STANDARDS.md`
+  (one sentence), `README.md`, `skills/ollama/SKILL.md`, `ENVIRONMENT.md` (the git-state
+  loop's one home, § *Branch state* — Amit), `SETUP-PLAN.md` (31: 30 in batch 7, the D32 note in batch 9), and the harness,
+  baselines and project-rules docs. Found: Opus 5.5 ignores the user-settings
+  `effortLevel` (docs, quoted) — Amit sets effort with `/effort`; old keys left.
+  Cross-checks, Opus unless named, measured:
+  - Plan, 10-10-2026 · two runs: kept with 7 changes, all taken · 33.3k; at Amit's
+    request, 1 wrong fact and 8 missed items, all taken · 63.3k — that agent wrote one
+    scratch file against its brief, since deleted.
+  - C2, 10-10-2026 · keep, with doc changes, all taken · 26.5k. Docs lookup · model not
+    recorded · read-only, docs sites only · 45.5k, from search summaries, not quotes.
+  - Batch 2 · self-check only (Amit agreed). Batch 4 · records and wording only, no agent.
+    Batch 8 · level 1, no agent.
+  - `.gitignore` G1–G4, 10-10-2026 · keep all four · 33.0k.
+  - F2, 10-10-2026 · Sonnet · one word added · 19.5k.
+  - Batch 6 items 13–14, 10-10-2026 · keep both, one rewording taken · 33.5k.
+  - Batch 7 S1 and Q1, 10-10-2026 · S1 keep with one rewording, Q1 changed (three more
+    misses named), all taken · 44.0k. Full re-check at Amit's request · 2 wrong notes and
+    5 tightenings, all fixed · 74.7k.
+  - Batch 9 draft of this entry and the full T6 diff, 11-10-2026 · change: 4 draft fixes,
+    3 log gaps (C2 originals, open test 8, item 14) and D37's headline, all taken · 96.7k.
+  - Final full-diff check, 11-10-2026 · keep, 4 small fixes, all taken · 75.3k.
+  `/context all`, fresh setup session, Claude Code 2.1.296: 23.1k at the start, 23k at the
+  finish (11-10-2026). The baseline moved 22.9k → 23k (Amit, 11-10-2026): the 0.1k is
+  Claude Code's system tools, not this setup's files (`ENVIRONMENT.md`). `/hooks` in the
+  same session listed both hooks (`PreToolUse` rtk, `SessionStart` `session-check.sh`), and
+  the session started with no drift warning.
 
 ## Open
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
-- **Idea, not planned — for T6 to place:** a per-project `SessionStart` check comparing
-  only that project's own settings with its mirror copy, silent when clean. Settle D23
-  first (see *Known contradictions*): the copies live in `~/.claude`, outside the project.
+- **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a
+  project's settings with its mirror copy. It would have a project session reach into
+  `~/.claude`, which D23 and D31 avoid; the setup-session check already catches drift at
+  the next setup session. Revisit if drift is found to have gone unnoticed in between.
 
 ## Blocked
 
@@ -107,14 +148,9 @@ None.
 
 ## Known contradictions
 
-- `PROJECTS.md` says project progress lives in each `README.md`; FinNode's rules point
-  to `docs/ROADMAP.md`. Checked 09-10-2026 in FinNode's session: progress lives in
-  `docs/ROADMAP.md` § *Phase 2 → Checkpoints*, with a one-line summary in `README.md`.
-  `PROJECTS.md`'s wording is the part that is wrong — fix in T6.
-- Can a project session read `~/.claude`? D23 and PHASE 1 disagree (see D31). Nothing
-  depends on it. Left for T6.
-- `SETUP-PLAN.md` § *Standing context* says no project holds a broad arbitrary-code
-  rule; FinNode and Voice-Flow did until 09-10-2026. Historical text — fix in T6.
+None. All three settled 10-10-2026 (T6): `PROJECTS.md`'s progress wording fixed; D23
+reworded by **D38**; `SETUP-PLAN.md` § *Standing context* given a dated correction. The
+original entries are in `baselines/t6-removals.md` entry 6.
 
 ## Decisions in force
 
@@ -122,19 +158,9 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** T1–T5 and all three project checkups done. Next: T6 cleanup — sort → update →
-surgical cleanup, then an independent read-only check and Amit's review — in its own
-session. The setup is finished when every line of `harness/overview.md` § *What
-"finished" means* is true. Open test 3's replay: not run for now (Amit, 09-10-2026).
-
-Done: Opus diff review, Amit's review, `/context all` before and after (setup 22.6k →
-22.9k, FinNode 28.4k → 28.6k, measured), setup-only load test passed. The earlier
-requirement for two P1A setup sessions before P1B was replaced by Amit's approval of
-P1B-1 in direction, 08-10-2026. The cold Orient gate sessions do not count as P1A
-usage. P1B-1 done 08-10-2026 after the cold Orient gate passed, and committed after
-Amit's diff review. P1B-2 done 08-10-2026 after its own plan approval. Mirror drift closed 09-10-2026:
-`rtk proxy *` removed in each project's own session, `drift.sh` 0 drifted. Committing and
-pushing each need Amit's separate approval.
+**Now:** Amit's review of T6, then the commit and any push, each on his separate approval. The setup is finished when
+every line of `harness/overview.md` § *What "finished" means* is true. Deferred until Amit
+asks: the account switch (open test 6) and open test 3's replay (Amit, 09-10-2026).
 
 ## Source of truth
 

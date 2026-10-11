@@ -143,15 +143,8 @@ out, ahead of its remote or merged changes the moment anyone touches a repo, and
 2026-09-21 four separate edits each left a sentence here wrong within minutes. Restating
 it was the defect; the fix is to stop.
 
-Run this instead. It takes one command and is always right:
-
-```bash
-for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,Voice\ Flow_v1,FinNode,vthrudebugger_v1,Debugger\ v2} \
-         ~/Documents/VS\ Code/Packbly_web/v1.1-Packbly \
-         ~/Documents/VS\ Code/Emp\ portal/Vthru_Emp_v2.1_jun26; do
-  printf '%-22s %s\n' "$(basename "$r")" "$(git -C "$r" status -sb | head -1)"
-done
-```
+Run the one-command sweep instead. It lives in `ENVIRONMENT.md` § *Branch state*, the one
+copy since 10-10-2026 (T6), and is always right.
 
 Anything the output does not show — an open PR, a stashed change — comes from
 `gh pr list` in that repo, not from this file.
@@ -167,21 +160,23 @@ exists to prevent.
 `~/.claude` commits to `main` directly, since it has no reviewer and no PR flow. Every
 project branches, one PR per feature off `main`. That is in `STANDARDS.md` § *Git*.
 
-**`backups/` was deleted on 2026-09-21** — see § *Where the backups went*. What could not
+**`backups/` was deleted on 2026-09-21** — see § *Where the backups went*. (10-10-2026: the folder exists again, holding only Claude Code's own `.claude.json` backups, not this setup's.) What could not
 be recreated moved into `archive/`, which is tracked and pushed precisely so it survives
 the Mac.
 
 ## Next session: start here, not at the top
 
-**Do not read this whole file.** It is ~176 KB, measured 2026-09-27; reading it all
-would cost an estimated 44k tokens, scaled from that size rather than measured. Either
+**Do not read this whole file.** It is ~208 KB, measured 10-10-2026 (~176 KB on
+2026-09-27); reading it all would cost an estimated 52k tokens, scaled from that size
+rather than measured. Either
 way it is the opposite of the point. Read, in this order:
 
-1. **§ *Where this stands*** at the top — the current state and the finish order —
+1. **`harness/status.md`** — the current setup status (**D33**). Added 10-10-2026.
+2. **§ *Where this stands*** at the top — the finish order, historical since 2026-09-29 —
    then the status table in § *Status at handoff (2026-09-18)*.
-2. **§ PHASE 11 — The global pass** — the per-file records, the method that governs any
+3. **§ PHASE 11 — The global pass** — the per-file records, the method that governs any
    remaining pass, and the permission-list findings.
-3. The specific phase section only if the work touches it.
+4. The specific phase section only if the work touches it.
 
 Everything else is reference. Search it when you need it.
 
@@ -229,6 +224,10 @@ direction:
 `.claude/settings*.json` under `VS Code/` for `rtk proxy *`, `rtk npx *`, `python3 -`,
 `python3 -c ' *`, `node *` and `osascript -l JavaScript -e ' *`. Phase 9's headline
 finding — 18 such rules — is closed for every project that had one.
+**Correction, 10-10-2026:** this stopped being true. `Bash(rtk proxy *)` was found back
+in FinNode's and Voice-Flow's `settings.local.json` on 09-10-2026 and removed that day,
+in each project's own session — `baselines/global-open-tests.md` items 2 and 4. The
+paragraph above is kept as the 2026-09-20 record.
 
 ### Renames are Amit's, and they are not part of any pass
 
@@ -300,7 +299,7 @@ rule that names the old project name. Then run the pass proper.
 
 **Check for uncommitted work and the current branch before renaming anything** — a rename
 moves a folder out from under whatever is in flight. Use the one-command sweep in
-§ *Git state is not recorded here*; the figures that used to sit in this paragraph went
+`ENVIRONMENT.md` § *Branch state*; the figures that used to sit in this paragraph went
 stale the same week they were written, which is the reason that section exists.
 
 ## The order from here
@@ -338,10 +337,12 @@ them to "check something quickly".
 **Not projects, and not getting a pass.**
 
 - **Packbly_v2** — no `CLAUDE.md`, no `.claude/`. Likely a Figma export, not an app.
+  (Reversed by Amit, 2026-09-27: it is a real project, just not one he works on —
+  `ENVIRONMENT.md` § *Project-tree decisions*.)
 - **SecondBrain schema** — Voice-Flow's vault (`electron/vaultStore.js:22` sets it as
   `DEFAULT_VAULT_ROOT`), not a separate project, and not a git repo. `PROJECTS.md`
   still lists it as its own project, which is wrong and worth fixing in the global
-  pass.
+  pass. (Fixed 2026-09-20 in Phase 11 — `PROJECTS.md` lists it under *Not projects*.)
 
 **The global pass — after the three projects.** `STANDARDS.md`, the other four
 imported files, the global permission list, and whatever turned out to be
@@ -374,7 +375,9 @@ Where the remaining weight sits: **`STANDARDS.md` 1,559** · `PROJECTS.md` 376 �
 
 **`STANDARDS.md` is now 63% of the global weight and the obvious next target** —
 but it is not the same shape as `OLLAMA.md`. See § *The next piece of work* for the
-split test that applies to a file which really does govern every turn.
+split test that applies to a file which really does govern every turn. (10-10-2026: that
+section no longer exists. The split test is in PHASE 11 § *The method*, and its result for
+`STANDARDS.md` in § *`STANDARDS.md` — DONE 2026-09-20*.)
 
 ## Status at handoff (2026-09-18)
 
@@ -423,7 +426,7 @@ maintenance pass (−8, all Voice-Flow: 2 dead, 4 duplicates, 1 naming a
 cross-project grant D23 forbids).
 Verified live by walking every `.claude/settings*.json` under `VS Code/`, not by
 arithmetic. Global `allow` is **33** since 2026-09-22 (two dead `gh` rules removed; it
-read 35 from 2026-09-18 until then) and `deny` is 2; **`ask` is 58** — 87 after 1.2, 101 after the Phase 3 gaps,
+read 35 from 2026-09-18 until then; **34 since 10-10-2026, D35**) and `deny` is 2; **`ask` is 58** — 87 after 1.2, 101 after the Phase 3 gaps,
 107 after the Voice-Flow pass added the `git * commit *` spellings, 112 after Phase 11
 fenced `wget` and `pip`, then **51 after the merge of 2026-09-20**, which collapsed the
 three per-command spellings into one leading-`*` pattern without losing coverage, and
@@ -462,7 +465,7 @@ every grep hit was prose, and the only `Skill()` permission rules anywhere named
 
 ## The git repo — where it lives
 
-- **Local:** `~/.claude` is a git repository (4 commits).
+- **Local:** `~/.claude` is a git repository (4 commits when written, 2026-09-18 — read today's count from git).
 - **Remote:** `https://github.com/AmitJangra25/claude-setup` — **private**,
   owned by GitHub account `AmitJangra25`. Pushed 2026-09-18.
 
@@ -483,7 +486,7 @@ everything in the "survives account switch" table below.
 they are the record of that checkpoint, not a health check for today. Their expected
 values have all since moved: the repo tracked 37 files at `2e9facc` and has grown with
 every file added since — `git ls-files | wc -l` gives today's count — and the permission
-counts are 33 `allow` / 58 `ask` / 2 `deny`, after the `ask` list was merged on
+counts are 33 `allow` / 58 `ask` / 2 `deny` (34 `allow` since 10-10-2026, D35), after the `ask` list was merged on
 2026-09-20, two dead `gh` rules went on 2026-09-22, and seven rules were added on
 2026-09-27. Run them
 against that date's commits, or read them as history.
@@ -563,7 +566,7 @@ for root, dirs, fs in os.walk(VS):
         for x in pm.get("additionalDirectories") or []:
             if x.startswith(VS) and not x.startswith(os.path.join(VS, top)):
                 bad.append(f"{top}/{fn}: additionalDirectories {x}")
-print("project allow rules:", tot, " (expect 384)")
+print("project allow rules:", tot, " (384 on 2026-09-18, 213 on 2026-09-22)")
 print("cross-project grants:", bad or "NONE — D23 holds")
 EOF
 ```
@@ -701,19 +704,23 @@ Projects inside `~/Documents/VS Code/` only — 8 of them. Everything else in
 | D15 | **`npx` stays out of `ask`.** Confirms the existing `ENVIRONMENT.md` exclusion against a fresh measurement: 231 of 235 calls are build/test. Only `npx --yes\|-y` is fenced | 2026-09-18 |
 | D21 | **B3 pipeline fragments stay.** 74 `echo`/`awk`/`grep`/`sort` rules are one-off but harmless; removing them buys tidiness and costs prompts mid-task on read-only commands | 2026-09-18 |
 | D22 | A rule containing a literal `*` is **not** removed until it is known whether Claude Code's matcher globs it. 3 spent `sed` rules are held on this | 2026-09-18 |
-| D23 | **A project may read its own tree silently. Another project — never, not by any rule. Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing grant.** Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects." Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is another project, so it goes too | 2026-09-18 |
+| D23 | **A project may read its own tree silently. Another project — never, not by any rule. Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing grant.** Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects." Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is another project, so it goes too. **"By prompt" reworded by D38, 10-10-2026.** | 2026-09-18 |
 | D24 | **Voice Flow's rule claims live in `CLAUDE.md`, the evidence in `docs/`.** This knowingly bends `docs/README.md`'s own rule 4 ("the moment two files carry the same rule, one of them starts lying"): each claim line now exists twice. Accepted because D7 asked for "short rules + separate docs" and a pointer-only `CLAUDE.md` would leave every Voice Flow session with no rules in context. Tie-breaker written into both files: if they disagree, **`CLAUDE.md` is the rule** and the document is the record of why — fix the document | 2026-09-18 |
 | D25 | **A stale measurement is annotated, never overwritten.** When 5.1 part two found a figure the code had outgrown, the original sentence and its date were left standing and a dated `> **Measured again**` note was added beside it. Overwriting the number would destroy the thing the document exists for — what was true when the rule was made, and how far it has moved since. Same principle as `dont-delete-reference-docs`, applied inside a file rather than to it | 2026-09-18 |
-| D28 | **A capability is made cheap, not removed.** `skillOverrides` has four states, and `name-only` keeps a skill working and suggestable for ~15 tokens instead of 100–350 — so the answer to an unused skill is `name-only`, never deletion. What that cannot reach is removed instead, and only then: a plugin whose cost is MCP *server instructions* (`browser-use`), the claude.ai connectors (no per-connector setting exists), and a built-in **tool**, which is not a skill at all — `enableArtifact: false` was the single largest cut. Every one is reversible by deleting its line. **Plugin skills are the trap:** bare names are reliable — all 18 took effect — but the 15 plugin entries did nothing as bare names and nothing again with the prefix `/context` prints. A wrong key is a silent no-op, not an error, so both attempts looked like success until a fresh session was measured. **Answered 2026-09-26: `skillOverrides` cannot reach plugin skills at all** — `/skills` shows `engineering:debug` as *"locked by plugin · Plugin skills are managed via /plugin"*, and saved twice without writing an entry for it. The key format was never the problem and three guesses were spent before the menu was asked. **Ask the menu first:** `/skills` and `/plugin` write the correct key by definition — `/skills` produced `anthropic-skills:doc-coauthoring`, a prefix `/context` never prints, so the key cannot be derived from what `/context` shows. `/skills` writes to the gitignored `settings.local.json`, whose `skillOverrides` **merges** with `settings.json` rather than replacing it (verified), but which therefore does **not** travel to a second account. Measured `/context` **34.3k → 21.9k**; `ENVIRONMENT.md` holds the table, the method change and why it is not comparable with 44,700 | 2026-09-26 |
+| D28 | **A capability is made cheap, not removed.** `skillOverrides` has four states, and `name-only` keeps a skill working and suggestable for ~15 tokens instead of 100–350 — so the answer to an unused skill is `name-only`, never deletion. What that cannot reach is removed instead, and only then: a plugin whose cost is MCP *server instructions* (`browser-use`), the claude.ai connectors (no per-connector setting exists), and a built-in **tool**, which is not a skill at all — `enableArtifact: false` was the single largest cut. Every one is reversible by deleting its line. **Plugin skills are the trap:** bare names are reliable — all 18 took effect — but the 15 plugin entries did nothing as bare names and nothing again with the prefix `/context` prints. A wrong key is a silent no-op, not an error, so both attempts looked like success until a fresh session was measured. **Answered 2026-09-26: `skillOverrides` cannot reach plugin skills at all** — `/skills` shows `engineering:debug` as *"locked by plugin · Plugin skills are managed via /plugin"*, and saved twice without writing an entry for it. The key format was never the problem and three guesses were spent before the menu was asked. **Ask the menu first:** `/skills` and `/plugin` write the correct key by definition — `/skills` produced `anthropic-skills:doc-coauthoring`, a prefix `/context` never prints, so the key cannot be derived from what `/context` shows. `/skills` writes to the gitignored `settings.local.json`, whose `skillOverrides` **merges** with `settings.json` rather than replacing it (verified — which `settings.local.json` held the entries is not recorded, so it does not prove the top-level file is read; noted 10-10-2026), but which therefore does **not** travel to a second account. Measured `/context` **34.3k → 21.9k**; `ENVIRONMENT.md` holds the table, the method change and why it is not comparable with 44,700 | 2026-09-26 |
 | D29 | **A skill earns its tokens by knowing something this setup does not already know — otherwise it is proposed, not kept.** Decided 2026-09-26 on the ten `engineering:` skills, and the reasoning is the rule. Five of them — `debug`, `code-review`, `testing-strategy`, `documentation`, `tech-debt` — restate rules `STANDARDS.md` already states more sharply and in Amit's own words, so loading both puts a generic checklist in competition with a better one. Three more — `standup`, `incident-response`, `deploy-checklist` — assume a team, an on-call rotation and a release train, none of which a solo developer on private repos has; they could never fire. `architecture` duplicates this file's own D-number decision log. **Zero uses across ~120 sessions was the weaker argument and nearly the wrong one:** never-used does not mean not-needed, and the case only holds because the content was read and found redundant. 930 tokens a session, and `/plugin` restores it in seconds — reversible, so the bar for removing is low and the bar for keeping is *use*. `pdf-viewer` kept at ~195 tokens: real PDF work, no duplication. **The forward half of the decision:** propose skills from repeated real work rather than keeping the ones that shipped — `skills/ollama/` is the shape that works, hand-written and specific at ~130 tokens. See the `propose-skills-from-observed-work` memory note. **Done and measured the same day:** `/plugin` wrote `"engineering@synced": false` — it picked the `@synced` suffix over `@inline`, the coin-flip that was refused after three failed key guesses. Skills **3.9k → 3.0k**, the 930 exactly. **Total did not move**, holding at 22.0k, because system tools rose 0.9k when Claude Code updated 2.1.282 → 2.1.283 in the same window; inferred, not proven. The saving is real and something else spent it. | 2026-09-26 |
-| D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)` | 2026-09-18 |
+| D16 | Every new `ask` rule is written in all three spellings — bare, `rtk `, `rtk proxy ` — because four projects blanket-allow `Bash(rtk proxy *)`. **Superseded 2026-09-20** by the `ask` list merge — one leading-`*` pattern per command covers all three spellings (status-table row **`ask` list merged**); no project holds `Bash(rtk proxy *)` since 09-10-2026. Noted 10-10-2026. | 2026-09-18 |
 | D26 | **A rule file is trimmed only where the content is a *procedure*, never where it is a *rule*.** A procedure is "how to do X" — you know you are doing X, so a skill's description fires reliably. A rule is "don't do Y" — you do not know you are about to do Y, so there is no trigger and lazy-loading it means it silently never loads. Anything moved out of an always-loaded file leaves a one-line pointer naming the skill and when to load it, the way `OLLAMA.md` does, so the load is an instruction rather than a judgement call. Applied 2026-09-22 to decline the FinNode split: measured 573 tokens of rule claims against 990 of supporting prose, but the prose is mostly operative — which of `observeById`/`getById` fails which way, that moving the device clock does not fire a pending sweep. **The Voice-Flow 110 KB diagnosis has now failed to transfer to FinNode twice.** Measure the sections before proposing the fix | 2026-09-22 |
 | D27 | **Two modes and one task order are rules in `STANDARDS.md`; the templates they use are procedures, loaded on demand.** General mode is the default and opens no project. Reading one file is not selecting a project. A project is selected on evidence — the working folder and the git repository that contains it — with the remote, the project's `CLAUDE.md` and its `PROJECTS.md` entry as supporting checks. A check that cannot run is reported, not treated as a mismatch; conflicting evidence stops and asks. Naming a project from general mode needs confirmation before it is opened. Templates sit in `templates/` behind a one-line pointer, per D26. `STANDARDS.md` 1,634 → 2,120 words. **Startup measurement pending.** **Clarified 2026-09-25:** the **pre-Block-1** startup measurement was never taken and is **unavailable**, so Block 1's own startup cost cannot be measured. The **post-Block-1** first-reply baseline **was measured**: **44,700** (three fresh sessions: 44,699 · 44,701 · 44,700). Nothing remains pending. | 2026-09-25 |
 | D30 | **A project rule cannot weaken a global gate.** `STANDARDS.md` line 3 already said the project wins where the two overlap; it now says what that does not cover — approval, recording, safety and permissions hold everywhere, and a project rule may only tighten them. **This closes a guidance gap, not an enforcement one.** The enforced side already held the right way round: rule type beats file location, so a global `ask` beats a project `allow` — **this plan's** § *The precedence rule that makes this work*, and the opposite belief is one of the errors listed in **its** § *What I got wrong while surveying it*. The mechanism was measured in a manual-mode probe on **2026-09-21**, recorded in this plan under the **`ask` rules proven** row and the evidence table that follows it. That probe covered two *global* rules; the eight *project* `ask` entries added 2026-09-28 rest on the same matcher and are **not observed**. **Followed up later on 2026-09-28, after this row was written:** five of those eight — Voice-Flow's whole set — were observed prompting that same day, observed and pasted in by Amit and recorded in `baselines/2026-09-28-run2.md`; FinNode's three remain not observed. Prose cannot enforce anything (`ENVIRONMENT.md` § *The two kinds of rule*), so this constrains what Claude tries, and `settings.json` is still the only boundary. The same edit adds a pointer to read `ENVIRONMENT.md` before creating or changing a permission rule, because the rtk hook rewrites a command before the permission check and a rule therefore needs every spelling the hook can produce (**D16**). `STANDARDS.md` 265 → 271 lines, ~55 tokens a turn; not measured in a fresh session. (**Corrected 2026-09-29:** this row said "265 → 269". The commit was 265 → 271 — checked by running `wc -l` over `git show 55a9579:STANDARDS.md`. The token estimate is unchanged.) Commit `55a9579` **Followed up 2026-09-29:** FinNode's three were then observed too. Its live `ask` list was checked and held exactly the three connected-test patterns, and each prompted against a read-only `rtk grep -c <name> CLAUDE.md` containing that task name, every prompt naming its own matching rule — observed and pasted in by Amit, recorded in `baselines/2026-09-29.md`. So all eight project `ask` entries added 2026-09-28 have now prompted at least once. **Bounded:** these were greps containing the protected names, not the real Gradle tasks or npm scripts, and the evidence is three probe commands in one session — it supports the rule firing in those cases, and is **not** a universal precedence conclusion. | 2026-09-28 |
-| D31 | **Task records live inside the selected project, at `.claude/current-task.md` — not under `~/.claude`.** A central `~/.claude/workspaces/<Project>/` would need a standing cross-directory grant, and **D23** removed exactly that on 2026-09-18: FinNode's `Read(//Users/amitjangra/.claude/**)` plus the `additionalDirectories: ~/.claude` in both FinNode and Voice-Flow (item **5.2b**). In-project needs no grant, no settings change and no new working directory. The record is read **on demand at Orient**, so it adds nothing to startup beyond one pointer line in `STANDARDS.md`. It holds approval scope, status, verified result, blockers and the exact next step, and is written only for meaningful changing work likely to cross a session or a compaction — never for a small request. `templates/handoff.md` is its template, **extended rather than duplicated**, so there is one shape and one source of truth. **Untested:** no resume has been demonstrated, and one point in the record is unresolved — **D23** says `~/.claude` is reachable from a project *by prompt*, while the rtk tee finding recorded under **PHASE 1** measured an outside-directory read as *blocked* until a global `allow` rule was added. Not settled here, because the chosen design needs neither. **Followed up 2026-09-29, after this row was written:** the FinNode session reported finding and reading `.claude/current-task.md`, and reporting the Phase B task and its approved scope, without changing a project file. Two limits stand. The `RESUME-OK-7431` token was present in the test prompt, so repeating it is **not independent proof** of recovery; and the exact prompt text was not captured here, so nothing is claimed about what else it contained. **Recovery after a compaction remains untested**, as does permission to continue changing work. All of it observed and reported by the FinNode session — this session verified none of it and did not open that project. The temporary record was deleted there after approval. The D23 / **PHASE 1** contradiction above is unchanged and still unsettled. **Compaction followed up later on 2026-09-29, after the paragraph above was written:** a **same-session** probe wrote the record, started the work, ran `/compact`, then continued from `carry on` alone — lines appended in order, the stated exclusions held — no `CLAUDE.md` edit, no Gradle task, no commit, no push (`baselines/2026-09-29-run2.md`). That shows **continuation across a compaction with scope adherence**, subject to the completeness of the pasted tool calls. It does **not** show this record caused it: the task reached the session before the compaction, so the summary may carry it, and a no-record control was considered and dropped as non-discriminating for exactly that reason. **The mechanism claim in this row is therefore still unproven.** The final record had formatting irregularities, noted so the result is not overstated; formatting was not what the probe tested. Cleanup was **reported by that session** — both temporary files absent, FinNode's `git status --short --untracked-files=all` empty at `4af6fae` — with the deletion turn itself not supplied, so no one here witnessed it. | 2026-09-29 |
-| D32 | **Part 2B decisions — one owned file per kind of fact.** Recorded 03-10-2026 during Part 2B housekeeping; reserved here by **D33**. (1) **Core docs do not grow to justify deleting a backup.** If something is worth keeping, it goes in a small file that owns that kind of fact, and the large docs point at it — Amit's rule. (2) **Test records live apart from this file.** Global setup tests are indexed in `baselines/global-open-tests.md`; project tests belong in each project's own `tests/` or `qa/`, created when that project is next worked on. (3) **Pointers use section names, never line numbers.** Line numbers rot. Source: `.claude/current-task.md` § *Decisions from Part 2B*, which git does not keep, so this row is their durable record. | 03-10-2026 |
+| D31 | **Task records live inside the selected project, at `.claude/current-task.md` — not under `~/.claude`.** A central `~/.claude/workspaces/<Project>/` would need a standing cross-directory grant, and **D23** removed exactly that on 2026-09-18: FinNode's `Read(//Users/amitjangra/.claude/**)` plus the `additionalDirectories: ~/.claude` in both FinNode and Voice-Flow (item **5.2b**). In-project needs no grant, no settings change and no new working directory. The record is read **on demand at Orient**, so it adds nothing to startup beyond one pointer line in `STANDARDS.md`. It holds approval scope, status, verified result, blockers and the exact next step, and is written only for meaningful changing work likely to cross a session or a compaction — never for a small request. `templates/handoff.md` is its template, **extended rather than duplicated**, so there is one shape and one source of truth. **Untested:** no resume has been demonstrated, and one point in the record is unresolved — **D23** says `~/.claude` is reachable from a project *by prompt*, while the rtk tee finding recorded under **PHASE 1** measured an outside-directory read as *blocked* until a global `allow` rule was added. Not settled here, because the chosen design needs neither. **Followed up 2026-09-29, after this row was written:** the FinNode session reported finding and reading `.claude/current-task.md`, and reporting the Phase B task and its approved scope, without changing a project file. Two limits stand. The `RESUME-OK-7431` token was present in the test prompt, so repeating it is **not independent proof** of recovery; and the exact prompt text was not captured here, so nothing is claimed about what else it contained. **Recovery after a compaction remains untested**, as does permission to continue changing work. All of it observed and reported by the FinNode session — this session verified none of it and did not open that project. The temporary record was deleted there after approval. The D23 / **PHASE 1** contradiction above is unchanged and still unsettled. (Settled by **D38**, 10-10-2026.) **Compaction followed up later on 2026-09-29, after the paragraph above was written:** a **same-session** probe wrote the record, started the work, ran `/compact`, then continued from `carry on` alone — lines appended in order, the stated exclusions held — no `CLAUDE.md` edit, no Gradle task, no commit, no push (`baselines/2026-09-29-run2.md`). That shows **continuation across a compaction with scope adherence**, subject to the completeness of the pasted tool calls. It does **not** show this record caused it: the task reached the session before the compaction, so the summary may carry it, and a no-record control was considered and dropped as non-discriminating for exactly that reason. **The mechanism claim in this row is therefore still unproven.** The final record had formatting irregularities, noted so the result is not overstated; formatting was not what the probe tested. Cleanup was **reported by that session** — both temporary files absent, FinNode's `git status --short --untracked-files=all` empty at `4af6fae` — with the deletion turn itself not supplied, so no one here witnessed it. | 2026-09-29 |
+| D32 | **Part 2B decisions — one owned file per kind of fact.** Recorded 03-10-2026 during Part 2B housekeeping; reserved here by **D33**. (1) **Core docs do not grow to justify deleting a backup.** If something is worth keeping, it goes in a small file that owns that kind of fact, and the large docs point at it — Amit's rule. (2) **Test records live apart from this file.** Global setup tests are indexed in `baselines/global-open-tests.md`; project tests belong in each project's own `tests/` or `qa/`, created when that project is next worked on. (3) **Pointers use section names, never line numbers.** Line numbers rot. Source: `.claude/current-task.md` § *Decisions from Part 2B*, which git does not keep, so this row is their durable record. (11-10-2026: that section no longer exists; this row is the only record.) | 03-10-2026 |
 | D33 | **A small harness is the control desk for the setup: `harness/status.md` is the one current status view, `harness/cross-check.md` the cross-check procedure.** Status had drifted across four places (this file's START HERE, `.claude/current-task.md`, `baselines/global-open-tests.md`, the `claude-setup-status` memory note) and nothing made a session check them. The harness points to owners and copies nothing; the task loop stays in `STANDARDS.md`, which gains only short global rules (cross-check before approval for risky or structural work, model and why, DD-MM-YYYY for new dates, a skill after four repetitions, a workload marker for meaningful extra work). Setup-only rules go in `.claude/CLAUDE.md`, which loads only in sessions started in `~/.claude` — measured 08-10-2026 with `/context all`: 151 tokens there, absent in FinNode — so projects do not pay for them. Global rules, including the short deletion rule, remain in `STANDARDS.md` so project sessions can follow them; `harness/cross-check.md` contains the detailed procedure and is read only when needed. D32 is reserved for the Part 2B decisions, recorded in P1B. The two older deletion lines in this file now point to both. Rejected: `loop.md`, `overview.md`, `global-rules.md`, `test-harness.md` as duplicates of `STANDARDS.md` and `README.md`. Token saving is the primary constraint: one agent cross-check only where risk justifies it, shown with markers. Moving the history out of `.claude/current-task.md` and retiring the other status copies is P1B, approved separately. | 08-10-2026 |
 | D34 | **`harness/overview.md` is kept, as a map and the definition of "finished" — this supersedes only D33's rejection of `overview.md`.** It describes how the pieces fit in a session and lists checkable done-criteria. It copies no table: it points to `README.md` for files, `harness/status.md` for owners and `STANDARDS.md` for the task loop. Not imported, so no per-turn cost. Capped at about 35 lines after a cross-check found a fuller version would repeat `README.md`. The rest of D33 stands. | 10-10-2026 |
+| D35 | **A global `allow` rule is written in the spelling the hook produces, checked with `rtk hook check`.** T6 fixes A and B: `Bash(rtk git rev-parse *)` removed — the hook never rewrites `git rev-parse`, so it never fired. `Bash(rtk gh run list*)` and `Bash(rtk tree *)` added beside the bare `gh run list*` and `tree *`, which stay for piped lines the hook leaves raw. **Corrected the same day:** the bare rules were not shown to be dead. rtk 0.48.0's hook answers Claude Code with `permissionDecision: allow` on some rewrites — in 115 recorded simple rewrites, only these two commands, both matching a bare rule — so whether the bare rules alone were enough is untested. Live, manual mode, 10-10-2026: both ran with the hook's `allow` and returned in under a second (`tree` 0.2 s, `gh run list` 0.6 s), so no box was waiting. `rtk hook check` was shown to write nothing to `hook-audit.log`. `allow` 33 → 34. Exact text and checks: `baselines/t6-removals.md` entries 2–3. | 10-10-2026 |
+| D36 | **Setup sessions ask before `git pull`, `git switch`, `git stash pop` and `git stash apply`** — four `ask` rules in `.claude/settings.json`, so they apply only to sessions started in `~/.claude`. Closes open test 8 for this repo; the global list is unchanged, because a global rule still needs test 3's replay first. Chosen over narrowing `Bash(rtk git *)` in `.claude/settings.local.json`, which would have prompted on read-only forms in use (`stash list`, `--no-pager diff`) and still let auto mode through. Not caught: `git -C <path> pull`, the same gap as the global list. Exact original file and checks: `baselines/t6-removals.md` entry 4. | 10-10-2026 |
+| D37 | **`.gitignore` root allow lines are anchored with a leading `/`, and every tracked root file has its own anchored allow line; folders use the wildcard lines already there.** Unanchored names matched in every re-included folder — that is how `.claude/settings.json` and the three `archive/PHASE2*` files were allowed by accident, and it would have let in a stray `projects/x/CLAUDE.md`. The PHASE2 lines moved into the `archive/` block; `!.claude/settings.json` added. Same 95 files allowed and same 4,267 ignored before and after. Original lines and checks: `baselines/t6-removals.md` entry 5. | 10-10-2026 |
+| D38 | **D23 restated to what is proven — wording only, no behaviour change.** Enforced: no project holds a standing grant (`allow` rule or `additionalDirectories`) to another project or to `~/.claude`; the sweep in § *Verify that state rather than trust it* checks it. **Corrected 10-10-2026 (T6):** the sweep checks only part of this. It reads the `allow` list of every `settings*.json` directly inside a `.claude` folder under `Documents/VS Code`, skipping `node_modules`, and flags only `Read(`, `Edit(` and `Write(` rules whose text names `Documents/VS Code`, and `additionalDirectories` entries written as a full path under it. It misses grants to anywhere outside `VS Code` (`~/.claude`, `~/Documents/SecondBrain Obsidian`), `additionalDirectories` written as `~/…`, and Bash rules that reach another folder — the `cd "…/SecondBrain Obsidian"` rule removed 2026-09-22 was one; and its same-project test lets a sibling whose name starts the same (`Voice-Flow-main`) pass. Those rest on the walk of every rule in all 17 settings files, last done 2026-09-22 (status-table row 5.2); the 09-10-2026 checkups only removed or narrowed rules (`harness/status.md` § *Completed*) and did not repeat the walk. The script is unchanged; the gap is open. The Read tool is **blocked**, not prompted, outside the working folder (`blockReadsOutsideWorkingDirectories`, PHASE 1 § 1.3). **Unproven:** reads through Bash — `cat` becomes `rtk read`, which the global `allow` list permits for any path — and whether the block setting covers them. D23's intent stands; its "by prompt" for other folders is replaced by this. Settles the D23 / PHASE 1 disagreement noted in **D31**. Nothing depends on it, so it was not tested: testing means reaching into `~/.claude` from a project session. | 10-10-2026 |
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
@@ -976,7 +983,7 @@ Verified against `settings.json` on 2026-09-20: **allow 35 · ask 87 · deny 2**
 Every rule falls into one of the groups below; nothing is left over.
 
 > **The counts below are superseded; the reasoning is not.** Checked 2026-09-27.
-> Live now: **ask 58 · allow 33 · deny 2**. Three changes did it — on 2026-09-20 the
+> Live then: **ask 58 · allow 33 · deny 2**; `allow` is 34 since 10-10-2026 (D35). Three changes did it — on 2026-09-20 the
 > `ask` list merged from 112 spellings to **51 wildcard patterns**, one per command
 > instead of the three (`X`, `rtk X`, `rtk proxy X`) the next paragraph describes;
 > on 2026-09-22 two dead `gh` rules took `allow` 35 → 33; and on 2026-09-27 seven rules
@@ -1021,7 +1028,7 @@ commands, 87 spellings.**
 | 2 | Local database — `sqlite3` | Two projects hold real records (Emp Portal, Packbly). A write is silent and not reversible. |
 | 2 | Launching apps / files — `open` | Hands a file to whatever app claims the type, outside Claude's control. |
 
-### Always fine — `allow`, 35 rules in 6 groups *(2026-09-20 snapshot; now 33)*
+### Always fine — `allow`, 35 rules in 6 groups *(2026-09-20 snapshot; 33 on 2026-09-27, 34 since 10-10-2026)*
 
 Everything here is read-only, or reversible and confined to this setup.
 
@@ -1165,6 +1172,10 @@ the decision recorded in the table above once made.
 
 ## Rebuilding on another account
 
+> **Counts in this section are from 2026-09-18 to 2026-09-22** — memory files, cloud skills
+> and plugins, the *Five systems* list, and the plugins named in step 4. **Re-take them
+> before the switch** (open test 6). Noted 10-10-2026.
+
 ### The short answer
 
 **Same Mac, different email: you lose very little.** Almost everything is files
@@ -1177,7 +1188,7 @@ macOS user. **The switch has not been tested.**
 |---|---|---|
 | All 6 global `.md` rules files | **Yes** | Plain files in `~/.claude/` |
 | `settings.json` — model, effort, hook, permissions, `skillOverrides` | **Yes** | Plain file, tracked here |
-| `settings.local.json` — anything set through the **`/skills` menu** | **No** | **Gitignored, so it is not in this repo.** Verified 2026-09-26: the menu writes here, not to `settings.json`, and its `skillOverrides` block *merges* with that file rather than replacing it. A skill set to `name-only` or `user-invocable-only` through the menu is therefore lost on a switch, silently — the skill simply comes back at full cost. Copy it into `settings.json` by hand if it should travel, or re-set it through the menu afterwards |
+| `settings.local.json` — anything set through the **`/skills` menu** | **No** | **Gitignored, so it is not in this repo.** Verified 2026-09-26: the menu writes here, not to `settings.json`, and its `skillOverrides` block *merges* with that file rather than replacing it. (Noted 10-10-2026: which `settings.local.json` held the entries during that check is not recorded — `ENVIRONMENT.md`, local-settings table.) A skill set to `name-only` or `user-invocable-only` through the menu is therefore lost on a switch, silently — the skill simply comes back at full cost. Copy it into `settings.json` by hand if it should travel, or re-set it through the menu afterwards |
 | All 8 projects' `CLAUDE.md` and `.claude/settings.json` | **Yes** | Plain files in the project |
 | The 27 memory files | **Yes** | Plain files under `~/.claude/projects/` |
 | rtk, ollama-do, statusline script | **Yes** | Installed in `~/.local/bin` and `~/.claude/statusline/` |
@@ -1242,7 +1253,7 @@ re-clone the 8 projects. The projects carry their own `CLAUDE.md` and
 `.claude/settings.json` in their own repos — except two, see 5.7.
 
 **What comes back with the clone, and what does not.** `archive/` is tracked, so it
-arrives with the repo. `backups/` no longer exists: it was deleted on 2026-09-21 once
+arrives with the repo. `backups/` no longer exists (as of 10-10-2026, Claude Code has recreated it for its own app backups — see § *Where the backups went*): it was deleted on 2026-09-21 once
 its contents were proven recoverable, and anything that has to outlive a machine goes in
 `archive/` instead.
 
@@ -1255,13 +1266,18 @@ its contents were proven recoverable, and anything that has to outlive a machine
 
 `archive/README.md` carries the same facts next to the file, so they survive being read
 out of context. Adding to `archive/` needs a named allow-line in `.gitignore`, which
-blocks everything by default.
+blocks everything by default. (10-10-2026: `*.bundle` and `*.tar.gz` files are already
+covered by wildcard lines; any other kind needs its own.)
 
 ### Where the backups went
 
 **`~/.claude/backups/` was deleted on 2026-09-21**, at Amit's request, after its contents
 were proven recoverable rather than assumed to be. It had grown to 21 dated folders,
 5.2 MB, one per editing step.
+
+**Since then, 10-10-2026:** the folder exists again. Claude Code recreated it for its own
+`.claude.json.backup.*` files — a rolling set, five on 10-10-2026, 520 KB. They are the app's state, not
+this setup's: gitignored, untracked, and outside T6 (Amit, 10-10-2026).
 
 The test, run before anything was removed: every one of the **135 files** was hashed as a
 git blob and looked up in every commit of this repo and of all eight project repos.
@@ -1424,9 +1440,9 @@ split is deliberate rather than accidental:
 
 | | Lives in | Why |
 |---|---|---|
-| `CLAUDE.md` | this repo, `project-rules/` | gitignored in the project (`claude-md-not-in-git`), so this is its only history |
+| `CLAUDE.md` | this repo, `project-rules/` | gitignored in the project (`claude-md-not-in-git`), so this is its only history. (Not uniform since D13 was reversed on 2026-09-20 — FinNode tracks it, recorded, not freshly checked; noted 10-10-2026.) |
 | `.claude/skills/` | the project's own repo | not ignored; travels with the code it describes |
-| `.claude/settings*.json` | this repo, `project-rules/<name>/.claude/` | gitignored in the project, so this is their only history. **Added 2026-09-20**, reversing the earlier leave-as-is: until then **330 permission rules existed in no repo at all**, and the decision had been taken before anyone counted them |
+| `.claude/settings*.json` | this repo, `project-rules/<name>/.claude/` | gitignored in the project, so this is their only history (not uniform since D13 was reversed; noted 10-10-2026). **Added 2026-09-20**, reversing the earlier leave-as-is: until then **330 permission rules existed in no repo at all**, and the decision had been taken before anyone counted them |
 
 `manifest.tsv` changed shape in the same step. Its second column was the path to a
 project's `CLAUDE.md`; it is now the **project root**, and `sync.sh` derives all
@@ -1437,7 +1453,7 @@ proved to behave identically before the change was trusted: same 6 current, same
 one drift, same exit code.
 
 **Still outside it:** the 2 rules in `~/Documents/.claude/`, and the 68 inside
-`node_modules` — the first because it is not a project, the second because they
+`node_modules` (60 when re-counted 2026-09-21) — the first because it is not a project, the second because they
 return on every `npm install`.
 
 ---
@@ -1448,7 +1464,7 @@ Asked for explicitly. Honest assessment.
 
 | Tool | Licence | Verdict |
 |---|---|---|
-| **rtk** (in use) | — | Keep for now. It saves tokens. It also corrupted a file path and hid output twice during this survey, so open question 3 stands. |
+| **rtk** (in use) | — | Keep for now. It saves tokens. It also corrupted a file path and hid output twice during this survey, so open question 3 stands. (Answered by **D12** — see § *Open questions*.) |
 | **claude-mem** (`thedotmack/claude-mem`) | Apache 2.0, not MIT | **No.** Claude Code already has a native memory system and you are using it — 27 files across 5 folders. claude-mem would be a second, parallel memory system, and it wants its own model provider key. Two memory systems is worse than one imperfect one. |
 | **claude-memory-skill** (`hanfang/claude-memory-skill`) | MIT | No, same reason. It is a lighter version of something you already have. |
 | **claude-code-dotfiles** (`Povaz/claude-code-dotfiles`) | — | **Read it, do not install it.** It solves exactly this problem — "across machines and subscriptions" — with symlinks and git. Worth reading for its `.gitignore`. But Phase 6 is about 15 lines of git; a dependency is not warranted. |
@@ -1670,7 +1686,7 @@ Packbly_web's 6, Voice Flow_v1's 5, FinNode's hard rules and architecture, and a
 ### The cost, and the shape of the fix
 
 Six global files load **every turn**: 2,968 words when this was written, ≈3,900 tokens.
-**Now 2,478 words** — Phase 11 cut them and step 3 added one sentence back.
+**2,478 words on 2026-09-21** — Phase 11 cut them and step 3 added one sentence back.
 Promoting a rule is not free — it loads in every session of every project forever.
 
 **The fix is the pattern already invented in Voice-Flow:** state the rule as a
@@ -1963,7 +1979,7 @@ Found while cross-checking Voice-Flow, deliberately **not** fixed out of order:
 - ~~**FinNode** still holds `git -c user.name=Amit … commit -q -m ' *` as an allow.~~
   Removed 2026-09-20. It was already dead by rule-type precedence; it went because a
   dead allow that reads as live misleads whoever opens the file next.
-- The 68 `allow` rules inside `node_modules` — see the counts note at the top and
+- The 68 `allow` rules inside `node_modules` (60 when re-counted 2026-09-21) — see the counts note at the top and
   Phase 9.
 
 ### FinNode  ·  **DONE 2026-09-20**
@@ -2101,7 +2117,8 @@ re-tracking its three files is a small separate action.
   `.claude/settings.local.json` as DRIFTED from the copy in this repo. Not opened, not
   investigated and not pulled: the Voice-Flow mirror update that surfaced it was done as a
   single-file copy precisely so `sync.sh --pull` would not sweep this in unreviewed. Needs
-  its own review.
+  its own review. (Resolved 09-10-2026: the `rtk proxy *` rule was removed in FinNode's
+  own session, then `drift.sh` showed 0 drifted — open test 4. Noted 10-10-2026.)
 
 > **Re-checked 2026-09-27 — the handoff was dropped, and the finding was partly
 > overstated.** Phase 11 closed as COMPLETE without either item, and re-measured against

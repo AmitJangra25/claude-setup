@@ -8,8 +8,9 @@
 #
 # NEVER let these in (all blocked by the rule below; listed so the reason is on record):
 #   .claude.json         account UUIDs, machine ID, every folder ever opened
+#                        (lives at ~/.claude.json, outside this folder)
 #   history.jsonl        every prompt typed, plus pasted content
-#   projects/**/*.jsonl  ~158 MB of full session transcripts
+#   projects/**/*.jsonl  full session transcripts
 #   .credentials.json    login token (not present today — creds are in the macOS Keychain)
 #   backups/             copies of .claude.json
 #   plugins/ skills/     account-keyed; regenerate on login. Committing them
@@ -21,24 +22,21 @@
 *
 
 # --- allow: the ignore file itself, and the rebuild instructions
-!.gitignore
-!README.md
+!/.gitignore
+!/README.md
 
 # --- allow: global rules (the point of this repo)
-!CLAUDE.md
-!STANDARDS.md
-!RTK.md
-!REPOS.md
-!PROJECTS.md
-!OLLAMA.md
-!ENVIRONMENT.md
-!SETUP-PLAN.md
-!PHASE2-REMOVALS.md
-!PHASE2C-REMOVALS.md
-!PHASE2C-REMOVALS.json
+!/CLAUDE.md
+!/STANDARDS.md
+!/RTK.md
+!/REPOS.md
+!/PROJECTS.md
+!/OLLAMA.md
+!/ENVIRONMENT.md
+!/SETUP-PLAN.md
 
 # --- allow: settings and statusline
-!settings.json
+!/settings.json
 !statusline/
 !statusline/context.py
 
@@ -66,6 +64,9 @@
 !archive/README.md
 !archive/*.bundle
 !archive/*.tar.gz
+!archive/PHASE2-REMOVALS.md
+!archive/PHASE2C-REMOVALS.md
+!archive/PHASE2C-REMOVALS.json
 
 # --- allow: baselines/ — dated behaviour baselines, compared run to run. Two
 #     lines because git will not descend into an excluded directory, so the
@@ -105,7 +106,9 @@
 !harness/session-check.sh
 !harness/overview.md
 
-# --- allow: the setup-only rules file (D33). .claude/ also holds current-task.md
-#     and settings.local.json, which stay ignored — `*` still matches them.
+# --- allow: the setup-only files (D33, D36): CLAUDE.md, and settings.json with the
+#     SessionStart hook and four ask rules. .claude/ also holds current-task.md and
+#     settings.local.json, which stay ignored — `*` still matches them.
 !.claude/
 !.claude/CLAUDE.md
+!.claude/settings.json

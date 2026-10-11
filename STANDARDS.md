@@ -271,9 +271,8 @@ Four short lines, in this order:
 - **Undo** — how to reverse it, or say plainly that it can't be reversed.
 
 **A fifth line when the command is on the global `ask` list** — installs, downloads,
-deletions, git that rewrites or discards work (`reset`, `clean`, `checkout`, `rebase`,
-`merge`, `rm`), pushing code, GitHub, killing processes, `open`, `sudo`, the Keychain,
-macOS privacy, `sqlite3`:
+deletions, git that commits, merges, rewrites or discards work, pushing code, GitHub,
+killing processes, `open`, `sudo`, the Keychain, macOS privacy, `sqlite3`:
 
 - **Why now** — what I asked for that needs this, in my terms. "You asked to see the
   test failures and the runner isn't installed", not "installing dependencies".

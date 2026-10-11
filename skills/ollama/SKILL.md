@@ -34,6 +34,7 @@ into context costs more than the work saved — and you still have to check it.
 - `ollama-do json '<instruction>' < file` — pulling a list out of a file when
   you need it structured.
 - `ollama-do explain` / `docstring` / `quick` / `ask` — as the names suggest.
+- `ollama-do models` — the routing table, and whether each model is installed.
 
 ## Never use it for
 

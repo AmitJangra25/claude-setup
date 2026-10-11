@@ -2,13 +2,13 @@
 # One line per project: <repo folder><TAB><absolute project root>
 #
 # sync.sh mirrors these files from each root, and skips any that do not exist:
-#     CLAUDE.md                      the project's rules (gitignored in the project)
-#     .claude/settings.json          permission rules (gitignored in the project)
+#     CLAUDE.md                      the project's rules (tracked in some projects, not others — README.md)
+#     .claude/settings.json          permission rules (tracked in some projects, not others — README.md)
 #     .claude/settings.local.json    permission rules added by clicking allow
 #
 # The copies under project-rules/ are COPIES. The live files are the source of truth.
-# Skills are NOT here on purpose — they are not gitignored, so they travel in the
-# project's own repo. See SETUP-PLAN.md § 'Project rules are separate'.
+# Skills are NOT here on purpose — judged to travel in the project's own repo; not
+# verified per project. See README.md and SETUP-PLAN.md § 'Project rules are separate'.
 FinNode	/Users/amitjangra/Documents/VS Code/FinNode
 Voice-Flow	/Users/amitjangra/Documents/VS Code/Voice-Flow
 Voice Flow_v1	/Users/amitjangra/Documents/VS Code/Voice Flow_v1
