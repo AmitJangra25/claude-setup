@@ -50,6 +50,18 @@ current state.
   measured. Old text: `git show f6a4c2c:STANDARDS.md`. Cross-check 12-10-2026 · Opus · rule
   by rule · FAIL narrowly, 4 items restored to old strength · 47.8k tokens measured.
   **Next target (Amit):** break the long D-rows in `SETUP-PLAN.md` into short lines.
+- **Token trims after D40** — 12-10-2026, approved by Amit piece by piece. (1) D-table and
+  (2) both status tables in `SETUP-PLAN.md` turned into short `###` sections, words
+  unchanged — checked word by word against git: 4,102 + 4,240 words, 0 mismatches; one
+  table escape (`\|` → `|`, D15) is the only character change (`060a8ba`, `28f3776`).
+  A search hit now returns one short line instead of a row of up to ~490 words.
+  (3) Global `CLAUDE.md` not-imported comment cut to one line per file, every pointer
+  kept (`e7dbe41`). (4) `RTK.md` dated figures — skipped by Amit; `RTK.md` untouched.
+  (5) New rule in `STANDARDS.md` § *Load a capability*: never read `SETUP-PLAN.md` or
+  `ENVIRONMENT.md` whole; the two "read `ENVIRONMENT.md`" lines now say "the relevant
+  section". Cross-check 12-10-2026 · Sonnet · pieces 3 and 5 · 2 pointer restorations
+  taken, the section wording taken · 21.7k tokens measured. Token savings estimated, not
+  measured.
 
 ## Open
 

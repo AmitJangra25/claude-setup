@@ -95,7 +95,8 @@ Skills, plugins, connectors and reference documents are not loaded because they 
 **Scope**, name the ones the task needs and why, one line each; they are loaded at
 **Approve**. If a project's roadmap names what a task needs, that is the list. For one
 listed by name only, say what you expect it to do and that you have not read it. Never
-claim what an unread skill contains.
+claim what an unread skill contains. Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole;
+search by D-number or section.
 
 ## Which model
 
@@ -269,6 +270,6 @@ A helper agent stops and reports the denial. This never goes around Claude Code'
 permission system: no rule changes, no different command to dodge the box, no asking me
 to approve in chat instead of in the box.
 
-**Before creating or changing a permission rule, read `~/.claude/ENVIRONMENT.md`.** The rtk
-hook rewrites a command before the permission check, so a rule has to cover every spelling
-the hook can produce.
+**Before creating or changing a permission rule, read the relevant section of
+`~/.claude/ENVIRONMENT.md`.** The rtk hook rewrites a command before the permission check,
+so a rule has to cover every spelling the hook can produce.
