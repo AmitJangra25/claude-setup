@@ -381,37 +381,318 @@ section no longer exists. The split test is in PHASE 11 § *The method*, and its
 
 ## Status at handoff (2026-09-18)
 
-| | Step | State |
-|---|---|---|
-| ✅ | 1.1 Back up 27 files | **DONE**, verified byte-identical with `cmp` |
-| ✅ | 6.1 `git init` + `.gitignore` + baseline commit | **DONE**, commit `14883fa`, 38 files, 90 KB |
-| ✅ | Read all 27 memory files | **DONE** — produced D13, D14 and Phase 7 |
-| ✅ | 1.2 Close the holes in the global ask list | **DONE**, 35 rules added, `ask` 52 → 87 |
-| ✅ | 1.3 Add two global entries rtk needs | **DONE**, 3 rules added, `allow` 32 → 35 |
-| ✅ | **Phase 2a + 2b Permission cleanup** | **DONE** 2026-09-18. All 144 rules removed from 9 files; allow 560 → 416, verified against the `2026-09-18-phase2` backup: 0 added, `ask`/`deny` untouched, every file still valid JSON |
-| ✅ | **Phase 2c Group B one-off leftovers** | **CLOSED 2026-09-21 — nothing was left to do.** B1 (14) + B2 (9) removed 2026-09-18, allow 416 → 393, verified. **B3 (74 pipeline fragments) stays by decision D21**, not as pending work: removing them only tidies and costs a prompt mid-task on read-only commands. The **3 `*` rules still flagged** row was stale — a scan of all 394 rules across 15 settings files, including the three inside `node_modules`, found **zero** bare-`*` rules in `allow`, `ask` or `deny`. Stale like 5.4 and 5.6 were: the row was wrong, not the files |
-| ✅ | Phase 7a Repair where memories are stored | **DONE**, 3 orphaned dirs fixed, 18 memories reachable |
-| ✅ | Phase 7b Promote working preferences to STANDARDS.md | **DONE**, 5 sections + 3 edits, +626 tokens/turn |
-| ✅ | **Phase 3 The deliberate set** | **DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the change, so this documented it — all 124 rules grouped in plain English with a reason each (deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *` sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/` |
-| ✅ | **Phase 4 Make the prompts readable** | **DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every global-`ask` command; `tccutil reset` gets its own subsection — must name the service and the app, and say when it hits every app on the machine. +360 tokens/turn. Backup: `backups/2026-09-20-phase3/` |
-| ✅ | **Phase 3 gaps closed** | **DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified `allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0 rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`, `yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`), which ask beats allow on by rule-type precedence. **Runtime confirmation still outstanding** — this session does not enforce `ask`. Backup: `backups/2026-09-20-phase3-gaps/` |
-| ✅ | **PHASE 8 Where rules live** | **DONE — all four steps complete. Step 4 closed 2026-09-21: it had already been done inside FinNode's own Phase 10 pass, commit `725ca2e` on `main` — the four re-stated sections 426 → 204 words, replaced by one pointer line to `STANDARDS.md`, every piece of project evidence kept. The row was stale, not the file.** Step 3 closed 2026-09-21: Phase 10's `vthrudebugger_v1` pass had already promoted the two trapped rules, leaving only the **stash-and-branch technique** ungloballed. Added to `STANDARDS.md` § *Git* as one sentence, 1,600 → 1,634 words, and the memory's pointer now reads *all five* rules global. The memory body and its dated evidence are untouched. Step 2 verified closed 2026-09-21: all 6 redundant memories carry a pointer to their governing global section, Voice-Flow's 5 and FinNode's `always-recommend-an-option`. The two projects word the pointer differently — Voice-Flow *"Now global"*, FinNode *"Governed globally by"* — which is cosmetic and was left alone. Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's — `verify-shipped-bundle-not-source` into § *Evidence, not assumption*, `claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into `RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without being asked* and *one PR per branch*) and wait for those projects' own passes — see Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a pointer line at the *top* naming the governing section, body and dated evidence kept. Replacing the body would have deleted the record of why each rule was given, which `dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so keeping them costs nothing. **Original survey, unchanged below:** surveyed 2026-09-20. The structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There is no global memory** — memory is always project-scoped, so a universal preference saved in one project is structurally trapped. Found **10 rules written in two places** and **5 universal rules trapped in one project**, incl. *never commit without being asked* (not in `STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section. https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy |
-| ✅ | **PHASE 10 Project-by-project review** | **COMPLETE 2026-09-20. All five projects passed** — Voice-Flow, FinNode, `vthrudebugger_v1`, `Debugger v2`, `Emp portal`, one at a time, in that order. **`vthrudebugger_v1`:** 39 → 19 rules, `CLAUDE.md` measured lean and left alone, and its two trapped universal rules promoted to `STANDARDS.md` § *Git*, finishing Phase 8 step 1. **`Debugger v2`:** 17 → 9 rules, both `python3` arbitrary-code holes closed, still no `CLAUDE.md` by choice. **`Emp portal`:** 11 → 6 rules, nothing promoted — all 8 of its rules are app-specific. Project `allow` totals **318 → 285** after the passes, then **→ 244** after two follow-ups the same day: **Voice Flow_v1 stripped 50 → 9** (reversing the decision to leave the dropped trees alone) and **Voice-Flow's two arbitrary-code holes closed** as a targeted fix, not a pass. An end-of-session cross-check found one defect introduced and fixed (trailing-`*` rules) and one miss in an already-DONE pass, which is what the Voice-Flow fix answered. **Renames are decoupled and must be ignored** — Amit renames a project when he opens it to work on. Briefly made a prerequisite on 2026-09-20 and reversed the same day; making setup work wait on a project chore had turned it into a blocker. Amit's order, and it supersedes doing global first: walk each project, decide what is universal only after seeing them all, then one global pass at the end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 → 6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the sections first is what caught it. Every deletion cross-checked twice by two methods before it was made. Full detail in the Phase 10 section. |
-| ✅ | **PHASE 11 The global pass** | **COMPLETE 2026-09-20 — six imported files and the global permission list.** The list gained 5 rules (`ask` 107 → 112) and lost none: `wget` was unfenced because the hook rewrites before the permission check and only the bare and `rtk proxy` spellings existed, and `pip` was fenced nowhere. `uv` skipped as unused; no rules for the 12 rtk-wrapped tools that are not installed. Order: `OLLAMA.md` 797 → 133 (detail moved verbatim to `~/.claude/skills/ollama/SKILL.md`, byte-identical by `diff` and MD5), then `STANDARDS.md` 1,621 → 1,600, `PROJECTS.md` 376 → 393, `RTK.md` 188 → 140, `CLAUDE.md` 114 → 73, and `REPOS.md` measured at 105 and deliberately left whole. Global files **3,201 → 2,444 words / ~4,225 → ~3,226 tokens a turn**. `PROJECTS.md` got *heavier* and that was right — across the five passes on 2026-09-20 the net was 93 words, and the real return was correctness: a fifth-line `ask` category list that missed destructive git and process kills, FinNode's stale checkpoint, SecondBrain schema listed as a project, `RTK.md` pointing at a reference that never existed, and rtk's overstated 60-90% headline (measured: 59.9% over 9,491 commands). This row said **PARKED — `STANDARDS.md` is LAST, not next** until 2026-09-20; that was true when written and the section body was updated without it. Also fixed earlier in the phase: `.gitignore` blocked `skills/` because `skills/synced/` is account-keyed, but a hand-written skill carries no UUID and would simply have been **lost on an account switch**. Allowed by name; `synced/` still blocked. |
-| ✅ | **PHASE 9 The 384 permission rules** | **DONE 2026-09-21: 23 rules removed, project allow 244 → 221.** The survey's counts were stale — the five Phase 10 passes had already cleaned most of it. Re-measured live: *already granted globally* 37 → **17** (all removed), *subsumed* 8 → **0**, *write-file rules* 8 → **6** (all removed: 3 spent `sed -i`, 2 spent shell literals, and `cp ~/.continue/config.yaml`, which wrote **outside the project** — the class 5.2b removed), *present in 3+ projects* 83 copies → **11 distinct**. **Promotion declined at Amit's direction:** promoting the 11 would delete 33 copies but grant them to every project, including ones that never had them — the setup has spent its length narrowing project grants, not widening them. Cross-checked twice before deleting (set membership against the global list, then a literal grep of the global file; `sed -i` targets confirmed spent in the files they name). Verified against `backups/2026-09-21-phase9/`: 23 removed, **0 added**, `ask`/`deny` and every other setting identical in all four files. FinNode's file is the only tracked one, so its removal is committed there as `4fb453f` on branch `chore/drop-duplicate-permission-rules`, off `main`, pushed 2026-09-21 and merged via PR #1 as `5fd4ddc`; the other three files are untracked, so the backup is their only record — and `backups/` is gitignored, so that record is local to this machine, as it is for every earlier phase. Anything that must outlive the machine goes in `archive/` instead, which is tracked; nothing from this phase did. **Both leftovers closed 2026-09-21.** *Spent one-offs:* **nothing actionable** — zero rules contain a session-scratchpad UUID, the only signal this plan says can be trusted, because Phase 2a already removed those; the remaining 117 literal rules include `rtk npm test`, `jobs` and `lsof …`, which recur constantly and are not spent. Classifying them any other way is what burned two earlier passes. **D21 stands.** *`node_modules`:* **leave them, at Amit's direction** — and the count was stale, **3 files / 60 rules**, not 4 / 68: `nanoid`'s copy is gone. Their inertness is now **verified, not assumed**: the docs state `.claude/settings.local.json` loads from the **git repository root** even when a session starts in a subdirectory, and `node_modules/resolve/` is never a repository root, so they are never read. Deleting them is churn — `npm install` returns them. Surveyed 2026-09-20. **Its headline finding is now CLOSED: no project holds a broad arbitrary-code rule any more**, verified 2026-09-20 by sweeping every `.claude/settings*.json` under `VS Code/` for `rtk proxy *`, `rtk npx *`, `python3 -`, `python3 -c ' *`, `node *` and `osascript -l JavaScript -e ' *`. As surveyed it found **18 rules that execute arbitrary code and bypass the entire ask list** — `node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8 subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD |
-| ✅ | **Emp portal working tree** | **DONE 2026-09-21.** The 5.7 `.gitignore` change is committed on `fix/dead-code-cleanup-and-test-fix` as `53c4aba`, on its own, at Amit's direction, and pushed 2026-09-21 with no PR — reverting would have restored the `git add -A` risk that 5.7 found. **Closed 2026-09-21:** `.claude/settings.json` was untracked *and* unignored, so the same sweep would have committed it. One line added to `.gitignore` under the existing `.claude/settings.local.json`, matching Voice-Flow, and confirmed ignored with `git check-ignore`. Committed as `4a5a263` and pushed 2026-09-21 |
-| ✅ | **`ask` list merged** | **DONE 2026-09-20. 112 → 51 rules**, one pattern per command instead of up to three spellings (`X`, `rtk X`, `rtk proxy X`), using a leading `*`. Wildcards match at any position in Bash rules; the leading-`*` startup warning applies to `allow` rules only. **Two traps found and handled:** a leading `*` stops the trailing `*` from matching the *bare* command, so `Bash(*git push *)` would not have matched `git push` — pattern shape is now chosen per command, wide (`*git push*`) where the bare form matters, tight (`*sudo *`) where a wide pattern would fire on ordinary text like `cat sudoku.txt`. `rm`, `kill`, `killall`, `pkill` and `open` keep explicit spellings: they sit inside ordinary words (`confirm`, `skill`, `reopen`). Verified by generating every command the old 112 matched (226) and checking the new list covers **216**; the 10 dropped are no-argument `curl`, `wget`, `sudo` and `security`, which only print usage. Bare `npm i` and bare `sqlite3` were dropped by the same mechanism, are **not** harmless, and got explicit rules back. 0 over-fencing on a 40-command negative corpus. `allow` (35) and `deny` (2) byte-identical; `claude doctor` reports no invalid rules. **Not runtime-tested — this session cannot surface an `ask` prompt** |
-| ✅ | **`ask` rules proven** | **CLOSED 2026-09-21.** The 20 rules that had never been seen to fire — the 14 Phase 3 gap rules and the 6 `git commit` spellings — are covered by the merged list and the mechanism is now measured. Manual-mode probes: `git branch --list` (covered by `allow`) ran **silently**, while `git branch -d` and `gh auth status` (covered by `allow` *and* `ask`) both **prompted**. So `ask` fires, `ask` beats `allow`, a merged leading-`*` pattern matches at runtime, and the check is applied to the **hook-rewritten** command — the `wget` lesson, measured rather than inferred. A naive probe proves nothing here: manual mode prompts on every Bash command, so only a command an `allow` rule covers can discriminate. Rules with no `allow` collision (`sudo`, `curl`, `wget`, `rm`, `open`) have no conclusive probe and rest on the offline coverage check |
-| | **Full setup review** | https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 — every permission rule, global file, memory and today's changes in one page |
-| ✅ | **5.3 – 5.8 Low-priority tidying** | **DONE** 2026-09-20. Only **2 of the 6 needed work** — 5.4 and 5.6 were already satisfied (by D8 and by 7a) and the rows were stale, not the files. **5.3** moved Emp portal's rules to the project root and updated `manifest.tsv`, with the drift check proven live. **5.5** was reframed: 10 of the 17 recorded paths no longer exist, so the real work was fixing **3 errors** in `PROJECTS.md` — Emp Portal misfiled as having no `CLAUDE.md`, a dead `Voice-Flow-main` entry, and a stale date. **5.7** is a decision, recommended as leave-as-is, nothing changed. **5.8** is cloud-side and not fixable here: `uv`/`uvx` absent for browser-use, and definite's shipped URL 404s while its host answers 200. |
-| ✅ | **Voice-Flow history + 5.8** | **DONE 2026-09-21.** `CLAUDE.md` had survived in git history — 4,647 bytes recoverable from `598e38e Initial commit`, before `c1e9459` untracked it. Rewritten at Amit's request with `git-filter-repo` 2.47.0 (installed for this), `--invert-paths --path CLAUDE.md`: **162 commits on `main` and `phase-2.75-stop-losing-words`**, force-pushed with `--force-with-lease` pinned to the recorded tips `ad38b97` and `34ad3cd`. New tips `e0be479` and `6fb7c91`, remote confirmed to match. **Verified two ways before pushing** — `git log --all -- CLAUDE.md` empty, and no object named `CLAUDE.md` in any commit — and the old commit is not fetchable from GitHub by SHA afterwards. The working file is untouched, still gitignored, byte-identical to the `project-rules/` copy; upstream tracking restored on both branches. Mirror backup of all 162 original commits at `backups/2026-09-21-voice-flow-history/Voice-Flow.git`. The standing recommendation had been to wait until the repo went public; Amit chose to do it now. 5.8: `definite` stays broken until the vendor fixes its URL |
-| ✅ | **5.2 Cross-project read access** | **DONE** 2026-09-18, **completed 2026-09-22.** Voice-Flow's `Read(//Documents/VS Code/**)` removed — it reached `Emp portal/.../vthru.db` and Packbly. The claim "**No cross-project grant survives anywhere**" was **premature**: this pass swept `Read()` rules only, and a `Bash(cd "…/SecondBrain Obsidian" && …)` rule reached a manifest-listed project until 2026-09-22. Now true and **verified by walking every rule in all 17 settings files for a path outside its own project tree**, not by inference. D23 |
-| ✅ | **5.2b Standing grants over other folders** | **DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`, `/tmp`, `Voice Flow.app` and its own tree; FinNode only its own |
-| ✅ | **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** | **DONE** 2026-09-18, both parts. Part one: `CLAUDE.md` **110 KB → 29 KB**, evidence moved verbatim to `docs/working-rules.md` (42 entries) and `docs/known-pitfalls.md` (47 entries), 0 rules lost. **Part two: all 89 checked against the code — 0 superseded, 7 re-measured.** D24, D25 |
-| ✅ | **5.1 part two: check the 89 entries against the code** | **DONE** 2026-09-18. Every cited path, symbol, constant, version and build setting resolved; `npm test` 76 files / 1764 tests and `npm run typecheck` green; `doctor:polish` and `doctor:vault` re-run. **No rule or pitfall is superseded.** 7 entries carry a dated re-measurement note (5 in working-rules, 2 in known-pitfalls) — the rules held, the numbers had drifted. Both docs' "not yet checked" headers replaced; `docs/README.md` rows updated. Backup: `backups/2026-09-18-phase5.1-part2/`. One open app defect confirmed still open: `electron/main.js:387` `fullScreenable`. **Addendum 2026-09-19:** the same figures were found in 20 more places across 6 Voice Flow docs, all outside 5.1's scope. 18 were left alone — they read as dated records of decisions made on those numbers, which is what D25 says to keep. The 2 that were annotated are in `docs/manual-testing.md` (Test 23's live baseline and the 10 Sep pass record), because a tester reads them at the moment of deciding whether a run passed. So the note count is **9 places in 3 docs**, not 7 in 2. The 4 stale code comments (`doctor-polish.js:64`/`:500`, `polishPrompt.ts:171`, `polishGuard.ts:25`) are still untouched — a source change wants its own commit. Backup: `backups/2026-09-19-manual-testing-baseline/`; Voice Flow commit `f91c399` |
-| ✅ | 6.2 Private GitHub remote + push | **DONE**, `AmitJangra25/claude-setup`, verified private |
-| ✅ | Pushed 2026-09-18 | 4 commits, head `8cdee2f`, remote confirmed private via the API |
-| ✅ | **6.3 Project rules into this repo** | **DONE** 2026-09-18. All 7 project `CLAUDE.md` files copied to `project-rules/`, with `sync.sh` + `manifest.tsv` as the anti-drift step. All 7 read in full first. Drift detection proven by breaking a copy on purpose |
+### 1.1 Back up 27 files · ✅
+
+**DONE**, verified byte-identical with `cmp`
+
+### 6.1 `git init` + `.gitignore` + baseline commit · ✅
+
+**DONE**, commit `14883fa`, 38 files, 90 KB
+
+### Read all 27 memory files · ✅
+
+**DONE** — produced D13, D14 and Phase 7
+
+### 1.2 Close the holes in the global ask list · ✅
+
+**DONE**, 35 rules added, `ask` 52 → 87
+
+### 1.3 Add two global entries rtk needs · ✅
+
+**DONE**, 3 rules added, `allow` 32 → 35
+
+### **Phase 2a + 2b Permission cleanup** · ✅
+
+**DONE** 2026-09-18. All 144 rules removed from 9 files; allow 560 → 416, verified against
+the `2026-09-18-phase2` backup: 0 added, `ask`/`deny` untouched, every file still valid
+JSON
+
+### **Phase 2c Group B one-off leftovers** · ✅
+
+**CLOSED 2026-09-21 — nothing was left to do.** B1 (14) + B2 (9) removed 2026-09-18, allow
+416 → 393, verified. **B3 (74 pipeline fragments) stays by decision D21**, not as pending
+work: removing them only tidies and costs a prompt mid-task on read-only commands. The **3
+`*` rules still flagged** row was stale — a scan of all 394 rules across 15 settings
+files, including the three inside `node_modules`, found **zero** bare-`*` rules in
+`allow`, `ask` or `deny`. Stale like 5.4 and 5.6 were: the row was wrong, not the files
+
+### Phase 7a Repair where memories are stored · ✅
+
+**DONE**, 3 orphaned dirs fixed, 18 memories reachable
+
+### Phase 7b Promote working preferences to STANDARDS.md · ✅
+
+**DONE**, 5 sections + 3 edits, +626 tokens/turn
+
+### **Phase 3 The deliberate set** · ✅
+
+**DONE** 2026-09-20. Scope rewritten first, as instructed: 1.2 had already made the
+change, so this documented it — all 124 rules grouped in plain English with a reason each
+(deny 2 · ask 87 in 11 groups · allow 35 in 6), every rule classified, nothing left
+over. **No permission rule changed.** Surfaced **4 gaps, none closed** (D4): `pnpm add`/`yarn
+add`/`npm i` missing rtk spellings of a rule that already asks, and **`rtk git branch *`
+sits in `allow` but `-D` deletes** — visible in the rule list (my first runtime 'proof' of
+this was invalid; see What I got wrong). Backup: `backups/2026-09-20-phase3/`
+
+### **Phase 4 Make the prompts readable** · ✅
+
+**DONE** 2026-09-20. Hard rule, not guidance; new fifth line **"Why now"** on every
+global-`ask` command; `tccutil reset` gets its own subsection — must name the service and
+the app, and say when it hits every app on the machine. +360 tokens/turn. Backup:
+`backups/2026-09-20-phase3/`
+
+### **Phase 3 gaps closed** · ✅
+
+**DONE** 2026-09-20. 14 `ask` rules added, `ask` 87 → 101. Additions only — verified
+`allow` (35), `deny` (2) and every other setting byte-identical against the backup, 0
+rules removed. Covers the 3 missing install spellings (`rtk`/`rtk proxy` × `pnpm add`,
+`yarn add`, `npm i`) and branch deletion (`-d`/`-D`/`--delete` × bare/`rtk`/`rtk proxy`),
+which ask beats allow on by rule-type precedence. **Runtime confirmation still
+outstanding** — this session does not enforce `ask`. Backup:
+`backups/2026-09-20-phase3-gaps/`
+
+### **PHASE 8 Where rules live** · ✅
+
+**DONE — all four steps complete. Step 4 closed 2026-09-21: it had already been done
+inside FinNode's own Phase 10 pass, commit `725ca2e` on `main` — the four re-stated
+sections 426 → 204 words, replaced by one pointer line to `STANDARDS.md`, every piece of
+project evidence kept. The row was stale, not the file.** Step 3 closed 2026-09-21: Phase
+10's `vthrudebugger_v1` pass had already promoted the two trapped rules, leaving only
+the **stash-and-branch technique** ungloballed. Added to `STANDARDS.md` § *Git* as one
+sentence, 1,600 → 1,634 words, and the memory's pointer now reads *all five* rules global.
+The memory body and its dated evidence are untouched. Step 2 verified closed 2026-09-21:
+all 6 redundant memories carry a pointer to their governing global section, Voice-Flow's 5
+and FinNode's `always-recommend-an-option`. The two projects word the pointer differently
+— Voice-Flow *"Now global"*, FinNode *"Governed globally by"* — which is cosmetic and was
+left alone. Step 1: **3 of the 5** trapped rules promoted — two of Voice-Flow's —
+`verify-shipped-bundle-not-source` into § *Evidence, not assumption*,
+`claude-md-not-in-git` into a new § *Git* — plus FinNode's rtk `--dry-run` gotcha into
+`RTK.md`, as a two-line claim with the dated evidence left in the memory. Additions
+only, **0 deleted lines**. The other **2 stay trapped** (vthrudebugger's *never commit without
+being asked* and *one PR per branch*) and wait for those projects' own passes — see
+Phase 10. Step 2 done for Voice-Flow's 7 duplicates, **by a better method than planned**: a
+pointer line at the *top* naming the governing section, body and dated evidence kept.
+Replacing the body would have deleted the record of why each rule was given, which
+`dont-delete-reference-docs` forbids — and memory bodies do not load every turn, so
+keeping them costs nothing. **Original survey, unchanged below:** surveyed 2026-09-20. The
+structure is already written in `STANDARDS.md` line 3; the files don't follow it. **There
+is no global memory** — memory is always project-scoped, so a universal preference saved
+in one project is structurally trapped. Found **10 rules written in two places** and **5
+universal rules trapped in one project**, incl. *never commit without being asked* (not in
+`STANDARDS.md` at all) and the rtk dry-run gotcha. 4-step plan in the Phase 8 section.
+https://claude.ai/artifact/JPhMJ7z3bAMux6w5G3ZaMy
+
+### **PHASE 10 Project-by-project review** · ✅
+
+**COMPLETE 2026-09-20. All five projects passed** — Voice-Flow, FinNode,
+`vthrudebugger_v1`, `Debugger v2`, `Emp portal`, one at a time, in that
+order. **`vthrudebugger_v1`:** 39 → 19 rules, `CLAUDE.md` measured lean and left alone, and its
+two trapped universal rules promoted to `STANDARDS.md` § *Git*, finishing Phase 8
+step 1. **`Debugger v2`:** 17 → 9 rules, both `python3` arbitrary-code holes closed, still no
+`CLAUDE.md` by choice. **`Emp portal`:** 11 → 6 rules, nothing promoted — all 8 of its
+rules are app-specific. Project `allow` totals **318 → 285** after the passes, then **→
+244** after two follow-ups the same day: **Voice Flow_v1 stripped 50 → 9** (reversing the
+decision to leave the dropped trees alone) and **Voice-Flow's two arbitrary-code holes
+closed** as a targeted fix, not a pass. An end-of-session cross-check found one defect
+introduced and fixed (trailing-`*` rules) and one miss in an already-DONE pass, which is
+what the Voice-Flow fix answered. **Renames are decoupled and must be ignored** — Amit
+renames a project when he opens it to work on. Briefly made a prerequisite on 2026-09-20
+and reversed the same day; making setup work wait on a project chore had turned it into a
+blocker. Amit's order, and it supersedes doing global first: walk each project, decide
+what is universal only after seeing them all, then one global pass at the
+end. **Voice-Flow:** `CLAUDE.md` 4,650 → 1,534 words, per-turn cost in this project **10,056 →
+6,003 tokens**; permissions 234 → 180; 2 rules promoted to `STANDARDS.md`; 7 memories
+marked; 3 skills added. **FinNode:** `CLAUDE.md` 2,501 → 2,118 words, per-turn cost in
+this project **7,363 → 6,966 tokens**; permissions 25 → 13, closing two arbitrary-code
+holes; 3 skills added; 2 memories marked; committed as `725ca2e`. Its headline is
+a **method correction** — the Voice-Flow diagnosis did not transfer, and measuring the
+sections first is what caught it. Every deletion cross-checked twice by two methods before
+it was made. Full detail in the Phase 10 section.
+
+### **PHASE 11 The global pass** · ✅
+
+**COMPLETE 2026-09-20 — six imported files and the global permission list.** The list
+gained 5 rules (`ask` 107 → 112) and lost none: `wget` was unfenced because the hook
+rewrites before the permission check and only the bare and `rtk proxy` spellings existed,
+and `pip` was fenced nowhere. `uv` skipped as unused; no rules for the 12 rtk-wrapped
+tools that are not installed. Order: `OLLAMA.md` 797 → 133 (detail moved verbatim to
+`~/.claude/skills/ollama/SKILL.md`, byte-identical by `diff` and MD5), then `STANDARDS.md`
+1,621 → 1,600, `PROJECTS.md` 376 → 393, `RTK.md` 188 → 140, `CLAUDE.md` 114 → 73, and
+`REPOS.md` measured at 105 and deliberately left whole. Global files **3,201 → 2,444 words
+/ ~4,225 → ~3,226 tokens a turn**. `PROJECTS.md` got *heavier* and that was right — across
+the five passes on 2026-09-20 the net was 93 words, and the real return was correctness: a
+fifth-line `ask` category list that missed destructive git and process kills, FinNode's
+stale checkpoint, SecondBrain schema listed as a project, `RTK.md` pointing at a reference
+that never existed, and rtk's overstated 60-90% headline (measured: 59.9% over 9,491
+commands). This row said **PARKED — `STANDARDS.md` is LAST, not next** until 2026-09-20;
+that was true when written and the section body was updated without it. Also fixed earlier
+in the phase: `.gitignore` blocked `skills/` because `skills/synced/` is account-keyed,
+but a hand-written skill carries no UUID and would simply have been **lost on an account
+switch**. Allowed by name; `synced/` still blocked.
+
+### **PHASE 9 The 384 permission rules** · ✅
+
+**DONE 2026-09-21: 23 rules removed, project allow 244 → 221.** The survey's counts were
+stale — the five Phase 10 passes had already cleaned most of it. Re-measured
+live: *already granted globally* 37 → **17** (all removed), *subsumed* 8 → **0**, *write-file
+rules* 8 → **6** (all removed: 3 spent `sed -i`, 2 spent shell literals, and `cp
+~/.continue/config.yaml`, which wrote **outside the project** — the class 5.2b
+removed), *present in 3+ projects* 83 copies → **11 distinct**. **Promotion declined at Amit's
+direction:** promoting the 11 would delete 33 copies but grant them to every project,
+including ones that never had them — the setup has spent its length narrowing project
+grants, not widening them. Cross-checked twice before deleting (set membership against the
+global list, then a literal grep of the global file; `sed -i` targets confirmed spent in
+the files they name). Verified against `backups/2026-09-21-phase9/`: 23 removed, **0
+added**, `ask`/`deny` and every other setting identical in all four files. FinNode's file
+is the only tracked one, so its removal is committed there as `4fb453f` on branch
+`chore/drop-duplicate-permission-rules`, off `main`, pushed 2026-09-21 and merged via
+PR #1 as `5fd4ddc`; the other three files are untracked, so the backup is their only record —
+and `backups/` is gitignored, so that record is local to this machine, as it is for every
+earlier phase. Anything that must outlive the machine goes in `archive/` instead, which is
+tracked; nothing from this phase did. **Both leftovers closed 2026-09-21.** *Spent
+one-offs:* **nothing actionable** — zero rules contain a session-scratchpad UUID, the only
+signal this plan says can be trusted, because Phase 2a already removed those; the
+remaining 117 literal rules include `rtk npm test`, `jobs` and `lsof …`, which recur
+constantly and are not spent. Classifying them any other way is what burned two earlier
+passes. **D21 stands.** *`node_modules`:* **leave them, at Amit's direction** — and the
+count was stale, **3 files / 60 rules**, not 4 / 68: `nanoid`'s copy is gone. Their
+inertness is now **verified, not assumed**: the docs state `.claude/settings.local.json`
+loads from the **git repository root** even when a session starts in a subdirectory, and
+`node_modules/resolve/` is never a repository root, so they are never read. Deleting them
+is churn — `npm install` returns them. Surveyed 2026-09-20. **Its headline finding is now
+CLOSED: no project holds a broad arbitrary-code rule any more**, verified 2026-09-20 by
+sweeping every `.claude/settings*.json` under `VS Code/` for `rtk proxy *`, `rtk npx *`,
+`python3 -`, `python3 -c ' *`, `node *` and `osascript -l JavaScript -e ' *`. As surveyed
+it found **18 rules that execute arbitrary code and bypass the entire ask list** —
+`node *`, `python3 -c ' *`, `rtk proxy *`. Plus 37 already-global, 67 spent one-offs, 8
+subsumed, 8 that write files. **The 384 cost zero tokens** — that was conflated when first
+reported. https://claude.ai/artifact/YAJNnNkSemQyCCtMsNkzDD
+
+### **Emp portal working tree** · ✅
+
+**DONE 2026-09-21.** The 5.7 `.gitignore` change is committed on
+`fix/dead-code-cleanup-and-test-fix` as `53c4aba`, on its own, at Amit's direction, and
+pushed 2026-09-21 with no PR — reverting would have restored the `git add -A` risk that
+5.7 found. **Closed 2026-09-21:** `.claude/settings.json` was untracked *and* unignored,
+so the same sweep would have committed it. One line added to `.gitignore` under the
+existing `.claude/settings.local.json`, matching Voice-Flow, and confirmed ignored with
+`git check-ignore`. Committed as `4a5a263` and pushed 2026-09-21
+
+### **`ask` list merged** · ✅
+
+**DONE 2026-09-20. 112 → 51 rules**, one pattern per command instead of up to three
+spellings (`X`, `rtk X`, `rtk proxy X`), using a leading `*`. Wildcards match at any
+position in Bash rules; the leading-`*` startup warning applies to `allow` rules
+only. **Two traps found and handled:** a leading `*` stops the trailing `*` from matching
+the *bare* command, so `Bash(*git push *)` would not have matched `git push` — pattern shape
+is now chosen per command, wide (`*git push*`) where the bare form matters, tight
+(`*sudo *`) where a wide pattern would fire on ordinary text like `cat sudoku.txt`. `rm`, `kill`,
+`killall`, `pkill` and `open` keep explicit spellings: they sit inside ordinary words
+(`confirm`, `skill`, `reopen`). Verified by generating every command the old 112 matched
+(226) and checking the new list covers **216**; the 10 dropped are no-argument `curl`,
+`wget`, `sudo` and `security`, which only print usage. Bare `npm i` and bare `sqlite3`
+were dropped by the same mechanism, are **not** harmless, and got explicit rules back. 0
+over-fencing on a 40-command negative corpus. `allow` (35) and `deny` (2) byte-identical;
+`claude doctor` reports no invalid rules. **Not runtime-tested — this session cannot
+surface an `ask` prompt**
+
+### **`ask` rules proven** · ✅
+
+**CLOSED 2026-09-21.** The 20 rules that had never been seen to fire — the 14 Phase 3 gap
+rules and the 6 `git commit` spellings — are covered by the merged list and the mechanism
+is now measured. Manual-mode probes: `git branch --list` (covered by `allow`)
+ran **silently**, while `git branch -d` and `gh auth status` (covered by `allow` *and* `ask`)
+both **prompted**. So `ask` fires, `ask` beats `allow`, a merged leading-`*` pattern
+matches at runtime, and the check is applied to the **hook-rewritten** command — the
+`wget` lesson, measured rather than inferred. A naive probe proves nothing here: manual
+mode prompts on every Bash command, so only a command an `allow` rule covers can
+discriminate. Rules with no `allow` collision (`sudo`, `curl`, `wget`, `rm`, `open`) have
+no conclusive probe and rest on the offline coverage check
+
+### **Full setup review**
+
+https://claude.ai/artifact/2WH7CSysZCJY7Ta6EhskA3 — every permission rule, global file,
+memory and today's changes in one page
+
+### **5.3 – 5.8 Low-priority tidying** · ✅
+
+**DONE** 2026-09-20. Only **2 of the 6 needed work** — 5.4 and 5.6 were already satisfied
+(by D8 and by 7a) and the rows were stale, not the files. **5.3** moved Emp portal's rules
+to the project root and updated `manifest.tsv`, with the drift check proven live. **5.5**
+was reframed: 10 of the 17 recorded paths no longer exist, so the real work was fixing **3
+errors** in `PROJECTS.md` — Emp Portal misfiled as having no `CLAUDE.md`, a dead
+`Voice-Flow-main` entry, and a stale date. **5.7** is a decision, recommended as
+leave-as-is, nothing changed. **5.8** is cloud-side and not fixable here: `uv`/`uvx`
+absent for browser-use, and definite's shipped URL 404s while its host answers 200.
+
+### **Voice-Flow history + 5.8** · ✅
+
+**DONE 2026-09-21.** `CLAUDE.md` had survived in git history — 4,647 bytes recoverable
+from `598e38e Initial commit`, before `c1e9459` untracked it. Rewritten at Amit's request
+with `git-filter-repo` 2.47.0 (installed for this), `--invert-paths --path
+CLAUDE.md`: **162 commits on `main` and `phase-2.75-stop-losing-words`**, force-pushed with
+`--force-with-lease` pinned to the recorded tips `ad38b97` and `34ad3cd`. New tips
+`e0be479` and `6fb7c91`, remote confirmed to match. **Verified two ways before pushing** —
+`git log --all -- CLAUDE.md` empty, and no object named `CLAUDE.md` in any commit — and
+the old commit is not fetchable from GitHub by SHA afterwards. The working file is
+untouched, still gitignored, byte-identical to the `project-rules/` copy; upstream
+tracking restored on both branches. Mirror backup of all 162 original commits at
+`backups/2026-09-21-voice-flow-history/Voice-Flow.git`. The standing recommendation had
+been to wait until the repo went public; Amit chose to do it now. 5.8: `definite` stays
+broken until the vendor fixes its URL
+
+### **5.2 Cross-project read access** · ✅
+
+**DONE** 2026-09-18, **completed 2026-09-22.** Voice-Flow's `Read(//Documents/VS Code/**)`
+removed — it reached `Emp portal/.../vthru.db` and Packbly. The claim "**No cross-project
+grant survives anywhere**" was **premature**: this pass swept `Read()` rules only, and a
+`Bash(cd "…/SecondBrain Obsidian" && …)` rule reached a manifest-listed project until
+2026-09-22. Now true and **verified by walking every rule in all 17 settings files for a
+path outside its own project tree**, not by inference. D23
+
+### **5.2b Standing grants over other folders** · ✅
+
+**DONE** 2026-09-18. 12 entries removed. Voice-Flow now reaches only `/private/tmp`,
+`/tmp`, `Voice Flow.app` and its own tree; FinNode only its own
+
+### **5.1 Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`** · ✅
+
+**DONE** 2026-09-18, both parts. Part one: `CLAUDE.md` **110 KB → 29 KB**, evidence moved
+verbatim to `docs/working-rules.md` (42 entries) and `docs/known-pitfalls.md` (47
+entries), 0 rules lost. **Part two: all 89 checked against the code — 0 superseded, 7
+re-measured.** D24, D25
+
+### **5.1 part two: check the 89 entries against the code** · ✅
+
+**DONE** 2026-09-18. Every cited path, symbol, constant, version and build setting
+resolved; `npm test` 76 files / 1764 tests and `npm run typecheck` green; `doctor:polish`
+and `doctor:vault` re-run. **No rule or pitfall is superseded.** 7 entries carry a dated
+re-measurement note (5 in working-rules, 2 in known-pitfalls) — the rules held, the
+numbers had drifted. Both docs' "not yet checked" headers replaced; `docs/README.md` rows
+updated. Backup: `backups/2026-09-18-phase5.1-part2/`. One open app defect confirmed still
+open: `electron/main.js:387` `fullScreenable`. **Addendum 2026-09-19:** the same figures
+were found in 20 more places across 6 Voice Flow docs, all outside 5.1's scope. 18 were
+left alone — they read as dated records of decisions made on those numbers, which is what
+D25 says to keep. The 2 that were annotated are in `docs/manual-testing.md` (Test 23's
+live baseline and the 10 Sep pass record), because a tester reads them at the moment of
+deciding whether a run passed. So the note count is **9 places in 3 docs**, not 7 in 2.
+The 4 stale code comments (`doctor-polish.js:64`/`:500`, `polishPrompt.ts:171`,
+`polishGuard.ts:25`) are still untouched — a source change wants its own commit. Backup:
+`backups/2026-09-19-manual-testing-baseline/`; Voice Flow commit `f91c399`
+
+### 6.2 Private GitHub remote + push · ✅
+
+**DONE**, `AmitJangra25/claude-setup`, verified private
+
+### Pushed 2026-09-18 · ✅
+
+4 commits, head `8cdee2f`, remote confirmed private via the API
+
+### **6.3 Project rules into this repo** · ✅
+
+**DONE** 2026-09-18. All 7 project `CLAUDE.md` files copied to `project-rules/`, with
+`sync.sh` + `manifest.tsv` as the anti-drift step. All 7 read in full first. Drift
+detection proven by breaking a copy on purpose
 
 **Where the numbers stand now** — project `allow` rules **560 → 318**:
 560 as found · **416** after 2a+2b (−144) · **393** after 2c (−23) · **392**
@@ -1536,17 +1817,140 @@ apart from the new `tccutil` subsection.
 
 ## PHASE 5 — Structure  (MEDIUM / LOW)
 
-| # | Item | Priority | Notes |
-|---|---|---|---|
-| 5.1 | Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/` | **DONE** 2026-09-18 | Split in two on purpose: the relocation is verifiable in minutes, the staleness pass needs file-by-file evidence and is where a session gets expensive. **Part one, done:** `Working rules` (lines 161-646, 42 bullets) → `docs/working-rules.md`, `Known pitfalls` (759-1446, 47 bullets) → `docs/known-pitfalls.md`, both moved **verbatim**; `CLAUDE.md` keeps the section order, `Stack`/`Architecture map`/`Commands` untouched, and each rule's one-line claim with a pointer. 110 KB → 29 KB, a 73% cut. Two rows added to `docs/README.md` per its own rule 2. **Verified:** each doc body compares *equal* to the corresponding line range of the backup, all 89 claims found in their doc, and `git status` showed exactly the 3 expected changes. Restore point: `backups/2026-09-18-phase5.1/`. **Part two, done 2026-09-18:** all 89 read against the code. Every cited file path, identifier, constant, dependency version and electron-builder setting resolved; `npm test` (76 files, 1764 tests) and `npm run typecheck` green; `npm run doctor:polish`, `-- --plans` and `npm run doctor:vault` re-run; `structurePlan` + `looksLikeBenchmarkScript` replayed over all 172 history entries. **Nothing is superseded** — every entry whose symbol is absent from the code is an entry documenting its own deletion. **7 carry a dated `> **Measured again 18 Sep 2026**` note** because the dictation history grew 118 → 172 and two line counts moved; the rules themselves held, including the load-bearing one (`all 64 sections-shaped dictations are still benchmark-script repeats`, re-verified at the larger N). Per `dont-delete-reference-docs` nothing was deleted — the original wording stands and the note sits beside it. Verified by diffing against the backup: the only changes are the two headers and 7 inserted blockquotes, **0 original lines removed**, and all 89 `CLAUDE.md` claims still resolve. |
-| 5.2 | Voice Flow `Read(//Documents/VS Code/**)` | **DONE** 2026-09-18 | **Removed, not narrowed** — D23. It reached `Emp portal/.../server/data/vthru.db` (employee records) and Packbly (customer records), and the global `deny` is only `.env`, so nothing covered the database. Voice Flow's rules and docs reference no other project except one line about `Voice Flow_v1`, which goes too under D23. Verified: **no cross-project grant survives anywhere in the setup.** The 5 `additionalDirectories` are a separate item — none point at another project. |
-| 5.2b | Standing grants over other folders | **DONE** 2026-09-18 | D23's second half. 12 entries removed across Voice-Flow and FinNode: SecondBrain vault ×2, `.continue`, rtk tee (redundant — the global rule is `settings.json:30`, verified), 3 duplicate `Voice Flow.app` spellings subsumed by `Voice Flow.app/**`, and the `additionalDirectories` for `.continue`, `.local/bin` and `~/.claude` (both projects). **Voice-Flow now reaches only** `/private/tmp`, `/tmp`, `/Applications/Voice Flow.app` and its own tree; **FinNode only its own tree.** Kept `/private/tmp` — the session scratchpad is needed every turn. |
-| 5.3 | Emp portal `.claude/CLAUDE.md` → `CLAUDE.md` | **DONE** 2026-09-20 | Moved to the project root, content byte-identical (`cmp`). `project-rules/manifest.tsv` hardcoded the old path, so it was updated in the same step — that was the whole blast radius. **Proved the drift check is live rather than assuming it:** pointed the manifest back at the old path and `sync.sh` reported `MISSING SOURCE` and exit 1; restored, and it reports 7 current / 0 drifted / 0 missing. Emp portal's `.claude/` still holds `settings.json`, `settings.local.json` and `launch.json`, which stay where they are. |
-| 5.4 | Add pointer to ENVIRONMENT.md from PROJECTS.md | **ALREADY DONE** — no action 2026-09-20 | D8 is satisfied and was before this phase started. `PROJECTS.md` references `ENVIRONMENT.md` twice: line 7 ("Branch state, duplicate trees and the open questions are in `ENVIRONMENT.md`") and in the closing "Not projects" line. The row was stale, not the file. |
-| 5.5 | Update PROJECTS.md — folders opened that it does not list | **DONE** 2026-09-20 | The row's framing was wrong, so the work changed. Of the **17** paths in `~/.claude.json`, **10 no longer exist** — old Voice Flow trees, `Packbly_Admin`, `claudetr`, a `Downloads` copy of Emp Portal — so listing them would document history, not projects. They are named in `PROJECTS.md` as deliberately excluded. Of the 7 that do exist, 5 were already listed and 2 are `~` and `~/Documents` themselves, now recorded as working directories rather than projects. **Three actual errors found and fixed:** Emp Portal was filed under "No `CLAUDE.md` yet" when it has had one since 6 Aug; `~/Documents/Voice-Flow-main` was listed under "Not projects" and is gone; the verification date said 2026-09-15. |
-| 5.6 | Merge 2 orphaned memory folders | **ALREADY DONE by 7a** — no action 2026-09-20 | Verified rather than assumed: all **5** folders under `projects/` map to a directory that exists on disk, and the two the row names (`-Users-amitjangra-Debugger-vthrudebugger-v1`, `Voice-Flow-Pro`) are gone. **18 memories, none stranded** — corrected 2026-09-20 from "23", which wrongly counted the five `MEMORY.md` index files as memories. Counted with `MEMORY.md` excluded: Voice-Flow 10, Debugger v2 3, FinNode 2, vthrudebugger_v1 2, Documents 1. |
-| 5.7 | Commit Voice Flow + Emp portal rules to git? | **RESOLVED — the question was backwards** 2026-09-20 | Read the `claude-md-not-in-git` memory before recommending this time. It is a standing preference stated "from now onwards" on 2026-08-11: keep `CLAUDE.md` untracked and gitignored, applied **proactively at repo setup rather than on request**. So committing them was never the open question — compliance was. **Both project repos are private** (checked via the API) and **neither file contains a secret**: the credential-shaped grep hits are all prose *describing* auth design that already lives in the same repo's source. **Voice-Flow: already compliant** — `c1e9459 Untrack CLAUDE.md and add it to .gitignore`. **Emp portal: was not, and it was a live risk** — the file was untracked *and* unignored, so `git add -A` on the current feature branch would have committed it. Fixed by adding `CLAUDE.md` to its `.gitignore` with the same comment Voice-Flow uses; the file itself is untouched and `sync.sh` still reports 7 current. Never committed there, so its history is clean. **Cost accepted, unchanged:** a cloud session cloning either repo still gets no project rules; `project-rules/` here is what carries them. |
-| 5.8 | Two cloud plugins fail to connect | **HALF RESOLVED** 2026-09-20 | Both live under `plugins/synced/`, which is **gitignored and cloud-synced**, so a local edit is overwritten on the next sync. **`browser-use`:** ran `uvx --python 3.12 browser-use@latest --cli-mcp` with no `uv` or `uvx` on PATH. **`uv` 0.12.17 installed via Homebrew 2026-09-20 at Amit's instruction**, after I recommended against it — `uv` and `uvx` both resolve to `/opt/homebrew/bin`. **Not yet proven to fix the plugin:** connections are attempted at session start, and the first run must still download CPython 3.12 (not installed locally, `uv python list` shows it as download-available) plus `browser-use@latest`, which is re-fetched from the network on every start. **`definite`:** points at `https://api.definite.app/v3/mcp/http`; checked directly — DNS resolves, the host answers **200 at `/`**, the configured path returns **404**. Stale shipped URL, vendor- or cloud-side, not fixable here. Undo for the install: `brew uninstall uv`. **Half closed 2026-09-27.** `browser-use` is superseded: **D28** disabled the plugin outright, because its cost was MCP *server instructions*, which `skillOverrides` cannot reach — so whether `uv` would have fixed the connection is moot and was never proven either way. The `uv` install stands; `/opt/homebrew/bin/uv` is present, checked 2026-09-27. **`definite` remains open and is not ours to fix:** as checked on **2026-09-20** its shipped URL returned 404 while the host answered 200, which is vendor- or cloud-side. **Not re-checked since.** The row stays `HALF RESOLVED` for that reason, not from inattention. |
+### 5.1 · Voice Flow 110 KB rules → short `CLAUDE.md` + `docs/`
+
+**DONE** 2026-09-18
+
+Split in two on purpose: the relocation is verifiable in minutes, the staleness pass needs
+file-by-file evidence and is where a session gets expensive. **Part one, done:** `Working
+rules` (lines 161-646, 42 bullets) → `docs/working-rules.md`, `Known pitfalls` (759-1446,
+47 bullets) → `docs/known-pitfalls.md`, both moved **verbatim**; `CLAUDE.md` keeps the
+section order, `Stack`/`Architecture map`/`Commands` untouched, and each rule's one-line
+claim with a pointer. 110 KB → 29 KB, a 73% cut. Two rows added to `docs/README.md` per
+its own rule 2. **Verified:** each doc body compares *equal* to the corresponding line
+range of the backup, all 89 claims found in their doc, and `git status` showed exactly the
+3 expected changes. Restore point: `backups/2026-09-18-phase5.1/`. **Part two, done
+2026-09-18:** all 89 read against the code. Every cited file path, identifier, constant,
+dependency version and electron-builder setting resolved; `npm test` (76 files, 1764
+tests) and `npm run typecheck` green; `npm run doctor:polish`, `-- --plans` and `npm run
+doctor:vault` re-run; `structurePlan` + `looksLikeBenchmarkScript` replayed over all 172
+history entries. **Nothing is superseded** — every entry whose symbol is absent from the
+code is an entry documenting its own deletion. **7 carry a dated `> **Measured again 18
+Sep 2026**` note** because the dictation history grew 118 → 172 and two line counts moved;
+the rules themselves held, including the load-bearing one (`all 64 sections-shaped
+dictations are still benchmark-script repeats`, re-verified at the larger N). Per
+`dont-delete-reference-docs` nothing was deleted — the original wording stands and the
+note sits beside it. Verified by diffing against the backup: the only changes are the two
+headers and 7 inserted blockquotes, **0 original lines removed**, and all 89 `CLAUDE.md`
+claims still resolve.
+
+### 5.2 · Voice Flow `Read(//Documents/VS Code/**)`
+
+**DONE** 2026-09-18
+
+**Removed, not narrowed** — D23. It reached `Emp portal/.../server/data/vthru.db`
+(employee records) and Packbly (customer records), and the global `deny` is only `.env`,
+so nothing covered the database. Voice Flow's rules and docs reference no other project
+except one line about `Voice Flow_v1`, which goes too under D23. Verified: **no
+cross-project grant survives anywhere in the setup.** The 5 `additionalDirectories` are a
+separate item — none point at another project.
+
+### 5.2b · Standing grants over other folders
+
+**DONE** 2026-09-18
+
+D23's second half. 12 entries removed across Voice-Flow and FinNode: SecondBrain vault ×2,
+`.continue`, rtk tee (redundant — the global rule is `settings.json:30`, verified), 3
+duplicate `Voice Flow.app` spellings subsumed by `Voice Flow.app/**`, and the
+`additionalDirectories` for `.continue`, `.local/bin` and `~/.claude` (both
+projects). **Voice-Flow now reaches only** `/private/tmp`, `/tmp`, `/Applications/Voice Flow.app` and
+its own tree; **FinNode only its own tree.** Kept `/private/tmp` — the session scratchpad
+is needed every turn.
+
+### 5.3 · Emp portal `.claude/CLAUDE.md` → `CLAUDE.md`
+
+**DONE** 2026-09-20
+
+Moved to the project root, content byte-identical (`cmp`). `project-rules/manifest.tsv`
+hardcoded the old path, so it was updated in the same step — that was the whole blast
+radius. **Proved the drift check is live rather than assuming it:** pointed the manifest
+back at the old path and `sync.sh` reported `MISSING SOURCE` and exit 1; restored, and it
+reports 7 current / 0 drifted / 0 missing. Emp portal's `.claude/` still holds
+`settings.json`, `settings.local.json` and `launch.json`, which stay where they are.
+
+### 5.4 · Add pointer to ENVIRONMENT.md from PROJECTS.md
+
+**ALREADY DONE** — no action 2026-09-20
+
+D8 is satisfied and was before this phase started. `PROJECTS.md` references
+`ENVIRONMENT.md` twice: line 7 ("Branch state, duplicate trees and the open questions are
+in `ENVIRONMENT.md`") and in the closing "Not projects" line. The row was stale, not the
+file.
+
+### 5.5 · Update PROJECTS.md — folders opened that it does not list
+
+**DONE** 2026-09-20
+
+The row's framing was wrong, so the work changed. Of the **17** paths in
+`~/.claude.json`, **10 no longer exist** — old Voice Flow trees, `Packbly_Admin`, `claudetr`, a `Downloads`
+copy of Emp Portal — so listing them would document history, not projects. They are named
+in `PROJECTS.md` as deliberately excluded. Of the 7 that do exist, 5 were already listed
+and 2 are `~` and `~/Documents` themselves, now recorded as working directories rather
+than projects. **Three actual errors found and fixed:** Emp Portal was filed under "No
+`CLAUDE.md` yet" when it has had one since 6 Aug; `~/Documents/Voice-Flow-main` was listed
+under "Not projects" and is gone; the verification date said 2026-09-15.
+
+### 5.6 · Merge 2 orphaned memory folders
+
+**ALREADY DONE by 7a** — no action 2026-09-20
+
+Verified rather than assumed: all **5** folders under `projects/` map to a directory that
+exists on disk, and the two the row names (`-Users-amitjangra-Debugger-vthrudebugger-v1`,
+`Voice-Flow-Pro`) are gone. **18 memories, none stranded** — corrected 2026-09-20 from
+"23", which wrongly counted the five `MEMORY.md` index files as memories. Counted with
+`MEMORY.md` excluded: Voice-Flow 10, Debugger v2 3, FinNode 2, vthrudebugger_v1 2,
+Documents 1.
+
+### 5.7 · Commit Voice Flow + Emp portal rules to git?
+
+**RESOLVED — the question was backwards** 2026-09-20
+
+Read the `claude-md-not-in-git` memory before recommending this time. It is a standing
+preference stated "from now onwards" on 2026-08-11: keep `CLAUDE.md` untracked and
+gitignored, applied **proactively at repo setup rather than on request**. So committing
+them was never the open question — compliance was. **Both project repos are private**
+(checked via the API) and **neither file contains a secret**: the credential-shaped grep
+hits are all prose *describing* auth design that already lives in the same repo's
+source. **Voice-Flow: already compliant** — `c1e9459 Untrack CLAUDE.md and add it to
+.gitignore`. **Emp portal: was not, and it was a live risk** — the file was untracked *and* unignored,
+so `git add -A` on the current feature branch would have committed it. Fixed by adding
+`CLAUDE.md` to its `.gitignore` with the same comment Voice-Flow uses; the file itself is
+untouched and `sync.sh` still reports 7 current. Never committed there, so its history is
+clean. **Cost accepted, unchanged:** a cloud session cloning either repo still gets no
+project rules; `project-rules/` here is what carries them.
+
+### 5.8 · Two cloud plugins fail to connect
+
+**HALF RESOLVED** 2026-09-20
+
+Both live under `plugins/synced/`, which is **gitignored and cloud-synced**, so a local
+edit is overwritten on the next sync. **`browser-use`:** ran `uvx --python 3.12
+browser-use@latest --cli-mcp` with no `uv` or `uvx` on PATH. **`uv` 0.12.17 installed via
+Homebrew 2026-09-20 at Amit's instruction**, after I recommended against it — `uv` and
+`uvx` both resolve to `/opt/homebrew/bin`. **Not yet proven to fix the plugin:**
+connections are attempted at session start, and the first run must still download CPython
+3.12 (not installed locally, `uv python list` shows it as download-available) plus
+`browser-use@latest`, which is re-fetched from the network on every start. **`definite`:**
+points at `https://api.definite.app/v3/mcp/http`; checked directly — DNS resolves, the
+host answers **200 at `/`**, the configured path returns **404**. Stale shipped URL,
+vendor- or cloud-side, not fixable here. Undo for the install: `brew uninstall uv`. **Half
+closed 2026-09-27.** `browser-use` is superseded: **D28** disabled the plugin outright,
+because its cost was MCP *server instructions*, which `skillOverrides` cannot reach — so
+whether `uv` would have fixed the connection is moot and was never proven either way. The
+`uv` install stands; `/opt/homebrew/bin/uv` is present, checked 2026-09-27. **`definite`
+remains open and is not ours to fix:** as checked on **2026-09-20** its shipped URL
+returned 404 while the host answered 200, which is vendor- or cloud-side. **Not re-checked
+since.** The row stays `HALF RESOLVED` for that reason, not from inattention.
 
 ---
 
