@@ -132,7 +132,7 @@ this plan*. That is the order chosen now, not an unchangeable rule.
 5. **Block 4 — the repository review, then the same-Mac account-switch test.**
 
 **Where the record is.** Everything already done is recorded dated, and not here.
-§ *Status at handoff (2026-09-18)* holds the step-by-step table, the phase sections below
+§ *Status at handoff (2026-09-18)* holds the step-by-step table (Note 12-10-2026: this is now a section, not a table.), the phase sections below
 hold each pass in full, and `ENVIRONMENT.md` holds every startup measurement. This block
 is current state only: when it changes it is replaced, not added to.
 
@@ -173,7 +173,7 @@ way it is the opposite of the point. Read, in this order:
 
 1. **`harness/status.md`** — the current setup status (**D33**). Added 10-10-2026.
 2. **§ *Where this stands*** at the top — the finish order, historical since 2026-09-29 —
-   then the status table in § *Status at handoff (2026-09-18)*.
+   then the status table in § *Status at handoff (2026-09-18)*. (Note 12-10-2026: this is now a section, not a table.)
 3. **§ PHASE 11 — The global pass** — the per-file records, the method that governs any
    remaining pass, and the permission-list findings.
 4. The specific phase section only if the work touches it.
@@ -1968,7 +1968,7 @@ since.** The row stays `HALF RESOLVED` for that reason, not from inattention.
 All three original open questions are now answered — see D10, D11, D12.
 
 Nothing is currently open. New questions get added here as they come up, with
-the decision recorded in the table above once made.
+the decision recorded in the table above once made. (Note 12-10-2026: this is now a section, not a table.)
 
 ---
 
