@@ -39,6 +39,15 @@ low-cost activity.
   remote, no entry yet — is reported as unavailable, not treated as a mismatch.
 - Never switch projects, and never look inside another project to settle a question.
 
+## Claude Setup
+
+"Claude Setup" is this global standard (these rules and `~/.claude`'s configuration), not a
+project. Every project follows it. A **Claude Setup cross-check** (not the agent cross-check
+in step 4) reports, in chat only, where the current project departs from it: structure,
+docs, backlog, handoff, task tracking, process, configuration, rules. It never covers cloud
+providers, API keys or app cloud setup, and writes nothing unless I approve. A file it
+can't read is reported as unavailable.
+
 ## How a task runs
 
 A small request — explain something, read a file, check status — is orient, answer,

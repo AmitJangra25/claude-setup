@@ -38,6 +38,13 @@ current state.
   and `session-check.sh` before and after: the same 2 Voice-Flow lines (`settings.json`,
   `settings.local.json`), present before this change and not caused by it — to resolve in
   a Voice-Flow session.
+- **Claude Setup is a global standard, not a project** — 12-10-2026, approved by Amit.
+  `STANDARDS.md` § *Claude Setup* defines it and the read-only, chat-only Claude Setup
+  cross-check; `.claude/CLAUDE.md` line 3 reworded (still project mode); memory note
+  `claude-setup-is-a-global-standard-not-a-project` and its index line. Cross-check
+  12-10-2026 · Opus · change · 30.0k tokens measured; all its changes taken except the
+  rename to "Claude Setup check" (Amit kept his term, with a clarifier). Not tested:
+  whether a project session can read `~/.claude/templates/`.
 
 ## Open
 
