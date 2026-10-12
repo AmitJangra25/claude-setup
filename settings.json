@@ -106,7 +106,7 @@
     ],
     "blockReadsOutsideWorkingDirectories": true
   },
-  "model": "opus",
+  "model": "sonnet",
   "disableClaudeAiConnectors": true,
   "skillOverrides": {
     "pptx": "name-only",
@@ -184,7 +184,7 @@
     }
   },
   "theme": "dark",
-  "switchModelsOnFlag": true,
+  "switchModelsOnFlag": false,
   "autoMode": {
     "environment": [
       "### Org-wide",

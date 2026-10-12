@@ -30,6 +30,14 @@ current state.
   `session-check.sh` silent before and after. Cross-check: none — skipped by Amit's
   decision; no rule, permission or hook changed.
   Also, wording only: D17 in `SETUP-PLAN.md` and two spots in `ENVIRONMENT.md` (`63b8b2c`).
+- **Model and permission-denial rules** — 12-10-2026, approved by Amit (D39).
+  `STANDARDS.md` § *Which model* and a *When I deny a prompt* paragraph; `settings.json`
+  `model` → `sonnet`, `switchModelsOnFlag` → `false`; dated note at `SETUP-PLAN.md`
+  § *The five systems*, system 3. Cross-check 12-10-2026 · Opus · change, then go ahead ·
+  41.6k tokens measured; all its changes taken. Effort on Sonnet 5.5 not known. `drift.sh`
+  and `session-check.sh` before and after: the same 2 Voice-Flow lines (`settings.json`,
+  `settings.local.json`), present before this change and not caused by it — to resolve in
+  a Voice-Flow session.
 
 ## Open
 

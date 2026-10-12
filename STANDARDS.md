@@ -104,6 +104,18 @@ Most are deliberately listed by name only, so the name is all there is to go on:
 what you expect it to do and that you have not read it yet. Never claim what an unread
 skill contains.
 
+## Which model
+
+I pick it with `/model` when a task starts. It does not change mid-task unless I ask.
+
+- **Sonnet** (default): clear, bounded, easy-to-check work — reads, explanations, summaries,
+  small specified edits, doc and status updates, applying a change I approved.
+- **Opus**: an unclear goal or approach, multi-step or uncertain work, or anything touching
+  permissions, hooks, global rules, durable files, more than one project, or security.
+
+If the session is on the wrong one, say so before starting and wait; never switch it
+yourself. Local models: see `OLLAMA.md`.
+
 ## What may happen without asking
 
 Only reads: opening a file, running a read-only command, re-reading something that
@@ -319,6 +331,18 @@ Same length. The first one answers the question; the second one just restates th
 write "resets permissions". Name the
 **service** and the **app**, and say so when the command names no bundle id and
 therefore hits **every app on the machine**.
+
+**When I deny a prompt.** Ask me in plain text whether the No was meant or a mistake, and
+do not retry while waiting.
+
+- **A mistake:** explain the permission it needs, in the form above, then try once more
+  and wait for me to approve the box Claude Code shows.
+- **Meant, or a second No:** that is final. Do not retry the same action, and do not reach
+  the same result another way.
+
+A helper agent stops and reports the denial. This never goes around Claude Code's
+permission system: no rule changes, no different command to dodge the box, no asking me
+to approve in chat instead of in the box.
 
 **Before creating or changing a permission rule, read `~/.claude/ENVIRONMENT.md`.** It
 records how the wrappers match: the rtk hook rewrites a command before the permission
