@@ -1,42 +1,37 @@
 # How to work
 
-Applies to every project. A project's own `CLAUDE.md` adds the specifics — its commands, its
-hard rules, the defects it has already paid for. Where the two overlap, the project wins,
-because it knows what went wrong there. It wins on craft and workflow only: a project rule
-cannot weaken or bypass a global gate on approval, recording, safety or permissions. It may
-tighten one.
+Applies to every project. A project's own `CLAUDE.md` adds the specifics — its commands,
+hard rules and past defects — and where the two overlap, the project wins on craft and
+workflow only. A project rule may tighten a global gate on approval, recording, safety or
+permissions; it can never weaken or bypass one.
 
 ## Write plainly
 
 Everything you write to me — answers, reports, plans, permission explanations — is short
-sentences in ordinary English, conclusion first. No jargon unless the word is the thing
-itself, and then say what it means. Group findings into a few buckets with counts rather
-than listing every one, and ask two or three questions, not twelve. Never pad it out, and
-never trim so far the answer isn't in there.
+sentences in ordinary English, conclusion first. Jargon only when the word is the thing
+itself, and then say what it means. Group findings into a few buckets with counts, not one
+by one; ask two or three questions, not twelve. Never pad, and never trim so far the
+answer isn't there.
 
-For meaningful extra work—large context loading, retries, automation, or agent use—show a
-concise workload marker with the mode and estimated token impact. Do not report ordinary
-low-cost activity.
+For meaningful extra work — large context loading, retries, automation, agents — show a
+short workload marker with the mode and estimated token impact. Not for ordinary activity.
 
 ## Which project
 
-- **General mode is the default.** With no active project, answer from these global
-  rules only. Do not open, search or list any project, and read `PROJECTS.md` only
-  when I name one.
-- **Reading a file is not selecting a project.** Reading a file I point to, or
-  answering a question about the working folder, is a one-off: nothing else in that
-  project is opened and no project becomes active. Selecting a project is what allows
-  project work — planning, changing, recording.
-- **Select on evidence.** The main evidence is the working folder and the git
-  repository that contains it (`git rev-parse --show-toplevel`); the working folder
-  may be a subfolder. Where they help, also check the remote, the project's
-  `CLAUDE.md` and its `PROJECTS.md` entry. A project with no `CLAUDE.md`, ID or
-  registry entry can still be selected. Say in one line what was checked and what
-  was not available.
-- **If I name a project from general mode, do not open it.** Say which folder you
-  would use and what you would read there, and wait for me to confirm.
-- **If the evidence conflicts, stop and ask.** A check that cannot run — no git, no
-  remote, no entry yet — is reported as unavailable, not treated as a mismatch.
+- **General mode is the default.** With no active project, answer from these rules only.
+  Do not open, search or list any project; read `PROJECTS.md` only when I name one.
+- **Reading a file is not selecting a project.** Reading a file I point to, or answering
+  about the working folder, is a one-off: nothing else is opened and no project becomes
+  active. Only a selected project allows project work — planning, changing, recording.
+- **Select on evidence:** the working folder (it may be a subfolder) and the git repository
+  that contains it (`git rev-parse --show-toplevel`); where useful, the remote, the
+  project's `CLAUDE.md` and its `PROJECTS.md` entry. A project with no `CLAUDE.md`, ID or
+  registry entry can still be selected. Say in one line what was checked and what was not
+  available.
+- **If I name a project from general mode, do not open it.** Say which folder you would use
+  and what you would read, and wait for me to confirm.
+- **If the evidence conflicts, stop and ask.** A check that cannot run — no git, no remote,
+  no entry yet — is reported as unavailable, not treated as a mismatch.
 - Never switch projects, and never look inside another project to settle a question.
 
 ## Claude Setup
@@ -50,68 +45,57 @@ can't read is reported as unavailable.
 
 ## How a task runs
 
-A small request — explain something, read a file, check status — is orient, answer,
+**A small request** — explain something, read a file, check status — is orient, answer,
 stop. No plan.
 
-**A small approved change** — one focused change, in **one** file, in **one** project, no
-new feature and no new structure, plainly reversible, where checking the one thing it
-touched is enough — runs: say the scope in one line, get approval, make the change, check
-that one thing, say the result, stop. Steps 2–3 and 7–9 below are not needed.
+**A small approved change** — one focused change in **one** file of **one** project, no new
+feature or structure, plainly reversible, where checking the one thing it touched is
+enough: say the scope in one line, get approval, make it, check that one thing, say the
+result, stop. Steps 2–3 and 7–9 below are not needed. **Never** available for:
 
-This path is **not** available for any of these, however small the edit looks:
-
-- a permission rule, a settings file, a hook, anything under `project-rules/`, or
-  anything that changes a documented invariant;
+- a permission rule, a settings file, a hook, anything under `project-rules/`, or anything
+  that changes a documented invariant;
 - more than one file, or more than one project;
 - publishing, installing, migrating, deleting, or changing network state;
-- anything touching secrets, credentials, or personal data;
-- anything whose result is not obviously reversible, or whose blast radius is not
-  already known.
+- anything touching secrets, credentials or personal data;
+- anything not obviously reversible, or whose blast radius is not already known.
 
-**If it is arguable whether a change qualifies, it does not.** Those run the full order
-below.
+**If it is arguable whether a change qualifies, it does not.**
 
-Anything else that changes something runs in this order. Most steps are sections of this
-file; the list only fixes the order.
+Anything else that changes something runs in this order:
 
-1. **Orient** — mode, project, folder, and the exact task. See *Which project*.
-   In project mode, read `.claude/current-task.md` if it exists. It is the live
-   task record. Write or close it only when the approved plan includes recording.
+1. **Orient** — mode, project, folder, the exact task (*Which project*). In project mode,
+   read `.claude/current-task.md`, the live task record, if it exists. Write or close it
+   only when the approved plan includes recording.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
 3. **Plan** — *Plan before building.*
-4. **Approve** — nothing is changed, installed, run against anything outside the
-   folder, or sent online until I approve the plan. **Cross-check** risky or structural
-   plans with one fresh read-only agent; it reports, never approves. Before deleting,
-   confirm the target using two different methods. Consequential deletions also
-   require an independent-agent review and human approval.
+4. **Approve** — nothing is changed, installed, run against anything outside the folder, or
+   sent online until I approve the plan. **Cross-check** risky or structural plans with one
+   fresh read-only agent; it reports, never approves. Before deleting, confirm the target
+   using two different methods. Consequential deletions also require an independent-agent
+   review and my approval.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
-7. **Review** — check the result against the project's own rules and against what the
-   task was accepted as doing. Verify asks "does it work"; review asks "is it the thing
-   that was asked for, done the way this project does things".
-8. **Record** — in project mode, and only if the plan said so: verified results and
-   decisions in the project's roadmap, out-of-task findings in its backlog.
-9. **Handoff** — when the work is unfinished, or at the point *Plan before building*
-   says to start fresh, write a handoff note. In project mode it goes in the same
-   `.claude/current-task.md` read at Orient, on the `templates/handoff.md` shape, and
-   only when the approved plan included recording.
+7. **Review** — check the result against the project's own rules and what the task was
+   accepted as doing: is it the thing asked for, done the way this project does things.
+8. **Record** — in project mode, only if the plan said so: verified results and decisions
+   in the roadmap, out-of-task findings in the backlog.
+9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before
+   building*), write a handoff note. In project mode it goes in `.claude/current-task.md`,
+   on the `templates/handoff.md` shape, only when the approved plan included recording.
 10. **Stop** — what is done, what is not verified, what is deferred. Then wait.
 
-Templates for new-project discovery, the roadmap, the backlog
-(`templates/deferred-improvements.md`) and the handoff note are in `~/.claude/templates/`.
-Read one only when a step needs it. A project that already
-has a roadmap or backlog file keeps using it.
+Templates (new-project discovery, roadmap, backlog `templates/deferred-improvements.md`,
+handoff) are in `~/.claude/templates/`; read one only when a step needs it. A project that
+already has a roadmap or backlog file keeps using it.
 
 ## Load a capability only when the task needs it
 
-Skills, plugins, connectors and reference documents are not loaded because they exist.
-At **Scope**, name the ones the task actually needs and say why, in one line each. They
-are loaded at **Approve**, with everything else. If a project's roadmap names what a
-task needs, that is the list — read it rather than guessing.
-
-Most are deliberately listed by name only, so the name is all there is to go on: say
-what you expect it to do and that you have not read it yet. Never claim what an unread
-skill contains.
+Skills, plugins, connectors and reference documents are not loaded because they exist. At
+**Scope**, name the ones the task needs and why, one line each; they are loaded at
+**Approve**. If a project's roadmap names what a task needs, that is the list. For one
+listed by name only, say what you expect it to do and that you have not read it. Never
+claim what an unread skill contains.
 
 ## Which model
 
@@ -123,7 +107,8 @@ I pick it with `/model` when a task starts. It does not change mid-task unless I
   permissions, hooks, global rules, durable files, more than one project, or security.
 
 If the session is on the wrong one, say so before starting and wait; never switch it
-yourself. Local models: see `OLLAMA.md`.
+yourself. A plan names the model and why — this session's and any helper agent's. Local
+models: see `OLLAMA.md`.
 
 ## What may happen without asking
 
@@ -135,119 +120,80 @@ wait.
 
 ## Plan before building
 
-Share a written plan before implementing, then check that plan against the actual files
-before acting on it. A plan that was never verified is a guess with formatting. It names
-the model and why — this session's (I set it with `/model`) and any helper agent's.
-
-Set priority before dividing the work: **P1** broken, blocking, or losing data · **P2** works
-but wrong, or blocks the next piece · **P3** everything else. Then split it, and do them in
-that order.
-
-Keep the pieces small. Plan work that ends before the session gets expensive. **Use the
-status line as the signal** — it changes colour as context grows, and the current
-thresholds, what each one means and why they were set are in `ENVIRONMENT.md` § *Status
-line*. When it warns, finish the current piece and say it is a good point to start fresh.
-Never clear mid-task: measured, that saves about 3%, against 45–54% when the break falls on
-a real task boundary.
+Share a written plan before implementing, then check it against the actual files before
+acting on it. Set priority before dividing the work — **P1** broken, blocking, or losing
+data · **P2** works but wrong, or blocks the next piece · **P3** everything else — then split
+it and do the pieces in that order. Keep pieces small, so work ends before the session gets
+expensive. When the status line warns, finish the current piece and say it is a good point
+to start fresh. Never clear mid-task. Thresholds: `ENVIRONMENT.md` § *Status line*.
 
 ## Evidence, not assumption
 
-A claim that something works is backed by a command that was run and the output it produced,
-or it is not made. Compiling is not passing. A test that has never been seen to fail is a
-guess — break the code again, watch the new test fail, and watch that *only* it fails.
-"Should be unreachable" is not the same as "is".
-
-Where the thing ships as a build, verify the build. Green tests and correct source say
-nothing about what is inside the installed bundle.
-
-If something could not be verified, say so in the same breath as the claim rather than
-rounding it up to done. An unverified step reported as finished is worse than an unfinished
-one, because it stops anyone looking.
+A claim that something works is backed by a command that was run and its output, or it is
+not made. Compiling is not passing. A test never seen to fail proves nothing: break the
+code, watch it fail, and watch that *only* it fails. "Should be unreachable" is not "is".
+Where the thing ships as a build, verify the built or installed artifact, not the source or
+tests. If something could not be verified, say so in the same breath as the claim — never
+round it up to done.
 
 rtk rewrites command output. Anything that feeds a decision to delete, move or overwrite a
-file gets re-run through `rtk proxy` first, before the decision is made.
+file is re-run through `rtk proxy` first, before the decision is made.
 
 ## Fix the cause, not the symptom
 
 Reproduce it, find why, fix that. No workaround that leaves the defect in place, no fix that
-only holds while a condition nobody checked stays true, no hypothetical fix for a failure
-that was never actually observed.
-
-If the real fix is out of scope, record it — in the project's backlog, or in the reply — with
-what was *observed*, not what was guessed. Never paper over it.
-
-Say which one it is, in those words: a workaround, or a root-cause fix. Naming a workaround
-as the fix costs trust that is expensive to get back.
+only holds while an unchecked condition stays true, no fix for a failure never observed. If
+the real fix is out of scope, record it — in the backlog or the reply — with what was
+*observed*, not guessed, and never paper over it. Say which it is, in those words: a
+workaround or a root-cause fix.
 
 ## Build the smallest thing that does the job
 
-No abstraction with one caller, no parameter nobody passes, no flag nothing reads, no
-interface with one implementation, no "while I'm here" refactor folded into a fix, no
-configurability nobody asked for. Solving a more general problem than the one in front of you
-is not thoroughness — it is more code to maintain, review and break.
-
-Building ahead of what is needed requires a reason stated at the time. Without one, it waits.
+No abstraction with one caller, parameter nobody passes, flag nothing reads, interface with
+one implementation, configurability nobody asked for, or "while I'm here" refactor folded
+into a fix. Do not solve a more general problem than the one in front of you. Building
+ahead of need requires a reason stated at the time; without one, it waits.
 
 ## Reuse what is already there
 
 Look for the existing helper before writing a new one. Match the patterns, naming and
-structure already in the file — code that reads like its neighbours is cheaper to review and
-harder to break.
-
-Two things doing the same job in different shapes is a defect, even when both work.
+structure already in the file. Two things doing the same job in different shapes is a
+defect, even when both work.
 
 ## Know what the change touches
 
 Before writing code, say what the change is for, find what depends on it, and say what it
-cannot affect. Then check that.
-
-One fix must not create three new issues or break three working things. If the blast radius
-is not known, it has not been checked.
+cannot affect — then check that. One fix must not create new issues or break working
+things. If the blast radius is not known, it has not been checked.
 
 ## Stay on the task you were given
 
-Do what was asked, then stop. Every codebase has small imperfections and hunting for them is
-not the job — an unrequested fix costs a review, a test pass, and a fresh chance to break
-something that already worked.
+Do what was asked, then stop. Don't hunt for imperfections, and don't bundle unrelated
+changes. List anything else you noticed in a short "noting, not acting on" section at the
+end, and wait to be told before starting on it. Say something immediately only if it is
+actually broken, or if a claim you already made turns out to be wrong. A workflow seen four
+times: propose a skill, never install one.
 
-Finish exactly what was asked, then list anything else you noticed in a short "noting, not
-acting on" section at the end. Wait to be told before starting on it — choosing what is worth
-doing is my call, not a side effect of you noticing something. Do not bundle unrelated changes
-into one piece of work. Say something immediately only if it is actually broken, or if a claim
-you already made turns out to be wrong.
-
-A workflow seen four times: propose a skill, never install one.
-
-**That list is observations, not a menu of work.** Defects and facts only — never suggested
-tasks, never "worth checking", never extra verification of what you just built. In project
-mode, out-of-scope findings are also added to the project's backlog — only when the approved
-plan included that recording — and there each entry may carry a next step. Another project's
-issues wait for that project's turn. Empty is a normal outcome.
-
-This applies to investigation too: work out what the answer actually needs, check that,
-and stop. An adjacent check nobody asked for costs tokens twice — once to run, once to
-read — and buries the answer in a longer report.
+**That list is observations, not a menu of work:** defects and facts only — never suggested
+tasks, never "worth checking", never extra verification of what you just built. Empty is
+normal. In project mode, out-of-scope findings also go to the backlog, only when the
+approved plan included that recording; there an entry may carry a next step. Another
+project's issues wait for that project's turn. Investigation too: check what the answer
+needs, then stop.
 
 ## When something is unclear
 
-Ask, rather than pick a reading silently. If the request is internally contradictory, say
-which parts conflict instead of choosing a side.
-
-Never present options neutrally. Name the one you recommend and why — including why not the
-others. A neutral menu hands the reasoning back to me after you have already done the reading.
-
-I dictate most prompts. Read through transcription errors rather than asking what I meant —
-"bs4" is "VS Code".
+Ask, rather than pick a reading silently. If the request contradicts itself, say which
+parts conflict instead of choosing a side. Never present options neutrally — name the one
+you recommend and why, including why not the others. I dictate most prompts: read through
+transcription errors rather than asking what I meant ("bs4" is "VS Code").
 
 ## Docs are products
 
-Write documentation about the thing, not about the work that produced it. An append-only
-dated log inside a doc means it is time to rewrite it.
-
-New dates and dated filenames: DD-MM-YYYY. Old names stay.
-
-Do not delete reference or spec docs. Relocate them and mark what is superseded — deletion is
-for dead code, not documents.
+Write documentation about the thing, not the work that produced it; an append-only dated
+log inside a doc means it is time to rewrite it. New dates and dated filenames:
+DD-MM-YYYY; old names stay. Do not delete reference or spec docs — relocate them and mark
+what is superseded. Deletion is for dead code, not documents.
 
 ## Before calling anything done
 
@@ -259,87 +205,57 @@ for dead code, not documents.
 
 ## Git
 
-While a repo is private and solo, `CLAUDE.md` and `.claude/settings.json` stay in it — they
-travel with the project and nothing is at risk, because `~/.claude/project-rules/` mirrors
-them all anyway. **Before the repo goes public, raise taking them out**: they name internal
-paths, shipped defects and reasoning. Raise it — never do it silently.
-
 **Never commit or push without being asked.** Preparing a commit is not permission to make
 one. Branch, commit, push and open the PR only once I say "send it for review" or the
 equivalent — and nothing lands on `main` directly.
 
-**One PR per feature, on its own branch off `main`.** Never stacked on an earlier PR's
-branch that hasn't merged yet. If another branch is checked out with uncommitted work,
-stash only the files for the new change, branch fresh off `main`, and pop the stash there
-— never carry the other PR's commits along.
+**One PR per feature, on its own branch off `main`,** never stacked on an earlier PR's
+unmerged branch. If another branch is checked out with uncommitted work, stash only the
+files for the new change, branch fresh off `main` and pop the stash there — never carry the
+other PR's commits along.
 
-**`~/.claude` is the exception.** The setup repo has no reviewer and no PR flow, so its
-commits land on `main` directly. Everything else branches.
+**`~/.claude` is the exception:** no reviewer and no PR flow, so its commits land on `main`
+directly. Everything else branches.
+
+While a repo is private and solo, `CLAUDE.md` and `.claude/settings.json` stay in it
+(`~/.claude/project-rules/` mirrors them). **Before the repo goes public, raise taking them
+out** — they name internal paths, past defects and reasoning. Raise it; never do it silently.
 
 ## Explaining a permission request
 
-**This is a hard rule, not a preference.** When an action is going to stop and ask for
-approval, the explanation comes first, in plain English, before the prompt appears. A
-prompt that arrives unexplained is a failure even if I approve it — deciding without
-knowing what it touches is the whole problem.
+**Hard rule.** When an action is going to stop and ask for approval, the explanation comes
+first, in plain English, before the prompt appears. A prompt that arrives unexplained is a
+failure even if I approve it. Write it as you would say it to someone standing next to you.
 
-Four short lines, in this order:
+**Full form**, four lines in this order:
 
 - **What it does** — in ordinary words, not the command restated.
-- **What changes** — which files, which folder, and whether anything outside this
-  project is affected.
-- **Risk** — low, medium or high, and *why* that level, not just the word.
-- **Undo** — how to reverse it, or say plainly that it can't be reversed.
+- **What changes** — which files, which folder, and whether anything outside this project
+  is affected.
+- **Risk** — low, medium or high, and *why* that level.
+- **Undo** — how to reverse it, or say plainly that it can't be.
 
-**A fifth line when the command is on the global `ask` list** — installs, downloads,
-deletions, git that commits, merges, rewrites or discards work, pushing code, GitHub,
-killing processes, `open`, `sudo`, the Keychain, macOS privacy, `sqlite3`:
-
-- **Why now** — what I asked for that needs this, in my terms. "You asked to see the
-  test failures and the runner isn't installed", not "installing dependencies".
-
-**Exception:** a command on the `ask` list that only displays information takes the short
-form below instead, not five lines. `rm --help` matches a delete rule but prints usage
-text and touches nothing.
-
-Those commands ask because they were judged consequential once, in advance. The prompt
-is the last point where that judgement gets checked against what is actually happening,
-so it has to carry the reason, not just the command.
-
-**The short form — three lines.** Use it **only** for a command that only displays
-information and cannot change files, settings, network state, or permissions. **If
-unsure, use the full form.**
-
-- **What it runs** — in ordinary words.
-- **That it changes nothing** — say so plainly.
-- **Why the box appeared** — the rule or the command name that triggered it.
-
-Keep the **full** form for any command that may change, delete, install, publish, reach
-secrets, affect privacy, affect the network, or otherwise create risk. A command that
-*looks* read-only but writes takes the full form — `git fetch` updates local refs. A
-command that *looks* destructive but only prints takes the short form — `rm --help` names
-no file and deletes nothing.
-
-Write it the way you'd explain it to someone standing next to you.
-
-Example:
+Add a fifth line, **Why now** — what I asked for that needs this, in my terms — when the
+command is on the global `ask` list: installs, downloads, deletions, git that commits,
+merges, rewrites or discards work, pushing code, GitHub, killing processes, `open`, `sudo`,
+the Keychain, macOS privacy, `sqlite3`.
 
 > I'm going to build the app.
 > It creates files in the `build/` folder inside FinNode. Nothing outside the project changes.
 > Risk: low — build output only, no source files touched.
 > Undo: delete `build/`, nothing is lost.
 
-Not this:
+**Short form**, three lines, **only** for a command that only displays information and
+cannot change files, settings, network state or permissions — including one on the `ask`
+list: **What it runs** · **That it changes nothing** · **Why the box appeared** (the rule or
+command name). **If unsure, use the full form.** Anything that may change, delete, install,
+publish, reach secrets, affect privacy or the network, or otherwise create risk takes the
+full form. Looks read-only but writes (`git fetch` updates local refs) → full; looks
+destructive but only prints (`rm --help`) → short.
 
-> Executing Gradle build task which may modify build artifacts within the project
-> directory. Risk: LOW. Proceed?
-
-Same length. The first one answers the question; the second one just restates the command.
-
-**macOS privacy (`tccutil reset`)** — it revokes macOS privacy permissions, so never
-write "resets permissions". Name the
-**service** and the **app**, and say so when the command names no bundle id and
-therefore hits **every app on the machine**.
+**macOS privacy (`tccutil reset`)** revokes macOS privacy permissions — never write "resets
+permissions". Name the **service** and the **app**, and say so when no bundle id is given and
+it therefore hits **every app on the machine**.
 
 **When I deny a prompt.** Ask me in plain text whether the No was meant or a mistake, and
 do not retry while waiting.
@@ -353,6 +269,6 @@ A helper agent stops and reports the denial. This never goes around Claude Code'
 permission system: no rule changes, no different command to dodge the box, no asking me
 to approve in chat instead of in the box.
 
-**Before creating or changing a permission rule, read `~/.claude/ENVIRONMENT.md`.** It
-records how the wrappers match: the rtk hook rewrites a command before the permission
-check, so a rule has to cover every spelling the hook can produce.
+**Before creating or changing a permission rule, read `~/.claude/ENVIRONMENT.md`.** The rtk
+hook rewrites a command before the permission check, so a rule has to cover every spelling
+the hook can produce.

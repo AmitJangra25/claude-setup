@@ -45,6 +45,11 @@ current state.
   12-10-2026 · Opus · change · 30.0k tokens measured; all its changes taken except the
   rename to "Claude Setup check" (Amit kept his term, with a clarifier). Not tested:
   whether a project session can read `~/.claude/templates/`.
+- **`STANDARDS.md` slimmed, wording only** — 12-10-2026, approved by Amit (D40). Every rule
+  kept at the same strength; 3,161 → about 2,570 words, estimated 5.9k → 4.8k tokens, not
+  measured. Old text: `git show f6a4c2c:STANDARDS.md`. Cross-check 12-10-2026 · Opus · rule
+  by rule · FAIL narrowly, 4 items restored to old strength · 47.8k tokens measured.
+  **Next target (Amit):** break the long D-rows in `SETUP-PLAN.md` into short lines.
 
 ## Open
 
