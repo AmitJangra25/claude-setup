@@ -28,7 +28,8 @@ anything in `electron/` or `src/app/lib/`.
   `preload.cjs` (contextBridge → `window.api`), `accountStore.js`, `dataStore.js`
   (file-backed JSON), `clipboard.js` (auto-paste), `focusTarget.js` (frontmost app),
   `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns),
-  `ollama.js` (an Ollama service *you* run — no spawn, models picked by name).
+  `ollama.js` (an Ollama service *you* run — no spawn, models picked by name),
+  `contentSecurityPolicy.js` (the CSP header the `app:` handler sends).
 - **The twelve vault modules in `electron/`.** `vaultPaths.js` is the only place a path
   is decided · `vaultApply.js` the only thing that writes · `vaultRaw.js` the other
   write path, create-only into `raw/` · `vaultStore.js` proves containment. **Seven
@@ -62,7 +63,7 @@ anything in `electron/` or `src/app/lib/`.
   hand-rolled `useState` + `setTimeout` is the thing not to write.
 - **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
   decides for itself. Styles is the exception in *wording* only — it resets a built-in.
-- **Tests 25–29 in `docs/manual-testing.md` have never been run.**
+- **Tests 25–30 in `docs/manual-testing.md` have never been run.**
 
 ## Working rules
 
