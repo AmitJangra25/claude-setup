@@ -8,11 +8,15 @@ the focused app without the user touching the keyboard.
 
 ## Stack
 
-React ^19.2.8, React Router ^8.3.0, Vite ^8.2.1, Tailwind CSS ^4.3.3.
-Electron ^43.4.0 + electron-builder ^26.15.7 for the desktop shell/packaging.
-Radix UI primitives, Motion, Lucide icons. Vitest ^4.1.10 + Testing Library + jsdom ^30.
+React ^19.3.1, React Router ^8.4.0, Vite ^8.3.4, Tailwind CSS ^4.3.3.
+Electron ^43.7.11 + electron-builder ^26.17.0 for the desktop shell/packaging.
+Radix UI primitives, Motion, Lucide icons. Vitest ^4.1.11 + Testing Library + jsdom ^30.1.3.
 TypeScript ^7.0.2. Node 22.23.2 on this machine (no version manager — see below).
-All package updates are current as of 2026-08-16; `npm audit` is clean.
+All in-range package updates are current as of 2026-10-15; Electron 44, motion 14 and vitest 5 are deliberately held back.
+`npm audit` is **not** clean: 9 findings (1 high, 8 moderate), all in build tooling — `undici` under
+Electron's and node-gyp's downloaders, and the electron-builder chain through `sprintf-js`. Believed not to ship
+in the app, because `node_modules` is excluded from the build (not verified). Plain `npm audit fix` is available
+for the high one; for the moderate chain the only suggested fix downgrades electron-builder, so it is left.
 
 ## Architecture map
 
@@ -97,7 +101,8 @@ command is used.
 - `npm install` — plain, no flags. **Do not reintroduce `--legacy-peer-deps`.**
 - `npm run dev` — web preview at `localhost:5173`.
 - `npm test` / `npm run test:watch` — Vitest.
-- `npm run typecheck` — `tsc --noEmit`. **Run it alongside the tests.** Neither
+- `npm run typecheck` — `tsc --noEmit`, then `tsconfig.node.json` over `electron/` and
+  `scripts/` (`checkJs`, `strict` off). **Run it alongside the tests.** Neither
   `vite build` nor Vitest checks types.
 - `npm run benchmark` — provider speed and word-error-rate from `history.json`.
   Read-only. **`--since <date>` is not optional once the app has changed what it sends.**
@@ -125,13 +130,13 @@ command is used.
 
 ## Known pitfalls
 
-[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 48 with the full story.
-These 15 are the ones that cost time before you would think to look.
+[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 47 with the full story.
+These 14 are the ones that cost time before you would think to look.
 
 - **Small local models need `format: 'json'`, not a prompt asking for JSON.**
 - Signing is done by `scripts/install-app.js` after `ditto`, not by electron-builder (`identity: null`, it does **not** sign).
 - What governs macOS permission grants is the **designated requirement**, and ad-hoc signing gets it wrong: no certificate chain means the requirement is a bare `cdhash`, which changes every build, so each rebuild is a new app to TCC.
-- **`electron/` and `scripts/` are 29% of this codebase and `tsc` has never read a line of either.**
+- **`electron/` and `scripts/` are typechecked by a second config, `strict` off** — a field in a `= {}` options object needs its own default, or it reads as required.
 - **A style or agent must never cap the output length.**
 - **`AiProcessing` is the exception to the rule below, and conflating the two has already cost a wrong answer**
 - **Never pass `--no-timestamps` to `whisper-server`.**
@@ -142,4 +147,3 @@ These 15 are the ones that cost time before you would think to look.
 - **`reasoning_effort: 'none'` goes on every OpenAI-compatible polish request**
 - `tsconfig.json` sets `types`, which **disables automatic `@types/node` pickup**. vitest 3 supplied it by accident; vitest 4 made it an optional peer and seven errors appeared in untouched files.
 - **There are two Node runtimes here, and they do not match.**
-- The Account page's Change Photo/Password/2FA/Cancel Subscription controls are non-functional "Coming Soon" placeholders, not bugs.
