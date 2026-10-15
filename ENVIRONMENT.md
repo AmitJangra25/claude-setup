@@ -158,12 +158,14 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   34 rules    read-only things stop prompting
+    allow   39 rules    read-only things stop prompting
     ask     58 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 10-10-2026** (`jq`). `allow` went **33 → 34** that
-day (**D35**: `rtk git rev-parse *` out, `rtk gh run list*` and `rtk tree *` in). Sessions
+**Counts measured against the live file 15-10-2026** (`jq`). `allow` went **34 → 39** that
+day: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
+listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
+out, `rtk gh run list*` and `rtk tree *` in). Sessions
 started in `~/.claude` also load four setup-only `ask` rules from `.claude/settings.json`
 (**D36**); they are not in the counts above. On 2026-09-27 `ask` went **51 → 58**:
 seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
@@ -212,6 +214,17 @@ the bare and `rtk proxy` forms but **not** `rtk `, so downloads ran unprompted u
 2026-09-20. Probed live rather than reasoned — `wget …` → `rtk wget …`, and
 `pip3 install …` → `rtk pip install …`. **Any new fence needs every spelling the hook
 can produce.**
+
+**`git branch` is allowed only as a listing.** The hook turns every `git branch …` into
+`rtk git branch …`, so this file's rule decides for every project. It allows exactly
+`rtk git branch`, `--show-current`, `-a`, `-vv`, `--list *` and `-a --list *`. The wide
+`rtk git branch *` it replaced let `git branch -vv -D x` delete a branch and
+`git branch -vv -f x` move one with no prompt: git accepts a verbose flag beside a
+changing one, and the `*git branch -D*` ask rule only matches the flag in first place.
+`--list` takes a trailing wildcard safely because git refuses or ignores every changing
+flag beside it (`-c -C -m -M -d -D -u --edit-description --unset-upstream` give a usage
+error; `-f`, `-t` and `--create-reflog` only list). `-vv` must stay exact. Tested on a
+scratch clone, 15-10-2026.
 
 **Changed 2026-09-18** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
 `ask` went 52 → 87: 15 commands that ran silently in at least one project are now
@@ -295,8 +308,10 @@ one you stop reading — which is worse than not having it.
 | `adb` | 3.9 | Your own emulator. |
 | `git commit` | 2.0 | **Superseded — `git commit` is now in `ask`; the live list holds two commit patterns (`*git commit*` and `*git * commit*`).** The original reasoning, kept as the record: local and reversible, while `git push`, which publishes, is in `ask`. |
 
-**`rtk proxy` — superseded 2026-09-20. `Bash(rtk proxy *)` is now gone from every
-project.** The reasoning below is kept as the record of why it was left in place for as
+**`rtk proxy` — superseded 2026-09-20. `Bash(rtk proxy *)` should exist nowhere, but it
+keeps coming back** in `settings.local.json` files, which git ignores — so sweep those,
+not just the tracked files. What re-adds it is unproven (`baselines/global-open-tests.md`
+item 2). The reasoning below is kept as the record of why it was left in place for as
 long as it was; it no longer describes the machine.
 
 What replaced it: global `allow` carries only the four read-only inner forms —
