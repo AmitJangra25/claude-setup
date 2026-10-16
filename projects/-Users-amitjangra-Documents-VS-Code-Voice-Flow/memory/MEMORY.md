@@ -11,3 +11,4 @@
 - [rtk proxy prompt: choose Yes](rtk-proxy-prompt-choose-yes.md) — never "Don't ask again"; it re-adds the blanket Bash(rtk proxy *) rule
 - [I can't see permission prompts](cannot-see-permission-prompts.md) — an approved prompt looks identical to an ungated run; ask Amit, never infer silence from output
 - [Stop at the earliest gate](stop-at-earliest-gate.md) — with several approval gates in one message, stop at the first open one before any deletion or install
+- [State workaround behaviour before building](state-workaround-behaviour-before-building.md) — say what the user will still see and any manual step; stop after investigations; don't re-raise deferred issues

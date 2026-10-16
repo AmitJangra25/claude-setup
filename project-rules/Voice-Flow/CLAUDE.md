@@ -39,7 +39,7 @@ anything in `electron/` or `src/app/lib/`.
   compiler at a real vault. The other five read or write: `vaultStore`, `vaultTree`,
   `vaultLint`, `vaultApply`, `vaultRaw`.
 - `src/app/routes.tsx` — route table. The desktop build redirects `/` → `/app`.
-- `src/app/pages/` — one file per route. `settings/` has 13 tabs grouped by Compose
+- `src/app/pages/` — one file per route. `settings/` has 15 tabs grouped by Compose
   mode through a `group` field on the `tabs` array, so a fourth group is one field
   rather than a second list.
 - `src/app/pages/Compose.tsx` + `pages/compose/` — the main screen at `/app`. One
@@ -144,7 +144,7 @@ These 14 are the ones that cost time before you would think to look.
 - **A GUI app does not inherit your shell's `PATH`.**
 - Anything the main process loads from disk at runtime must be in the electron-builder `files` array.
 - Debugging a launch from VS Code's terminal: `ELECTRON_RUN_AS_NODE=1` is set in the extension host, so the app binary runs as plain Node and exits 0 instantly with no window and no error.
-- API keys, transcription/polish provider choice, and Auto-punctuation live in **Settings → Models & Keys**, not General — General was trimmed down in a refactor and this has already caused README/INSTALL to go stale once.
+- API keys live in **Settings → API keys**, transcription/polish provider choice in **Settings → Engine**, and Auto-punctuation in **Settings → Text processing** (Dictate group) — not General, and no longer one "Models & Keys" tab (split 16-10-2026, `docs/settings-design.md`). Moves like these have already left README/INSTALL stale twice.
 - **`reasoning_effort: 'none'` goes on every OpenAI-compatible polish request**
 - `tsconfig.json` sets `types`, which **disables automatic `@types/node` pickup**. vitest 3 supplied it by accident; vitest 4 made it an optional peer and seven errors appeared in untouched files.
 - **There are two Node runtimes here, and they do not match.**
