@@ -27,7 +27,10 @@ anything in `electron/` or `src/app/lib/`.
 - `electron/` — main process. `main.js` (main window + always-on-top widget),
   `preload.cjs` (contextBridge → `window.api`), `accountStore.js`, `dataStore.js`
   (file-backed JSON), `clipboard.js` (auto-paste), `focusTarget.js` (frontmost app),
-  `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns),
+  `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns —
+  `whisper-server` is **bundled**, built by `scripts/build-whisper.sh`, and starts on
+  demand), `speechModel.js` (the Whisper model download: resume, retry, SHA-256,
+  atomic rename),
   `ollama.js` (an Ollama service *you* run — no spawn, models picked by name),
   `contentSecurityPolicy.js` (the CSP header the `app:` handler sends).
 - **The twelve vault modules in `electron/`.** `vaultPaths.js` is the only place a path
@@ -51,6 +54,10 @@ anything in `electron/` or `src/app/lib/`.
 - `src/app/lib/structureCues.ts` + `polishGuard.ts` — the two halves of a polish step
   you can rely on. `structureCues` decides the shape **in code, before the model reads
   anything**; `polishGuard` reads what came back. Both are import-clean.
+- `src/app/lib/engineReadiness.ts` — whether each stage can run, one line per stage with
+  its fix; pure. The Engine setup checklist reads it, and so does the status indicator
+  (`engineStatus.ts`, through `hooks/useEngineStatus.ts`) in Compose, the widget and its
+  menu. **Privacy there is per stage, never the tier**, and kept separate from readiness.
 - `src/app/lib/` also holds `historyStats.ts` (Insights; the streak is calendar days,
   not milliseconds), `usageStats.ts` (lifetime counters, deliberately separate from
   history), `appContext.ts` (per-app adaptation), `vaultSave.ts` / `attachments.ts` /
@@ -63,7 +70,8 @@ anything in `electron/` or `src/app/lib/`.
   hand-rolled `useState` + `setTimeout` is the thing not to write.
 - **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
   decides for itself. Styles is the exception in *wording* only — it resets a built-in.
-- **Tests 25–30 in `docs/manual-testing.md` have never been run.**
+- **Tests 25–28 in `docs/manual-testing.md` have never been run** (left out while Chat and Vault are paused). Tests 24, 29, 30 (network/CSP rows still open) and 34 row 3 passed by hand 18–19-10-2026, and a fresh Test 23 was measured 19-10-2026. Test 31 (the bundled
+  speech engine) passed by hand 17-10-2026.
 
 ## Working rules
 
@@ -128,10 +136,13 @@ command is used.
   **Preview by default; `--apply` writes.** Undo depends on whether it was committed:
   `git checkout -- .` straight after an apply, `git revert` after a commit.
 - `npm run signing:cert` / `npm run build:icon` — signing certificate and app icon.
+- `npm run build:whisper` — builds the bundled `whisper-server` into `resources/bin/`
+  (not in git). Needs `cmake`; once per machine. **Every pack refuses to build without
+  it** (`build-whisper.sh --check`).
 
 ## Known pitfalls
 
-[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 47 with the full story.
+[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 48 with the full story.
 These 14 are the ones that cost time before you would think to look.
 
 - **Small local models need `format: 'json'`, not a prompt asking for JSON.**
