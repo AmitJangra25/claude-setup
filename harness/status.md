@@ -101,7 +101,8 @@ current state.
   and `~/.claude` — 681 Bash clicks; 363 began with `cd`, heredocs and loops were far more
   common among clicked than auto-approved commands. Effect not measured: after 2–3
   sessions re-run the same click count across projects and compare. Applied by Sonnet
-  (Amit's instruction); independent Opus review: pending.
+  (Amit's instruction); independent Opus review returned KEEP (two optional wording points
+  not applied).
 
 ## Open
 
