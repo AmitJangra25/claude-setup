@@ -62,6 +62,28 @@ current state.
   section". Cross-check 12-10-2026 · Sonnet · pieces 3 and 5 · 2 pointer restorations
   taken, the section wording taken · 21.7k tokens measured. Token savings estimated, not
   measured.
+- **Model wording, compact explanation form, global fences** — 23-10-2026, approved by Amit.
+  `STANDARDS.md` § *Which model*: quality-first, Opus from the start where difficulty or risk
+  warrants it, no forced Sonnet trial, reassess when a model struggles, helper model named in
+  one line, other models optional. § *Explaining a permission request*: compact form (named
+  reliable undo, no rule or settings files, not on an `ask` list); short and full forms kept.
+  `settings.json` `ask` 58 → 90, none removed: git `cherry-pick`, `revert`, `filter-*`,
+  `update-ref`, `reflog`, `tag -d|-f`, `remote add|set-url` (two patterns each), `npm publish`,
+  `ssh`/`scp`/`rsync`. `ENVIRONMENT.md` § 3 count and fence note corrected. Broad
+  `Bash(rtk git *)` removed from Voice-Flow, FinNode and Packbly local/project settings and
+  `Bash(rtk proxy *)` from Voice-Flow; two exact `npm run doctor:vault` allows added in
+  Voice-Flow after its code was read and found read-only (reads the vault, writes nothing).
+  **One-time exception:** the `STANDARDS.md` edits ran on Sonnet 5.5, not Opus — approved by
+  Amit as small and fully specified. Saved default model, effort and mode untouched.
+  Cross-check 23-10-2026 · Opus · CHANGE · 35.1k tokens measured; its findings taken.
+  Re-verification the same day · Opus · KEEP · 39.4k tokens measured; five minor notes
+  not acted on.
+  **Left open:** permission-box frequency (cause unknown); the token and workflow
+  investigation; older git `ask` patterns miss an option before the subcommand
+  (`git -C path push`); `git remote remove|rename|set-head` unfenced, `remote -v add`
+  untested; Voice-Flow `project-rules/` mirror drifted further, not synced; 9 `ask` rules
+  duplicated in Voice-Flow `settings.json`; `git add` may now prompt in FinNode and Packbly
+  (hook rewrites it to `rtk git add`).
 
 ## Open
 

@@ -159,10 +159,11 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   39 rules    read-only things stop prompting
-    ask     58 rules    all on things that change something
+    ask     90 rules    all on things that change something
     deny     2 rules    .env files unreadable anywhere
 
-**Counts measured against the live file 15-10-2026** (`jq`). `allow` went **34 → 39** that
+**Counts measured against the live file 15-10-2026** (`jq`); `ask` re-measured 23-10-2026,
+58 → 90 (see *Added 23-10-2026* below). `allow` went **34 → 39** that
 day: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
 listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
 out, `rtk gh run list*` and `rtk tree *` in). Sessions
@@ -257,8 +258,15 @@ installs including brew's `install`, `uninstall`, `upgrade` and `reinstall`, `np
 `rm`, `curl`, `wget`, `pkill`, `kill`. Since the 2026-09-20 merge most are one pattern
 with a leading `*`, which covers the bare, `rtk` and `rtk proxy` spellings at once; `rm`,
 `kill`, `killall`, `pkill` and `open` keep explicit spellings, because they sit inside
-ordinary words (`SETUP-PLAN.md`'s **`ask` list merged** row). Plain `git stash`, `git tag` and `git remote` are deliberately out — see
-`SETUP-PLAN.md` § *FinNode — open, not acted on*.
+ordinary words (`SETUP-PLAN.md`'s **`ask` list merged** row). **Added 23-10-2026:** `git cherry-pick`, `revert`, `filter-branch`, `filter-repo`,
+`update-ref`, `reflog expire|delete`, `tag -d|-f` and `remote add|set-url` — each as `*git X*`
+and `*git * X*`, so an option before the subcommand (`git -C path revert`) still matches —
+plus `npm publish`, and `ssh`, `scp`, `rsync` in bare, `rtk` and `rtk proxy` spellings
+(explicit, like `rm`). Plain `git stash`, `git tag` and `git remote` (listing) stay out — see
+`SETUP-PLAN.md` § *FinNode — open, not acted on*. **Open:** the older git patterns (`push`,
+`reset`, `rebase`, `merge`, `checkout`, `clean`, …) have only the `*git X*` form, so
+`git -C path push` is not matched; not changed in this round. Also unfenced:
+`git remote remove|rename|set-head`; whether `git remote -v add` matches is untested.
 
 An `ask` rule prompts in **every** permission mode, including auto mode, and it overrides
 any `allow` rule that also matches. That is why the session can stay in auto mode without

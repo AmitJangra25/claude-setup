@@ -102,14 +102,31 @@ search by D-number or section.
 
 I pick it with `/model` when a task starts. It does not change mid-task unless I ask.
 
-- **Sonnet** (default): clear, bounded, easy-to-check work — reads, explanations, summaries,
-  small specified edits, doc and status updates, applying a change I approved.
-- **Opus**: an unclear goal or approach, multi-step or uncertain work, or anything touching
-  permissions, hooks, global rules, durable files, more than one project, or security.
+Pick the model that can do the task reliably at the quality it needs — not the cheapest,
+and not the strongest by habit.
+
+- **Sonnet**: clear, bounded work with a known approach — reads and comparisons,
+  explanations, summaries, small specified edits, doc and status updates, a reproduced
+  failure with a clear message, and an approved plan whose implementation is itself bounded
+  and well understood.
+- **Opus**: an unclear goal or cause, an open design, an approved plan whose implementation
+  is still uncertain or broad, or a mistake that would be costly or hard to undo — changes
+  to permissions, hooks, global rules, settings or secrets; data-loss or security risk;
+  consequential changes across more than one project. A read-only comparison across
+  projects is bounded work and does not by itself need Opus.
+
+Start on Opus when the task calls for it; do not try Sonnet first to prove it. If the
+chosen model is struggling — the cause is still unknown after a focused attempt, or the
+task is harder or riskier than expected — stop, say why, and recommend a different model;
+do not repeat attempts that are not converging.
 
 If the session is on the wrong one, say so before starting and wait; never switch it
-yourself. A plan names the model and why — this session's and any helper agent's. Local
-models: see `OLLAMA.md`.
+yourself. A plan names the model and why — this session's and any helper agent's. When
+delegating to a helper agent, say in one line which model it gets and why, chosen by the
+job: a narrow lookup or bounded check can use a lighter model; independent review of
+sensitive or design-level work gets the stronger one. A trivial lookup needs no separate
+plan. Other available models (such as Haiku or Fable) are optional: use one only with a
+stated reason and a checked fit for the job. Local models: see `OLLAMA.md`.
 
 ## What may happen without asking
 
@@ -238,8 +255,9 @@ failure even if I approve it. Write it as you would say it to someone standing n
 
 Add a fifth line, **Why now** — what I asked for that needs this, in my terms — when the
 command is on the global `ask` list: installs, downloads, deletions, git that commits,
-merges, rewrites or discards work, pushing code, GitHub, killing processes, `open`, `sudo`,
-the Keychain, macOS privacy, `sqlite3`.
+merges, rewrites or discards work, pushing code, publishing packages, remote copies and
+logins (`ssh`, `scp`, `rsync`), GitHub, killing processes, `open`, `sudo`, the Keychain,
+macOS privacy, `sqlite3`.
 
 > I'm going to build the app.
 > It creates files in the `build/` folder inside FinNode. Nothing outside the project changes.
@@ -251,8 +269,36 @@ cannot change files, settings, network state or permissions — including one on
 list: **What it runs** · **That it changes nothing** · **Why the box appeared** (the rule or
 command name). **If unsure, use the full form.** Anything that may change, delete, install,
 publish, reach secrets, affect privacy or the network, or otherwise create risk takes the
-full form. Looks read-only but writes (`git fetch` updates local refs) → full; looks
+full form, unless it passes every compact test below. Looks read-only but writes
+(`git fetch` updates local refs) → full; looks
 destructive but only prints (`rm --help`) → short.
+
+**Compact form**, three short lines — **Changes** (what, and where) · **Could be lost or
+exposed** · **Undo** — for an action that changes something but passes every test below.
+A command eligible for the short form above keeps the short form; the compact form is not
+required for it.
+
+- it stays inside this project's folder;
+- the Undo line names a reliable way to restore the previous state that also keeps
+  unrelated and uncommitted work. A committed file with no other uncommitted changes is
+  helpful but not enough on its own, and git does not protect uncommitted work, ignored
+  files or data;
+- it touches no secrets, credentials, personal data, settings, permissions or macOS privacy,
+  and no rule or instruction file (`STANDARDS.md`, any `CLAUDE.md`, `project-rules/`), hook
+  or documented invariant;
+- it does not delete, install, publish, send data out or rewrite git history;
+- it is not on a global or project `ask` list.
+
+Write "nothing" under *Could be lost or exposed* only after checking that it is true. If it
+cannot be checked, if any test fails or is uncertain, or if restoring the previous state is
+uncertain, use the full form — do not investigate further just to qualify for the compact
+form. A compact explanation never leaves out what changes or whether it can be undone.
+Shorter explanations do not reduce how often the box appears.
+
+Every prompt that can be foreseen is explained before the action runs, in the short,
+compact or full form that applies. If a box appears that was not foreseen, explain it in
+the full form before any further attempt, where the interface permits; if it was declined,
+do not retry it. The denial rules below are unchanged.
 
 **macOS privacy (`tccutil reset`)** revokes macOS privacy permissions — never write "resets
 permissions". Name the **service** and the **app**, and say so when no bundle id is given and
