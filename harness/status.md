@@ -91,7 +91,17 @@ current state.
   rule changed. Basis: Voice-Flow, three sessions — 50 `sed -n` and 56 `python3` of 324
   clicked commands; FinNode and Emp Portal samples too small to add. Effect on prompts not
   measured: compare click shapes after the next two or three sessions. Cross-check · Opus ·
-  KEEP · 20.7k tokens measured; one optional word ("new script") not applied.
+  KEEP · 20.7k tokens measured; the optional word ("new script") applied the same day.
+- **Simple commands rule** — 23-10-2026, wording approved by Amit. The "Reading and
+  searching" paragraph in `STANDARDS.md` § *Reuse what is already there* is now **Simple
+  commands**: one simple command per step; Read, `grep` or `jq` instead of `sed -n`,
+  `python3`, heredocs or loops; avoid unnecessary redirects and `cd … &&` chains; prefer
+  the plain form of read-only commands. Global; no permission rule, setting, model, effort
+  or mode changed. Basis: clicked commands in Voice-Flow (3 sessions), FinNode, Emp Portal
+  and `~/.claude` — 681 Bash clicks; 363 began with `cd`, heredocs and loops were far more
+  common among clicked than auto-approved commands. Effect not measured: after 2–3
+  sessions re-run the same click count across projects and compare. Applied by Sonnet
+  (Amit's instruction); independent Opus review: pending.
 
 ## Open
 
