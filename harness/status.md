@@ -84,6 +84,14 @@ current state.
   untested; Voice-Flow `project-rules/` mirror drifted further, not synced; 9 `ask` rules
   duplicated in Voice-Flow `settings.json`; `git add` may now prompt in FinNode and Packbly
   (hook rewrites it to `rtk git add`).
+- **Reading and searching rule** — 23-10-2026, approved by Amit. One paragraph added to
+  `STANDARDS.md` § *Reuse what is already there*: read part of a file with Read and a line
+  range plus context, not `sed -n`; use `grep`, `jq` or Read before a `python3` script.
+  Applied by a fresh Opus helper (19.2k tokens measured), exactly as approved; no permission
+  rule changed. Basis: Voice-Flow, three sessions — 50 `sed -n` and 56 `python3` of 324
+  clicked commands; FinNode and Emp Portal samples too small to add. Effect on prompts not
+  measured: compare click shapes after the next two or three sessions. Cross-check · Opus ·
+  KEEP · 20.7k tokens measured; one optional word ("new script") not applied.
 
 ## Open
 

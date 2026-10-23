@@ -178,6 +178,11 @@ Look for the existing helper before writing a new one. Match the patterns, namin
 structure already in the file. Two things doing the same job in different shapes is a
 defect, even when both work.
 
+**Reading and searching.** To read part of a file, use the Read tool with a line range and
+enough surrounding context to understand it, not `sed -n`. To search or read structured
+data, use `grep`, `jq` or Read before writing a `python3` script; a new script is for what
+those cannot do.
+
 ## Know what the change touches
 
 Before writing code, say what the change is for, find what depends on it, and say what it
