@@ -178,25 +178,30 @@ MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` fo
 
 ## Current state
 
-**Phase 2, checkpoint 2d-ii-a is next.** Read
-[docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first — the active phase, what is done and
-device-verified, the 2d-i baseline numbers and what 2d-ii-a has to move are all kept current
-there, not here.
+**Phase 2 is complete; Phase 3 is next and not started.** Phase 2 was signed off on
+26-10-2026 with one deviation — 2d-ii-b (Paging) not built, and search typing re-checked on a
+real phone in Phase 3's phone pass — and one accepted test gap. Read
+[docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first: what is done and device-verified, the
+2d-ii-a figures, the Paging revisit trigger and the corpus's known gaps are kept there, not
+here.
 
 Two standing items that are not checkpoints, and one constraint that is neither:
 
-- **Collect anonymised bank SMS from your own phone, starting now.** Target 100+ across the
-  banks, cards and UPI apps you actually use; strip names and account numbers, keep the
-  structure. It is the only Phase 3 input that cannot be caught up later — code can be
-  reordered, a month of real messages cannot.
+- **The SMS corpus is `private/sms-corpus.jsonl`, and `private/` never enters git.** 151
+  real messages, cleaned, 149 usable for training. Raw bank SMS and statements live in
+  `private/` only; a test that needs the corpus needs an anonymised copy committed on purpose,
+  which is Phase 3's decision to make, not a convenience to take.
 - **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
   for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
   bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and
   [docs/TECH_STACK.md](docs/TECH_STACK.md).
-- **The app declares one permission, `POST_NOTIFICATIONS`**, requested from the Reminders
-  screen. READ_SMS and the notification listener stay undeclared until Phase 3 builds their
-  disclosure — declaring a sensitive permission before the feature exists is what gets a
-  Play Store submission rejected.
+- **The app declares two permissions.** `POST_NOTIFICATIONS`, requested from the Reminders
+  screen, and `READ_SMS`, requested from the SMS inbox only after its disclosure is accepted
+  — telephony is marked optional. The notification listener stays undeclared until a phase
+  builds its disclosure: declaring a sensitive permission before the feature exists is what
+  gets a Play Store submission rejected. **The disclosure text must stay true to the code**:
+  it promises only bank messages are kept, which is why a message from a phone number is
+  skipped and never stored (`SmsParser`, `Kind.PERSONAL`).
 
 ## Commands
 
