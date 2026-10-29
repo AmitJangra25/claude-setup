@@ -123,6 +123,11 @@ Last reviewed 11-10-2026.
 12. **D38's sweep script checks only part of what D38 enforces** — **deferred 11-10-2026**,
    script unchanged (Amit). Detail: `SETUP-PLAN.md` § *Decisions already made*, row **D38**.
 
+13. **Does the session check run after `/clear`? Not proven** — **deferred 29-10-2026**
+   (Amit). The `startup|clear` matcher is set, but a clean session prints nothing, so
+   silence cannot tell "ran" from "did not run". Prove it with a known drift, then
+   `/clear`. Detail: `harness/status.md` § *Completed*, session check after `/clear`.
+
 ## Project-specific — pointers only
 
 These belong in each project's own test record (`tests/` or `qa/`), created when
