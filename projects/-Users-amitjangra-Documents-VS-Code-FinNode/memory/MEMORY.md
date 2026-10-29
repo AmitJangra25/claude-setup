@@ -1,4 +1,5 @@
 - [Setup review: project by project](setup-review-project-by-project.md) — Voice-Flow + FinNode done, six left; read START HERE + PHASE 10 of ~/.claude/SETUP-PLAN.md first
+- [Check feasibility before building](check-feasibility-before-building.md) — measure on real data that a plan can meet the goal; a miss is a stop-and-ask, never a side note
 - [Always recommend an option](always-recommend-an-option.md) — never hand over a neutral menu; name the pick and why not the others.
 - [rtk hides --dry-run output](rtk-proxy-suppresses-dry-run-output.md) — empty output from `git add --dry-run` is the proxy, not a broken git.
 - [Figma design repo](figma-finnode-design-repo.md) — private, AmitJangra25/Figma_FinNode; gh can clone it, don't make it public

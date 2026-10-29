@@ -20,6 +20,8 @@
       "Bash(rtk npm run build)",
       "Bash(rtk npm run benchmark*)",
       "Bash(rtk npm run doctor:polish*)",
+      "Bash(rtk npm run doctor:vault)",
+      "Bash(npm run doctor:vault)",
       "Bash(rtk npm run doctor:paste*)",
       "Bash(rtk npm run electron:pack*)",
       "Bash(/usr/libexec/PlistBuddy -c \"Print :CFBundleShortVersionString\" \"/Applications/Voice Flow.app/Contents/Info.plist\")",

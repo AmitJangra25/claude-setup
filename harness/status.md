@@ -134,6 +134,18 @@ current state.
   11k → 1.2k tokens per read, estimated); the old file copied verbatim to
   `.claude/handoff-history-29-10-2026.md` (`cmp` identical). Both untracked in FinNode;
   nothing committed there. No other FinNode file changed.
+- **Mirror drift cleared; bypass rules removed — one-time exception** — 29-10-2026, approved
+  by Amit (option a). Four stale copies synced file by file (not `sync.sh --pull`): FinNode
+  `settings.json`, Packbly_web `settings.local.json`, Voice-Flow `settings.json` and
+  `CLAUDE.md`. `Bash(rtk proxy *)` had returned in the live FinNode and Voice-Flow
+  `settings.local.json`, plus `Bash(rtk git *)` in Voice-Flow; removed from the live files
+  from this setup session — an exception to § *Claude Setup*, which excludes project
+  settings — and those two copies synced. No other rule changed; nothing committed in either
+  project (local settings are untracked). Five memory changes written by the FinNode and
+  Voice-Flow sessions committed as they were. `STANDARDS.md` § *When something is unclear*:
+  "cloud" is "Claude" added to the dictation example. Not covered: `session-check.sh`
+  searches only `~/.claude` and the copies, so a bypass rule in a live project file shows
+  only as drift.
 
 ## Open
 
@@ -141,8 +153,6 @@ current state.
   `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md` lines 24–25, matching
   `project-rules/FinNode/CLAUDE.md`; only its commit in the FinNode repository is pending,
   with FinNode's next PR (29-10-2026).
-- **Mirror drift (Amit, 29-10-2026):** fix the 6 `project-rules/` drifts (FinNode ×2,
-  Voice-Flow ×3, Packbly ×1).
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 - **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a

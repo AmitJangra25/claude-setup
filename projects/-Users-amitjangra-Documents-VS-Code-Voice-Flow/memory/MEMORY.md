@@ -12,3 +12,5 @@
 - [I can't see permission prompts](cannot-see-permission-prompts.md) — an approved prompt looks identical to an ungated run; ask Amit, never infer silence from output
 - [Stop at the earliest gate](stop-at-earliest-gate.md) — with several approval gates in one message, stop at the first open one before any deletion or install
 - [State workaround behaviour before building](state-workaround-behaviour-before-building.md) — say what the user will still see and any manual step; stop after investigations; don't re-raise deferred issues
+- [Accounts → subscription, later](accounts-subscription-later.md) — rework after Phase 4–5; guest sign-out must never lose History (fixed #51, keep it)
+- [Rollout plan, 5–10 users](rollout-plan-5-10-users.md) — split PRs B2/C/D → E1/E2 → Amit tests 1–2 wks → F/G/S; licence keys; old data not critical (20-10-2026)

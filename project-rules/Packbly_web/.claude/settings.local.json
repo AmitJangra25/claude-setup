@@ -1,7 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(rtk git *)",
       "Bash(sort -t: -k2 -n -r)",
       "Bash(npm audit *)",
       "Bash(awk ' *)",

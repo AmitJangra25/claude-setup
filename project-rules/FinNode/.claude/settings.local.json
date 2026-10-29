@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(git fetch *)",
-      "Bash(git switch *)"
+      "Bash(git switch *)",
+      "Bash(grep -cv \"^$\")"
     ]
   }
 }

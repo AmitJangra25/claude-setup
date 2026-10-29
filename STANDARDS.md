@@ -241,7 +241,7 @@ needs, then stop.
 Ask, rather than pick a reading silently. If the request contradicts itself, say which
 parts conflict instead of choosing a side. Never present options neutrally — name the one
 you recommend and why, including why not the others. I dictate most prompts: read through
-transcription errors rather than asking what I meant ("bs4" is "VS Code").
+transcription errors rather than asking what I meant ("bs4" is "VS Code", "cloud" is "Claude").
 
 ## Docs are products
 

@@ -3,7 +3,6 @@
     "allow": [
       "WebFetch(domain:kotl.in)",
       "Bash(git add *)",
-      "Bash(rtk git *)",
       "Edit(docs/**)",
       "Write(docs/**)",
       "Edit(CLAUDE.md)",

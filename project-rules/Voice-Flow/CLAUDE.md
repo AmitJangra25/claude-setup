@@ -1,33 +1,38 @@
 # Voice Flow
 
 Personal macOS dictation app: a floating mic widget with a global hotkey,
-speech-to-text, an AI polish pass, and auto-paste into whatever app is
-focused. Also runs as a plain web app for local dev, but the desktop build
-is the real product. Success = dictation that lands correctly formatted in
-the focused app without the user touching the keyboard.
+speech-to-text, an AI polish pass, and auto-paste back into the app the
+dictation started in (never into Voice Flow itself). Also runs as a plain web
+app for local dev, but the desktop build is the real product. Success =
+dictation that lands correctly formatted in that app without the user touching
+the keyboard.
 
 ## Stack
 
-React ^19.3.1, React Router ^8.4.0, Vite ^8.3.4, Tailwind CSS ^4.3.3.
-Electron ^43.7.11 + electron-builder ^26.17.0 for the desktop shell/packaging.
-Radix UI primitives, Motion, Lucide icons. Vitest ^4.1.11 + Testing Library + jsdom ^30.1.3.
-TypeScript ^7.0.2. Node 22.23.2 on this machine (no version manager — see below).
-All in-range package updates are current as of 2026-10-15; Electron 44, motion 14 and vitest 5 are deliberately held back.
-`npm audit` is **not** clean: 9 findings (1 high, 8 moderate), all in build tooling — `undici` under
-Electron's and node-gyp's downloaders, and the electron-builder chain through `sprintf-js`. Believed not to ship
-in the app, because `node_modules` is excluded from the build (not verified). Plain `npm audit fix` is available
-for the high one; for the moderate chain the only suggested fix downgrades electron-builder, so it is left.
+React ^19.3.1, React Router ^8.5.0, Vite ^8.3.5, Tailwind CSS ^4.3.3.
+Electron ^43.8.3 + electron-builder ^26.18.0 for the desktop shell/packaging.
+Radix UI primitives, Motion, Lucide icons. Vitest ^5.0.5 + Testing Library + jsdom ^30.1.3.
+Vitest 5 clears mock call history before every test (`clearMocks` defaults to `true`) and needs Node ≥ 22.12.
+TypeScript ^7.0.2. Node 22.23.2 and npm 11.21.1 on this machine (no version manager — see below).
+**npm 10.9.8 cannot install vite 8.3.5 or vitest 4.1.12** — it crashes in arborist `#loadPeerSet`
+(`Cannot read properties of null (reading 'edgesOut')`); npm 11 resolves the same install cleanly (both seen
+23-10-2026). Reinstalling Node from its installer puts npm back to the bundled version.
+`npm outdated` on 23-10-2026: nothing in range left to apply. Deliberately held back: Electron 44/45,
+@types/node 26 (kept on 22 to match the Node the tests run on).
+`npm audit` on 23-10-2026: **0 vulnerabilities**.
 
 ## Architecture map
 
 One line per module. The reasoning behind each piece, and what has already gone wrong
 in it, is in [`docs/architecture.md`](docs/architecture.md) — read it before changing
-anything in `electron/` or `src/app/lib/`.
+anything in `electron/` or `src/app/lib/`. What each feature does, and the security model,
+is in [`docs/features.md`](docs/features.md); [`docs/README.md`](docs/README.md) indexes every document.
 
 - `electron/` — main process. `main.js` (main window + always-on-top widget),
   `preload.cjs` (contextBridge → `window.api`), `accountStore.js`, `dataStore.js`
-  (file-backed JSON), `clipboard.js` (auto-paste), `focusTarget.js` (frontmost app),
-  `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns —
+  (file-backed JSON), `clipboard.js` (auto-paste; Accessibility only for the ⌘V),
+  `focusTarget.js` (the app the dictation started in — never Voice Flow), `audioDuck.js`
+  (lowers other audio while recording, restores the exact level), `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns —
   `whisper-server` is **bundled**, built by `scripts/build-whisper.sh`, and starts on
   demand), `speechModel.js` (the Whisper model download: resume, retry, SHA-256,
   atomic rename),
@@ -35,12 +40,13 @@ anything in `electron/` or `src/app/lib/`.
   `contentSecurityPolicy.js` (the CSP header the `app:` handler sends).
 - **The twelve vault modules in `electron/`.** `vaultPaths.js` is the only place a path
   is decided · `vaultApply.js` the only thing that writes · `vaultRaw.js` the other
-  write path, create-only into `raw/` · `vaultStore.js` proves containment. **Seven
+  write path, create-only into `raw/` · `vaultStore.js` proves containment. **Six
   touch no filesystem at all** — `vaultPaths`, `vaultPlan`, `vaultPage`, `vaultEdit`,
-  `vaultTemplate`, `vaultDecide`, `vaultCompile` — and they hold the decisions worth
+  `vaultTemplate`, `vaultDecide` — and they hold the decisions worth
   being certain about, so they are settled by reading tests rather than by pointing a
-  compiler at a real vault. The other five read or write: `vaultStore`, `vaultTree`,
-  `vaultLint`, `vaultApply`, `vaultRaw`.
+  compiler at a real vault. The other six read or write: `vaultStore`, `vaultTree`,
+  `vaultLint`, `vaultApply`, `vaultRaw`, and `vaultCompile`, which reads pages
+  through `readVaultFile`.
 - `src/app/routes.tsx` — route table. The desktop build redirects `/` → `/app`.
 - `src/app/pages/` — one file per route. `settings/` has 15 tabs grouped by Compose
   mode through a `group` field on the `tabs` array, so a fourth group is one field
@@ -70,15 +76,18 @@ anything in `electron/` or `src/app/lib/`.
   hand-rolled `useState` + `setTimeout` is the thing not to write.
 - **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
   decides for itself. Styles is the exception in *wording* only — it resets a built-in.
-- **Tests 25–28 in `docs/manual-testing.md` have never been run** (left out while Chat and Vault are paused). Tests 24, 29, 30 (network/CSP rows still open) and 34 row 3 passed by hand 18–19-10-2026, and a fresh Test 23 was measured 19-10-2026. Test 31 (the bundled
-  speech engine) passed by hand 17-10-2026.
+- **Tests 25–28 in `docs/manual-testing.md` have never been run** (left out while Chat and Vault are paused).
+  Tests 1–23 and 29–37 passed by hand, the latest 21-10-2026; Test 24 changed 21-10-2026 and needs a re-run;
+  Tests 38–40 (paste target, lower other audio, Gemini) passed in part 22-10-2026 (Test 38 row 3 failed; it and the untested rows are deferred); still open are those rows, the run-sheet rows
+  marked ⬜. The latest Test 23 measurement is 19-10-2026.
 
 ## Working rules
 
-The claim is the rule. Its evidence, measurement and dated history are in
-[`docs/working-rules.md`](docs/working-rules.md) — **which holds all 42, not just the
-20 below.** Read it before changing anything in the polish pipeline, the vault, or
-`textPipeline.ts`.
+The claim is the rule. Why it holds, where it is pinned and the measurement that
+decided it are in [`docs/working-rules.md`](docs/working-rules.md) — **which holds all
+43, not just the 20 below**, in the same order. The dated history is in
+[`docs/archive/working-rules-to-20-10-2026.md`](docs/archive/working-rules-to-20-10-2026.md).
+Read it before changing anything in the polish pipeline, the vault, or `textPipeline.ts`.
 
 - Keep the pipeline order in `textPipeline.ts` intact: dictionary + punctuation must run pre-LLM, vibe-code + snippets post-LLM.
 - New Settings tabs get registered in **both** `routes.tsx` and the `tabs` array in `pages/Settings.tsx` — they're two separate lists that must agree.
@@ -124,8 +133,9 @@ command is used.
   prints the plan.
 - `npm run reset:permissions` — the TCC + LaunchServices half of the above, deleting
   nothing. This is the fix for duplicate Privacy rows.
-- `npm run doctor:paste` — read-only. **Run it after touching `focusTarget.js`, and
-  after a macOS update.** Nothing in `npm test` can see this class of bug.
+- `npm run doctor:paste` — read-only. Checks the front-app read and lists which apps a
+  paste would refuse. **Run it after touching `focusTarget.js`, and after a macOS
+  update.** Nothing in `npm test` can see this class of bug.
 - `npm run doctor:polish` — replays real `history.json` pairs through the guard.
   Read-only, no model, **exits 0 whatever it finds**. `--since`, `--verbose`, `--plans`.
 - `npm run doctor:polish -- --rerun --model <a,b,c>` — produces *new* polishes against
@@ -142,13 +152,15 @@ command is used.
 
 ## Known pitfalls
 
-[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 48 with the full story.
+[`docs/known-pitfalls.md`](docs/known-pitfalls.md) holds all 48, each with why it
+happens and where it is handled; the full dated story is in
+[`docs/archive/known-pitfalls-to-20-10-2026.md`](docs/archive/known-pitfalls-to-20-10-2026.md).
 These 14 are the ones that cost time before you would think to look.
 
 - **Small local models need `format: 'json'`, not a prompt asking for JSON.**
 - Signing is done by `scripts/install-app.js` after `ditto`, not by electron-builder (`identity: null`, it does **not** sign).
 - What governs macOS permission grants is the **designated requirement**, and ad-hoc signing gets it wrong: no certificate chain means the requirement is a bare `cdhash`, which changes every build, so each rebuild is a new app to TCC.
-- **`electron/` and `scripts/` are typechecked by a second config, `strict` off** — a field in a `= {}` options object needs its own default, or it reads as required.
+- **`electron/` and `scripts/` are typechecked by a second config, and only loosely.** `strict` is off, so a field in a `= {}` options object needs its own default, or it reads as required.
 - **A style or agent must never cap the output length.**
 - **`AiProcessing` is the exception to the rule below, and conflating the two has already cost a wrong answer**
 - **Never pass `--no-timestamps` to `whisper-server`.**
