@@ -58,8 +58,10 @@ project. A project whose folder moves is fixed by editing that line; until then
 `drift.sh` says `MISSING SOURCE`.
 
 **Checked automatically at the start of every setup session** (T3, 09-10-2026):
-`harness/session-check.sh` runs `drift.sh` and warns if anything drifted. It never
-syncs — fixing stays `./sync.sh --pull`, after review.
+`harness/session-check.sh` runs `drift.sh` and warns if anything drifted, and names any
+`Bash(rtk proxy *)` or `Bash(rtk git *)` rule in a manifest project's live settings files
+(29-10-2026). It never syncs — fixing stays `./sync.sh --pull`, or a file-by-file copy
+when one project's live file must not be copied yet, after review.
 
 ## What is here
 

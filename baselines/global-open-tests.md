@@ -48,6 +48,13 @@ Last reviewed 11-10-2026.
    `baselines/09-10-2026-run2.md` § *Not established*.
    **Accepted 10-10-2026 (Amit, T6):** the mechanism stays unproven; a return is now
    detected at the start of every setup session (`harness/session-check.sh`, T3).
+   **Mechanism shown 29-10-2026:** this repo's `.claude/settings.local.json` last changed
+   23-10-2026 07:43:37 IST, the same second setup session `26b8c4c8` logged an approval
+   with source `user_permanent` ("don't ask again") for `rtk proxy git -C … commit`. Only
+   that return is traced; the earlier ones are not. Removed again; `STANDARDS.md`
+   § *Reuse what is already there* now keeps `rtk proxy` to reads and says to answer plain
+   "Yes" to that offer; `session-check.sh` also checks live project settings (it had come
+   back in FinNode and Voice-Flow, with `rtk git *` in Voice-Flow).
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The
    original run measured rule coverage, not real exposure — 3 prompted, 56 did

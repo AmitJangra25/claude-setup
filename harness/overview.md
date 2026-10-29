@@ -9,9 +9,11 @@ which fact: `harness/status.md` § *Source of truth*. How a task runs:
 1. **Start.** `CLAUDE.md` imports `STANDARDS.md`, `RTK.md` and `OLLAMA.md` — every turn,
    in every project. Everything else is reference, read when a step needs it.
 2. **Setup sessions only** (started in `~/.claude`): `.claude/CLAUDE.md` loads, and the
-   `SessionStart` hook in `.claude/settings.json` runs `harness/session-check.sh`. It runs
-   `project-rules/drift.sh` and searches for `Bash(rtk proxy *)`; silent when clean,
-   warns and changes nothing otherwise.
+   `SessionStart` hook in `.claude/settings.json` runs `harness/session-check.sh` at
+   startup and after `/clear`. It runs `project-rules/drift.sh`, searches this repo and the
+   copies for `Bash(rtk proxy *)`, and searches each manifest project's live
+   `.claude/settings.json` and `settings.local.json` for `Bash(rtk proxy *)` and
+   `Bash(rtk git *)`; silent when clean, warns and changes nothing otherwise.
 3. **Each Bash command.** The `PreToolUse` hook (`rtk hook claude`) may rewrite it to an
    `rtk` form first; permission rules are then matched against what it produced
    (`ENVIRONMENT.md` § *Permissions — what stops and asks*).
