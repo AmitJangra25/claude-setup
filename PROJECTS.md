@@ -1,9 +1,9 @@
 # Projects
 
 One line per project: path, what it is, and whether it has its own `CLAUDE.md`.
-A project without one gets it by running the per-project setup prompt inside it.
+A project without one gets it from `templates/new-project.md`, filled in that project's own session.
 
-Verified against the filesystem 2026-09-20. Duplicate trees and the open questions are
+Verified against the filesystem 20-09-2026. Duplicate trees and the open questions are
 in `ENVIRONMENT.md`; branch and sync state is not written down anywhere — read it from
 git, per `ENVIRONMENT.md` § *Branch state*. Per-project progress lives in the project's own
 files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file stays an index and carries none of it.
@@ -22,11 +22,11 @@ files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file
 - **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26`
   — multi-tenant HR portal (React 18 + Vite, Express 5 + better-sqlite3, role-based
   dashboards). **Real employee records.** Its rules sat in `.claude/CLAUDE.md` until
-  2026-09-20 and are now at the project root, like every other project.
+  20-09-2026 and are now at the project root, like every other project.
 - **Debugger** (vthrudebugger) — `~/Documents/VS Code/vthrudebugger_v1` — drop-in
   in-app debugger library for React Native: network/console/error capture, QA alert
   toasts, network inspector, client-side mocks. **The Debugger tree being worked on** —
-  Amit's decision, 2026-09-27, not a check of which tree is furthest ahead.
+  Amit's decision, 27-09-2026, not a check of which tree is furthest ahead.
 - **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics
   platform: intracity courier + B2B relocation/warehousing tickets (Next.js 16 +
   React 19, MongoDB, Socket.IO, JWT). **Real customer and courier records.**
@@ -43,10 +43,10 @@ files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file
   (`package.json` names it `@figma/my-make-file`), a design bundle rather than an app.
 
 Not projects: `~/Documents/extra/v1.1-Packbly`, `~/Documents/Skils/PM-skills-Amit`, and
-`~/Documents/SecondBrain Obsidian/schema` — one 229-line `CLAUDE.md`, no code, no git: an
+`~/Documents/SecondBrain Obsidian/schema` — one `CLAUDE.md` (233 lines in the mirror, 29-10-2026), no code, no git: an
 agent brief for an Obsidian vault. Still mirrored in `project-rules/manifest.tsv`, because
 that mirror carries rule files through an account switch.
-`~/Documents/Voice-Flow-main` was listed here until 2026-09-20 and no longer exists.
+`~/Documents/Voice-Flow-main` was listed here until 20-09-2026 and no longer exists.
 See `ENVIRONMENT.md`.
 
 Claude also opens `~` and `~/Documents` themselves as working directories. They are

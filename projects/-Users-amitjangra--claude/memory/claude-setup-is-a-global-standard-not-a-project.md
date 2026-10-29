@@ -15,6 +15,7 @@ cross-check in `harness/cross-check.md`. Definition: `STANDARDS.md` § *Claude S
 **Why:** Amit, 12-10-2026, as a permanent clarification — the term needs one meaning
 in every session, and `.claude/CLAUDE.md` had called `~/.claude` "a project".
 
-**How to apply:** never list, select or plan Claude Setup as a project. Run a Claude
+**How to apply:** never list Claude Setup in `PROJECTS.md` or treat it as a product
+project; setup sessions still run in project mode (`.claude/CLAUDE.md`). Run a Claude
 Setup cross-check in the project's own session; report, change nothing. Related:
 [[claude-setup-status]].

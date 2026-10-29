@@ -1,8 +1,11 @@
 ---
 name: skill-overrides-name-only
-description: skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are locked and only /plugin reaches them
+description: "skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are locked and only /plugin reaches them"
 metadata:
+  node_type: memory
   type: reference
+  originSessionId: 42a18e81-f0ae-4b86-9292-2e939ca73c2f
+  modified: 2026-10-29T14:06:27.441Z
 ---
 
 `skillOverrides` in `settings.json` sets each skill to one of four states:
@@ -33,7 +36,8 @@ was asked, and every one was a silent no-op.
 
 **`/skills` writes to `~/.claude/settings.local.json`, which is gitignored.** Its
 `skillOverrides` **merges** with the block in `settings.json` rather than replacing it
-— verified. But it is not in the repo, so skill state set through the menu does **not**
+— recorded, but whether Claude Code reads this file at all is unverified
+(`ENVIRONMENT.md` § *3. Permissions — what stops and asks*). But it is not in the repo, so skill state set through the menu does **not**
 travel to a second account. See [[claude-setup-status]] for Block 4.
 
 **What `skillOverrides` cannot reach.** A plugin whose cost is MCP *server

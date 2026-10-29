@@ -13,7 +13,7 @@ you. Run `ollama-do` with no arguments for the current task list.
 
 Shell out to `ollama-do` when **all three** hold:
 
-1. The input is large or the task is repetitive.
+1. The input is large.
 2. The **output is small** — a paragraph, a message, three lines.
 3. Being slightly wrong is cheap and obvious.
 

@@ -4,10 +4,10 @@ A copy of each project's `CLAUDE.md` and its permission rules, so they survive a
 move to another machine or a switch to another Claude account.
 
 **Why they are here.** The policy on tracking these files in a project's own repo
-changed once. Until 2026-09-20 they were deliberately kept out — a standing
-preference from 11 Aug 2026, recorded in memory as `claude-md-not-in-git` and
+changed once. Until 20-09-2026 they were deliberately kept out — a standing
+preference from 11-08-2026, recorded in memory as `claude-md-not-in-git` and
 confirmed as **D13** in `../SETUP-PLAN.md`. **Both are superseded.** Since
-2026-09-20, `CLAUDE.md` and `.claude/settings.json` **stay tracked while a repo is
+20-09-2026, `CLAUDE.md` and `.claude/settings.json` **stay tracked while a repo is
 private and solo**; `../STANDARDS.md` § *Git* governs, and taking them out is
 raised before a repo goes public, never done silently.
 
@@ -85,7 +85,7 @@ there is nothing to mirror. Add a line when it gains one.
 | `Voice Flow_v1/` | `~/Documents/VS Code/Voice Flow_v1` |
 
 **`Voice Flow_v1` is not the Voice Flow project.** It is an earlier tree, superseded by
-`Voice-Flow` and not worked on — Amit's decision, 2026-09-27. The names are one hyphen
+`Voice-Flow` and not worked on — Amit's decision, 27-09-2026. The names are one hyphen
 apart, so check which one you are in before changing anything: `Voice-Flow` is the
 current one.
 

@@ -32,7 +32,7 @@ The setup is finished when every line is true, each checked by a command or a re
 - [ ] `project-rules/drift.sh` reports 0 drifted; `bash harness/session-check.sh` prints nothing.
 - [ ] Every item in `baselines/global-open-tests.md` is closed, accepted, or deferred with
       a dated decision; items 9 and 10 count as deferred to their project.
-- [ ] `harness/status.md` § *Known contradictions* is empty, D23 included.
+- [ ] `harness/status.md` § *Known contradictions* is empty (D23's was settled by D38, 10-10-2026).
 - [ ] The per-project `SessionStart` idea in `harness/status.md` § *Open* is placed or rejected.
 - [ ] `harness/status.md` *Last verified* is the finish date, and every pointer in it resolves.
 - [ ] A fresh `/context all` in a setup session is at or below 23k (`ENVIRONMENT.md`).

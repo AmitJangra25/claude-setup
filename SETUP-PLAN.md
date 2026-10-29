@@ -929,6 +929,7 @@ Only system 2 was deliberately authored. The rest accumulated.
    model opus[1m], effort high, 1 hook (rtk on every Bash), statusline script
    (12-10-2026: default model now `sonnet`, `switchModelsOnFlag` false — D39.
    Whether "effort high" reaches Sonnet 5.5 or Opus 5.5 is not known — D39.)
+   (23-10-2026: default model back to `opus` — `0e47a4f`.)
    AS FOUND: 560 permission rules across 8 projects / 11 files (the "562 / 12
    files" first written here was wrong; measured again it is 560 / 11).
    All 560 are `allow` — not one project-level `ask` or `deny`.

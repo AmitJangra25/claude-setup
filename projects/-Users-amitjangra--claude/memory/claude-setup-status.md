@@ -1,11 +1,11 @@
 ---
 name: claude-setup-status
-description: "Where the Claude Code setup's status lives — ~/.claude/harness/status.md is the one current view; read it before changing any rule, setting, permission, hook or memory"
+description: "Where the Claude Code setup's status lives — ~/.claude/harness/status.md is the one current view; when to read and update it is in .claude/CLAUDE.md"
 metadata:
   node_type: memory
   type: project
   originSessionId: c68b536f-cba2-4bd5-a222-40996918bc2d
-  modified: 2026-10-08T00:00:00.000Z
+  modified: 2026-10-29T14:48:00.082Z
 ---
 
 Amit's Claude Code setup lives in `~/.claude`, which is itself the git repo
@@ -25,8 +25,8 @@ starting folder, which is how these notes ended up in the wrong place. `~/Docume
 is not a repo and holds every project at once, so it is the widest possible working
 directory — the opposite of the one-project boundary the rules exist to keep.
 
-**How to apply:** read `~/.claude/harness/status.md` before changing any rule,
-setting, permission, hook or memory, and update it when they change. Nothing is
+**How to apply:** when to read and update `harness/status.md` is in `.claude/CLAUDE.md`
+(at Orient for setup work; every changing setup plan updates it). Nothing is
 removed or blocked without Amit's explicit approval. See [[stay-on-the-asked-task]]
 and [[propose-skills-from-observed-work]]; for skill and plugin settings, see
 [[skill-overrides-name-only]]. The always-recommend-an-option rule is not a note

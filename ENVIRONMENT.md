@@ -8,15 +8,15 @@ read it when you're about to change something, not on every session.
 from `~/.claude`, 10-10-2026, Claude Code 2.1.296. `STANDARDS.md` 5.5k + `RTK.md` 570 +
 `OLLAMA.md` 266; the 5.5k is rounded by `/context`. `CLAUDE.md` itself is a further 34
 and is **not** one of the three — it is the file doing the importing. Earlier readings:
-~5,355 on 2026-09-30 (2.1.285) and ~3,166 on 2026-09-22; `STANDARDS.md` grew between
+~5,355 on 30-09-2026 (2.1.285) and ~3,166 on 22-09-2026; `STANDARDS.md` grew between
 them (**D27**, **D30**), so the rise is real, not a measurement change.
 
 A file explaining why a threshold is 200K doesn't change how work gets done, so it stays
 out of that budget.
 `PROJECTS.md` and `REPOS.md` joined this file and `SETUP-PLAN.md` outside the import list
-on 2026-09-22, for the same reason — reference, not rules.
+on 22-09-2026, for the same reason — reference, not rules.
 
-Last full review: 10-10-2026 (T6, batch 6). The one before was 2026-09-22.
+Last full review: 10-10-2026 (T6, batch 6). The one before was 22-09-2026.
 
 Figures below include measurements, estimates and projections. Each should state its date
 and method — the commands are in § *How the numbers were measured*.
@@ -73,7 +73,7 @@ entry 3). `ask` and `deny` rules still apply whatever the hook returns — the d
 *"Deny and ask rules are still evaluated regardless of what the hook returns."*
 (`baselines/global-open-tests.md` item 11).
 
-> **What the hook actually rewrites, tested 2026-09-26.** It handles a plain command
+> **What the hook actually rewrites, tested 26-09-2026.** It handles a plain command
 > and the `&&` and `;` chain operators. Nearly every other shell construct makes the
 > *whole line* run raw — redirects are the exception noted in the table:
 >
@@ -87,23 +87,23 @@ entry 3). `ask` and `deny` rules still apply whatever the hook returns — the d
 > | `python3 …` · `sed …` — not handled in any form | **raw** |
 >
 > **This is why adoption was 26%**, not because rtk failed: `rtk session` reported
-> 24–34% across four sessions on 2026-09-26, and `rtk discover` found ~36.3K tokens
+> 24–34% across four sessions on 26-09-2026, and `rtk discover` found ~36.3K tokens
 > left on the table over 279 scanned commands — mostly `grep -B` (21), `gh api` (13)
 > and `git log` (11). The habit that closes it is in `RTK.md`: prefer the plain form
 > over piping into `head` when the output is small enough to read anyway.
 >
 > **Treat 36.3K as a floor.** `rtk discover` said it scanned 279 commands over 30 days
-> while `rtk session` counted 555 on 2026-09-26 alone, so the two disagree about their
+> while `rtk session` counted 555 on 26-09-2026 alone, so the two disagree about their
 > own window.
 >
 > **Current state — 09-10-2026:** `rtk gain` reports **60.9% over 12,104 commands, 8.5M
-> tokens saved** (59.0% over 11,496 on 2026-10-03). The
+> tokens saved** (59.0% over 11,496 on 03-10-2026). The
 > overall percentage drifts with the mix of work — it fell from 59.6% to 59.0% during a
 > single docs-heavy session, because grep and read save least. **Treat the overall number
 > as "roughly 60%" and read the live value from `rtk gain`**; the per-command figures below
 > are the stable and useful part. `RTK.md` deliberately copies no total.
 >
-> **Savings are lopsided by command**, measured 2026-09-26 over 10,017 commands (59.6%
+> **Savings are lopsided by command**, measured 26-09-2026 over 10,017 commands (59.6%
 > overall, historical):
 > `ps aux` 98.3%, `eslint` 95.2%, `gradlew` 95.9%, `vitest` 89.4% — but `grep` 22.0%
 > and `read` 10.9%. The low figures are correct. rtk saves by stripping redundancy, and
@@ -122,7 +122,7 @@ That is why 615 permission entries had accumulated across the projects: safe com
 were being approved by hand, one project at a time. The global `allow` list now covers
 the read-only `rtk` wrappers, so this stops happening.
 
-**Hook auditing is on, from 2026-09-20.** `settings.json` → `env` sets
+**Hook auditing is on, from 20-09-2026.** `settings.json` → `env` sets
 `RTK_HOOK_AUDIT=1`, so rtk writes one line per hook call to
 `~/.local/share/rtk/hook-audit.log`; read it with `rtk hook-audit`. `env` is read at
 session start, so it never covers the session that set it. It is there to catch the one
@@ -141,7 +141,7 @@ past 250K costs more per turn and uses more of the usage limit, so the nudge now
 sooner; 150K was considered and judged too early. The warning exists to nudge a clear at
 a **task boundary**, where it saves 45–54%, rather than mid-task, where it saves about 3% — it was
 never about running out of room. Earlier values: 250K/400K/600K, lowered to
-220K/300K/450K on 2026-09-26, raised to 250K/400K/550K on 2026-09-30 because against a 1M
+220K/300K/450K on 26-09-2026, raised to 250K/400K/550K on 30-09-2026 because against a 1M
 window 220K fired while roughly 94% of it was still free.
 
 **It costs nothing in tokens.** The status line is a shell command the terminal renders;
@@ -159,30 +159,33 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   39 rules    read-only things stop prompting
-    ask     90 rules    all on things that change something
-    deny     2 rules    .env files unreadable anywhere
+    ask     96 rules    all on things that change something
+    deny    34 rules    .env blocked for Read and 10 shell commands; not airtight
 
 **Counts measured against the live file 15-10-2026** (`jq`); `ask` re-measured 23-10-2026,
-58 → 90 (see *Added 23-10-2026* below). `allow` went **34 → 39** that
-day: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
+58 → 90 (see *Added 23-10-2026* below). On 29-10-2026 `ask` went **90 → 96** (`find`
+`-delete`, `-exec`, `-ok`, `-fprint`, `-fls`; `xargs … rm`) and `deny` **2 → 34** (`.env`
+for `rtk read`, `rtk grep`, `rtk rg`, `xxd`, `cat`, `less`, `awk`, `sed`, `head`, `tail`,
+three patterns each, plus two `rtk proxy` patterns); every rule tested in `/tmp`. `allow` went **34 → 39** on
+23-10-2026: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
 listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
 out, `rtk gh run list*` and `rtk tree *` in). Sessions
 started in `~/.claude` also load four setup-only `ask` rules from `.claude/settings.json`
-(**D36**); they are not in the counts above. On 2026-09-27 `ask` went **51 → 58**:
+(**D36**); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
 seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
 `SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
 fenced. Before that, two corrections this block carried
-for a while: it read `ask 87` until 2026-09-20, and then `ask 112` until 2026-09-22,
-having missed the merge that took **112 → 51** on 2026-09-20 (one pattern per command
+for a while: it read `ask 87` until 20-09-2026, and then `ask 112` until 22-09-2026,
+having missed the merge that took **112 → 51** on 20-09-2026 (one pattern per command
 instead of up to three spellings — `SETUP-PLAN.md`'s **`ask` list merged** row). `allow` went
-**35 → 33** on 2026-09-22. The path before that: **87 → 101** when Phase 3's gaps were
+**35 → 33** on 22-09-2026. The path before that: **87 → 101** when Phase 3's gaps were
 closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
 `SETUP-PLAN.md`'s **`ask` rules proven** row), **→ 112** when the permission-list pass added
 `rtk wget` and four `pip` spellings. The old "~5.0 prompts per session" figure was
 measured against 87 rules and has been dropped rather than carried forward, because it
 was never re-measured.
 
-**Current state — 2026-10-03: the two local settings files.** Two files named
+**Current state — 03-10-2026: the two local settings files.** Two files named
 `settings.local.json` exist under `~/.claude`. Both are **ignored by git**, so neither is
 in this repo and **GitHub cannot show their contents**. Their rules **do not travel** to
 another machine or account. Counts change whenever Amit clicks allow on a prompt, so
@@ -190,7 +193,7 @@ treat the numbers below as of this date only.
 
 | File | allow / ask / deny | Status |
 |---|---|---|
-| `~/.claude/.claude/settings.local.json` | 9 / 0 / 0 | **Active** — confirmed |
+| `~/.claude/.claude/settings.local.json` | 13 / 0 / 0 (29-10-2026; 9 on 03-10-2026) | **Active** — confirmed |
 | `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **undocumented location**. `/skills` is recorded writing here; whether Claude Code reads it is **unverified** |
 
 The nested file is the project-level overlay for `~/.claude` itself, because the setup
@@ -212,7 +215,7 @@ Neither file is merged, moved or changed by this note.
 command *before* the permission check, so fencing `wget *` alone fences nothing: the
 engine only ever sees `rtk wget …`. `curl` carried all three spellings; `wget` carried
 the bare and `rtk proxy` forms but **not** `rtk `, so downloads ran unprompted until
-2026-09-20. Probed live rather than reasoned — `wget …` → `rtk wget …`, and
+20-09-2026. Probed live rather than reasoned — `wget …` → `rtk wget …`, and
 `pip3 install …` → `rtk pip install …`. **Any new fence needs every spelling the hook
 can produce.**
 
@@ -227,7 +230,7 @@ flag beside it (`-c -C -m -M -d -D -u --edit-description --unset-upstream` give 
 error; `-f`, `-t` and `--create-reflog` only list). `-vv` must stay exact. Tested on a
 scratch clone, 15-10-2026.
 
-**Changed 2026-09-18** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
+**Changed 18-09-2026** (phases 1.2 and 1.3 — `SETUP-PLAN.md` has the full record).
 `ask` went 52 → 87: 15 commands that ran silently in at least one project are now
 fenced — `tccutil`, `sudo`, `security`, `killall`, `sqlite3`, `open`, `git mv`,
 `gem install`, `ollama pull|rm|signin`, `gh api|pr|auth|repo` — each in bare and
@@ -242,7 +245,7 @@ could write overflow logs everywhere but read them back only in Voice-Flow.
 
 Two consequences followed: `Bash(gh auth status*)` and `Bash(gh repo view*)` became
 **dead letters**, because the broader `ask` rules override them. They were left in place
-until **2026-09-22, when both were removed** — a rule that can never fire is a file
+until **22-09-2026, when both were removed** — a rule that can never fire is a file
 claiming a permission it does not grant. Removing an `allow` rule can only ever add a
 prompt, and these already prompted. The same sweep removed two more in Voice-Flow
 (`GIT_EDITOR=true git rebase --continue`, `tccutil`), four exact duplicates, and one
@@ -255,7 +258,7 @@ entry can only ever remove a prompt, never add one.
 **`ask`** — git operations that publish or discard work (`push`, `reset`, `rebase`,
 `clean`, `rm`, `merge`, `checkout`, `restore`, `stash drop`, `stash clear`), dependency
 installs including brew's `install`, `uninstall`, `upgrade` and `reinstall`, `npx --yes`,
-`rm`, `curl`, `wget`, `pkill`, `kill`. Since the 2026-09-20 merge most are one pattern
+`rm`, `curl`, `wget`, `pkill`, `kill`. Since the 20-09-2026 merge most are one pattern
 with a leading `*`, which covers the bare, `rtk` and `rtk proxy` spellings at once; `rm`,
 `kill`, `killall`, `pkill` and `open` keep explicit spellings, because they sit inside
 ordinary words (`SETUP-PLAN.md`'s **`ask` list merged** row). **Added 23-10-2026:** `git cherry-pick`, `revert`, `filter-branch`, `filter-repo`,
@@ -288,7 +291,7 @@ mirror's only guard could not be run at all. A permission rule would not have fi
 honestly — `--pull` is just an argument, and argument-constrained `Bash(...)` patterns do
 not hold. The report path was split out into `project-rules/drift.sh`, which has no `cp`,
 `rm`, `mkdir` or output redirect and can therefore be granted safely; `sync.sh` keeps
-`--pull`, now required, and stays behind a prompt. Split 2026-09-29, and the first run of
+`--pull`, now required, and stays behind a prompt. Split 29-09-2026, and the first run of
 the separated reporter found real drift. **No new permission rule was added.**
 
 ### Effort on Opus 5.5 — the old keys are not known to apply
@@ -316,7 +319,7 @@ one you stop reading — which is worse than not having it.
 | `adb` | 3.9 | Your own emulator. |
 | `git commit` | 2.0 | **Superseded — `git commit` is now in `ask`; the live list holds two commit patterns (`*git commit*` and `*git * commit*`).** The original reasoning, kept as the record: local and reversible, while `git push`, which publishes, is in `ask`. |
 
-**`rtk proxy` — superseded 2026-09-20. `Bash(rtk proxy *)` should exist nowhere, but it
+**`rtk proxy` — superseded 20-09-2026. `Bash(rtk proxy *)` should exist nowhere, but it
 keeps coming back** in `settings.local.json` files, which git ignores — so sweep those,
 not just the tracked files. What re-adds it is unproven (`baselines/global-open-tests.md`
 item 2). The reasoning below is kept as the record of why it was left in place for as
@@ -327,11 +330,11 @@ What replaced it: global `allow` carries only the four read-only inner forms —
 genuinely needs one, as `rtk proxy cmp *` was added for backup verification. The
 dangerous inner forms stay named individually in `ask` exactly as described below; that
 part did not change. Verified by sweeping every `.claude/settings*.json` under
-`VS Code/`: zero occurrences of the wide rule. **Scope, added 2026-09-30: that sweep
+`VS Code/`: zero occurrences of the wide rule. **Scope, added 30-09-2026: that sweep
 covered the project trees only. It did not cover `~/.claude` itself, where the wide rule
 was still present in `.claude/settings.local.json` and was removed that day.**
 
-> **The original decision, 2026-09-18 — `rtk proxy` is in `allow`, not removed.**
+> **The original decision, 18-09-2026 — `rtk proxy` is in `allow`, not removed.**
 > `rtk proxy <cmd>` runs any command it's given, so `Bash(rtk proxy *)` is effectively a
 > blanket approval — but it's used 230 times for real work (`grep` 81, `sed` 67,
 > `git` 41, `npx` 15). Removing it would have caused 230 prompts. Instead the dangerous
@@ -348,25 +351,25 @@ was still present in `.claude/settings.local.json` and was removed that day.**
 
 ## What every session loads before you type
 
-**Historical — the 2026-09-26 reading was 22.0k. Superseded by *Current state —
-2026-10-03* below; it is no longer the latest figure and must not be quoted as current.**
+**Historical — the 26-09-2026 reading was 22.0k. Superseded by *Current state —
+03-10-2026* below; it is no longer the latest figure and must not be quoted as current.**
 `/context` in a fresh session from `~/.claude`, Opus 5, auto mode, nothing typed. Two
 readings that day both returned 22.0k:
 one after `RTK.md` grew, on a version that was not recorded, and one on Claude Code
 2.1.283 after the `engineering` plugin was disabled.
 
 The last complete category breakdown before that was recorded at 21.9k, ahead of later
-changes. A complete breakdown of the **current** setup was missing until 2026-10-03 —
+changes. A complete breakdown of the **current** setup was missing until 03-10-2026 —
 it is now recorded immediately below, so that gap is closed.
 
 **Current state — 11-10-2026: 23k.** First-turn `/context all` from `~/.claude`,
 **Opus 5.5**, Claude Code **2.1.296**, `Messages` at 10 tokens; effort and mode not shown.
 Pasted by Amit at the end of T6 (`baselines/t6-removals.md`); the 10-10-2026 reading was
 taken at its start, on the same model and version. The 09-10-2026 reading
-was Opus 5.5 on 2.1.295, effort and mode not recorded; the 2026-10-03 reading was Opus 5
+was Opus 5.5 on 2.1.295, effort and mode not recorded; the 03-10-2026 reading was Opus 5
 at high effort, auto mode, 2.1.288. **Measured, not estimated.**
 
-| Bucket | 2026-10-03 | 09-10-2026 | 10-10-2026 | 11-10-2026 |
+| Bucket | 03-10-2026 | 09-10-2026 | 10-10-2026 | 11-10-2026 |
 |---|---|---|---|---|
 | System prompt | 3.4k | 2.4k | 2.4k | 2.4k |
 | System tools | 12.6k | 12.7k | 12.8k | 12.8k |
@@ -381,7 +384,7 @@ with the model before. The last two columns are like for like. `/context` printe
 11-10-2026 total as "23k", without a decimal, so the drop from 23.1k is under the
 display's rounding and not a measured amount. Memory files is the bucket this setup
 controls. On 11-10-2026 it was `STANDARDS.md` **5.4k** (5.5k on 10-10-2026, 4.3k on
-2026-09-26), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 178
+26-09-2026), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 178
 (151 on 09-10-2026, before T3 added its warning line), `CLAUDE.md` 34.
 
 **Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. The 0.1k over the
@@ -389,21 +392,21 @@ old figure is Claude Code's system tools on 2.1.296, not this setup's files, so 
 target moved instead of the files being cut. `harness/overview.md` § *What "finished"
 means* checks against this figure.
 
-The 2026-10-03 column fills the gap described in the paragraph above: it is the first complete bucket
+The 03-10-2026 column fills the gap described in the paragraph above: it is the first complete bucket
 breakdown **of the current setup**. It is not the first ever recorded here — the 21.9k
 breakdown came earlier, before later changes.
 
 **Do not compare this total with the 22.0k above.** That reading was taken on 2.1.283,
-and this file carries no record of deferred tools. The 2026-10-03 `/context` lists
+and this file carries no record of deferred tools. The 03-10-2026 `/context` lists
 deferred tools separately — MCP 3.3k, system tools 17.3k — and does **not** count them in
 the 22.8k. Whether the 22.0k reading counted them the same way is **unverified**. The two
 numbers may be measuring different things, so the buckets above stand on their own and
 any difference between the two totals does not.
 
-**Current state — 2026-10-03: project-work token cost.** **149,112 tokens per assistant
+**Current state — 03-10-2026: project-work token cost.** **149,112 tokens per assistant
 turn** — 1,018,735,369 tokens over 6,832 turns. Method: sum `input_tokens +
 cache_creation_input_tokens + cache_read_input_tokens + output_tokens` across every
-session transcript under `projects/*/`, dated after 2026-09-17, with `~/.claude` sessions
+session transcript under `projects/*/`, dated after 17-09-2026, with `~/.claude` sessions
 excluded so only real project work counts. The comparable figure for the same work before
 that date is **215,251** over 9,680 turns. **Measured and reproducible** — re-running the
 sum returned the identical figure.
@@ -429,39 +432,39 @@ the `/plugin` menu.
 **Plugins now: `pdf-viewer` and `swift-lsp` enabled, 12 disabled.**
 
 **What the 33 `skillOverrides` entries are.** 30 bare keys. **18 were confirmed working by
-measurement on 2026-09-26; 12 more were added on 2026-09-30 and are NOT yet verified** — a
+measurement on 26-09-2026; 12 more were added on 30-09-2026 and are NOT yet verified** — a
 wrong key is a silent no-op, so they need `/context all` in a fresh session. The 12 are the
 heaviest remaining skills, ~2.1k between them. `claude-api` was deliberately left at full
 cost: its description is an auto-trigger, and `name-only` would delete it. The 5 `pdf-viewer`
 skills cannot be reached at all.
 
-**Current state — 2026-10-03: the 12 are verified.** The first-turn `/context` recorded
+**Current state — 03-10-2026: the 12 are verified.** The first-turn `/context` recorded
 above reads Skills **1.1k**, against ~3.0k before the keys were added and a prediction of
 ~1.1k. Skills is reported on its own `/context` line, so this check does not depend on the
 total and is untouched by the deferred-tools caveat. The sentence above is kept as the
-record of what was still unknown on 2026-09-30.
+record of what was still unknown on 30-09-2026.
 3 `artifact-*` keys naming skills that no longer load at all since `enableArtifact:
 false` — harmless, kept at Amit's direction. There were 36: the other 15 were plugin keys,
-removed on 2026-09-26 once `/skills` confirmed they never could work. `user-invocable-only`
+removed on 26-09-2026 once `/skills` confirmed they never could work. `user-invocable-only`
 was confirmed working too, on a separate skill: the skill count went 49 → 48 and the skill
 left the list entirely, still typable as `/doc-coauthoring`.
 
 **`/skills` writes to `~/.claude/settings.local.json`, which is gitignored** (memory note
 `skill-overrides-name-only`). Its `skillOverrides` block **merges** with the one in
-`settings.json` rather than replacing it — verified 2026-09-26. **Which file held the
+`settings.json` rather than replacing it — verified 26-09-2026. **Which file held the
 entries during that check is not recorded**, so it does not prove the top-level file is
 read — see the local-settings table above. And because the file is gitignored it is **not in this repo and does not travel
 to a second account.** Block 4's runbook needs this.
 
-**Also changed on 2026-09-26, at no token cost:** the status-line thresholds, 250K/400K/600K
+**Also changed on 26-09-2026, at no token cost:** the status-line thresholds, 250K/400K/600K
 → 220K/300K/450K. See § *Status line* — the status line is a shell command the terminal
 renders, and its output never enters context.
 
-**Superseded 2026-09-30:** raised again to **250K/400K/550K**. The 2026-09-26 change above
+**Superseded 30-09-2026:** raised again to **250K/400K/550K**. The 26-09-2026 change above
 is kept as the record of why they were lowered at the time; it no longer describes the
 machine. See § *Status line*.
 
-**11-10-2026: lowered again** to **200K/300K/400K**, to save tokens. The 2026-09-30 values
+**11-10-2026: lowered again** to **200K/300K/400K**, to save tokens. The 30-09-2026 values
 above no longer describe the machine either. See § *Status line*.
 
 ### How the numbers moved
@@ -475,15 +478,15 @@ repeats.
 
 | Date | Figure | Method | What it was |
 |---|---|---|---|
-| 22 Sep | ~58,300 | first-reply sum | Before any cut. n = 1. Of it: ~30,000 Claude Code's own system prompt, tool schemas and built-in skills (not settable), 4,214 the imported rule files, 20,480 ten plugin catalogues, 2,359 account-level synced skills |
-| 22 Sep | ~36,800 | **arithmetic** | A projection, not a measurement — the before figure minus component estimates. It was **8,302 low** |
-| 22 Sep | 45,102 | first-reply sum | After the cut. n = 1. A real saving of 13,233, or 62% of the 21,500 projected. Re-checked at the time: imported rule files ~3,077 against the 3,166 recorded |
-| 25 Sep | 44,700 | first-reply sum | Post-Block-1 baseline — 44,699 · 44,701 · 44,700, three fresh sessions from the home folder, Claude Code 2.1.282, `opus[1m]` at high effort. A baseline for later changes, **not** a measure of Block 1 |
-| 26 Sep | 34.3k | `/context` | **26 Sep 2026, before the startup cut:** system tools 17.1k, skills 7.2k, memory files 4.6k, system prompt 3.2k, MCP server instructions 1.5k, MCP tools 725 |
-| 26 Sep | 21.5k | `/context` | After the four `settings.json` changes |
-| 26 Sep | **21.9k** | `/context` | **The last complete category breakdown:** system tools 9.7k, skills 3.9k, memory files 4.6k, system prompt 3.2k, MCP server instructions 0, MCP tools 0 |
-| 26 Sep | 22.0k | `/context` | `RTK.md` grew 374 → 491 tokens; memory files 5.0k → 5.1k. A deliberate +117, not a regression |
-| 26 Sep | 22.0k | `/context` | `engineering` disabled. Skills 48 → 39, 3.9k → 3.0k; system tools 9.7k → **10.6k**. Net zero |
+| 22-09-2026 | ~58,300 | first-reply sum | Before any cut. n = 1. Of it: ~30,000 Claude Code's own system prompt, tool schemas and built-in skills (not settable), 4,214 the imported rule files, 20,480 ten plugin catalogues, 2,359 account-level synced skills |
+| 22-09-2026 | ~36,800 | **arithmetic** | A projection, not a measurement — the before figure minus component estimates. It was **8,302 low** |
+| 22-09-2026 | 45,102 | first-reply sum | After the cut. n = 1. A real saving of 13,233, or 62% of the 21,500 projected. Re-checked at the time: imported rule files ~3,077 against the 3,166 recorded |
+| 25-09-2026 | 44,700 | first-reply sum | Post-Block-1 baseline — 44,699 · 44,701 · 44,700, three fresh sessions from the home folder, Claude Code 2.1.282, `opus[1m]` at high effort. A baseline for later changes, **not** a measure of Block 1 |
+| 26-09-2026 | 34.3k | `/context` | **26-09-2026, before the startup cut:** system tools 17.1k, skills 7.2k, memory files 4.6k, system prompt 3.2k, MCP server instructions 1.5k, MCP tools 725 |
+| 26-09-2026 | 21.5k | `/context` | After the four `settings.json` changes |
+| 26-09-2026 | **21.9k** | `/context` | **The last complete category breakdown:** system tools 9.7k, skills 3.9k, memory files 4.6k, system prompt 3.2k, MCP server instructions 0, MCP tools 0 |
+| 26-09-2026 | 22.0k | `/context` | `RTK.md` grew 374 → 491 tokens; memory files 5.0k → 5.1k. A deliberate +117, not a regression |
+| 26-09-2026 | 22.0k | `/context` | `engineering` disabled. Skills 48 → 39, 3.9k → 3.0k; system tools 9.7k → **10.6k**. Net zero |
 
 **34.3k → 21.9k is the method-consistent pair, and the one to trust.** It is Block 2's
 result. The two readings after it are the cost of changes made afterwards, not a drift in
@@ -496,10 +499,10 @@ same amount in the same measurement.** The only other variable that moved was Cl
 to `settings.json` was `engineering@synced: false`. **Causation is inferred, not proven.** If
 a later version drops system tools back to 9.7k, that settles it.
 
-**What this table cannot tell you.** Which component of the 22 Sep projection was
+**What this table cannot tell you.** Which component of the 22-09-2026 projection was
 optimistic — `usage` records totals, not a split, and settling it needs a live
 per-component breakdown. When written, it also lacked a complete breakdown of the current
-setup; those now exist — 2026-10-03, 09-10-2026 and 10-10-2026, in the *Current state*
+setup; those now exist — 03-10-2026, 09-10-2026 and 10-10-2026, in the *Current state*
 table above.
 
 ### What holds, whatever the numbers do
@@ -556,7 +559,7 @@ asked.
 
 ### Retention
 
-`cleanupPeriodDays` is 60, set 2026-09-22. Transcripts are not junk: every first-reply figure
+`cleanupPeriodDays` is 60, set 22-09-2026. Transcripts are not junk: every first-reply figure
 in this section came from them. Nothing was deleted when it was set — the oldest transcript
 was 21 days old.
 
@@ -605,8 +608,8 @@ All from the session transcripts in `~/.claude/projects/*/*.jsonl`, which record
   attributed rather than guessed. Settings load at startup, so **the session that makes a
   change cannot measure it** — always open a new one. Record model and folder with the
   figure; the system prompt alone moved 1k between Opus 5.5 and Opus 5.
-- **Startup baseline** — the older first-reply method, kept because the 2026-09-22 and
-  2026-09-25 figures use it. Fresh sessions only: new Terminal window, `cd ~`, bare `claude`,
+- **Startup baseline** — the older first-reply method, kept because the 22-09-2026 and
+  25-09-2026 figures use it. Fresh sessions only: new Terminal window, `cd ~`, bare `claude`,
   the prompt `Reply with the single word: ok`, then `/exit`. Sum the three fields above
   on that session's **first** assistant reply. A log counts only if it is new and its
   first user message is that prompt — an attached or resumed session fails this. Record
@@ -620,7 +623,7 @@ them, and a guess that replaces a measurement is how the 150K threshold and the
 
 ## The project trees on this machine
 
-Surveyed 2026-09-15. `PROJECTS.md` is the index; this is the state behind it, kept here
+Surveyed 15-09-2026. `PROJECTS.md` is the index; this is the state behind it, kept here
 so the index doesn't have to carry it into every turn's context.
 
 ### Branch state — read it from git, not from here
@@ -653,17 +656,17 @@ losing work.
 |---|---|
 | `~/Documents/VS Code/Voice-Flow` | **Current.** |
 | `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August |
-| `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 2026-09-20 and again 2026-09-21 |
+| `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 20-09-2026 and again 21-09-2026 |
 
 **Two Packbly trees exist.**
 
 | Path | State |
 |---|---|
 | `~/Documents/VS Code/Packbly_web/v1.1-Packbly` | The one with a `CLAUDE.md` |
-| `~/Documents/extra/v1.1-Packbly` | Same name, last commit 2026-06-23. Looks like an older copy |
+| `~/Documents/extra/v1.1-Packbly` | Same name, last commit 23-06-2026. Looks like an older copy |
 
 **Two Debugger trees exist.** Amit chose `~/Documents/VS Code/vthrudebugger_v1` as the
-tree to work on, 2026-09-27; `Debugger v2` is parked. A further copy under `~/Debugger`
+tree to work on, 27-09-2026; `Debugger v2` is parked. A further copy under `~/Debugger`
 is gone, and whether `vthrudebugger_v1` holds its work is unknown — see
 § *Project-tree decisions*.
 
@@ -673,35 +676,35 @@ is gone, and whether `vthrudebugger_v1` holds its work is unknown — see
 one folder disappearing — not by opening the projects — so where something is still
 unknown, the entry says so rather than rounding it up.
 
-- ~~**Which Debugger tree is current?**~~ **Settled by decision on 2026-09-27, not by a
+- ~~**Which Debugger tree is current?**~~ **Settled by decision on 27-09-2026, not by a
   check.** Amit is working on `~/Documents/VS Code/vthrudebugger_v1`; `Debugger v2` is
   parked. Neither replaced the other — both were seeded from V-Thru's
   `DebugProvider.tsx` and then kept deliberately independent, so "successor" was never
   right. **Unknown, and not investigated:** whether `vthrudebugger_v1` is the newest or
-  most complete Debugger tree. The 2026-08-03 memory
+  most complete Debugger tree. The 03-08-2026 memory
   `project-debugger-repo-fresh-start` says `~/Debugger/vthrudebugger_v1` was the
   furthest-ahead clone — mocks, storage, filter, InfoPanel, report — and `~/Debugger` is
   gone. Amit deleted a tree and does not recall which; whatever survives is either in
   `~/Documents/VS Code/vthrudebugger_v1` or on GitHub. No tree was opened to find out,
   and whether that work survived is not known.
-- ~~**Can `Voice Flow_v1` be archived?**~~ **Amit's decision, 2026-09-27.** It is
+- ~~**Can `Voice Flow_v1` be archived?**~~ **Amit's decision, 27-09-2026.** It is
   superseded by `Voice-Flow` and is not being worked on, but it stays on disk as it is.
   No files moved.
-- ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 2026-09-27.** Yes, it is. He
+- ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 27-09-2026.** Yes, it is. He
   is not working on it and the entry stays exactly as it is; someone else may pick it up.
 - ~~**What is `~/Documents/Voice-Flow-main`?**~~ **Answered by it disappearing** — the
-  folder no longer exists, confirmed 2026-09-20 and 2026-09-21. Nothing in it was
+  folder no longer exists, confirmed 20-09-2026 and 21-09-2026. Nothing in it was
   recoverable, since it had no git history; whatever it was, it is not a question now.
 
-### Corrections made on 2026-09-15
+### Corrections made on 15-09-2026
 
 The previous `PROJECTS.md` listed five projects; the filesystem has thirteen directories
 with a `.git` or a `CLAUDE.md`. Two of its statements were wrong:
 
 - **`Voice-Flow` was missing entirely** — despite being the most-used project on the
   machine, with 39 Claude sessions against FinNode's 15.
-- **Emp Portal was marked as having a `CLAUDE.md`.** It does not. *(True on 2026-09-15.
-  Since 2026-09-20 its rules file is at the project root — see `PROJECTS.md`.)*
+- **Emp Portal was marked as having a `CLAUDE.md`.** It does not. *(True on 15-09-2026.
+  Since 20-09-2026 its rules file is at the project root — see `PROJECTS.md`.)*
 
 Both had been carried forward without being checked. Verify against the filesystem rather
 than against the previous version of the file.
@@ -735,7 +738,7 @@ The detail lives here.
   debugger library for React Native. **TypeScript + RN peer deps, RN Gesture
   Handler/Reanimated**. **Auto-captures network, console and errors**; **QA-facing alert
   toasts**, network inspector, **client-side mocks**. **The Debugger tree Amit is
-  working on** — his decision, 2026-09-27, not a check of which tree is furthest ahead.
+  working on** — his decision, 27-09-2026, not a check of which tree is furthest ahead.
 
 - **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics platform:
   intracity courier product plus a **B2B relocation and warehousing ticket system**.
@@ -744,7 +747,7 @@ The detail lives here.
 
 - **Voice Flow v1** — `~/Documents/VS Code/Voice Flow_v1` — the earlier Voice Flow tree.
   Superseded by `Voice-Flow`. **Not worked on; stays on disk, not archived** — Amit's
-  call, 2026-09-27.
+  call, 27-09-2026.
 
 - **SecondBrain schema** — `~/Documents/SecondBrain Obsidian/schema` — schema for an
   Obsidian vault. **The vault itself is the parent directory**, which holds `raw`,
@@ -756,20 +759,20 @@ The detail lives here.
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React
   Native, built so **a developer can drop it into an app**. **A separate project from
-  `vthrudebugger_v1`, not a successor, parked 2026-09-27** — why, and what is still
+  `vthrudebugger_v1`, not a successor, parked 27-09-2026** — why, and what is still
   unknown, is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`,
   `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 
 - **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma code export
   ("Website Redesign Proposal"), **shadcn theme + assets**. Reads as a design bundle
-  rather than an app. **It is a real project** — Amit's call, 2026-09-27 — just not one
+  rather than an app. **It is a real project** — Amit's call, 27-09-2026 — just not one
   he is working on. The entry stays as it is.
 
 - ~~`~/Documents/Voice-Flow-main`~~ — was a **third** Voice Flow copy with no git repo.
-  **No longer on disk**, confirmed 2026-09-20 and 2026-09-21.
+  **No longer on disk**, confirmed 20-09-2026 and 21-09-2026.
 
 - `~/Documents/extra/v1.1-Packbly` — a Next.js tree, apparently an older copy of Packbly
-  Web. Last commit 2026-06-23.
+  Web. Last commit 23-06-2026.
 
 - `~/Documents/Skils/PM-skills-Amit` — **a clone of the public `phuryn/pm-skills`
   repository. Reference material, not your code.**

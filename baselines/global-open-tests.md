@@ -12,7 +12,7 @@ here as pointers only, because these rules forbid opening another project to
 settle a question.
 
 **Pointers are section names, never line numbers.** Line numbers rot: the pointer
-this file replaced was 44 lines out of date when it was checked on 2026-10-03.
+this file replaced was 44 lines out of date when it was checked on 03-10-2026.
 
 **Durability.** Items 1–3 and 7 point at `baselines/03-10-2026.md`, a tracked copy
 of the record that used to live only in the untracked `.claude/current-task.md`.
@@ -76,7 +76,7 @@ Last reviewed 11-10-2026.
    Detail: `project-rules/drift.sh`.
 
 5. **51 of the 58 global `ask` rules have never been probed — accepted.** Two
-   fired in a manual-mode probe on 2026-09-21. Five more fired in auto mode
+   fired in a manual-mode probe on 21-09-2026. Five more fired in auto mode
    09-10-2026 (T4): `rm *`, `*sudo *`, `*curl *` (on the hook-rewritten
    `rtk curl`), `*git rebase*`, `kill *` — each box named its rule and offered no
    "don't ask again". Counts re-verified 09-10-2026, unchanged: 33 `allow`, 58 `ask`,
@@ -134,7 +134,7 @@ These belong in each project's own test record (`tests/` or `qa/`), created when
 that project is next worked on. Nothing here is actioned from `~/.claude`, because
 these rules forbid opening another project to settle a question.
 
-9. **A real project-task test.** The 2026-09-29 file-changing probe used synthetic
+9. **A real project-task test.** The 29-09-2026 file-changing probe used synthetic
    markers, not real work, so Block 3's "test a project task" intent is only
    partly met. **Project: FinNode.**
    Detail: `SETUP-PLAN.md` § *Where this stands*, item 4;

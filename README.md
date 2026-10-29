@@ -13,7 +13,7 @@ mirrored deliberately.
 | `CLAUDE.md` | The three `@`-imports that load on every turn, in every project, and a comment block naming the reference files that deliberately do not. Nothing else. |
 | `STANDARDS.md` | How to work — the rulebook. The largest of the imported files, and the one to think twice before growing. |
 | `RTK.md` · `OLLAMA.md` | The other two imports: the rtk proxy and the local-model chores. Both are short triggers: rtk's detail sits in `ENVIRONMENT.md`, Ollama's in `skills/ollama/`, and neither is loaded until needed. |
-| `REPOS.md` · `PROJECTS.md` | Reference, not rules, so they are **not** imported: go-to repos, and the project index. Read when a project has to be located by name. |
+| `REPOS.md` · `PROJECTS.md` | Reference, not rules, so they are **not** imported: go-to repos (read when starting an integration) and the project index (read when a project has to be located by name). |
 | `ENVIRONMENT.md` | Reference on this machine and these projects. **Deliberately not imported** — it explains decisions rather than driving work, so it stays out of the per-turn budget. |
 | `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~33,000 words: **start at its `► START HERE` block, not the top.** |
 | `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net. Projects add mostly `allow` rules; a few add their own `ask` rules — FinNode, Voice-Flow, and this repo's `.claude/settings.json`. |
