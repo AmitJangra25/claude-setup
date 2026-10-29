@@ -143,9 +143,14 @@ current state.
   settings — and those two copies synced. No other rule changed; nothing committed in either
   project (local settings are untracked). Five memory changes written by the FinNode and
   Voice-Flow sessions committed as they were. `STANDARDS.md` § *When something is unclear*:
-  "cloud" is "Claude" added to the dictation example. Not covered: `session-check.sh`
-  searches only `~/.claude` and the copies, so a bypass rule in a live project file shows
-  only as drift.
+  "cloud" is "Claude" added to the dictation example.
+- **Session check reads live project settings** — 29-10-2026, approved by Amit.
+  `harness/session-check.sh` now also searches each manifest project's live
+  `.claude/settings.json` and `.claude/settings.local.json` — and nothing else in the
+  project — for `Bash(rtk proxy *)` and `Bash(rtk git *)`, naming project, file and rule.
+  Before, such a rule showed only as drift. Tested in a scratch copy under `/tmp/sc-test`
+  with a fake project: old script → drift line only; new script → both rules named; rules
+  removed → silent. Real run: silent; `drift.sh` 0 drifted.
 
 ## Open
 

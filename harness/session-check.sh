@@ -17,4 +17,17 @@ if [ -n "$hits" ]; then
   echo "Session-start check: Bash(rtk proxy *) is back in:"
   echo "$hits"
 fi
+
+# The same bypass in a live project's settings shows above only as drift. Reads only the
+# two settings files of each project in the manifest — nothing else in the project.
+while IFS=$'\t' read -r name root; do
+  case "$name" in \#*|"") continue ;; esac
+  [ -n "${root-}" ] || continue
+  for rel in .claude/settings.json .claude/settings.local.json; do
+    [ -f "$root/$rel" ] || continue
+    grep -oE '"Bash\(rtk (proxy|git)( \*|:\*)\)"' "$root/$rel" | while read -r rule; do
+      echo "Session-start check: $name $rel allows $rule — skips the ask list."
+    done
+  done
+done < project-rules/manifest.tsv
 exit 0
