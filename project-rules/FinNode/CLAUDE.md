@@ -178,19 +178,23 @@ MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` fo
 
 ## Current state
 
-**Phase 2 is complete; Phase 3 is next and not started.** Phase 2 was signed off on
-26-10-2026 with one deviation — 2d-ii-b (Paging) not built, and search typing re-checked on a
-real phone in Phase 3's phone pass — and one accepted test gap. Read
-[docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first: what is done and device-verified, the
-2d-ii-a figures, the Paging revisit trigger and the corpus's known gaps are kept there, not
-here.
+**Phase 3 is in progress on branch `phase3/parser`.** 3a (the parser) was signed off on
+27-10-2026 for its corpus; 3b's GO 3 — no wrong account, accounts found in SMS, auto-filing,
+and a balance that starts on the account's set-up day — is built and phone-tested (steps 1,
+2a, 2b, 2c). 3b and 3c are not signed off. Next in the agreed order: categories from SMS, then
+Insights and Home to the new designs. Phase 2 was signed off on 26-10-2026 with one deviation
+(2d-ii-b, Paging, not built — search typing is still to be re-checked on a real phone in
+Phase 3's phone pass). Read [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first: what
+is done and device-verified, the figures, and the corpus's known gaps are kept there, not here.
 
 Two standing items that are not checkpoints, and one constraint that is neither:
 
-- **The SMS corpus is `private/sms-corpus.jsonl`, and `private/` never enters git.** 151
-  real messages, cleaned, 149 usable for training. Raw bank SMS and statements live in
-  `private/` only; a test that needs the corpus needs an anonymised copy committed on purpose,
-  which is Phase 3's decision to make, not a convenience to take.
+- **The SMS corpora live in `private/`, which never enters git** — `sms-corpus.jsonl` (151
+  real messages, 3a's) and `sms-corpus-2.jsonl` (775 from the owner's phone, GO 2), both
+  cleaned. No real account or card digit goes into a committed file; tests use invented ones.
+  Raw bank SMS and statements live in `private/` only; a test that needs the corpus needs an
+  anonymised copy committed on purpose, which is Phase 3's decision to make, not a
+  convenience to take.
 - **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
   for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
   bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and
