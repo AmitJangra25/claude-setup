@@ -126,8 +126,8 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** the Session 2 audit changes are applied and checked, uncommitted; they are
-committed to `main` when Amit says "send it". Nothing else in progress. As of 29-10-2026
+**Now:** the Session 2 audit changes are complete and closed (29-10-2026). Nothing else
+in progress. As of 29-10-2026
 nothing is broken; the FinNode-side commit is pending (see *Open*). The `/clear` limitation is unverified, not confirmed failed. The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
