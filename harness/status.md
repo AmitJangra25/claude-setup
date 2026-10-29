@@ -101,6 +101,7 @@ to the current state.
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
   (FinNode, Voice-Flow, Debugger files); S5a–c (Packbly and Emp Portal app fixes); S4
   (project allow lists unreviewed). Detail: `baselines/audit-29-10-2026.md`.
+  Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 - **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a
