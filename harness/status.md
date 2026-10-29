@@ -114,16 +114,17 @@ current state.
   its mirror on exact approval, project-side edit left uncommitted. `templates/handoff.md`:
   keep-short line, goal and latest-result fields first. FinNode `CLAUDE.md` "carry on"
   rule now stops on a missed success measure — mirror copy committed here; **live
-  FinNode edit pending** (see *Open*). Cross-check 29-10-2026 · Opus · CHANGE · all points
+  FinNode edit complete, its FinNode commit pending** (see *Open*). Cross-check 29-10-2026 · Opus · CHANGE · all points
   taken · 40.9k tokens measured; fixes 10–11 added after it, covered by the final review.
   `drift.sh` and `session-check.sh` before: 6 drifted copies and `Bash(rtk proxy *)` in
   `.claude/settings.local.json`, all pre-existing, accepted as baseline by Amit.
 
 ## Open
 
-- **Live FinNode `CLAUDE.md` edit** — `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md`
-  line 24 must match `project-rules/FinNode/CLAUDE.md`; leave uncommitted for FinNode's next
-  PR (29-10-2026).
+- **Live FinNode `CLAUDE.md` edit** — complete in
+  `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md` lines 24–25, matching
+  `project-rules/FinNode/CLAUDE.md`; only its commit in the FinNode repository is pending,
+  with FinNode's next PR (29-10-2026).
 - **Separate setup session (Amit, 29-10-2026):** why `harness/session-check.sh` is not
   directly runnable and whether the `SessionStart` hook fails quietly; fix the 6
   `project-rules/` drifts; why `Bash(rtk proxy *)` keeps returning in
