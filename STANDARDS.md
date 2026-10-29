@@ -210,7 +210,9 @@ structured data, use `grep`, `jq`, or Read, not `python3`, heredocs, or loops. W
 script only when Read, `grep`, or `jq` cannot do the task. Avoid unnecessary output
 redirects and `cd … &&` chains; use them only when required. Prefer absolute paths or run
 from the correct project directory. Prefer the plain form of read-only commands (`ls`,
-`grep`, `git status`); the rtk hook handles them.
+`grep`, `git status`); the rtk hook handles them. Never wrap a commit, push, or other
+ask-list command in `rtk proxy`. Use `rtk proxy` only for reads. If a permission box offers
+"don't ask again" for `rtk proxy …`, choose plain "Yes", not "don't ask again".
 
 ## Know what the change touches
 
