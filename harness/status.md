@@ -118,6 +118,16 @@ current state.
   taken · 40.9k tokens measured; fixes 10–11 added after it, covered by the final review.
   `drift.sh` and `session-check.sh` before: 6 drifted copies and `Bash(rtk proxy *)` in
   `.claude/settings.local.json`, all pre-existing, accepted as baseline by Amit.
+- **Session check after `/clear`; `rtk proxy` only for reads** — 29-10-2026, approved by
+  Amit (`d08c059`). The `SessionStart` hook ran only on `startup`, so `/clear` dropped the
+  drift warning; matcher now `startup|clear`. The script is not executable, which is fine:
+  the hook runs it with `bash`. `Bash(rtk proxy *)` returned on 23-10-2026 when a commit
+  wrapped in `rtk proxy` was approved with "don't ask again" (setup session `26b8c4c8`);
+  removed from `.claude/settings.local.json`, and `STANDARDS.md` § *Reuse what is already
+  there* now says `rtk proxy` is for reads only and to answer plain "Yes" to that offer. Not
+  added to the `ask` list (Amit: fewer clicks). Opus review · CLEAN · 22.3k tokens measured.
+  `drift.sh` before and after: the same 6 drifts. Not yet seen working: the warning after a
+  real `/clear`.
 
 ## Open
 
@@ -125,10 +135,8 @@ current state.
   `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md` lines 24–25, matching
   `project-rules/FinNode/CLAUDE.md`; only its commit in the FinNode repository is pending,
   with FinNode's next PR (29-10-2026).
-- **Separate setup session (Amit, 29-10-2026):** why `harness/session-check.sh` is not
-  directly runnable and whether the `SessionStart` hook fails quietly; fix the 6
-  `project-rules/` drifts; why `Bash(rtk proxy *)` keeps returning in
-  `.claude/settings.local.json`; then update this file.
+- **Mirror drift (Amit, 29-10-2026):** fix the 6 `project-rules/` drifts (FinNode ×2,
+  Voice-Flow ×3, Packbly ×1).
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 - **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a
