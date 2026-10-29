@@ -21,8 +21,9 @@ assumption that a build means a working app.
   it down is itself a change, so it happens **only when the approved plan for the task
   included that recording**. If the plan did not, say what you found in a line or two and ask
   before writing it anywhere: backlog, roadmap, memory, `CLAUDE.md` or any other doc. Either
-  way, carry on with the task you were given. An unrequested fix costs a review, a device
-  pass, and a fresh chance to break something that already worked.
+  way, carry on with the task you were given — except if evidence shows the task will miss
+  its success measure. In that case, stop, show me the number, and wait. An unrequested fix
+  costs a review, a device pass, and a fresh chance to break something that already worked.
 - Building ahead of the phase needs a reason recorded at the time. `DiaryDao`, `ReminderDao`
   and `last4Digits` are the precedent — each wrote down why a form with nothing behind it
   throws the user's input away.

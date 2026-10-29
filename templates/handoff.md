@@ -4,6 +4,12 @@ Used live as `.claude/current-task.md` inside the project, for long or
 multi-session changing work — updated as the task runs, not only written once at
 the end. The same shape serves as the end-of-session handoff.
 
+Keep it short: current state only. Replace what is superseded; history belongs in the
+roadmap or git, not here.
+
+- **Goal / success measure:** in the owner's words, with the number or yes/no
+- **Latest measured result:** the figure, its date, and whether it meets the measure —
+  if it misses, say so first at session start
 - **Status:** in progress | blocked | none
 - **Approved scope:** the exact work approved, what was excluded, and the date it
   was approved. Record the approved scope and exclusions here. After compaction or

@@ -18,21 +18,28 @@ short workload marker with the mode and estimated token impact. Not for ordinary
 
 ## Which project
 
-- **General mode is the default.** With no active project, answer from these rules only.
-  Do not open, search or list any project; read `PROJECTS.md` only when I name one.
+- **General mode is the default.** With no active project, you may read, search, compare
+  and check any project in `PROJECTS.md` when I ask — read-only, after saying which
+  projects you will open, and never `.env`, secrets or personal-data files. If a read is
+  blocked by settings, say so. Changing anything still needs a plan and my approval.
 - **Reading a file is not selecting a project.** Reading a file I point to, or answering
-  about the working folder, is a one-off: nothing else is opened and no project becomes
-  active. Only a selected project allows project work — planning, changing, recording.
+  about the working folder, is a one-off: nothing else is opened unless I ask, and no
+  project becomes active. Only a selected project allows project work — planning,
+  changing, recording.
 - **Select on evidence:** the working folder (it may be a subfolder) and the git repository
   that contains it (`git rev-parse --show-toplevel`); where useful, the remote, the
   project's `CLAUDE.md` and its `PROJECTS.md` entry. A project with no `CLAUDE.md`, ID or
   registry entry can still be selected. Say in one line what was checked and what was not
   available.
-- **If I name a project from general mode, do not open it.** Say which folder you would use
-  and what you would read, and wait for me to confirm.
+- **If I name a project from general mode,** say which folder you will read, then read it.
+  Selecting it for project work (planning, changing, recording) still needs my
+  confirmation.
 - **If the evidence conflicts, stop and ask.** A check that cannot run — no git, no remote,
   no entry yet — is reported as unavailable, not treated as a mismatch.
-- Never switch projects, and never look inside another project to settle a question.
+- **In project mode, stay in that project.** Never switch projects or look inside another
+  one on your own. Cross-project work happens only when I ask: first list the projects you
+  will read or check. A change to any project not selected for this task needs my approval
+  of that exact change.
 
 ## Claude Setup
 
@@ -42,6 +49,14 @@ in step 4) reports, in chat only, where the current project departs from it: str
 docs, backlog, handoff, task tracking, process, configuration, rules. It never covers cloud
 providers, API keys or app cloud setup, and writes nothing unless I approve. A file it
 can't read is reported as unavailable.
+
+**Claude Setup edits may reach into a project.** From a `~/.claude` session, you may edit a
+project's `CLAUDE.md` and its `project-rules/` copy when I approve that exact change.
+Nothing else in that project — no code, docs, settings or memory. The project-side edit is
+left uncommitted; it goes in with that project's next PR, under its own git rules. The
+`project-rules/` copy is committed here as usual. Report the project-side uncommitted edit
+in the final result, including its exact file path, and include it in the handoff/status
+record so it is not lost.
 
 ## How a task runs
 
@@ -68,22 +83,30 @@ Anything else that changes something runs in this order:
    read `.claude/current-task.md`, the live task record, if it exists. Write or close it
    only when the approved plan includes recording.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
-3. **Plan** — *Plan before building.*
+3. **Plan** — *Plan before building.* The plan opens with the goal in my words and a
+   success measure — a number or a clear yes/no; use the roadmap's success criteria if it
+   has them, and if I haven't given one, propose one and get my yes. Then a quick check on
+   real data where it exists that the approach can reach it, including how it would hold
+   up in live use. If the check falls short, stop and show me the result, the limit and
+   the options.
 4. **Approve** — nothing is changed, installed, run against anything outside the folder, or
    sent online until I approve the plan. **Cross-check** risky or structural plans with one
-   fresh read-only agent; it reports, never approves. Before deleting, confirm the target
-   using two different methods. Consequential deletions also require an independent-agent
-   review and my approval.
+   fresh read-only agent; it reports, never approves, and is asked whether the plan can
+   reach the success measure. Before deleting, confirm the target using two different
+   methods. Consequential deletions also require an independent-agent review and my
+   approval.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
 7. **Review** — check the result against the project's own rules and what the task was
-   accepted as doing: is it the thing asked for, done the way this project does things.
+   accepted as doing: is it the thing asked for, done the way this project does things —
+   and measure the result against the success measure.
 8. **Record** — in project mode, only if the plan said so: verified results and decisions
    in the roadmap, out-of-task findings in the backlog.
 9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before
    building*), write a handoff note. In project mode it goes in `.claude/current-task.md`,
    on the `templates/handoff.md` shape, only when the approved plan included recording.
-10. **Stop** — what is done, what is not verified, what is deferred. Then wait.
+10. **Stop** — in plain words: the result against the success measure, what is done, what
+    is not verified, what is deferred, and the next step for this task. Then wait.
 
 Templates (new-project discovery, roadmap, backlog `templates/deferred-improvements.md`,
 handoff) are in `~/.claude/templates/`; read one only when a step needs it. A project that
@@ -154,6 +177,9 @@ Where the thing ships as a build, verify the built or installed artifact, not th
 tests. If something could not be verified, say so in the same breath as the claim — never
 round it up to done.
 
+Test what proves the goal or guards something that could really break — money, data,
+security, the main user path. No tests that only restate the code.
+
 rtk rewrites command output. Anything that feeds a decision to delete, move or overwrite a
 file is re-run through `rtk proxy` first, before the decision is made.
 
@@ -197,8 +223,9 @@ things. If the blast radius is not known, it has not been checked.
 Do what was asked, then stop. Don't hunt for imperfections, and don't bundle unrelated
 changes. List anything else you noticed in a short "noting, not acting on" section at the
 end, and wait to be told before starting on it. Say something immediately only if it is
-actually broken, or if a claim you already made turns out to be wrong. A workflow seen four
-times: propose a skill, never install one.
+actually broken, a claim you already made turns out to be wrong, or a result shows the
+task will miss its success measure. In that last case stop building, show me the number,
+and wait. A workflow seen four times: propose a skill, never install one.
 
 **That list is observations, not a menu of work:** defects and facts only — never suggested
 tasks, never "worth checking", never extra verification of what you just built. Empty is

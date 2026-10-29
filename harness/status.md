@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 12-10-2026
+**Last verified:** 29-10-2026
 
 ## Current phase
 
@@ -103,8 +103,31 @@ current state.
   sessions re-run the same click count across projects and compare. Applied by Sonnet
   (Amit's instruction); independent Opus review returned KEEP (two optional wording points
   not applied).
+- **Success measure and goal checks** — 29-10-2026, approved by Amit. Cause: FinNode
+  categories sorted 8/142, logged as a note while building went on (~350k tokens lost); no
+  rule asked for a success measure. `STANDARDS.md`: Plan opens with the goal and a success
+  measure plus a quick real-data check; cross-check asked whether the plan can reach it;
+  Review and Stop measure against it; speak up and stop when a result shows the measure
+  will be missed; test what proves the goal, not tests that restate the code; general mode
+  may read any project read-only when asked; project mode stays put, cross-project work
+  only when asked; § *Claude Setup*: a setup session may edit a project's `CLAUDE.md` and
+  its mirror on exact approval, project-side edit left uncommitted. `templates/handoff.md`:
+  keep-short line, goal and latest-result fields first. FinNode `CLAUDE.md` "carry on"
+  rule now stops on a missed success measure — mirror copy committed here; **live
+  FinNode edit pending** (see *Open*). Cross-check 29-10-2026 · Opus · CHANGE · all points
+  taken · 40.9k tokens measured; fixes 10–11 added after it, covered by the final review.
+  `drift.sh` and `session-check.sh` before: 6 drifted copies and `Bash(rtk proxy *)` in
+  `.claude/settings.local.json`, all pre-existing, accepted as baseline by Amit.
 
 ## Open
+
+- **Live FinNode `CLAUDE.md` edit** — `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md`
+  line 24 must match `project-rules/FinNode/CLAUDE.md`; leave uncommitted for FinNode's next
+  PR (29-10-2026).
+- **Separate setup session (Amit, 29-10-2026):** why `harness/session-check.sh` is not
+  directly runnable and whether the `SessionStart` hook fails quietly; fix the 6
+  `project-rules/` drifts; why `Bash(rtk proxy *)` keeps returning in
+  `.claude/settings.local.json`; then update this file.
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 - **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a
@@ -118,9 +141,12 @@ None.
 
 ## Known contradictions
 
-None. All three settled 10-10-2026 (T6): `PROJECTS.md`'s progress wording fixed; D23
-reworded by **D38**; `SETUP-PLAN.md` § *Standing context* given a dated correction. The
-original entries are in `baselines/t6-removals.md` entry 6.
+Three found 29-10-2026 and settled the same day by the success-measure change above:
+`STANDARDS.md` "speak up only if broken" and FinNode `CLAUDE.md` "carry on with the task"
+let a missed goal go on unreported; general mode forbade project reads Amit asks for. Not
+yet audited for others: `SETUP-PLAN.md`, `ENVIRONMENT.md`, `README.md`, `PROJECTS.md`,
+`harness/overview.md`, the project rule copies and memory notes — the wider audit waits
+for Amit. The 10-10-2026 set is in `baselines/t6-removals.md` entry 6.
 
 ## Decisions in force
 
