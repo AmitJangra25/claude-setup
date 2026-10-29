@@ -128,6 +128,12 @@ current state.
   added to the `ask` list (Amit: fewer clicks). Opus review · CLEAN · 22.3k tokens measured.
   `drift.sh` before and after: the same 6 drifts. Not yet seen working: the warning after a
   real `/clear`.
+- **FinNode handoff trimmed — one-time exception** — 29-10-2026, approved by Amit (option B).
+  Done from this setup session although `STANDARDS.md` § *Claude Setup* limits reach-in edits
+  to a project's `CLAUDE.md`. FinNode `.claude/current-task.md` 44,129 → 4,610 bytes (about
+  11k → 1.2k tokens per read, estimated); the old file copied verbatim to
+  `.claude/handoff-history-29-10-2026.md` (`cmp` identical). Both untracked in FinNode;
+  nothing committed there. No other FinNode file changed.
 
 ## Open
 
