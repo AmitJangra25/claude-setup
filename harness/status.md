@@ -126,8 +126,11 @@ current state.
   removed from `.claude/settings.local.json`, and `STANDARDS.md` § *Reuse what is already
   there* now says `rtk proxy` is for reads only and to answer plain "Yes" to that offer. Not
   added to the `ask` list (Amit: fewer clicks). Opus review · CLEAN · 22.3k tokens measured.
-  `drift.sh` before and after: the same 6 drifts. Not yet seen working: the warning after a
-  real `/clear`.
+  `drift.sh` before and after: the same 6 drifts. Unverified: the `startup|clear` matcher is
+  set, but whether the check runs after `/clear` is not proven. A clean session produces no
+  check output, so silence does not distinguish between "hook ran silently" and "hook did
+  not run". A controlled test would require temporarily creating a known drift; deferred to
+  avoid unnecessary changes and token use.
 - **FinNode handoff trimmed — one-time exception** — 29-10-2026, approved by Amit (option B).
   Done from this setup session although `STANDARDS.md` § *Claude Setup* limits reach-in edits
   to a project's `CLAUDE.md`. FinNode `.claude/current-task.md` 44,129 → 4,610 bytes (about
@@ -184,7 +187,9 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** nothing in progress — the finish plan is done. The setup is finished when every
+**Now:** nothing in progress — the finish plan is done. As of 29-10-2026 all approved setup
+changes are applied and nothing is broken; the FinNode-side commit is pending (see
+*Open*). The `/clear` limitation is unverified, not confirmed failed. The setup is finished when every
 line of `harness/overview.md` § *What "finished" means* is true. Deferred until Amit asks:
 the account switch (open test 6) and open test 3's replay (Amit, 09-10-2026).
 
