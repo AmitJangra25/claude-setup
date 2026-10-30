@@ -1,9 +1,6 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git add *)",
-      "Edit(docs/**)",
-      "Write(docs/**)",
       "Bash(./gradlew *)",
       "Bash(./scripts/audit.sh)"
     ],
@@ -15,6 +12,47 @@
       "Bash(*gradlew*publish*)",
       "Bash(*gradlew*--init-script*)",
       "Bash(*gradlew* -I *)"
+    ],
+    "deny": [
+      "Read(/private/*)",
+      "Bash(cat private/*)",
+      "Bash(cat * private/*)",
+      "Bash(cat */private/*)",
+      "Bash(head private/*)",
+      "Bash(head * private/*)",
+      "Bash(head */private/*)",
+      "Bash(tail private/*)",
+      "Bash(tail * private/*)",
+      "Bash(tail */private/*)",
+      "Bash(less private/*)",
+      "Bash(less * private/*)",
+      "Bash(less */private/*)",
+      "Bash(sed private/*)",
+      "Bash(sed * private/*)",
+      "Bash(sed */private/*)",
+      "Bash(awk private/*)",
+      "Bash(awk * private/*)",
+      "Bash(awk */private/*)",
+      "Bash(xxd private/*)",
+      "Bash(xxd * private/*)",
+      "Bash(xxd */private/*)",
+      "Bash(grep private/*)",
+      "Bash(grep * private/*)",
+      "Bash(grep */private/*)",
+      "Bash(rg private/*)",
+      "Bash(rg * private/*)",
+      "Bash(rg */private/*)",
+      "Bash(rtk read private/*)",
+      "Bash(rtk read * private/*)",
+      "Bash(rtk read */private/*)",
+      "Bash(rtk grep private/*)",
+      "Bash(rtk grep * private/*)",
+      "Bash(rtk grep */private/*)",
+      "Bash(rtk rg private/*)",
+      "Bash(rtk rg * private/*)",
+      "Bash(rtk rg */private/*)",
+      "Bash(rtk proxy * private/*)",
+      "Bash(rtk proxy */private/*)"
     ],
     "additionalDirectories": []
   }

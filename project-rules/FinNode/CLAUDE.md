@@ -196,6 +196,10 @@ Two standing items that are not checkpoints, and one constraint that is neither:
   Raw bank SMS and statements live in `private/` only; a test that needs the corpus needs an
   anonymised copy committed on purpose, which is Phase 3's decision to make, not a
   convenience to take.
+- **Claude never reads `private/`** — not with Read, Grep or any shell command, and not SMS
+  text from logs either: counts and crash lines only. `.claude/settings.json` denies the
+  Read tool and the common readers in every rtk spelling; a script or a recursive grep from
+  a parent folder is not covered, so the rule is the rule, not the fence.
 - **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
   for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
   bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and

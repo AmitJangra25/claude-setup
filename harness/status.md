@@ -24,6 +24,11 @@ Entries up to and including T6 moved unchanged to
 23-10-2026 to `baselines/status-completed-23-10-2026.md` (29-10-2026), to keep this file
 to the current state.
 
+- **FinNode mirror refreshed** — 30-10-2026, approved by Amit. `sync.sh --pull` copied
+  FinNode `CLAUDE.md` (new "never reads `private/`" rule) and `.claude/settings.json`
+  (`git add` and `docs/` edit allows out, `private/` read denies in) from FinNode PR #6.
+  `drift.sh`: 13 current, 0 drifted. Whether the *Open* FinNode commits below went in with
+  PR #6 is not checked.
 - **Backlog value bar; FinNode backlog 6 closed here** — 30-10-2026, approved by Amit
   (`SETUP-PLAN.md` D43). `STANDARDS.md` § *Stay on the task*: backlog entries get a next
   step only if they clear the value bar; before working an unapproved backlog item, Claude
