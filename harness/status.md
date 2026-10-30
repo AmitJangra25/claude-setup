@@ -27,8 +27,8 @@ to the current state.
 - **FinNode mirror refreshed** — 30-10-2026, approved by Amit. `sync.sh --pull` copied
   FinNode `CLAUDE.md` (new "never reads `private/`" rule) and `.claude/settings.json`
   (`git add` and `docs/` edit allows out, `private/` read denies in) from FinNode PR #6.
-  `drift.sh`: 13 current, 0 drifted. Whether the *Open* FinNode commits below went in with
-  PR #6 is not checked.
+  `drift.sh`: 13 current, 0 drifted. Both files are committed on FinNode `main` via PR #6
+  (`234517a`, merged `aec7df5`), so no FinNode rule commit is pending.
 - **Backlog value bar; FinNode backlog 6 closed here** — 30-10-2026, approved by Amit
   (`SETUP-PLAN.md` D43). `STANDARDS.md` § *Stay on the task*: backlog entries get a next
   step only if they clear the value bar; before working an unapproved backlog item, Claude
@@ -87,7 +87,7 @@ to the current state.
   its mirror on exact approval, project-side edit left uncommitted. `templates/handoff.md`:
   keep-short line, goal and latest-result fields first. FinNode `CLAUDE.md` "carry on"
   rule now stops on a missed success measure — mirror copy committed here; **live
-  FinNode edit complete, its FinNode commit pending** (see *Open*). Cross-check 29-10-2026 · Opus · CHANGE · all points
+  FinNode edit complete, committed with FinNode PR #6** (`234517a`). Cross-check 29-10-2026 · Opus · CHANGE · all points
   taken · 40.9k tokens measured; fixes 10–11 added after it, covered by the final review.
   `drift.sh` and `session-check.sh` before: 6 drifted copies and `Bash(rtk proxy *)` in
   `.claude/settings.local.json`, all pre-existing, accepted as baseline by Amit.
@@ -129,13 +129,10 @@ to the current state.
 
 ## Open
 
-- **Live FinNode `CLAUDE.md` edit** — complete in
-  `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md` lines 24–25, matching
-  `project-rules/FinNode/CLAUDE.md`; only its commit in the FinNode repository is pending,
-  with FinNode's next PR (29-10-2026).
 - **Live project settings edits from S4** — complete and matching their mirrors, left
-  uncommitted in each project (30-10-2026). Tracked, so each goes in with that project's
-  next PR: FinNode `.claude/settings.json`, Voice-Flow `.claude/settings.json`.
+  uncommitted in each project (30-10-2026). Tracked, so it goes in with that project's
+  next PR: Voice-Flow `.claude/settings.json`. FinNode's `CLAUDE.md` and
+  `.claude/settings.json` went in with FinNode PR #6 (`234517a`, merged `aec7df5`).
   Gitignored, so nothing to commit there: FinNode, Voice-Flow and vthrudebugger_v1
   `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
   `baselines/s4-permissions-30-10-2026.md`.
@@ -187,8 +184,8 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** S4, F5, F9 and D43 (backlog value bar) are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
-commit and the tracked S4 project settings edits are pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
+**Now:** S4, F5, F9 and D43 (backlog value bar) are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the Voice-Flow
+`.claude/settings.json` commit is pending (see *Open*); FinNode's went in with its PR #6. The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
 (Amit, 09-10-2026).
