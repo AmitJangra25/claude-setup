@@ -24,6 +24,23 @@ Entries up to and including T6 moved unchanged to
 23-10-2026 to `baselines/status-completed-23-10-2026.md` (29-10-2026), to keep this file
 to the current state.
 
+- **S4 — fewer permission boxes, holes closed** — 30-10-2026, approved by Amit as one
+  package (steps 1–6). Decision `SETUP-PLAN.md` D41; record
+  `baselines/s4-permissions-30-10-2026.md`. Replay of past
+  Bash history on the real files: boxed calls **2,241 → 1,722 (−519, −23%)**; non-auto
+  calls with a part no allow rule covers 1,765 → 1,766 (+1). Success measure met. Ask
+  rules that boxed reads were narrowed to their writing forms (`gh pr|repo|auth|api`,
+  `git merge`, `git * commit`, `security`, `tccutil`, `brew install`, Voice-Flow script
+  rules, blanket `git pull`/`git switch`). Holes closed: `git -C … push`-style forms of
+  dangerous git commands, `--output`, `--upload-pack`, remote remove/rename, forced
+  switch, `pull --rebase/--force`, FinNode `gradlew` uninstall/publish/init-script; broad
+  allows that could write removed or narrowed. 12 files changed: `settings.json`, both
+  setup settings files, and 9 live project files plus their mirrors. All JSON valid;
+  `drift.sh` 18 current, 0 drifted. Live box tests 5/5 as expected: 3 former boxes now
+  run without one, 2 new rules box (`git -* merge *`, `*git *--output*`, the latter after
+  the rtk rewrite). Not verified: `$(…)`, `env`/`xargs` and double-space matching; whether
+  repeated auto-mode blocks turn into boxes. Cross-checks (Opus): plan v1 · CHANGE · 6
+  fixes taken · 51.3k tokens; final · keep after 5 fixes · 46.3k tokens.
 - **Setup audit, Session 2 — clearer and shorter, no rule lost** — 29-10-2026, each piece
   approved by Amit. Findings and their outcome: `baselines/audit-29-10-2026.md`. Results
   against the success measure: (1) rules weakened, judged rule by rule against `e996dc9`:
@@ -96,9 +113,15 @@ to the current state.
   `/Users/amitjangra/Documents/VS Code/FinNode/CLAUDE.md` lines 24–25, matching
   `project-rules/FinNode/CLAUDE.md`; only its commit in the FinNode repository is pending,
   with FinNode's next PR (29-10-2026).
+- **Live project settings edits from S4** — complete and matching their mirrors, left
+  uncommitted in each project (30-10-2026). Tracked, so each goes in with that project's
+  next PR: FinNode `.claude/settings.json`, Voice-Flow `.claude/settings.json`.
+  Gitignored, so nothing to commit there: FinNode, Voice-Flow, Voice Flow_v1,
+  vthrudebugger_v1 and Packbly_web `.claude/settings.local.json`; Voice Flow_v1 and
+  Debugger v2 `.claude/settings.json`. Exact paths: `baselines/s4-permissions-30-10-2026.md`.
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
-  (FinNode, Voice-Flow, Debugger files); S5a–c (Packbly and Emp Portal app fixes); S4
-  (project allow lists unreviewed). Detail: `baselines/audit-29-10-2026.md`.
+  (FinNode, Voice-Flow, Debugger files); S5a–c (Packbly and Emp Portal app fixes). S4 is
+  done (*Completed*). Detail: `baselines/audit-29-10-2026.md`.
   Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
@@ -125,9 +148,9 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** the Session 2 audit changes are complete and closed (29-10-2026). Nothing else
-in progress. As of 30-10-2026
-nothing is broken; the FinNode-side commit is pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
+**Now:** S4 is complete (30-10-2026); its `~/.claude` changes wait for Amit's "send it".
+Nothing else in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
+commit and the tracked S4 project settings edits are pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
 (Amit, 09-10-2026).

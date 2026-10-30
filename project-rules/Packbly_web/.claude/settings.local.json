@@ -2,9 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(sort -t: -k2 -n -r)",
-      "Bash(npm audit *)",
-      "Bash(awk ' *)",
-      "Bash(grep -n \"^\\\\s\\\\{0,6\\\\}set[A-Z]\\\\w*\\(\\\\|^\\\\s\\\\{0,6\\\\}if\\\\b\")"
+      "Bash(grep -n \"^\\\\s\\\\{0,6\\\\}set[A-Z]\\\\w*\\(\\\\|^\\\\s\\\\{0,6\\\\}if\\\\b\")",
+      "Bash(npm audit)",
+      "Bash(npm audit --json)"
     ]
   }
 }

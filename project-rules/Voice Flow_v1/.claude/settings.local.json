@@ -2,8 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(npm test *)",
-      "Bash(git remote *)",
-      "Bash(git ls-remote *)"
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)",
+      "Bash(git ls-remote origin *)",
+      "Bash(git ls-remote --heads origin *)",
+      "Bash(git ls-remote --tags origin *)"
     ]
   }
 }

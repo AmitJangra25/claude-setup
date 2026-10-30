@@ -158,9 +158,17 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   39 rules    read-only things stop prompting
-    ask     96 rules    all on things that change something
+    allow   37 rules    read-only things stop prompting
+    ask    188 rules    all on things that change something
     deny    34 rules    .env blocked for Read and 10 shell commands; not airtight
+
+**Re-measured 30-10-2026 (S4, D41)** (`jq`): `allow` **39 → 37** (`tree *`, `xxd *` out)
+and `ask` **96 → 188**. Read forms of `gh pr|repo|auth|api`, `git merge-base`, `security`
+and words inside grep or echo text no longer ask; the writing forms of those commands do,
+and so do the `git -<opt> …` spellings of dangerous git commands (`git -C dir push`
+matched no rule before), `git … --output`, `--upload-pack`, forced or discarding `switch`
+and `pull --rebase|--force`. Replayed against past Bash history: boxed calls 2,241 →
+1,722. Record and the full rule list: `baselines/s4-permissions-30-10-2026.md`.
 
 **Counts measured against the live file 15-10-2026** (`jq`); `ask` re-measured 23-10-2026,
 58 → 90 (see *Added 23-10-2026* below). On 29-10-2026 `ask` went **90 → 96** (`find`
@@ -170,8 +178,9 @@ three patterns each, plus two `rtk proxy` patterns); every rule tested in `/tmp`
 23-10-2026: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
 listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
 out, `rtk gh run list*` and `rtk tree *` in). Sessions
-started in `~/.claude` also load four setup-only `ask` rules from `.claude/settings.json`
-(**D36**); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
+started in `~/.claude` also load two setup-only `ask` rules from `.claude/settings.json`,
+`git stash pop` and `git stash apply` (**D36**; four until S4 removed the blanket
+`git pull` and `git switch`, **D41**); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
 seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
 `SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
 fenced. Before that, two corrections this block carried
@@ -193,13 +202,14 @@ treat the numbers below as of this date only.
 
 | File | allow / ask / deny | Status |
 |---|---|---|
-| `~/.claude/.claude/settings.local.json` | 13 / 0 / 0 (29-10-2026; 9 on 03-10-2026) | **Active** — confirmed |
+| `~/.claude/.claude/settings.local.json` | 15 / 0 / 0 (30-10-2026; 13 on 29-10-2026; 9 on 03-10-2026) | **Active** — confirmed |
 | `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **undocumented location**. `/skills` is recorded writing here; whether Claude Code reads it is **unverified** |
 
 The nested file is the project-level overlay for `~/.claude` itself, because the setup
 repo lives at the path Claude Code also uses for its config. It is confirmed active:
 rules that exist **only** in it — `Bash(git ls-remote *)`, `Bash(git check-ignore *)`,
 `Bash(git fetch *)` among them — appear in the live `/permissions` allow list.
+`Bash(git ls-remote *)` was narrowed on 30-10-2026 to its three `origin` forms (**D41**).
 
 The top-level file carries a single rule, `Bash(git add *)`, and an empty
 `skillOverrides` block. **That rule is also present in the nested file**, so nothing
@@ -251,8 +261,10 @@ prompt, and these already prompted. The same sweep removed two more in Voice-Flo
 (`GIT_EDITOR=true git rebase --continue`, `tccutil`), four exact duplicates, and one
 `lsregister` rule naming a `release/mac-arm64` path that no longer exists.
 
-**`allow`** — read-only `rtk` wrappers, `tree`, `xxd`, read-only `gh`, `WebSearch`, and
-docs domains. Purely additive: permission lists merge across files, so a global allow
+**`allow`** — read-only `rtk` wrappers (`rtk tree` among them), `gh run list`,
+`WebSearch`, and docs domains. `tree *` and `xxd *` were removed on 30-10-2026 (**D41**):
+the hook turns `tree` into `rtk tree`, so the bare rule never fired, and `xxd in out`
+writes a file. Purely additive: permission lists merge across files, so a global allow
 entry can only ever remove a prompt, never add one.
 
 **`ask`** — git operations that publish or discard work (`push`, `reset`, `rebase`,
@@ -266,10 +278,11 @@ ordinary words (`SETUP-PLAN.md`'s **`ask` list merged** row). **Added 23-10-2026
 and `*git * X*`, so an option before the subcommand (`git -C path revert`) still matches —
 plus `npm publish`, and `ssh`, `scp`, `rsync` in bare, `rtk` and `rtk proxy` spellings
 (explicit, like `rm`). Plain `git stash`, `git tag` and `git remote` (listing) stay out — see
-`SETUP-PLAN.md` § *FinNode — open, not acted on*. **Open:** the older git patterns (`push`,
-`reset`, `rebase`, `merge`, `checkout`, `clean`, …) have only the `*git X*` form, so
-`git -C path push` is not matched; not changed in this round. Also unfenced:
-`git remote remove|rename|set-head`; whether `git remote -v add` matches is untested.
+`SETUP-PLAN.md` § *FinNode — open, not acted on*. **Closed 30-10-2026 (D41):** the older
+git patterns (`push`, `reset`, `rebase`, `merge`, `checkout`, `clean`, …) had only the
+`*git X*` form, so `git -C path push` was not matched; each now also has a `*git -* X*`
+form (live test: `git -C … merge --abort` boxed). `git remote remove|rm|rename|set-head`
+are now fenced too. Still untested: whether `git remote -v add` matches.
 
 An `ask` rule prompts in **every** permission mode, including auto mode, and it overrides
 any `allow` rule that also matches. That is why the session can stay in auto mode without

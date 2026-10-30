@@ -4,12 +4,13 @@
       "Bash(rtk tsc *)",
       "Bash(npm test *)",
       "Bash(git check-ignore *)",
-      "Bash(git remote *)",
       "Bash(rtk proxy cmp *)",
       "Bash(rtk git add *)",
       "Bash(rtk npm run *)",
       "Bash(rtk npm test)",
-      "Bash(rtk npm test *)"
+      "Bash(rtk npm test *)",
+      "Bash(git remote -v)",
+      "Bash(git remote get-url *)"
     ]
   }
 }

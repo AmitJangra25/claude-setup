@@ -110,6 +110,14 @@ Last reviewed 11-10-2026.
    `.claude/settings.json`; a harmless `rtk grep -c "git pull" …` prompted, naming
    `Bash(*git pull*)`, in a fresh setup session (Amit). Still open globally and in
    every project. Not caught: `git -C <path> pull`.
+   **Partly closed globally, 30-10-2026 (S4, `SETUP-PLAN.md` D41):** the global list now
+   asks for the risky forms in every project — `pull --rebase|-r|--force|-f` and
+   `switch -f|--force|--discard…|-C`, `git -C` spellings included — plus the `git -<opt> …`
+   forms of push, reset, rebase, merge, checkout, clean, restore, rm, mv, stash drop/clear
+   and branch delete. Plain `git pull` and `git switch <branch>` no longer ask anywhere: the
+   two D36 rules for them in `.claude/settings.json` were removed. **Still open:**
+   `git stash pop` and `git stash apply` outside `~/.claude`. Record:
+   `baselines/s4-permissions-30-10-2026.md`.
    The 09-10-2026 note that `Bash(gh run list*)` "never matches" is not proven: rtk's
    hook passes an `allow` through for it — `SETUP-PLAN.md` **D35**.
 

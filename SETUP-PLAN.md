@@ -1329,7 +1329,9 @@ because a global rule still needs test 3's replay first. Chosen over narrowing `
 git *)` in `.claude/settings.local.json`, which would have prompted on read-only forms in
 use (`stash list`, `--no-pager diff`) and still let auto mode through. Not caught: `git -C
 <path> pull`, the same gap as the global list. Exact original file and checks:
-`baselines/t6-removals.md` entry 4.
+`baselines/t6-removals.md` entry 4. **Partly superseded 30-10-2026 (D41):** the `git pull`
+and `git switch` rules were removed; their risky forms are now asked globally. The two
+`git stash` rules stay.
 
 ### D37 · 10-10-2026
 
@@ -1401,6 +1403,24 @@ rule · FAIL narrowly: 3 rules weaker (tests seen to fail, verify the installed 
 record the out-of-scope fix) and 1 borderline (group findings); all 4 restored to old
 strength with Amit's approval, then self-checked against the old text · 47.8k tokens
 measured.
+
+### D41 · 30-10-2026
+
+**An `ask` rule boxes what can change or leak something, not every use of a command.**
+S4, approved by Amit as one package: he clicks "Yes" on almost every box, so a box that
+protects nothing is a cost. Ask rules that matched reads were narrowed to the writing forms
+(`gh pr|repo|auth|api`, `git merge`, `git * commit`, `security`, `tccutil`,
+`brew install`, the Voice-Flow script rules, and D36's `git pull` and `git switch`). Holes
+closed in the same change: the `git -<opt> …` spellings of dangerous git commands
+(`git -C dir push` matched no rule before), `--output`, `--upload-pack`, remote
+remove/rename, forced or discarding `switch`, `pull --rebase|--force`, and FinNode
+`gradlew` uninstall/publish/init-script. Allows that could write were removed or narrowed
+(`xxd`, `git apply`, `git stash`, `git config`, `git remote`, `git ls-remote`, `npm pack`,
+`npm audit`). Replayed against 16,563 past Bash calls: boxed calls **2,241 → 1,722**;
+5/5 live box tests as expected. Global `allow` 39 → 37, `ask` 96 → 188. Not verified: how
+`$(…)`, `env`/`xargs` wrappers and double spaces are matched. Cross-checks · Opus · plan v1
+CHANGE, 6 fixes taken · 51.3k tokens; final keep after 5 fixes · 46.3k tokens. Record, full
+rule list and replay script: `baselines/s4-permissions-30-10-2026.md`.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

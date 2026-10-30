@@ -25,9 +25,7 @@
       "Bash(memory_pressure)",
       "Bash(vm_stat)",
       "Bash(npm ls *)",
-      "Bash(git apply *)",
       "Bash(npm outdated *)",
-      "Bash(git stash *)",
       "Bash(grep -v \"^src/\\\\|^electron/\\\\|^docs/\\\\|^scripts/\\\\|^README.md$\\\\|^CLAUDE.md$\")",
       "Bash(cmake --version)",
       "Bash(lsof -iTCP:5173 -sTCP:LISTEN -n -P)",
@@ -39,8 +37,7 @@
       "Bash(cp docs/settings-design.md docs/archive/settings-design-phase-3.md)",
       "Bash(awk -F'#' '{print $2}')",
       "Bash(git patch-id *)",
-      "Bash(mkdir -p /private/tmp/vf-emptyhome)",
-      "Bash(git log *)"
+      "Bash(mkdir -p /private/tmp/vf-emptyhome)"
     ]
   }
 }

@@ -2,12 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(npm view *)",
-      "Bash(npm pack *)",
       "Bash(git tag *)",
       "Bash(git rev-list *)",
-      "Bash(git ls-remote *)",
       "Bash(git add *)",
-      "Bash(git config *)",
       "Bash(npm -v)",
       "Bash(rtk tsc *)",
       "Bash(/usr/bin/find *)",
@@ -19,7 +16,13 @@
       "Bash(rtk git add *)",
       "Bash(rtk npm run *)",
       "Bash(rtk npm test)",
-      "Bash(rtk npm test *)"
+      "Bash(rtk npm test *)",
+      "Bash(git ls-remote origin *)",
+      "Bash(git ls-remote --heads origin *)",
+      "Bash(git ls-remote --tags origin *)",
+      "Bash(git config --get *)",
+      "Bash(git config --list)",
+      "Bash(npm pack --dry-run)"
     ]
   }
 }
