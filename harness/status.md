@@ -126,9 +126,17 @@ to the current state.
 - **Live project settings edits from S4** — complete and matching their mirrors, left
   uncommitted in each project (30-10-2026). Tracked, so each goes in with that project's
   next PR: FinNode `.claude/settings.json`, Voice-Flow `.claude/settings.json`.
-  Gitignored, so nothing to commit there: FinNode, Voice-Flow, Voice Flow_v1,
-  vthrudebugger_v1 and Packbly_web `.claude/settings.local.json`; Voice Flow_v1 and
-  Debugger v2 `.claude/settings.json`. Exact paths: `baselines/s4-permissions-30-10-2026.md`.
+  Gitignored, so nothing to commit there: FinNode, Voice-Flow and vthrudebugger_v1
+  `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
+  `baselines/s4-permissions-30-10-2026.md`.
+- **Parked / detached, not active — Packbly Web, Voice Flow v1 (and Packbly v2):**
+  detached from Claude Setup on 30-10-2026; folders and data remain local. Removed from
+  `PROJECTS.md` and `project-rules/manifest.tsv`; mirror copies deleted (in git history).
+  Pointers, not current work: Packbly Web's S5 app-security findings —
+  `baselines/project-handoffs-29-10-2026.md` § *Packbly Web*, which of S5a–c are its own
+  to be asked of Amit. S4 settings edits: live in Packbly_web `.claude/settings.local.json`
+  and Voice Flow_v1 `.claude/settings.json` and `settings.local.json`; all gitignored in
+  those projects, so no commit is pending.
 - **Known, accepted, not planned (30-10-2026, value bar):** T1 wrapped commands
   (`$(…)`, `env`/`xargs`, double spaces); T2 auto-mode blocks turning into boxes; T3
   `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies;
@@ -137,7 +145,8 @@ to the current state.
   auto mode provides secondary protection. (F2, 30-10-2026. If asked for later, propose
   only `gh release create|delete`, `gh secret set|delete` and `gh workflow run`.)
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
-  (FinNode, Voice-Flow, Debugger files); S5a–c (Packbly and Emp Portal app fixes). S4 is
+  (FinNode, Voice-Flow, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
+  parked with Packbly, above). S4 is
   done (*Completed*). Detail: `baselines/audit-29-10-2026.md`.
   Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
 

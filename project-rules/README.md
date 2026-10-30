@@ -70,28 +70,19 @@ when one project's live file must not be copied yet, after review.
 | `FinNode/` | `~/Documents/VS Code/FinNode` |
 | `Voice-Flow/` | `~/Documents/VS Code/Voice-Flow` — the live Voice Flow tree, a personal dictation app |
 | `vthrudebugger_v1/` | `~/Documents/VS Code/vthrudebugger_v1` |
-| `Packbly_web/` | `~/Documents/VS Code/Packbly_web/v1.1-Packbly` |
 | `Emp portal/` | `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26` |
 | `SecondBrain schema/` | `~/Documents/SecondBrain Obsidian/schema` |
 | `Debugger v2/` | `~/Documents/VS Code/Debugger v2` — permissions only; it has no `CLAUDE.md` yet |
 
-`Packbly_v2` is absent on purpose: it has no `CLAUDE.md` and no `.claude/`, so
-there is nothing to mirror. Add a line when it gains one.
+AtWorkpe is on GitHub only and has no `CLAUDE.md`; add a line when it gains one.
 
-### Retired
+### Detached
 
-| Copy | Source project |
-|---|---|
-| `Voice Flow_v1/` | `~/Documents/VS Code/Voice Flow_v1` |
-
-**`Voice Flow_v1` is not the Voice Flow project.** It is an earlier tree, superseded by
-`Voice-Flow` and not worked on — Amit's decision, 27-09-2026. The names are one hyphen
-apart, so check which one you are in before changing anything: `Voice-Flow` is the
-current one.
-
-It stays where it is. The tree was kept on disk rather than archived, its line stays in
-`manifest.tsv`, and `sync.sh` still mirrors it — retired here means nobody is working on
-it, not that it has gone.
+Packbly Web (`~/Documents/VS Code/Packbly_web/v1.1-Packbly`) and Voice Flow v1
+(`~/Documents/VS Code/Voice Flow_v1`) were detached from Claude Setup on 30-10-2026:
+removed from `manifest.tsv` and their copies here deleted (they remain in git history).
+The folders and their data stay on disk, untouched. **`Voice Flow_v1` is not the Voice
+Flow project** — the names are one hyphen apart; `Voice-Flow` is the current one.
 
 ## Before adding another one
 

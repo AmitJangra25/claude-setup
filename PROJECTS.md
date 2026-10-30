@@ -27,20 +27,22 @@ files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file
   in-app debugger library for React Native: network/console/error capture, QA alert
   toasts, network inspector, client-side mocks. **The Debugger tree being worked on** —
   Amit's decision, 27-09-2026, not a check of which tree is furthest ahead.
-- **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics
-  platform: intracity courier + B2B relocation/warehousing tickets (Next.js 16 +
-  React 19, MongoDB, Socket.IO, JWT). **Real customer and courier records.**
-- **Voice Flow v1** — `~/Documents/VS Code/Voice Flow_v1` — earlier Voice Flow tree.
-  **Superseded by `Voice-Flow`.** Not worked on; kept on disk, not archived.
 
 ## No `CLAUDE.md` yet
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for
-  React Native. **Parked.** Not a successor to `vthrudebugger_v1`: both were seeded
-  independently from V-Thru's `DebugProvider.tsx`, and v2's own memory puts
+  React Native. GitHub: `github.com/AmitJangra25/vthrudebugger_v2`. **Next up; may
+  become an npm package** (Amit, 30-10-2026). Not a successor to `vthrudebugger_v1`: both
+  were seeded independently from V-Thru's `DebugProvider.tsx`, and v2's own memory puts
   `vthrudebugger_v1` deliberately out of scope for it.
-- **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma Make export
-  (`package.json` names it `@figma/my-make-file`), a design bundle rather than an app.
+
+## On GitHub only, not on this Mac
+
+- **AtWorkpe** — `github.com/AmitJangra25/AtWorkpe` — multi-tenant company portal:
+  leave management, attendance tracking, goals, documents, salary slips, onboarding and
+  role-based dashboards (Admin, HR, Manager, Team lead, Employee). Production-ready
+  multi-tenant HRMS SaaS, React + Vite client and Express + SQLite server. Not cloned; no
+  `CLAUDE.md` yet.
 
 Not projects: `~/Documents/extra/v1.1-Packbly`, `~/Documents/Skils/PM-skills-Amit`, and
 `~/Documents/SecondBrain Obsidian/schema` — one `CLAUDE.md` (233 lines in the mirror, 29-10-2026), no code, no git: an

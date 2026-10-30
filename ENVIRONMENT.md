@@ -648,8 +648,7 @@ it properly, and is never out of date. This is the one copy of the sweep; anywhe
 else that needs it points here:
 
 ```bash
-for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,Voice\ Flow_v1,FinNode,vthrudebugger_v1,Debugger\ v2} \
-         ~/Documents/VS\ Code/Packbly_web/v1.1-Packbly \
+for r in ~/.claude ~/Documents/VS\ Code/{Voice-Flow,FinNode,vthrudebugger_v1,Debugger\ v2} \
          ~/Documents/VS\ Code/Emp\ portal/Vthru_Emp_v2.1_jun26; do
   printf '%-22s %-46s %s\n' "$(basename "$r")" \
     "$(git -C "$r" status -sb | head -1)" "$(git -C "$r" log -1 --format=%ad --date=short)"
@@ -668,18 +667,16 @@ losing work.
 | Path | State |
 |---|---|
 | `~/Documents/VS Code/Voice-Flow` | **Current.** |
-| `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August |
+| `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August. Detached from Claude Setup 30-10-2026 |
 | `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 20-09-2026 and again 21-09-2026 |
 
-**Two Packbly trees exist.**
-
-| Path | State |
-|---|---|
-| `~/Documents/VS Code/Packbly_web/v1.1-Packbly` | The one with a `CLAUDE.md` |
-| `~/Documents/extra/v1.1-Packbly` | Same name, last commit 23-06-2026. Looks like an older copy |
+**Two Packbly trees exist**, `~/Documents/VS Code/Packbly_web/v1.1-Packbly` and an older
+copy at `~/Documents/extra/v1.1-Packbly`. Both are detached from Claude Setup
+(30-10-2026); the folders and their data stay on disk.
 
 **Two Debugger trees exist.** Amit chose `~/Documents/VS Code/vthrudebugger_v1` as the
-tree to work on, 27-09-2026; `Debugger v2` is parked. A further copy under `~/Debugger`
+tree to work on, 27-09-2026; `Debugger v2` is next up and may become an npm package
+(30-10-2026). A further copy under `~/Debugger`
 is gone, and whether `vthrudebugger_v1` holds its work is unknown — see
 § *Project-tree decisions*.
 
@@ -728,7 +725,8 @@ Two projects hold real personal records, and `OLLAMA.md` has the standing rule a
 may be sent to a local model:
 
 - **Emp Portal** — employee records
-- **Packbly Web** — customer and courier records
+- **Packbly Web** — customer and courier records. Detached from Claude Setup 30-10-2026;
+  the data is still on disk, so the `OLLAMA.md` rule still applies.
 
 ### Full project descriptions
 
@@ -753,15 +751,6 @@ The detail lives here.
   toasts**, network inspector, **client-side mocks**. **The Debugger tree Amit is
   working on** — his decision, 27-09-2026, not a check of which tree is furthest ahead.
 
-- **Packbly Web** — `~/Documents/VS Code/Packbly_web/v1.1-Packbly` — logistics platform:
-  intracity courier product plus a **B2B relocation and warehousing ticket system**.
-  Next.js 16 **App Router** + React 19, **MongoDB native driver**, Socket.IO, **JWT
-  auth**. Holds real customer and courier records.
-
-- **Voice Flow v1** — `~/Documents/VS Code/Voice Flow_v1` — the earlier Voice Flow tree.
-  Superseded by `Voice-Flow`. **Not worked on; stays on disk, not archived** — Amit's
-  call, 27-09-2026.
-
 - **SecondBrain schema** — `~/Documents/SecondBrain Obsidian/schema` — schema for an
   Obsidian vault. **The vault itself is the parent directory**, which holds `raw`,
   `wiki` and `schema`.
@@ -771,15 +760,17 @@ The detail lives here.
   **backend**, role-based dashboards. Holds real employee records.
 
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React
-  Native, built so **a developer can drop it into an app**. **A separate project from
-  `vthrudebugger_v1`, not a successor, parked 27-09-2026** — why, and what is still
-  unknown, is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`,
-  `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
+  Native, built so **a developer can drop it into an app**. GitHub:
+  `github.com/AmitJangra25/vthrudebugger_v2`. **A separate project from
+  `vthrudebugger_v1`, not a successor**; parked 27-09-2026, **next up and may become an
+  npm package** (Amit, 30-10-2026) — the history is in § *Project-tree decisions*.
+  **Carries its own** `ARCHITECTURE.md`, `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 
-- **Packbly v2** — `~/Documents/VS Code/Packbly_v2/packblyfima3` — a Figma code export
-  ("Website Redesign Proposal"), **shadcn theme + assets**. Reads as a design bundle
-  rather than an app. **It is a real project** — Amit's call, 27-09-2026 — just not one
-  he is working on. The entry stays as it is.
+- **AtWorkpe** — `github.com/AmitJangra25/AtWorkpe`, **on GitHub only, not cloned** —
+  multi-tenant company portal: leave management, attendance tracking, goals, documents,
+  salary slips, onboarding and role-based dashboards (Admin, HR, Manager, Team lead,
+  Employee). Production-ready multi-tenant HRMS SaaS, React + Vite client and Express +
+  SQLite server.
 
 - ~~`~/Documents/Voice-Flow-main`~~ — was a **third** Voice Flow copy with no git repo.
   **No longer on disk**, confirmed 20-09-2026 and 21-09-2026.
