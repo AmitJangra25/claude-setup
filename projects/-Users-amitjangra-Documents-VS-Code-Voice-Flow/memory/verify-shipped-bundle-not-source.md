@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: cea89f19-1946-4312-82b0-366daaaec095
-  modified: 2026-08-12T13:34:49.293Z
+  modified: 2026-10-30T10:59:27.086Z
 ---
 
 
@@ -26,11 +26,13 @@ not catch because they fed the stage pre-split input.
 (`npx @electron/asar extract "/Applications/Voice Flow.app/Contents/Resources/app.asar" <dir>`)
 and grep it for a distinctive string from the change. Compare the `app.asar` mtime against
 the source file mtimes. Check `codesign --verify --deep` on the installed bundle. Green
-tests plus correct source is not evidence the app changed. Read TESTING.md before
-debugging by hand — it already documents traps like the `ELECTRON_RUN_AS_NODE=1` one.
+tests plus correct source is not evidence the app changed. Read `docs/known-pitfalls.md`
+and `docs/manual-testing.md` before debugging by hand — they already document traps like
+the `ELECTRON_RUN_AS_NODE=1` one.
 
 
 **Renamed since this was written.** The app was `Voice Flow Pro` in Aug 2026 and
-has been `Voice Flow` since the 19 Aug 2026 rename — `productName` in `package.json`
-is now the only place the name lives. The paths above are the current ones; the
+has been `Voice Flow` since the 19 Aug 2026 rename. The shipped name is `productName` in
+`package.json` (twice: top level and the build block); the dev name `Voice Flow (dev)`
+lives in `electron/appName.js` and `scripts/appFootprint.js`. The paths above are the current ones; the
 evidence below is from when it was still called Pro.

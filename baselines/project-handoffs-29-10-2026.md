@@ -64,9 +64,11 @@ needs two-method confirmation, an independent review and Amit's approval.
 
 - **Goal / success measure:** fix the one stale memory fact from the 29-10-2026 Claude
   Setup audit. Yes/no: the note states the traced cause, and nothing else changes.
-- **Latest measured result:** none yet. Source: `~/.claude/baselines/audit-29-10-2026.md`
-  (E3); the cause is recorded in `~/.claude/harness/status.md`.
-- **Status:** not started. Needs Amit's approval.
+- **Latest measured result:** met, 30-10-2026. E3 now states the traced cause. In the
+  second note, both doubtful parts were checked and found wrong, then corrected: the
+  pointer to `TESTING.md`, which does not exist, and "the only place the name lives".
+  Source: `~/.claude/baselines/audit-29-10-2026.md` (E3).
+- **Status:** done 30-10-2026, with Amit's approval, in a Voice-Flow session.
 - **Project and folder:** Voice-Flow, `~/Documents/VS Code/Voice-Flow`.
 
 - **E3:** memory `rtk-proxy-prompt-choose-yes.md:17-19` calls the cause "unproven". It was
@@ -82,8 +84,7 @@ needs two-method confirmation, an independent review and Amit's approval.
 
 - **Watch for:** Voice-Flow memory lives in the `~/.claude` repository, so a setup session
   commits these edits.
-- **Exact next step:** in a Voice-Flow session, propose the E3 wording and wait for Amit's
-  approval.
+- **Exact next step:** none.
 
 ---
 

@@ -129,9 +129,9 @@ to the current state.
 
 ## Open
 
-- **Live project settings edits from S4** — complete and matching their mirrors, left
-  uncommitted in each project (30-10-2026). Tracked, so it goes in with that project's
-  next PR: Voice-Flow `.claude/settings.json`. FinNode's `CLAUDE.md` and
+- **Live project settings edits from S4** — complete and matching their mirrors
+  (30-10-2026). No commit is pending. Voice-Flow `.claude/settings.json` went in with
+  Voice-Flow PR #82 (`c09f206`, merged `a09ce14`). FinNode's `CLAUDE.md` and
   `.claude/settings.json` went in with FinNode PR #6 (`234517a`, merged `aec7df5`).
   Gitignored, so nothing to commit there: FinNode, Voice-Flow and vthrudebugger_v1
   `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
@@ -154,8 +154,8 @@ to the current state.
 - **Known, accepted:** `git add` runs with no box in auto mode; no rule matches it, because
   the hook rewrites it to `rtk git add`. Recorded in `ENVIRONMENT.md` § 3 (FinNode backlog
   6, 30-10-2026). The FinNode backlog row itself waits for a FinNode session.
-- **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
-  (FinNode, Voice-Flow, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
+- **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
+  (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
   parked with Packbly, above). S4 is
   done (*Completed*). Detail: `baselines/audit-29-10-2026.md`.
   Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
@@ -184,8 +184,8 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** S4, F5, F9 and D43 (backlog value bar) are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the Voice-Flow
-`.claude/settings.json` commit is pending (see *Open*); FinNode's went in with its PR #6. The session check is proven to run after `/clear` (open test 13). The setup is
+**Now:** S4, F5, F9 and D43 (backlog value bar) are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken. Voice-Flow's
+`.claude/settings.json` went in with its PR #82, and FinNode's with its PR #6. Voice-Flow's audit item E3 is done. The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
 (Amit, 09-10-2026).
