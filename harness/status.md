@@ -144,6 +144,9 @@ to the current state.
 - **Known, accepted:** GitHub write commands are not separately boxed; 0 historical uses;
   auto mode provides secondary protection. (F2, 30-10-2026. If asked for later, propose
   only `gh release create|delete`, `gh secret set|delete` and `gh workflow run`.)
+- **Known, accepted:** `git add` runs with no box in auto mode; no rule matches it, because
+  the hook rewrites it to `rtk git add`. Recorded in `ENVIRONMENT.md` § 3 (FinNode backlog
+  6, 30-10-2026). The FinNode backlog row itself waits for a FinNode session.
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
   (FinNode, Voice-Flow, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
   parked with Packbly, above). S4 is

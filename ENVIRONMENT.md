@@ -218,6 +218,15 @@ its contents as read, and nothing more. Do not state that it is loaded without e
 that separates the two. **Undocumented, 10-10-2026:** a docs lookup, from search summaries
 rather than quoted text, found `settings.local.json` documented only inside a project's
 `.claude/` — for this folder, the nested file. Left in place by Amit's decision (T6).
+On 30-10-2026 `/permissions` listed `Bash(git add *)` once, sourced "Local settings";
+that still does not separate the two files.
+
+**`git add` is decided by the mode, not a rule (30-10-2026).** The hook turns every
+`git add …` into `rtk git add …` (`rtk rewrite`), so `Bash(git add *)` in both local files
+never matches anything. No `allow` or `ask` rule matches `rtk git add`. In auto mode the
+classifier lets it through with no box (tested on a scratch repo in `/tmp`); in default
+mode a box is expected but untested. Amit accepted no box in auto mode — staging is
+undoable and `commit`/`push` are fenced — and the two dead rules stay (FinNode backlog 6).
 
 Neither file is merged, moved or changed by this note.
 
