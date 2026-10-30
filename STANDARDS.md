@@ -155,8 +155,10 @@ through things these rules still forbid.
 ## Plan before building
 
 Check the plan against the actual files before acting on it. Set priority before dividing
-the work — **P1** broken, blocking, or losing data · **P2** works but wrong, or blocks the
-next piece · **P3** everything else — then split it and do the pieces in that order. Keep
+the work — **P1** broken, blocking, losing data, or a security or data-loss risk that
+normal use exposes · **P2** wrong in a way that has happened, or that a named normal-use
+step triggers, or blocks the next piece · **P3** everything else, including gaps nobody
+has hit. Above P3, name the case. Then split it and do the pieces in that order. Keep
 pieces small, so work ends before the session gets expensive. When the status line warns,
 finish the current piece and say it is a good point to start fresh. Never clear mid-task.
 Thresholds: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop
@@ -223,12 +225,19 @@ task will miss its success measure. In that last case stop building, show me the
 and wait. A workflow seen four times: propose a skill, never install one.
 
 **That list is observations, not a menu of work:** defects and facts only — never
-suggested tasks (one exception: a skill proposal, above), never "worth checking", never
-extra verification of what you just built. Empty is normal. In project mode, out-of-scope
+suggested tasks (one exception: a skill proposal, above), never "worth checking", nothing
+below the value bar, never extra verification of what you just built. Empty is normal. In project mode, out-of-scope
 findings also go to the backlog when recording is allowed (*How a task runs*); there an
 entry may carry a next step. Another project's issues wait for that project's turn.
 Investigation too: check what the answer needs — one decisive confirmation is enough —
 then stop.
+
+**Propose only what clears the value bar:** it has happened, a named normal-use step
+triggers it, or it moves my goal by a stated number or yes/no. Otherwise one line: how
+many such items are known, not priced, not worth doing now. Security, data-loss and safety
+risks are always raised, with how likely they are. Asked what is pending, answer what my
+goal needs, often nothing. Every follow-up list gives each item a verdict: worth doing, or
+known and accepted.
 
 ## When something is unclear
 
@@ -260,6 +269,10 @@ equivalent — and nothing lands on `main` directly.
 unmerged branch. If another branch is checked out with uncommitted work, stash only the
 files for the new change, branch fresh off `main` and pop the stash there — never carry the
 other PR's commits along.
+
+**Branches: `git switch`, not `git checkout`.** `git switch <branch>` to move,
+`git switch -c <branch> main` to create. `git checkout` stays boxed because it can also
+overwrite files.
 
 **`~/.claude` is the one exception to branching**; it is set out in `~/.claude/.claude/CLAUDE.md`.
 

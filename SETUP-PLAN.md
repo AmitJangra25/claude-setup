@@ -1422,6 +1422,22 @@ remove/rename, forced or discarding `switch`, `pull --rebase|--force`, and FinNo
 CHANGE, 6 fixes taken · 51.3k tokens; final keep after 5 fixes · 46.3k tokens. Record, full
 rule list and replay script: `baselines/s4-permissions-30-10-2026.md`.
 
+### D42 · 30-10-2026
+
+**Branches move with `git switch`; work is proposed only if it clears a value bar.**
+F5: `STANDARDS.md` § *Git* says `git switch <branch>` to move and `git switch -c <branch>
+main` to create (`main`, so a new branch never carries another branch's commits);
+`git checkout` stays boxed because it can also overwrite files. About 120 of 140 past
+`git checkout` calls were branch moves. F9: Claude offered 8 follow-ups, mostly as P2 and
+priced, and judged only 2 worth doing once Amit pushed back. Cause: priority was set by
+category, so any theoretical gap counted. Now P2 needs a case that has happened or a named
+normal-use trigger, in `STANDARDS.md` and `templates/deferred-improvements.md` alike;
+§ *Stay on the task* adds the value bar; security, data-loss and safety risks are always
+raised, but are P1 only when normal use exposes them. F2 (box 39 GitHub write commands)
+rejected under the bar: 0 uses in 16,563 calls. The other items are listed as known and
+accepted in `harness/status.md` § *Open*. Cross-checks · Opus · F5+F2 keep with 4 changes ·
+32.7k tokens; F9 change, all taken except P1 for every open security risk · 22.9k tokens.
+
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
 

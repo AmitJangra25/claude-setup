@@ -24,6 +24,16 @@ Entries up to and including T6 moved unchanged to
 23-10-2026 to `baselines/status-completed-23-10-2026.md` (29-10-2026), to keep this file
 to the current state.
 
+- **F5 `git switch` for branches; F9 value bar** — 30-10-2026, approved by Amit
+  (`SETUP-PLAN.md` D42). F5: `STANDARDS.md` § *Git* — move with `git switch <branch>`,
+  create with `git switch -c <branch> main`; `git checkout` stays boxed. About 120 of 140
+  past `git checkout` calls were branch moves (~190 of its 223 boxes). F9: after Claude
+  offered 8 follow-ups as mostly P2 and then judged 2 worth doing when Amit pushed back,
+  `STANDARDS.md` and `templates/deferred-improvements.md` share a new P1–P3 line (P2 needs
+  a case that has happened or a named normal-use trigger), § *Stay on the task* adds the
+  value bar, and memory `stay-on-the-asked-task` carries one line. Cross-checks (Opus):
+  F5+F2 · keep with 4 changes · 32.7k tokens; F9 · change, all taken except P1 for every
+  open security risk (narrowed to risks normal use exposes) · 22.9k tokens.
 - **S4 — fewer permission boxes, holes closed** — 30-10-2026, approved by Amit as one
   package (steps 1–6). Decision `SETUP-PLAN.md` D41; record
   `baselines/s4-permissions-30-10-2026.md`. Replay of past
@@ -119,6 +129,13 @@ to the current state.
   Gitignored, so nothing to commit there: FinNode, Voice-Flow, Voice Flow_v1,
   vthrudebugger_v1 and Packbly_web `.claude/settings.local.json`; Voice Flow_v1 and
   Debugger v2 `.claude/settings.json`. Exact paths: `baselines/s4-permissions-30-10-2026.md`.
+- **Known, accepted, not planned (30-10-2026, value bar):** T1 wrapped commands
+  (`$(…)`, `env`/`xargs`, double spaces); T2 auto-mode blocks turning into boxes; T3
+  `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies;
+  F4 `git stash pop/apply` outside `~/.claude`; F6 one-line box explanations.
+- **Known, accepted:** GitHub write commands are not separately boxed; 0 historical uses;
+  auto mode provides secondary protection. (F2, 30-10-2026. If asked for later, propose
+  only `gh release create|delete`, `gh secret set|delete` and `gh workflow run`.)
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E3, E5, E6, E8, F6
   (FinNode, Voice-Flow, Debugger files); S5a–c (Packbly and Emp Portal app fixes). S4 is
   done (*Completed*). Detail: `baselines/audit-29-10-2026.md`.

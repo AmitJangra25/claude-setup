@@ -1,8 +1,11 @@
 ---
 name: stay-on-the-asked-task
-description: Amit wants the asked task only, reported short — no extra probes, no unasked analysis appended to reports
+description: "Amit wants the asked task only, reported short — no extra probes, no unasked analysis appended to reports"
 metadata:
+  node_type: memory
   type: feedback
+  originSessionId: 8ad1e2f3-189a-4903-850b-03e46534b1b9
+  modified: 2026-10-30T08:49:36.732Z
 ---
 
 Do the task that was asked and report it short. Said directly on 2026-09-21 after a
@@ -21,5 +24,6 @@ followed in practice.
 already decisive. Anything noticed but not asked about goes in the "noting, not acting on"
 list, never in the body of the report. Do not re-answer an earlier question because new
 evidence touches it — say it in one line if it changes a decision, otherwise leave it.
+Also: don't present gaps nobody has hit as work (30-10-2026); see STANDARDS value bar.
 
 Related: [[claude-setup-status]]
