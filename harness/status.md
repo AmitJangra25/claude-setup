@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 29-10-2026
+**Last verified:** 30-10-2026
 
 ## Current phase
 
@@ -63,11 +63,9 @@ to the current state.
   there* now says `rtk proxy` is for reads only and to answer plain "Yes" to that offer
   (moved to `RTK.md` § *`rtk proxy`* on 29-10-2026). Not
   added to the `ask` list (Amit: fewer clicks). Opus review · CLEAN · 22.3k tokens measured.
-  `drift.sh` before and after: the same 6 drifts. Unverified: the `startup|clear` matcher is
-  set, but whether the check runs after `/clear` is not proven. A clean session produces no
-  check output, so silence does not distinguish between "hook ran silently" and "hook did
-  not run". A controlled test would require temporarily creating a known drift; deferred to
-  avoid unnecessary changes and token use.
+  `drift.sh` before and after: the same 6 drifts. **Proven 30-10-2026:** the check runs after
+  `/clear` — a controlled test with a temporary known drift; method and result in
+  `baselines/global-open-tests.md`, item 13.
 - **FinNode handoff trimmed — one-time exception** — 29-10-2026, approved by Amit (option B).
   Done from this setup session although `STANDARDS.md` § *Claude Setup* limits reach-in edits
   to a project's `CLAUDE.md`. FinNode `.claude/current-task.md` 44,129 → 4,610 bytes (about
@@ -128,8 +126,8 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 ## Next gate
 
 **Now:** the Session 2 audit changes are complete and closed (29-10-2026). Nothing else
-in progress. As of 29-10-2026
-nothing is broken; the FinNode-side commit is pending (see *Open*). The `/clear` limitation is unverified, not confirmed failed. The setup is
+in progress. As of 30-10-2026
+nothing is broken; the FinNode-side commit is pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
 (Amit, 09-10-2026).

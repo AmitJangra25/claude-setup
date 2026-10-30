@@ -123,10 +123,13 @@ Last reviewed 11-10-2026.
 12. **D38's sweep script checks only part of what D38 enforces** — **deferred 11-10-2026**,
    script unchanged (Amit). Detail: `SETUP-PLAN.md` § *Decisions already made*, row **D38**.
 
-13. **Does the session check run after `/clear`? Not proven** — **deferred 29-10-2026**
-   (Amit). The `startup|clear` matcher is set, but a clean session prints nothing, so
-   silence cannot tell "ran" from "did not run". Prove it with a known drift, then
-   `/clear`. Detail: `harness/status.md` § *Completed*, session check after `/clear`.
+13. **Does the session check run after `/clear`? Yes — closed 30-10-2026.** A clean
+   session prints nothing, so the test used a known drift: the SecondBrain mirror copy
+   given a final line ending (`drift.sh`: 17 current, 1 drifted). In a new setup session
+   the warning appeared at startup (the control) and again after `/clear` and "hi",
+   unprompted, both naming `SecondBrain schema` `CLAUDE.md` (Amit's report). Copy then
+   restored: `drift.sh` 18 current, 0 drifted; git clean.
+   Detail: `harness/status.md` § *Completed*, session check after `/clear`.
 
 ## Project-specific — pointers only
 

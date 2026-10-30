@@ -10,7 +10,7 @@ which fact: `harness/status.md` § *Source of truth*. How a task runs:
    in every project. Everything else is reference, read when a step needs it.
 2. **Setup sessions only** (started in `~/.claude`): `.claude/CLAUDE.md` loads, and the
    `SessionStart` hook in `.claude/settings.json` runs `harness/session-check.sh` at
-   startup and after `/clear` (after `/clear`: set, not yet proven). It runs
+   startup and after `/clear` (after `/clear`: proven 30-10-2026, open test 13). It runs
    `project-rules/drift.sh`, searches this repo and the copies for `Bash(rtk proxy *)`,
    and searches each manifest project's live `.claude/settings.json` and
    `settings.local.json` for `Bash(rtk proxy *)` and `Bash(rtk git *)`; silent when clean,
