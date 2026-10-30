@@ -14,7 +14,7 @@ raised before a repo goes public, never done silently.
 **The projects were not made uniform.** *Recorded, not freshly checked:* Voice-Flow
 was left untracked and not reverted; FinNode is tracked. (11-10-2026: Voice-Flow's own
 checkup on 09-10-2026 confirmed `CLAUDE.md` and `settings.json` are gitignored there —
-`../harness/status.md` § *Completed*.) So for some projects this
+`../baselines/status-completed-11-10-2026.md`.) So for some projects this
 folder is their only version history, and for others it is a second copy that
 survives a machine or an account switch. `.claude/settings.local.json` stays
 gitignored everywhere — it holds absolute paths from this Mac and a long list of

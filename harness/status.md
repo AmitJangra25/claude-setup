@@ -29,7 +29,7 @@ to the current state.
   against the success measure: (1) rules weakened, judged rule by rule against `e996dc9`:
   0 apart from C1, which Amit accepted (permission explanations for risky boxes only);
   (2) A1–A5 and A8 fixed, A6, A7 and A9 deferred to project sessions; (3) every file path
-  in the live docs exists (18/18), `§` pointers not re-checked; (4) dates: 0 non-DD-MM-YYYY
+  in the live docs exists (18/18), `§` pointers checked 30-10-2026 (2 broken and 1 loose fixed); (4) dates: 0 non-DD-MM-YYYY
   except five kept file and heading names in `baselines/global-open-tests.md`; (5) shell
   `.env` reads denied (13/13 refused, controls read) and `find -delete`/`-exec`/`xargs rm`
   ask (6/6 boxes); not airtight, stated in `ENVIRONMENT.md`; (6) `drift.sh` 18 current,

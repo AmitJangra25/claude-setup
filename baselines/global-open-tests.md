@@ -52,8 +52,8 @@ Last reviewed 11-10-2026.
    23-10-2026 07:43:37 IST, the same second setup session `26b8c4c8` logged an approval
    with source `user_permanent` ("don't ask again") for `rtk proxy git -C … commit`. Only
    that return is traced; the earlier ones are not. Removed again; `STANDARDS.md`
-   § *Reuse what is already there* now keeps `rtk proxy` to reads and says to answer plain
-   "Yes" to that offer; `session-check.sh` also checks live project settings (it had come
+   § *Reuse what is already there* then kept `rtk proxy` to reads and said to answer plain
+   "Yes" to that offer (moved to `RTK.md` § *`rtk proxy`* on 29-10-2026); `session-check.sh` also checks live project settings (it had come
    back in FinNode and Voice-Flow, with `rtk git *` in Voice-Flow).
 
 3. **The 59-destructive-command review, re-run with auto mode in scope.** The

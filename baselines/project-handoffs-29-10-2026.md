@@ -44,7 +44,7 @@ project's own session, which adds it to its own task record. Line numbers are as
   Phase 3 is in progress. `figma-finnode-design-repo.md:20` is probably stale; not verified.
 
 **F6 (needs a setup session too):** move the lesson in memory
-`setup-review-project-by-project.md` into `~/.claude/SETUP-PLAN.md` § *PHASE 10*, then
+`setup-review-project-by-project.md` into `~/.claude/SETUP-PLAN.md` § *PHASE 10 — Project-by-project review*, then
 remove the note. The `SETUP-PLAN.md` edit belongs to a `~/.claude` session. The removal
 needs two-method confirmation, an independent review and Amit's approval.
 
