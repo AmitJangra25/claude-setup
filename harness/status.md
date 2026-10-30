@@ -24,6 +24,11 @@ Entries up to and including T6 moved unchanged to
 23-10-2026 to `baselines/status-completed-23-10-2026.md` (29-10-2026), to keep this file
 to the current state.
 
+- **Backlog value bar; FinNode backlog 6 closed here** — 30-10-2026, approved by Amit
+  (`SETUP-PLAN.md` D43). `STANDARDS.md` § *Stay on the task*: backlog entries get a next
+  step only if they clear the value bar; before working an unapproved backlog item, Claude
+  says worth it or not, priority, size and rough tokens, then waits. Backlog template
+  updated to match. The `git add` finding is in `ENVIRONMENT.md` § 3 (commit `1ac21ab`).
 - **F5 `git switch` for branches; F9 value bar** — 30-10-2026, approved by Amit
   (`SETUP-PLAN.md` D42). F5: `STANDARDS.md` § *Git* — move with `git switch <branch>`,
   create with `git switch -c <branch> main`; `git checkout` stays boxed. About 120 of 140
@@ -177,7 +182,7 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** S4, F5 and F9 are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
+**Now:** S4, F5, F9 and D43 (backlog value bar) are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
 commit and the tracked S4 project settings edits are pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay

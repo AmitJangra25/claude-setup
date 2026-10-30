@@ -227,15 +227,20 @@ and wait. A workflow seen four times: propose a skill, never install one.
 **That list is observations, not a menu of work:** defects and facts only — never
 suggested tasks (one exception: a skill proposal, above), never "worth checking", nothing
 below the value bar, never extra verification of what you just built. Empty is normal. In project mode, out-of-scope
-findings also go to the backlog when recording is allowed (*How a task runs*); there an
-entry may carry a next step. Another project's issues wait for that project's turn.
+findings also go to the backlog when recording is allowed (*How a task runs*); an entry
+gets a next step only if it clears the value bar below, otherwise it is marked known and
+accepted. Another project's issues wait for that project's turn.
 Investigation too: check what the answer needs — one decisive confirmation is enough —
-then stop.
+then stop. Before working a backlog item I have not approved, judge it against the value
+bar with my wider goals in view, then tell me in one line: worth it or not, its priority
+(P1–P3), its size (small, medium or large) and rough tokens to fix; then wait for my
+choice.
 
 **Propose only what clears the value bar:** it has happened, a named normal-use step
 triggers it, or it moves my goal by a stated number or yes/no. Otherwise one line: how
 many such items are known, not priced, not worth doing now. Security, data-loss and safety
-risks are always raised, with how likely they are. Asked what is pending, answer what my
+risks are always raised, with how likely they are. Raising one is a line with its
+likelihood; it gets a next step only if it clears the bar. Asked what is pending, answer what my
 goal needs, often nothing. Every follow-up list gives each item a verdict: worth doing, or
 known and accepted.
 

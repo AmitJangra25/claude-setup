@@ -1438,6 +1438,22 @@ rejected under the bar: 0 uses in 16,563 calls. The other items are listed as kn
 accepted in `harness/status.md` § *Open*. Cross-checks · Opus · F5+F2 keep with 4 changes ·
 32.7k tokens; F9 change, all taken except P1 for every open security risk · 22.9k tokens.
 
+### D43 · 30-10-2026
+
+**Backlog items meet the value bar too; Claude judges worth, then asks.** FinNode backlog
+item 6 — "does anything still let `git add` run without a box?" — was a gap nobody had hit,
+recorded with a full investigation plan; a later session ran it over many turns. Outcome:
+no rule decides `git add` (the hook makes it `rtk git add`), auto mode lets it through, and
+Amit accepted that (`ENVIRONMENT.md` § 3). Cause: the value bar covered proposals in chat
+but not backlog entries, and "security risks are always raised" read as clearing the bar.
+Now in `STANDARDS.md` § *Stay on the task*: a backlog entry gets a next step only if it
+clears the bar, otherwise it is known and accepted; before working an unapproved backlog
+item, Claude judges it with Amit's wider goals in view and says in one line worth it or
+not, priority, size and rough tokens, then waits; raising a security risk is a line with
+its likelihood, with a next step only if it clears the bar. `templates/deferred-improvements.md`
+ties *Next step* to *Worth doing*. Cross-check · Opus · two of three sentences taken as
+written, the third narrowed to unapproved backlog items · 22.6k tokens.
+
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
 
