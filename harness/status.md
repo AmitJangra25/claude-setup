@@ -165,8 +165,7 @@ D33 (this harness) and the D-rows in `SETUP-PLAN.md`; the rules in `STANDARDS.md
 
 ## Next gate
 
-**Now:** S4 is complete (30-10-2026); its `~/.claude` changes wait for Amit's "send it".
-Nothing else in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
+**Now:** S4, F5 and F9 are complete and pushed (30-10-2026). Nothing in progress. As of 30-10-2026 nothing is broken; the FinNode `CLAUDE.md`
 commit and the tracked S4 project settings edits are pending (see *Open*). The session check is proven to run after `/clear` (open test 13). The setup is
 finished when every line of `harness/overview.md` § *What "finished" means* is true.
 Deferred until Amit asks: the account switch (open test 6) and open test 3's replay
