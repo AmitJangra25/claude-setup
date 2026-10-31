@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 30-10-2026
+**Last verified:** 31-10-2026
 
 ## Current phase
 
@@ -24,6 +24,13 @@ Entries up to and including T6 moved unchanged to
 23-10-2026 to `baselines/status-completed-23-10-2026.md` (29-10-2026), to keep this file
 to the current state.
 
+- **Deleted Voice Flow copies cleared from the docs** — 31-10-2026, approved by Amit.
+  `Voice Flow_v1` (deleted by Amit) and `Voice-Flow-main` confirmed absent with `ls`.
+  Current-state lines removed or corrected in `ENVIRONMENT.md` (§ *Duplicate trees*,
+  § *Project-tree decisions*, § *Full project descriptions*), `project-rules/README.md`
+  § *Detached* and § *Open* here; history files unchanged. `drift.sh` 13 current,
+  0 drifted and `session-check.sh` silent, before and after. Cross-check (Sonnet) · KEEP ·
+  21.6k tokens measured.
 - **FinNode mirror refreshed** — 30-10-2026, approved by Amit. `sync.sh --pull` copied
   FinNode `CLAUDE.md` (new "never reads `private/`" rule) and `.claude/settings.json`
   (`git add` and `docs/` edit allows out, `private/` read denies in) from FinNode PR #6.
@@ -137,13 +144,13 @@ to the current state.
   `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
   `baselines/s4-permissions-30-10-2026.md`.
 - **Parked / detached, not active — Packbly Web, Voice Flow v1 (and Packbly v2):**
-  detached from Claude Setup on 30-10-2026; folders and data remain local. Removed from
+  detached from Claude Setup on 30-10-2026. Packbly folders and data remain local; the
+  Voice Flow_v1 folder was deleted by Amit, confirmed absent 31-10-2026. Removed from
   `PROJECTS.md` and `project-rules/manifest.tsv`; mirror copies deleted (in git history).
   Pointers, not current work: Packbly Web's S5 app-security findings —
   `baselines/project-handoffs-29-10-2026.md` § *Packbly Web*, which of S5a–c are its own
-  to be asked of Amit. S4 settings edits: live in Packbly_web `.claude/settings.local.json`
-  and Voice Flow_v1 `.claude/settings.json` and `settings.local.json`; all gitignored in
-  those projects, so no commit is pending.
+  to be asked of Amit. S4 settings edits: live in Packbly_web `.claude/settings.local.json`,
+  gitignored there, so no commit is pending; Voice Flow_v1's went with its folder.
 - **Known, accepted, not planned (30-10-2026, value bar):** T1 wrapped commands
   (`$(…)`, `env`/`xargs`, double spaces); T2 auto-mode blocks turning into boxes; T3
   `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies;

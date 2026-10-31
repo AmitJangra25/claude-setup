@@ -670,14 +670,9 @@ merged, or abandoned? Which projects those are changes; that it is worth asking 
 
 ### Duplicate trees
 
-**Two Voice Flow trees exist**, down from three. The risk is editing the wrong one and
-losing work.
-
-| Path | State |
-|---|---|
-| `~/Documents/VS Code/Voice-Flow` | **Current.** |
-| `~/Documents/VS Code/Voice Flow_v1` | Older tree, on a rename branch, August. Detached from Claude Setup 30-10-2026 |
-| `~/Documents/Voice-Flow-main` | **Gone.** Had no git repo at all. Confirmed absent 20-09-2026 and again 21-09-2026 |
+**One Voice Flow tree remains:** `~/Documents/VS Code/Voice-Flow`. The older copies
+`Voice Flow_v1` and `Voice-Flow-main` are deleted, confirmed absent 31-10-2026; their
+names in older records and `~/.claude.json` are history.
 
 **Two Packbly trees exist**, `~/Documents/VS Code/Packbly_web/v1.1-Packbly` and an older
 copy at `~/Documents/extra/v1.1-Packbly`. Both are detached from Claude Setup
@@ -691,7 +686,7 @@ is gone, and whether `vthrudebugger_v1` holds its work is unknown — see
 
 ### Project-tree decisions
 
-**All four are answered**, each dated below. They were settled by Amit's decisions and by
+**Both are answered**, each dated below. They were settled by Amit's decisions and by
 one folder disappearing — not by opening the projects — so where something is still
 unknown, the entry says so rather than rounding it up.
 
@@ -706,14 +701,8 @@ unknown, the entry says so rather than rounding it up.
   gone. Amit deleted a tree and does not recall which; whatever survives is either in
   `~/Documents/VS Code/vthrudebugger_v1` or on GitHub. No tree was opened to find out,
   and whether that work survived is not known.
-- ~~**Can `Voice Flow_v1` be archived?**~~ **Amit's decision, 27-09-2026.** It is
-  superseded by `Voice-Flow` and is not being worked on, but it stays on disk as it is.
-  No files moved.
 - ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 27-09-2026.** Yes, it is. He
   is not working on it and the entry stays exactly as it is; someone else may pick it up.
-- ~~**What is `~/Documents/Voice-Flow-main`?**~~ **Answered by it disappearing** — the
-  folder no longer exists, confirmed 20-09-2026 and 21-09-2026. Nothing in it was
-  recoverable, since it had no git history; whatever it was, it is not a question now.
 
 ### Corrections made on 15-09-2026
 
@@ -780,9 +769,6 @@ The detail lives here.
   salary slips, onboarding and role-based dashboards (Admin, HR, Manager, Team lead,
   Employee). Production-ready multi-tenant HRMS SaaS, React + Vite client and Express +
   SQLite server.
-
-- ~~`~/Documents/Voice-Flow-main`~~ — was a **third** Voice Flow copy with no git repo.
-  **No longer on disk**, confirmed 20-09-2026 and 21-09-2026.
 
 - `~/Documents/extra/v1.1-Packbly` — a Next.js tree, apparently an older copy of Packbly
   Web. Last commit 23-06-2026.
