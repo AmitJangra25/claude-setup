@@ -17,6 +17,19 @@ check and Amit's review. Reference docs are archived, never deleted. Account swi
 (open test 6) deferred until Amit asks. P1B finished 08-10-2026. T1–T5 and the three
 project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-2026).
 
+## In progress
+
+- **Read-only audit, three stages** (approved 31-10-2026; scope and gates in
+  `.claude/current-task.md`). **Stage C, security, done 31-10-2026:**
+  `baselines/audit-security-31-10-2026.md`. 0 P1, 0 P2, 8 P3, 5 P4. No leak, no exposed
+  secret. One fix on Amit's word: rtk telemetry turned off (C2, `rtk telemetry status`
+  shows "enabled: no"). **Stage A, clarity, done 31-10-2026:**
+  `baselines/audit-clarity-31-10-2026.md`. 0 P1, 0 P2, 12 P3, 6 P4; no fix made.
+  **Stage B, cleanup, done 31-10-2026:** `baselines/audit-cleanup-31-10-2026.md`.
+  0 P1, 0 P2, 1 P3, 3 P4; nothing needs deleting; no fix made. **Combined summary:**
+  `baselines/audit-summary-31-10-2026.md` — 35 findings, 0 P1, 0 P2, 21 P3, 14 P4.
+  Next: Amit chooses what to fix.
+
 ## Completed
 
 Entries up to and including T6 moved unchanged to
