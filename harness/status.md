@@ -49,11 +49,17 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   4,192 → 3,851; starting count expected ~24.8k, not yet measured. Sonnet line-by-line
   check (28.5k tokens): no rule lost. K (unused skills off) left to Amit in `/skills`.
   "Never shorten for its own sake" reworded as a caution, not a standing rule.
-- **Skills, waiting on Amit:** set claude-api, plugin-authoring, ollama to name-only and
-  switch off algorithmic-art, canvas-design, slack-gif-creator, theme-factory,
-  brand-guidelines, internal-comms, morning, import-memory in `/skills`; then tell Claude.
+- **Skills, 01-11-2026:** claude-api, plugin-authoring, ollama set to name-only in
+  `settings.json` (`3fa82b8`); verified by Amit's fresh `/context all`: skills 261 tokens,
+  total 24.8k. Still on, Amit's call: canvas-design, internal-comms, morning, import-memory.
+- **`STANDARDS.md` pass, 01-11-2026 (Plan 2, approved by Amit):** P1–P4 scale (also
+  `templates/deferred-improvements.md`); priority, size and tokens for planned work;
+  skipped decided work listed; summary first; pushback rule; CL14–CL16 wording; denial
+  rule — one explained retry after a first No with no reason, second No or a reasoned No
+  final, auto-mode or rule blocks not retried. Opus cross-check (24.1k tokens): change —
+  all 5 fixes taken.
 - **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
-  the `STANDARDS.md` pass and the 23k target (§ *Open*).
+  the 23k target (§ *Open*).
 
 ## Completed
 
@@ -108,9 +114,8 @@ keep this file to the current state.
   - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
   - C13 · **done 01-11-2026** — rtk hook-audit logging off from the next session; the
     6.7 MB log kept (D45). Checking that the log stops growing: left for now (Amit).
-  - **Proposed `STANDARDS.md` changes from 31-10-2026, pending:** P1–P4 scale, summary
-    first, pushback rule, and audit CL14–CL16 wording. Not added while they would raise
-    always-loaded tokens; a separate pass, only with Amit's approval (01-11-2026).
+  - **Proposed `STANDARDS.md` changes from 31-10-2026 — done 01-11-2026** (Plan 2,
+    § *In progress*).
 - **Setup-session token target broken (01-11-2026), for a separate task:** the 11-10-2026
   target is 23k or less (`harness/overview.md`); Amit's fresh `/context all` on
   01-11-2026 read **25.5k** (`ENVIRONMENT.md` § *What every session loads*). Target not

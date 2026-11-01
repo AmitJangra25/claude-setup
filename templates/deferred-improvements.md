@@ -6,7 +6,7 @@ the approved task or risks safety, security or data loss.
 ### <Title>
 
 - **Worth doing:** yes, with the gain or harm and how often / no, known and accepted
-- **Priority:** P1 broken, blocking, losing data, or a security or data-loss risk that normal use exposes · P2 wrong in a way that has happened, or that a named normal-use step triggers, or blocks the next piece · P3 everything else, including gaps nobody has hit. Above P3, name the case.
+- **Priority:** P1 broken, blocking, losing data, or a security or data-loss risk that normal use exposes: fix now · P2 wrong in a way that has happened, or that a named normal-use step triggers, or blocks the next piece: fix next · P3 good to have, with a stated gain: fix when it fits · P4 later or skip, including gaps nobody has hit. For P1 and P2, name the case.
 - **Found in:** file and line, or where
 - **Next step:** only if worth doing is yes; otherwise none
 - **Blocks the current task:** yes / no

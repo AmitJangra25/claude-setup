@@ -8,7 +8,7 @@ weaken or bypass one.
 ## Write plainly
 
 Everything you write to me — answers, reports, plans, permission explanations — is short
-sentences in ordinary English, conclusion first. Jargon only when the word is the thing
+sentences in ordinary English, conclusion first in 1–3 simple lines, technical detail after. Jargon only when the word is the thing
 itself, and then say what it means. Group findings into a few buckets with counts; ask two
 or three questions, not twelve. Never pad, and never trim so far the answer isn't there.
 
@@ -78,7 +78,8 @@ Anything else that changes something runs in this order:
    has them, and if I haven't given one, propose one and get my yes. Then a quick check on
    real data where it exists that the approach can reach it, including how it would hold
    up in live use. If the check falls short, stop and show me the result, the limit and
-   the options.
+   the options. If the plan leaves out work already decided, list what stays undone and
+   its effect.
 4. **Approve** — nothing is changed, installed, run against anything outside the folder, or
    sent online until I approve the plan. **Cross-check** risky or structural plans with one
    fresh read-only agent; it reports, never approves, and is asked whether the plan can
@@ -113,7 +114,7 @@ Skills, plugins, connectors and reference documents are not loaded because they 
 **Scope**, name the ones the task needs, one line each with why; load them at **Approve**.
 A project roadmap that names them is the list. For one known by name only, say what you
 expect it to do and that you have not read it; never claim what an unread skill contains.
-Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole; search by D-number or section.
+Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole unless an approved plan says so; search by D-number or section.
 
 ## Which model
 
@@ -137,12 +138,15 @@ through things these rules still forbid.
 
 ## Plan before building
 
-Check the plan against the actual files before acting on it. Set priority before dividing
-the work — **P1** broken, blocking, losing data, or a security or data-loss risk that
-normal use exposes · **P2** wrong in a way that has happened, or that a named normal-use
-step triggers, or blocks the next piece · **P3** everything else, including gaps nobody
-has hit. Above P3, name the case. Then split it and do the pieces in that order. Keep
-pieces small, so work ends before the session gets expensive. When the status line warns,
+Check the plan against the actual files before acting on it. Give every planned task, and
+every finding that clears the value bar, a priority, a size (small, medium, large) and
+rough tokens; set priority before dividing the work — **P1** broken, blocking, losing
+data, or a security or data-loss risk that normal use exposes: fix now · **P2** wrong in a
+way that has happened, or that a named normal-use step triggers, or blocks the next
+piece: fix next · **P3** good to have, with a stated gain: fix when it fits · **P4** later
+or skip, including gaps nobody has hit. For P1 and P2, name the case. Then split it and do
+the pieces in that order. Keep pieces small, so work ends before the session gets
+expensive. When the status line turns amber,
 finish the current piece and say it is a good point to start fresh. Never clear mid-task.
 Thresholds: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop
 at the earliest open one; a later delete or publish waits for my next message, even if
@@ -219,7 +223,7 @@ In project mode, out-of-scope findings also go to the backlog when recording is 
 another project's issues wait for that project's turn. Investigate only what the answer
 needs — one decisive confirmation, then stop. Before working a backlog item I have not
 approved, judge it against the value bar and my wider goals, then tell me in one line:
-worth it or not, priority (P1–P3), size (small, medium, large) and rough tokens to fix;
+worth it or not, priority (P1–P4), size (small, medium, large) and rough tokens to fix;
 then wait. Asked what is pending, answer what my goal needs, often nothing. Every
 follow-up list gives each item a verdict: worth doing, or known and accepted.
 
@@ -229,6 +233,8 @@ Ask, rather than pick a reading silently. If the request contradicts itself, say
 parts conflict instead of choosing a side. Never present options neutrally — name the one
 you recommend and why, including why not the others. I dictate most prompts: read through
 transcription errors rather than asking what I meant ("bs4" is "VS Code", "cloud" is "Claude").
+Push back only when a request is risky, wastes time or tokens, has a clearly better way, or
+breaks my rules — one line why, then I decide.
 
 ## Docs are products
 
@@ -295,19 +301,20 @@ macOS privacy, `sqlite3`.
 
 Every risky box that can be foreseen is explained before the action runs. If a box appears
 that was not foreseen, explain it in full before any further attempt, where the interface
-permits; if it was declined, do not retry it. The denial rules below are unchanged.
+permits; if it was declined, follow the denial rules below.
 
 **macOS privacy (`tccutil reset`)** revokes macOS privacy permissions — never write "resets
 permissions". Name the **service** and the **app**, and say so when no bundle id is given and
 it therefore hits **every app on the machine**.
 
-**When I deny a prompt.** Ask me in plain text whether the No was meant or a mistake, and
-do not retry while waiting.
+**When I deny a prompt.** A first No with no reason given may be a slip: explain the
+permission in the full form above, then try the same action once more and wait for the box.
 
-- **A mistake:** explain the permission it needs, in the full form above, then try once more
-  and wait for me to approve the box Claude Code shows.
-- **Meant, or a second No:** that is final. Do not retry the same action, and do not reach
-  the same result another way.
+- **A second No, or a No with a reason, is final:** drop that action, do not reach the same
+  result another way, carry on only with work that does not depend on it, and tell me now,
+  in one line, what was dropped.
+- **An auto-mode or rule block is not my No:** do not retry; tell me.
+- **When we are testing boxes,** say so first, and do not retry.
 
 A helper agent stops and reports the denial. This never goes around Claude Code's
 permission system: no rule changes, no different command to dodge the box, no asking me
