@@ -1454,6 +1454,21 @@ its likelihood, with a next step only if it clears the bar. `templates/deferred-
 ties *Next step* to *Worth doing*. Cross-check · Opus · two of three sentences taken as
 written, the third narrowed to unapproved backlog items · 22.6k tokens.
 
+### D44 · 01-11-2026
+
+**Stage C security fixes from the 31-10-2026 audit.** Bash could read any file on the
+Mac with no box, and rtk's hook returned "allow" for `git add` (audit C1, C3). Now:
+`settings.json` denies private stores by path wherever they appear in a command (SSH,
+Ollama, GitHub CLI login, prompt history, `.claude.json*`, paste cache, transcripts,
+Claude backups, `.netrc`, `.git-credentials`, `.npmrc`), with a `Read(...)` rule each —
+deny 34 → 68; asks for `gh gist create|edit` and `ollama run *cloud*` — ask 188 → 191;
+setup sessions ask for `git add` and `git stage` (`.claude/settings.json` 2 → 6), and
+the two local `Bash(git add *)` allows are gone. Ollama cloud is disabled and
+`ollama-do` matches the host whole and refuses `@`; `drift.sh` scans committable files
+for secret patterns. Known limits and side effects: `ENVIRONMENT.md` § 3. Record:
+`baselines/stage-c-fix-report-01-11-2026.md`. Cross-checks · Opus · plan: change, 7 of 8
+taken · 70.5k; changed rules: keep, 2 of 3 taken · 32.2k tokens.
+
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
 

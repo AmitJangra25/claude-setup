@@ -28,7 +28,13 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   **Stage B, cleanup, done 31-10-2026:** `baselines/audit-cleanup-31-10-2026.md`.
   0 P1, 0 P2, 1 P3, 3 P4; nothing needs deleting; no fix made. **Combined summary:**
   `baselines/audit-summary-31-10-2026.md` — 35 findings, 0 P1, 0 P2, 21 P3, 14 P4.
-  Next: Amit chooses what to fix.
+  Audit wording corrected 01-11-2026: `baselines/audit-corrections-31-10-2026.md`.
+- **Stage C fixes** (approved 01-11-2026, D44). C1, C3–C7 applied; C2 recorded; report
+  `baselines/stage-c-fix-report-01-11-2026.md`. Waiting on Amit: the box tests, PDF
+  viewer off in `/plugin`, default-mode repeat, then his review. Nothing committed.
+  Stage A and B fixes wait for his approval of the Stage C report.
+  Cross-checks (Opus): plan · change, 7 of 8 taken · 70.5k tokens; changed rules · keep,
+  2 of 3 taken · 32.2k tokens.
 
 ## Completed
 
@@ -166,14 +172,31 @@ to the current state.
   gitignored there, so no commit is pending; Voice Flow_v1's went with its folder.
 - **Known, accepted, not planned (30-10-2026, value bar):** T1 wrapped commands
   (`$(…)`, `env`/`xargs`, double spaces); T2 auto-mode blocks turning into boxes; T3
-  `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies;
-  F4 `git stash pop/apply` outside `~/.claude`; F6 one-line box explanations.
+  `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies
+  (widened by audit C1 and **mostly fixed 01-11-2026**, D44 — remaining limits in
+  `ENVIRONMENT.md` § 3); F4 `git stash pop/apply` outside `~/.claude`; F6 one-line box
+  explanations.
 - **Known, accepted:** GitHub write commands are not separately boxed; 0 historical uses;
   auto mode provides secondary protection. (F2, 30-10-2026. If asked for later, propose
   only `gh release create|delete`, `gh secret set|delete` and `gh workflow run`.)
-- **Known, accepted:** `git add` runs with no box in auto mode; no rule matches it, because
-  the hook rewrites it to `rtk git add`. Recorded in `ENVIRONMENT.md` § 3 (FinNode backlog
-  6, 30-10-2026). The FinNode backlog row itself waits for a FinNode session.
+- **Corrected 01-11-2026 (audit C3):** the 30-10-2026 line here said `git add` runs with
+  no box because no rule matches it. In fact rtk's hook returned "allow" for it, taken from
+  `Bash(git add *)` in both local settings files. Those rules are removed, and setup
+  sessions now ask for `git add` and `git stage` (D44, `ENVIRONMENT.md` § 3). Projects are
+  unchanged. The FinNode backlog 6 row itself waits for a FinNode session.
+- **Audit 31-10-2026, Stage C — decisions recorded, not implemented (Amit, 01-11-2026):**
+  - C8 · **accepted** — allowed test/build commands (`./gradlew *` and similar, 4
+    projects) can run any code; a normal development trade-off.
+  - C9 · **needs decision** — Claude Desktop bypass mode is available, not known to be
+    used; Desktop settings unchanged.
+  - C10 · **needs decision** — Claude Code telemetry and nonessential traffic not
+    switched off; no change without approval.
+  - C11 · **deferred** — account/org UUIDs and Amit's emails in `SETUP-PLAN.md`; must be
+    handled before the repo goes public.
+  - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
+  - C13 · **needs decision** — `RTK_HOOK_AUDIT=1` and rtk's logs kept as they are.
+  - **Proposed `STANDARDS.md` changes from 31-10-2026, pending:** P1–P4 scale, summary
+    first, pushback rule. Not added while they would raise always-loaded tokens.
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
   (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
   parked with Packbly, above). S4 is

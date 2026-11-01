@@ -5,7 +5,7 @@
 cd "$(dirname "$0")/.." || exit 0
 
 if ! out=$(./project-rules/drift.sh 2>&1); then
-  echo "Session-start check: mirror drift found. Read-only — nothing was changed."
+  echo "Session-start check: drift or secret pattern found. Read-only — nothing was changed."
   echo "$out"
 fi
 

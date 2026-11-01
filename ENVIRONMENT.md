@@ -129,6 +129,11 @@ session start, so it never covers the session that set it. It is there to catch 
 observed case where the hook did **not** rewrite a command — see `SETUP-PLAN.md`
 § *Findings not acted on*. Either it recurs with evidence, or it closes itself.
 
+**rtk telemetry is off (31-10-2026, Amit's approval, audit C2).** `rtk telemetry status`
+reports consent no, enabled no (`~/Library/Application Support/rtk/config.toml`). Past
+data was not erased: `rtk telemetry forget` was not requested. This is rtk's own
+configuration, outside `~/.claude` and outside git.
+
 ### 2. Status line — live context size
 
 `statusline/context.py` reads the real token counts from the session transcript and
@@ -159,8 +164,26 @@ tokens, not the number.
 ### 3. Permissions — what stops and asks
 
     allow   37 rules    read-only things stop prompting
-    ask    188 rules    all on things that change something
-    deny    34 rules    .env blocked for Read and 10 shell commands; not airtight
+    ask    191 rules    all on things that change something, plus gist and Ollama cloud
+    deny    68 rules    .env (34) and private stores (34); not airtight
+
+**Private stores blocked, 01-11-2026 (audit C1, D44).** Deny rules match the path
+wherever it appears in a command, so one rule covers `cat`, `rtk read`, `rtk grep`,
+`rtk find` and `rtk proxy …` before and after the hook rewrite: `.ssh`, `.ollama` and
+`.config/gh` (folder, contents and quoted forms), `history.jsonl`, `.claude.json*`,
+`paste-cache`, `projects/*.jsonl` transcripts, `.claude/backups`, `.netrc`,
+`.git-credentials`, `.npmrc`, plus a `Read(...)` rule for each. Tested on made-up paths:
+19/19 Bash spellings and 3/3 Read-tool reads denied; memory files and normal reads still
+work. **Known limits:** a recursive search from a parent folder (`grep -rn x .` inside
+`~/.claude`, `grep -r x ~`) walks these files without naming them — in `~/.claude` use
+`git grep` or the Grep tool; globs and variables (`.ss?`, `${d}`); folder *names* via
+`|`, `;` or `$(…)` (contents still need a `/` and are denied); relative `backups/…` from
+`~/.claude`; other projects' personal data is not covered. Side effects: any command
+containing these words is refused — a commit message or doc grep must avoid them or use
+the Grep tool; a project command naming `.npmrc` is refused. Grep and Glob tools were not
+tested (not available in the testing session).
+**Asks added 01-11-2026 (audit C4, C5):** `*gh gist create*`, `*gh gist edit*`,
+`*ollama run *cloud*`.
 
 **Re-measured 30-10-2026 (S4, D41)** (`jq`): `allow` **39 → 37** (`tree *`, `xxd *` out)
 and `ask` **96 → 188**. Read forms of `gh pr|repo|auth|api`, `git merge-base`, `security`
@@ -178,9 +201,10 @@ three patterns each, plus two `rtk proxy` patterns); every rule tested in `/tmp`
 23-10-2026: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
 listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
 out, `rtk gh run list*` and `rtk tree *` in). Sessions
-started in `~/.claude` also load two setup-only `ask` rules from `.claude/settings.json`,
+started in `~/.claude` also load six setup-only `ask` rules from `.claude/settings.json`:
 `git stash pop` and `git stash apply` (**D36**; four until S4 removed the blanket
-`git pull` and `git switch`, **D41**); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
+`git pull` and `git switch`, **D41**), and `git add`, `git -* add`, `git stage`,
+`git -* stage` (**D44**, 01-11-2026); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
 seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
 `SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
 fenced. Before that, two corrections this block carried
@@ -202,8 +226,8 @@ treat the numbers below as of this date only.
 
 | File | allow / ask / deny | Status |
 |---|---|---|
-| `~/.claude/.claude/settings.local.json` | 15 / 0 / 0 (30-10-2026; 13 on 29-10-2026; 9 on 03-10-2026) | **Active** — confirmed |
-| `~/.claude/settings.local.json` | 1 / 0 / 0 | Present; **undocumented location**. `/skills` is recorded writing here; whether Claude Code reads it is **unverified** |
+| `~/.claude/.claude/settings.local.json` | 14 / 0 / 0 (01-11-2026, `git add *` removed; 15 on 30-10-2026; 13 on 29-10-2026; 9 on 03-10-2026) | **Active** — confirmed |
+| `~/.claude/settings.local.json` | 0 / 0 / 0 (01-11-2026, `git add *` removed; 1 before) | Present; **undocumented location**. `/skills` is recorded writing here; whether Claude Code reads it is **unverified** |
 
 The nested file is the project-level overlay for `~/.claude` itself, because the setup
 repo lives at the path Claude Code also uses for its config. It is confirmed active:
@@ -211,9 +235,9 @@ rules that exist **only** in it — `Bash(git ls-remote *)`, `Bash(git check-ign
 `Bash(git fetch *)` among them — appear in the live `/permissions` allow list.
 `Bash(git ls-remote *)` was narrowed on 30-10-2026 to its three `origin` forms (**D41**).
 
-The top-level file carries a single rule, `Bash(git add *)`, and an empty
-`skillOverrides` block. **That rule is also present in the nested file**, so nothing
-observable proves the top-level file is being read. It is recorded here as present, with
+The top-level file carried a single rule, `Bash(git add *)`, and an empty
+`skillOverrides` block; since 01-11-2026 its `allow` list is empty. **That rule was also
+present in the nested file**, so nothing observable proved the top-level file is read. It is recorded here as present, with
 its contents as read, and nothing more. Do not state that it is loaded without evidence
 that separates the two. **Undocumented, 10-10-2026:** a docs lookup, from search summaries
 rather than quoted text, found `settings.local.json` documented only inside a project's
@@ -221,14 +245,18 @@ rather than quoted text, found `settings.local.json` documented only inside a pr
 On 30-10-2026 `/permissions` listed `Bash(git add *)` once, sourced "Local settings";
 that still does not separate the two files.
 
-**`git add` is decided by the mode, not a rule (30-10-2026).** The hook turns every
-`git add …` into `rtk git add …` (`rtk rewrite`), so `Bash(git add *)` in both local files
-never matches anything. No `allow` or `ask` rule matches `rtk git add`. In auto mode the
-classifier lets it through with no box (tested on a scratch repo in `/tmp`); in default
-mode a box is expected but untested. Amit accepted no box in auto mode — staging is
-undoable and `commit`/`push` are fenced — and the two dead rules stay (FinNode backlog 6).
-
-Neither file is merged, moved or changed by this note.
+**`git add` asks in setup sessions (01-11-2026, D44, audit C3).** The 30-10-2026 note
+here said `Bash(git add *)` in both local files "never matches anything". That was wrong:
+rtk's hook returned `"permissionDecision": "allow"` for `git add …`, `-f` and `-A`
+included, taking it from those rules (dry runs 31-10-2026), so a forced add of an ignored
+private file was staged with no box. Both rules are removed (backups in
+`~/.local/share/claude-setup-backups/01-11-2026/`), and the dry run now returns no
+`allow`. `.claude/settings.json` asks for `*git add*`, `*git -* add*`, `*git stage*` and
+`*git -* stage*`, so `git add` boxes in every `~/.claude` session — every setup commit is
+two boxes. Commit and push still ask everywhere. The docs say ask and deny rules apply
+whatever a hook returns (`baselines/global-open-tests.md` item 11); default mode is
+covered by the Stage C test report. Projects are unchanged. Known gap: `git -c alias.x=add`
+(F1).
 
 **Why the `rtk ` spellings exist — and the hole that proved it.** The rtk hook rewrites a
 command *before* the permission check, so fencing `wget *` alone fences nothing: the
@@ -451,7 +479,10 @@ the `/plugin` menu.
 | `engineering@synced` disabled | −0.9k of skill catalogue, and its 16 MCP auth tools cost nothing either way. See the history table: an upgrade took the same amount back the same hour | re-enable in `/plugin` |
 | `skillOverrides: name-only`, 33 entries | Keeps a skill working and suggestable at under 20 tokens instead of its full cost | delete an entry |
 
-**Plugins now: `pdf-viewer` and `swift-lsp` enabled, 12 disabled.**
+**Plugins now: `swift-lsp` enabled, `pdf-viewer` turned off by Amit in `/plugin`
+(01-11-2026, audit C6 — it ran an unpinned `npx` package at every session start; verified
+off at the next session start: no `pdf-viewer` tools or skills in `/context all`, no
+`server-pdf` process), 12 disabled in `settings.json`.**
 
 **What the 33 `skillOverrides` entries are.** 30 bare keys. **18 were confirmed working by
 measurement on 26-09-2026; 12 more were added on 30-09-2026 and are NOT yet verified** — a

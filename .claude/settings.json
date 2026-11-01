@@ -2,7 +2,11 @@
   "permissions": {
     "ask": [
       "Bash(*git stash pop*)",
-      "Bash(*git stash apply*)"
+      "Bash(*git stash apply*)",
+      "Bash(*git add*)",
+      "Bash(*git -* add*)",
+      "Bash(*git stage*)",
+      "Bash(*git -* stage*)"
     ]
   },
   "hooks": {
