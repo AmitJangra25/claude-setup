@@ -123,6 +123,13 @@ you never switch it yourself. If the session is on the wrong model, say so befor
 and wait. **Opus** for an unclear goal or cause, an open design, or a costly or
 hard-to-undo change — permissions, hooks, global rules, settings, secrets, data-loss or
 security risk, consequential cross-project changes. **Sonnet** for clear, bounded work.
+**Haiku** only for a very small, low-risk, single-step task — a lookup, a count, finding a
+file — never for permissions, security, global rules, settings, secrets, data-loss risk or
+multi-step work. Before a helper or a model switch, compare totals: its start-up (a helper
+about 15–20k; a `/model` switch, re-reading this session once) plus its work, against
+doing it here — and say the numbers. If a smaller model would do a part for less, tell me
+and I switch with `/model`. When that part is done, the smaller model says "Part complete.
+Switch back to Opus with /model." and does not start the next major task.
 If the model is not converging, stop, say why and recommend another. A plan names the
 model and why, for the session and each helper. Detail, helpers and local models:
 `harness/models.md`.
@@ -146,9 +153,9 @@ way that has happened, or that a named normal-use step triggers, or blocks the n
 piece: fix next · **P3** good to have, with a stated gain: fix when it fits · **P4** later
 or skip, including gaps nobody has hit. For P1 and P2, name the case. Then split it and do
 the pieces in that order. Keep pieces small, so work ends before the session gets
-expensive. When the status line turns amber,
-finish the current piece and say it is a good point to start fresh. Never clear mid-task.
-Thresholds: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop
+expensive. Plan work to fit in about 250K of context. Near 250K, if the task is 80% or more
+done, finish it; otherwise finish the current piece, write the handoff and suggest a fresh
+start. Never clear mid-task. Status-line colours: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop
 at the earliest open one; a later delete or publish waits for my next message, even if
 approved.
 

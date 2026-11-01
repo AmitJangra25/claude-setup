@@ -58,6 +58,10 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   rule — one explained retry after a first No with no reason, second No or a reasoned No
   final, auto-mode or rule blocks not retried. Opus cross-check (24.1k tokens): change —
   all 5 fixes taken.
+- **Model rules, 01-11-2026 (approved by Amit):** Haiku for tiny single-step tasks only;
+  compare helper or `/model` switch cost before switching; smaller model hands back with
+  "Part complete. Switch back to Opus with /model."; plan to fit ~250K, finish if 80%+
+  done. `STANDARDS.md` and `harness/models.md`.
 - **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
   the 23k target (§ *Open*).
 
@@ -118,7 +122,8 @@ keep this file to the current state.
     § *In progress*).
 - **Setup-session token target broken (01-11-2026), for a separate task:** the 11-10-2026
   target is 23k or less (`harness/overview.md`); Amit's fresh `/context all` on
-  01-11-2026 read **25.5k** (`ENVIRONMENT.md` § *What every session loads*). Target not
+  01-11-2026 read 25.5k, then **24.8k** after the token pass and skills fix (01-11-2026);
+  23k target still not met (`ENVIRONMENT.md` § *What every session loads*). Target not
   changed and cause not investigated in the Stage A+B pass (Amit, 01-11-2026).
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
   (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is

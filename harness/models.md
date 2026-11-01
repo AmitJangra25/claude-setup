@@ -2,7 +2,7 @@
 
 Moved word for word from `STANDARDS.md` § *Which model* on 01-11-2026 to lower the
 starting token count. The short rule stays in `STANDARDS.md`; read this when choosing a
-model for a session or a helper.
+model for a session or a helper. Haiku line added 01-11-2026.
 
 I pick the session's model with `/model` when a task starts; it does not change mid-task
 unless I ask. When you recommend one, or choose a helper's, pick the model that can do the
@@ -27,5 +27,10 @@ starting and wait; never switch it yourself.
 A plan names the model and why, for this session and any helper agent. A helper's model
 is stated in one line and fits its job: a lighter one for a narrow lookup or bounded
 check, the stronger one for independent review of sensitive or design-level work. A
-trivial lookup needs no separate plan. Other models (such as Haiku or Fable) only with a
-stated reason and a checked fit for the job. Local models: `OLLAMA.md`.
+trivial lookup needs no separate plan. Local models: `OLLAMA.md`.
+
+- **Haiku**: a very small, low-risk, single-step helper task with a clear answer — a
+  lookup, a count, finding a file. Never permissions, security, global rules, settings,
+  secrets, data-loss risk or multi-step work.
+
+Other models (such as Fable) only with a stated reason and a checked fit for the job.
