@@ -4,12 +4,15 @@ How Claude Code is set up here, and why each choice was made. Reference material
 read it when you're about to change something, not on every session.
 
 **Not imported by `CLAUDE.md` on purpose.** The three files that *are* imported cost
-**about 6.3k tokens** on every turn of every session — `/context all` in a fresh session
-from `~/.claude`, 10-10-2026, Claude Code 2.1.296. `STANDARDS.md` 5.5k + `RTK.md` 570 +
-`OLLAMA.md` 266; the 5.5k is rounded by `/context`. `CLAUDE.md` itself is a further 34
-and is **not** one of the three — it is the file doing the importing. Earlier readings:
-~5,355 on 30-09-2026 (2.1.285) and ~3,166 on 22-09-2026; `STANDARDS.md` grew between
-them (**D27**, **D30**), so the rise is real, not a measurement change.
+**about 7.6k tokens** on every turn of every session — `/context all` in a fresh session
+from `~/.claude`, 01-11-2026, Opus 5.5, Claude Code version not recorded, run by Amit.
+`STANDARDS.md` 6.7k + `RTK.md` 641 + `OLLAMA.md` 214; the 7.6k is the sum of those three,
+and the 6.7k is rounded by `/context`. `CLAUDE.md` itself is a further 34 and is **not**
+one of the three — it is the file doing the importing. Earlier readings: ~6.3k on
+10-10-2026 (2.1.296; `STANDARDS.md` 5.5k + `RTK.md` 570 + `OLLAMA.md` 266), ~5,355 on
+30-09-2026 (2.1.285) and ~3,166 on 22-09-2026; `STANDARDS.md` grew between them (**D27**,
+**D30**, and approved rule additions 12-10 to 30-10-2026), so the rise is real, not a
+measurement change.
 
 A file explaining why a threshold is 200K doesn't change how work gets done, so it stays
 out of that budget.
@@ -325,7 +328,10 @@ An `ask` rule prompts in **every** permission mode, including auto mode, and it 
 any `allow` rule that also matches. That is why the session can stay in auto mode without
 losing control of the dangerous commands.
 
-**`deny`** — `Read(//**/.env)` and `Read(//**/.env.*)`.
+**`deny`** — `Read(//**/.env)` and `Read(//**/.env.*)`. *Updated 01-11-2026 (audit CL2):*
+these two are no longer the whole list — `deny` now holds 68 rules: `.env` (34, Bash and
+Read) and private stores (34, D44). What each covers, and the known limits: § *3.
+Permissions* above.
 
 Note the **two** leading slashes. A single slash in user settings anchors at
 `~/.claude/`, not at your projects — `Read(/secrets/**)` in this file would protect
@@ -359,7 +365,8 @@ documented**. Both keys stay; Amit sets Opus 5.5 effort himself with `/effort` (
 ## Deliberately left out of `ask`
 
 These look risky but were measured and excluded. Prompting on them would produce ~24
-interruptions a session instead of ~4.5, and a prompt you see twenty times a session is
+interruptions a session instead of ~4.5 (both measured 18-09-2026 against the 87-rule
+`ask` list; not re-measured since), and a prompt you see twenty times a session is
 one you stop reading — which is worse than not having it.
 
 | Command | Per session | Why it's out |
@@ -412,7 +419,26 @@ The last complete category breakdown before that was recorded at 21.9k, ahead of
 changes. A complete breakdown of the **current** setup was missing until 03-10-2026 —
 it is now recorded immediately below, so that gap is closed.
 
-**Current state — 11-10-2026: 23k.** First-turn `/context all` from `~/.claude`,
+**Current state — 01-11-2026: 25.5k.** `/context all` in a fresh session from `~/.claude`,
+run by Amit, **Opus 5.5**, Claude Code version not recorded, `Messages` 10 tokens.
+**Measured, not estimated.** Only these figures were taken from it:
+
+| Bucket | 01-11-2026 |
+|---|---|
+| Memory files | 8.5k |
+| Skills | 871 |
+| **Total** | **25.5k / 1m** |
+
+Memory files by file: `STANDARDS.md` 6.7k, `RTK.md` 641, `.claude/CLAUDE.md` 547,
+`MEMORY.md` 324, `OLLAMA.md` 214, `CLAUDE.md` 34. **The 8.5k is a setup-session figure:**
+it includes `.claude/CLAUDE.md`, which loads only in sessions started in `~/.claude`, so
+a project session carries about 8.0k. Always-loaded words, the everyday files without
+`.claude/CLAUDE.md`: **3,967** (31-10-2026, unchanged 01-11-2026).
+**This breaks the 23k setup-session target below** (`harness/overview.md`); recorded in
+`harness/status.md` § *Open*, target not changed, cause not investigated (Amit,
+01-11-2026).
+
+**Previous reading — 11-10-2026: 23k.** First-turn `/context all` from `~/.claude`,
 **Opus 5.5**, Claude Code **2.1.296**, `Messages` at 10 tokens; effort and mode not shown.
 Pasted by Amit at the end of T6 (`baselines/t6-removals.md`); the 10-10-2026 reading was
 taken at its start, on the same model and version. The 09-10-2026 reading
@@ -437,7 +463,8 @@ controls. On 11-10-2026 it was `STANDARDS.md` **5.4k** (5.5k on 10-10-2026, 4.3k
 26-09-2026), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 178
 (151 on 09-10-2026, before T3 added its warning line), `CLAUDE.md` 34.
 
-**Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. The 0.1k over the
+**Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. **Broken on
+01-11-2026 (25.5k, above); target unchanged.** The 0.1k over the
 old figure is Claude Code's system tools on 2.1.296, not this setup's files, so the
 target moved instead of the files being cut. `harness/overview.md` § *What "finished"
 means* checks against this figure.
@@ -600,8 +627,10 @@ asked.
 
 ### What was deliberately not cut
 
-- **Memory files** — 6.8k at the latest reading (10-10-2026), most of it `STANDARDS.md` at
-  5.5k. Per **D26**, a rule file is not trimmed.
+- **Memory files** — 8.5k at the latest reading (01-11-2026, a `~/.claude` setup session;
+  it includes `.claude/CLAUDE.md`, 547, which loads only in setup sessions), most of it
+  `STANDARDS.md` at 6.7k. 6.8k on 10-10-2026, with `STANDARDS.md` at 5.5k. Per **D26**, a
+  rule file is not trimmed.
 - **The system prompt** — 2.4k on Opus 5.5 (10-10-2026). Not settable.
 - **FinNode's `CLAUDE.md`** — 3,748 tokens. Splitting its rule claims from their evidence
   looked like a 41% win on paper. Reading it showed most of that prose is operative: which of
@@ -654,7 +683,8 @@ All from the session transcripts in `~/.claude/projects/*/*.jsonl`, which record
   `cache_read_input_tokens` from the last assistant message.
 - **Prompt volume** — replay every historical `Bash` tool call against the `ask` rules,
   splitting compound commands on `&& || ; | &` and stripping the documented wrappers.
-  Measured 4.5 per session across 5,188 commands in 49 sessions.
+  Measured 4.5 per session across 5,188 commands in 49 sessions (18-09-2026, against the
+  87-rule `ask` list; S4's 30-10-2026 replay in § *3. Permissions* is the newer method).
 - **Command frequency** — count matches per tool call, divided by distinct sessions.
 - **Startup breakdown — use this one.** `/context all` in a fresh session, nothing typed:
   it itemises every tool, skill and rule file with its own size, so a change can be
@@ -723,7 +753,8 @@ unknown, the entry says so rather than rounding it up.
 
 - ~~**Which Debugger tree is current?**~~ **Settled by decision on 27-09-2026, not by a
   check.** Amit is working on `~/Documents/VS Code/vthrudebugger_v1`; `Debugger v2` is
-  parked. Neither replaced the other — both were seeded from V-Thru's
+  parked. *State on 30-10-2026 (audit CL3):* `Debugger v2` is no longer parked — it is
+  next up (§ *Two Debugger trees exist* above; `PROJECTS.md`). Neither replaced the other — both were seeded from V-Thru's
   `DebugProvider.tsx` and then kept deliberately independent, so "successor" was never
   right. **Unknown, and not investigated:** whether `vthrudebugger_v1` is the newest or
   most complete Debugger tree. The 03-08-2026 memory
@@ -734,6 +765,8 @@ unknown, the entry says so rather than rounding it up.
   and whether that work survived is not known.
 - ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 27-09-2026.** Yes, it is. He
   is not working on it and the entry stays exactly as it is; someone else may pick it up.
+  *State on 30-10-2026 (audit CL3):* Packbly v2 is detached from Claude Setup, with
+  Packbly Web and Voice Flow v1 (`harness/status.md` § *Open*).
 
 ### Corrections made on 15-09-2026
 

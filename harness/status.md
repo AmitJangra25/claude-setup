@@ -30,9 +30,11 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   `baselines/audit-summary-31-10-2026.md` — 35 findings, 0 P1, 0 P2, 21 P3, 14 P4.
   Audit wording corrected 01-11-2026: `baselines/audit-corrections-31-10-2026.md`.
 - **Stage C fixes** (approved 01-11-2026, D44). C1, C3–C7 applied; C2 recorded; report
-  `baselines/stage-c-fix-report-01-11-2026.md`. Waiting on Amit: the box tests, PDF
-  viewer off in `/plugin`, default-mode repeat, then his review. Nothing committed.
-  Stage A and B fixes wait for his approval of the Stage C report.
+  `baselines/stage-c-fix-report-01-11-2026.md`. Box tests, default-mode repeat and C6
+  (PDF viewer verified off at the next session start) done; report approved by Amit;
+  committed locally, not pushed (01-11-2026).
+- **Stage A+B fixes** (approved 01-11-2026): fact corrections, then structure and history
+  moves, two local commits. Tests: `baselines/doc-test-before-01-11-2026.md`.
   Cross-checks (Opus): plan · change, 7 of 8 taken · 70.5k tokens; changed rules · keep,
   2 of 3 taken · 32.2k tokens.
 
@@ -129,6 +131,9 @@ to the current state.
   `drift.sh` before and after: the same 6 drifts. **Proven 30-10-2026:** the check runs after
   `/clear` — a controlled test with a temporary known drift; method and result in
   `baselines/global-open-tests.md`, item 13.
+  *Correction 01-11-2026 (audit CL5):* read "returned on 23-10-2026 when" as "was
+  **observed** on 23-10-2026 **after**". That the "don't ask again" answer caused it is
+  not proven (`baselines/global-open-tests.md`, item 2; `ENVIRONMENT.md` § 3).
 - **FinNode handoff trimmed — one-time exception** — 29-10-2026, approved by Amit (option B).
   Done from this setup session although `STANDARDS.md` § *Claude Setup* limits reach-in edits
   to a project's `CLAUDE.md`. FinNode `.claude/current-task.md` 44,129 → 4,610 bytes (about
@@ -196,7 +201,12 @@ to the current state.
   - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
   - C13 · **needs decision** — `RTK_HOOK_AUDIT=1` and rtk's logs kept as they are.
   - **Proposed `STANDARDS.md` changes from 31-10-2026, pending:** P1–P4 scale, summary
-    first, pushback rule. Not added while they would raise always-loaded tokens.
+    first, pushback rule, and audit CL14–CL16 wording. Not added while they would raise
+    always-loaded tokens; a separate pass, only with Amit's approval (01-11-2026).
+- **Setup-session token target broken (01-11-2026), for a separate task:** the 11-10-2026
+  target is 23k or less (`harness/overview.md`); Amit's fresh `/context all` on
+  01-11-2026 read **25.5k** (`ENVIRONMENT.md` § *What every session loads*). Target not
+  changed and cause not investigated in the Stage A+B pass (Amit, 01-11-2026).
 - **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
   (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
   parked with Packbly, above). S4 is

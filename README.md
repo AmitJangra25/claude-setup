@@ -26,7 +26,7 @@ mirrored deliberately.
 | `baselines/` | Dated behaviour baselines — what the setup actually did, kept so a later run has something to be compared against. `global-open-tests.md` is the index of what is still unproven, global and per-project; it is an index, not a dated run. Reference, **not** imported. See `baselines/README.md`. |
 | `statusline/` | The context-usage status line. |
 | `harness/` | The control desk (**D33**, **D34**): `status.md`, the one current setup status; `cross-check.md`, when a second agent reviews and how it is shown; `overview.md`, how the pieces fit and what "finished" means; `session-check.sh`, the setup-session start check, run by the `SessionStart` hook in `.claude/settings.json`. Not imported. |
-| `.claude/CLAUDE.md` · `.claude/settings.json` | Setup-only rules and settings — load only in sessions started in `~/.claude`, never in a project. The settings file holds the `SessionStart` hook and four `ask` rules (**D36**). |
+| `.claude/CLAUDE.md` · `.claude/settings.json` | Setup-only rules and settings — load only in sessions started in `~/.claude`, never in a project. The settings file holds the `SessionStart` hook and six `ask` rules: `git stash pop` and `git stash apply` (**D36**; the other two of D36's four removed by **D41**), and `git add` and `git stage` in four spellings (**D44**). |
 
 Everything else in `~/.claude` — sessions, caches, plugins, skills synced from the
 account — is gitignored. The ignore file blocks everything by default and names what is

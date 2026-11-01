@@ -85,6 +85,13 @@ removal and fix with its original text — not a run. `status-completed-11-10-20
 `status-completed-23-10-2026.md` are the `harness/status.md` § *Completed* log, moved out
 unchanged on 11-10-2026 and 29-10-2026 — not runs.
 
+**Audit, fix and test records (added 01-11-2026, audit CB2)** are a further kind, also
+not runs: audit reports (`audit-*.md`, with `audit-corrections-*.md`), fix reports
+(`stage-c-fix-report-*.md`), the S4 permissions record (`s4-permissions-*.md`; its
+`.json` and `.py` are local-only and embedded in it), project follow-ups
+(`project-handoffs-*.md`), and before/after test records for a fix pass
+(`doc-test-*.md`).
+
 Only flat `.md` files are currently allowed by `.gitignore` in this folder.
 Other file types or subfolders need an explicit tracking decision before
 they can be relied on as backed-up evidence.

@@ -3,7 +3,8 @@
 One line per project: path, what it is, and whether it has its own `CLAUDE.md`.
 A project without one gets it from `templates/new-project.md`, filled in that project's own session.
 
-Verified against the filesystem 20-09-2026. Duplicate trees and the open questions are
+Last checked against the filesystem 20-09-2026; entries edited 30-10 and 31-10-2026 were
+not re-checked against it. Duplicate trees and the open questions are
 in `ENVIRONMENT.md`; branch and sync state is not written down anywhere — read it from
 git, per `ENVIRONMENT.md` § *Branch state*. Per-project progress lives in the project's own
 files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`). This file stays an index and carries none of it.

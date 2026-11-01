@@ -2,7 +2,11 @@
 
 Fixes for Stage C (security) of the 31-10-2026 audit, approved by Amit 01-11-2026.
 Decision `SETUP-PLAN.md` D44. Audit: `baselines/audit-security-31-10-2026.md`; wording
-corrections: `baselines/audit-corrections-31-10-2026.md`. Nothing committed or pushed.
+corrections: `baselines/audit-corrections-31-10-2026.md`.
+
+**Committed locally 01-11-2026, not pushed** (Amit's "send it"): `6f914b0` — the four
+audit reports plus `audit-corrections-31-10-2026.md` (the audit commit `dc92b44`,
+amended); `862b736` — the Stage C fixes and this report.
 
 ## 1. In short
 
