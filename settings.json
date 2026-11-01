@@ -344,7 +344,10 @@
     "loop": "name-only",
     "keybindings-help": "name-only",
     "fewer-permission-prompts": "name-only",
-    "simplify": "name-only"
+    "simplify": "name-only",
+    "claude-api": "name-only",
+    "plugin-authoring": "name-only",
+    "ollama": "name-only"
   },
   "hooks": {
     "PreToolUse": [
