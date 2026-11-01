@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 31-10-2026
+**Last verified:** 01-11-2026
 
 ## Current phase
 
@@ -32,11 +32,19 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
 - **Stage C fixes** (approved 01-11-2026, D44). C1, C3–C7 applied; C2 recorded; report
   `baselines/stage-c-fix-report-01-11-2026.md`. Box tests, default-mode repeat and C6
   (PDF viewer verified off at the next session start) done; report approved by Amit;
-  committed locally, not pushed (01-11-2026).
-- **Stage A+B fixes** (approved 01-11-2026): fact corrections, then structure and history
-  moves, two local commits. Tests: `baselines/doc-test-before-01-11-2026.md`.
-  Cross-checks (Opus): plan · change, 7 of 8 taken · 70.5k tokens; changed rules · keep,
-  2 of 3 taken · 32.2k tokens.
+  committed locally, not pushed (01-11-2026). Cross-checks (Opus): plan · change, 7 of 8
+  taken · 70.5k tokens; changed rules · keep, 2 of 3 taken · 32.2k tokens.
+- **Stage A+B fixes — done 01-11-2026, report accepted by Amit** (approved 01-11-2026):
+  fact corrections, then structure and history moves, two local commits, not pushed.
+  Fixed CL1–CL8, CL10, CL12, CL18 (with CL7), CB1, CB2; CL9 already met; no action on
+  CL11, CL13, CL17, CB3, CB4; CL14–CL16 deferred with the `STANDARDS.md` pass (§ *Open*).
+  Moves verbatim (`cmp`); always-loaded words 3,967 before and after. Tests:
+  `baselines/doc-test-before-01-11-2026.md` and `doc-test-after-01-11-2026.md` — match,
+  apart from the three allowed changes; G1 passed both times. Cross-checks (Opus): plan ·
+  change, 10 taken, 2 rejected · 77.4k tokens; moves · change then keep, 4 of 4 taken ·
+  78.3k tokens.
+- **Nothing else in progress.** Waiting on Amit: push of the local commits; the
+  decisions listed in § *Open*.
 
 ## Completed
 
