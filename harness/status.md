@@ -49,6 +49,9 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   4,192 → 3,851; starting count expected ~24.8k, not yet measured. Sonnet line-by-line
   check (28.5k tokens): no rule lost. K (unused skills off) left to Amit in `/skills`.
   "Never shorten for its own sake" reworded as a caution, not a standing rule.
+- **Skills, waiting on Amit:** set claude-api, plugin-authoring, ollama to name-only and
+  switch off algorithmic-art, canvas-design, slack-gif-creator, theme-factory,
+  brand-guidelines, internal-comms, morning, import-memory in `/skills`; then tell Claude.
 - **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
   the `STANDARDS.md` pass and the 23k target (§ *Open*).
 
