@@ -15,7 +15,7 @@ mirrored deliberately.
 | `RTK.md` · `OLLAMA.md` | The other two imports: the rtk proxy and the local-model chores. Both are short triggers: rtk's detail sits in `ENVIRONMENT.md`, Ollama's in `skills/ollama/`, and neither is loaded until needed. |
 | `REPOS.md` · `PROJECTS.md` | Reference, not rules, so they are **not** imported: go-to repos (read when starting an integration) and the project index (read when a project has to be located by name). |
 | `ENVIRONMENT.md` | Reference on this machine and these projects. **Deliberately not imported** — it explains decisions rather than driving work, so it stays out of the per-turn budget. |
-| `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~33,000 words: **start at its `► START HERE` block, not the top.** |
+| `SETUP-PLAN.md` | The specification, the repair record, and the rebuild runbook. ~33,000 words: **start at its *Contents and decisions index* block at the top** (the `► START HERE` block below it is history since 29-09-2026). |
 | `settings.json` | Permissions, hooks, model. The `ask` list is the real safety net. Projects add mostly `allow` rules; a few add their own `ask` rules — FinNode, Voice-Flow, and this repo's `.claude/settings.json`. |
 | `.gitignore` | Blocks everything by default and names each allowed path, anchored to the repo root (**D37**). |
 | `project-rules/` | A mirror of every project's `CLAUDE.md` and `.claude/settings*.json`. Some projects track those files and some do not — either way the copy here travels, and for the untracked ones it is their only history. `drift.sh` reports drift, read-only; `sync.sh --pull` copies. |
@@ -34,9 +34,10 @@ allowed, so **adding a file here means adding an allow-line**.
 
 ## Where to start
 
-- **Changing a rule, a permission or a hook?** Read `SETUP-PLAN.md`'s START HERE block
-  first. It carries the decisions and the reasons, including several claims that turned
-  out to be wrong when they were finally checked.
+- **Changing a rule, a permission or a hook?** Read `SETUP-PLAN.md`'s *Contents
+  and decisions index* first, then the decision you need. That file carries the decisions
+  and the reasons, including several claims that turned out to be wrong when they were
+  finally checked.
 - **Rebuilding on a new machine or account?** `SETUP-PLAN.md` § *Rebuilding on another
   account*, which lists what travels, what regenerates, and what is stranded.
 - **Wondering what state a repo is in?** Ask git. This repo deliberately does not record

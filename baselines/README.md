@@ -81,9 +81,11 @@ open about this setup, not a dated run: one short entry per item — what was fo
 the decision — and a pointer to where the detail lives. Closed items stay, marked
 closed. Project-specific tests appear there as pointers only; their records belong
 inside the project they are about. `t6-removals.md` is the T6 cleanup manifest — every
-removal and fix with its original text — not a run. `status-completed-11-10-2026.md` and
-`status-completed-23-10-2026.md` are the `harness/status.md` § *Completed* log, moved out
-unchanged on 11-10-2026 and 29-10-2026 — not runs.
+removal and fix with its original text — not a run. `status-completed-11-10-2026.md`,
+`status-completed-23-10-2026.md` and `status-completed-01-11-2026.md` are the
+`harness/status.md` § *Completed* log, moved out unchanged on 11-10-2026, 29-10-2026 and
+01-11-2026 — not runs. `environment-history-01-11-2026.md` is dated history moved
+unchanged out of `ENVIRONMENT.md` on 01-11-2026 — not a run.
 
 **Audit, fix and test records (added 01-11-2026, audit CB2)** are a further kind, also
 not runs: audit reports (`audit-*.md`, with `audit-corrections-*.md`), fix reports

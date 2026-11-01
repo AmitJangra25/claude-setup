@@ -4,6 +4,79 @@ Written 2026-09-18. Owner: Amit (amit@v-thru.com). Machine: this Mac.
 
 ---
 
+## Contents and decisions index (added 01-11-2026)
+
+Added 01-11-2026 (audit CL18, CL7). Nothing below this block was rewritten. **For setup
+work, start at `harness/status.md`**, then § *Next session: start here, not at the top*.
+The `► START HERE` block below is history since 29-09-2026; its heading stays because
+other records cite it. Do not read this file whole — search by D-number or section.
+
+**Contents** (top-level sections, in file order):
+`► START HERE` (historical) · *Where this stands* · *Git state is not recorded here* ·
+*Next session: start here, not at the top* · *How a pass is run* · *Standing context* ·
+*Project names, and what a rename costs* · *The order from here* · *Status at handoff
+(2026-09-18)* (the phase-by-phase status table) · *The git repo — where it lives* ·
+*Verify that state rather than trust it* · *How to work on this, in one line each* ·
+*Why this file exists* · *What I got wrong while surveying it, and why* · *The five
+systems* · *Scope* · *Decisions already made* (D1–D44) · *Why permissions cannot be made
+airtight* · *The precedence rule that makes this work* · PHASE 1–5 · *Explicitly not
+doing* · *Open questions* · *Rebuilding on another account* · PHASE 6 · *Tools
+considered, and the decision* · PHASE 7–11 · *Findings not acted on*.
+
+**Decisions in force.** All 44 are in § *Decisions already made*, as `### D<n> · <date>`
+headings, **not in number order** (D15–D17, D26–D29 sit out of sequence). "In force"
+unless the decisions' text says otherwise — its own, or a later decision that names it;
+the status column says which.
+
+| D | Date | Decision, in short | Status (from the decisions' text) |
+|---|---|---|---|
+| D1 | 18-09-2026 | Make consequential actions visible, not build a lock | in force |
+| D2 | 18-09-2026 | Always ask before `git push` and anything that can destroy unsaved work | in force |
+| D3 | 18-09-2026 | Permission prompts get four short lines | in force |
+| D4 | 18-09-2026 | Never block or remove anything without explicit approval | in force |
+| D5 | 18-09-2026 | `tccutil reset` asks with full detail; not blocked | in force |
+| D6 | 18-09-2026 | Dated backup folder before the first edit, kept permanently | in force |
+| D7 | 18-09-2026 | Voice Flow rules split into short rules + docs | in force |
+| D8 | 18-09-2026 | `ENVIRONMENT.md` stays unloaded; pointer from `PROJECTS.md` | in force |
+| D9 | 18-09-2026 | Remove dead and one-off permission rules after per-rule check | in force |
+| D10 | 18-09-2026 | `python3 -c`, `node -e`, `awk`, `osascript` stay allowed | in force |
+| D11 | 18-09-2026 | Voice Flow + Emp portal rules committed after the split | **superseded by D13** (stated in D13; D13 itself reversed 20-09-2026) |
+| D12 | 18-09-2026 | rtk stays; verify raw output before deciding to delete | in force |
+| D13 | 18-09-2026 | Project `CLAUDE.md` files out of their own repos | **superseded 20-09-2026** — reversed; `STANDARDS.md` § *Git* governs |
+| D14 | 18-09-2026 | Read the memory files before recommending project changes | in force |
+| D15 | 18-09-2026 | `npx` stays out of `ask` | in force |
+| D16 | 18-09-2026 | Every new `ask` rule in three spellings | **superseded 20-09-2026** by the `ask` list merge |
+| D17 | 18-09-2026 | Session size managed at the task boundary, not a number | principle in force; **the ~300k figure superseded** (now the status-line thresholds) |
+| D18 | 18-09-2026 | Priority scale P1 / P2 / P3 | in force |
+| D19 | 18-09-2026 | Before code: what it is for, what depends on it, what it cannot affect | in force |
+| D20 | 18-09-2026 | A rule in `STANDARDS.md` is not restated in other words | in force |
+| D21 | 18-09-2026 | B3 pipeline-fragment rules stay | in force |
+| D22 | 18-09-2026 | A rule with a literal `*` is not removed until matching is known | in force |
+| D23 | 18-09-2026 | A project reads only its own tree, never another | in force; **wording restated by D38** |
+| D24 | 18-09-2026 | Voice Flow rule claims in `CLAUDE.md`, evidence in `docs/` | in force |
+| D25 | 18-09-2026 | A stale measurement is annotated, never overwritten | in force |
+| D26 | 22-09-2026 | A rule file is trimmed only where it is procedure | in force |
+| D27 | 25-09-2026 | Two modes and one task order are rules in `STANDARDS.md`; templates separate | in force |
+| D28 | 26-09-2026 | A capability is made cheap, not removed (`skillOverrides`) | in force |
+| D29 | 26-09-2026 | A skill earns its tokens only by knowing something new | in force |
+| D30 | 28-09-2026 | A project rule cannot weaken a global gate | in force |
+| D31 | 29-09-2026 | Task records at the project's `.claude/current-task.md` | in force |
+| D32 | 03-10-2026 | Part 2B: one owned file per kind of fact | in force |
+| D33 | 08-10-2026 | Harness: `harness/status.md` is the one current status | in force; **its rejection of `overview.md` superseded by D34** (stated in D34) |
+| D34 | 10-10-2026 | `harness/overview.md` kept as map and definition of "finished" | in force |
+| D35 | 10-10-2026 | A global `allow` rule in the spelling the hook produces | in force |
+| D36 | 10-10-2026 | Setup sessions ask before `git pull`, `switch`, `stash pop`, `stash apply` | **partly superseded 30-10-2026 by D41** — `pull` and `switch` removed, stash rules stay |
+| D37 | 10-10-2026 | `.gitignore` root allow lines anchored with `/` | in force |
+| D38 | 10-10-2026 | D23 restated to what is proven; wording only | in force |
+| D39 | 12-10-2026 | Model choice: Sonnet default, Opus for unclear or sensitive work | in force |
+| D40 | 12-10-2026 | `STANDARDS.md` slimmed by wording only, every rule kept | in force |
+| D41 | 30-10-2026 | An `ask` rule boxes what can change or leak, not every use (S4) | in force |
+| D42 | 30-10-2026 | Branches with `git switch`; work proposed only past the value bar | in force |
+| D43 | 30-10-2026 | Backlog items meet the value bar; Claude judges worth, then asks | in force |
+| D44 | 01-11-2026 | Stage C security fixes: private-store denies, gist/Ollama/`git add` asks | in force |
+
+---
+
 # ► START HERE — resuming in a new session
 
 ## Where this stands

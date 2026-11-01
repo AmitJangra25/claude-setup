@@ -137,7 +137,7 @@ Last reviewed 11-10-2026.
    the warning appeared at startup (the control) and again after `/clear` and "hi",
    unprompted, both naming `SecondBrain schema` `CLAUDE.md` (Amit's report). Copy then
    restored: `drift.sh` 18 current, 0 drifted; git clean.
-   Detail: `harness/status.md` § *Completed*, session check after `/clear`.
+   Detail: `baselines/status-completed-01-11-2026.md`, session check after `/clear` (moved from `harness/status.md` § *Completed* 01-11-2026).
 
 ## Project-specific — pointers only
 

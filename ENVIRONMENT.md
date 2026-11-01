@@ -148,9 +148,9 @@ Short version: grey under 200K, amber to 300K, red to 400K, then suggests `/comp
 past 250K costs more per turn and uses more of the usage limit, so the nudge now comes
 sooner; 150K was considered and judged too early. The warning exists to nudge a clear at
 a **task boundary**, where it saves 45–54%, rather than mid-task, where it saves about 3% — it was
-never about running out of room. Earlier values: 250K/400K/600K, lowered to
-220K/300K/450K on 26-09-2026, raised to 250K/400K/550K on 30-09-2026 because against a 1M
-window 220K fired while roughly 94% of it was still free.
+never about running out of room. Earlier values and why they changed: the top of
+`statusline/context.py`; this file's old sentence is in
+`baselines/environment-history-01-11-2026.md` § E.
 
 **It costs nothing in tokens.** The status line is a shell command the terminal renders;
 its output never enters the model's context. Changing it is free, so tune it freely.
@@ -196,30 +196,15 @@ matched no rule before), `git … --output`, `--upload-pack`, forced or discardi
 and `pull --rebase|--force`. Replayed against past Bash history: boxed calls 2,241 →
 1,722. Record and the full rule list: `baselines/s4-permissions-30-10-2026.md`.
 
-**Counts measured against the live file 15-10-2026** (`jq`); `ask` re-measured 23-10-2026,
-58 → 90 (see *Added 23-10-2026* below). On 29-10-2026 `ask` went **90 → 96** (`find`
-`-delete`, `-exec`, `-ok`, `-fprint`, `-fls`; `xargs … rm`) and `deny` **2 → 34** (`.env`
-for `rtk read`, `rtk grep`, `rtk rg`, `xxd`, `cat`, `less`, `awk`, `sed`, `head`, `tail`,
-three patterns each, plus two `rtk proxy` patterns); every rule tested in `/tmp`. `allow` went **34 → 39** on
-23-10-2026: `rtk git branch *` became six listing forms (see *`git branch` is allowed only as a
-listing* below). Before that, **33 → 34** on 10-10-2026 (**D35**: `rtk git rev-parse *`
-out, `rtk gh run list*` and `rtk tree *` in). Sessions
-started in `~/.claude` also load six setup-only `ask` rules from `.claude/settings.json`:
-`git stash pop` and `git stash apply` (**D36**; four until S4 removed the blanket
-`git pull` and `git switch`, **D41**), and `git add`, `git -* add`, `git stage`,
-`git -* stage` (**D44**, 01-11-2026); they are not in the counts above. On 27-09-2026 `ask` went **51 → 58**:
-seven rules closing the `git restore`, `git stash drop`/`clear` and brew gaps — see
-`SETUP-PLAN.md` § *FinNode — open, not acted on* for the measurement and what was not
-fenced. Before that, two corrections this block carried
-for a while: it read `ask 87` until 20-09-2026, and then `ask 112` until 22-09-2026,
-having missed the merge that took **112 → 51** on 20-09-2026 (one pattern per command
-instead of up to three spellings — `SETUP-PLAN.md`'s **`ask` list merged** row). `allow` went
-**35 → 33** on 22-09-2026. The path before that: **87 → 101** when Phase 3's gaps were
-closed, **→ 107** with the six `git commit` spellings added by the Voice-Flow pass (see
-`SETUP-PLAN.md`'s **`ask` rules proven** row), **→ 112** when the permission-list pass added
-`rtk wget` and four `pip` spellings. The old "~5.0 prompts per session" figure was
-measured against 87 rules and has been dropped rather than carried forward, because it
-was never re-measured.
+**Setup-only `ask` rules.** Sessions started in `~/.claude` also load six setup-only
+`ask` rules from `.claude/settings.json`: `git stash pop` and `git stash apply` (**D36**;
+four until S4 removed the blanket `git pull` and `git switch`, **D41**), and `git add`,
+`git -* add`, `git stage`, `git -* stage` (**D44**, 01-11-2026); they are not in the
+counts above.
+
+**Earlier count changes** — from before 20-09-2026 to 29-10-2026 (`ask` 87 → … → 96, `deny` 2 → 34,
+`allow` 35 → 39): moved unchanged on 01-11-2026 to
+`baselines/environment-history-01-11-2026.md` § A.
 
 **Current state — 03-10-2026: the two local settings files.** Two files named
 `settings.local.json` exist under `~/.claude`. Both are **ignored by git**, so neither is
@@ -408,16 +393,9 @@ was still present in `.claude/settings.local.json` and was removed that day.**
 
 ## What every session loads before you type
 
-**Historical — the 26-09-2026 reading was 22.0k. Superseded by *Current state —
-03-10-2026* below; it is no longer the latest figure and must not be quoted as current.**
-`/context` in a fresh session from `~/.claude`, Opus 5, auto mode, nothing typed. Two
-readings that day both returned 22.0k:
-one after `RTK.md` grew, on a version that was not recorded, and one on Claude Code
-2.1.283 after the `engineering` plugin was disabled.
-
-The last complete category breakdown before that was recorded at 21.9k, ahead of later
-changes. A complete breakdown of the **current** setup was missing until 03-10-2026 —
-it is now recorded immediately below, so that gap is closed.
+**Earlier readings** — 22.0k on 26-09-2026 and the 21.9k breakdown before it: moved
+unchanged on 01-11-2026 to `baselines/environment-history-01-11-2026.md` § B; the 21.9k
+row is also in § *How the numbers moved* below.
 
 **Current state — 01-11-2026: 25.5k.** `/context all` in a fresh session from `~/.claude`,
 run by Amit, **Opus 5.5**, Claude Code version not recorded, `Messages` 10 tokens.
@@ -469,16 +447,10 @@ old figure is Claude Code's system tools on 2.1.296, not this setup's files, so 
 target moved instead of the files being cut. `harness/overview.md` § *What "finished"
 means* checks against this figure.
 
-The 03-10-2026 column fills the gap described in the paragraph above: it is the first complete bucket
-breakdown **of the current setup**. It is not the first ever recorded here — the 21.9k
-breakdown came earlier, before later changes.
-
-**Do not compare this total with the 22.0k above.** That reading was taken on 2.1.283,
-and this file carries no record of deferred tools. The 03-10-2026 `/context` lists
-deferred tools separately — MCP 3.3k, system tools 17.3k — and does **not** count them in
-the 22.8k. Whether the 22.0k reading counted them the same way is **unverified**. The two
-numbers may be measuring different things, so the buckets above stand on their own and
-any difference between the two totals does not.
+**Notes on the 03-10-2026 column** — the first complete breakdown of the setup as it then
+stood, and why its total must not be compared with the 26-09-2026 22.0k reading (deferred
+tools counted differently, unverified): moved unchanged on 01-11-2026 to
+`baselines/environment-history-01-11-2026.md` § C.
 
 **Current state — 03-10-2026: project-work token cost.** **149,112 tokens per assistant
 turn** — 1,018,735,369 tokens over 6,832 turns. Method: sum `input_tokens +
@@ -521,7 +493,8 @@ skills cannot be reached at all.
 **Current state — 03-10-2026: the 12 are verified.** The first-turn `/context` recorded
 above reads Skills **1.1k**, against ~3.0k before the keys were added and a prediction of
 ~1.1k. Skills is reported on its own `/context` line, so this check does not depend on the
-total and is untouched by the deferred-tools caveat. The sentence above is kept as the
+total and is untouched by the deferred-tools caveat (now in
+`baselines/environment-history-01-11-2026.md` § C). The sentence above is kept as the
 record of what was still unknown on 30-09-2026.
 3 `artifact-*` keys naming skills that no longer load at all since `enableArtifact:
 false` — harmless, kept at Amit's direction. There were 36: the other 15 were plugin keys,
@@ -536,16 +509,10 @@ entries during that check is not recorded**, so it does not prove the top-level 
 read — see the local-settings table above. And because the file is gitignored it is **not in this repo and does not travel
 to a second account.** Block 4's runbook needs this.
 
-**Also changed on 26-09-2026, at no token cost:** the status-line thresholds, 250K/400K/600K
-→ 220K/300K/450K. See § *Status line* — the status line is a shell command the terminal
-renders, and its output never enters context.
-
-**Superseded 30-09-2026:** raised again to **250K/400K/550K**. The 26-09-2026 change above
-is kept as the record of why they were lowered at the time; it no longer describes the
-machine. See § *Status line*.
-
-**11-10-2026: lowered again** to **200K/300K/400K**, to save tokens. The 30-09-2026 values
-above no longer describe the machine either. See § *Status line*.
+**Status-line thresholds** were changed on 26-09, 30-09 and 11-10-2026 at no token cost.
+Current values: § *2. Status line*; full history at the top of `statusline/context.py`.
+The old notes moved unchanged on 01-11-2026 to
+`baselines/environment-history-01-11-2026.md` § D.
 
 ### How the numbers moved
 
@@ -582,8 +549,8 @@ a later version drops system tools back to 9.7k, that settles it.
 **What this table cannot tell you.** Which component of the 22-09-2026 projection was
 optimistic — `usage` records totals, not a split, and settling it needs a live
 per-component breakdown. When written, it also lacked a complete breakdown of the current
-setup; those now exist — 03-10-2026, 09-10-2026 and 10-10-2026, in the *Current state*
-table above.
+setup; those now exist — 03-10-2026, 09-10-2026 and 10-10-2026, in the *Previous reading —
+11-10-2026* table above.
 
 ### What holds, whatever the numbers do
 
