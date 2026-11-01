@@ -43,6 +43,12 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   apart from the three allowed changes; G1 passed both times. Cross-checks (Opus): plan ·
   change, 10 taken, 2 rejected · 77.4k tokens; moves · change then keep, 4 of 4 taken ·
   78.3k tokens.
+- **Token pass, 01-11-2026 (A, B, H approved by Amit):** `STANDARDS.md` *Which model*
+  shortened (full text moved to `harness/models.md`) and *Stay on the task* merged;
+  `RTK.md` shortened (name note moved to `ENVIRONMENT.md` § 1). Always-loaded words
+  4,192 → 3,851; starting count expected ~24.8k, not yet measured. Sonnet line-by-line
+  check (28.5k tokens): no rule lost. K (unused skills off) left to Amit in `/skills`.
+  "Never shorten for its own sake" reworded as a caution, not a standing rule.
 - **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
   the `STANDARDS.md` pass and the 23k target (§ *Open*).
 

@@ -4,7 +4,10 @@ Accuracy fixes to the 31-10-2026 audit reports, approved by Amit 01-11-2026 (G0 
 Stage C fix plan). Wording only: no setting, permission, script, project file or history
 file changed. The original wording is quoted below, so nothing is lost.
 
-## Standing rule (Amit, 01-11-2026) — carry into every later plan
+## Caution (Amit, 01-11-2026) — not a standing rule
+
+Clarified by Amit 01-11-2026: shorten only where it improves clarity; never remove a rule
+just to save words.
 
 > Do not make files small for their own sake. Shorten only duplication, stale facts, or
 > unclear text. Preserve useful detail, history, recovery material, archives, tests, and

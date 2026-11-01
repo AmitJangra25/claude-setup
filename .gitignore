@@ -105,6 +105,7 @@
 !harness/cross-check.md
 !harness/session-check.sh
 !harness/overview.md
+!harness/models.md
 
 # --- allow: the setup-only files (D33, D36): CLAUDE.md, and settings.json with the
 #     SessionStart hook and six ask rules (D36, D41, D44). .claude/ also holds current-task.md and

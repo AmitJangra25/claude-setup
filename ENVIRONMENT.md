@@ -125,6 +125,9 @@ That is why 615 permission entries had accumulated across the projects: safe com
 were being approved by hand, one project at a time. The global `allow` list now covers
 the read-only `rtk` wrappers, so this stops happening.
 
+**Name collision.** If `rtk gain` fails, reachingforthejack/rtk (Rust Type Kit) may be
+installed instead. Full command list: `rtk --help`. (Moved from `RTK.md` 01-11-2026.)
+
 **Hook auditing is off again from 01-11-2026 (audit C13, D45).** `RTK_HOOK_AUDIT=1` was
 removed from `settings.json` → `env`; the 6.7 MB log is kept. Restore that line to switch
 it back on for a test (it takes effect at the next session start). As it was:

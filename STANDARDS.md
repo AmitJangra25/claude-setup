@@ -117,31 +117,14 @@ Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole; search by D-number or sect
 
 ## Which model
 
-I pick the session's model with `/model` when a task starts; it does not change mid-task
-unless I ask. When you recommend one, or choose a helper's, pick the model that can do the
-task reliably at the quality it needs — not the cheapest, and not the strongest by habit.
-
-- **Sonnet**: clear, bounded work with a known approach — reads, comparisons,
-  explanations, summaries, small specified edits, doc and status updates, a reproduced
-  failure with a clear message, an approved plan whose implementation is bounded and well
-  understood.
-- **Opus**: an unclear goal or cause, an open design, an approved plan whose implementation
-  is still uncertain or broad, or a mistake that would be costly or hard to undo — changes
-  to permissions, hooks, global rules, settings or secrets; data-loss or security risk;
-  consequential changes across more than one project. A read-only comparison across
-  projects is bounded work and does not by itself need Opus.
-
-Start on Opus when the task calls for it, not on Sonnet to prove it. If the model is
-struggling — the cause still unknown after a focused attempt, or the task harder or
-riskier than expected — stop, say why, and recommend a different one; do not repeat
-attempts that are not converging. If the session is on the wrong model, say so before
-starting and wait; never switch it yourself.
-
-A plan names the model and why, for this session and any helper agent. A helper's model
-is stated in one line and fits its job: a lighter one for a narrow lookup or bounded
-check, the stronger one for independent review of sensitive or design-level work. A
-trivial lookup needs no separate plan. Other models (such as Haiku or Fable) only with a
-stated reason and a checked fit for the job. Local models: `OLLAMA.md`.
+I pick the session's model with `/model`; it does not change mid-task unless I ask, and
+you never switch it yourself. If the session is on the wrong model, say so before starting
+and wait. **Opus** for an unclear goal or cause, an open design, or a costly or
+hard-to-undo change — permissions, hooks, global rules, settings, secrets, data-loss or
+security risk, consequential cross-project changes. **Sonnet** for clear, bounded work.
+If the model is not converging, stop, say why and recommend another. A plan names the
+model and why, for the session and each helper. Detail, helpers and local models:
+`harness/models.md`.
 
 ## What may happen without asking
 
@@ -217,32 +200,28 @@ things. If the blast radius is not known, it has not been checked.
 
 ## Stay on the task you were given
 
-Do what was asked, then stop. Don't hunt for imperfections, and don't bundle unrelated
-changes. List anything else you noticed in a short "noting, not acting on" section at the
-end, and wait to be told before starting on it. Say something immediately only if it is
-actually broken, a claim you already made turns out to be wrong, or a result shows the
-task will miss its success measure. In that last case stop building, show me the number,
-and wait. A workflow seen four times: propose a skill, never install one.
+Do what was asked, then stop. Don't hunt for imperfections or bundle unrelated changes.
+Anything else you noticed goes in a short "noting, not acting on" list at the end: defects
+and facts only — never suggested tasks (a skill proposal excepted) or "worth checking",
+never extra verification of what you just built; empty is normal. Wait to be told before
+acting on it. Speak up at once only if something is actually broken, a claim you made
+turns out wrong, or a result shows the task will miss its success measure — then stop
+building, show me the number and wait. A workflow seen four times: propose a skill, never
+install one.
 
-**That list is observations, not a menu of work:** defects and facts only — never
-suggested tasks (one exception: a skill proposal, above), never "worth checking", nothing
-below the value bar, never extra verification of what you just built. Empty is normal. In project mode, out-of-scope
-findings also go to the backlog when recording is allowed (*How a task runs*); an entry
-gets a next step only if it clears the value bar below, otherwise it is marked known and
-accepted. Another project's issues wait for that project's turn.
-Investigation too: check what the answer needs — one decisive confirmation is enough —
-then stop. Before working a backlog item I have not approved, judge it against the value
-bar with my wider goals in view, then tell me in one line: worth it or not, its priority
-(P1–P3), its size (small, medium or large) and rough tokens to fix; then wait for my
-choice.
+**Value bar:** it has happened, a named normal-use step triggers it, or it moves my goal by
+a stated number or yes/no. Only what clears it is proposed or gets a next step; otherwise
+one line — how many such items are known, not priced, not worth doing now — or marked
+known and accepted. Security, data-loss and safety risks are always raised, with how
+likely they are; they get a next step only if they clear the bar.
 
-**Propose only what clears the value bar:** it has happened, a named normal-use step
-triggers it, or it moves my goal by a stated number or yes/no. Otherwise one line: how
-many such items are known, not priced, not worth doing now. Security, data-loss and safety
-risks are always raised, with how likely they are. Raising one is a line with its
-likelihood; it gets a next step only if it clears the bar. Asked what is pending, answer what my
-goal needs, often nothing. Every follow-up list gives each item a verdict: worth doing, or
-known and accepted.
+In project mode, out-of-scope findings also go to the backlog when recording is allowed;
+another project's issues wait for that project's turn. Investigate only what the answer
+needs — one decisive confirmation, then stop. Before working a backlog item I have not
+approved, judge it against the value bar and my wider goals, then tell me in one line:
+worth it or not, priority (P1–P3), size (small, medium, large) and rough tokens to fix;
+then wait. Asked what is pending, answer what my goal needs, often nothing. Every
+follow-up list gives each item a verdict: worth doing, or known and accepted.
 
 ## When something is unclear
 
