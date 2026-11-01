@@ -35,7 +35,7 @@ The setup is finished when every line is true, each checked by a command or a re
 - [ ] `harness/status.md` § *Known contradictions* is empty (D23's was settled by D38, 10-10-2026).
 - [ ] The per-project `SessionStart` idea in `harness/status.md` § *Open* is placed or rejected.
 - [ ] `harness/status.md` *Last verified* is the finish date, and every pointer in it resolves.
-- [ ] A fresh `/context all` in a setup session is at or below 23k (`ENVIRONMENT.md`).
+- [x] Starting tokens tracked in `ENVIRONMENT.md`; no fixed target. The goal is fewer tokens per whole task (Amit, 01-11-2026).
 - [ ] T6 is done: independent read-only check, then Amit's review.
 - [ ] The working tree is clean and committed with Amit's approval; `.claude/current-task.md`
       is at *Status: none*.

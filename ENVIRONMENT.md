@@ -437,28 +437,28 @@ was still present in `.claude/settings.local.json` and was removed that day.**
 unchanged on 01-11-2026 to `baselines/environment-history-01-11-2026.md` § B; the 21.9k
 row is also in § *How the numbers moved* below.
 
-**Current state — 01-11-2026: 24.8k.** `/context all` in a fresh session from `~/.claude`,
-run by Amit, **Opus 5.5**, Claude Code 2.1.316, `Messages` 10 tokens. **Measured, not
-estimated.** Was 25.5k earlier on 01-11-2026; lowered by commits `c808989` (token pass)
-and `3fa82b8` (three skills name-only).
+**Current state — 01-11-2026: 25.2k.** `/context all` in a fresh session from `~/.claude`,
+run by Amit, **Opus 5.5**, Claude Code 2.1.316, `Messages` 10 tokens, after `aca6d86`.
+**Measured, not estimated.**
 
-| Bucket | 01-11-2026 |
-|---|---|
-| System prompt | 2.5k |
-| System tools | 14.3k |
-| Memory files | 7.8k |
-| Skills | 261 |
-| **Total** | **24.8k / 1m** |
+| Bucket | 01-11-2026 (earlier) | 01-11-2026 (now) |
+|---|---|---|
+| System prompt | 2.5k | 2.5k |
+| System tools | 14.3k | 14.3k |
+| Memory files | 7.8k | 8.2k |
+| Skills | 261 | 261 |
+| **Total** | **24.8k** | **25.2k / 1m** |
 
-Memory files by file: `STANDARDS.md` 6.2k, `RTK.md` 404, `.claude/CLAUDE.md` 547,
-`MEMORY.md` 324, `OLLAMA.md` 214, `CLAUDE.md` 34. **The 7.8k is a setup-session figure:**
-it includes `.claude/CLAUDE.md`, which loads only in sessions started in `~/.claude`, so
-a project session carries about 7.3k. Always-loaded words, the everyday files without
-`.claude/CLAUDE.md`: **3,626** at this reading; 3,752 after Plan 2 (`2657315`), not yet
-measured in tokens.
-**This breaks the 23k setup-session target below** (`harness/overview.md`); recorded in
-`harness/status.md` § *Open*, target not changed, cause not investigated (Amit,
-01-11-2026).
+The earlier column is after the token pass (`c808989`) and three skills name-only
+(`3fa82b8`), down from 25.5k that morning; the rise to 25.2k is the rules added in
+`2657315` and `aca6d86`. Memory files by file now: `STANDARDS.md` 6.7k, `RTK.md` 404,
+`.claude/CLAUDE.md` 547, `MEMORY.md` 324, `OLLAMA.md` 214, `CLAUDE.md` 34. **The 8.2k is
+a setup-session figure:** it includes `.claude/CLAUDE.md`, which loads only in sessions
+started in `~/.claude`, so a project session carries about 7.7k. Always-loaded words,
+the everyday files without `.claude/CLAUDE.md`: **3,874**.
+
+**No fixed target (Amit, 01-11-2026).** 23k was a past baseline, not a target. The goal is
+fewer tokens for the whole task; keep lowering where it helps.
 
 **Previous reading — 11-10-2026: 23k.** First-turn `/context all` from `~/.claude`,
 **Opus 5.5**, Claude Code **2.1.296**, `Messages` at 10 tokens; effort and mode not shown.
@@ -485,11 +485,9 @@ controls. On 11-10-2026 it was `STANDARDS.md` **5.4k** (5.5k on 10-10-2026, 4.3k
 26-09-2026), `RTK.md` 570, `MEMORY.md` 318, `OLLAMA.md` 266, `.claude/CLAUDE.md` 178
 (151 on 09-10-2026, before T3 added its warning line), `CLAUDE.md` 34.
 
-**Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. **Broken on
-01-11-2026 (25.5k, above); target unchanged.** The 0.1k over the
-old figure is Claude Code's system tools on 2.1.296, not this setup's files, so the
-target moved instead of the files being cut. `harness/overview.md` § *What "finished"
-means* checks against this figure.
+**Setup-session baseline: 23k** (Amit, 11-10-2026), replacing 22.9k. The 0.1k over the
+old figure is Claude Code's system tools on 2.1.296, not this setup's files. **No longer
+a target (Amit, 01-11-2026)** — see *No fixed target* above.
 
 **Notes on the 03-10-2026 column** — the first complete breakdown of the setup as it then
 stood, and why its total must not be compared with the 26-09-2026 22.0k reading (deferred

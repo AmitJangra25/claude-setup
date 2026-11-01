@@ -121,3 +121,33 @@ mean the original `harness/status.md`.
   Before, such a rule showed only as drift. Tested in a scratch copy under `/tmp/sc-test`
   with a fake project: old script → drift line only; new script → both rules named; rules
   removed → silent. Real run: silent; `drift.sh` 0 drifted.
+
+## Moved from Open — project items (01-11-2026)
+
+Moved unchanged from `harness/status.md` § *Open* on Amit's instruction: Claude Setup
+stays global; project items live in each project's own backlog.
+
+- **Live project settings edits from S4** — complete and matching their mirrors
+  (30-10-2026). No commit is pending. Voice-Flow `.claude/settings.json` went in with
+  Voice-Flow PR #82 (`c09f206`, merged `a09ce14`). FinNode's `CLAUDE.md` and
+  `.claude/settings.json` went in with FinNode PR #6 (`234517a`, merged `aec7df5`).
+  Gitignored, so nothing to commit there: FinNode, Voice-Flow and vthrudebugger_v1
+  `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
+  `baselines/s4-permissions-30-10-2026.md`.
+- **Parked / detached, not active — Packbly Web, Voice Flow v1 (and Packbly v2):**
+  detached from Claude Setup on 30-10-2026. Packbly folders and data remain local; the
+  Voice Flow_v1 folder was deleted by Amit, confirmed absent 31-10-2026. Removed from
+  `PROJECTS.md` and `project-rules/manifest.tsv`; mirror copies deleted (in git history).
+  Pointers, not current work: Packbly Web's S5 app-security findings —
+  `baselines/project-handoffs-29-10-2026.md` § *Packbly Web*, which of S5a–c are its own
+  to be asked of Amit. S4 settings edits: live in Packbly_web `.claude/settings.local.json`,
+  gitignored there, so no commit is pending; Voice Flow_v1's went with its folder.
+- (From the audit C3 correction) The FinNode backlog 6 row itself waits for a FinNode session.
+- C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
+- **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
+  (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
+  parked with Packbly, above). S4 is
+  done (`baselines/status-completed-01-11-2026.md`). Detail: `baselines/audit-29-10-2026.md`.
+  Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
+- (Superseded) **Setup-session token target broken (01-11-2026):** the 11-10-2026 target
+  of 23k or less; read 25.5k, then 24.8k. Dropped as a target by Amit 01-11-2026.

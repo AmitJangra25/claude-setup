@@ -51,7 +51,7 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   "Never shorten for its own sake" reworded as a caution, not a standing rule.
 - **Skills, 01-11-2026:** claude-api, plugin-authoring, ollama set to name-only in
   `settings.json` (`3fa82b8`); verified by Amit's fresh `/context all`: skills 261 tokens,
-  total 24.8k. Still on, Amit's call: canvas-design, internal-comms, morning, import-memory.
+  total 24.8k.
 - **`STANDARDS.md` pass, 01-11-2026 (Plan 2, approved by Amit):** P1–P4 scale (also
   `templates/deferred-improvements.md`); priority, size and tokens for planned work;
   skipped decided work listed; summary first; pushback rule; CL14–CL16 wording; denial
@@ -62,8 +62,7 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   compare helper or `/model` switch cost before switching; smaller model hands back with
   "Part complete. Switch back to Opus with /model."; plan to fit ~250K, finish if 80%+
   done. `STANDARDS.md` and `harness/models.md`.
-- **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
-  the 23k target (§ *Open*).
+- **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed
 
@@ -75,21 +74,6 @@ keep this file to the current state.
 
 ## Open
 
-- **Live project settings edits from S4** — complete and matching their mirrors
-  (30-10-2026). No commit is pending. Voice-Flow `.claude/settings.json` went in with
-  Voice-Flow PR #82 (`c09f206`, merged `a09ce14`). FinNode's `CLAUDE.md` and
-  `.claude/settings.json` went in with FinNode PR #6 (`234517a`, merged `aec7df5`).
-  Gitignored, so nothing to commit there: FinNode, Voice-Flow and vthrudebugger_v1
-  `.claude/settings.local.json`; Debugger v2 `.claude/settings.json`. Exact paths:
-  `baselines/s4-permissions-30-10-2026.md`.
-- **Parked / detached, not active — Packbly Web, Voice Flow v1 (and Packbly v2):**
-  detached from Claude Setup on 30-10-2026. Packbly folders and data remain local; the
-  Voice Flow_v1 folder was deleted by Amit, confirmed absent 31-10-2026. Removed from
-  `PROJECTS.md` and `project-rules/manifest.tsv`; mirror copies deleted (in git history).
-  Pointers, not current work: Packbly Web's S5 app-security findings —
-  `baselines/project-handoffs-29-10-2026.md` § *Packbly Web*, which of S5a–c are its own
-  to be asked of Amit. S4 settings edits: live in Packbly_web `.claude/settings.local.json`,
-  gitignored there, so no commit is pending; Voice Flow_v1's went with its folder.
 - **Known, accepted, not planned (30-10-2026, value bar):** T1 wrapped commands
   (`$(…)`, `env`/`xargs`, double spaces); T2 auto-mode blocks turning into boxes; T3
   `git remote -v add`; F1 `git -c` alias bypass; F3 more `.env`/`~/.ssh` read denies
@@ -103,7 +87,7 @@ keep this file to the current state.
   no box because no rule matches it. In fact rtk's hook returned "allow" for it, taken from
   `Bash(git add *)` in both local settings files. Those rules are removed, and setup
   sessions now ask for `git add` and `git stage` (D44, `ENVIRONMENT.md` § 3). Projects are
-  unchanged. The FinNode backlog 6 row itself waits for a FinNode session.
+  unchanged.
 - **Audit 31-10-2026, Stage C — decisions (Amit, 01-11-2026):**
   - C8 · **accepted** — allowed test/build commands (`./gradlew *` and similar, 4
     projects) can run any code; a normal development trade-off.
@@ -115,21 +99,14 @@ keep this file to the current state.
   - C10 · **done 01-11-2026** — error reports off; telemetry and updates stay on (D45).
   - C11 · **deferred** — account/org UUIDs and Amit's emails in `SETUP-PLAN.md`; must be
     handled before the repo goes public.
-  - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
   - C13 · **done 01-11-2026** — rtk hook-audit logging off from the next session; the
     6.7 MB log kept (D45). Checking that the log stops growing: left for now (Amit).
   - **Proposed `STANDARDS.md` changes from 31-10-2026 — done 01-11-2026** (Plan 2,
     § *In progress*).
-- **Setup-session token target broken (01-11-2026), for a separate task:** the 11-10-2026
-  target is 23k or less (`harness/overview.md`); Amit's fresh `/context all` on
-  01-11-2026 read 25.5k, then **24.8k** after the token pass and skills fix (01-11-2026);
-  23k target still not met (`ENVIRONMENT.md` § *What every session loads*). Target not
-  changed and cause not investigated in the Stage A+B pass (Amit, 01-11-2026).
-- **Audit findings deferred to project sessions** — A6, A7, A9, B7, B8, E5, E6, E8, F6
-  (FinNode, Debugger files); S5a–c (Emp Portal app fixes; Packbly's share is
-  parked with Packbly, above). S4 is
-  done (`baselines/status-completed-01-11-2026.md`). Detail: `baselines/audit-29-10-2026.md`.
-  Handoff notes for each: `baselines/project-handoffs-29-10-2026.md`.
+- **Starting tokens 25.2k (01-11-2026,** `ENVIRONMENT.md` § *What every session loads*).
+  No fixed target; keep lowering where it helps (Amit).
+- **Project items live in each project's own backlog;** history in
+  `baselines/status-completed-01-11-2026.md` § *Moved from Open*.
 
 - **Setup tests** — `baselines/global-open-tests.md` owns the list. Not repeated here.
 - **Rejected 10-10-2026 (Amit, T6): a per-project `SessionStart` check** comparing a
