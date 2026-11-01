@@ -125,6 +125,10 @@ That is why 615 permission entries had accumulated across the projects: safe com
 were being approved by hand, one project at a time. The global `allow` list now covers
 the read-only `rtk` wrappers, so this stops happening.
 
+**Hook auditing is off again from 01-11-2026 (audit C13, D45).** `RTK_HOOK_AUDIT=1` was
+removed from `settings.json` → `env`; the 6.7 MB log is kept. Restore that line to switch
+it back on for a test (it takes effect at the next session start). As it was:
+
 **Hook auditing is on, from 20-09-2026.** `settings.json` → `env` sets
 `RTK_HOOK_AUDIT=1`, so rtk writes one line per hook call to
 `~/.local/share/rtk/hook-audit.log`; read it with `rtk hook-audit`. `env` is read at
@@ -186,7 +190,40 @@ containing these words is refused — a commit message or doc grep must avoid th
 the Grep tool; a project command naming `.npmrc` is refused. Grep and Glob tools were not
 tested (not available in the testing session).
 **Asks added 01-11-2026 (audit C4, C5):** `*gh gist create*`, `*gh gist edit*`,
-`*ollama run *cloud*`.
+`*ollama run *cloud*`. The `gist` token scope stays: the GitHub CLI cannot remove it
+(D45).
+
+**Also 01-11-2026 (D45).** `permissions.disableBypassPermissionsMode: "disable"` — no
+Claude Code session can enter bypass mode or use `--dangerously-skip-permissions`. Claude
+Desktop has its own "Allow bypass permissions mode" toggle, switched off by hand; the key
+is not documented to cover it. `env` → `DISABLE_ERROR_REPORTING=1`; telemetry stays on
+because `DISABLE_TELEMETRY` also stops feature-flag fetching, which claude.ai skill sync
+and Remote Control need, and automatic updates stay on.
+
+**Pre-commit secret check (D45, 01-11-2026).** `~/.claude/.git/hooks/pre-commit` runs
+`project-rules/drift.sh` and blocks a commit if its secret scan prints a `SECRET PATTERN`
+line, or if the scan did not run. Mirror drift alone does not block. Git does not track
+hooks, so a fresh clone lacks it — recreate it from the copy below and `chmod +x` it.
+It covers this repo only, not projects; `git commit --no-verify` skips it (and `git
+commit` already asks).
+
+```bash
+#!/bin/bash
+# Pre-commit secret check (audit C7, D45, 01-11-2026). Runs drift.sh's secret scan and
+# blocks the commit if it finds a pattern, or if the scan did not run (fail closed).
+# Mirror drift alone does not block. Untracked by git: documented in ENVIRONMENT.md § 3.
+out=$(bash "$(git rev-parse --show-toplevel)/project-rules/drift.sh" 2>&1)
+if printf '%s\n' "$out" | grep -q '^SECRET PATTERN'; then
+  printf '%s\n' "$out" | grep '^SECRET PATTERN'
+  echo "pre-commit: secret pattern found, commit blocked."
+  exit 1
+fi
+if ! printf '%s\n' "$out" | grep -q '^secret scan: '; then
+  echo "pre-commit: secret scan did not run (drift.sh failed), commit blocked."
+  exit 1
+fi
+exit 0
+```
 
 **Re-measured 30-10-2026 (S4, D41)** (`jq`): `allow` **39 → 37** (`tree *`, `xxd *` out)
 and `ask` **96 → 188**. Read forms of `gh pr|repo|auth|api`, `git merge-base`, `security`

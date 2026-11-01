@@ -85,17 +85,20 @@ keep this file to the current state.
   `Bash(git add *)` in both local settings files. Those rules are removed, and setup
   sessions now ask for `git add` and `git stage` (D44, `ENVIRONMENT.md` § 3). Projects are
   unchanged. The FinNode backlog 6 row itself waits for a FinNode session.
-- **Audit 31-10-2026, Stage C — decisions recorded, not implemented (Amit, 01-11-2026):**
+- **Audit 31-10-2026, Stage C — decisions (Amit, 01-11-2026):**
   - C8 · **accepted** — allowed test/build commands (`./gradlew *` and similar, 4
     projects) can run any code; a normal development trade-off.
-  - C9 · **needs decision** — Claude Desktop bypass mode is available, not known to be
-    used; Desktop settings unchanged.
-  - C10 · **needs decision** — Claude Code telemetry and nonessential traffic not
-    switched off; no change without approval.
+  - C4 · **decided 01-11-2026, no change** — `gist` is a GitHub CLI minimum scope and
+    cannot be removed; the D44 ask rules stay (D45).
+  - C7 hook · **done 01-11-2026** — `pre-commit` secret check in `~/.claude` (D45).
+  - C9 · **done 01-11-2026** — bypass mode disabled in Claude Code (D45). Waiting on
+    Amit: switch off "Allow bypass permissions mode" in Claude Desktop's settings.
+  - C10 · **done 01-11-2026** — error reports off; telemetry and updates stay on (D45).
   - C11 · **deferred** — account/org UUIDs and Amit's emails in `SETUP-PLAN.md`; must be
     handled before the repo goes public.
   - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
-  - C13 · **needs decision** — `RTK_HOOK_AUDIT=1` and rtk's logs kept as they are.
+  - C13 · **done 01-11-2026** — rtk hook-audit logging off from the next session; the
+    6.7 MB log kept (D45). To confirm in a fresh session: the log no longer grows.
   - **Proposed `STANDARDS.md` changes from 31-10-2026, pending:** P1–P4 scale, summary
     first, pushback rule, and audit CL14–CL16 wording. Not added while they would raise
     always-loaded tokens; a separate pass, only with Amit's approval (01-11-2026).

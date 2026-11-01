@@ -1,7 +1,7 @@
 {
   "cleanupPeriodDays": 60,
   "env": {
-    "RTK_HOOK_AUDIT": "1"
+    "DISABLE_ERROR_REPORTING": "1"
   },
   "permissions": {
     "allow": [
@@ -306,7 +306,8 @@
       "Bash(*gh gist edit*)",
       "Bash(*ollama run *cloud*)"
     ],
-    "blockReadsOutsideWorkingDirectories": true
+    "blockReadsOutsideWorkingDirectories": true,
+    "disableBypassPermissionsMode": "disable"
   },
   "model": "opus",
   "disableClaudeAiConnectors": true,

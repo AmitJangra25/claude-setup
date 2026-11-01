@@ -18,12 +18,12 @@ other records cite it. Do not read this file whole — search by D-number or sec
 (2026-09-18)* (the phase-by-phase status table) · *The git repo — where it lives* ·
 *Verify that state rather than trust it* · *How to work on this, in one line each* ·
 *Why this file exists* · *What I got wrong while surveying it, and why* · *The five
-systems* · *Scope* · *Decisions already made* (D1–D44) · *Why permissions cannot be made
+systems* · *Scope* · *Decisions already made* (D1–D45) · *Why permissions cannot be made
 airtight* · *The precedence rule that makes this work* · PHASE 1–5 · *Explicitly not
 doing* · *Open questions* · *Rebuilding on another account* · PHASE 6 · *Tools
 considered, and the decision* · PHASE 7–11 · *Findings not acted on*.
 
-**Decisions in force.** All 44 are in § *Decisions already made*, as `### D<n> · <date>`
+**Decisions in force.** All 45 are in § *Decisions already made*, as `### D<n> · <date>`
 headings, **not in number order** (D15–D17, D26–D29 sit out of sequence). "In force"
 unless the decisions' text says otherwise — its own, or a later decision that names it;
 the status column says which.
@@ -74,6 +74,7 @@ the status column says which.
 | D42 | 30-10-2026 | Branches with `git switch`; work proposed only past the value bar | in force |
 | D43 | 30-10-2026 | Backlog items meet the value bar; Claude judges worth, then asks | in force |
 | D44 | 01-11-2026 | Stage C security fixes: private-store denies, gist/Ollama/`git add` asks | in force |
+| D45 | 01-11-2026 | Stage C switches: bypass mode off, error reports off, rtk audit log off, pre-commit secret check; gist scope kept | in force |
 
 ---
 
@@ -1541,6 +1542,25 @@ the two local `Bash(git add *)` allows are gone. Ollama cloud is disabled and
 for secret patterns. Known limits and side effects: `ENVIRONMENT.md` § 3. Record:
 `baselines/stage-c-fix-report-01-11-2026.md`. Cross-checks · Opus · plan: change, 7 of 8
 taken · 70.5k; changed rules: keep, 2 of 3 taken · 32.2k tokens.
+
+### D45 · 01-11-2026
+
+**Stage C switches decided by Amit (audit C4, C9, C10, C13, C7 hook).** C9:
+`settings.json` → `permissions.disableBypassPermissionsMode: "disable"` — no Claude Code
+session can enter bypass mode or use `--dangerously-skip-permissions`; Claude Desktop has
+its own "Allow bypass permissions mode" toggle, which Amit switches off by hand (this key
+is not documented to cover it). C10: `env` → `DISABLE_ERROR_REPORTING=1` only; telemetry
+and automatic updates stay on, because `DISABLE_TELEMETRY` also stops feature-flag
+fetching, which claude.ai skill sync and Remote Control need, and
+`CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` also stops the updater. C13:
+`RTK_HOOK_AUDIT=1` removed from `env`; `~/.local/share/rtk/hook-audit.log` (6.7 MB) kept.
+C4: no change — `gist` is one of the GitHub CLI's minimum scopes and cannot be removed,
+and Amit has a gist; the D44 ask rules stay. C7: a git `pre-commit` hook in `~/.claude`
+runs `drift.sh`'s secret scan and blocks on a pattern or when the scan does not run
+(`ENVIRONMENT.md` § 3). Tested: `/tmp` copy — clean passes, fake token blocks a real
+`git commit`, missing `drift.sh` blocks; real repo — clean passes, planted fake key
+blocks, file restored. Cross-check · Opus · change then go ahead, 5 of 5 taken · 64.2k
+tokens.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
@@ -3632,6 +3652,8 @@ is being worked on; they are recorded so they are not lost.
    the output is merely bigger) and one instance in 9,491 commands gives nothing
    to work from. If it recurs there will be evidence; if it does not, this closes
    itself. Read with `rtk hook-audit`.
+   *Note 01-11-2026 (D45):* the audit is switched **off** again (audit C13); the
+   6.7 MB log is kept. Turn it back on for a test by restoring `RTK_HOOK_AUDIT=1`.
 3. **~~Two memory folders are duplicates, not just orphans.~~ Closed 2026-09-27 — the
    two orphaned folders are gone.** `Voice-Flow-Pro` and `Debugger-vthrudebugger-v1`
    were confirmed absent by item 5.6 on 2026-09-20 and again on 2026-09-27.
