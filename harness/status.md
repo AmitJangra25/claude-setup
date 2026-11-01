@@ -43,8 +43,8 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   apart from the three allowed changes; G1 passed both times. Cross-checks (Opus): plan ·
   change, 10 taken, 2 rejected · 77.4k tokens; moves · change then keep, 4 of 4 taken ·
   78.3k tokens.
-- **Nothing else in progress.** Waiting on Amit: push of the local commits; the
-  decisions listed in § *Open*.
+- **Nothing else in progress.** Stage C switches done (D45). On hold by Amit's choice:
+  the `STANDARDS.md` pass and the 23k target (§ *Open*).
 
 ## Completed
 
@@ -91,14 +91,14 @@ keep this file to the current state.
   - C4 · **decided 01-11-2026, no change** — `gist` is a GitHub CLI minimum scope and
     cannot be removed; the D44 ask rules stay (D45).
   - C7 hook · **done 01-11-2026** — `pre-commit` secret check in `~/.claude` (D45).
-  - C9 · **done 01-11-2026** — bypass mode disabled in Claude Code (D45). Waiting on
-    Amit: switch off "Allow bypass permissions mode" in Claude Desktop's settings.
+  - C9 · **done 01-11-2026** — bypass mode disabled in Claude Code (D45). Claude
+    Desktop's own toggle left as it is: Amit is on the Team plan and chose to ignore it.
   - C10 · **done 01-11-2026** — error reports off; telemetry and updates stay on (D45).
   - C11 · **deferred** — account/org UUIDs and Amit's emails in `SETUP-PLAN.md`; must be
     handled before the repo goes public.
   - C12 · **deferred** — Voice-Flow bundle not unpacked, cloned, scanned or deleted.
   - C13 · **done 01-11-2026** — rtk hook-audit logging off from the next session; the
-    6.7 MB log kept (D45). To confirm in a fresh session: the log no longer grows.
+    6.7 MB log kept (D45). Checking that the log stops growing: left for now (Amit).
   - **Proposed `STANDARDS.md` changes from 31-10-2026, pending:** P1–P4 scale, summary
     first, pushback rule, and audit CL14–CL16 wording. Not added while they would raise
     always-loaded tokens; a separate pass, only with Amit's approval (01-11-2026).

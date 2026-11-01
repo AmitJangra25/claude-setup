@@ -195,8 +195,8 @@ tested (not available in the testing session).
 
 **Also 01-11-2026 (D45).** `permissions.disableBypassPermissionsMode: "disable"` — no
 Claude Code session can enter bypass mode or use `--dangerously-skip-permissions`. Claude
-Desktop has its own "Allow bypass permissions mode" toggle, switched off by hand; the key
-is not documented to cover it. `env` → `DISABLE_ERROR_REPORTING=1`; telemetry stays on
+Desktop has its own "Allow bypass permissions mode" toggle, left unchanged (Amit, Team
+plan, 01-11-2026); the key is not documented to cover it. `env` → `DISABLE_ERROR_REPORTING=1`; telemetry stays on
 because `DISABLE_TELEMETRY` also stops feature-flag fetching, which claude.ai skill sync
 and Remote Control need, and automatic updates stay on.
 

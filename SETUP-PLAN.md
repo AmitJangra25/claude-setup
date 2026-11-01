@@ -1560,7 +1560,8 @@ runs `drift.sh`'s secret scan and blocks on a pattern or when the scan does not 
 (`ENVIRONMENT.md` § 3). Tested: `/tmp` copy — clean passes, fake token blocks a real
 `git commit`, missing `drift.sh` blocks; real repo — clean passes, planted fake key
 blocks, file restored. Cross-check · Opus · change then go ahead, 5 of 5 taken · 64.2k
-tokens.
+tokens. *Later 01-11-2026:* Amit chose not to switch off the Desktop toggle (Team plan)
+and to leave the check that the rtk log has stopped growing.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
