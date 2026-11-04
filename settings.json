@@ -306,8 +306,8 @@
       "Bash(*gh gist edit*)",
       "Bash(*ollama run *cloud*)"
     ],
-    "blockReadsOutsideWorkingDirectories": true,
-    "disableBypassPermissionsMode": "disable"
+    "disableBypassPermissionsMode": "disable",
+    "blockReadsOutsideWorkingDirectories": true
   },
   "model": "opus",
   "disableClaudeAiConnectors": true,
@@ -389,8 +389,12 @@
       "effortLevel": "high"
     }
   },
+  "awaySummaryEnabled": false,
   "theme": "dark",
+  "editorMode": "normal",
   "switchModelsOnFlag": false,
+  "autoContinueAtUsageLimit": false,
+  "useAutoModeDuringPlan": false,
   "autoMode": {
     "environment": [
       "### Org-wide",
