@@ -63,8 +63,9 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   "Part complete. Switch back to Opus with /model."; plan to fit ~250K, finish if 80%+
   done. `STANDARDS.md` and `harness/models.md`.
 - **Improvements backlog, 05-11-2026:** Stage 1 checks done (C1–C8, C9 closed); agreed
-  list with priority, size and tokens in `harness/backlog.md`. Next: Amit agrees the list,
-  then a plan per wave (P1, then P2, then P3+P4). Nothing built yet.
+  list with priority, size and tokens in `harness/backlog.md`. Wave 1 plan approved by
+  Amit 05-11-2026 (`.claude/current-task.md`); next: Session A in a fresh Opus session.
+  Nothing built yet.
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed

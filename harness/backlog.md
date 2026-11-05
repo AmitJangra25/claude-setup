@@ -22,12 +22,13 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 | 8 | GitHub CLI telemetry | `gh config set telemetry disabled` before any `gh` update: 2.91.0+ turns it on by default; installed 2.83.2 has none | P3 | small | ~3k |
 | 9 | Claude Code usage metrics | Decide: keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`. Metrics carry no code, prompts or paths (Anthropic docs) | P3 | small | ~5k |
 | 10 | Planning ideas (engineering + product-management plugins) | We lack these; copy the ideas into `templates/new-project.md`, do not enable the plugins: `write-spec` (goals, non-goals, acceptance criteria, phases), `architecture` (decisions with trade-offs), `system-design` (APIs, data, parts), `deploy-checklist` (go-live checks, rollback). Plus our own: licence check and a mid-project "still on goal" check (no plugin has either) | P3 | medium | ~25k |
+|  |  | Any skill idea copied: **name and one line only** in our files; build nothing unless approved (Amit, 05-11-2026) |  |  |  |
 | 11 | markitdown | On-demand command only, no startup cost; no Azure or AI options. Keep the PDF/DOCX skills; never both on one document. 15–30 day trial | P3 | small | ~10k |
 | 12 | Own post-edit checker | Kotlin, lint and project-specific checks; must not clash with the TypeScript helper. Start after week 2 of #4. Same trial method as #4 | P3 | medium | ~30k |
 | 13 | Statusline thresholds | Warnings at 200K/300K/400K vs the 250K plan limit in `STANDARDS.md`. Decide which is right and align | P3 | small | ~3k |
 | 14 | Ollama | Check its own update checks / network calls (not covered in Stage 1). Cloud models already off (D45) | P3 | small | ~5k |
 | 15 | Acting without approval | Wording fix only once a real example is seen; the rule already exists in `STANDARDS.md`, auto mode may be the cause | P3 | small | ~5k |
-| 16 | Graphify idea | Copy the idea, do not install: a hand-kept project map file that `CLAUDE.md` points to | P4 | small | ~10k |
+| 16 | Project map (Graphify idea) | Copy the idea, do not install. Global: one rule in `STANDARDS.md` + `templates/project-map.md`; each project writes its own `PROJECT-MAP.md` in its own session. Try in FinNode first, measure with ccusage, then roll out. Design and staleness guards: § *Item 16 in full* | P3 | medium | ~15k + ~10k per project |
 | 17 | Deny-rule bypass test | Focused security test; do last | P4 | small | ~15k |
 | 19 | New-tool rule | Standing rule: before adopting any repo, tool, skill or plugin, check its network calls and telemetry (turn telemetry off before use; if it can't be, report and ask) and that it is free — no paid tools (Amit, 05-11-2026) | P1 | small | ~5k |
 | 20 | rtk exact allow rules | rtk issue #3673 (open, critical, all versions incl. 0.48): rtk reads an exact allow rule as a prefix. `Bash(rtk git branch)` therefore lets `git branch -f/-m/-c …` run without a box. Deletes stay boxed (ask rules `*git branch -D*` etc.). Add ask rules for the other branch-changing flags, or narrow the allow rules | P3 | small | ~10k with box tests |
@@ -50,9 +51,10 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 - **When to pick:** choose the model at session start, by the task. When the task ends,
   update the handoff note. Switch models between sessions using that note, not with
   `/model` mid-chat (a switch re-reads the whole chat uncached).
-- **Hard bug in a long chat** (past ~30k): an independent helper (e.g. Opus) finds the
-  root cause and the session applies the fix. Helper start-up ~15–27k; its brief must
-  include the exact failure. In a short chat, switching is cheaper.
+- **Switch or helper — the 27k test** (Amit, 05-11-2026): a helper costs ~27k to start;
+  a `/model` switch costs about the whole chat so far. Switch only if the chat is under
+  ~27k; otherwise use an independent helper (e.g. Opus finds the root cause, the session
+  applies the fix). The helper's brief must include the exact failure.
 - **Cost rule:** before suggesting a switch or helper, compare start-up plus remaining
   work against continuing here, say the numbers, and don't suggest it if it costs more
   than it saves.
@@ -60,6 +62,30 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
   /model.") — it assumes mid-session switching.
 - **Where:** full text in `harness/models.md`; one short line in `STANDARDS.md`
   § *Which model*, so starting tokens don't rise.
+
+## Item 16 in full — project map (agreed with Amit, 05-11-2026)
+
+- **What:** `PROJECT-MAP.md` at each project root — main folders, entry points, key
+  flows, folder level only (short, cheap to keep current). Not in `CLAUDE.md`, so it costs
+  tokens only when read. Read it before searching code.
+- **Staleness guards — ways it can go stale, and the line that stops each:**
+  1. *Claude forgets after a change* → any change that adds, moves, renames or deletes a
+     file, or changes an entry point or flow, updates the map **in the same commit**;
+     part of "Before calling anything done".
+  2. *Changes made outside Claude* (Amit's edits, a merge or pull, another tool) → the map
+     records the commit it was last checked against; at session start, if
+     `git log` shows structural changes since, refresh the map before relying on it.
+  3. *Claude trusts the map over the code* → the map is a pointer, not proof: confirm in
+     the code before acting; if they disagree, the code wins and the map is fixed now.
+  4. *Dead paths after a rename or delete* → when reading the map, a listed path that does
+     not exist is fixed on the spot.
+  5. *Lost across sessions or compaction* → the handoff note says "map updated: yes/no".
+  6. *Too detailed to keep up* → folder level only; file-level detail is left to search.
+  7. *Prose rules get missed* → a warn-only pre-commit check per project: if the commit
+     adds, deletes or renames files and `PROJECT-MAP.md` is not in it, print a warning.
+     Warn, never block. Decide at rollout.
+- **Where:** one short rule in `STANDARDS.md` (word count must not rise overall), the
+  template in `templates/`, the map itself in each project.
 
 ## Deferred — recheck around 05-01-2027
 
