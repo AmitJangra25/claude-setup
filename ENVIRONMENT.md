@@ -144,6 +144,13 @@ reports consent no, enabled no (`~/Library/Application Support/rtk/config.toml`)
 data was not erased: `rtk telemetry forget` was not requested. This is rtk's own
 configuration, outside `~/.claude` and outside git.
 
+**rtk version policy (Amit, 05-11-2026).** Keep rtk (no better free replacement found,
+05-11-2026). Stay on the latest **stable, free** version, and move only when a newer one
+is shown to be better than the installed 0.48.0. Before any update: check open issues
+#4644 and #3673, the licence (1.x changed the default binary's licence), that telemetry
+stays off, and run box tests before and after. Recheck around 05-01-2027:
+`harness/backlog.md` item 18.
+
 ### 2. Status line — live context size
 
 `statusline/context.py` reads the real token counts from the session transcript and
