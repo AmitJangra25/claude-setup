@@ -73,8 +73,9 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
      file, or changes an entry point or flow, updates the map **in the same commit**;
      part of "Before calling anything done".
   2. *Changes made outside Claude* (Amit's edits, a merge or pull, another tool) → the map
-     records the commit it was last checked against; at session start, if
-     `git log` shows structural changes since, refresh the map before relying on it.
+     stores no commit ID (a file cannot hold its own commit's ID). At session start, git
+     finds the last commit that changed the map (`git log -1 -- PROJECT-MAP.md`) and lists
+     files added, deleted or renamed since; if any, refresh the map before relying on it.
   3. *Claude trusts the map over the code* → the map is a pointer, not proof: confirm in
      the code before acting; if they disagree, the code wins and the map is fixed now.
   4. *Dead paths after a rename or delete* → when reading the map, a listed path that does
@@ -83,9 +84,16 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
   6. *Too detailed to keep up* → folder level only; file-level detail is left to search.
   7. *Prose rules get missed* → a warn-only pre-commit check per project: if the commit
      adds, deletes or renames files and `PROJECT-MAP.md` is not in it, print a warning.
-     Warn, never block. Decide at rollout.
-- **Where:** one short rule in `STANDARDS.md` (word count must not rise overall), the
-  template in `templates/`, the map itself in each project.
+     Warn, never block. Decide at rollout. First check each project's existing hooks
+     (e.g. husky) and add to them, never alongside them.
+- **Where (name + one-liner rule):** one line in `STANDARDS.md` — "Before searching code,
+  read `PROJECT-MAP.md`; when you add, move, rename or delete files, update it in the
+  same commit. How: `templates/project-map.md`." The seven guards live in the template,
+  read only when needed. The map itself in each project.
+- **Setup-wide (only if the project trial works):** no new file. `~/.claude` already has
+  three overlapping maps (`harness/overview.md`, `ENVIRONMENT.md` § *What's in this
+  file*, `harness/status.md` § *Source of truth*); the 31-10-2026 audit decided to merge,
+  not add a fourth. The setup map = `harness/overview.md` brought under the same rules.
 
 ## Deferred — recheck around 05-01-2027
 
