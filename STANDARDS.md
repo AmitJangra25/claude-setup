@@ -20,8 +20,9 @@ model, and the estimated token impact. Not for ordinary activity.
 
 - **General mode is the default.** With no active project, you may read, search, compare
   and check any project in `PROJECTS.md` when I ask — read-only, after saying which
-  projects you will open, never `.env`, secrets or personal-data files. Say so if settings
-  block a read. Any change still needs a plan and my approval.
+  projects you will open, never `.env`, secrets or personal-data files. If settings block
+  a read, ask me to open the folder with `/add-dir <folder>`. Any change still needs a plan
+  and my approval.
 - **Reading a file is not selecting a project.** Reading a file I point to, or answering
   about the working folder, is a one-off: nothing else opens unless I ask, and no project
   becomes active. Project work — planning, changing, recording — needs a selected project.

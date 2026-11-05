@@ -72,7 +72,14 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   `RTK.md`) 3,572 → 3,529. Cross-check (Opus, 47.2k measured): change — B1–B3 and B5
   wording taken; summaries-to-Haiku and E1–E4 known and accepted. **Item 3 done
   05-11-2026:** ccusage baseline in `harness/backlog.md`; wave 2 not before 12-11-2026.
-  Next: Session C (FinNode).
+  **Session C done 05-11-2026 (FinNode):** item 6 gitleaks — 0 leaks in history and
+  tracked files, 37 hits only in git-ignored logs (FinNode backlog row 7); item 7
+  `blockWritesOutsideWorkingDirectories` on in FinNode, tested on/off, memory writes work,
+  mirrored (`9b0e172`); trial check 20-11-2026, keep or remove 05-12-2026. **Wave 1 done.**
+  Next: wave 2, not before 12-11-2026.
+- **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
+  § *Which project*) and the read block agree. A project is opened by `/add-dir` when
+  Amit asks (D23: by prompt, not a standing grant); no settings change.
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed

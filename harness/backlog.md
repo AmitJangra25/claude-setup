@@ -20,6 +20,11 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 
 **Done 05-11-2026 (wave 1, Session A):** items 1, 2, 5, 19. Rows kept for reference.
 
+**Items 6 and 7 done 05-11-2026 (Session C, FinNode):** gitleaks scan, 0 leaks in
+history and tracked files; write block on in FinNode, trial check 20-11-2026, keep or
+remove 05-12-2026. Not tested: plan-mode files. Seen once, not again, cause unknown: a
+write refused with the key at `false`. **Wave 1 complete.**
+
 **Item 3 done 05-11-2026 — ccusage baseline.** Code check of 20.0.48 (MIT): the npm
 wrapper only starts a native binary (`@ccusage/ccusage-darwin-arm64`); the binary holds
 two price-list URLs (LiteLLM on GitHub, `models.dev`) and no telemetry markers; `--offline`
