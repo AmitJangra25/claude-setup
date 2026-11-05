@@ -1,9 +1,17 @@
 # Backlog — Claude Setup
 
 Agreed improvements and open items for `~/.claude`. Nothing here is built without a plan
-and Amit's approval. Priority: P1–P4 as in `STANDARDS.md` § *Plan before building*;
-order of work agreed with Amit: P1 first, then P2, then P3 and P4 together.
+and Amit's approval. Priority: P1–P4 as in `STANDARDS.md` § *Plan before building*.
 Tokens are rough estimates to plan, build and check.
+
+**How we work through it (Amit, 05-11-2026):**
+- Waves: (1) P1 and P2 small → (2) P1 and P2 medium → (3) everything else together.
+- Group small related fixes in one commit; a settings change gets its own commit.
+- Test only important or medium changes (rules, settings, permissions); small doc
+  lines get a look only.
+- Files that load every session stay lean: name + one line, detail in a file read only
+  when needed. Skills copied as name + one line; nothing built without approval.
+- Think big picture: one fix must not cause another problem; no workaround fixes.
 
 Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survived from the
 02/03-11-2026 repo-review session, and the transcripts could not be read).
@@ -18,7 +26,7 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 | 4 | TypeScript code helper | 4-week trial in **Voice Flow** after one week of ccusage baseline, in a Voice Flow session on its own branch. Turn off npm type lookup (`disableAutomaticTypingAcquisition`) if the plugin allows. Weekly 5-minute check; keep if nothing broke, tokens flat or lower, and it caught a real problem | P1 | medium | ~40k + ~5k/week |
 | 5 | Claude Code survey | Set `CLAUDE_CODE_DISABLE_FEEDBACK_SURVEY=1`. Case: clicking "Yes" on the follow-up uploads the whole transcript, and projects hold personal data | P2 | small | ~5k |
 | 6 | gitleaks | Manual secret scan of **FinNode** first; no hook yet. Claude may suggest when to run it | P2 | small | ~15k |
-| 7 | Block writes outside project | `permissions.blockWritesOutsideWorkingDirectories` (Claude Code 2.1.314+; installed 2.1.318). Projects only, never global; trial in **FinNode**. 15–30 day trial. Covers Claude's file tools only, not shell commands | P2 | small | ~10k |
+| 7 | Block writes outside project | `permissions.blockWritesOutsideWorkingDirectories` (Claude Code 2.1.314+; installed 2.1.318). Projects only, never global; trial in **FinNode**. Check at day 15, decide at day 30: keep if all good; remove if it wastes tokens or blocks real work. Covers Claude's file tools only, not shell commands | P2 | small | ~10k |
 | 8 | GitHub CLI telemetry | `gh config set telemetry disabled` before any `gh` update: 2.91.0+ turns it on by default; installed 2.83.2 has none | P3 | small | ~3k |
 | 9 | Claude Code usage metrics | Decide: keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`. Metrics carry no code, prompts or paths (Anthropic docs) | P3 | small | ~5k |
 | 10 | Planning ideas (engineering + product-management plugins) | We lack these; copy the ideas into `templates/new-project.md`, do not enable the plugins: `write-spec` (goals, non-goals, acceptance criteria, phases), `architecture` (decisions with trade-offs), `system-design` (APIs, data, parts), `deploy-checklist` (go-live checks, rollback). Plus our own: licence check and a mid-project "still on goal" check (no plugin has either) | P3 | medium | ~25k |
