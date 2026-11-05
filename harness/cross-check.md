@@ -47,6 +47,17 @@ re-check them.
 One line next to the item in `harness/status.md`: date, model, verdict, issues found,
 measured cost. No separate report file unless Amit asks for one.
 
+## Claude Setup cross-check
+
+Moved word for word from `STANDARDS.md` § *Claude Setup* (05-11-2026). "It" in "departs
+from it" is Claude Setup; "step 4" is `STANDARDS.md` § *How a task runs*; "I" is Amit.
+
+A **Claude Setup cross-check** (not the agent cross-check
+in step 4) reports, in chat only, where the current project departs from it: structure,
+docs, backlog, handoff, task tracking, process, configuration, rules. It never covers cloud
+providers, API keys or app cloud setup, and writes nothing unless I approve. A file it
+can't read is reported as unavailable.
+
 ## Markers
 
 Shown by the main session. Not for ordinary reads and commands.

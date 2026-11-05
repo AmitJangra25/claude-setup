@@ -20,6 +20,7 @@ roadmap or git, not here.
 - **Done:**
 - **Changed files:**
 - **Tests and checks:** what ran, the result, and what was not verified
+- **Errors and fixes:** what failed, why, the fix
 - **Decisions:**
 - **Blockers:**
 - **Exact next step:**

@@ -41,11 +41,8 @@ model, and the estimated token impact. Not for ordinary activity.
 ## Claude Setup
 
 "Claude Setup" is this global standard (these rules and `~/.claude`'s configuration), not a
-project. Every project follows it. A **Claude Setup cross-check** (not the agent cross-check
-in step 4) reports, in chat only, where the current project departs from it: structure,
-docs, backlog, handoff, task tracking, process, configuration, rules. It never covers cloud
-providers, API keys or app cloud setup, and writes nothing unless I approve. A file it
-can't read is reported as unavailable.
+project. Every project follows it. **Claude Setup cross-check:** `harness/cross-check.md`
+§ *Claude Setup cross-check*.
 
 **Setup sessions may edit a project's `CLAUDE.md` and `project-rules/` copy**, within the
 limits in `~/.claude/.claude/CLAUDE.md`.
@@ -115,24 +112,25 @@ Skills, plugins, connectors and reference documents are not loaded because they 
 A project roadmap that names them is the list. For one known by name only, say what you
 expect it to do and that you have not read it; never claim what an unread skill contains.
 Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole unless an approved plan says so; search by D-number or section.
+Before adopting any new tool, repo, skill or plugin, check its network calls, telemetry and
+licence: free of cost only; propose turning telemetry off before use, or tell me if it
+can't be.
 
 ## Which model
 
-I pick the session's model with `/model`; it does not change mid-task unless I ask, and
-you never switch it yourself. If the session is on the wrong model, say so before starting
-and wait. **Opus** for an unclear goal or cause, an open design, or a costly or
-hard-to-undo change — permissions, hooks, global rules, settings, secrets, data-loss or
-security risk, consequential cross-project changes. **Sonnet** for clear, bounded work.
-**Haiku** only for a very small, low-risk, single-step task — a lookup, a count, finding a
-file — never for permissions, security, global rules, settings, secrets, data-loss risk or
-multi-step work. Before a helper or a model switch, compare totals: its start-up (a helper
-about 15–20k; a `/model` switch, re-reading this session once) plus its work, against
-doing it here — and say the numbers. If a smaller model would do a part for less, tell me
-and I switch with `/model`. When that part is done, the smaller model says "Part complete.
-Switch back to Opus with /model." and does not start the next major task.
-If the model is not converging, stop, say why and recommend another. A plan names the
-model and why, for the session and each helper. Detail, helpers and local models:
-`harness/models.md`.
+I pick the session's model with `/model` at session start, by the task; it does not change
+mid-task unless I ask, and you never switch it yourself. If the session is on the wrong
+model, say so before starting and wait. **Opus** for an unclear goal or cause, an open
+design, or a costly or hard-to-undo change — permissions, hooks, global rules, settings,
+secrets, data-loss or security risk, consequential cross-project changes. **Sonnet** for
+clear, bounded work. **Haiku** only as a helper or a fresh session, for a very small,
+low-risk, single-step task — a lookup, a count, finding a file — never for a task that is
+itself one of the Opus cases above, or multi-step work. Before a helper or a switch, compare its start-up plus the
+remaining work against doing it here, and say the numbers. **27k test:** suggest a
+`/model` switch only while the chat is under ~27k; otherwise a helper finds the cause and
+this session fixes it. If the model is not converging, stop, say why and recommend
+another. A plan names the model and why, for the session and each helper. Detail, helpers
+and local models: `harness/models.md`.
 
 ## What may happen without asking
 

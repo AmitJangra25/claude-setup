@@ -18,6 +18,8 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 
 ## To build
 
+**Done 05-11-2026 (wave 1, Session A):** items 1, 2, 5, 19. Rows kept for reference.
+
 | # | Tool / area | What it fixes or adds | Pri | Size | Tokens |
 |---|---|---|---|---|---|
 | 1 | Model rule | One merged table (Opus / Sonnet / Haiku). Choose the model at session start; switch at session boundaries via the handoff note, not `/model` mid-chat. Hard bug in a long chat: an independent helper finds the cause, the session fixes it. Haiku only as a helper or a fresh tiny session. Full text in `harness/models.md`, one line in `STANDARDS.md` | P1 | small | ~15k with cross-check |

@@ -4,7 +4,7 @@ The one current view of where the `~/.claude` setup stands. Pointers, not copies
 Commits, branches, push state and file counts are never recorded here — read them from
 git. Updated by every changing setup plan (`.claude/CLAUDE.md`).
 
-**Last verified:** 01-11-2026
+**Last verified:** 05-11-2026
 
 ## Current phase
 
@@ -60,12 +60,18 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   all 5 fixes taken.
 - **Model rules, 01-11-2026 (approved by Amit):** Haiku for tiny single-step tasks only;
   compare helper or `/model` switch cost before switching; smaller model hands back with
-  "Part complete. Switch back to Opus with /model."; plan to fit ~250K, finish if 80%+
-  done. `STANDARDS.md` and `harness/models.md`.
+  "Part complete. Switch back to Opus with /model." (replaced 05-11-2026 by the 27k test,
+  wave 1 item 1); plan to fit ~250K, finish if 80%+ done. `STANDARDS.md` and
+  `harness/models.md`.
 - **Improvements backlog, 05-11-2026:** Stage 1 checks done (C1–C8, C9 closed); agreed
   list with priority, size and tokens in `harness/backlog.md`. Wave 1 plan approved by
-  Amit 05-11-2026 (`.claude/current-task.md`); next: Session A in a fresh Opus session.
-  Nothing built yet.
+  Amit 05-11-2026 (`.claude/current-task.md`). **Session A done 05-11-2026:** items 1, 2,
+  5, 19 and two moves (Claude Setup cross-check → `harness/cross-check.md`; rtk dry-run
+  note → `ENVIRONMENT.md` § 1). The § *Git* "goes public" move dropped (Amit): the
+  `project-rules/README.md` pointer would loop. Always-loaded words (`STANDARDS.md` +
+  `RTK.md`) 3,572 → 3,529. Cross-check (Opus, 47.2k measured): change — B1–B3 and B5
+  wording taken; summaries-to-Haiku and E1–E4 known and accepted. Next: item 3, then
+  Session C.
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed

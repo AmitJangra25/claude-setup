@@ -12,5 +12,4 @@ into `head`. Detail and measurements: `ENVIRONMENT.md` § 1.
   re-run that read through `rtk proxy` — rtk rewrites output.
 - `rtk proxy` is for reads only. Never wrap a commit, push or other ask-list command in it.
 - If a box for `rtk proxy …` offers "don't ask again", choose plain "Yes".
-- Through rtk, `git add --dry-run` prints nothing. Preview with
-  `rtk proxy git add -A --dry-run`; verify real staging with `git diff --cached --name-only`.
+- `git add --dry-run` and checking what is staged: `ENVIRONMENT.md` § 1.
