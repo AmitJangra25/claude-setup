@@ -70,8 +70,9 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   note → `ENVIRONMENT.md` § 1). The § *Git* "goes public" move dropped (Amit): the
   `project-rules/README.md` pointer would loop. Always-loaded words (`STANDARDS.md` +
   `RTK.md`) 3,572 → 3,529. Cross-check (Opus, 47.2k measured): change — B1–B3 and B5
-  wording taken; summaries-to-Haiku and E1–E4 known and accepted. Next: item 3, then
-  Session C.
+  wording taken; summaries-to-Haiku and E1–E4 known and accepted. **Item 3 done
+  05-11-2026:** ccusage baseline in `harness/backlog.md`; wave 2 not before 12-11-2026.
+  Next: Session C (FinNode).
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed

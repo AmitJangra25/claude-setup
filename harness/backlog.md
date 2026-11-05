@@ -20,6 +20,16 @@ Source: Stage 1 checks, 05-11-2026 (C1–C8; C9 closed — no to-do list survive
 
 **Done 05-11-2026 (wave 1, Session A):** items 1, 2, 5, 19. Rows kept for reference.
 
+**Item 3 done 05-11-2026 — ccusage baseline.** Code check of 20.0.48 (MIT): the npm
+wrapper only starts a native binary (`@ccusage/ccusage-darwin-arm64`); the binary holds
+two price-list URLs (LiteLLM on GitHub, `models.dev`) and no telemetry markers; `--offline`
+uses built-in prices. Limit: a text search of a binary is not proof; not confirmed that
+`--offline` also skips `models.dev`. Run by Amit: `npx --yes ccusage@20.0.48 daily
+--offline`. **Baseline, Claude Code only, 7 calendar days 29-10 to 04-11-2026:** 337.3M
+tokens (≈97% cache reads), $146.18 API-equivalent (not the Team-plan bill); per day
+48.2M tokens, $20.88. Busiest day 29-10: 154.4M, $63.77. Whole-Mac figures, not split by
+project. Wave 2 clock starts 05-11-2026; earliest wave 2 start 12-11-2026.
+
 | # | Tool / area | What it fixes or adds | Pri | Size | Tokens |
 |---|---|---|---|---|---|
 | 1 | Model rule | One merged table (Opus / Sonnet / Haiku). Choose the model at session start; switch at session boundaries via the handoff note, not `/model` mid-chat. Hard bug in a long chat: an independent helper finds the cause, the session fixes it. Haiku only as a helper or a fresh tiny session. Full text in `harness/models.md`, one line in `STANDARDS.md` | P1 | small | ~15k with cross-check |
