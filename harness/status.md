@@ -76,7 +76,13 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   tracked files, 37 hits only in git-ignored logs (FinNode backlog row 7); item 7
   `blockWritesOutsideWorkingDirectories` on in FinNode, tested on/off, memory writes work,
   mirrored (`9b0e172`); trial check 20-11-2026, keep or remove 05-12-2026. **Wave 1 done.**
-  Next: wave 2, not before 12-11-2026.
+- **Pre-wave 2, 06-11-2026 (approved by Amit):** the 12-11 wait is dropped. Order:
+  Session 1 (items 16, 20, 17) → Session 2 (10, 13, 8) → wave 2 → rest of wave 3; one
+  combined review 15 days after the last trial starts. Cross-check (Opus, 56.7k measured):
+  change — 3 fixes taken. **Session 1 done 06-11-2026:** project-map template + FinNode
+  trial line (FinNode `CLAUDE.md` left uncommitted); `git branch` allow rules narrowed,
+  box tests passed; bypass probes 7/8 blocked, git alias got through (backlog row 21, P3).
+  Results in `harness/backlog.md`. Next: Session 2 on Sonnet.
 - **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
   § *Which project*) and the read block agree. A project is opened by `/add-dir` when
   Amit asks (D23: by prompt, not a standing grant); no settings change.

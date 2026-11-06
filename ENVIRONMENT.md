@@ -184,7 +184,7 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   37 rules    read-only things stop prompting
+    allow   34 rules    read-only things stop prompting
     ask    191 rules    all on things that change something, plus gist and Ollama cloud
     deny    68 rules    .env (34) and private stores (34); not airtight
 
@@ -306,8 +306,15 @@ the bare and `rtk proxy` forms but **not** `rtk `, so downloads ran unprompted u
 can produce.**
 
 **`git branch` is allowed only as a listing.** The hook turns every `git branch …` into
-`rtk git branch …`, so this file's rule decides for every project. It allows exactly
-`rtk git branch`, `--show-current`, `-a`, `-vv`, `--list *` and `-a --list *`. The wide
+`rtk git branch …`, so this file's rule decides for every project. It allows only
+`--show-current`, `--list *` and `-a --list *`. **Narrowed 06-11-2026 (backlog item 20):**
+rtk reads an exact allow rule as a prefix (rtk issue #3673), so `rtk git branch`, `-a` and
+`-vv` were removed — on a scratch clone `git branch -a -m main x` renamed a branch and
+`-a -u` / `-a --unset-upstream` changed tracking, and plain `git branch x` creates one.
+`--show-current` refuses or ignores every changing flag (tested the same day). Box tests in
+default mode: `git branch -a -m zz-none zz-other` → "This command requires approval";
+`git branch --list` → no box. To list, use `git branch --list` or `git branch -a --list`.
+The wide
 `rtk git branch *` it replaced let `git branch -vv -D x` delete a branch and
 `git branch -vv -f x` move one with no prompt: git accepts a verbose flag beside a
 changing one, and the `*git branch -D*` ask rule only matches the flag in first place.

@@ -132,6 +132,9 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
 Check here before writing something new — most of it is one import away.
 
+If the project has `PROJECT-MAP.md`, read it before searching code; when you add, move,
+rename or delete files, update it in the same commit, following the guards at its top.
+
 - **`core/notification/ReminderNotifier`** — the only thing that builds, posts or cancels a
   notification. `ReminderRepository` cancels through it whenever a reminder is settled or
   deleted, so no caller has to remember to.

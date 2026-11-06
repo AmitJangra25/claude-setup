@@ -35,6 +35,26 @@ tokens (≈97% cache reads), $146.18 API-equivalent (not the Team-plan bill); pe
 48.2M tokens, $20.88. Busiest day 29-10: 154.4M, $63.77. Whole-Mac figures, not split by
 project. Wave 2 clock starts 05-11-2026; earliest wave 2 start 12-11-2026.
 
+**Order changed 06-11-2026 (Amit):** no wait before wave 2 — the 05-11 ccusage run already
+covered a past week. Order: Session 1 (items 16, 20, 17) → Session 2 (10, 13, 8) → wave 2
+(item 4) → rest of wave 3. One combined review 15 days after the last trial starts; item
+4's weekly checks and item 7's dates stay. Limit: the baseline predates wave 1, so later
+token checks show the combined effect.
+
+**Session 1 done 06-11-2026 (Opus):**
+- Item 16: `templates/project-map.md` (shape + 7 guards; the map carries its own guards,
+  since project sessions cannot read `~/.claude`). Rule line trialled in FinNode
+  `CLAUDE.md` § *Use what already exists* — not `STANDARDS.md` until the trial works.
+  FinNode's map itself: a FinNode session.
+- Item 20: allow rules narrowed to `--show-current`, `--list *`, `-a --list *`. A scratch
+  clone showed `git branch -a -m` renames and `-a -u` changes tracking. Box tests passed
+  (`ENVIRONMENT.md` § 3).
+- Item 17: 8 probes on a made-up `.env`. 7 blocked (`nl`, `base64`, `sort`, `diff`, `od`,
+  `strings`, `cut` — none on the deny list; cause not confirmed: the Read rule applied to
+  Bash, or auto mode). **1 got through: `git -c alias.zz='!cat' zz <file>`** → row 21.
+  Also: the Read deny rule blocks the Write tool from creating a `.env`. Grep and Glob
+  tools still untested (not available in the session).
+
 | # | Tool / area | What it fixes or adds | Pri | Size | Tokens |
 |---|---|---|---|---|---|
 | 1 | Model rule | One merged table (Opus / Sonnet / Haiku). Choose the model at session start; switch at session boundaries via the handoff note, not `/model` mid-chat. Hard bug in a long chat: an independent helper finds the cause, the session fixes it. Haiku only as a helper or a fresh tiny session. Full text in `harness/models.md`, one line in `STANDARDS.md` | P1 | small | ~15k with cross-check |
@@ -57,6 +77,7 @@ project. Wave 2 clock starts 05-11-2026; earliest wave 2 start 12-11-2026.
 | 17 | Deny-rule bypass test | Focused security test; do last | P4 | small | ~15k |
 | 19 | New-tool rule | Standing rule: before adopting any repo, tool, skill or plugin, check its network calls and telemetry (turn telemetry off before use; if it can't be, report and ask) and that it is free — no paid tools (Amit, 05-11-2026) | P1 | small | ~5k |
 | 20 | rtk exact allow rules | rtk issue #3673 (open, critical, all versions incl. 0.48): rtk reads an exact allow rule as a prefix. `Bash(rtk git branch)` therefore lets `git branch -f/-m/-c …` run without a box. Deletes stay boxed (ask rules `*git branch -D*` etc.). Add ask rules for the other branch-changing flags, or narrow the allow rules | P3 | small | ~10k with box tests |
+| 21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (06-11-2026, item 17); same root as F1. Security risk, unlikely in normal use (needs a deliberate odd command). Possible fix: deny `*git*-c*alias*` in every rtk spelling, box-tested | P3 | small | ~10k |
 
 ## Item 1 in full — model rule (agreed with Amit, 05-11-2026)
 
