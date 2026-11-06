@@ -71,7 +71,7 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   `project-rules/README.md` pointer would loop. Always-loaded words (`STANDARDS.md` +
   `RTK.md`) 3,572 → 3,529. Cross-check (Opus, 47.2k measured): change — B1–B3 and B5
   wording taken; summaries-to-Haiku and E1–E4 known and accepted. **Item 3 done
-  05-11-2026:** ccusage baseline in `harness/backlog.md`; wave 2 not before 12-11-2026.
+  05-11-2026:** ccusage baseline in `harness/backlog.md`; wave 2 not before 12-11-2026 (wait dropped 06-11-2026).
   **Session C done 05-11-2026 (FinNode):** item 6 gitleaks — 0 leaks in history and
   tracked files, 37 hits only in git-ignored logs (FinNode backlog row 7); item 7
   `blockWritesOutsideWorkingDirectories` on in FinNode, tested on/off, memory writes work,
