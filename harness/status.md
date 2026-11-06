@@ -86,8 +86,10 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   templates gained planning lines (item 10); status-line thresholds kept, tie to 250K
   written down (13); gh telemetry set `disabled` (8, not verified for gh 2.91+).
   **Wave 2 skipped 06-11-2026 (Amit):** item 4 deferred — Voice Flow's TypeScript 7 has no
-  `tsserver.js`, which the official helper needs (backlog § *Deferred*). Next: plan the
-  rest of wave 3.
+  `tsserver.js`, which the official helper needs (backlog § *Deferred*). **Rest of wave 3
+  planned and approved 06-11-2026** (plan in `.claude/current-task.md`; cross-check Opus,
+  change, all taken): Session 3 (items 21, 14, 9) → Session 4 (11); 12 deferred, 15 waits.
+  Not started.
 - **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
   § *Which project*) and the read block agree. A project is opened by `/add-dir` when
   Amit asks (D23: by prompt, not a standing grant); no settings change.
