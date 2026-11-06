@@ -148,6 +148,12 @@ reports consent no, enabled no (`~/Library/Application Support/rtk/config.toml`)
 data was not erased: `rtk telemetry forget` was not requested. This is rtk's own
 configuration, outside `~/.claude` and outside git.
 
+**GitHub CLI telemetry set off ahead of time (06-11-2026, backlog item 8).** `gh config
+set telemetry disabled`; installed gh 2.83.2 has no telemetry and warned "not a known
+configuration key", but saved it (`gh config get telemetry` → `disabled`). gh 2.91.0+
+turns telemetry on by default; not verified that it reads this key. **After any gh
+update,** run `gh config get telemetry` and check gh's own docs for the off switch.
+
 **rtk version policy (Amit, 05-11-2026).** Keep rtk (no better free replacement found,
 05-11-2026). Stay on the latest **stable, free** version, and move only when a newer one
 is shown to be better than the installed 0.48.0. Before any update: check open issues
@@ -162,6 +168,9 @@ prints the current context size. It never estimates. Thresholds and the data beh
 are documented at the top of that file.
 
 Short version: grey under 200K, amber to 300K, red to 400K, then suggests `/compact`.
+These fit the 250K plan limit in `STANDARDS.md` § *Plan before building* (checked
+06-11-2026, kept): amber is "near 250K" — weigh the 80% rule; 300K is act at the next task
+boundary.
 **Lowered to 200K/300K/400K on 11-10-2026** at Amit's request, to save tokens: a session
 past 250K costs more per turn and uses more of the usage limit, so the nudge now comes
 sooner; 150K was considered and judged too early. The warning exists to nudge a clear at

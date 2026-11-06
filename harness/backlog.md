@@ -55,6 +55,13 @@ token checks show the combined effect.
   Also: the Read deny rule blocks the Write tool from creating a `.env`. Grep and Glob
   tools still untested (not available in the session).
 
+**Session 2 done 06-11-2026 (run on Opus at Amit's choice):**
+- Item 10: `templates/new-project.md` — key decisions, design, licences, go-live and
+  rollback; `templates/roadmap.md` — "still on goal?" at each phase end.
+- Item 13: thresholds kept 200K/300K/400K; one sentence in `ENVIRONMENT.md` § 2.
+- Item 8: `gh config get telemetry` → `disabled` (gh 2.83.2 warned the key is unknown but
+  saved it). Not verified that gh 2.91+ reads it — check after any gh update.
+
 | # | Tool / area | What it fixes or adds | Pri | Size | Tokens |
 |---|---|---|---|---|---|
 | 1 | Model rule | One merged table (Opus / Sonnet / Haiku). Choose the model at session start; switch at session boundaries via the handoff note, not `/model` mid-chat. Hard bug in a long chat: an independent helper finds the cause, the session fixes it. Haiku only as a helper or a fresh tiny session. Full text in `harness/models.md`, one line in `STANDARDS.md` | P1 | small | ~15k with cross-check |

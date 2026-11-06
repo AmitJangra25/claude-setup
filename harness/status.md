@@ -82,7 +82,10 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   change — 3 fixes taken. **Session 1 done 06-11-2026:** project-map template + FinNode
   trial line (FinNode `CLAUDE.md` left uncommitted); `git branch` allow rules narrowed,
   box tests passed; bypass probes 7/8 blocked, git alias got through (backlog row 21, P3).
-  Results in `harness/backlog.md`. Next: Session 2 on Sonnet.
+  Results in `harness/backlog.md`. **Session 2 done 06-11-2026** (Opus, Amit's choice):
+  templates gained planning lines (item 10); status-line thresholds kept, tie to 250K
+  written down (13); gh telemetry set `disabled` (8, not verified for gh 2.91+). Next:
+  wave 2 (item 4, Voice Flow trial).
 - **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
   § *Which project*) and the read block agree. A project is opened by `/add-dir` when
   Amit asks (D23: by prompt, not a standing grant); no settings change.
