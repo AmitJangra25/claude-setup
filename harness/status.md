@@ -84,8 +84,10 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   box tests passed; bypass probes 7/8 blocked, git alias got through (backlog row 21, P3).
   Results in `harness/backlog.md`. **Session 2 done 06-11-2026** (Opus, Amit's choice):
   templates gained planning lines (item 10); status-line thresholds kept, tie to 250K
-  written down (13); gh telemetry set `disabled` (8, not verified for gh 2.91+). Next:
-  wave 2 (item 4, Voice Flow trial).
+  written down (13); gh telemetry set `disabled` (8, not verified for gh 2.91+).
+  **Wave 2 skipped 06-11-2026 (Amit):** item 4 deferred — Voice Flow's TypeScript 7 has no
+  `tsserver.js`, which the official helper needs (backlog § *Deferred*). Next: plan the
+  rest of wave 3.
 - **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
   § *Which project*) and the read block agree. A project is opened by `/add-dir` when
   Amit asks (D23: by prompt, not a standing grant); no settings change.

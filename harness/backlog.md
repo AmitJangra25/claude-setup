@@ -152,6 +152,7 @@ token checks show the combined effect.
 
 | # | Tool | Why deferred | Recheck |
 |---|---|---|---|
+| 4 | TypeScript code helper (moved here 06-11-2026, Amit) | Official `typescript-lsp` plugin (Anthropic, Apache-2.0) runs `typescript-language-server`, which needs TypeScript's `tsserver.js`. Voice Flow is on TypeScript 7.0.2, which has no `tsserver.js` (checked 06-11-2026); an older global TypeScript would check with the wrong version. Item 12 no longer waits on it | Does the plugin support TypeScript 7 (its own built-in helper mode)? Then re-plan the 4-week Voice Flow trial as in row 4 above |
 | 18 | rtk update | Policy (Amit, 05-11-2026): stay on the latest **stable, free** version; move only when a version is shown to be better than the one installed. 1.x: major version, breaking changes (`rtk proxy` renamed `rtk bypass`, alias kept), default binary licence changed (free "rtk-oss" edition alongside). Candidate: **0.52.0** (last 0.x, 13-10-2026, Apache-2.0) — fixes "three permission-gate holes" in the hook, but also rewrites more commands (`sh -c` wrappers), had no point release, and 0.49–0.51 notes were not read; not shown better yet. Open in every version: #4644, #3673. Nothing broken on 0.48 | Is #4644 / #3673 fixed; read 0.49–0.52 notes; what the 1.x licence says and whether rtk-oss is the free one; does an update keep telemetry off (add `RTK_TELEMETRY_DISABLED=1`); box tests before and after |
 
 ## Known and accepted — not doing
