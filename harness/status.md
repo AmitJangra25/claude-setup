@@ -98,6 +98,8 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
 - **Documentation structure, Phase 1 T1–T3 — done 10-11-2026 (Amit):**
   `DOCUMENTATION-STANDARD.md`, `DOCUMENT-MAP.md`, and 12 templates completed;
   D47 recorded; `.gitignore` allow-lines added. T34 done; next Phase 2.
+  **Goal, all 9 phases, 34 tasks and every format: `harness/doc-structure-plan.md` —
+  read it first when resuming this work.**
   Early completed: project-map outdated-line fix and `new-project.md` changes.
 - **Nothing else in progress.** Stage C switches done (D45).
 
