@@ -32,6 +32,8 @@
       "Bash(rtk tree *)",
       "Bash(rtk wc *)",
       "Read(//Users/amitjangra/Library/Application Support/rtk/tee/**)",
+      "Read(//Users/amitjangra/Documents/VS Code/**)",
+      "Read(//Users/amitjangra/.claude/**)",
       "WebFetch(domain:api.github.com)",
       "WebFetch(domain:code.claude.com)",
       "WebFetch(domain:developer.android.com)",
@@ -109,7 +111,13 @@
       "Read(//Users/amitjangra/.claude/backups/**)",
       "Read(//Users/amitjangra/.netrc)",
       "Read(//Users/amitjangra/.git-credentials)",
-      "Read(//Users/amitjangra/.npmrc)"
+      "Read(//Users/amitjangra/.npmrc)",
+      "Read(//Users/amitjangra/Documents/VS Code/FinNode/private/**)",
+      "Bash(*FinNode/private*)",
+      "Read(//Users/amitjangra/Documents/VS Code/Emp portal/**/vthru.db*)",
+      "Bash(*vthru.db*)",
+      "Read(//Users/amitjangra/Documents/extra/v1.1-Packbly/**)",
+      "Bash(*v1.1-Packbly*)"
     ],
     "ask": [
       "Bash(*brew reinstall*)",
@@ -305,7 +313,8 @@
       "Bash(*ollama run *cloud*)"
     ],
     "disableBypassPermissionsMode": "disable",
-    "blockReadsOutsideWorkingDirectories": true
+    "blockReadsOutsideWorkingDirectories": false,
+    "blockWritesOutsideWorkingDirectories": true
   },
   "model": "opus",
   "disableClaudeAiConnectors": true,

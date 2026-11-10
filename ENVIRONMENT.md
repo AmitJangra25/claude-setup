@@ -193,9 +193,20 @@ tokens, not the number.
 
 ### 3. Permissions — what stops and asks
 
-    allow   34 rules    read-only things stop prompting
+    allow   36 rules    read-only things stop prompting
     ask    191 rules    all on things that change something, plus gist and Ollama cloud
-    deny    68 rules    .env (34) and private stores (34); not airtight
+    deny    74 rules    .env (34), private stores (34), project private data (6); not airtight
+
+**Read everywhere, write only here (D46, 10-11-2026).** `blockReadsOutsideWorkingDirectories`
+is **false** and `blockWritesOutsideWorkingDirectories` is **true**, globally. Any session
+reads `~/Documents/VS Code/**` and `~/.claude/**` with no box (other folders ask); Claude's
+Edit and Write tools cannot write outside the working folder — `/add-dir` a folder to change
+it. Denied for every session, Read and Bash: FinNode `private/`, Emp Portal `vthru.db*`, the
+Packbly folder. **Known limits:** shell commands can still write anywhere — default mode
+boxes them ("sensitive file" for `~/.claude`), auto mode may approve them silently; the
+Write tool is blocked from `/private/tmp` in Voice-Flow despite its `additionalDirectories`
+(cause not found; shell use of `/tmp` works). A recursive search can still walk into
+personal data not named here.
 
 **Private stores blocked, 01-11-2026 (audit C1, D44).** Deny rules match the path
 wherever it appears in a command, so one rule covers `cat`, `rtk read`, `rtk grep`,
@@ -341,7 +352,7 @@ by replaying 5,734 historical Bash calls: **+0.46 prompts per session**; 25 of t
 never fire against history at all.
 
 `allow` went 32 → 35: `rtk discover`, `rtk --version`, and read access to rtk's tee
-directory. That last one matters — `blockReadsOutsideWorkingDirectories` is true and
+directory. That last one matters — `blockReadsOutsideWorkingDirectories` was true (off since 10-11-2026, D46) and
 rtk's tee directory sits outside every project, so until this was made global, rtk
 could write overflow logs everywhere but read them back only in Voice-Flow.
 

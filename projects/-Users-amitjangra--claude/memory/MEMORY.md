@@ -3,5 +3,5 @@
 - [Stay on the asked task](stay-on-the-asked-task.md) — asked task only, reported short; extras go in "noting, not acting on"
 - [Propose skills from observed work](propose-skills-from-observed-work.md) — propose one for a repeated pattern; skip ones restating STANDARDS.md
 - [Preconditions are hard stops](preconditions-are-hard-stops.md) — a stated precondition fails: stop and report, even if harmless
-- [Main session opens projects by /add-dir](main-session-opens-projects-by-add-dir.md) — blocked project read: name the folder, ask for /add-dir
+- [Read any project, write only here](main-session-opens-projects-by-add-dir.md) — reads open (D46); /add-dir only to change another folder, after approval
 - [Claude Setup is a global standard, not a project](claude-setup-is-a-global-standard-not-a-project.md) — definition: STANDARDS.md § Claude Setup

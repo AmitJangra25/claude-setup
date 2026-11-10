@@ -11,6 +11,7 @@
   bypass rules; nothing else in a project.
 - **Claude Setup edits may reach into a project.** From a `~/.claude` session, you may edit a
   project's `CLAUDE.md` and its `project-rules/` copy when I approve that exact change.
+  Open that project's folder with `/add-dir` first; the write lock (D46) blocks it otherwise.
   Nothing else in that project — no code, docs, settings or memory. The project-side edit is
   left uncommitted; it goes in with that project's next PR, under its own git rules. The
   `project-rules/` copy is committed here as usual. Report the project-side uncommitted edit

@@ -90,9 +90,11 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   planned and approved 06-11-2026** (plan in `.claude/current-task.md`; cross-check Opus,
   change, all taken): Session 3 (items 21, 14, 9) → Session 4 (11); 12 deferred, 15 waits.
   Not started.
-- **Main session reading projects, 05-11-2026 (Amit):** the rule (`STANDARDS.md`
-  § *Which project*) and the read block agree. A project is opened by `/add-dir` when
-  Amit asks (D23: by prompt, not a standing grant); no settings change.
+- **Read everywhere, write only here — done 10-11-2026 (D46, Amit):** read block off,
+  write lock on globally, private-data denies; `STANDARDS.md` § *Which project*,
+  `.claude/CLAUDE.md`, `ENVIRONMENT.md` § 3 updated. Tested from Voice-Flow; two known
+  limits accepted (shell writes; Write tool to `/private/tmp`). Cross-check (Opus,
+  66.3k): partly, fixes taken. Replaces the 05-11-2026 `/add-dir`-for-reads entry.
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed

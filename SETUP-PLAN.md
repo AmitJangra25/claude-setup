@@ -52,7 +52,7 @@ the status column says which.
 | D20 | 18-09-2026 | A rule in `STANDARDS.md` is not restated in other words | in force |
 | D21 | 18-09-2026 | B3 pipeline-fragment rules stay | in force |
 | D22 | 18-09-2026 | A rule with a literal `*` is not removed until matching is known | in force |
-| D23 | 18-09-2026 | A project reads only its own tree, never another | in force; **wording restated by D38** |
+| D23 | 18-09-2026 | A project reads only its own tree, never another | read part **superseded by D46**; no standing grant to another project still in force |
 | D24 | 18-09-2026 | Voice Flow rule claims in `CLAUDE.md`, evidence in `docs/` | in force |
 | D25 | 18-09-2026 | A stale measurement is annotated, never overwritten | in force |
 | D26 | 22-09-2026 | A rule file is trimmed only where it is procedure | in force |
@@ -67,7 +67,7 @@ the status column says which.
 | D35 | 10-10-2026 | A global `allow` rule in the spelling the hook produces | in force |
 | D36 | 10-10-2026 | Setup sessions ask before `git pull`, `switch`, `stash pop`, `stash apply` | **partly superseded 30-10-2026 by D41** — `pull` and `switch` removed, stash rules stay |
 | D37 | 10-10-2026 | `.gitignore` root allow lines anchored with `/` | in force |
-| D38 | 10-10-2026 | D23 restated to what is proven; wording only | in force |
+| D38 | 10-10-2026 | D23 restated to what is proven; wording only | read block part **superseded by D46** |
 | D39 | 12-10-2026 | Model choice: Sonnet default, Opus for unclear or sensitive work | in force |
 | D40 | 12-10-2026 | `STANDARDS.md` slimmed by wording only, every rule kept | in force |
 | D41 | 30-10-2026 | An `ask` rule boxes what can change or leak, not every use (S4) | in force |
@@ -75,6 +75,7 @@ the status column says which.
 | D43 | 30-10-2026 | Backlog items meet the value bar; Claude judges worth, then asks | in force |
 | D44 | 01-11-2026 | Stage C security fixes: private-store denies, gist/Ollama/`git add` asks | in force |
 | D45 | 01-11-2026 | Stage C switches: bypass mode off, error reports off, rtk audit log off, pre-commit secret check; gist scope kept | in force |
+| D46 | 10-11-2026 | Read everywhere, write only here: read block off, write lock on globally, private data denied | in force |
 
 ---
 
@@ -1157,6 +1158,9 @@ Other folders (Documents, `~/.claude`, temp) — by prompt, not by a standing gr
 Amit's rule, 2026-09-18: "That doesn't make any sense: to give access to other projects."
 Supersedes the narrow-it proposal in 5.2, which would have kept `Voice Flow_v1` — that is
 another project, so it goes too. **"By prompt" reworded by D38, 10-10-2026.**
+**Read part superseded by D46, 10-11-2026:** every session may read other projects and
+`~/.claude`; changes stay in the working folder. No standing grant to another project
+still holds.
 
 ### D24 · 2026-09-18
 
@@ -1419,6 +1423,8 @@ after. Original lines and checks: `baselines/t6-removals.md` entry 5.
 
 ### D38 · 10-10-2026
 
+*Read block part superseded by D46, 10-11-2026 — the block is off.*
+
 **D23 restated to what is proven — wording only, no behaviour change.** Enforced: no
 project holds a standing grant (`allow` rule or `additionalDirectories`) to another
 project or to `~/.claude`; the sweep in § *Verify that state rather than trust it* checks
@@ -1563,6 +1569,26 @@ blocks, file restored. Cross-check · Opus · change then go ahead, 5 of 5 taken
 tokens. *Later 01-11-2026:* Amit chose not to switch off the Desktop toggle (Team plan)
 and to leave the check that the rtk log has stopped growing.
 
+### D46 · 10-11-2026
+
+**Read everywhere, write only here (Amit).** Any session may read every project and
+`~/.claude`; it may change only its own working folder. What "stick to one project" was
+always meant to stop is writes, not reads. `settings.json`:
+`blockReadsOutsideWorkingDirectories: false`, `blockWritesOutsideWorkingDirectories: true`
+(global; reverses backlog item 7's "projects only, never global"), `Read` allowed with no
+box for `~/Documents/VS Code/**` and `~/.claude/**` (other folders ask), and new denies,
+Read and Bash, for FinNode `private/`, Emp Portal `vthru.db*` and the Packbly folder.
+Supersedes the read part of D23 and D38; D23's "no standing grant to another project"
+stays. A setup session edits a project's `CLAUDE.md` only after `/add-dir` of that folder.
+**Tested 10-11-2026 from a Voice-Flow session:** reads of `~/.claude` and FinNode work;
+`.env`, FinNode `private/` (Read and `cat`) and Packbly denied with no box; Write tool into
+`~/.claude` blocked. **Known limits, accepted (Amit):** (1) shell commands are not covered —
+`touch` into `~/.claude` boxed ("sensitive file") with auto mode off, and auto mode
+approved it silently; (2) the Write tool is blocked from `/private/tmp` in Voice-Flow
+although its `additionalDirectories` lists it — cause not found; shell use of `/tmp` is
+unaffected. Cross-check · Opus · partly, fixes taken (private-data denies, narrow read
+allow) · 66.3k tokens.
+
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
 
@@ -1703,7 +1729,7 @@ Read(//Users/amitjangra/Library/Application Support/rtk/tee/**)
 were actually missing.
 
 **Root cause of the missing output, now confirmed.** `permissions` sets
-`blockReadsOutsideWorkingDirectories: true`. rtk's tee directory sits outside
+`blockReadsOutsideWorkingDirectories: true` (*turned off 10-11-2026, D46*). rtk's tee directory sits outside
 every project, so reading it was blocked in **every** project except Voice-Flow,
 which was the only file granting the path. The rtk hook itself is global — it is
 `hooks.PreToolUse` → `rtk hook claude` in this same file, and applies to every
@@ -1882,7 +1908,7 @@ Everything here is read-only, or reversible and confined to this setup.
 | 3 | rtk meta — `--version` `gain` `discover` | Reports rtk's own analytics. |
 | 1 | rtk tee output — `Read(.../rtk/tee/**)` | rtk's own captured output, needed to re-read a filtered result. |
 
-Also on: `blockReadsOutsideWorkingDirectories: true`.
+Also on: `blockReadsOutsideWorkingDirectories: true`. *Turned off 10-11-2026, D46.*
 
 ### Why this holds
 

@@ -20,9 +20,8 @@ model, and the estimated token impact. Not for ordinary activity.
 
 - **General mode is the default.** With no active project, you may read, search, compare
   and check any project in `PROJECTS.md` when I ask — read-only, after saying which
-  projects you will open, never `.env`, secrets or personal-data files. If settings block
-  a read, ask me to open the folder with `/add-dir <folder>`. Any change still needs a plan
-  and my approval.
+  projects you will open, never `.env`, secrets or personal-data files. Any change still
+  needs a plan and my approval.
 - **Reading a file is not selecting a project.** Reading a file I point to, or answering
   about the working folder, is a one-off: nothing else opens unless I ask, and no project
   becomes active. Project work — planning, changing, recording — needs a selected project.
@@ -34,10 +33,11 @@ model, and the estimated token impact. Not for ordinary activity.
   selecting it still needs my confirmation.
 - **If the evidence conflicts, stop and ask.** A check that cannot run — no git, no remote,
   no entry yet — is reported as unavailable, not treated as a mismatch.
-- **In project mode, stay in that project.** Never switch projects or look inside another
-  on your own. Cross-project work only when I ask, after listing the projects you will
-  read or check. A change to any project not selected for this task needs my approval of
-  that exact change.
+- **In project mode, change only that project.** Never switch projects. Reading another
+  project or `~/.claude` is allowed when the task needs it; say which. A change to any
+  project not selected for this task needs my approval of that exact change, then that
+  folder opened with `/add-dir` — Claude's file tools cannot write outside the working
+  folder (D46). Shell commands can; never use one to get round that.
 
 ## Claude Setup
 

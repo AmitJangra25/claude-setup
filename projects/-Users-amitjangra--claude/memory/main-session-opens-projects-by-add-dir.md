@@ -1,25 +1,22 @@
 ---
 name: main-session-opens-projects-by-add-dir
-description: "When the ~/.claude main session needs to read a project, name the folder and ask Amit for /add-dir — the read block is not the end of the road"
+description: "Reads of any project are open (D46); /add-dir is only for changing another project's folder, after Amit approves that exact change"
 metadata:
   node_type: memory
   type: feedback
   originSessionId: 09c9f96c-a2c9-4c97-a895-0075bc24aa4d
-  modified: 2026-11-05T14:17:13.348Z
+  modified: 2026-11-10T07:04:48.909Z
 ---
 
-When the `~/.claude` main session needs to read a project (e.g. to confirm a project
-session's results), say which folder and why, then ask Amit to type
-`/add-dir <folder>`. Read only; it lasts for that session. Never read around the block
-with a shell command.
+Any session may read other projects and `~/.claude` when the task needs it — say which.
+Changing another project's folder needs Amit's approval of that exact change, then
+`/add-dir` of that folder, because Claude's file tools cannot write outside the working
+folder. Never use a shell command to write around the lock.
 
-**Why:** 05-11-2026 — I could not confirm Session C because
-`blockReadsOutsideWorkingDirectories` blocked FinNode, and I sent Amit to fetch the
-results instead of offering `/add-dir`, which had already worked for `/tmp` that day.
-The rule (`STANDARDS.md` § *Which project*) allows reads he asks for; D23 in
-`SETUP-PLAN.md` says other folders open "by prompt, not by a standing grant" — `/add-dir`
-is that prompt. A standing settings grant was judged overkill (Amit, 05-11-2026).
+**Why:** 10-11-2026 — Amit: "stick to one project" was always meant to stop writes, not
+reads. D46 turned the read block off and the write lock on (`SETUP-PLAN.md`). This
+replaces the 05-11-2026 rule "ask for /add-dir to read a project".
 
-**How to apply:** at the first blocked read of a project folder, offer `/add-dir` in one
-line; never treat the block as final and never go round it. Related:
+**How to apply:** read freely, never `.env`, secrets or personal data; before any write
+outside the working folder, get approval, then ask for `/add-dir`. Related:
 [[claude-setup-status]], [[stay-on-the-asked-task]].
