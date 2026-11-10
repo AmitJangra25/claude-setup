@@ -30,4 +30,11 @@ while IFS=$'\t' read -r name root; do
     done
   done
 done < project-rules/manifest.tsv
+
+# Documentation format check (T34). Warn-only; prints nothing when clean.
+doc_out=$(./harness/doc-check.sh --quiet 2>&1)
+if [ -n "$doc_out" ]; then
+  echo "Session-start check: documentation format warnings. Read-only — nothing was changed."
+  echo "$doc_out"
+fi
 exit 0

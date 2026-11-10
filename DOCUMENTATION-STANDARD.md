@@ -6,7 +6,7 @@ Read when: Writing, restructuring, splitting or archiving any document; adding a
 Owner: Claude (rules are Amit's decisions).
 Update rule: Only from a real case logged in the backlog, recorded as a D-number. Replace superseded text; no history here.
 Related: `DOCUMENT-MAP.md` (which document is where) · `STANDARDS.md` (how to work) · `harness/doc-structure-plan.md` (the agreed plan) · `templates/`
-Status: in force from 10-11-2026 (Phase 1, T1); templates aligned (T3, 10-11-2026); format check not yet built (T34)
+Status: in force from 10-11-2026 (Phase 1, T1); templates aligned (T3, 10-11-2026); format check built (T34)
 Last reviewed: 10-11-2026
 
 ---
@@ -210,7 +210,7 @@ All standard project files are created at setup, even when empty. An empty file 
 
 ## Format check
 
-`harness/doc-check.sh` — planned (T34).
+`harness/doc-check.sh`.
 
 - Warn-only, never blocks; no AI cost.
 - Checks: headers · section order · IDs and Next ID · dead links · duplicates · size limits · `None yet` in empty files · task file ignored by git · secret patterns in project docs · files affected by a decision.

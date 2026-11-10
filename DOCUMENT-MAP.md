@@ -88,4 +88,4 @@ These make things work; they are not read as documents and follow no document fo
 | Acceptance sheets | Checklists used to test a project's work |
 | `launch.json` | Editor settings for starting and debugging an app |
 | `harness/session-check.sh` | Script run at setup session start; warns about drift and risky rules |
-| `harness/doc-check.sh` — planned (T34) | Warn-only format check (`DOCUMENTATION-STANDARD.md` § *Format check*) |
+| `harness/doc-check.sh` | Warn-only format check (`DOCUMENTATION-STANDARD.md` § *Format check*) |
