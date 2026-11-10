@@ -95,6 +95,10 @@ project checkups are done; T6 is closed, reviewed and committed (Amit, 11-10-202
   `.claude/CLAUDE.md`, `ENVIRONMENT.md` § 3 updated. Tested from Voice-Flow; two known
   limits accepted (shell writes; Write tool to `/private/tmp`). Cross-check (Opus,
   66.3k): partly, fixes taken. Replaces the 05-11-2026 `/add-dir`-for-reads entry.
+- **Documentation structure, Phase 1 T1–T3 — done 10-11-2026 (Amit):**
+  `DOCUMENTATION-STANDARD.md`, `DOCUMENT-MAP.md`, and 12 templates completed;
+  D47 recorded; `.gitignore` allow-lines added. Next: T34.
+  Early completed: project-map outdated-line fix and `new-project.md` changes.
 - **Nothing else in progress.** Stage C switches done (D45).
 
 ## Completed
@@ -158,6 +162,10 @@ Three found 29-10-2026 and settled the same day by the success-measure change ab
 let a missed goal go on unreported; general mode forbade project reads Amit asks for. The
 29-10-2026 audit settled A1–A5 and A8; A6, A7 and A9 are in project files and wait for
 those sessions (*Open*). The 10-10-2026 set is in `baselines/t6-removals.md` entry 6.
+
+- `STANDARDS.md` § *How a task runs* still says decisions are recorded in the
+  roadmap, while the new `roadmap.md` template moves decisions to
+  `DECISIONS.md`. Resolve in T20; do not change `STANDARDS.md` in T3.
 
 ## Decisions in force
 

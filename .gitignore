@@ -101,6 +101,13 @@
 !templates/deferred-improvements.md
 !templates/handoff.md
 !templates/project-map.md
+!templates/roadmap-done.md
+!templates/backlog-done.md
+!templates/decisions.md
+!templates/decisions-old.md
+!templates/project-claude.md
+!templates/reference-doc.md
+!templates/record.md
 
 # --- allow: harness/ — the setup's control desk (D33). Named files only.
 !harness/

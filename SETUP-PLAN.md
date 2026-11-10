@@ -76,6 +76,7 @@ the status column says which.
 | D44 | 01-11-2026 | Stage C security fixes: private-store denies, gist/Ollama/`git add` asks | in force |
 | D45 | 01-11-2026 | Stage C switches: bypass mode off, error reports off, rtk audit log off, pre-commit secret check; gist scope kept | in force |
 | D46 | 10-11-2026 | Read everywhere, write only here: read block off, write lock on globally, private data denied | in force |
+| D47 | 10-11-2026 | `DOCUMENT-MAP.md` is the one document map; replaces the three old maps | in force; supersedes item 16's "setup map = `harness/overview.md`" |
 
 ---
 
@@ -1588,6 +1589,17 @@ approved it silently; (2) the Write tool is blocked from `/private/tmp` in Voice
 although its `additionalDirectories` lists it — cause not found; shell use of `/tmp` is
 unaffected. Cross-check · Opus · partly, fixes taken (private-data denies, narrow read
 allow) · 66.3k tokens.
+
+### D47 · 10-11-2026
+
+**One document map (Amit).** `DOCUMENT-MAP.md` replaces the document table in
+`README.md` (§ *What is in here*), the map part of `harness/overview.md` and the
+*Source of truth* table in `harness/status.md`. Reason: one routing map prevents
+scattered and duplicated document indexes. Supersedes the part of backlog item 16 that
+made `harness/overview.md` the setup map. The three old maps are trimmed in Phase 2
+(T4, T9, T5), not now. **Affected files:** `README.md` · `harness/overview.md` ·
+`harness/status.md` · `DOCUMENT-MAP.md` · `DOCUMENTATION-STANDARD.md`. Closed when all
+five are checked (after Phase 2). Plan: `harness/doc-structure-plan.md` (T2, T3).
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

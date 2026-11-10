@@ -1,12 +1,54 @@
-# Deferred improvements — <Project>
+# Backlog — <Project>
 
-Found outside the task in hand. Not fixed without approval. Raise it at once if it blocks
-the approved task or risks safety, security or data loss.
+Purpose: Work found outside the task in hand, not yet planned.
+Audience: Claude and the owner.
+Read when: Planning, or when a finding comes up.
+Owner: <Project> sessions (changes are the owner's decision).
+Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. Closed items move to `BACKLOG-DONE.md`.
+Related: `docs/ROADMAP.md` · `docs/BACKLOG-DONE.md`
+Status: active
+Last reviewed: DD-MM-YYYY
 
-### <Title>
+Next ID: B1
 
-- **Worth doing:** yes, with the gain or harm and how often / no, known and accepted
-- **Priority:** P1 broken, blocking, losing data, or a security or data-loss risk that normal use exposes: fix now · P2 wrong in a way that has happened, or that a named normal-use step triggers, or blocks the next piece: fix next · P3 good to have, with a stated gain: fix when it fits · P4 later or skip, including gaps nobody has hit. For P1 and P2, name the case.
+Not fixed without approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
+
+## To build
+
+| ID | Item | Why | Worth doing | Blocks current task | Priority | Size | Tokens | Status | Next action |
+|---|---|---|---|---|---|---|---|---|---|
+
+None yet
+
+Status uses the standard marks; a planned item says `→ T#`.
+
+Worth doing: yes, with the gain or harm and how often / no, known and accepted. Priority: P1–P4 (`STANDARDS.md` § *Plan before building*); for P1 and P2, name the case. Blocks current task: yes / no.
+
+## In full
+
+Only for items that need more than a row.
+
+### B<n> — <title>
+
 - **Found in:** file and line, or where
+- **Decision:** D# or None yet
+- **Detail:** only when needed
 - **Next step:** only if worth doing is yes; otherwise none
-- **Blocks the current task:** yes / no
+
+## Deferred
+
+| ID | Item | Recheck date |
+|---|---|---|
+
+None yet
+
+## Known and accepted
+
+| ID | Item | Reason |
+|---|---|---|
+
+None yet
+
+## Older records
+
+None yet

@@ -6,7 +6,7 @@ Read when: Writing, restructuring, splitting or archiving any document; adding a
 Owner: Claude (rules are Amit's decisions).
 Update rule: Only from a real case logged in the backlog, recorded as a D-number. Replace superseded text; no history here.
 Related: `DOCUMENT-MAP.md` (which document is where) · `STANDARDS.md` (how to work) · `harness/doc-structure-plan.md` (the agreed plan) · `templates/`
-Status: in force from 10-11-2026 (Phase 1, T1); templates not yet aligned (T3); format check not yet built (T34)
+Status: in force from 10-11-2026 (Phase 1, T1); templates aligned (T3, 10-11-2026); format check not yet built (T34)
 Last reviewed: 10-11-2026
 
 ---
@@ -69,7 +69,7 @@ Detail lives in files read when needed; an always-loaded file holds a one-line p
 | P1–P4 | Priority, not an ID | Scale in `STANDARDS.md` § *Plan before building* |
 | S / M / L | Size, not an ID | Small, medium, large |
 
-- **Decisions keep the existing D-number system.** Claude Setup's decisions continue from D46 (index today: `SETUP-PLAN.md`). Each project numbers its own from D1. No other scheme.
+- **Decisions keep the existing D-number system.** Claude Setup's decisions continue the existing sequence (index today: `SETUP-PLAN.md`). Each project numbers its own from D1. No other scheme.
 - **Cross-project references** add a project code: VF Voice-Flow · FN FinNode · EP Emp Portal · DB1 vthrudebugger_v1 · DB2 Debugger v2 · CS Claude Setup. Example: `VF-T12`, `CS-D46`.
 - **Every list file shows `Next ID`.**
 - **Old IDs stay as they are** in old records (C1, CL3, S4, item 16, the 09-10-2026 finish-plan T1–T6…). They are not renumbered.
@@ -112,7 +112,7 @@ Counts tasks done / tasks planned. Backlog items are not counted.
 
 ## Structure per file
 
-Sections in this order. Templates (`templates/`, aligned in T3) are the fill-in forms; this list is the rule.
+Sections in this order. Templates (`templates/`) are the fill-in forms; this list is the rule.
 
 | File | Header | Sections |
 |---|---|---|
@@ -166,17 +166,17 @@ A copy is a defect except in these cases. Each copy names its source.
 `.claude/current-task.md` holds the one task in progress — never setup or project status.
 
 - **Ignored by git** in every project.
-- **About 80 lines at most.**
+- **About 80 lines at most.** Past that, warn and move results home.
 - **One per worktree**; the `Session/branch` field names which.
 - **Move results and decisions home first** (roadmap, decisions, backlog), then overwrite *Resume*.
 - **Shape:**
   ```
   # Current task — <Project>
   Status · Updated · Session/branch
-  ## Live: Goal / success measure · Latest result · Approved scope (date) · Not in scope · Progress (T#) · Blockers · Next action
+  ## Live: Goal / success measure · Latest measured result · Approved scope (date) · Not in scope · Progress (T#) · Blockers · Next action
      After compaction or a new session: confirm the scope still applies.
   ## Resume (overwrite at each pause):
-     Done · Changed files · Tests and checks (not verified) · Errors and fixes · Decisions (IDs) · Map updated yes/no · Exact next steps
+     Done · Changed files · Tests and checks (not verified) · Errors and fixes · Decisions (IDs) · Map updated yes/no · Exact next step
   ```
 - Between tasks: `Status: none`.
 - Old task-history files become records.

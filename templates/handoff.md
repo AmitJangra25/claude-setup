@@ -1,26 +1,35 @@
-# Handoff / current task — <Project> · <date>
+# Current task — <Project>
 
-Used live as `.claude/current-task.md` inside the project, for long or
-multi-session changing work — updated as the task runs, not only written once at
-the end. The same shape serves as the end-of-session handoff.
+Status: in progress | blocked | none
+Updated: DD-MM-YYYY
+Session/branch:
 
-Keep it short: current state only. Replace what is superseded; history belongs in the
-roadmap or git, not here.
+<!-- Template for `.claude/current-task.md` (D31). One task, one file per worktree; git-ignored.
+     Current state only, about 80 lines at most — past that, warn and move results home.
+     Before overwriting Resume, move completed results and durable decisions to their homes
+     (roadmap, DECISIONS.md, backlog). Rules: DOCUMENTATION-STANDARD.md § Task file rules.
+     Between tasks: Status: none, everything below None yet. -->
+
+## Live
 
 - **Goal / success measure:** in the owner's words, with the number or yes/no
-- **Latest measured result:** the figure, its date, and whether it meets the measure —
-  if it misses, say so first at session start
-- **Status:** in progress | blocked | none
-- **Approved scope:** the exact work approved, what was excluded, and the date it
-  was approved. Record the approved scope and exclusions here. After compaction or
-  a new session, confirm the scope still applies before further action; ask again
-  if unclear or outside scope.
-- **Project and folder:**
-- **Phase and task:**
-- **Done:**
-- **Changed files:**
+- **Latest measured result:** the figure, its date, and whether it meets the measure — if it misses, say so first at session start
+- **Approved scope (DD-MM-YYYY):** the exact work approved
+- **Not in scope:** what was excluded
+- **Progress:** T# [x] · T# [~] · T# [ ]
+- **Blockers:** None yet
+- **Next action:**
+
+After compaction or a new session: confirm the scope still applies before further action; ask again if unclear or outside scope.
+
+## Resume
+
+Overwrite at each pause.
+
+- **Done:** None yet
+- **Changed files:** None yet
 - **Tests and checks:** what ran, the result, and what was not verified
 - **Errors and fixes:** what failed, why, the fix
-- **Decisions:**
-- **Blockers:**
+- **Decisions:** IDs only (D#)
+- **Map updated:** yes/no
 - **Exact next step:**
