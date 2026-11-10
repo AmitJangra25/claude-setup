@@ -5,8 +5,8 @@ Audience: Claude and Amit.
 Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
-Related: `harness/status.md` · `harness/backlog.md` (item 16) · `SETUP-PLAN.md` (D46) · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: agreed, not started (Phase 1 detailed plan not yet written)
+Related: `harness/status.md` · `harness/backlog.md` (item 16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
+Status: Phase 1 done 10-11-2026; Phase 2 next
 Last reviewed: 10-11-2026
 
 ---
@@ -15,8 +15,10 @@ Last reviewed: 10-11-2026
 
 - **Agreed:** the goal, global rules, numbering, all formats (Part 4), the phase order and the 14 cross-check additions.
 - **Done already:** read everywhere, write only here — D46, commit `a615de6`, pushed 10-11-2026.
-- **Next step:** write the detailed Phase 1 plan (T1, T2, T3, T34) with priority, size and tokens; cross-check it; Amit approves.
-- **Nothing in Phases 1–9 has been changed yet.**
+- **Phase 1 done 10-11-2026, not pushed:** T1 `DOCUMENTATION-STANDARD.md`, T2 `DOCUMENT-MAP.md` (in force, D47), T3 12 templates + D47, T34 `harness/doc-check.sh` with the session-start link. Commits `14e5cd1`, `e9bd951`, `c67673d`. Sonnet fact-checks: T1–T2 46.6k, T3 59.1k, fixes taken.
+- **Done early:** the outdated D46 line in `templates/project-map.md` (was Phase 2); `templates/new-project.md` changes (T29).
+- **Next step:** Phase 2, starting with T4 `README.md`. D47 closes when T4, T5 and T9 have trimmed the three old maps.
+- **Phases 2–9:** not started.
 
 ## 1. Goal and success measure
 
@@ -141,7 +143,7 @@ T3 templates: **update** `handoff.md` (task-file template; keep the name — `ST
 | T14 | Record files (new only; save the 2 `.json`/`.py` records in `.gitignore`) | P4 |
 | T15 | `~/.claude/.claude/current-task.md` (525 lines → sorted into homes, history to a record) | P2 |
 
-Also: fix the outdated D46 line in `templates/project-map.md` ("project sessions cannot read `~/.claude`").
+Also: ~~fix the outdated D46 line in `templates/project-map.md`~~ — done early in T3 (10-11-2026).
 
 ### Phase 3 — Always-loaded rule files
 | ID | File | Priority |
@@ -364,7 +366,6 @@ moved: T# → Phase m (date, why) · At phase end: still on goal?
 - **Seven project-map guards** — suggested moving them once into `DOCUMENTATION-STANDARD.md` now that projects can read `~/.claude`; not yet decided.
 - **Voice-Flow `docs/README.md`** — becomes its map or is replaced; decided in Phase 6.
 - **Session-start drift warning (10-11-2026):** Voice-Flow and vthrudebugger_v1 `CLAUDE.md` differ from their `project-rules/` copies; uncommitted files from before this session stay out of commits.
-- **This file is not tracked by git** until `.gitignore` gets an allow line for it.
 
 ## 9. Cost so far
 
