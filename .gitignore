@@ -34,6 +34,8 @@
 !/OLLAMA.md
 !/ENVIRONMENT.md
 !/SETUP-PLAN.md
+!/DOCUMENTATION-STANDARD.md
+!/DOCUMENT-MAP.md
 
 # --- allow: settings and statusline
 !/settings.json
