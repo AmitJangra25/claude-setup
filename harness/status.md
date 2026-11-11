@@ -15,9 +15,8 @@ Last reviewed: 11-11-2026
 
 ## Current phase
 
-Documentation structure, Phase 2 — Pass 2A (4f468e6) and Pass 2B (2ff02bd) committed
-locally, not pushed; T15 built 11-11-2026, uncommitted, waiting for Amit's review. Goal,
-tasks and formats: `harness/doc-structure-plan.md`.
+Documentation structure: Phase 2 (T4–T15) done 11-11-2026. Next: Phase 3 (T16–T19), on
+Amit's word. Goal, tasks and formats: `harness/doc-structure-plan.md`.
 
 ## In progress
 
@@ -57,8 +56,8 @@ rules in `STANDARDS.md`. This harness: D33.
 
 ## Next gate
 
-Amit reviews T15; on his word, one local commit; Phase 2 is then pushed as a whole
-(Amit). Phase 3 does not start before that. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 3 (T16–T19, always-loaded rule files) starts only on Amit's word, in a fresh session,
+with its own plan and approval. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.

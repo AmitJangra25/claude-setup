@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 Pass 2A committed 11-11-2026; Pass 2B committed 11-11-2026; T15 built 11-11-2026, waiting for Amit's review
+Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 next, on Amit's word
 Last reviewed: 11-11-2026
 
 ---
@@ -15,12 +15,12 @@ Last reviewed: 11-11-2026
 
 - **Agreed:** the goal, global rules, numbering, all formats (Part 4), the phase order and the 14 cross-check additions.
 - **Done already:** read everywhere, write only here — D46, commit `a615de6`, pushed 10-11-2026.
-- **Phase 1 done 10-11-2026, not pushed:** T1 `DOCUMENTATION-STANDARD.md`, T2 `DOCUMENT-MAP.md` (in force, D47), T3 12 templates + D47, T34 `harness/doc-check.sh` with the session-start link. Commits `14e5cd1`, `e9bd951`, `c67673d`. Sonnet fact-checks: T1–T2 46.6k, T3 59.1k, fixes taken.
+- **Phase 1 done 10-11-2026:** T1 `DOCUMENTATION-STANDARD.md`, T2 `DOCUMENT-MAP.md` (in force, D47), T3 12 templates + D47, T34 `harness/doc-check.sh` with the session-start link. Commits `14e5cd1`, `e9bd951`, `c67673d`. Sonnet fact-checks: T1–T2 46.6k, T3 59.1k, fixes taken.
 - **Done early:** the outdated D46 line in `templates/project-map.md` (was Phase 2); `templates/new-project.md` changes (T29).
-- **Phase 2, Pass 2A (T4–T9) committed locally as `4f468e6` (11-11-2026); not pushed. D47 closed 11-11-2026.**
-- **Phase 2, Pass 2B (T10–T14) committed locally as `2ff02bd` (11-11-2026); not pushed** — plan and Amit's build-time decisions: § 3 *Pass 2B plan*.
-- **T15 built 11-11-2026, uncommitted:** old task file copied whole to `baselines/task-history-11-11-2026.md` (`cmp`-verified); task file rewritten to the template shape; live facts to `harness/backlog.md` (B9, B11, B14, B21, new B33) and `harness/status.md`.
-- **Next step:** Amit reviews T15; then one local commit on his word. Phase 2 is pushed as a whole after T15 is reviewed.
+- **Phase 2, Pass 2A (T4–T9) committed as `4f468e6` (11-11-2026). D47 closed 11-11-2026.**
+- **Phase 2, Pass 2B (T10–T14) committed as `2ff02bd` (11-11-2026)** — plan and Amit's build-time decisions: § 3 *Pass 2B plan*.
+- **Phase 2, T15 committed as `08354ae` (11-11-2026):** old task file copied whole to `baselines/task-history-11-11-2026.md` (`cmp`-verified); task file rewritten to the template shape; live facts to `harness/backlog.md` (B9, B11, B14, B21, new B33, B34) and `harness/status.md`. **Phase 2 (T4–T15) done 11-11-2026.**
+- **Next step:** Phase 3 (T16–T19) on Amit's word, in a fresh session with its own plan.
 - **Phases 3–9:** not started.
 
 ## 1. Goal and success measure
