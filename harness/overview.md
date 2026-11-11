@@ -1,8 +1,11 @@
 # How the setup fits together
 
-A map, not a manual. What each file is: `README.md` § *What is in here*. Who owns
-which fact: `harness/status.md` § *Source of truth*. How a task runs:
-`STANDARDS.md` § *How a task runs*. This file copies none of them (D34).
+Purpose: How the setup's pieces work in a session, and the checklist for when the setup is finished.
+Owner: Setup sessions (changes are Amit's decision).
+Update when: A finish line is met or changes, or the session flow changes.
+Related: `DOCUMENT-MAP.md` (every document — the one map, D47) · `harness/status.md` · `baselines/global-open-tests.md` · `STANDARDS.md` § *How a task runs*
+
+---
 
 ## What happens in a session
 
@@ -33,7 +36,7 @@ The setup is finished when every line is true, each checked by a command or a re
 - [ ] Every item in `baselines/global-open-tests.md` is closed, accepted, or deferred with
       a dated decision; items 9 and 10 count as deferred to their project.
 - [ ] `harness/status.md` § *Known contradictions* is empty (D23's was settled by D38, 10-10-2026).
-- [ ] The per-project `SessionStart` idea in `harness/status.md` § *Open* is placed or rejected.
+- [ ] The per-project `SessionStart` idea (`harness/backlog.md` B31) is placed or rejected.
 - [ ] `harness/status.md` *Last verified* is the finish date, and every pointer in it resolves.
 - [x] Starting tokens tracked in `ENVIRONMENT.md`; no fixed target. The goal is fewer tokens per whole task (Amit, 01-11-2026).
 - [ ] T6 is done: independent read-only check, then Amit's review.

@@ -1,5 +1,18 @@
 # Cross-check
 
+Purpose: When a second agent reviews a plan or a diff, and how that work is shown.
+Audience: Claude and Amit.
+Read when: A cross-check or a significant workload is about to run.
+Owner: Setup sessions (changes are Amit's decision).
+Update rule: When the procedure changes. Replace superseded text; history goes to a record.
+Related: `STANDARDS.md` § *How a task runs* · `harness/status.md` · `harness/models.md`
+Status: in force
+Last reviewed: 11-11-2026
+
+---
+
+## Summary
+
 When a second agent reviews a plan or a diff, and how that is shown. Read only when a
 cross-check or a significant workload is happening. The one-line rules are in
 `STANDARDS.md`; this is the procedure behind them.
@@ -72,3 +85,8 @@ Shown by the main session. Not for ordinary reads and commands.
 Numbers are **Measured** (`/context all`, or the agent-finished figure), **Estimated**
 (before the work), or **Unknown** (the main session's own use between measurements).
 Never invent one. No ANSI colours; the icons carry the meaning.
+
+## Related
+
+- `STANDARDS.md` § *How a task runs*, step 4 — the one-line rule this procedure serves.
+- `harness/status.md` — where each cross-check result is recorded (*Recording*).

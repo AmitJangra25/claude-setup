@@ -86,6 +86,10 @@ removal and fix with its original text — not a run. `status-completed-11-10-20
 `harness/status.md` § *Completed* log, moved out unchanged on 11-10-2026, 29-10-2026 and
 01-11-2026 — not runs. `environment-history-01-11-2026.md` is dated history moved
 unchanged out of `ENVIRONMENT.md` on 01-11-2026 — not a run.
+`old-document-maps-11-11-2026.md`, `status-completed-11-11-2026.md` and
+`backlog-log-11-11-2026.md` are the three old document maps (D47), the old body of
+`harness/status.md` and the old body of `harness/backlog.md`, moved unchanged on
+11-11-2026 (documentation structure, Phase 2) — not runs.
 
 **Audit, fix and test records (added 01-11-2026, audit CB2)** are a further kind, also
 not runs: audit reports (`audit-*.md`, with `audit-corrections-*.md`), fix reports

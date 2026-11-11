@@ -30,6 +30,12 @@ templates/decisions-old.md|short||
 templates/project-claude.md|none|Commands;Hard rules;Past defects;Documents|
 templates/reference-doc.md|full|Summary;Related|
 templates/record.md|record||
+README.md|short|What this repo is;Why it stays private;Start here|
+harness/status.md|full|Current phase;In progress;Open;Blocked;Known contradictions;Decisions in force;Next gate;Older records|
+harness/backlog.md|full|To build;In full;Deferred;Known and accepted;Older records|yes
+harness/cross-check.md|full|Summary;Levels;Deletion;The reviewer;Recording;Claude Setup cross-check;Markers;Related|
+harness/models.md|full|Summary;Model table;When to pick and switch;The 27k test;Cost rule;When a model is struggling;Helpers in plans;Related|
+harness/overview.md|short|What happens in a session;What "finished" means|
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the

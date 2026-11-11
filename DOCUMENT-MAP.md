@@ -5,9 +5,9 @@ Audience: Claude and Amit.
 Read when: Looking for where a fact lives, before creating a new document, or when a document is added, moved or retired.
 Owner: Claude (every change is Amit's decision).
 Update rule: Same change that adds, moves, renames or retires a document. One row per document; detail stays in the document.
-Related: `DOCUMENTATION-STANDARD.md` (the rules) · `harness/doc-structure-plan.md` (the plan) · replaces the map in `README.md` § *What is in here*, `harness/overview.md` (first paragraph) and `harness/status.md` § *Source of truth* — those are trimmed in Phase 2 (T4, T9, T5)
-Status: in force (D47)
-Last reviewed: 10-11-2026
+Related: `DOCUMENTATION-STANDARD.md` (the rules) · `harness/doc-structure-plan.md` (the plan) · replaced three old maps, trimmed 11-11-2026 (D47; old text: `baselines/old-document-maps-11-11-2026.md`)
+Status: in force (D47, closed 11-11-2026)
+Last reviewed: 11-11-2026
 
 ---
 
