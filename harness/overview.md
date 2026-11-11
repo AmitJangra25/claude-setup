@@ -13,7 +13,7 @@ Related: `DOCUMENT-MAP.md` (every document — the one map, D47) · `harness/sta
    in every project. Everything else is reference, read when a step needs it.
 2. **Setup sessions only** (started in `~/.claude`): `.claude/CLAUDE.md` loads, and the
    `SessionStart` hook in `.claude/settings.json` runs `harness/session-check.sh` at
-   startup and after `/clear` (after `/clear`: proven 30-10-2026, open test 13). It runs
+   startup and after `/clear` (after `/clear`: proven 30-10-2026, TC13). It runs
    `project-rules/drift.sh`, searches this repo and the copies for `Bash(rtk proxy *)`,
    and searches each manifest project's live `.claude/settings.json` and
    `settings.local.json` for `Bash(rtk proxy *)` and `Bash(rtk git *)`; silent when clean,
@@ -33,8 +33,8 @@ Related: `DOCUMENT-MAP.md` (every document — the one map, D47) · `harness/sta
 The setup is finished when every line is true, each checked by a command or a read:
 
 - [ ] `project-rules/drift.sh` reports 0 drifted; `bash harness/session-check.sh` prints nothing.
-- [ ] Every item in `baselines/global-open-tests.md` is closed, accepted, or deferred with
-      a dated decision; items 9 and 10 count as deferred to their project.
+- [ ] Every test in `baselines/global-open-tests.md` is closed, accepted, or deferred with
+      a dated decision; TC9 and TC10 count as deferred to their project.
 - [ ] `harness/status.md` § *Known contradictions* is empty (D23's was settled by D38, 10-10-2026).
 - [ ] The per-project `SessionStart` idea (`harness/backlog.md` B31) is placed or rejected.
 - [ ] `harness/status.md` *Last verified* is the finish date, and every pointer in it resolves.

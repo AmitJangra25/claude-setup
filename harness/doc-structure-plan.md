@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 Pass 2A built 11-11-2026, in review
+Status: Phase 1 done 10-11-2026; Phase 2 Pass 2A committed 11-11-2026; Pass 2B built 11-11-2026, in review
 Last reviewed: 11-11-2026
 
 ---
@@ -17,8 +17,8 @@ Last reviewed: 11-11-2026
 - **Done already:** read everywhere, write only here — D46, commit `a615de6`, pushed 10-11-2026.
 - **Phase 1 done 10-11-2026, not pushed:** T1 `DOCUMENTATION-STANDARD.md`, T2 `DOCUMENT-MAP.md` (in force, D47), T3 12 templates + D47, T34 `harness/doc-check.sh` with the session-start link. Commits `14e5cd1`, `e9bd951`, `c67673d`. Sonnet fact-checks: T1–T2 46.6k, T3 59.1k, fixes taken.
 - **Done early:** the outdated D46 line in `templates/project-map.md` (was Phase 2); `templates/new-project.md` changes (T29).
-- **Phase 2, Pass 2A (T4–T9) built 11-11-2026, awaiting Amit's review; D47 closed 11-11-2026.**
-- **Next step:** Phase 2, Pass 2B — T10–T14. T15 comes after it.
+- **Phase 2, Pass 2A (T4–T9) committed locally as `4f468e6` (11-11-2026); not pushed. D47 closed 11-11-2026.**
+- **Phase 2, Pass 2B (T10–T14) built 11-11-2026, awaiting Amit's review** — plan approved 11-11-2026, § 3 *Pass 2B plan*, with Amit's build-time decisions there. T15 comes after it. Phase 2 is pushed as a whole when it ends.
 - **Phases 3–9:** not started.
 
 ## 1. Goal and success measure
@@ -145,6 +145,47 @@ T3 templates: **update** `handoff.md` (task-file template; keep the name — `ST
 | T15 | `~/.claude/.claude/current-task.md` (525 lines → sorted into homes, history to a record) | P2 |
 
 Also: ~~fix the outdated D46 line in `templates/project-map.md`~~ — done early in T3 (10-11-2026).
+
+#### Pass 2B plan — T10–T14 (approved by Amit 11-11-2026; build in a fresh session)
+
+**Goal (Amit's words):** every document follows one clear, predictable structure — here for T10–T14.
+
+**Success checks (yes/no each):**
+1. `harness/doc-check.sh` shows 0 real warnings for the five files (the known template-header false alarm aside).
+2. Every moved block is copied word for word and verified with `cmp`.
+3. A fresh Sonnet line-by-line check finds no fact lost and none duplicated in the wrong place.
+4. Every pointer into these files still resolves, including "open test 6", "open test 3" and "items 9 and 10".
+
+**Steps:**
+
+| Step | File | Change | Size · tokens |
+|---|---|---|---|
+| 0 | `harness/status.md`, this file | Mark Pass 2B in progress when the build starts | S · ~3k |
+| T10 | `PROJECTS.md` | Short header; one table `Code · Name · Path · Status · Has CLAUDE.md · What it is · Data warning`; check each path still exists (read-only; last checked 20-09-2026); keep *Not projects* | S · ~10k |
+| T11 | `REPOS.md` | Short header; one table `Area · Repo · What for · Free · Telemetry checked`; unknown = "not checked", never guessed | S · ~5k |
+| T12 | `baselines/global-open-tests.md` | Full header + Next ID; test n → TCn (same number); long detail moved word for word to a dated record; fix the outdated "these rules forbid opening another project" line (D46). **Before renaming, search the repo for every reference to the old test numbers** ("open test n", "item n", "items 9 and 10") and update live pointers | M · ~30k |
+| T13 | `archive/README.md`, `baselines/README.md` | Short header; index table `File · Date · What it records` at the top; existing guidance kept below it | S · ~12k |
+| T14 | Record files | New records use the record header; old records never edited. Name `baselines/s4-proposal-30-10-2026.json` and `baselines/s4-replay-30-10-2026.py` in `.gitignore` as deliberately local — comment only, not tracked (their content is embedded in `s4-permissions-30-10-2026.md`) | S · ~5k |
+| Check | — | Add the five files to `CHECKED` in `harness/doc-check.sh`; run it after every file change; then the fresh Sonnet check | ~60k |
+
+**Total:** about 125k tokens — one fresh session.
+**Model:** Opus — Amit's deliberate choice for the build session (11-11-2026). The fresh read-only check after the build stays Sonnet.
+**Plan cross-check:** not needed — formats were cross-checked in Phase 1; the check after the build covers lost facts.
+
+**Decisions (Amit, 11-11-2026):**
+- AtWorkpe's project code is **AW**.
+- `archive/README.md` and `baselines/README.md`: index table at the top, existing guidance kept below.
+- The two `.json`/`.py` files are named in `.gitignore` as deliberately local, by comment only; not tracked.
+
+**Build-time decisions (Amit, 11-11-2026):**
+- The build runs on Opus (see *Model*).
+- The stale D46 line in `baselines/README.md` is fixed in T13; its old wording goes to a new record.
+- Test pointers are updated in `ENVIRONMENT.md` (pointers only; no T21 work) and in live parts of `SETUP-PLAN.md`; historical passages and records stay unchanged.
+- The `harness/session-check.sh` comment "open test 2" stays as it is (legacy reference, still resolves via the old-number column).
+- `global-open-tests.md` keeps how to run, expected outcome, latest result and open limits live; only history moves to the record. Unknown = "not recorded".
+- Project paths: one read-only retry through the normal permission box; if blocked, marked unverified.
+
+**Rules for the build:** moved text is copied word for word and verified; one fact, one home; `None yet` for empty sections; no commit until Amit reviews; Phase 2 is pushed as a whole when it ends.
 
 ### Phase 3 — Always-loaded rule files
 | ID | File | Priority |

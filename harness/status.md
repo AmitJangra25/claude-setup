@@ -15,14 +15,15 @@ Last reviewed: 11-11-2026
 
 ## Current phase
 
-Documentation structure — **Phase 2, Pass 2A (T4–T9) in progress** (11-11-2026). Goal,
-tasks and formats: `harness/doc-structure-plan.md`.
+Documentation structure — Phase 2, Pass 2A committed locally as 4f468e6; not pushed.
+**Phase 2, Pass 2B (T10–T14) built 11-11-2026 (Opus), awaiting Amit's review.** Goal, tasks, formats and
+the Pass 2B plan: `harness/doc-structure-plan.md`.
 
 ## In progress
 
 | ID | Item | State | Next step | Link |
 |---|---|---|---|---|
-| T4–T9 | Phase 2, Pass 2A: `README.md`, this file, backlog, cross-check, models, overview | [~] built, awaiting Amit's review | Amit reviews; then commit | `harness/doc-structure-plan.md` § 3 |
+| T10–T14 | Phase 2, Pass 2B: `PROJECTS.md`, `REPOS.md`, open tests, two READMEs, records | [~] built 11-11-2026; format check clean; Sonnet check: no real problems | Amit reviews; then a setup-only commit | `harness/doc-structure-plan.md` § 3 *Pass 2B plan* |
 | B7, B16 | FinNode trials: write block, project map | [~] trial | Dates and review: the backlog rows | `harness/backlog.md` |
 
 ## Open
@@ -56,11 +57,12 @@ rules in `STANDARDS.md`. This harness: D33.
 
 ## Next gate
 
-Amit reviews Pass 2A (T4–T9) and the D47 closure, then approves a setup-only commit — the
-uncommitted Voice-Flow and vthrudebugger files stay out. After that: Phase 2, Pass 2B,
-T10–T14. The setup is finished when every line of `harness/overview.md` § *What
-"finished" means* is true. Deferred until Amit asks: the account switch (open test 6) and
-open test 3's replay.
+Amit reviews Phase 2, Pass 2B (T10–T14, built 11-11-2026), then approves a setup-only
+commit. After that: T15. Phase 2 is pushed
+as a whole when it ends (Amit). The uncommitted Voice-Flow and vthrudebugger files stay
+out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
+"finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
+replay.
 
 ## Older records
 

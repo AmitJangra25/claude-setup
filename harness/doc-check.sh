@@ -36,6 +36,11 @@ harness/backlog.md|full|To build;In full;Deferred;Known and accepted;Older recor
 harness/cross-check.md|full|Summary;Levels;Deletion;The reviewer;Recording;Claude Setup cross-check;Markers;Related|
 harness/models.md|full|Summary;Model table;When to pick and switch;The 27k test;Cost rule;When a model is struggling;Helpers in plans;Related|
 harness/overview.md|short|What happens in a session;What "finished" means|
+PROJECTS.md|short|Projects;Not projects;Names and renames|
+REPOS.md|short||
+baselines/global-open-tests.md|full|Global tests;Project tests|yes
+archive/README.md|short|Index|
+baselines/README.md|short|Index|
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the

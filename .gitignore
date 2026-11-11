@@ -75,6 +75,9 @@
 #     folder and the file pattern each need an exception.
 !baselines/
 !baselines/*.md
+#     Deliberately local, not tracked (Amit, 11-11-2026): baselines/s4-proposal-30-10-2026.json
+#     and baselines/s4-replay-30-10-2026.py — record files that are not .md; their content
+#     is embedded in baselines/s4-permissions-30-10-2026.md, which is tracked.
 
 # --- allow: memory files ONLY. Session transcripts sit in the same tree
 #     and must stay out, so this walks in by directory and takes .md only.

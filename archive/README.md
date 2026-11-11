@@ -1,7 +1,22 @@
 # archive
 
-Things kept because they cannot be recreated, and because `backups/` is gitignored
-and therefore local to one machine.
+Purpose: Things kept because they cannot be recreated, and because `backups/` is gitignored and therefore local to one machine — the index of the archive, and how to restore each item.
+Owner: Setup sessions (changes are Amit's decision).
+Update when: An item is added to the archive.
+Related: `DOCUMENT-MAP.md` (`archive/` rows) · `baselines/README.md` (dated records) · `.gitignore` (archive allow lines)
+
+---
+
+## Index
+
+| File | Date | What it records |
+|---|---|---|
+| `voice-flow-pre-rewrite-2026-09-21.bundle` | 21-09-2026 | Voice-Flow's complete git history before the 2026-09-21 rewrite — not recoverable from git |
+| `pre-setup-originals-2026-09-18.tar.gz` | 18-09-2026 (kept 21-09-2026) | The 29 `backups/` files in no git repository at all — not recoverable from git |
+| `global-settings-pre-setup-2026-09-15.tar.gz` | 15-09-2026 | The global `settings.json` before this repo existed — not recoverable from git |
+| `PHASE2-REMOVALS.md` | 18-09-2026 (moved 27-09-2026) | Phase 2a and 2b permission-removal approval list — recoverable from git |
+| `PHASE2C-REMOVALS.md`, `PHASE2C-REMOVALS.json` | 18-09-2026 (moved 27-09-2026) | Phase 2c Group B leftovers, in prose and as JSON — recoverable from git |
+
 Sections are ordered by whether git can recover the content: items git cannot
 recover first, then the recoverable ones (Amit's decision, 09-10-2026).
 

@@ -74,7 +74,7 @@ permissions.** rtk 0.48.0's hook returns `"permissionDecision": "allow"` on some
 rewrites — seen on `rtk gh run list` and `rtk tree` (**D35**, `baselines/t6-removals.md`
 entry 3). `ask` and `deny` rules still apply whatever the hook returns — the docs:
 *"Deny and ask rules are still evaluated regardless of what the hook returns."*
-(`baselines/global-open-tests.md` item 11).
+(`baselines/global-open-tests.md` TC11).
 
 > **What the hook actually rewrites, tested 26-09-2026.** It handles a plain command
 > and the `&&` and `;` chain operators. Nearly every other shell construct makes the
@@ -313,7 +313,7 @@ private file was staged with no box. Both rules are removed (backups in
 `allow`. `.claude/settings.json` asks for `*git add*`, `*git -* add*`, `*git stage*` and
 `*git -* stage*`, so `git add` boxes in every `~/.claude` session — every setup commit is
 two boxes. Commit and push still ask everywhere. The docs say ask and deny rules apply
-whatever a hook returns (`baselines/global-open-tests.md` item 11); default mode is
+whatever a hook returns (`baselines/global-open-tests.md` TC11); default mode is
 covered by the Stage C test report. Projects are unchanged. Known gap: `git -c alias.x=add`
 (F1).
 
@@ -442,7 +442,7 @@ one you stop reading — which is worse than not having it.
 **`rtk proxy` — superseded 20-09-2026. `Bash(rtk proxy *)` should exist nowhere, but it
 keeps coming back** in `settings.local.json` files, which git ignores — so sweep those,
 not just the tracked files. What re-adds it is unproven (`baselines/global-open-tests.md`
-item 2). The reasoning below is kept as the record of why it was left in place for as
+TC2). The reasoning below is kept as the record of why it was left in place for as
 long as it was; it no longer describes the machine.
 
 What replaced it: global `allow` carries only the four read-only inner forms —

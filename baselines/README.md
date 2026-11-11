@@ -1,10 +1,52 @@
 # Behaviour baselines
 
-What this setup actually did, on a date, in enough detail to run the same thing
-again in a few months and see whether it still does it.
+Purpose: What this setup actually did, on a date, in enough detail to run the same thing again in a few months and see whether it still does it — the index of the dated files here, and how to write and compare them.
+Owner: Setup sessions (changes are Amit's decision).
+Update when: A file is added to this folder.
+Related: `DOCUMENT-MAP.md` (`baselines/` rows) · `DOCUMENTATION-STANDARD.md` § *Data and security* (records never edited) · `templates/record.md`
+
+---
 
 Not imported. Read one when comparing a new run against an old one, and not
 otherwise.
+
+## Index
+
+| File | Date | What it records |
+|---|---|---|
+| `2026-09-28.md` | 28-09-2026 | Behaviour baseline — run 1: the `~/.claude` test and the VS Code Voice Flow tests |
+| `2026-09-28-run2.md` | 28-09-2026 | Behaviour baseline — run 2 |
+| `2026-09-29.md` | 29-09-2026 | FinNode permission probe |
+| `2026-09-29-run2.md` | 29-09-2026 | FinNode workflow probe (TC9) |
+| `2026-09-29-run3.md` | 29-09-2026 | Voice-Flow spelling probe |
+| `2026-09-29-run4.md` | 29-09-2026 | Voice-Flow direct-spelling rules (TC10) |
+| `03-10-2026.md` | 30-09-2026 and 03-10-2026 | Check session — preserved record, earlier checks and reasoning |
+| `09-10-2026.md` | 09-10-2026 | Check 2 runs (TC1) |
+| `09-10-2026-run2.md` | 09-10-2026 | T4 permission-mode runs (TC1, TC2, TC5) |
+| `t6-removals.md` | 10-10-2026 (added 11-10-2026) | T6 removal manifest — every removal and fix with its original text |
+| `status-completed-11-10-2026.md` | 11-10-2026 | `harness/status.md` § *Completed*, up to the old finish-plan T6 |
+| `status-completed-23-10-2026.md` | 23-10-2026 | `harness/status.md` § *Completed*, 11-10-2026 to 23-10-2026 |
+| `audit-29-10-2026.md` | 29-10-2026 | Setup audit — Session 1 findings |
+| `project-handoffs-29-10-2026.md` | 29-10-2026 | Project handoffs — setup-audit follow-ups |
+| `s4-permissions-30-10-2026.md` | 30-10-2026 | S4 — fewer permission boxes (embeds the local-only `.json` and `.py`) |
+| `audit-clarity-31-10-2026.md` | 31-10-2026 | Audit — Stage A, clarity and overviews |
+| `audit-cleanup-31-10-2026.md` | 31-10-2026 | Audit — Stage B, cleanup |
+| `audit-security-31-10-2026.md` | 31-10-2026 | Audit — Stage C, security |
+| `audit-summary-31-10-2026.md` | 31-10-2026 | Audit — combined summary |
+| `audit-corrections-31-10-2026.md` | 31-10-2026, corrected 01-11-2026 | Audit corrections |
+| `status-completed-01-11-2026.md` | 01-11-2026 | `harness/status.md` § *Completed*, 29-10-2026 to 31-10-2026 |
+| `environment-history-01-11-2026.md` | 01-11-2026 | Dated history moved out of `ENVIRONMENT.md` |
+| `doc-test-before-01-11-2026.md` | 01-11-2026 | Stage A+B tests — before |
+| `doc-test-after-01-11-2026.md` | 01-11-2026 | Stage A+B tests — after |
+| `stage-c-fix-report-01-11-2026.md` | 01-11-2026 | Stage C fix report |
+| `old-document-maps-11-11-2026.md` | 11-11-2026 | The three old document maps (D47) |
+| `status-completed-11-11-2026.md` | 11-11-2026 | The old body of `harness/status.md` |
+| `backlog-log-11-11-2026.md` | 11-11-2026 | The old body of `harness/backlog.md` |
+| `projects-old-11-11-2026.md` | 11-11-2026 | The old body of `PROJECTS.md` |
+| `open-tests-old-11-11-2026.md` | 11-11-2026 | The old body of `global-open-tests.md`, items 1–13 |
+| `baselines-readme-old-11-11-2026.md` | 11-11-2026 | This file's old "Supplied by Amit" wording (before the D46 fix) |
+| `global-open-tests.md` | live | Not a record: the index of open setup tests (TC IDs) |
+| `s4-proposal-30-10-2026.json`, `s4-replay-30-10-2026.py` | 30-10-2026 | Local only, not tracked; content embedded in `s4-permissions-30-10-2026.md` |
 
 ## Why a record rather than a memory
 
@@ -20,8 +62,9 @@ Every dated record separates:
 - **Verified here** — checked from this machine, by a command whose output is
   quoted or whose result is stated.
 - **Supplied by Amit** — transcripts pasted into a session. The *behaviour* in
-  them is readable. The *factual claims* about another project are not, because
-  this setup's own rules forbid opening another project to settle a question.
+  them is readable. The *factual claims* about another project are not verified
+  unless the session read that project for the record — reading any project is
+  allowed (D46); changing one happens only in its own session.
 - **Interpretation** — judgement, attributed, in its own section.
 
 A record that blurs these is worse than no record, because it looks like

@@ -2177,7 +2177,7 @@ the decision recorded in the table above once made. (Note 12-10-2026: this is no
 
 > **Counts in this section are from 2026-09-18 to 2026-09-22** — memory files, cloud skills
 > and plugins, the *Five systems* list, and the plugins named in step 4. **Re-take them
-> before the switch** (open test 6). Noted 10-10-2026.
+> before the switch** (`baselines/global-open-tests.md` TC6). Noted 10-10-2026.
 
 ### The short answer
 
