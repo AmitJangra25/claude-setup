@@ -77,7 +77,7 @@ the status column says which.
 | D45 | 01-11-2026 | Stage C switches: bypass mode off, error reports off, rtk audit log off, pre-commit secret check; gist scope kept | in force |
 | D46 | 10-11-2026 | Read everywhere, write only here: read block off, write lock on globally, private data denied | in force |
 | D47 | 10-11-2026 | `DOCUMENT-MAP.md` is the one document map; replaces the three old maps | in force; closed 11-11-2026; supersedes item 16's "setup map = `harness/overview.md`" |
-| D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closes in Go 2 after all affected files are checked |
+| D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 
 ---
 
@@ -1613,8 +1613,9 @@ imports are not added by mistake. Reason: the Phase 3 cross-check (11-11-2026) f
 Rejected: dropping the comment (loses that guard). Backlog: B35, which authorises the
 `DOCUMENTATION-STANDARD.md` line-51 change. **Affected files:** `CLAUDE.md` ·
 `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · `harness/doc-structure-plan.md` ·
-`harness/doc-check.sh`. **Status:** in force; closes in Go 2 after all affected files are
-checked. Plan: `harness/doc-structure-plan.md` § 3 *Phase 3 plan*.
+`harness/doc-check.sh`. **Status:** in force. **Closed 11-11-2026 (Go 2):** all five
+affected files updated and checked; old text in `baselines/always-loaded-old-11-11-2026.md`.
+Plan: `harness/doc-structure-plan.md` § 3 *Phase 3 plan*.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

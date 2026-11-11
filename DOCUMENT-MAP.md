@@ -17,7 +17,7 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 
 | Document | Type | Header | Purpose | Read when | Update when | Owner | Depends on |
 |---|---|---|---|---|---|---|---|
-| `CLAUDE.md` | Rules | None | Imports the three always-loaded rule files; nothing else | Loaded every turn | An import is added or removed | Setup | `STANDARDS.md` · `RTK.md` · `OLLAMA.md` |
+| `CLAUDE.md` | Rules | None | Imports the three always-loaded rule files, plus one non-loading HTML comment pointing here (D48) | Loaded every turn | An import is added or removed | Setup | `STANDARDS.md` · `RTK.md` · `OLLAMA.md` |
 | `STANDARDS.md` | Rules | None | How to work, in every project | Loaded every turn | Amit approves a rule change | Setup | `templates/` · `harness/models.md` · `harness/cross-check.md` |
 | `RTK.md` | Rules | None | Rules for the rtk command proxy | Loaded every turn | rtk behaviour or its rules change | Setup | `ENVIRONMENT.md` § 1 |
 | `OLLAMA.md` | Rules | None | When chores may go to a local model | Loaded every turn | Local-model rules change | Setup | `skills/ollama/SKILL.md` |

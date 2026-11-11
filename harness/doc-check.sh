@@ -42,6 +42,10 @@ baselines/global-open-tests.md|full|Global tests;Project tests|yes
 archive/README.md|short|Index|
 baselines/README.md|short|Index|
 .claude/current-task.md|task|Live;Resume|
+CLAUDE.md|none||
+.claude/CLAUDE.md|none|At session start;While changing setup;Reaching into a project;Git for ~/.claude|
+RTK.md|none|`rtk proxy`|
+OLLAMA.md|none||
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the

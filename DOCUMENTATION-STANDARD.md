@@ -48,7 +48,7 @@ Every document has exactly one type. `DOCUMENT-MAP.md` names it for global docum
 
 These load on every turn, so they carry no header and no history, and grow only with a reason:
 
-- Global `CLAUDE.md` — imports only (`@STANDARDS.md` `@RTK.md` `@OLLAMA.md`); no "read first" line, no copied rules.
+- Global `CLAUDE.md` — imports only, plus one non-loading HTML comment (`@STANDARDS.md` `@RTK.md` `@OLLAMA.md`; the comment points to `DOCUMENT-MAP.md`, D48); no "read first" line, no copied rules.
 - `STANDARDS.md`, `RTK.md`, `OLLAMA.md`.
 - `.claude/CLAUDE.md` (setup sessions only).
 - Each project's `CLAUDE.md`.

@@ -15,8 +15,9 @@ Last reviewed: 11-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 3 planned; Go 2 build next (T16–T19, approved 11-11-2026,
-D48, B35). Plan: `harness/doc-structure-plan.md` § 3 *Phase 3 plan*. Phase 2 done 11-11-2026.
+Documentation structure: Phase 3 (T16–T19) done 11-11-2026 — all step 6 checks passed
+(`baselines/doc-test-after-11-11-2026.md`); D48 and B35 closed. Next: Phase 4, T20
+(`STANDARDS.md`). Plan: `harness/doc-structure-plan.md` § 3. Phase 2 done 11-11-2026.
 
 ## In progress
 
@@ -52,13 +53,13 @@ None yet
 ## Decisions in force
 
 The D-rows in `SETUP-PLAN.md` (index at its top; moves to `DECISIONS.md` in T30) and the
-rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closes in Go 2.
+rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in Go 2.
 
 ## Next gate
 
-Phase 3 Go 2 (build T16–T19 from the approved plan) runs in a fresh Opus session; its
-commit and any push wait for Amit's word. Plan cross-check 11-11-2026: Opus, all checks
-reachable after two fixes (both taken), no rule lost, 46.2k measured. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 4, T20 (`STANDARDS.md`): plan in a fresh session, on Amit's word; any push waits for
+Amit's word. Phase 3 checks (11-11-2026): words 4,101 → 4,030, `doc-check.sh` no new
+warning, TC2 resolves, imports load, no rule lost, doc-test before/after match. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
