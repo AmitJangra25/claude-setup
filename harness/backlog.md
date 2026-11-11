@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *Plan before building* (P1–P
 Status: active
 Last reviewed: 11-11-2026
 
-Next ID: B33
+Next ID: B35
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -26,19 +26,20 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 | B6 | gitleaks secret scan | Manual scan, FinNode first; no hook. 0 leaks in history and tracked files | yes | no | P2 | S | ~15k | [x] 05-11-2026 | Claude may suggest when to run it |
 | B7 | Block writes outside the working folder | Stops Claude's file tools writing outside the project (B7 in full) | yes | no | P2 | S | ~10k | [~] trial | Check 20-11-2026; keep or remove 05-12-2026 |
 | B8 | GitHub CLI telemetry off | gh 2.91.0+ turns telemetry on by default | yes | no | P3 | S | ~3k | [x] 06-11-2026 | Check it still reads `disabled` after any gh update |
-| B9 | Claude Code usage metrics | Keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`; metrics carry no code, prompts or paths (Anthropic docs) | yes | no | P3 | S | ~5k | [ ] | Rest of old wave 3, approved 06-11-2026 |
+| B9 | Claude Code usage metrics | Keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`; metrics carry no code, prompts or paths (Anthropic docs) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B10 | Planning ideas into `templates/new-project.md` | Spec, architecture, system design and go-live ideas, plus licence and "still on goal" checks; plugins not enabled | yes | no | P3 | M | ~25k | [x] 06-11-2026 | None |
-| B11 | markitdown | On-demand command only, no Azure or AI options; never with the PDF/DOCX skills on one document; 15–30 day trial | yes | no | P3 | S | ~10k | [ ] | After B21, B14, B9 |
+| B11 | markitdown | On-demand command only, no Azure or AI options; never with the PDF/DOCX skills on one document; 15–30 day trial | yes | no | P3 | S | ~10k | [ ] | Session 4, after B21, B14, B9; approved 06-11-2026, not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B13 | Status-line thresholds | Warnings at 200K/300K/400K vs the 250K plan limit | yes | no | P3 | S | ~3k | [x] 06-11-2026 | None — kept, tie written in `ENVIRONMENT.md` § 2 |
-| B14 | Ollama network calls | Own update checks not covered in Stage 1; cloud models already off (D45) | yes | no | P3 | S | ~5k | [ ] | Rest of old wave 3, approved 06-11-2026 |
+| B14 | Ollama network calls | Own update checks not covered in Stage 1; cloud models already off (D45) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B15 | Acting without approval | Rule exists in `STANDARDS.md`; auto mode may be the cause | yes, once a real case is seen | no | P3 | S | ~5k | [ ] | Wording fix only after a real example |
 | B16 | Project map (Graphify idea) | Read a short folder map before searching code (B16 in full) | yes | no | P3 | M | ~15k + ~10k per project | [~] trial | FinNode writes its `PROJECT-MAP.md` in its own session |
 | B17 | Deny-rule bypass test | Focused security test: 8 probes, 7 blocked, 1 → B21 | yes | no | P4 | S | ~15k | [x] 06-11-2026 | None |
 | B19 | New-tool rule | Check network calls, telemetry and cost before adopting any tool | yes | no | P1 | S | ~5k | [x] 05-11-2026 | None — rule in `STANDARDS.md` |
 | B20 | rtk exact allow rules | rtk issue #3673 reads an exact allow rule as a prefix | yes | no | P3 | S | ~10k | [x] 06-11-2026 | None — allow rules narrowed, box-tested |
-| B21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (B21 in full) | yes | no | P3 | S | ~10k | [ ] | Deny `*git*-c*alias*` in every rtk spelling, box-tested |
+| B21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (B21 in full) | yes | no | P3 | S | ~10k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026 after an Opus cross-check; not started: ASK rules (not deny), box-tested in default and auto mode. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B32 | Decide whether the old backlog working rules are still live | The old rules — group small fixes in one commit, separate commit for settings changes, copied skill ideas as name plus one line — now exist only in `baselines/backlog-log-11-11-2026.md` | yes | no | P3 | S | ~5k | [ ] | Decide in Phase 4, T20; move live rules to `STANDARDS.md` or leave as history |
-
+| B33 | Voice Flow `git branch` allow rules in plain-git form | Voice Flow's project settings file (.claude/settings.json, lines 93–98) has the same `git branch` allow rules in plain-git form (noted 06-11-2026, after B20); probably harmless (rtk rewrites first), not verified inside Voice Flow | unverified | no | P4 | S | ~5k | [ ] | Assess in Voice-Flow's own session |
+| B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | Decide in Phase 4, T20 or the 30-day review; update the standard through the normal backlog-item and D-number process |
 10 or more done rows: rollover to a `-DONE` file is due (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*); proposed, not done.
 
 ## In full
@@ -59,7 +60,7 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 
 - **Found in:** Stage 1 checks, 05-11-2026
 - **Decision:** D46 (made global 10-11-2026)
-- **Detail:** `permissions.blockWritesOutsideWorkingDirectories`. Covers Claude's file tools only, not shell commands. Not tested: plan-mode files. Seen once, cause unknown: a write refused with the key at `false`. With B16: one combined review 15 days after the last trial starts (06-11-2026).
+- **Detail:** `permissions.blockWritesOutsideWorkingDirectories`. Covers Claude's file tools only, not shell commands. Not tested: plan-mode files. Seen once, cause unknown: a write refused with the key at `false`. While it is on, Claude cannot edit any Claude Code settings file — Amit edits FinNode settings by hand during the trial (05-11-2026). With B16: one combined review 15 days after the last trial starts (06-11-2026).
 
 ### B16 — Project map
 
@@ -82,7 +83,7 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 ### B21 — git alias reads secrets
 
 - **Found in:** B17 probes, 06-11-2026
-- **Decision:** None yet
+- **Decision:** fix plan approved by Amit 06-11-2026 — ASK rules, not deny (no D-number); not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet
 - **Detail:** same root as F1. A security risk, unlikely in normal use: it needs a deliberate odd command.
 
 ## Deferred

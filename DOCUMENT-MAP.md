@@ -22,7 +22,7 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 | `RTK.md` | Rules | None | Rules for the rtk command proxy | Loaded every turn | rtk behaviour or its rules change | Setup | `ENVIRONMENT.md` § 1 |
 | `OLLAMA.md` | Rules | None | When chores may go to a local model | Loaded every turn | Local-model rules change | Setup | `skills/ollama/SKILL.md` |
 | `.claude/CLAUDE.md` | Rules | None | Setup-only rules | Loaded in every setup session | A setup-only rule changes | Setup | `harness/status.md` · `harness/session-check.sh` |
-| `.claude/current-task.md` | State | None — task-file shape (`DOCUMENTATION-STANDARD.md` § *Task file rules*) | The one setup task in progress; never setup status | Setup session start, for setup work | As the task runs, and at each pause; reshaped in T15 | Setup | `harness/status.md` |
+| `.claude/current-task.md` | State | None — task-file shape (`DOCUMENTATION-STANDARD.md` § *Task file rules*) | The one setup task in progress; never setup status | Setup session start, for setup work | As the task runs, and at each pause | Setup | `harness/status.md` |
 | `DOCUMENTATION-STANDARD.md` | Rules | Full | How every document is written, numbered, grown and archived | Writing or restructuring a document | A real case changes a format (backlog item + D-number) | Setup | `templates/` · this map |
 | `DOCUMENT-MAP.md` | Reference | Full | This list | See header | See header | Setup | `DOCUMENTATION-STANDARD.md` |
 | `README.md` | Reference | Short | Front page: what this repo is, why it stays private | First time in the repo | Repo purpose or privacy reason changes | Setup | this map |

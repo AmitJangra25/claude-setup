@@ -45,6 +45,7 @@ otherwise.
 | `projects-old-11-11-2026.md` | 11-11-2026 | The old body of `PROJECTS.md` |
 | `open-tests-old-11-11-2026.md` | 11-11-2026 | The old body of `global-open-tests.md`, items 1–13 |
 | `baselines-readme-old-11-11-2026.md` | 11-11-2026 | This file's old "Supplied by Amit" wording (before the D46 fix) |
+| `task-history-11-11-2026.md` | 11-11-2026 | The old body of `.claude/current-task.md` (T15), incl. the rest-of-wave-3 plan approved 06-11-2026 |
 | `global-open-tests.md` | live | Not a record: the index of open setup tests (TC IDs) |
 | `s4-proposal-30-10-2026.json`, `s4-replay-30-10-2026.py` | 30-10-2026 | Local only, not tracked; content embedded in `s4-permissions-30-10-2026.md` |
 

@@ -15,9 +15,9 @@ Last reviewed: 11-11-2026
 
 ## Current phase
 
-Documentation structure, Phase 2 — Pass 2A (4f468e6) and Pass 2B (2ff02bd, 11-11-2026)
-committed locally; not pushed. Next: T15. Goal, tasks and formats:
-`harness/doc-structure-plan.md`.
+Documentation structure, Phase 2 — Pass 2A (4f468e6) and Pass 2B (2ff02bd) committed
+locally, not pushed; T15 built 11-11-2026, uncommitted, waiting for Amit's review. Goal,
+tasks and formats: `harness/doc-structure-plan.md`.
 
 ## In progress
 
@@ -30,7 +30,8 @@ committed locally; not pushed. Next: T15. Goal, tasks and formats:
 | ID | Item | Decision | Link |
 |---|---|---|---|
 | B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started | `harness/backlog.md` |
-| C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public | `baselines/status-completed-11-11-2026.md` § *Open* |
+| B16 | FinNode `CLAUDE.md` (`~/Documents/VS Code/FinNode/CLAUDE.md`) holds the project-map rule line, uncommitted since 06-11-2026 (still uncommitted 11-11-2026) | Goes in with FinNode's next PR, in FinNode's own session | `baselines/task-history-11-11-2026.md` |
+| C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
 | — | Session-start drift: Voice-Flow and vthrudebugger_v1 `CLAUDE.md` differ from their `project-rules/` copies | Settled in each project's own session | `harness/doc-structure-plan.md` § 8 |
@@ -56,9 +57,8 @@ rules in `STANDARDS.md`. This harness: D33.
 
 ## Next gate
 
-Next session: plan T15 (`.claude/current-task.md` sorted into its homes, history to a
-record), then Amit's approval. Phase 2 is pushed as a whole after T15 is reviewed. Phase 2 is pushed
-as a whole when it ends (Amit). The uncommitted Voice-Flow and vthrudebugger files stay
+Amit reviews T15; on his word, one local commit; Phase 2 is then pushed as a whole
+(Amit). Phase 3 does not start before that. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
@@ -70,3 +70,4 @@ replay.
 - `baselines/status-completed-01-11-2026.md` — entries 29-10-2026 to 31-10-2026.
 - `baselines/status-completed-11-11-2026.md` — the whole body before the 11-11-2026 reshape.
 - `baselines/old-document-maps-11-11-2026.md` — the *Source of truth* table (D47).
+- `baselines/task-history-11-11-2026.md` — the setup task file before T15 (handoffs 31-10-2026 to 11-11-2026).

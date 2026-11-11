@@ -41,6 +41,7 @@ REPOS.md|short||
 baselines/global-open-tests.md|full|Global tests;Project tests|yes
 archive/README.md|short|Index|
 baselines/README.md|short|Index|
+.claude/current-task.md|task|Live;Resume|
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the
@@ -49,7 +50,8 @@ baselines/README.md|short|Index|
 # Named in the documents but not built yet; not counted as dead links.
 PLANNED='DECISIONS.md harness/rebuild.md'
 # Lines allowed to appear in more than one checked file (DOCUMENTATION-STANDARD.md § Allowed copies).
-ALLOWED_DUP=''
+#     The task-file template's standing line is copied into each task file on purpose (Amit, 11-11-2026).
+ALLOWED_DUP='After compaction or a new session: confirm the scope still applies before further action; ask again if unclear or outside scope.'
 TASK_FILE=.claude/current-task.md
 MAX_LINES=300
 
