@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 next, on Amit's word
+Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 planned 11-11-2026, Go 2 build next
 Last reviewed: 11-11-2026
 
 ---
@@ -20,7 +20,8 @@ Last reviewed: 11-11-2026
 - **Phase 2, Pass 2A (T4–T9) committed as `4f468e6` (11-11-2026). D47 closed 11-11-2026.**
 - **Phase 2, Pass 2B (T10–T14) committed as `2ff02bd` (11-11-2026)** — plan and Amit's build-time decisions: § 3 *Pass 2B plan*.
 - **Phase 2, T15 committed as `08354ae` (11-11-2026):** old task file copied whole to `baselines/task-history-11-11-2026.md` (`cmp`-verified); task file rewritten to the template shape; live facts to `harness/backlog.md` (B9, B11, B14, B21, new B33, B34) and `harness/status.md`. **Phase 2 (T4–T15) done 11-11-2026.**
-- **Next step:** Phase 3 (T16–T19) on Amit's word, in a fresh session with its own plan.
+- **Phase 3 planned 11-11-2026 (Go 1):** plan approved by Amit — § 3 *Phase 3 plan*; D48 and B35 recorded.
+- **Next step:** Phase 3 Go 2 — build from § 3 *Phase 3 plan*, in a fresh Opus session.
 - **Phases 3–9:** not started.
 
 ## 1. Goal and success measure
@@ -192,10 +193,162 @@ Also: ~~fix the outdated D46 line in `templates/project-map.md`~~ — done early
 ### Phase 3 — Always-loaded rule files
 | ID | File | Priority |
 |---|---|---|
-| T16 | Global `CLAUDE.md` (no change) | P4 |
+| T16 | Global `CLAUDE.md` — eight-line comment cut to one line (D48); imports unchanged | P4 |
 | T17 | `.claude/CLAUDE.md` | P3 |
 | T18 | `RTK.md` | P4 |
 | T19 | `OLLAMA.md` | P4 |
+
+#### Phase 3 plan — T16–T19 (approved by Amit 11-11-2026; build in Go 2, a fresh Opus session)
+
+**Goal (Amit's words):** every document follows one clear, predictable structure — here the always-loaded rule files.
+
+**Success checks (yes/no each):**
+1. Each file matches its format in § 4 (T16–T19), with T16 as amended by D48.
+2. The rule-by-rule map below holds: every rule kept or moved, none dropped, none changed in meaning.
+3. Always-loaded words (`wc -w` over global `CLAUDE.md`, `STANDARDS.md`, `RTK.md`, `OLLAMA.md`, `.claude/CLAUDE.md`, setup `MEMORY.md`) at 4,030 or lower; baseline 4,101 (11-11-2026). Accepted (Amit): about 14 more words actually loaded — the cut is the comment, which never loads.
+4. `harness/doc-check.sh` shows no new warning (baseline: 1 known template-header warning).
+5. A fresh read-only Sonnet check finds no rule lost.
+6. A fresh session still loads the three imports (`/memory` or `/context`, run by Amit).
+7. Doc-test: fresh before against fresh after — answers match except the allowed differences below.
+
+**Decisions (Amit, 11-11-2026):**
+- Keep one non-loading HTML comment in global `CLAUDE.md` — D48; backlog B35 authorises the `DOCUMENTATION-STANDARD.md` line-51 change. Both close in Go 2 after D48's five affected files are checked.
+- Run the doc-test before and after. Questions and method from `baselines/doc-test-before-01-11-2026.md`, word for word. Compare the new before against the new after. Allowed differences: line numbers inside the four rule files, and Q10 if it cites `.claude/CLAUDE.md`. The comparison with 01-11-2026 is reported as information only.
+- Accept the drafts as written, including the bullet form of `OLLAMA.md`.
+- `RTK.md` keeps its `rtk proxy` heading: `baselines/global-open-tests.md` TC2 points to it (cross-check finding).
+
+**Cross-check (11-11-2026):** one fresh Opus agent, read-only, 46.2k measured. Verdict: all 6 checks reachable after two fixes — keep the `rtk proxy` heading (taken); square the comment with "imports only" (D48). No rule lost.
+
+**Link check (Go 1, `git grep`):** one live section pointer into these files — TC2 → `RTK.md` § *`rtk proxy`*, kept. Still true, no change: `STANDARDS.md` lines ~49 and ~273, `harness/overview.md` lines 12–14, `DOCUMENT-MAP.md` rows 20–24, `harness/status.md` line 5, `harness/models.md`, `PROJECTS.md`, `skills/ollama/SKILL.md`, the four setup memory notes. No `project-rules/` copy points at them.
+
+**Rule-by-rule map:**
+
+| # | Rule now (file, line) | Result | New place |
+|---|---|---|---|
+| G1 | Three imports (`CLAUDE.md` 1–3) | kept exactly | lines 1–3 |
+| G2 | "Not imported on purpose … every @import re-read every turn" (`CLAUDE.md` 5) | shortened | the one comment line |
+| G3 | Six file entries (`CLAUDE.md` 6–11) | already in `DOCUMENT-MAP.md` | its rows for those files |
+| S0 | Title (`.claude/CLAUDE.md` 1) | kept | title |
+| S1 | Home of Claude Setup; still project mode (3–4) | kept | intro under the title |
+| S2 | At Orient read `harness/status.md` (5) | moved | § At session start |
+| S3 | Session-start warning first (8) | moved | § At session start, first |
+| S4 | Plan includes status update, cross-check, next gate (6–7) | moved | § While changing setup |
+| S5 | `session-check.sh` read exception (9–11) | moved | § Reaching into a project |
+| S6 | Editing a project's `CLAUDE.md`, `/add-dir`, uncommitted, report path (12–19) | moved, split into 3 bullets; "From a `~/.claude` session" dropped as implied by the file; "I approve" → "Amit approves" | § Reaching into a project |
+| S7 | `~/.claude` commits to `main` (20–21) | moved | § Git for ~/.claude |
+| R1 | Purpose, `rtk gain` (`RTK.md` 3) | kept | purpose line |
+| R2 | What the hook rewrites (3–6) | bullet | top list |
+| R3 | Prefer the plain form (6–7) | bullet | top list |
+| R4, R8 | `ENVIRONMENT.md` § 1 pointers (7, 15) | merged | Detail line |
+| R5–R7 | `rtk proxy` rules (11–14) | kept | same heading |
+| O1 | What `ollama-do` is, and when (`OLLAMA.md` 3–5) | split | purpose line + "Use it for" bullet |
+| O2 | Never send it … (7–8) | kept | bullet |
+| O3 | Never use it for … (8–10) | kept | bullet |
+| O4 | Load the skill (12) | kept, path added | last bullet |
+
+**Final text — global `CLAUDE.md` (23 words):**
+```
+@STANDARDS.md
+@RTK.md
+@OLLAMA.md
+
+<!-- Not imported on purpose: every @import loads every turn. Every other document, and when to read it: DOCUMENT-MAP.md -->
+```
+
+**Final text — `.claude/CLAUDE.md` (246 words):**
+```
+# Setup-only rules — loaded only in sessions started in ~/.claude
+
+`~/.claude` is the home of Claude Setup, the global standard, not a product project.
+Setup sessions still run in project mode (task record, recording, `harness/status.md`).
+
+## At session start
+
+- If a *Session-start check* warning is in context, tell Amit before anything else.
+- At Orient, read `harness/status.md` for setup work. Not for unrelated simple tasks.
+
+## While changing setup
+
+- Every changing setup plan includes: the `harness/status.md` update, the cross-check
+  result if one ran, and the next gate. Cross-check procedure: `harness/cross-check.md`.
+
+## Reaching into a project
+
+- **Edits:** you may edit a project's `CLAUDE.md` and its `project-rules/` copy when Amit
+  approves that exact change. Open that project's folder with `/add-dir` first; the write
+  lock (D46) blocks it otherwise. Nothing else in that project — no code, docs, settings
+  or memory.
+- The project-side edit stays uncommitted; it goes in with that project's next PR, under
+  its own git rules. The `project-rules/` copy is committed here as usual.
+- Report the project-side uncommitted edit, with its exact file path, in the final result
+  and in the handoff or status record, so it is not lost.
+- **Read exception (approved by Amit, 29-10-2026):** `harness/session-check.sh` reads each
+  manifest project's live `.claude/settings.json` and `settings.local.json`, read-only, for
+  bypass rules; nothing else in a project.
+
+## Git for ~/.claude
+
+- `~/.claude` is the exception: no reviewer and no PR flow, so its commits land on `main`
+  directly. Everything else branches.
+```
+
+**Final text — `RTK.md` (149 words):**
+```
+# RTK - Rust Token Killer
+
+Token-saving CLI proxy; live savings: `rtk gain`.
+
+- The hook rewrites a recognised command in place (`git status` → `rtk git status`). It
+  handles plain commands, `&&` and `;` only — one pipe, redirect, subshell, loop or
+  function and the whole line runs raw; `python3` and `sed` never rewrite.
+- **So prefer the plain form** (`ls`, `grep`, `git status`) over piping into `head`.
+
+## `rtk proxy` — raw output, no filtering
+
+- **Before deleting, moving or overwriting a file** because of what a command printed,
+  re-run that read through `rtk proxy` — rtk rewrites output.
+- `rtk proxy` is for reads only. Never wrap a commit, push or other ask-list command in it.
+- If a box for `rtk proxy …` offers "don't ask again", choose plain "Yes".
+
+Detail and measurements, incl. `git add --dry-run` and checking what is staged: `ENVIRONMENT.md` § 1.
+```
+
+**Final text — `OLLAMA.md` (105 words):**
+```
+# Local models — offloading chores to Ollama
+
+`ollama-do` (on PATH) runs small dev chores against a local Ollama model.
+
+- Use it for commit messages, summaries, log triage and test-case lists — when the input
+  is large, the **output is small**, and being slightly wrong is cheap and obvious.
+- **Never send it** secrets, `.env` files, key material, or customer or employee records —
+  Emp Portal and Packbly hold real personal data.
+- **Never use it for** code that ships, code review, or anything security-, auth-,
+  payment- or migration-related.
+- Load the `ollama` skill before using it: task list, security rules, setup facts
+  (`skills/ollama/SKILL.md`).
+```
+
+**Final text — `DOCUMENTATION-STANDARD.md` line 51 (D48):**
+```
+- Global `CLAUDE.md` — imports only, plus one non-loading HTML comment (`@STANDARDS.md` `@RTK.md` `@OLLAMA.md`; the comment points to `DOCUMENT-MAP.md`, D48); no "read first" line, no copied rules.
+```
+
+**Go 2 steps** (Opus; each rule-file edit gets a four-line explanation — what it does, what changes, risk, undo — before it runs):
+
+| Step | Work | Tokens |
+|---|---|---|
+| 0 | Orient from `.claude/current-task.md` and this section only. Precondition: `HEAD` is the Go 1 commit; the only uncommitted files are the known Voice-Flow and vthrudebugger_v1 ones. If either fails, stop and report. | ~8k |
+| 1 | Before: `wc -w` (expect 4,101) · `doc-check.sh` (expect the 1 known warning) · link grep | ~3k |
+| 2 | Doc-test before, before any edit: fresh Sonnet agent, read-only, the 10 questions word for word; Amit runs G1 in a fresh session and pastes the reply → `baselines/doc-test-before-<DD-MM-YYYY>.md` | ~45k |
+| 3 | Old text → `baselines/always-loaded-old-<DD-MM-YYYY>.md` (record header; the four files and old line 51, each in a four-backtick block named by path); `cmp` every block against the live file; all identical before any edit | ~4k |
+| 4 | Edits, one at a time, `doc-check.sh` after each: T16 `CLAUDE.md` → `DOCUMENTATION-STANDARD.md` line 51 → T17 → T18 → T19, using the final text above | ~12k |
+| 5 | Linked updates: `doc-check.sh` CHECKED gets `CLAUDE.md\|none\|\|`, `.claude/CLAUDE.md\|none\|At session start;While changing setup;Reaching into a project;Git for ~/.claude\|`, ``RTK.md\|none\|`rtk proxy`\|``, `OLLAMA.md\|none\|\|` · `DOCUMENT-MAP.md` row 20 → "Imports the three always-loaded rule files, plus one non-loading HTML comment pointing here (D48)" · this file: § 0, § 4 T16 and § 6 item 3 get "+ one non-loading comment, D48"; the final-text blocks above replaced by "built, see the files" · `baselines/README.md`: 3 index rows · `harness/status.md` · D48 closed in `SETUP-PLAN.md` · B35 closed | ~8k |
+| 6 | After: `wc -w` ≤ 4,030 · `doc-check.sh` no new warning · link grep (TC2 resolves) · doc-test after (Sonnet agent; Amit runs G1 and `/context` in one fresh session) → `baselines/doc-test-after-<DD-MM-YYYY>.md`, compared with step 2 · fresh read-only Sonnet "no rule lost" check, old-text record against the new files | ~65k |
+| 7 | Stop — Amit reviews. Commit on his word only; no push. Never quote draft lines in `.claude/current-task.md` (the duplicate-line check would warn) | ~3k |
+
+**Total:** about 140–150k (main session ~45k; doc-lookup agents ~85k, as the 01-11-2026 run measured 42.4k; "no rule lost" agent ~15–20k).
+**Not in scope:** `STANDARDS.md` (T20) · `ENVIRONMENT.md` · memory files · settings and permissions · project files · B32, B34 · push.
 
 ### Phase 4 — `STANDARDS.md`
 | ID | File | Priority |
