@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 Pass 2A committed 11-11-2026; Pass 2B built 11-11-2026, in review
+Status: Phase 1 done 10-11-2026; Phase 2 Pass 2A committed 11-11-2026; Pass 2B committed 11-11-2026; T15 next
 Last reviewed: 11-11-2026
 
 ---
@@ -18,7 +18,8 @@ Last reviewed: 11-11-2026
 - **Phase 1 done 10-11-2026, not pushed:** T1 `DOCUMENTATION-STANDARD.md`, T2 `DOCUMENT-MAP.md` (in force, D47), T3 12 templates + D47, T34 `harness/doc-check.sh` with the session-start link. Commits `14e5cd1`, `e9bd951`, `c67673d`. Sonnet fact-checks: T1–T2 46.6k, T3 59.1k, fixes taken.
 - **Done early:** the outdated D46 line in `templates/project-map.md` (was Phase 2); `templates/new-project.md` changes (T29).
 - **Phase 2, Pass 2A (T4–T9) committed locally as `4f468e6` (11-11-2026); not pushed. D47 closed 11-11-2026.**
-- **Phase 2, Pass 2B (T10–T14) built 11-11-2026, awaiting Amit's review** — plan approved 11-11-2026, § 3 *Pass 2B plan*, with Amit's build-time decisions there. T15 comes after it. Phase 2 is pushed as a whole when it ends.
+- **Phase 2, Pass 2B (T10–T14) committed locally as `2ff02bd` (11-11-2026); not pushed** — plan and Amit's build-time decisions: § 3 *Pass 2B plan*.
+- **Next step:** plan T15 in a fresh session. Phase 2 is pushed as a whole after T15 is reviewed.
 - **Phases 3–9:** not started.
 
 ## 1. Goal and success measure
