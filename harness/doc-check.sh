@@ -47,6 +47,7 @@ CLAUDE.md|none||
 RTK.md|none|`rtk proxy`|
 OLLAMA.md|none||
 STANDARDS.md|none|Communicate;Choose the project;Run a task;Safety and approval;Quality;Documents;IDs and progress;Git;Models|
+ENVIRONMENT.md|full|Contents;The two kinds of rule;1. RTK;2. Status line;3. Permissions;4. Effort on Opus 5.5;What every session loads;How numbers are measured;The project trees on this machine;Older records|
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the
@@ -150,6 +151,8 @@ while IFS='|' read -r f htype sections needs_id; do
   # or higher level must say "None yet".
   awk '
     function lvl(s) { match(s, /^#+/); return RLENGTH }
+    /^```/ { fence=!fence; open=0; next }
+    fence { next }
     /^#+ / { if (open && lvl($0) <= open) print name; open=lvl($0); name=$0; next }
     /[^[:space:]]/ { open=0 }
     END { if (open) print name }' "$f" | while read -r h; do echo "WARN $f: empty section without None yet: $h"; done

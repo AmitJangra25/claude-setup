@@ -51,6 +51,8 @@ otherwise.
 | `doc-test-after-11-11-2026.md` | 11-11-2026 | Phase 3 (T16–T19) doc-test — after |
 | `standards-old-12-11-2026.md` | 12-11-2026 | Old text of `STANDARDS.md`, before Phase 4 (T20) |
 | `doc-test-after-12-11-2026.md` | 12-11-2026 | Phase 4 (T20) doc-test — after |
+| `environment-old-12-11-2026.md` | 12-11-2026 | Old text of `ENVIRONMENT.md`, before Phase 5 (T21) |
+| `doc-test-after-12-11-2026-run2.md` | 12-11-2026 | Phase 5 (T21) doc-test — after |
 | `global-open-tests.md` | live | Not a record: the index of open setup tests (TC IDs) |
 | `s4-proposal-30-10-2026.json`, `s4-replay-30-10-2026.py` | 30-10-2026 | Local only, not tracked; content embedded in `s4-permissions-30-10-2026.md` |
 
@@ -139,6 +141,8 @@ unchanged out of `ENVIRONMENT.md` on 01-11-2026 — not a run.
 `backlog-log-11-11-2026.md` are the three old document maps (D47), the old body of
 `harness/status.md` and the old body of `harness/backlog.md`, moved unchanged on
 11-11-2026 (documentation structure, Phase 2) — not runs.
+`environment-old-12-11-2026.md` is the whole old `ENVIRONMENT.md`, copied unchanged on
+12-11-2026 before Phase 5 (T21) — not a run.
 
 **Audit, fix and test records (added 01-11-2026, audit CB2)** are a further kind, also
 not runs: audit reports (`audit-*.md`, with `audit-corrections-*.md`), fix reports

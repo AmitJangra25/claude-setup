@@ -20,7 +20,7 @@ Related: `DOCUMENT-MAP.md` (every document — the one map, D47) · `harness/sta
    warns and changes nothing otherwise.
 3. **Each Bash command.** The `PreToolUse` hook (`rtk hook claude`) may rewrite it to an
    `rtk` form first; permission rules are then matched against what it produced
-   (`ENVIRONMENT.md` § *Permissions — what stops and asks*).
+   (`ENVIRONMENT.md` § *3. Permissions*).
 4. **Permissions.** The global `ask` list in `settings.json` is the safety net; projects
    add mostly `allow` rules, and a few their own `ask` rules. Auto mode lets unmatched
    commands through, so `ask` is what stops it (`baselines/09-10-2026-run2.md`).
