@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 done 11-11-2026; Phase 4 done 12-11-2026; Phase 5 built 12-11-2026 (not committed)
+Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 done 11-11-2026; Phase 4 done 12-11-2026; Phase 5 done 12-11-2026
 Last reviewed: 12-11-2026
 
 ---
@@ -25,8 +25,8 @@ Last reviewed: 12-11-2026
 - **Phase 4 planned 12-11-2026 (Go 1):** T20 plan approved by Amit — § 3 *Phase 4 plan*; B32 decided, B34 to Phase 9.
 - **Phase 4 (T20) built 12-11-2026 (Go 2):** `STANDARDS.md` from the approved text (`cmp`-matched, 3,386 words); old text in `baselines/standards-old-12-11-2026.md`; linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026.md`). Committed as `28b4801`. **Phase 4 done 12-11-2026.**
 - **Phase 5 planned 12-11-2026 (Go 1):** T21 plan, final text and decisions approved by Amit — § 3 *Phase 5 plan*.
-- **Phase 5 (T21) built 12-11-2026 (Go 2):** `ENVIRONMENT.md` from the approved text (`cmp`-matched), then 11 undated figures labelled and the `RTK.md` mismatch noted — 396 lines, 7,680 words (limit ≤ 7,690, Amit); old text in `baselines/environment-old-12-11-2026.md`; `doc-check.sh` empty-section test now skips code blocks (Amit, 12-11-2026); linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026-run2.md`). Not committed.
-- **Next step:** Amit reviews Phase 5 Go 2; commit on his word only.
+- **Phase 5 (T21) built 12-11-2026 (Go 2):** `ENVIRONMENT.md` from the approved text (`cmp`-matched), then 11 undated figures labelled and the `RTK.md` mismatch noted — 396 lines, 7,680 words (limit ≤ 7,690, Amit); old text in `baselines/environment-old-12-11-2026.md`; `doc-check.sh` empty-section test now skips code blocks (Amit, 12-11-2026); linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026-run2.md`). Committed as `5348583` after Amit's review. **Phase 5 done 12-11-2026.**
+- **Next step:** Phase 6 — Voice-Flow pilot, in a fresh session, on Amit's word.
 - **Phases 6–9:** not started.
 
 ## 1. Goal and success measure

@@ -15,8 +15,8 @@ Last reviewed: 12-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 5 Go 2 (T21 `ENVIRONMENT.md`) built 12-11-2026 and all Go 2
-checks passed; not committed. `ENVIRONMENT.md` 396 lines, 7,680 words; old text in
+Documentation structure: Phase 5 (T21 `ENVIRONMENT.md`) done 12-11-2026 — built, all Go 2
+checks passed, committed locally after Amit's review. `ENVIRONMENT.md` 396 lines, 7,680 words; old text in
 `baselines/environment-old-12-11-2026.md`; results in `baselines/doc-test-after-12-11-2026-run2.md`.
 Word limit now ≤ 7,690 (Amit, 12-11-2026): 7,300 was a Go 1 estimate (the private-store deny
 rule blocked counting the draft); +54 for labelling 11 undated figures. `harness/doc-check.sh`
@@ -28,7 +28,6 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | ID | Item | State | Next step | Link |
 |---|---|---|---|---|
 | B7, B16 | FinNode trials: write block, project map | [~] trial | Dates and review: the backlog rows | `harness/backlog.md` |
-| T21 | `ENVIRONMENT.md` in the reference format (Phase 5) | [~] built, all Go 2 checks passed, not committed | Amit's review; commit on his word | `harness/doc-structure-plan.md` § 3 *Phase 5 plan* |
 
 ## Open
 
@@ -65,8 +64,7 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in 
 
 ## Next gate
 
-Phase 5 Go 2, T21 (`ENVIRONMENT.md`): Amit reviews the build; commit on his word only. No push
-without his word. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 6 (Voice-Flow pilot): in a fresh session, on Amit's word. No push without his word. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
