@@ -7,17 +7,17 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: Every changing setup plan. Overwrite; finished items move to a dated record. Commits, branches, push state and file counts are never recorded here — read them from git.
 Related: `harness/backlog.md` · `harness/overview.md` · `harness/doc-structure-plan.md` · `baselines/global-open-tests.md` · `SETUP-PLAN.md` (decisions)
 Status: active
-Last reviewed: 11-11-2026
+Last reviewed: 12-11-2026
 
 ---
 
-**Last verified:** 11-11-2026
+**Last verified:** 12-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 3 (T16–T19) done 11-11-2026 — all step 6 checks passed
-(`baselines/doc-test-after-11-11-2026.md`); D48 and B35 closed. Next: Phase 4, T20
-(`STANDARDS.md`). Plan: `harness/doc-structure-plan.md` § 3. Phase 2 done 11-11-2026.
+Documentation structure: Phase 4, T20 (`STANDARDS.md`) planned and approved 12-11-2026
+(Go 1) — plan: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*. Next: Go 2 build.
+Phase 3 done 11-11-2026.
 
 ## In progress
 
@@ -45,7 +45,8 @@ None yet
 ## Known contradictions
 
 - `STANDARDS.md` § *How a task runs* says decisions are recorded in the roadmap; the
-  `roadmap.md` template moves them to `DECISIONS.md`. Resolve in T20.
+  `roadmap.md` template moves them to `DECISIONS.md`. Resolution approved 12-11-2026
+  (decisions → `DECISIONS.md`, Setup's in `SETUP-PLAN.md` until T30); closes in T20 Go 2.
 - `templates/deferred-improvements.md` § *In full* has a "Next step" field;
   `DOCUMENTATION-STANDARD.md` § *Structure per file* lists only Found in · Decision ·
   Detail.
@@ -57,9 +58,9 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in 
 
 ## Next gate
 
-Phase 4, T20 (`STANDARDS.md`): plan in a fresh session, on Amit's word; any push waits for
-Amit's word. Phase 3 checks (11-11-2026): words 4,101 → 4,030, `doc-check.sh` no new
-warning, TC2 resolves, imports load, no rule lost, doc-test before/after match. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 4 Go 2, T20 (`STANDARDS.md`): build in a fresh Opus session, on Amit's word; any push
+waits for Amit's word. Go 2 checks: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*
+(approved text 3,386 words, limit 3,391). The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
