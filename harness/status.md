@@ -15,9 +15,9 @@ Last reviewed: 12-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 4 (T20 `STANDARDS.md`) done 12-11-2026 — all Go 2 checks
-passed (`baselines/doc-test-after-12-11-2026.md`). Next: Phase 5 (T21 `ENVIRONMENT.md`), not
-started. Phase 3 done 11-11-2026.
+Documentation structure: Phase 5 Go 1 (T21 `ENVIRONMENT.md`) planned and approved 12-11-2026 —
+plan, final text and decisions in `harness/doc-structure-plan.md` § 3 *Phase 5 plan*; Sonnet
+cross-check fixes all taken. Go 2 (build) not started. Phase 4 done 12-11-2026.
 
 ## In progress
 
@@ -47,6 +47,8 @@ None yet
 - Closed 12-11-2026: roadmap vs `DECISIONS.md` — the new `STANDARDS.md` § *How a task runs*
   step 8 records decisions in `DECISIONS.md` (Setup's in `SETUP-PLAN.md` until T30); all Go 2
   checks passed.
+- Memory note `skill-overrides-name-only.md:40` cites `ENVIRONMENT.md` § *3. Permissions — what
+  stops and asks*; after T21 the heading is § *3. Permissions*. Memory is out of Phase 5 scope.
 - `templates/deferred-improvements.md` § *In full* has a "Next step" field;
   `DOCUMENTATION-STANDARD.md` § *Structure per file* lists only Found in · Decision ·
   Detail.
@@ -58,8 +60,9 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in 
 
 ## Next gate
 
-Phase 5 Go 1, T21 (`ENVIRONMENT.md`): plan in a fresh Opus session, on Amit's word; any push
-waits for his word. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 5 Go 2, T21 (`ENVIRONMENT.md`): build from `harness/doc-structure-plan.md` § 3 *Phase 5
+plan* in a fresh Opus session, on Amit's word; precondition HEAD = the Go 1 commit. No push
+without his word. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
