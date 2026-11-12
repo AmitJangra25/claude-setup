@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 done 11-11-2026; Phase 4 built 12-11-2026, awaiting review
+Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 done 11-11-2026; Phase 4 done 12-11-2026
 Last reviewed: 12-11-2026
 
 ---
@@ -23,8 +23,8 @@ Last reviewed: 12-11-2026
 - **Phase 3 planned 11-11-2026 (Go 1):** plan approved by Amit — § 3 *Phase 3 plan*; D48 and B35 recorded.
 - **Phase 3 (T16–T19) done 11-11-2026 (Go 2):** global `CLAUDE.md` imports + one non-loading comment, D48; `.claude/CLAUDE.md`, `RTK.md`, `OLLAMA.md` in their § 4 formats; each `cmp`-matched to its approved block in `dd76666`. All 7 success checks passed: `baselines/doc-test-after-11-11-2026.md`. D48 and B35 closed.
 - **Phase 4 planned 12-11-2026 (Go 1):** T20 plan approved by Amit — § 3 *Phase 4 plan*; B32 decided, B34 to Phase 9.
-- **Phase 4 (T20) built 12-11-2026 (Go 2):** `STANDARDS.md` from the approved text (`cmp`-matched, 3,386 words); old text in `baselines/standards-old-12-11-2026.md`; linked updates done. Uncommitted, awaiting Amit's review.
-- **Next step:** Amit reviews Phase 4 Go 2; commit on his word.
+- **Phase 4 (T20) built 12-11-2026 (Go 2):** `STANDARDS.md` from the approved text (`cmp`-matched, 3,386 words); old text in `baselines/standards-old-12-11-2026.md`; linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026.md`). Committed as `28b4801`. **Phase 4 done 12-11-2026.**
+- **Next step:** Phase 5 Go 1 — plan T21 (`ENVIRONMENT.md`) in a fresh Opus session, on Amit's word.
 - **Phases 5–9:** not started.
 
 ## 1. Goal and success measure
@@ -201,7 +201,7 @@ Also: ~~fix the outdated D46 line in `templates/project-map.md`~~ — done early
 | T18 | `RTK.md` | P4 |
 | T19 | `OLLAMA.md` | P4 |
 
-#### Phase 3 plan — T16–T19 (approved by Amit 11-11-2026; build in Go 2, a fresh Opus session)
+#### Phase 3 plan — T16–T19 (approved by Amit 11-11-2026; built 11-11-2026 in Go 2)
 
 **Goal (Amit's words):** every document follows one clear, predictable structure — here the always-loaded rule files.
 

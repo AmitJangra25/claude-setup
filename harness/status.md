@@ -15,23 +15,20 @@ Last reviewed: 12-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 4, T20 (`STANDARDS.md`) built and all Go 2 checks passed
-12-11-2026, uncommitted — plan: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*; old text:
-`baselines/standards-old-12-11-2026.md`; checks: `baselines/doc-test-after-12-11-2026.md`.
-Phase 3 done 11-11-2026.
+Documentation structure: Phase 4 (T20 `STANDARDS.md`) done 12-11-2026 — all Go 2 checks
+passed (`baselines/doc-test-after-12-11-2026.md`). Next: Phase 5 (T21 `ENVIRONMENT.md`), not
+started. Phase 3 done 11-11-2026.
 
 ## In progress
 
 | ID | Item | State | Next step | Link |
 |---|---|---|---|---|
-| T20 | `STANDARDS.md` in nine sections; linked updates done; all Go 2 checks passed (incl. G1 and `/context`) | [~] built, awaiting review | Amit's review | `baselines/doc-test-after-12-11-2026.md` |
 | B7, B16 | FinNode trials: write block, project map | [~] trial | Dates and review: the backlog rows | `harness/backlog.md` |
 
 ## Open
 
 | ID | Item | Decision | Link |
 |---|---|---|---|
-| T20 | Phase 4 setup files uncommitted | Commit only on Amit's word, after his review; no push | `harness/doc-structure-plan.md` § 0 |
 | B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started | `harness/backlog.md` |
 | B16 | FinNode `CLAUDE.md` (`~/Documents/VS Code/FinNode/CLAUDE.md`) holds the project-map rule line, uncommitted since 06-11-2026 (still uncommitted 11-11-2026) | Goes in with FinNode's next PR, in FinNode's own session | `baselines/task-history-11-11-2026.md` |
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
@@ -61,8 +58,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in 
 
 ## Next gate
 
-Phase 4 Go 2, T20 (`STANDARDS.md`): built and checked, uncommitted. Next: Amit's review;
-commit only on his word; no push without his word. Then Phase 5 (T21 `ENVIRONMENT.md`). The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 5 Go 1, T21 (`ENVIRONMENT.md`): plan in a fresh Opus session, on Amit's word; any push
+waits for his word. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
