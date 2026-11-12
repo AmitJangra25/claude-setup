@@ -66,7 +66,7 @@ Detail lives in files read when needed; an always-loaded file holds a one-line p
 | B1, B2… | Backlog item | Once planned, its row says "→ T15" |
 | D1, D2… | Decision | Lists the exact files it affects (*Decisions and affected files*) |
 | TC1, TC2… | Test | Replaces the old tests numbered "T" |
-| P1–P4 | Priority, not an ID | Scale in `STANDARDS.md` § *Plan before building* |
+| P1–P4 | Priority, not an ID | Scale in `STANDARDS.md` § *IDs and progress* |
 | S / M / L | Size, not an ID | Small, medium, large |
 
 - **Decisions keep the existing D-number system.** Claude Setup's decisions continue the existing sequence (index today: `SETUP-PLAN.md`). Each project numbers its own from D1. No other scheme.
@@ -136,7 +136,7 @@ The working rules live in `STANDARDS.md`; this section only says which file they
 |---|---|---|
 | A task starts, progresses or pauses | `.claude/current-task.md` | `STANDARDS.md` § *How a task runs* (Orient, Handoff) |
 | A verified result or a decision | Roadmap, and `DECISIONS.md` for a decision | `STANDARDS.md` § *How a task runs* (Record) |
-| An out-of-task finding | Backlog | `STANDARDS.md` § *Stay on the task you were given* |
+| An out-of-task finding | Backlog | `STANDARDS.md` § *How a task runs* (Record) |
 | Files added, moved, renamed or deleted | `PROJECT-MAP.md`, same commit | Guard 1 in the project map |
 | A document added, moved or retired | `DOCUMENT-MAP.md` | This file |
 | Setup status changes | `harness/status.md` | `.claude/CLAUDE.md` |

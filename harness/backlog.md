@@ -5,9 +5,9 @@ Audience: Claude and Amit.
 Read when: Planning setup work, or when a finding comes up.
 Owner: Setup sessions (changes are Amit's decision).
 Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. Overwrite rows; history goes to a dated record.
-Related: `harness/status.md` · `STANDARDS.md` § *Plan before building* (P1–P4) · `baselines/backlog-log-11-11-2026.md`
+Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) · `baselines/backlog-log-11-11-2026.md`
 Status: active
-Last reviewed: 11-11-2026
+Last reviewed: 12-11-2026
 
 Next ID: B36
 
@@ -37,9 +37,9 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 | B19 | New-tool rule | Check network calls, telemetry and cost before adopting any tool | yes | no | P1 | S | ~5k | [x] 05-11-2026 | None — rule in `STANDARDS.md` |
 | B20 | rtk exact allow rules | rtk issue #3673 reads an exact allow rule as a prefix | yes | no | P3 | S | ~10k | [x] 06-11-2026 | None — allow rules narrowed, box-tested |
 | B21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (B21 in full) | yes | no | P3 | S | ~10k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026 after an Opus cross-check; not started: ASK rules (not deny), box-tested in default and auto mode. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
-| B32 | Decide whether the old backlog working rules are still live | The old rules — group small fixes in one commit, separate commit for settings changes, copied skill ideas as name plus one line — now exist only in `baselines/backlog-log-11-11-2026.md` | yes | no | P3 | S | ~5k | [ ] | Decide in Phase 4, T20; move live rules to `STANDARDS.md` or leave as history |
+| B32 | Decide whether the old backlog working rules are still live | The old rules — group small fixes in one commit, separate commit for settings changes, copied skill ideas as name plus one line — now exist only in `baselines/backlog-log-11-11-2026.md` | yes | no | P3 | S | ~5k | [x] | Leave as history; existing rules already cover the useful parts. |
 | B33 | Voice Flow `git branch` allow rules in plain-git form | Voice Flow's project settings file (.claude/settings.json, lines 93–98) has the same `git branch` allow rules in plain-git form (noted 06-11-2026, after B20); probably harmless (rtk rewrites first), not verified inside Voice Flow | unverified | no | P4 | S | ~5k | [ ] | Assess in Voice-Flow's own session |
-| B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | Decide in Phase 4, T20 or the 30-day review; update the standard through the normal backlog-item and D-number process |
+| B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | 30-day review (Phase 9). |
 | B35 | "Imports only" vs the comment in global `CLAUDE.md` | `DOCUMENTATION-STANDARD.md` line 51 says imports only; Amit keeps one non-loading HTML comment (D48). This item authorises the line-51 change | yes | no | P4 | S | ~3k | [x] 11-11-2026 | None — line 51 changed in Go 2; D48 closed |
 10 or more done rows: rollover to a `-DONE` file is due (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*); proposed, not done.
 

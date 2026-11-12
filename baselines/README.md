@@ -49,6 +49,8 @@ otherwise.
 | `doc-test-before-11-11-2026.md` | 11-11-2026 | Phase 3 (T16–T19) doc-test — before |
 | `always-loaded-old-11-11-2026.md` | 11-11-2026 | Old text of the four Phase 3 rule files and `DOCUMENTATION-STANDARD.md` line 51 |
 | `doc-test-after-11-11-2026.md` | 11-11-2026 | Phase 3 (T16–T19) doc-test — after |
+| `standards-old-12-11-2026.md` | 12-11-2026 | Old text of `STANDARDS.md`, before Phase 4 (T20) |
+| `doc-test-after-12-11-2026.md` | 12-11-2026 | Phase 4 (T20) doc-test — after |
 | `global-open-tests.md` | live | Not a record: the index of open setup tests (TC IDs) |
 | `s4-proposal-30-10-2026.json`, `s4-replay-30-10-2026.py` | 30-10-2026 | Local only, not tracked; content embedded in `s4-permissions-30-10-2026.md` |
 

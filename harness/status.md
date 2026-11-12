@@ -15,20 +15,23 @@ Last reviewed: 12-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 4, T20 (`STANDARDS.md`) planned and approved 12-11-2026
-(Go 1) — plan: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*. Next: Go 2 build.
+Documentation structure: Phase 4, T20 (`STANDARDS.md`) built and all Go 2 checks passed
+12-11-2026, uncommitted — plan: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*; old text:
+`baselines/standards-old-12-11-2026.md`; checks: `baselines/doc-test-after-12-11-2026.md`.
 Phase 3 done 11-11-2026.
 
 ## In progress
 
 | ID | Item | State | Next step | Link |
 |---|---|---|---|---|
+| T20 | `STANDARDS.md` in nine sections; linked updates done; all Go 2 checks passed (incl. G1 and `/context`) | [~] built, awaiting review | Amit's review | `baselines/doc-test-after-12-11-2026.md` |
 | B7, B16 | FinNode trials: write block, project map | [~] trial | Dates and review: the backlog rows | `harness/backlog.md` |
 
 ## Open
 
 | ID | Item | Decision | Link |
 |---|---|---|---|
+| T20 | Phase 4 setup files uncommitted | Commit only on Amit's word, after his review; no push | `harness/doc-structure-plan.md` § 0 |
 | B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started | `harness/backlog.md` |
 | B16 | FinNode `CLAUDE.md` (`~/Documents/VS Code/FinNode/CLAUDE.md`) holds the project-map rule line, uncommitted since 06-11-2026 (still uncommitted 11-11-2026) | Goes in with FinNode's next PR, in FinNode's own session | `baselines/task-history-11-11-2026.md` |
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
@@ -44,9 +47,9 @@ None yet
 
 ## Known contradictions
 
-- `STANDARDS.md` § *How a task runs* says decisions are recorded in the roadmap; the
-  `roadmap.md` template moves them to `DECISIONS.md`. Resolution approved 12-11-2026
-  (decisions → `DECISIONS.md`, Setup's in `SETUP-PLAN.md` until T30); closes in T20 Go 2.
+- Closed 12-11-2026: roadmap vs `DECISIONS.md` — the new `STANDARDS.md` § *How a task runs*
+  step 8 records decisions in `DECISIONS.md` (Setup's in `SETUP-PLAN.md` until T30); all Go 2
+  checks passed.
 - `templates/deferred-improvements.md` § *In full* has a "Next step" field;
   `DOCUMENTATION-STANDARD.md` § *Structure per file* lists only Found in · Decision ·
   Detail.
@@ -58,9 +61,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in 
 
 ## Next gate
 
-Phase 4 Go 2, T20 (`STANDARDS.md`): build in a fresh Opus session, on Amit's word; any push
-waits for Amit's word. Go 2 checks: `harness/doc-structure-plan.md` § 3 *Phase 4 plan*
-(approved text 3,386 words, limit 3,391). The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 4 Go 2, T20 (`STANDARDS.md`): built and checked, uncommitted. Next: Amit's review;
+commit only on his word; no push without his word. Then Phase 5 (T21 `ENVIRONMENT.md`). The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.

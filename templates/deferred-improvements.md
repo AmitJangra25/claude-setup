@@ -22,7 +22,7 @@ None yet
 
 Status uses the standard marks; a planned item says `→ T#`.
 
-Worth doing: yes, with the gain or harm and how often / no, known and accepted. Priority: P1–P4 (`STANDARDS.md` § *Plan before building*); for P1 and P2, name the case. Blocks current task: yes / no.
+Worth doing: yes, with the gain or harm and how often / no, known and accepted. Priority: P1–P4 (`STANDARDS.md` § *IDs and progress*); for P1 and P2, name the case. Blocks current task: yes / no.
 
 ## In full
 

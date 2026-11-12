@@ -46,6 +46,7 @@ CLAUDE.md|none||
 .claude/CLAUDE.md|none|At session start;While changing setup;Reaching into a project;Git for ~/.claude|
 RTK.md|none|`rtk proxy`|
 OLLAMA.md|none||
+STANDARDS.md|none|Communicate;Choose the project;Run a task;Safety and approval;Quality;Documents;IDs and progress;Git;Models|
 '
 
 # --- Project docs to scan for secrets: none yet. When the first is added, reuse the
