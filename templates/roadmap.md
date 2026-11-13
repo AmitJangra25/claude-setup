@@ -4,8 +4,8 @@ Purpose: The plan and the active work for <Project>, by phase and task.
 Audience: Claude and the owner.
 Read when: Planning, checking progress, or choosing the next task.
 Owner: <Project> sessions (changes are the owner's decision).
-Update rule: When a task starts, finishes or moves. Done tasks leave one line in *Completed*; detail goes to `ROADMAP-DONE.md`.
-Related: `docs/ROADMAP-DONE.md` · `docs/DECISIONS.md` · `docs/BACKLOG.md` · `.claude/current-task.md`
+Update rule: When a task starts, finishes or moves. A finished task leaves one line in *Completed*. Growth and splits: `DOCUMENTATION-STANDARD.md` § *Growth and rollover*.
+Related: `docs/archive/` · `docs/DECISIONS.md` · `docs/BACKLOG.md` · `.claude/current-task.md`
 Status: active
 Last reviewed: DD-MM-YYYY
 

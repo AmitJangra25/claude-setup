@@ -1,10 +1,10 @@
 # <Project> roadmap — done
 
-Purpose: Finished tasks moved out of `ROADMAP.md`, with their results.
+Purpose: *Completed* lines moved out of `ROADMAP.md` at a split.
 Owner: <Project> sessions.
-Update when: Rollover from `ROADMAP.md` (about 300 lines or 10 done rows).Related: `docs/ROADMAP.md` · `docs/DECISIONS.md`
+Update when: A split (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*).
+Related: `docs/ROADMAP.md` · `docs/archive/`
 
-| ID | Task | Phase | Done | Decision | Result / testing pending |
-|---|---|---|---|---|---|
+Lines moved word for word from the roadmap's *Completed*.
 
 None yet

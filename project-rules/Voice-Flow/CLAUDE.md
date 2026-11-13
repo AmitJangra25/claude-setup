@@ -7,79 +7,16 @@ app for local dev, but the desktop build is the real product. Success =
 dictation that lands correctly formatted in that app without the user touching
 the keyboard.
 
-## Stack
+## Documents
 
-React ^19.3.1, React Router ^8.5.0, Vite ^8.3.5, Tailwind CSS ^4.3.3.
-Electron ^43.8.3 + electron-builder ^26.18.0 for the desktop shell/packaging.
-Radix UI primitives, Motion, Lucide icons. Vitest ^5.0.5 + Testing Library + jsdom ^30.1.3.
-Vitest 5 clears mock call history before every test (`clearMocks` defaults to `true`) and needs Node ≥ 22.12.
-TypeScript ^7.0.2. Node 22.23.2 and npm 11.21.1 on this machine (no version manager — see below).
-**npm 10.9.8 cannot install vite 8.3.5 or vitest 4.1.12** — it crashes in arborist `#loadPeerSet`
-(`Cannot read properties of null (reading 'edgesOut')`); npm 11 resolves the same install cleanly (both seen
-23-10-2026). Reinstalling Node from its installer puts npm back to the bundled version.
-`npm outdated` on 23-10-2026: nothing in range left to apply. Deliberately held back: Electron 44/45,
-@types/node 26 (kept on 22 to match the Node the tests run on).
-`npm audit` on 23-10-2026: **0 vulnerabilities**.
-
-## Architecture map
-
-One line per module. The reasoning behind each piece, and what has already gone wrong
-in it, is in [`docs/architecture.md`](docs/architecture.md) — read it before changing
-anything in `electron/` or `src/app/lib/`. What each feature does, and the security model,
-is in [`docs/features.md`](docs/features.md); [`docs/README.md`](docs/README.md) indexes every document.
-
-- `electron/` — main process. `main.js` (main window + always-on-top widget),
-  `preload.cjs` (contextBridge → `window.api`), `accountStore.js`, `dataStore.js`
-  (file-backed JSON), `clipboard.js` (auto-paste; Accessibility only for the ⌘V),
-  `focusTarget.js` (the app the dictation started in — never Voice Flow), `audioDuck.js`
-  (lowers other audio while recording, restores the exact level), `hotkey.js`, `localLlm.js`/`localWhisper.js` (servers this app spawns and owns —
-  `whisper-server` is **bundled**, built by `scripts/build-whisper.sh`, and starts on
-  demand), `speechModel.js` (the Whisper model download: resume, retry, SHA-256,
-  atomic rename),
-  `ollama.js` (an Ollama service *you* run — no spawn, models picked by name),
-  `contentSecurityPolicy.js` (the CSP header the `app:` handler sends).
-- **The twelve vault modules in `electron/`.** `vaultPaths.js` is the only place a path
-  is decided · `vaultApply.js` the only thing that writes · `vaultRaw.js` the other
-  write path, create-only into `raw/` · `vaultStore.js` proves containment. **Six
-  touch no filesystem at all** — `vaultPaths`, `vaultPlan`, `vaultPage`, `vaultEdit`,
-  `vaultTemplate`, `vaultDecide` — and they hold the decisions worth
-  being certain about, so they are settled by reading tests rather than by pointing a
-  compiler at a real vault. The other six read or write: `vaultStore`, `vaultTree`,
-  `vaultLint`, `vaultApply`, `vaultRaw`, and `vaultCompile`, which reads pages
-  through `readVaultFile`.
-- `src/app/routes.tsx` — route table. The desktop build redirects `/` → `/app`.
-- `src/app/pages/` — one file per route. `settings/` has 15 tabs grouped by Compose
-  mode through a `group` field on the `tabs` array, so a fourth group is one field
-  rather than a second list.
-- `src/app/pages/Compose.tsx` + `pages/compose/` — the main screen at `/app`. One
-  surface, three modes: Dictate, Local, Vault. **This was `Recorder.tsx`; docs written
-  before the rename mean this page.** The shell owns `useDictationPipeline`, so
-  switching modes cannot tear down a running recording.
-- `src/app/lib/textPipeline.ts` — the five-stage pipeline: dictionaryCorrect →
-  spokenPunctuation → polish LLM → vibeCodeProcessor → snippets.
-- `src/app/lib/structureCues.ts` + `polishGuard.ts` — the two halves of a polish step
-  you can rely on. `structureCues` decides the shape **in code, before the model reads
-  anything**; `polishGuard` reads what came back. Both are import-clean.
-- `src/app/lib/engineReadiness.ts` — whether each stage can run, one line per stage with
-  its fix; pure. The Engine setup checklist reads it, and so does the status indicator
-  (`engineStatus.ts`, through `hooks/useEngineStatus.ts`) in Compose, the widget and its
-  menu. **Privacy there is per stage, never the tier**, and kept separate from readiness.
-- `src/app/lib/` also holds `historyStats.ts` (Insights; the streak is calendar days,
-  not milliseconds), `usageStats.ts` (lifetime counters, deliberately separate from
-  history), `appContext.ts` (per-app adaptation), `vaultSave.ts` / `attachments.ts` /
-  `threadStore.ts`, and `voiceflowSettings.ts` / `dataStore.ts`.
-- `src/app/hooks/useDictationPipeline.ts` — the shared record→transcribe→polish→paste
-  state machine, used by Compose and the widget. `autoPaste` is opt-in, not inherited.
-- **`src/app/hooks/useCopyToClipboard.ts` is the only place a *copy control*
-  copies** — `useDictationPipeline.ts` also writes to the clipboard, for
-  auto-paste, which is a different job. A sixth
-  hand-rolled `useState` + `setTimeout` is the thing not to write.
-- **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
-  decides for itself. Styles is the exception in *wording* only — it resets a built-in.
-- **Tests 25–28 in `docs/manual-testing.md` have never been run** (left out while Chat and Vault are paused).
-  Tests 1–23 and 29–37 passed by hand, the latest 21-10-2026; Test 24 changed 21-10-2026 and needs a re-run;
-  Tests 38–40 (paste target, lower other audio, Gemini) passed in part 22-10-2026 (Test 38 row 3 failed; it and the untested rows are deferred); still open are those rows, the run-sheet rows
-  marked ⬜. The latest Test 23 measurement is 19-10-2026.
+- [`PROJECT-MAP.md`](PROJECT-MAP.md) — every code folder and document, and where to start.
+- The reasoning behind each module, and what has already gone wrong
+  in it, is in [`docs/architecture.md`](docs/architecture.md) — read it before changing
+  anything in `electron/` or `src/app/lib/`. Its § *Tech stack* holds the versions and npm facts.
+- **Every polish rule, by prompt block, is in [`docs/polish-rules.md`](docs/polish-rules.md)** —
+  read it before changing the prompt, an app context, or `paragraphs.ts`.
+- Creating a document, or reviewing one in depth: follow the *Documentation rules* in
+  [`docs/working-rules.md`](docs/working-rules.md) — overview table first, details below.
 
 ## Working rules
 
@@ -103,12 +40,23 @@ Read it before changing anything in the polish pipeline, the vault, or `textPipe
 - **`assertInsideVault` fell back to a lexical resolve when the target did not exist, which is *always* true of a file being created.**
 - **A settings write from a running app clobbers a file edit.**
 - No telemetry/analytics collection — this is a stated security property.
-- When a setting moves between tabs (it has happened — see gotchas), update README.md/docs/installation.md in the same change, not later.
+- When a setting moves between tabs (it has happened — see Known pitfalls), update README.md/docs/installation.md in the same change, not later.
 - **`localStorage.clear()` is not "delete my data", and was the whole of Delete Account until 21 Aug 2026.**
 - **`raw/` is written by `vaultRaw.js`, and it is create-only**
 - **An attachment is read in the renderer, and that is a security decision, not a convenience.**
 - **A file dropped anywhere in the window navigates it to `file://` and blanks the app**
 - `docs/code-conventions.md` holds the code/UI conventions (comments record *why*; container queries inside the shell; colour from tokens; no control that renders without acting; every module reachable).
+
+## Safety rules
+
+The reasoning behind both is in [`docs/architecture.md`](docs/architecture.md) § *Modules*.
+
+- **`src/app/hooks/useCopyToClipboard.ts` is the only place a *copy control*
+  copies** — `useDictationPipeline.ts` also writes to the clipboard, for
+  auto-paste, which is a different job. A sixth
+  hand-rolled `useState` + `setTimeout` is the thing not to write.
+- **A delete that cannot be undone asks first, through `ConfirmDialog`.** No screen
+  decides for itself. Styles is the exception in *wording* only — it resets a built-in.
 
 ## Commands
 
@@ -139,7 +87,9 @@ command is used.
 - `npm run doctor:polish` — replays real `history.json` pairs through the guard.
   Read-only, no model, **exits 0 whatever it finds**. `--since`, `--verbose`, `--plans`.
 - `npm run doctor:polish -- --rerun --model <a,b,c>` — produces *new* polishes against
-  named **Ollama** models. Writes nothing. `--limit n`, `--runs n`.
+  named **Ollama** models. Writes nothing. `--limit n` (**always `--limit 120`** for a
+  before/after), `--runs n`, `--app <id>` (dev only: replay one app profile's dictations
+  with its instruction).
 - `npm run doctor:vault` — wiki health check, read-only. Thirteen checks; exits 1 on a
   problem. Same report as **Check my wiki** in Settings → Vault.
 - `npm run compile:vault` — compiles every source in `raw/` no page cites yet.
@@ -162,7 +112,7 @@ These 14 are the ones that cost time before you would think to look.
 - What governs macOS permission grants is the **designated requirement**, and ad-hoc signing gets it wrong: no certificate chain means the requirement is a bare `cdhash`, which changes every build, so each rebuild is a new app to TCC.
 - **`electron/` and `scripts/` are typechecked by a second config, and only loosely.** `strict` is off, so a field in a `= {}` options object needs its own default, or it reads as required.
 - **A style or agent must never cap the output length.**
-- **`AiProcessing` is the exception to the rule below, and conflating the two has already cost a wrong answer**
+- **`AiProcessing` is the exception to the seeded-defaults rule (*Seeded defaults only ever reach a fresh install*, in `docs/known-pitfalls.md`), and conflating the two has already cost a wrong answer**
 - **Never pass `--no-timestamps` to `whisper-server`.**
 - **A GUI app does not inherit your shell's `PATH`.**
 - Anything the main process loads from disk at runtime must be in the electron-builder `files` array.

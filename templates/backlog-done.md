@@ -1,10 +1,10 @@
 # <Project> backlog — done
 
-Purpose: Closed backlog items moved out of `BACKLOG.md`, and how each closed.
+Purpose: *Completed* lines moved out of `BACKLOG.md` at a split.
 Owner: <Project> sessions.
-Update when: Rollover from `BACKLOG.md`.Related: `docs/BACKLOG.md` · `docs/ROADMAP.md`
+Update when: A split (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*).
+Related: `docs/BACKLOG.md` · `docs/archive/`
 
-| ID | Item | Closed | How: → T#, fixed, or dropped (why) |
-|---|---|---|---|
+Lines moved word for word from the backlog's *Completed*.
 
 None yet

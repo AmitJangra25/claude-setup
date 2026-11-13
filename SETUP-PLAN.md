@@ -78,6 +78,7 @@ the status column says which.
 | D46 | 10-11-2026 | Read everywhere, write only here: read block off, write lock on globally, private data denied | in force |
 | D47 | 10-11-2026 | `DOCUMENT-MAP.md` is the one document map; replaces the three old maps | in force; closed 11-11-2026; supersedes item 16's "setup map = `harness/overview.md`" |
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
+| D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
 
 ---
 
@@ -1616,6 +1617,24 @@ Rejected: dropping the comment (loses that guard). Backlog: B35, which authorise
 `harness/doc-check.sh`. **Status:** in force. **Closed 11-11-2026 (Go 2):** all five
 affected files updated and checked; old text in `baselines/always-loaded-old-11-11-2026.md`.
 Plan: `harness/doc-structure-plan.md` § 3 *Phase 3 plan*.
+
+### D49 · 13-11-2026
+
+**Done files only by size (Amit).** Each project starts with one roadmap, one backlog and
+one decisions file. Finished work stays in a short `## Completed` section, one line per
+item; old detail always goes to the archive. A `-DONE` or `-OLD` file is made only when
+*Completed* grows past about 150 lines, with a pointer left in the original file. The rule
+lives in `DOCUMENTATION-STANDARD.md` § *Growth and rollover* only; templates and the map
+point to it. Reason: the Voice-Flow Phase 6 pilot (its D22) worked with no done files; the
+old trigger (about 300 lines or 10 done rows) split files too early. Rejected: keeping the
+old trigger (extra files to read for little gain); no done files ever (a long *Completed*
+section would grow without limit). Accepted: a superseded decision shows in both its Index
+row and its *Completed* line. Backlog: B36. `harness/doc-structure-plan.md` § 2 *Growth*
+keeps the old wording as history. **Affected files:** `DOCUMENTATION-STANDARD.md` ·
+`templates/roadmap.md` · `templates/deferred-improvements.md` · `templates/decisions.md` ·
+`templates/roadmap-done.md` · `templates/backlog-done.md` · `templates/decisions-old.md` ·
+`DOCUMENT-MAP.md`. **Status:** in force. **Closed 13-11-2026:** all eight files updated and
+checked with `harness/doc-check.sh`.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

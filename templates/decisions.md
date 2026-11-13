@@ -4,8 +4,8 @@ Purpose: Every decision in force for <Project>, one entry per D-number.
 Audience: Claude and the owner.
 Read when: Before changing anything a decision covers, or when making a new decision.
 Owner: <Project> sessions (decisions are the owner's).
-Update rule: Add an entry when a decision is made. A superseded decision moves word for word to `DECISIONS-OLD.md`; its Index row stays. Closed only when every affected file is checked.
-Related: `docs/DECISIONS-OLD.md` · `docs/ROADMAP.md`
+Update rule: Add an entry when a decision is made. A superseded decision leaves one line in *Completed*; its Index row stays. Growth and splits: `DOCUMENTATION-STANDARD.md` § *Growth and rollover*. Closed only when every affected file is checked.
+Related: `docs/archive/` · `docs/ROADMAP.md`
 Status: active
 Last reviewed: DD-MM-YYYY
 
@@ -13,7 +13,7 @@ Next ID: D1
 
 ## Index
 
-Includes IDs moved to `DECISIONS-OLD.md`.
+Includes superseded IDs.
 
 | ID | Title | Date | Status |
 |---|---|---|---|
@@ -33,6 +33,10 @@ None yet
 - **Affected files:** exact paths; each checked before the decision is closed
 - **Linked task:** T#
 -->
+
+## Completed
+
+None yet
 
 ## Older records
 

@@ -7,7 +7,7 @@ Owner: Claude (every change is Amit's decision).
 Update rule: Same change that adds, moves, renames or retires a document. One row per document; detail stays in the document.
 Related: `DOCUMENTATION-STANDARD.md` (the rules) · `harness/doc-structure-plan.md` (the plan) · replaced three old maps, trimmed 11-11-2026 (D47; old text: `baselines/old-document-maps-11-11-2026.md`)
 Status: in force (D47, closed 11-11-2026)
-Last reviewed: 11-11-2026
+Last reviewed: 13-11-2026
 
 ---
 
@@ -47,7 +47,7 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 
 ## Project documents
 
-Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the others in Phase 7. Until then a project's existing files stand. All created at setup, even if empty (`None yet`).
+Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the others in Phase 7. Until then a project's existing files stand. `ROADMAP.md`, `BACKLOG.md` and `DECISIONS.md` are created at setup, even if empty (`None yet`); the `-DONE` and `-OLD` files only at a split (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*).
 
 | Document | Where | In git | Purpose | Read when | Update when |
 |---|---|---|---|---|---|
@@ -55,11 +55,12 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | `PROJECT-MAP.md` | Project root | Yes | Which folder holds what; entry points; key flows | Before searching code | Files added, moved, renamed or deleted — same commit |
 | `.claude/current-task.md` | `.claude/` | **No** — ignored | The one task in progress: Live + Resume | Session start (Orient) | As the task runs, and at each pause |
 | `docs/ROADMAP.md` | `docs/` | Yes | Phases and tasks, with the progress line | Planning or checking progress | A task starts, finishes or moves |
-| `docs/ROADMAP-DONE.md` | `docs/` | Yes | Finished tasks moved out of the roadmap | A one-line pointer sends you there | Rollover |
+| `docs/ROADMAP-DONE.md` | `docs/` | Yes | Finished tasks moved out of the roadmap | A one-line pointer sends you there | Only at a split (see the standard) |
 | `docs/BACKLOG.md` | `docs/` | Yes | Found work not yet planned | Planning, or when a finding comes up | An item is found, planned or closed |
-| `docs/BACKLOG-DONE.md` | `docs/` | Yes | Closed backlog items | A one-line pointer sends you there | Rollover |
+| `docs/BACKLOG-DONE.md` | `docs/` | Yes | Closed backlog items | A one-line pointer sends you there | Only at a split (see the standard) |
 | `docs/DECISIONS.md` | `docs/` | Yes | The project's decisions, D1 onwards | Before changing anything a decision covers | A decision is made or superseded |
-| `docs/DECISIONS-OLD.md` | `docs/` | Yes | Superseded decisions, original text | A one-line pointer sends you there | Rollover |
+| `docs/DECISIONS-OLD.md` | `docs/` | Yes | Superseded decisions | A one-line pointer sends you there | Only at a split (see the standard) |
+| `docs/archive/` | `docs/` | Yes | Dated records of finished work's old detail | A pointer sends you there | Finished work's detail moves out |
 
 ## Other project files
 

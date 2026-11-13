@@ -7,15 +7,18 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: Every changing setup plan. Overwrite; finished items move to a dated record. Commits, branches, push state and file counts are never recorded here — read them from git.
 Related: `harness/backlog.md` · `harness/overview.md` · `harness/doc-structure-plan.md` · `baselines/global-open-tests.md` · `SETUP-PLAN.md` (decisions)
 Status: active
-Last reviewed: 12-11-2026
+Last reviewed: 13-11-2026
 
 ---
 
-**Last verified:** 12-11-2026
+**Last verified:** 13-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 5 (T21 `ENVIRONMENT.md`) done 12-11-2026 — built, all Go 2
+Documentation structure: Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
+(Voice-Flow PR #94, merged). Phase 6 follow-ups done 13-11-2026: `project-rules/Voice-Flow/CLAUDE.md`
+copied from the merged source (`cmp`-identical); done-file rule settled (D49, B36).
+Phase 5 (T21 `ENVIRONMENT.md`) done 12-11-2026 — built, all Go 2
 checks passed, committed locally after Amit's review. `ENVIRONMENT.md` 396 lines, 7,680 words; old text in
 `baselines/environment-old-12-11-2026.md`; results in `baselines/doc-test-after-12-11-2026-run2.md`.
 Word limit now ≤ 7,690 (Amit, 12-11-2026): 7,300 was a Go 1 estimate (the private-store deny
@@ -38,7 +41,8 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
-| — | Session-start drift: Voice-Flow and vthrudebugger_v1 `CLAUDE.md` differ from their `project-rules/` copies | Settled in each project's own session | `harness/doc-structure-plan.md` § 8 |
+| — | Session-start drift: vthrudebugger_v1 `CLAUDE.md` differs from its `project-rules/` copy (Voice-Flow settled 13-11-2026) | Settled in its own session | `harness/doc-structure-plan.md` § 8 |
+| — | The Phase 7 line in `harness/doc-structure-plan.md` § 3 *Phase 7* is superseded by the list in *Next gate* below (Amit, 13-11-2026); the plan stays as history | Use the *Next gate* list | this file |
 
 Known and accepted items: `harness/backlog.md` § *Known and accepted*. Open setup tests: `baselines/global-open-tests.md`.
 
@@ -60,11 +64,14 @@ None yet
 ## Decisions in force
 
 The D-rows in `SETUP-PLAN.md` (index at its top; moves to `DECISIONS.md` in T30) and the
-rules in `STANDARDS.md`. This harness: D33. Newest: D48 (11-11-2026), closed in Go 2.
+rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-11-2026.
 
 ## Next gate
 
-Phase 6 (Voice-Flow pilot): in a fresh session, on Amit's word. No push without his word. The uncommitted Voice-Flow and vthrudebugger files stay
+Phase 7, each project in its own fresh session, on Amit's word. Phase 7 projects:
+FinNode · Emp Portal · vthrudebugger_v1 · AtWorkpe (AW). AtWorkpe is on GitHub only
+(`github.com/AmitJangra25/AtWorkpe`) — clone it before its Phase 7 session. Removed
+13-11-2026: Debugger v2 (Amit). No push without his word. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.

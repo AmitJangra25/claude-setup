@@ -4,8 +4,8 @@ Purpose: Work found outside the task in hand, not yet planned.
 Audience: Claude and the owner.
 Read when: Planning, or when a finding comes up.
 Owner: <Project> sessions (changes are the owner's decision).
-Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. Closed items move to `BACKLOG-DONE.md`.
-Related: `docs/ROADMAP.md` · `docs/BACKLOG-DONE.md`
+Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. A closed item leaves one line in *Completed*. Growth and splits: `DOCUMENTATION-STANDARD.md` § *Growth and rollover*.
+Related: `docs/ROADMAP.md` · `docs/archive/`
 Status: active
 Last reviewed: DD-MM-YYYY
 
@@ -46,6 +46,10 @@ None yet
 
 | ID | Item | Reason |
 |---|---|---|
+
+None yet
+
+## Completed
 
 None yet
 

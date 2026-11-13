@@ -7,7 +7,7 @@ Owner: Claude (rules are Amit's decisions).
 Update rule: Only from a real case logged in the backlog, recorded as a D-number. Replace superseded text; no history here.
 Related: `DOCUMENT-MAP.md` (which document is where) · `STANDARDS.md` (how to work) · `harness/doc-structure-plan.md` (the agreed plan) · `templates/`
 Status: in force from 10-11-2026 (Phase 1, T1); templates aligned (T3, 10-11-2026); format check built (T34)
-Last reviewed: 10-11-2026
+Last reviewed: 13-11-2026
 
 ---
 
@@ -120,11 +120,11 @@ Sections in this order. Templates (`templates/`) are the fill-in forms; this lis
 | `PROJECT-MAP.md` | full | Main folders · Entry points · Key flows · Not here · the seven guards |
 | `.claude/current-task.md` | own (*Task file rules*) | Status · Updated · Session/branch · Live · Resume |
 | `ROADMAP.md` | full + Next ID | Progress line · Summary · Phase n — name · planned / active / done (Goal · Done when · table `ID · Task · Acceptance · Status · Priority · Size · Decision · Next action` · moved lines · at phase end: still on goal?) · Completed · Older records |
-| `ROADMAP-DONE.md` | short | Table `ID · Task · Phase · Done · Decision · Result / testing pending` |
-| `BACKLOG.md` | full + Next ID | One line: raise at once if an item blocks the task or risks safety, security or data · To build (`ID · Item · Why · Worth doing · Blocks current task · Priority · Size · Tokens · Status · Next action`) · In full (`### B<n> — title`: Found in · Decision · Detail) · Deferred (`ID · Item · Recheck date`) · Known and accepted (`ID · Item · Reason`) · Older records |
-| `BACKLOG-DONE.md` | short | Table `ID · Item · Closed · How: → T#, fixed, or dropped (why)` |
-| `DECISIONS.md` | full + Next ID | Index (`ID · Title · Date · Status`, including IDs moved to `-OLD`) · Active decisions (`### D<n> — title (DD-MM-YYYY)`: Status · Decision · Reason · Rejected · Affected files · Linked task) · Older records |
-| `DECISIONS-OLD.md` | short | Per decision: D<n> · Status: superseded / partly superseded by D# · Reason · original text |
+| `ROADMAP-DONE.md` | short | Only after a split (*Growth and rollover*): the moved *Completed* lines, word for word |
+| `BACKLOG.md` | full + Next ID | One line: raise at once if an item blocks the task or risks safety, security or data · To build (`ID · Item · Why · Worth doing · Blocks current task · Priority · Size · Tokens · Status · Next action`) · In full (`### B<n> — title`: Found in · Decision · Detail) · Deferred (`ID · Item · Recheck date`) · Known and accepted (`ID · Item · Reason`) · Completed · Older records |
+| `BACKLOG-DONE.md` | short | Only after a split (*Growth and rollover*): the moved *Completed* lines, word for word |
+| `DECISIONS.md` | full + Next ID | Index (`ID · Title · Date · Status`, including IDs moved to `-OLD`) · Active decisions (`### D<n> — title (DD-MM-YYYY)`: Status · Decision · Reason · Rejected · Affected files · Linked task) · Completed · Older records |
+| `DECISIONS-OLD.md` | short | Only after a split (*Growth and rollover*): the moved *Completed* lines, word for word |
 | Reference document | full | Summary · one section per question · Related |
 | Record | record | Content word for word |
 
@@ -155,11 +155,13 @@ A copy is a defect except in these cases. Each copy names its source.
 
 ## Growth and rollover
 
-- Done tasks → `ROADMAP-DONE.md`; closed backlog items → `BACKLOG-DONE.md`; superseded decisions → `DECISIONS-OLD.md`. One line is left behind for each.
+- **Start with one file each:** `ROADMAP.md`, `BACKLOG.md`, `DECISIONS.md`. No `-DONE` or `-OLD` file until a split is needed.
+- **Finished work stays in the file,** in a short `## Completed` section, one line per item: a done task, a closed backlog item, or a superseded decision (naming the D-number that replaced it).
+- **Old detail always goes to the archive** (`docs/archive/` in a project; `baselines/` or `archive/` in Claude Setup) as a dated record. The *Completed* line points to it.
+- **Split only when *Completed* grows past about 150 lines:** its lines move word for word to `ROADMAP-DONE.md`, `BACKLOG-DONE.md` or `DECISIONS-OLD.md`. The original file keeps one pointer line in *Completed* and one in *Older records*.
 - Done files split by year when they grow.
 - Every live file ends with `## Older records`, one line per old file.
-- **Triggers:** about 300 lines, or 10 done rows. Claude proposes, Amit approves, a line-count check confirms nothing was lost.
-- Large reference documents split by topic.
+- **Other growth:** a live file or reference document past about 300 lines → Claude proposes a rollover or a split by topic, Amit approves, a line-count check confirms nothing was lost.
 
 ## Task file rules
 

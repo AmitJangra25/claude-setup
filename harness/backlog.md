@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 12-11-2026
 
-Next ID: B36
+Next ID: B37
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -41,7 +41,8 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 | B33 | Voice Flow `git branch` allow rules in plain-git form | Voice Flow's project settings file (.claude/settings.json, lines 93–98) has the same `git branch` allow rules in plain-git form (noted 06-11-2026, after B20); probably harmless (rtk rewrites first), not verified inside Voice Flow | unverified | no | P4 | S | ~5k | [ ] | Assess in Voice-Flow's own session |
 | B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | 30-day review (Phase 9). |
 | B35 | "Imports only" vs the comment in global `CLAUDE.md` | `DOCUMENTATION-STANDARD.md` line 51 says imports only; Amit keeps one non-loading HTML comment (D48). This item authorises the line-51 change | yes | no | P4 | S | ~3k | [x] 11-11-2026 | None — line 51 changed in Go 2; D48 closed |
-10 or more done rows: rollover to a `-DONE` file is due (`DOCUMENTATION-STANDARD.md` § *Growth and rollover*); proposed, not done.
+| B36 | Done files only by size | The Voice-Flow Phase 6 pilot (its D22) kept finished work in one file with history in `docs/archive/`; the old trigger (about 300 lines or 10 done rows) created `-DONE`/`-OLD` files too early. This item authorises the § *Growth and rollover* change (D49) | yes | no | P3 | S | ~25k | [x] 13-11-2026 | None — rule in `DOCUMENTATION-STANDARD.md` § *Growth and rollover* |
+Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
 
 ## In full
 
