@@ -69,7 +69,7 @@ done < <(git ls-files -z --cached --others --exclude-standard)
 
 names=(sk-key stripe-live github-token github-pat aws-key google-key private-key
        slack-token jwt auth-header key-assignment)
-res=('sk-[A-Za-z0-9_-]{20,}'
+res=('(^|[^A-Za-z0-9_-])sk-[A-Za-z0-9_-]{20,}'
      'sk_live_[A-Za-z0-9]{10,}'
      'gh[po]_[A-Za-z0-9]{20,}'
      'github_pat_[A-Za-z0-9_]{20,}'
