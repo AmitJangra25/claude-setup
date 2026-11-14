@@ -79,8 +79,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-
 Phase 7, each project in its own fresh session, on Amit's word. **Next: Emp Portal.** Phase 7 projects:
 FinNode (done 14-11-2026) · Emp Portal · vthrudebugger_v1 · AtWorkpe (AW). AtWorkpe is on GitHub only
 (`github.com/AmitJangra25/AtWorkpe`) — clone it before its Phase 7 session. Removed
-13-11-2026: Debugger v2 (Amit). No push without his word. The uncommitted Voice-Flow and vthrudebugger files stay
-out of setup commits. The setup is finished when every line of `harness/overview.md` § *What
+13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
+commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
 replay.
 
