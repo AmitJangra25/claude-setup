@@ -7,15 +7,23 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: Every changing setup plan. Overwrite; finished items move to a dated record. Commits, branches, push state and file counts are never recorded here — read them from git.
 Related: `harness/backlog.md` · `harness/overview.md` · `harness/doc-structure-plan.md` · `baselines/global-open-tests.md` · `SETUP-PLAN.md` (decisions)
 Status: active
-Last reviewed: 13-11-2026
+Last reviewed: 14-11-2026
 
 ---
 
-**Last verified:** 13-11-2026
+**Last verified:** 14-11-2026
 
 ## Current phase
 
-Documentation structure: Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
+Documentation structure: Phase 7 under way. **FinNode done** in its own session: PR #7
+(Phase 7 docs commit `7d3b28e`, merge `959d7a7`) merged into `phase3/sms`, **not `main`**;
+`phase3/sms` is 5 commits ahead of `main`, including the unaccepted Phase 3 WIP commit `aec8d49`.
+FinNode's `CLAUDE.md` (with the project-map rule line, B16) is in that merge, so the old
+"uncommitted rule line" item is closed. `project-rules/FinNode/CLAUDE.md` copied 14-11-2026
+from FinNode's checked-out `phase3/sms` file (`cmp`-identical) — it mirrors `phase3/sms`, not
+`main`. Next project: Emp Portal.
+
+Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
 (Voice-Flow PR #94, merged). Phase 6 follow-ups done 13-11-2026: `project-rules/Voice-Flow/CLAUDE.md`
 copied from the merged source (`cmp`-identical); done-file rule settled (D49, B36).
 Phase 5 (T21 `ENVIRONMENT.md`) done 12-11-2026 — built, all Go 2
@@ -37,7 +45,7 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | ID | Item | Decision | Link |
 |---|---|---|---|
 | B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started | `harness/backlog.md` |
-| B16 | FinNode `CLAUDE.md` (`~/Documents/VS Code/FinNode/CLAUDE.md`) holds the project-map rule line, uncommitted since 06-11-2026 (still uncommitted 11-11-2026) | Goes in with FinNode's next PR, in FinNode's own session | `baselines/task-history-11-11-2026.md` |
+| — | `project-rules/FinNode/CLAUDE.md` mirrors FinNode's `phase3/sms` branch, not `main` (14-11-2026) | Copy again after `phase3/sms` reaches `main` | *Current phase* above |
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
@@ -68,8 +76,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-
 
 ## Next gate
 
-Phase 7, each project in its own fresh session, on Amit's word. Phase 7 projects:
-FinNode · Emp Portal · vthrudebugger_v1 · AtWorkpe (AW). AtWorkpe is on GitHub only
+Phase 7, each project in its own fresh session, on Amit's word. **Next: Emp Portal.** Phase 7 projects:
+FinNode (done 14-11-2026) · Emp Portal · vthrudebugger_v1 · AtWorkpe (AW). AtWorkpe is on GitHub only
 (`github.com/AmitJangra25/AtWorkpe`) — clone it before its Phase 7 session. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. The uncommitted Voice-Flow and vthrudebugger files stay
 out of setup commits. The setup is finished when every line of `harness/overview.md` § *What

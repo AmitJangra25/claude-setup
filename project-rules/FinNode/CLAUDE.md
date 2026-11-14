@@ -6,29 +6,24 @@ Offline-first personal Android finance tracker for Indian users. Kotlin + Jetpac
 active and what its success criteria are. Full reference docs are indexed in
 [README.md](README.md). Phase history lives in the roadmap, not here.
 
-## How to work on this project
+## Commands
 
-`~/.claude/STANDARDS.md` governs — **Evidence, not assumption** · **Fix the cause, not the
-symptom** · **Build the smallest thing that does the job** · **Stay on the task you were
-given**. Read them there. This section records only what they have cost *here*.
+```bash
+export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 
-Every defect this project has shipped got past a compiler and a green test suite first —
-four in Phase 0, five in 1b, three and two in 1c, one in 2a, all hiding behind the
-assumption that a build means a working app.
+./gradlew assembleDebug
+./gradlew testDebugUnitTest          # JVM unit tests — no device needed
+./gradlew connectedDebugAndroidTest  # instrumented + Compose UI tests — finnode_api36 only:
+                                     # it deletes the attached device's transactions
+./gradlew lint
+./scripts/audit.sh                   # the hard rules a compiler cannot check
+```
 
-- A defect that cannot be fixed now goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was
-  **observed**, not guessed — and so does anything serious noticed while working. But writing
-  it down is itself a change, so it happens **only when the approved plan for the task
-  included that recording**. If the plan did not, say what you found in a line or two and ask
-  before writing it anywhere: backlog, roadmap, memory, `CLAUDE.md` or any other doc. Either
-  way, carry on with the task you were given — except if evidence shows the task will miss
-  its success measure. In that case, stop, show me the number, and wait. An unrequested fix
-  costs a review, a device pass, and a fresh chance to break something that already worked.
-- Building ahead of the phase needs a reason recorded at the time. `DiaryDao`, `ReminderDao`
-  and `last4Digits` are the precedent — each wrote down why a form with nothing behind it
-  throws the user's input away.
-- Feature scope is [docs/BACKLOG.md](docs/BACKLOG.md). Ask *is this required to use the app
-  daily?* If the answer is no, it waits for the phase that owns it.
+Toolchain lives outside the defaults: JDK 17 at
+`/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`, Android SDK at
+`/opt/homebrew/share/android-commandlinetools`. `JAVA_HOME` must be exported before any
+`./gradlew` invocation. Java 17 is required by AGP 9.4.0. Booting `finnode_api36` and the
+rest of the setup is in [docs/SETUP.md](docs/SETUP.md).
 
 ### Before any change is called done
 
@@ -86,7 +81,7 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
   so moving the device clock forward does *not* fire a pending sweep, and forcing a periodic
   job that already ran in its period is refused outright. The recipe that does work — fresh
   install with the clock just before 9, then wait — is in
-  [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) under 2c-ii. A sweep that was never seen to
+  [docs/archive/roadmap-to-13-11-2026.md](docs/archive/roadmap-to-13-11-2026.md#verifying-the-sweep--a-wall-clock-jump-is-not-enough) under 2c-ii. A sweep that was never seen to
   run is a sweep that does not run.
 - **Only `core/domain/MoneyMath` derives a figure from transactions.** No ViewModel sums,
   nets, balances or compares amounts itself. `MoneyMath` is pure JVM so every figure the user
@@ -128,7 +123,51 @@ export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
 - **Empty is not the same as not-yet-loaded.** Any state read from Room or DataStore carries
   a loading flag, or the UI confidently asserts something false about the user's own data.
 
-## Use what already exists
+### How to work on this project
+
+`~/.claude/STANDARDS.md` governs — **Evidence, not assumption** · **Fix the cause, not the
+symptom** · **Build the smallest thing that does the job** · **Stay on the task you were
+given**. Read them there. This section records only what they have cost *here*.
+
+- A defect that cannot be fixed now goes in [docs/BACKLOG.md](docs/BACKLOG.md) with what was
+  **observed**, not guessed — and so does anything serious noticed while working. But writing
+  it down is itself a change, so it happens **only when the approved plan for the task
+  included that recording**. If the plan did not, say what you found in a line or two and ask
+  before writing it anywhere: backlog, roadmap, memory, `CLAUDE.md` or any other doc. Either
+  way, carry on with the task you were given — except if evidence shows the task will miss
+  its success measure. In that case, stop, show me the number, and wait. An unrequested fix
+  costs a review, a device pass, and a fresh chance to break something that already worked.
+- Building ahead of the phase needs a reason recorded at the time. `DiaryDao`, `ReminderDao`
+  and `last4Digits` are the precedent — each wrote down why a form with nothing behind it
+  throws the user's input away.
+- Feature scope is [docs/BACKLOG.md](docs/BACKLOG.md). Ask *is this required to use the app
+  daily?* If the answer is no, it waits for the phase that owns it.
+
+### Private data, design reference and permissions
+
+- **The SMS corpora live in `private/`, which never enters git** — `sms-corpus.jsonl` (151
+  real messages, 3a's) and `sms-corpus-2.jsonl` (775 from the owner's phone, GO 2), both
+  cleaned. No real account or card digit goes into a committed file; tests use invented ones.
+  Raw bank SMS and statements live in `private/` only; a test that needs the corpus needs an
+  anonymised copy committed on purpose, which is Phase 3's decision to make, not a
+  convenience to take.
+- **Claude never reads `private/`** — not with Read, Grep or any shell command, and not SMS
+  text from logs either: counts and crash lines only. `.claude/settings.json` denies the
+  Read tool and the common readers in every rtk spelling; a script or a recursive grep from
+  a parent folder is not covered, so the rule is the rule, not the fence.
+- **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
+  for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
+  bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and
+  [docs/TECH_STACK.md](docs/TECH_STACK.md).
+- **The app declares two permissions.** `POST_NOTIFICATIONS`, requested from the Reminders
+  screen, and `READ_SMS`, requested from the SMS inbox only after its disclosure is accepted
+  — telephony is marked optional. The notification listener stays undeclared until a phase
+  builds its disclosure: declaring a sensitive permission before the feature exists is what
+  gets a Play Store submission rejected. **The disclosure text must stay true to the code**:
+  it promises only bank messages are kept, which is why a message from a phone number is
+  skipped and never stored (`SmsParser`, `Kind.PERSONAL`).
+
+### Use what already exists
 
 Check here before writing something new — most of it is one import away.
 
@@ -176,60 +215,23 @@ rename or delete files, update it in the same commit, following the guards at it
   you use — from Phase 5 that is your own, and the debug build's `.debug` application id is
   no protection, because that is the build you will be using it in.
 
-## Architecture summary
+## Past defects
 
-MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` for one-shot events. Repositories return `Flow`; Compose collects with `collectAsStateWithLifecycle()`. Hilt for all DI. Errors as `Result`/sealed classes — no exceptions across layer boundaries. See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+Every defect this project has shipped got past a compiler and a green test suite first —
+four in Phase 0, five in 1b, three and two in 1c, one in 2a, all hiding behind the
+assumption that a build means a working app.
 
-## Current state
+The hard rules above that name a cost — 1b's Save button, checkpoint 3's six copies of
+`signedMinor`, 2a's `getById` on transaction detail — are those defects, each with the rule
+that stops it returning. Step 3 of Phase 3 (built before its goal was measured) is in
+[docs/archive/claude-setup-fix-note-29-10-2026.md](docs/archive/claude-setup-fix-note-29-10-2026.md).
 
-**Phase 3 is in progress on branch `phase3/parser`.** 3a (the parser) was signed off on
-27-10-2026 for its corpus; 3b's GO 3 — no wrong account, accounts found in SMS, auto-filing,
-and a balance that starts on the account's set-up day — is built and phone-tested (steps 1,
-2a, 2b, 2c). 3b and 3c are not signed off. Next in the agreed order: categories from SMS, then
-Insights and Home to the new designs. Phase 2 was signed off on 26-10-2026 with one deviation
-(2d-ii-b, Paging, not built — search typing is still to be re-checked on a real phone in
-Phase 3's phone pass). Read [docs/ROADMAP.md](docs/ROADMAP.md#checkpoints) first: what
-is done and device-verified, the figures, and the corpus's known gaps are kept there, not here.
+## Documents
 
-Two standing items that are not checkpoints, and one constraint that is neither:
-
-- **The SMS corpora live in `private/`, which never enters git** — `sms-corpus.jsonl` (151
-  real messages, 3a's) and `sms-corpus-2.jsonl` (775 from the owner's phone, GO 2), both
-  cleaned. No real account or card digit goes into a committed file; tests use invented ones.
-  Raw bank SMS and statements live in `private/` only; a test that needs the corpus needs an
-  anonymised copy committed on purpose, which is Phase 3's decision to make, not a
-  convenience to take.
-- **Claude never reads `private/`** — not with Read, Grep or any shell command, and not SMS
-  text from logs either: counts and crash lines only. `.claude/settings.json` denies the
-  Read tool and the common readers in every rtk spelling; a script or a recursive grep from
-  a parent folder is not covered, so the rule is the rule, not the fence.
-- **`docs/Design/src/` is the final visual reference** since the 2026-09-03 redesign — read
-  for layout, spacing, colour and copy, **never ported line-by-line**. The consequences that
-  bite are in [docs/DESIGN_SYSTEM.md](docs/DESIGN_SYSTEM.md) and
-  [docs/TECH_STACK.md](docs/TECH_STACK.md).
-- **The app declares two permissions.** `POST_NOTIFICATIONS`, requested from the Reminders
-  screen, and `READ_SMS`, requested from the SMS inbox only after its disclosure is accepted
-  — telephony is marked optional. The notification listener stays undeclared until a phase
-  builds its disclosure: declaring a sensitive permission before the feature exists is what
-  gets a Play Store submission rejected. **The disclosure text must stay true to the code**:
-  it promises only bank messages are kept, which is why a message from a phone number is
-  skipped and never stored (`SmsParser`, `Kind.PERSONAL`).
-
-## Commands
-
-```bash
-export JAVA_HOME=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
-
-./gradlew assembleDebug
-./gradlew testDebugUnitTest          # JVM unit tests — no device needed
-./gradlew connectedDebugAndroidTest  # instrumented + Compose UI tests — finnode_api36 only:
-                                     # it deletes the attached device's transactions
-./gradlew lint
-./scripts/audit.sh                   # the hard rules a compiler cannot check
-```
-
-Toolchain lives outside the defaults: JDK 17 at
-`/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home`, Android SDK at
-`/opt/homebrew/share/android-commandlinetools`. `JAVA_HOME` must be exported before any
-`./gradlew` invocation. Java 17 is required by AGP 9.4.0. Booting `finnode_api36` and the
-rest of the setup is in [docs/SETUP.md](docs/SETUP.md).
+- [docs/ROADMAP.md](docs/ROADMAP.md) — phases, tasks and progress; **where the work stands now** (this file keeps no status).
+- [docs/BACKLOG.md](docs/BACKLOG.md) — found work not yet planned, and what is deliberately not in v1.
+- [docs/DECISIONS.md](docs/DECISIONS.md) — decisions in force, D1 onwards; product decisions stay in [docs/SPEC.md](docs/SPEC.md) § 1–2.
+- [docs/archive/](docs/archive/) — dated records: the roadmap and backlog before 13-11-2026, phase history, word for word.
+- `.claude/current-task.md` — the task in progress (git-ignored).
+- [README.md](README.md) — index of the reference docs.
+- [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) — MVVM + Repository. One ViewModel per screen, `StateFlow` for state, `Channel` for one-shot events. Repositories return `Flow`; Compose collects with `collectAsStateWithLifecycle()`. Hilt for all DI. Errors as `Result`/sealed classes — no exceptions across layer boundaries.
