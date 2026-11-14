@@ -1,16 +1,19 @@
 - [Verify the shipped bundle, not source](verify-shipped-bundle-not-source.md) — Amit tests the installed .app; green tests prove nothing about what shipped
 - [Don't delete reference docs](dont-delete-reference-docs.md) — relocate stale specs to docs/ and mark what's superseded; deletion is for dead code, not documents
 - [Report findings, don't chase them](report-findings-dont-chase-them.md) — finish the ask, then list what you noticed; Amit picks what's worth doing
-- [Dictation is the primary product](dictation-is-the-primary-product.md) — dictation + offline STT first; Chat and Vault paused (no new work, never removed) since 11-10-2026
-- [Widget is the primary surface](widget-is-the-primary-surface.md) — test dictation in the floating widget first; Compose secondary, kept working (11-10-2026)
+- [Dictation is the primary product](dictation-is-the-primary-product.md) — pointer → docs/decisions.md D1
+- [Widget is the primary surface](widget-is-the-primary-surface.md) — pointer → docs/decisions.md D2
 - [Amit uses voice input](amit-uses-voice-input.md) — read through transcription typos; a later typed message overrides an earlier picker answer
 - [Docs are products, not logs](docs-are-products-not-logs.md) — write about the app, not its history; append-only dated logs mean it's time to rewrite
-- [History cap: 5000 now, uncapped deferred](history-must-be-unlimited.md) — no arbitrary ceiling; don't lower it to fix slowness
+- [History cap](history-must-be-unlimited.md) — pointer → docs/decisions.md D21
 - [Check history.json before chasing a polish bug](check-history-json-before-chasing-polish.md) — raw/polished is ground truth; the feature was fine twice
 - [Fix from root, flag workarounds](fix-root-cause-flag-workarounds.md) — say "this is a workaround" out loud; Amit rejects patchwork and checks blast radius
 - [rtk proxy prompt: choose Yes](rtk-proxy-prompt-choose-yes.md) — never "Don't ask again"; it re-adds the blanket Bash(rtk proxy *) rule
 - [I can't see permission prompts](cannot-see-permission-prompts.md) — an approved prompt looks identical to an ungated run; ask Amit, never infer silence from output
 - [Stop at the earliest gate](stop-at-earliest-gate.md) — with several approval gates in one message, stop at the first open one before any deletion or install
 - [State workaround behaviour before building](state-workaround-behaviour-before-building.md) — say what the user will still see and any manual step; stop after investigations; don't re-raise deferred issues
-- [Accounts → subscription, later](accounts-subscription-later.md) — rework after Phase 4–5; guest sign-out must never lose History (fixed #51, keep it)
-- [Rollout plan, 5–10 users](rollout-plan-5-10-users.md) — split PRs B2/C/D → E1/E2 → Amit tests 1–2 wks → F/G/S; licence keys; old data not critical (20-10-2026)
+- [Accounts → subscription, later](accounts-subscription-later.md) — pointer → docs/decisions.md D4
+- [Docs: overview first](docs-overview-first.md) — rule/pitfall/test lists open with a one-line-per-item table, details below; CLAUDE.md points, never copies (07-11-2026)
+- [Real goal: structured output](real-goal-structured-human-output.md) — pointer → D7; ask before relaxing keep-their-words rules
+- [Focus on the main goal, finish](focus-main-goal-finish.md) — only the plan's tests per item, no side detours (07-11-2026)
+- [Rollout plan, 5–10 users](rollout-plan-5-10-users.md) — pointer → docs/decisions.md D3 (with D4)

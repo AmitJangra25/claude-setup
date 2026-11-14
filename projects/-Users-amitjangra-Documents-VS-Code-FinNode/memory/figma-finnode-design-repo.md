@@ -1,8 +1,11 @@
 ---
 name: figma-finnode-design-repo
-description: The FinNode Figma Make design lives in a private GitHub repo, AmitJangra25/Figma_FinNode
+description: "The FinNode Figma Make design lives in a private GitHub repo, AmitJangra25/Figma_FinNode"
 metadata:
+  node_type: memory
   type: reference
+  originSessionId: bb4feb18-88a7-4c27-9799-c07407dfd487
+  modified: 2026-11-13T09:36:00.434Z
 ---
 
 The Figma Make design for FinNode is pushed to a **private** GitHub repo:
@@ -17,4 +20,4 @@ rebuilt in Compose.
 private repo can be cloned directly. **Do not make it public.** Clone it to a scratch
 folder outside FinNode — cloning inside puts a second repo in the working tree.
 
-As of 2026-10-06 it had not been cloned or read. See [[finnode-ui-redesign-handoff]].
+As of 2026-10-06 it had not been cloned or read. See `docs/ROADMAP.md` T3.

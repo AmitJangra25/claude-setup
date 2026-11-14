@@ -1,2 +1,4 @@
 - [V-Thru customer app debug toggle](vthru_customer_app_debug_toggle.md) — host app already has enable/disable UI for the debugger
+- [Mobile project is read-only](mobile_project_read_only.md) — never write in ~/Documents/VS Code/mobile; read only
+- [v1 is R&D, mobile lags on purpose](v1_is_rnd_mobile_lags_on_purpose.md) — never suggest syncing mobile; port only what the user picks
 - [Debugger workflow preferences](vthru_debugger_workflow_preferences.md) — plan-first, ask-don't-guess, one PR per feature off main
