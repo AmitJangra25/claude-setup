@@ -7,7 +7,7 @@ Owner: Claude (every change is Amit's decision).
 Update rule: Same change that adds, moves, renames or retires a document. One row per document; detail stays in the document.
 Related: `DOCUMENTATION-STANDARD.md` (the rules) · `harness/doc-structure-plan.md` (the plan) · replaced three old maps, trimmed 11-11-2026 (D47; old text: `baselines/old-document-maps-11-11-2026.md`)
 Status: in force (D47, closed 11-11-2026)
-Last reviewed: 13-11-2026
+Last reviewed: 14-11-2026
 
 ---
 
@@ -71,8 +71,8 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | `MOBILE-CONTEXT.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
 | `DEPENDENCIES.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
 | `docs/README.md` | VF | Document | Becomes VF's map or is replaced — decided in Phase 6 |
-| Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; others found in Phase 7 survey | Document | Split by topic in T28 |
-| Skills | Found in Phase 7 survey | Not a document | *Not documents* |
+| Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; FN (`docs/SPEC.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DESIGN_SYSTEM.md`, `RISKS.md`, `SCREENS.md`, `SETUP.md`, `TECH_STACK.md`, `Design/README.md`; indexed from `README.md`); others found in Phase 7 survey | Document | Split by topic in T28 |
+| Skills | FN (three project skills: `device-walk`, `live-data`, `money-math`); others found in Phase 7 survey | Not a document | *Not documents* |
 | Acceptance sheets | Found in Phase 7 survey | Not a document | *Not documents* |
 | `launch.json` | Found in Phase 7 survey | Not a document | *Not documents* |
 
