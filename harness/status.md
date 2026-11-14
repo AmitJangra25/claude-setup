@@ -21,7 +21,7 @@ Documentation structure: Phase 7 under way. **FinNode done** in its own session:
 FinNode's `CLAUDE.md` (with the project-map rule line, B16) is in that merge, so the old
 "uncommitted rule line" item is closed. `project-rules/FinNode/CLAUDE.md` copied 14-11-2026
 from FinNode's checked-out `phase3/sms` file (`cmp`-identical) — it mirrors `phase3/sms`, not
-`main`. Next project: Emp Portal.
+`main`. Next project: AtWorkpe, then Emp Portal.
 
 Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
 (Voice-Flow PR #94, merged). Phase 6 follow-ups done 13-11-2026: `project-rules/Voice-Flow/CLAUDE.md`
@@ -76,8 +76,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-
 
 ## Next gate
 
-Phase 7, each project in its own fresh session, on Amit's word. **Next: Emp Portal.** Phase 7 projects:
-FinNode (done 14-11-2026) · Emp Portal · vthrudebugger_v1 · AtWorkpe (AW). AtWorkpe is on GitHub only
+Phase 7, each project in its own fresh session, on Amit's word. **Next: AtWorkpe (set up fresh), then Emp Portal** (Amit, 14-11-2026). Phase 7 projects:
+FinNode (done 14-11-2026) · AtWorkpe (AW) · Emp Portal · vthrudebugger_v1. AtWorkpe is on GitHub only
 (`github.com/AmitJangra25/AtWorkpe`) — clone it before its Phase 7 session. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
 commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What
