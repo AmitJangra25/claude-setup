@@ -9,7 +9,7 @@ Related: `project-rules/manifest.tsv` (mirrored projects) · `ENVIRONMENT.md` (d
 
 ## Projects
 
-Paths last checked against the filesystem 20-09-2026; not re-checked since (11-11-2026: the read-only check was blocked — unverified). Per-project progress lives in the project's own files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`).
+Paths last checked against the filesystem 20-09-2026; not re-checked since (11-11-2026: the read-only check was blocked — unverified). AW, EP and DB1 paths checked 16-11-2026 (Phase 7 follow-ups). Per-project progress lives in the project's own files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`).
 
 | Code | Name | Path | Status | Has CLAUDE.md | What it is | Data warning |
 |---|---|---|---|---|---|---|

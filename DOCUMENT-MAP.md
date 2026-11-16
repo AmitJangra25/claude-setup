@@ -69,11 +69,11 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | `PLAN.md` | DB1 | Document | Archived word for word to `docs/archive/plan-16-11-2026.md` (Phase 7, 16-11-2026); not a live document |
 | `INTEGRATION.md` | DB1 | Document | Live consumer guide at the project root; ships in the npm package (`package.json` `files`), so no Claude Setup header |
 | `MOBILE-CONTEXT.md` | DB1 | Not a live project document | Local-only and git-ignored; not in the project's document list |
-| `DEPENDENCIES.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
+| `DEPENDENCIES.md` | None found in Phase 7 | Document | Decided in Phase 7 |
 | `docs/README.md` | VF | Document | Becomes VF's map or is replaced — decided in Phase 6 |
 | Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; FN (`docs/SPEC.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DESIGN_SYSTEM.md`, `RISKS.md`, `SCREENS.md`, `SETUP.md`, `TECH_STACK.md`, `Design/README.md`; indexed from `README.md`); others found in Phase 7 survey | Document | Split by topic in T28 |
-| Skills | FN (three project skills: `device-walk`, `live-data`, `money-math`); others found in Phase 7 survey | Not a document | *Not documents* |
-| Acceptance sheets | Found in Phase 7 survey | Not a document | *Not documents* |
+| Skills | FN (three project skills: `device-walk`, `live-data`, `money-math`); others: None found in Phase 7 | Not a document | *Not documents* |
+| Acceptance sheets | None found in Phase 7 | Not a document | *Not documents* |
 | `launch.json` | AW, EP (each in its own `.claude/` folder); others found in Phase 7 survey | Not a document | *Not documents* |
 | `client/README.md` | EP (whole-repo README kept inside `client/`) | Document | The project's front page, like a root `README.md`; indexed from its `CLAUDE.md` |
 

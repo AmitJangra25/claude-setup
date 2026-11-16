@@ -11,7 +11,7 @@ Last reviewed: 16-11-2026
 
 ---
 
-**Last verified:** 14-11-2026
+**Last verified:** 16-11-2026
 
 ## Current phase
 
@@ -60,7 +60,6 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
 | — | Emp Portal `CLAUDE.md` shows as drifted: the copy is GitHub `main`, the local folder is on the old fix branch (16-11-2026) | Expected until the local folder is on `main`; until then do not run `sync.sh --pull` for Emp Portal (it would copy the old file back) | *Current phase* above |
-| — | The Phase 7 line in `harness/doc-structure-plan.md` § 3 *Phase 7* is superseded by the list in *Next gate* below (Amit, 13-11-2026); the plan stays as history | Use the *Next gate* list | this file |
 
 Known and accepted items: `harness/backlog.md` § *Known and accepted*. Open setup tests: `baselines/global-open-tests.md`.
 
