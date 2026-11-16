@@ -23,7 +23,11 @@ FinNode's `CLAUDE.md` (with the project-map rule line, B16) is in that merge, so
 from FinNode's checked-out `phase3/sms` file (`cmp`-identical) — it mirrors `phase3/sms`, not
 `main`. **AtWorkpe done** in its own session: PR #1 (docs commit `7a0d8e4`, merge `a0a9641`)
 merged into **`main`**; `project-rules/AtWorkpe/CLAUDE.md` copied 16-11-2026 from `main` at
-`c151e44` (includes PR #3), `cmp`-identical. Next project: Emp Portal.
+`c151e44` (includes PR #3), `cmp`-identical. **Emp Portal done** in its own session: PR #14
+(merge `6e93913`) and PR #15 (merge `6d05bc6`) merged into **`main`**. Its local folder is still
+on `fix/dead-code-cleanup-and-test-fix`, so `project-rules/Emp portal/CLAUDE.md` was copied
+16-11-2026 from GitHub `main` (`6d05bc6`, read with `git show`), not from the folder;
+`cmp`-identical. Next project: vthrudebugger_v1.
 
 Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
 (Voice-Flow PR #94, merged). Phase 6 follow-ups done 13-11-2026: `project-rules/Voice-Flow/CLAUDE.md`
@@ -51,6 +55,7 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
+| — | Emp Portal `CLAUDE.md` shows as drifted: the copy is GitHub `main`, the local folder is on the old fix branch (16-11-2026) | Expected until the local folder is on `main`; until then do not run `sync.sh --pull` for Emp Portal (it would copy the old file back) | *Current phase* above |
 | — | Session-start drift: vthrudebugger_v1 `CLAUDE.md` differs from its `project-rules/` copy (Voice-Flow settled 13-11-2026) | Settled in its own session | `harness/doc-structure-plan.md` § 8 |
 | — | The Phase 7 line in `harness/doc-structure-plan.md` § 3 *Phase 7* is superseded by the list in *Next gate* below (Amit, 13-11-2026); the plan stays as history | Use the *Next gate* list | this file |
 
@@ -78,8 +83,8 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-
 
 ## Next gate
 
-Phase 7, each project in its own fresh session, on Amit's word. **Next: Emp Portal** (Amit, 16-11-2026). Phase 7 projects:
-FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal · vthrudebugger_v1. Removed
+Phase 7, each project in its own fresh session, on Amit's word. **Next: vthrudebugger_v1** (Amit, 16-11-2026). Phase 7 projects:
+FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
 commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's

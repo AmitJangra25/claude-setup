@@ -74,7 +74,8 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; FN (`docs/SPEC.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DESIGN_SYSTEM.md`, `RISKS.md`, `SCREENS.md`, `SETUP.md`, `TECH_STACK.md`, `Design/README.md`; indexed from `README.md`); others found in Phase 7 survey | Document | Split by topic in T28 |
 | Skills | FN (three project skills: `device-walk`, `live-data`, `money-math`); others found in Phase 7 survey | Not a document | *Not documents* |
 | Acceptance sheets | Found in Phase 7 survey | Not a document | *Not documents* |
-| `launch.json` | AW (in its own `.claude/` folder); others found in Phase 7 survey | Not a document | *Not documents* |
+| `launch.json` | AW, EP (each in its own `.claude/` folder); others found in Phase 7 survey | Not a document | *Not documents* |
+| `client/README.md` | EP (whole-repo README kept inside `client/`) | Document | The project's front page, like a root `README.md`; indexed from its `CLAUDE.md` |
 
 ## Not documents
 
