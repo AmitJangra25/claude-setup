@@ -360,7 +360,7 @@ Also: ~~fix the outdated D46 line in `templates/project-map.md`~~ — done early
 2. A fresh read-only "no content lost" check finds no rule, warning, limitation or safety note lost.
 3. The old-text record is `cmp`-identical to the old file (below its header).
 4. Every figure carries its date and method, or says "not recorded".
-5. `ENVIRONMENT.md` ≤ 400 lines and ≤ 7,690 words (`wc -lw`). Changed by Amit, 12-11-2026, Go 2: ≤ 7,300 → ≤ 7,636 because the Go 1 figure was an estimate — the private-store deny rule blocked counting the draft (see *Errors*) — and the approved text measured 7,636; then → ≤ 7,690 because labelling the 11 undated figures (check 4) adds about 30–50 words. Built: 396 lines, 7,680 words.
+5. `ENVIRONMENT.md` ≤ 400 lines and ≤ 7,690 words (`wc -lw`). Changed by Amit, 12-11-2026, Go 2: ≤ 7,300 → ≤ 7,636 because the Go 1 figure was an estimate — the private-store deny rule blocked counting the draft (see *Errors*) — and the approved text measured 7,636; then → ≤ 7,690 because labelling the 11 undated figures (check 4) adds about 30–50 words. Built: 396 lines, 7,680 words. Then → ≤ 7,720 (Amit, 16-11-2026) so the AtWorkpe and Vthru Customer app entries keep their safety facts rather than lose them to the limit; measured 398 lines, 7,711 words.
 6. `doc-check.sh`: only the known template warning plus the `ENVIRONMENT.md` size warning (accepted); "not yet in format" 3 → 2.
 7. Link grep: `harness/overview.md:23` updated; every other live pointer resolves.
 8. Doc-test after matches `baselines/doc-test-after-12-11-2026.md` (reused as "before"); a fresh session still loads only the three imports (`/context`, run by Amit).

@@ -366,10 +366,11 @@ done
 
 ### Sensitive data
 
-Two projects hold real personal records, and `OLLAMA.md` has the standing rule about what may be sent to a local model:
+These projects hold, or may hold, real personal records, and `OLLAMA.md` has the standing rule about what may be sent to a local model:
 
 - **Emp Portal** — employee records
 - **Packbly Web** — customer and courier records. Detached from Claude Setup 30-10-2026; the data is still on disk, so the `OLLAMA.md` rule still applies.
+- **Vthru Customer app** (VT) — company code with `.env` files and possibly real user data. Treat as confidential.
 
 ### Full project descriptions
 
@@ -381,7 +382,8 @@ Two projects hold real personal records, and `OLLAMA.md` has the standing rule a
 - **SecondBrain schema** — `~/Documents/SecondBrain Obsidian/schema` — schema for an Obsidian vault. **The vault itself is the parent directory**, which holds `raw`, `wiki` and `schema`.
 - **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26` — multi-tenant HR portal. React 18 + Vite **frontend**, Express 5 + better-sqlite3 **backend**, role-based dashboards. Holds real employee records.
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React Native, built so **a developer can drop it into an app**. GitHub: `github.com/AmitJangra25/vthrudebugger_v2`. **A separate project from `vthrudebugger_v1`, not a successor**; parked 27-09-2026, **next up and may become an npm package** (Amit, 30-10-2026) — the history is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`, `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
-- **AtWorkpe** — `github.com/AmitJangra25/AtWorkpe`, **on GitHub only, not cloned** — multi-tenant company portal: leave management, attendance tracking, goals, documents, salary slips, onboarding and role-based dashboards (Admin, HR, Manager, Team lead, Employee). Production-ready multi-tenant HRMS SaaS, React + Vite client and Express + SQLite server.
+- **AtWorkpe** — `~/Documents/VS Code/AtWorkpe` · `github.com/AmitJangra25/AtWorkpe` — multi-tenant HRMS portal (full list: `PROJECTS.md`). React + Vite client, Express + SQLite server.
+- **Vthru Customer app** (VT) — `~/Documents/VS Code/mobile` — company React Native app (GitLab); the Debugger integrates here. **Never push, pull or merge there**; Claude files stay local (`PROJECTS.md` VT row).
 - `~/Documents/extra/v1.1-Packbly` — a Next.js tree, apparently an older copy of Packbly Web. Last commit 23-06-2026.
 - `~/Documents/Skils/PM-skills-Amit` — **a clone of the public `phuryn/pm-skills` repository. Reference material, not your code.**
 

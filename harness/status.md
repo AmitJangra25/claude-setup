@@ -43,8 +43,8 @@ copied from the merged source (`cmp`-identical); done-file rule settled (D49, B3
 Phase 5 (T21 `ENVIRONMENT.md`) done 12-11-2026 — built, all Go 2
 checks passed, committed locally after Amit's review. `ENVIRONMENT.md` 396 lines, 7,680 words; old text in
 `baselines/environment-old-12-11-2026.md`; results in `baselines/doc-test-after-12-11-2026-run2.md`.
-Word limit now ≤ 7,690 (Amit, 12-11-2026): 7,300 was a Go 1 estimate (the private-store deny
-rule blocked counting the draft); +54 for labelling 11 undated figures. `harness/doc-check.sh`
+Word limit now ≤ 7,720 (Amit, 16-11-2026: +30 so the AtWorkpe and Vthru Customer app entries
+keep their safety facts; was ≤ 7,690 from 12-11-2026). Measured 16-11-2026: 398 lines, 7,711 words. `harness/doc-check.sh`
 empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 `harness/doc-structure-plan.md` § 3 *Phase 5 plan*. Phase 4 done 12-11-2026.
 
