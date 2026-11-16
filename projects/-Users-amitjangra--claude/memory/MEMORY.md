@@ -4,4 +4,6 @@
 - [Propose skills from observed work](propose-skills-from-observed-work.md) — propose one for a repeated pattern; skip ones restating STANDARDS.md
 - [Preconditions are hard stops](preconditions-are-hard-stops.md) — a stated precondition fails: stop and report, even if harmless
 - [Read any project, write only here](main-session-opens-projects-by-add-dir.md) — reads open (D46); /add-dir only to change another folder, after approval
+- [Vthru Customer app (VT, folder `mobile`): nothing to GitLab](mobile-vt-nothing-to-gitlab.md) — never push/merge/pull; notes local; backup in private claude-setup only
+- [Word limits never cut facts](word-limits-never-cut-facts.md) — trim repeats only; raise the limit a little rather than drop real facts; no padding
 - [Claude Setup is a global standard, not a project](claude-setup-is-a-global-standard-not-a-project.md) — definition: STANDARDS.md § Claude Setup
