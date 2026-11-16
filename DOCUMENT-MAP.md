@@ -74,8 +74,16 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; FN (`docs/SPEC.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DESIGN_SYSTEM.md`, `RISKS.md`, `SCREENS.md`, `SETUP.md`, `TECH_STACK.md`, `Design/README.md`; indexed from `README.md`); others found in Phase 7 survey | Document | Split by topic in T28 |
 | Skills | FN (three project skills: `device-walk`, `live-data`, `money-math`); others: None found in Phase 7 | Not a document | *Not documents* |
 | Acceptance sheets | None found in Phase 7 | Not a document | *Not documents* |
-| `launch.json` | AW, EP (each in its own `.claude/` folder); others found in Phase 7 survey | Not a document | *Not documents* |
+| `launch.json` | AW, EP (each in its own `.claude/` folder). VT has no `launch.json`; its `.claude/` folder contains only its local-only roadmap, backlog, decisions, and current-task files | Not a document | *Not documents* |
 | `client/README.md` | EP (whole-repo README kept inside `client/`) | Document | The project's front page, like a root `README.md`; indexed from its `CLAUDE.md` |
+
+**VT (Vthru Customer app) keeps every Claude file local.** Its repo is the company's GitLab, so nothing Claude-related is committed there:
+
+| File | Where | Hidden from GitLab | Backed up |
+|---|---|---|---|
+| `CLAUDE.md` | Project root | Yes, `.git/info/exclude` | Yes — sanitized copy in `project-rules/VT/` |
+| `PROJECT-MAP.md` | Project root | Yes, `.git/info/exclude` | No |
+| ROADMAP.md, BACKLOG.md, DECISIONS.md, current-task.md | Its own `.claude/` folder | Yes, `.git/info/exclude` | No |
 
 **Shipped documents get no Claude Setup header.** A document that ships inside a published package (npm `files`) is read by the package's users, so it keeps no Claude Setup header, `## Summary` or `## Related`. Today: DB1 `README.md` and `INTEGRATION.md` (Amit, 16-11-2026).
 

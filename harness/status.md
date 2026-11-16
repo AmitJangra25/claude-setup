@@ -31,6 +31,10 @@ on `fix/dead-code-cleanup-and-test-fix`, so `project-rules/Emp portal/CLAUDE.md`
 PR #12 (merge `db38534`) merged into **`main`**; `project-rules/vthrudebugger_v1/CLAUDE.md`
 resynced 16-11-2026 from the local folder on `main` at `db38534` (clean, level with GitHub),
 `cmp`-identical. **Phase 7 complete** for FinNode, AtWorkpe, Emp Portal and vthrudebugger_v1.
+**VT (Vthru Customer app, folder `mobile`) local-only Claude setup complete** (16-11-2026) in
+its own session. It has no GitHub repository; its repo is the company GitLab, and nothing goes
+there — Claude files are hidden with `.git/info/exclude`. Only the sanitized `CLAUDE.md` is
+backed up (`project-rules/VT/`, `cmp`-identical, backup scan clean).
 Next: Phase 8, on Amit's word.
 
 Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
@@ -59,6 +63,7 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
 | A6, A7, A9 | Audit contradictions in project files (29-10-2026) | Wait for those projects' sessions | same record § *Known contradictions* |
+| — | VT: never run `sync.sh --pull` for VT. Only the sanitized `CLAUDE.md` is backed up. If a VT session creates `.claude/settings.local.json`, drift.sh may report "NO COPY YET"; that is expected. Do not back up settings files for VT (16-11-2026) | Standing rule | *Current phase* above |
 | — | Emp Portal `CLAUDE.md` shows as drifted: the copy is GitHub `main`, the local folder is on the old fix branch (16-11-2026) | Expected until the local folder is on `main`; until then do not run `sync.sh --pull` for Emp Portal (it would copy the old file back) | *Current phase* above |
 
 Known and accepted items: `harness/backlog.md` § *Known and accepted*. Open setup tests: `baselines/global-open-tests.md`.
@@ -86,7 +91,7 @@ rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-
 ## Next gate
 
 **Next: Phase 8 (`SETUP-PLAN.md` split, T30–T33), on Amit's word.** Phase 7 is complete:
-FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1 (done 16-11-2026). Removed
+FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1 (done 16-11-2026); VT local-only setup done 16-11-2026. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
 commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What
 "finished" means* is true. Deferred until Amit asks: the account switch (TC6) and TC3's
