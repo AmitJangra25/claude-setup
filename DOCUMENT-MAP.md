@@ -66,9 +66,9 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 
 | File | Project | Document or not | Home |
 |---|---|---|---|
-| `PLAN.md` | DB1 (named in its `CLAUDE.md` copy) | Document | Decided in Phase 7 |
-| `INTEGRATION.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
-| `MOBILE-CONTEXT.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
+| `PLAN.md` | DB1 | Document | Archived word for word to `docs/archive/plan-16-11-2026.md` (Phase 7, 16-11-2026); not a live document |
+| `INTEGRATION.md` | DB1 | Document | Live consumer guide at the project root; ships in the npm package (`package.json` `files`), so no Claude Setup header |
+| `MOBILE-CONTEXT.md` | DB1 | Not a live project document | Local-only and git-ignored; not in the project's document list |
 | `DEPENDENCIES.md` | Found in Phase 7 survey | Document | Decided in Phase 7 |
 | `docs/README.md` | VF | Document | Becomes VF's map or is replaced — decided in Phase 6 |
 | Other reference documents (e.g. VF `manual-testing.md`, VF `roadmap.md`) | VF; FN (`docs/SPEC.md`, `ARCHITECTURE.md`, `DATA_MODEL.md`, `DESIGN_SYSTEM.md`, `RISKS.md`, `SCREENS.md`, `SETUP.md`, `TECH_STACK.md`, `Design/README.md`; indexed from `README.md`); others found in Phase 7 survey | Document | Split by topic in T28 |
@@ -76,6 +76,8 @@ Created in each project's own session: Voice-Flow in Phase 6 (T22–T28), the ot
 | Acceptance sheets | Found in Phase 7 survey | Not a document | *Not documents* |
 | `launch.json` | AW, EP (each in its own `.claude/` folder); others found in Phase 7 survey | Not a document | *Not documents* |
 | `client/README.md` | EP (whole-repo README kept inside `client/`) | Document | The project's front page, like a root `README.md`; indexed from its `CLAUDE.md` |
+
+**Shipped documents get no Claude Setup header.** A document that ships inside a published package (npm `files`) is read by the package's users, so it keeps no Claude Setup header, `## Summary` or `## Related`. Today: DB1 `README.md` and `INTEGRATION.md` (Amit, 16-11-2026).
 
 ## Not documents
 
