@@ -7,13 +7,18 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: Every changing setup plan. Overwrite; finished items move to a dated record. Commits, branches, push state and file counts are never recorded here — read them from git.
 Related: `harness/backlog.md` · `harness/overview.md` · `harness/doc-structure-plan.md` · `baselines/global-open-tests.md` · `SETUP-PLAN.md` (decisions)
 Status: active
-Last reviewed: 16-11-2026
+Last reviewed: 20-11-2026
 
 ---
 
-**Last verified:** 16-11-2026
+**Last verified:** 20-11-2026
 
 ## Current phase
+
+**Phase 8 — planning system — next, on Amit's word (agreed 20-11-2026, D50).** New order: 8 planning →
+9 reviewer agents and skills → 10 clean-up and rewrite (absorbs old Phase 8 T30–T33) → 11 further checks.
+Plan: `harness/doc-structure-plan.md` § 3 *Phase 8*; research: `harness/planning-research.md`; open
+questions Q1–Q8: `.claude/current-task.md`. Nothing built yet.
 
 Documentation structure: Phase 7 complete (16-11-2026). **FinNode done** in its own session: PR #7
 (Phase 7 docs commit `7d3b28e`, merge `959d7a7`) merged into `phase3/sms`, **not `main`**;
@@ -35,7 +40,7 @@ resynced 16-11-2026 from the local folder on `main` at `db38534` (clean, level w
 its own session. It has no GitHub repository; its repo is the company GitLab, and nothing goes
 there — Claude files are hidden with `.git/info/exclude`. Only the sanitized `CLAUDE.md` is
 backed up (`project-rules/VT/`, `cmp`-identical, backup scan clean).
-Next: Phase 8, on Amit's word.
+Next: Phase 8 (planning system), on Amit's word.
 
 Phase 6 (Voice-Flow pilot) done in Voice-Flow's own session
 (Voice-Flow PR #94, merged). Phase 6 follow-ups done 13-11-2026: `project-rules/Voice-Flow/CLAUDE.md`
@@ -58,7 +63,7 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 
 | ID | Item | Decision | Link |
 |---|---|---|---|
-| B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started | `harness/backlog.md` |
+| B21, B14, B9, B11 | Rest of the old wave 3: B21, B14, B9, then B11 | Planned and approved 06-11-2026; not started; now in Phase 11 (D50) | `harness/backlog.md` |
 | — | `project-rules/FinNode/CLAUDE.md` mirrors FinNode's `phase3/sms` branch, not `main` (14-11-2026) | Copy again after `phase3/sms` reaches `main` | *Current phase* above |
 | C11 | Account/org UUIDs and Amit's emails in `SETUP-PLAN.md` | Deferred; must be handled before the repo goes public. Also check then (no change now): `baselines/task-history-11-11-2026.md`, tracked since T15, holds project paths, the backup-folder path, the ccusage cost figure, and gitleaks counts with the folder where hits were found | `baselines/status-completed-11-11-2026.md` § *Open* |
 | C13 | Whether the rtk hook-audit log stops growing | Left for now (Amit) | same record |
@@ -86,11 +91,13 @@ None yet
 ## Decisions in force
 
 The D-rows in `SETUP-PLAN.md` (index at its top; moves to `DECISIONS.md` in T30) and the
-rules in `STANDARDS.md`. This harness: D33. Newest: D49 (13-11-2026), closed 13-11-2026.
+rules in `STANDARDS.md`. This harness: D33. Newest: D50 (20-11-2026, phase order and agent/skill direction), open.
 
 ## Next gate
 
-**Next: Phase 8 (`SETUP-PLAN.md` split, T30–T33), on Amit's word.** Phase 7 is complete:
+**Next: Phase 8 (planning system), in a fresh session, on Amit's word** — answer Q1–Q8 in
+`.claude/current-task.md`, verify the OpenSpec and Spec Kit research, then plan Phase 8 for
+approval. The `SETUP-PLAN.md` split (T30–T33) moved into Phase 10 (D50). Phase 7 is complete:
 FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1 (done 16-11-2026); VT local-only setup done 16-11-2026. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
 commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What

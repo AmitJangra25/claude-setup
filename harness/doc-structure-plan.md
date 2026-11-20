@@ -6,8 +6,8 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phase 1 done 10-11-2026; Phase 2 done 11-11-2026; Phase 3 done 11-11-2026; Phase 4 done 12-11-2026; Phase 5 done 12-11-2026
-Last reviewed: 12-11-2026
+Status: Phases 1–7 done (Phase 7 16-11-2026); Phase 8 (planning system) next — phase order changed 20-11-2026 (D50)
+Last reviewed: 20-11-2026
 
 ---
 
@@ -26,8 +26,9 @@ Last reviewed: 12-11-2026
 - **Phase 4 (T20) built 12-11-2026 (Go 2):** `STANDARDS.md` from the approved text (`cmp`-matched, 3,386 words); old text in `baselines/standards-old-12-11-2026.md`; linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026.md`). Committed as `28b4801`. **Phase 4 done 12-11-2026.**
 - **Phase 5 planned 12-11-2026 (Go 1):** T21 plan, final text and decisions approved by Amit — § 3 *Phase 5 plan*.
 - **Phase 5 (T21) built 12-11-2026 (Go 2):** `ENVIRONMENT.md` from the approved text (`cmp`-matched), then 11 undated figures labelled and the `RTK.md` mismatch noted — 396 lines, 7,680 words (limit ≤ 7,690, Amit); old text in `baselines/environment-old-12-11-2026.md`; `doc-check.sh` empty-section test now skips code blocks (Amit, 12-11-2026); linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026-run2.md`). Committed as `5348583` after Amit's review. **Phase 5 done 12-11-2026.**
-- **Next step:** Phase 6 — Voice-Flow pilot, in a fresh session, on Amit's word.
-- **Phases 6–9:** not started.
+- **Phases 6 and 7 done** (Phase 6 Voice-Flow pilot; Phase 7 16-11-2026) — `harness/status.md`.
+- **Phase order changed 20-11-2026 (Amit, D50):** 8 planning system → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs the old Phase 8 `SETUP-PLAN.md` split and the old Phase 9 30-day review) → 11 further checks. § 3 *Phase 8* onwards.
+- **Next step:** Phase 8 in a fresh session, on Amit's word. Start from `.claude/current-task.md` and `harness/planning-research.md`.
 
 ## 1. Goal and success measure
 
@@ -490,7 +491,46 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 |---|---|---|
 | T29 | `templates/new-project.md` | P4 |
 
-### Phase 8 — `SETUP-PLAN.md` split (very last)
+### Phase 8 — Planning system (next; agreed 20-11-2026, D50)
+
+**Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear. So: fix planning → build reviewers → everything after is better.
+**Goal:** one `planning` skill with a separate short plan path per kind of work; small work stays light. Research input and open questions: `harness/planning-research.md`; decisions: D50; questions Q1–Q8: `.claude/current-task.md`.
+
+- Research OpenSpec and Spec Kit docs properly (brief in `harness/planning-research.md`); borrow ideas, install neither.
+- Review today's planning rules; decide what stays always-on in `STANDARDS.md` and what moves into the skill (pointer left behind).
+- Paths: new project · new feature · new functionality · bug fix · documentation · Claude Setup change · idea assessment (Q4).
+- Reuse `templates/new-project.md` (B10), `templates/roadmap.md`, `templates/handoff.md`; no new plan-review template.
+- Define: when Amit approves · when `plan-reviewer` runs (built in Phase 9) · where plan artifacts live and what is committed · what never goes in a plan (secrets, personal data, credentials, tokens, internal URLs, sensitive business information).
+- Add: stronger pushback rule (push back once, twice if needed; if Amit still asks, proceed saying "doing this because you asked, despite concerns", after confirming) · testing guidance (Q1) · every plan adds out-of-task findings to the backlog, only past the value bar, with one line of context · name + one-line description rule for skills and agents.
+- Skill loading: by trigger and `skillOverrides` state, not P1–P4 folders (Claude Code does not load skills by folder).
+- Success measure: set at Phase 8 planning, with Amit's yes.
+
+### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50)
+
+- `change-reviewer` (merged small-change + feature reviewer) and `plan-reviewer`: read-only tools (Read, Grep, Glob), `omitClaudeMd: true`, no memory; given only agent file + short brief + task context + diff or plan + narrow file list (+ a named test if given); asks for a narrower list if it needs more; verdict `no concerns / concerns / blocked` — reports, never approves. Models: `change-reviewer` Sonnet (Opus for security or data); `plan-reviewer` Opus.
+- Claude Setup brief: `harness/agent-brief.md` (not in `project-rules/`, which holds copies only). Voice-Flow brief later, in a Voice-Flow session, in its own repo, then mirrored.
+- Thin skills: `handoff` (reuses `templates/handoff.md`, incl. B2's "Errors and fixes") · `send-for-review` (Amit's PR flow: branch off `main`; PR with short details; Amit reviews and merges; Amit confirms; Claude deletes the local branch after checking it is merged; no `dev` branch; suggest GitHub's "delete branch after merge"; VT exception — Claude never pushes there) · `documents` · `setup-cross-check` (moved from `harness/cross-check.md`). `bug-fix-workflow`: Q3.
+- Not built: `git-safety` (stays in `STANDARDS.md` + settings ask list) · `code-review-checklist` (inside the reviewer agents) · `data-safety-review` (project limits go in each brief) · `test-plan` (inside `planning`) · plan-review template.
+- Tests: `change-reviewer` on a harmless setup doc diff with a planted mistake; `plan-reviewer` on a small doc plan; prove no write access; **measure real token cost** before setting limits; B16 project-map trial feeds the "one map section" input.
+- Daily tokens: agents and skills add ~0.4K per turn until Phase 10 moves sometimes-rules out of `STANDARDS.md` (est. −1.5K to −2K).
+
+### Phase 10 — Clean-up and rewrite (agreed 20-11-2026, D50)
+
+**Goal (Amit):** Claude Setup clean, simple, scalable, easy to maintain — reuse and pointers, not copies; one update in one place.
+- Recheck every file and folder; find duplication, contradictions, needless complexity; keep / move / remove-candidate list; wait for Amit.
+- Move sometimes-used rules out of `STANDARDS.md` into skills, agents or project docs, leaving a pointer.
+- Rewrite only files that became too complex; old decisions B24, B25 and similar reviewed.
+- Agreed changes to discuss here (Amit, 20-11-2026): backlog takes only findings past the value bar · contents list only in long docs (~150+ lines), checked by `doc-check.sh` · revisit "do not delete reference docs" (git keeps history; leave a pointer) · clickable links, converted file by file during rewrites · archive only for `harness/status.md`, `harness/backlog.md`, `harness/doc-structure-plan.md`, `ENVIRONMENT.md`, `SETUP-PLAN.md` · communication additions ("full detail only when asked"; write like a human, simple Indian English, docs and code) · `doc-check.sh` checks every new skill, agent, repo or project is listed in its one home · tidy the backlog (done rows out, fewer columns).
+- Also here: old Phase 8 tasks T30–T33 (below) · old Phase 9 30-day review (below; B34) · `baselines/` and `archive/` review · C11 (UUIDs and emails before going public) · `harness/status.md` § *Known contradictions* · B15 only if a real case is seen.
+- Cleanup rules: never drop facts, decisions, safety rules, limits or important history; nothing removed just for age or size; check what references a file first; no giant word-for-word history files; not in the same task as Phase 9.
+
+### Phase 11 — Further checks (agreed 20-11-2026, D50)
+
+- Recheck coding, testing and other parts; build more agents or skills only for a real repeated need.
+- Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
+- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6.
+
+#### Old Phase 8 — `SETUP-PLAN.md` split (now inside Phase 10)
 | ID | File | Priority |
 |---|---|---|
 | T30 | `DECISIONS.md` (new, global) — every D-number plus "no sixth tool". Same change (trigger: T30 build): `STANDARDS.md` step 8 drops "(Claude Setup: `SETUP-PLAN.md` until T30)" and the Recording list in § *IDs and progress* drops `SETUP-PLAN.md` | P3 |
@@ -501,7 +541,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 Re-homed: "Project rules are separate" → `project-rules/README.md`; names, renames and "Renames are Amit's" → `PROJECTS.md`; how a pass is run + "The method" → `harness/overview.md`; why permissions can't be airtight + precedence rule → `ENVIRONMENT.md` § Permissions; "Never commit" + Git identity (C11) → `harness/rebuild.md`; "The five systems" → archive; open items (Phases 2, 3, 10) checked one by one → backlog. Decisions get "partly superseded" where needed (D17, D33, D36).
 Safety: word-for-word moves, D-numbers counted before and after, about 25 links in 8 files fixed, signpost keeps old heading names (incl. "► START HERE"), line-by-line check by a fresh agent.
 
-### Phase 9 — 30-day review
+#### Old Phase 9 — 30-day review (now inside Phase 10)
 Record: `baselines/doc-review-<date>.md` — | Format | Problem seen | Change | D# |. Size limits, unused fields, rollover triggers: keep or change.
 
 ## 4. Format of every file

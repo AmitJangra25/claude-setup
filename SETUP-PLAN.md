@@ -79,6 +79,7 @@ the status column says which.
 | D47 | 10-11-2026 | `DOCUMENT-MAP.md` is the one document map; replaces the three old maps | in force; closed 11-11-2026; supersedes item 16's "setup map = `harness/overview.md`" |
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 | D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
+| D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10) |
 
 ---
 
@@ -1635,6 +1636,29 @@ keeps the old wording as history. **Affected files:** `DOCUMENTATION-STANDARD.md
 `templates/roadmap-done.md` · `templates/backlog-done.md` · `templates/decisions-old.md` ·
 `DOCUMENT-MAP.md`. **Status:** in force. **Closed 13-11-2026:** all eight files updated and
 checked with `harness/doc-check.sh`.
+
+### D50 · 20-11-2026
+
+**Planning first, then reviewers, then clean-up (Amit).** Phase order: 8 planning system → 9
+reviewer agents and skills → 10 clean-up and rewrite (absorbs the old Phase 8 `SETUP-PLAN.md`
+split T30–T33 and the old Phase 9 30-day review) → 11 further checks. Reason: planning is the
+foundation; a reviewer can only review a clear plan; the setup grew as always-loaded rules and
+needs skills and agents for sometimes-needed work. Agreed with it: (1) borrow ideas from
+OpenSpec and Spec Kit, install neither (and not Superpowers); (2) reviewer agents are read-only
+(Read, Grep, Glob), set `omitClaudeMd: true`, load no memory, get only a short brief and the
+task's files, and report `no concerns / concerns / blocked` — never approve; (3) the
+small-change and feature reviewers merge into `change-reviewer`, plus a separate
+`plan-reviewer`; (4) git safety stays always-on in `STANDARDS.md` and the settings ask list — no
+`git-safety` skill; (5) no skill folders by P1–P4 — skills load by trigger and `skillOverrides`
+state; (6) no commit/push/PR agent — Claude prepares git actions, Amit approves. Rejected:
+installing Spec Kit or OpenSpec (a second planning system; telemetry and file writes unchecked;
+does not fit VT, where nothing Claude-related may reach GitLab); separate `code-review-checklist`,
+`data-safety-review` and `test-plan` skills (duplicates); briefs in `project-rules/` (copies only).
+B24 and B25 are revisited in Phase 10. Open questions Q1–Q8: `.claude/current-task.md`.
+**Affected files:** `harness/doc-structure-plan.md` · `harness/status.md` ·
+`harness/backlog.md` · `harness/planning-research.md` · later `STANDARDS.md`,
+`harness/cross-check.md`, `DOCUMENT-MAP.md`, `.gitignore`. **Status:** in force; open until
+those are updated in Phases 8–10. Plan: `harness/doc-structure-plan.md` § 3 *Phase 8* onwards.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

@@ -7,13 +7,15 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. Overwrite rows; history goes to a dated record.
 Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) · `baselines/backlog-log-11-11-2026.md`
 Status: active
-Last reviewed: 12-11-2026
+Last reviewed: 20-11-2026
 
 Next ID: B37
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
 B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough estimates to plan, build and check.
+
+Phases 8–11 (D50, 20-11-2026) have their tasks in `harness/doc-structure-plan.md` § 3, not here. Rows below say which phase picks them up.
 
 ## To build
 
@@ -26,20 +28,20 @@ B-numbers keep the old item numbers: item n = Bn (11-11-2026). Tokens are rough 
 | B6 | gitleaks secret scan | Manual scan, FinNode first; no hook. 0 leaks in history and tracked files | yes | no | P2 | S | ~15k | [x] 05-11-2026 | Claude may suggest when to run it |
 | B7 | Block writes outside the working folder | Stops Claude's file tools writing outside the project (B7 in full) | yes | no | P2 | S | ~10k | [~] trial | Check 20-11-2026; keep or remove 05-12-2026 |
 | B8 | GitHub CLI telemetry off | gh 2.91.0+ turns telemetry on by default | yes | no | P3 | S | ~3k | [x] 06-11-2026 | Check it still reads `disabled` after any gh update |
-| B9 | Claude Code usage metrics | Keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`; metrics carry no code, prompts or paths (Anthropic docs) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
-| B10 | Planning ideas into `templates/new-project.md` | Spec, architecture, system design and go-live ideas, plus licence and "still on goal" checks; plugins not enabled | yes | no | P3 | M | ~25k | [x] 06-11-2026 | None |
-| B11 | markitdown | On-demand command only, no Azure or AI options; never with the PDF/DOCX skills on one document; 15–30 day trial | yes | no | P3 | S | ~10k | [ ] | Session 4, after B21, B14, B9; approved 06-11-2026, not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
+| B9 | Claude Code usage metrics | Keep on if Remote Control or claude.ai skill sync is used, else `DISABLE_TELEMETRY=1`; metrics carry no code, prompts or paths (Anthropic docs) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started; Phase 11 (D50). Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
+| B10 | Planning ideas into `templates/new-project.md` | Spec, architecture, system design and go-live ideas, plus licence and "still on goal" checks; plugins not enabled | yes | no | P3 | M | ~25k | [x] 06-11-2026 | None — Phase 8 new-project path reuses it |
+| B11 | markitdown | On-demand command only, no Azure or AI options; never with the PDF/DOCX skills on one document; 15–30 day trial | yes | no | P3 | S | ~10k | [ ] | Session 4, after B21, B14, B9; approved 06-11-2026, not started; Phase 11 (D50). Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B13 | Status-line thresholds | Warnings at 200K/300K/400K vs the 250K plan limit | yes | no | P3 | S | ~3k | [x] 06-11-2026 | None — kept, tie written in `ENVIRONMENT.md` § 2 |
-| B14 | Ollama network calls | Own update checks not covered in Stage 1; cloud models already off (D45) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
-| B15 | Acting without approval | Rule exists in `STANDARDS.md`; auto mode may be the cause | yes, once a real case is seen | no | P3 | S | ~5k | [ ] | Wording fix only after a real example |
-| B16 | Project map (Graphify idea) | Read a short folder map before searching code (B16 in full) | yes | no | P3 | M | ~15k + ~10k per project | [~] trial | FinNode `PROJECT-MAP.md` written in FinNode's own Phase 7 session (PR #7, on `phase3/sms`, 13-11-2026). Still open: the combined review with B7 (check 20-11-2026), ccusage measure, then the roll-out decision |
+| B14 | Ollama network calls | Own update checks not covered in Stage 1; cloud models already off (D45) | yes | no | P3 | S | ~5k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026; not started; Phase 11 (D50). Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
+| B15 | Acting without approval | Rule exists in `STANDARDS.md`; auto mode may be the cause | yes, once a real case is seen | no | P3 | S | ~5k | [ ] | Wording fix only after a real example; Phase 10 if one is seen (D50) |
+| B16 | Project map (Graphify idea) | Read a short folder map before searching code (B16 in full) | yes | no | P3 | M | ~15k + ~10k per project | [~] trial | FinNode `PROJECT-MAP.md` written in FinNode's own Phase 7 session (PR #7, on `phase3/sms`, 13-11-2026). Still open: the combined review with B7 (check 20-11-2026), ccusage measure, then the roll-out decision. Phase 9 reviewers read one map section, so this trial feeds it (D50) |
 | B17 | Deny-rule bypass test | Focused security test: 8 probes, 7 blocked, 1 → B21 | yes | no | P4 | S | ~15k | [x] 06-11-2026 | None |
 | B19 | New-tool rule | Check network calls, telemetry and cost before adopting any tool | yes | no | P1 | S | ~5k | [x] 05-11-2026 | None — rule in `STANDARDS.md` |
 | B20 | rtk exact allow rules | rtk issue #3673 reads an exact allow rule as a prefix | yes | no | P3 | S | ~10k | [x] 06-11-2026 | None — allow rules narrowed, box-tested |
-| B21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (B21 in full) | yes | no | P3 | S | ~10k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026 after an Opus cross-check; not started: ASK rules (not deny), box-tested in default and auto mode. Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
+| B21 | git alias reads secrets | `git -c alias.x='!cat' x .env` printed a made-up `.env` (B21 in full) | yes | no | P3 | S | ~10k | [ ] | Session 3 of the rest of old wave 3, approved 06-11-2026 after an Opus cross-check; not started: ASK rules (not deny), box-tested in default and auto mode; Phase 11 (D50). Plan: `baselines/task-history-11-11-2026.md`, *Rest of wave 3* bullet |
 | B32 | Decide whether the old backlog working rules are still live | The old rules — group small fixes in one commit, separate commit for settings changes, copied skill ideas as name plus one line — now exist only in `baselines/backlog-log-11-11-2026.md` | yes | no | P3 | S | ~5k | [x] | Leave as history; existing rules already cover the useful parts. |
 | B33 | Voice Flow `git branch` allow rules in plain-git form | Voice Flow's project settings file (.claude/settings.json, lines 93–98) has the same `git branch` allow rules in plain-git form (noted 06-11-2026, after B20); probably harmless (rtk rewrites first), not verified inside Voice Flow | unverified | no | P4 | S | ~5k | [ ] | Assess in Voice-Flow's own session |
-| B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | 30-day review (Phase 9). |
+| B34 | Align `ALLOWED_DUP` in `harness/doc-check.sh` with `DOCUMENTATION-STANDARD.md` | The checker now allows the task-file template's standing "After compaction…" line, but § *Allowed copies* in `DOCUMENTATION-STANDARD.md` does not list it yet | yes | no | P3 | S | ~5k | [ ] | 30-day review — now inside Phase 10 (D50; was "Phase 9" in the old numbering). |
 | B35 | "Imports only" vs the comment in global `CLAUDE.md` | `DOCUMENTATION-STANDARD.md` line 51 says imports only; Amit keeps one non-loading HTML comment (D48). This item authorises the line-51 change | yes | no | P4 | S | ~3k | [x] 11-11-2026 | None — line 51 changed in Go 2; D48 closed |
 | B36 | Done files only by size | The Voice-Flow Phase 6 pilot (its D22) kept finished work in one file with history in `docs/archive/`; the old trigger (about 300 lines or 10 done rows) created `-DONE`/`-OLD` files too early. This item authorises the § *Growth and rollover* change (D49) | yes | no | P3 | S | ~25k | [x] 13-11-2026 | None — rule in `DOCUMENTATION-STANDARD.md` § *Growth and rollover* |
 Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
@@ -93,7 +95,7 @@ Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D4
 | ID | Item | Recheck date |
 |---|---|---|
 | B4 | TypeScript code helper — does `typescript-lsp` support TypeScript 7? | 05-01-2027 |
-| B12 | Own post-edit checker (Kotlin, lint, project checks; must not clash with B4) — P3 · M · ~30k | Not set — deferred 06-11-2026 |
+| B12 | Own post-edit checker (Kotlin, lint, project checks; must not clash with B4) — P3 · M · ~30k | Not set — deferred 06-11-2026; revisit in Phase 11 (D50) |
 | B18 | rtk update | 05-01-2027 |
 
 ## Known and accepted
@@ -102,8 +104,8 @@ Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D4
 |---|---|---|
 | B22 | Status-line simplification | 84 lines, no network, no token cost; not worth it (C6) |
 | B23 | Re-read returns the whole file (Claude Code 2.1.317) | No setting; Claude avoids re-reading unchanged files (C5) |
-| B24 | A separate checker helper | Already exists as the cross-check agent (`harness/cross-check.md`); used sparingly |
-| B25 | Engineering skills not copied (`testing-strategy`, `tech-debt`, `incident-response`, `standup`, `code-review`, `debug`, `documentation`) | Covered by existing rules or not needed repeatedly |
+| B24 | A separate checker helper | Already exists as the cross-check agent (`harness/cross-check.md`); used sparingly. **Being revisited (D50, 20-11-2026):** Phase 9 builds `plan-reviewer` and `change-reviewer`; review this row in Phase 10 |
+| B25 | Engineering skills not copied (`testing-strategy`, `tech-debt`, `incident-response`, `standup`, `code-review`, `debug`, `documentation`) | Covered by existing rules or not needed repeatedly. **Being revisited (D50, 20-11-2026):** still true for these generic skills, but Phases 8–9 build Amit's own skills from his rules; review this row in Phase 10 |
 | B26 | gitleaks and markitdown network behaviour not verified from source | Checked when each tool's trial starts |
 | B27 | Box-test gaps — old IDs F1, F3, F4, F6 and 30-10 T1–T3 (wrapped commands, auto-mode blocks, `git remote -v add`, `git -c` alias, more `.env`/`~/.ssh` read denies, `git stash pop/apply` outside `~/.claude`, one-line box explanations) | Value bar, 30-10-2026; F3 mostly fixed by D44 (limits in `ENVIRONMENT.md` § 3). Detail: `baselines/status-completed-11-11-2026.md` § *Open* |
 | B28 | GitHub write commands not separately boxed (old F2) | 0 historical uses; auto mode is a second guard (30-10-2026). If asked later, propose only `gh release create\|delete`, `gh secret set\|delete`, `gh workflow run` |
