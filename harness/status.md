@@ -7,18 +7,18 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: Every changing setup plan. Overwrite; finished items move to a dated record. Commits, branches, push state and file counts are never recorded here — read them from git.
 Related: `harness/backlog.md` · `harness/overview.md` · `harness/doc-structure-plan.md` · `baselines/global-open-tests.md` · `SETUP-PLAN.md` (decisions)
 Status: active
-Last reviewed: 20-11-2026
+Last reviewed: 23-11-2026
 
 ---
 
-**Last verified:** 20-11-2026
+**Last verified:** 23-11-2026
 
 ## Current phase
 
-**Phase 8 — planning system — next, on Amit's word (agreed 20-11-2026, D50).** New order: 8 planning →
-9 reviewer agents and skills → 10 clean-up and rewrite (absorbs old Phase 8 T30–T33) → 11 further checks.
-Plan: `harness/doc-structure-plan.md` § 3 *Phase 8*; research: `harness/planning-research.md`; open
-questions Q1–Q8: `.claude/current-task.md`. Nothing built yet.
+**Phase 8 — planning system — design saved 23-11-2026 (WP1 of 4, D51); nothing built.** Order: 8
+planning → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs old Phase 8 T30–T33) → 11
+further checks. Full plan, Q1–Q8 status and sources: `harness/doc-structure-plan.md` § 3 *Phase 8*.
+Research notes: `harness/planning-research.md` (temporary, git-ignored; deletion needs Amit's separate approval).
 
 Documentation structure: Phase 7 complete (16-11-2026). **FinNode done** in its own session: PR #7
 (Phase 7 docs commit `7d3b28e`, merge `959d7a7`) merged into `phase3/sms`, **not `main`**;
@@ -91,13 +91,13 @@ None yet
 ## Decisions in force
 
 The D-rows in `SETUP-PLAN.md` (index at its top; moves to `DECISIONS.md` in T30) and the
-rules in `STANDARDS.md`. This harness: D33. Newest: D50 (20-11-2026, phase order and agent/skill direction), open.
+rules in `STANDARDS.md`. This harness: D33. Newest: D51 (23-11-2026, planning system design), open; D50 clarified the same day.
 
 ## Next gate
 
-**Next: Phase 8 (planning system), in a fresh session, on Amit's word** — answer Q1–Q8 in
-`.claude/current-task.md`, verify the OpenSpec and Spec Kit research, then plan Phase 8 for
-approval. The `SETUP-PLAN.md` split (T30–T33) moved into Phase 10 (D50). Phase 7 is complete:
+**Next: Amit approves the final Phase 8 plan** (retry rule; routing tests in fresh sessions;
+optional draft commits; Q1, Q4, Q6, Q8 recommendations), **then WP2 (draft, inactive) on his
+word** — `harness/doc-structure-plan.md` § 3 *Phase 8*. The `SETUP-PLAN.md` split (T30–T33) moved into Phase 10 (D50). Phase 7 is complete:
 FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1 (done 16-11-2026); VT local-only setup done 16-11-2026. Removed
 13-11-2026: Debugger v2 (Amit). No push without his word. Project memory notes go in their own
 commit, after a check that each moved note left a pointer (done 14-11-2026, `2960c9d`). The setup is finished when every line of `harness/overview.md` § *What

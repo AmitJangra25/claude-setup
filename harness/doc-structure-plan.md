@@ -6,8 +6,8 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phases 1–7 done (Phase 7 16-11-2026); Phase 8 (planning system) next — phase order changed 20-11-2026 (D50)
-Last reviewed: 20-11-2026
+Status: Phases 1–7 done (Phase 7 16-11-2026); Phase 8 (planning system) design saved 23-11-2026 (D51), build not started — phase order changed 20-11-2026 (D50)
+Last reviewed: 23-11-2026
 
 ---
 
@@ -28,7 +28,8 @@ Last reviewed: 20-11-2026
 - **Phase 5 (T21) built 12-11-2026 (Go 2):** `ENVIRONMENT.md` from the approved text (`cmp`-matched), then 11 undated figures labelled and the `RTK.md` mismatch noted — 396 lines, 7,680 words (limit ≤ 7,690, Amit); old text in `baselines/environment-old-12-11-2026.md`; `doc-check.sh` empty-section test now skips code blocks (Amit, 12-11-2026); linked updates done; all 8 success checks passed (`baselines/doc-test-after-12-11-2026-run2.md`). Committed as `5348583` after Amit's review. **Phase 5 done 12-11-2026.**
 - **Phases 6 and 7 done** (Phase 6 Voice-Flow pilot; Phase 7 16-11-2026) — `harness/status.md`.
 - **Phase order changed 20-11-2026 (Amit, D50):** 8 planning system → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs the old Phase 8 `SETUP-PLAN.md` split and the old Phase 9 30-day review) → 11 further checks. § 3 *Phase 8* onwards.
-- **Next step:** Phase 8 in a fresh session, on Amit's word. Start from `.claude/current-task.md` and `harness/planning-research.md`.
+- **Phase 8 design saved 23-11-2026 (WP1, D51):** § 3 *Phase 8*. Nothing built.
+- **Next step:** Amit approves the final plan (retry rule and open choices), then WP2 on his word. Start from `.claude/current-task.md` and § 3 *Phase 8*.
 
 ## 1. Goal and success measure
 
@@ -491,19 +492,167 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 |---|---|---|
 | T29 | `templates/new-project.md` | P4 |
 
-### Phase 8 — Planning system (next; agreed 20-11-2026, D50)
+### Phase 8 — Planning system (design saved 23-11-2026, D51; build not started)
 
-**Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear. So: fix planning → build reviewers → everything after is better.
-**Goal:** one `planning` skill with a separate short plan path per kind of work; small work stays light. Research input and open questions: `harness/planning-research.md`; decisions: D50; questions Q1–Q8: `.claude/current-task.md`.
+**Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear.
+**Goal (Amit):** one planning system that gives each job the right amount of planning — small work stays small, risky work gets care — without dropping any safety, approval or verification gate.
+**Success measure:** every WP4 acceptance check passes, and no conflicting active planning instruction remains in the affected files.
+**Status (23-11-2026):** design discussed and saved (WP1). Items marked *proposed* below still wait for Amit's approval of the final plan. WP2–WP4 each need their own go.
 
-- Research OpenSpec and Spec Kit docs properly (brief in `harness/planning-research.md`); borrow ideas, install neither.
-- Review today's planning rules; decide what stays always-on in `STANDARDS.md` and what moves into the skill (pointer left behind).
-- Paths: new project · new feature · new functionality · bug fix · documentation · Claude Setup change · idea assessment (Q4).
-- Reuse `templates/new-project.md` (B10), `templates/roadmap.md`, `templates/handoff.md`; no new plan-review template.
-- Define: when Amit approves · when `plan-reviewer` runs (built in Phase 9) · where plan artifacts live and what is committed · what never goes in a plan (secrets, personal data, credentials, tokens, internal URLs, sensitive business information).
-- Add: stronger pushback rule (push back once, twice if needed; if Amit still asks, proceed saying "doing this because you asked, despite concerns", after confirming) · testing guidance (Q1) · every plan adds out-of-task findings to the backlog, only past the value bar, with one line of context · name + one-line description rule for skills and agents.
-- Skill loading: by trigger and `skillOverrides` state, not P1–P4 folders (Claude Code does not load skills by folder).
-- Success measure: set at Phase 8 planning, with Amit's yes.
+#### How the planning system works
+
+1. **Question only** → answer it. No planning.
+2. **Check risk first.** Triggers: security or login · permissions or settings · personal data · money · deleting things · data or schema changes · more than one project or a global setting · unclear cause or requirement · a new tool or library · work needing more than one session.
+3. **No trigger and a tiny one-file change** → the tiny-change route in `STANDARDS.md`, as today. A small file count or small diff never skips the risk check.
+4. **Everything else** → the planning skill. It picks two things separately:
+   - **Kind of work** (one of six, below).
+   - **Depth** — light, or deep if any risk trigger applies. Risk deepens the plan; it does not change the kind. A risky small enhancement stays a small enhancement, planned deeply.
+5. **Before substantial work, tell Amit in a few lines:** kind of work, risk, depth, priority (P1–P4 urgency), rough total tokens, likely sessions. Read the relevant code or documents first; if that reading is not finished, call the judgement *provisional*. Amit can ask for less explanation or a different scope; safety, approval and verification gates stay.
+6. "Plan this" does not by itself mean a big formal plan. Depth follows the job, not the word.
+
+**Gates never skipped:** Amit's approval before any change · verification sized to the job · fix the cause · record important results · handoff when work is unfinished.
+
+#### Six kinds of work
+
+| Kind | Use when | Minimum plan | Add when needed | Testing | Skip |
+|---|---|---|---|---|---|
+| New project | Nothing exists yet | Problem, users, success measure, first-version limits, stack and why, data and privacy, first usable milestone | Architecture, integrations, deployment and recovery, accessibility | Test approach per milestone; how each milestone is accepted | Detailed plans for distant milestones |
+| New feature | New behaviour across several files or screens | Need, expected behaviour, acceptance scenarios, affected areas, reuse, ordered steps | Data or schema changes, compatibility, rollout and undo | One check per scenario; UI checks only if UI is touched | Restating the whole app design |
+| Small enhancement | A focused addition, few files | Behaviour, files, acceptance checks | Deeper sections if a risk trigger applies | A focused check | A separate design doc or task list |
+| Bug fix | Something works wrongly | Actual vs expected, reproduction or best evidence, cause (or labelled guess), fix, check | Root-cause investigation, regression risks | Whatever proves the fix: existing test, command, manual repro or new test; UI check if the bug is visible | Spec, design doc, full test suite by default |
+| Documentation | Writing or updating docs | Reader, purpose, source of truth, sections affected, fact check | — | Facts, links, format. Runbooks, safety instructions and commands that must run get real verification | Builds and UI tests for plain prose |
+| Claude Setup change | Any change to `~/.claude` | Goal, success measure, files, loading impact, safety and permission impact, undo | Migration and pointers, cross-project effect, fresh-session test | Existing checks; fresh-session test when loading changes | Heavy process for a wording fix |
+
+- New feature and small enhancement share one guide (two depths). Six kinds, five guide files.
+- Dependency or config changes inside a project use that project's path plus the risk checks — not the Setup path.
+- Refactoring: feature path, "behaviour must not change", checks before and after. Data migration: always deep (backup, dry run, undo).
+- **Combining kinds:** pick one main kind; add only the lines another kind needs. Never two plans.
+- **Technical design section** (any kind, only when needed): affected parts, interfaces and data, approach, main alternatives, risks. Small, plain work needs no separate technical document.
+- **Idea assessment** (*proposed*, Q4): a short section in the skill ending in go / needs more information / do not do. Not a separate guide for now.
+- **Root cause:** a labelled guess is fine while investigating. It never justifies a speculative real fix — confirm it with evidence, or report the limit and ask Amit.
+
+#### Checks, review and stopping
+
+- Run only checks relevant to the change and allowed by the project's rules. No "run everything" rule.
+- If a check fails, say whether it failed before the change or because of it.
+- Results are **done and verified**, **partly verified** or **blocked**. Only the first may be called done.
+- Independent review follows the existing levels in `harness/cross-check.md` until Phase 9 reviewers exist. No new agent is a Phase 8 dependency.
+- **Retry and escalation (*proposed*, awaiting Amit's approval):**
+  - After two unsuccessful corrective attempts on the same unresolved issue: checkpoint, show the evidence and a recommended next step, and ask Amit before continuing.
+  - New evidence can shape the next approach but must not reset the count again and again.
+  - Ordinary development and check cycles that succeed are not failed attempts.
+  - Escalate at once for safety, wider scope, missing access, or a decision that is Amit's.
+  - After two review-and-fix rounds, open findings go to Amit — never approved or dropped automatically.
+- **Completion:** besides ticking the task, name any lasting requirement, project doc or decision that needs updating (adapted from OpenSpec's archive step). This reminder stays always-on so tiny changes do not miss it.
+
+#### Sessions and estimates
+
+- 220K checkpoint and 250K planned maximum apply to the **main session's context only**. Stop earlier if the real context or usage limit needs it.
+- Helpers work in their own context; their working tokens do not fill the main context, but their reports do — keep reports short. Helper usage still counts in the rough total estimate.
+- Estimates are information for Amit's now-or-later decision, not spending targets. Label them as estimates; never invent a measurement.
+- Split large work into packages that can each be verified alone. Do not start a package the remaining main context is unlikely to cover, including checks and handoff.
+
+#### What stays always-on vs. moves to the skill
+
+- **Stays in `STANDARDS.md`:** the 10 steps as short signposts (same names and numbers, so existing references keep their meaning) · every gate · the risk triggers and the rule "check risk before the tiny-change route; anything beyond it uses the planning skill" · verification and done rules · the completion reminder · handoff · fix the cause · the retry rule (once approved) · session limits.
+- **Moves to the skill:** what a plan contains · the five guides · test planning · technical design · work-package splitting · idea assessment.
+- Project data-safety rules stay in each project's rules; the skill points to them.
+
+#### Saved plans
+
+| Work | Canonical plan | Handoff |
+|---|---|---|
+| Claude Setup | A section in this file | `.claude/current-task.md` points to it |
+| Project work over more than one session | The project's existing plan or roadmap section, linked from the roadmap row — never crammed into one cell | The project's `.claude/current-task.md` points to it |
+| Work finished in one session | Chat is enough | — |
+| VT | Local only (`.git/info/exclude`); nothing to GitLab | Local |
+
+`current-task.md` stays a short handoff with the open questions needed to continue — never a copy of the plan.
+
+#### Files
+
+- **Staging (WP2):** `harness/planning-draft/`, entry file named `entry.md` (not `SKILL.md`), outside every skills folder.
+- **Final (WP3):** `skills/planning/SKILL.md` · `new-project.md` · `feature.md` · `bug-fix.md` · `documentation.md` · `setup-change.md`.
+- **Activation list (WP3):** the skill files · `STANDARDS.md` (signposts, risk check before the tiny-change route, skill pointer, retry rule, § *Plan before building* limits) · `ENVIRONMENT.md` line about the 250K limit and 80% rule · `.gitignore` (allow `skills/planning/`; remove staging lines) · `DOCUMENT-MAP.md` (new row) · `templates/handoff.md` ("Plan:" link line).
+- **Verify only, edit only if a meaning changed:** `harness/cross-check.md` ("step 4" must still mean Approve, including the deletion rule) · `DOCUMENTATION-STANDARD.md` lines 137–139 · `harness/overview.md` · `.gitignore` comment on templates.
+- Writing style for every guide: plain, simple English, the way a person explains it; short sentences; one home per rule.
+
+#### Work packages (rough estimates, not targets)
+
+| WP | Scope | Main context | Total usage | Session | Done when |
+|---|---|---|---|---|---|
+| 1 Save design | This section · D51 and the D50 clarification · `harness/status.md` · handoff | 60–90K | + ~20–30K read-test helper | Session 1 | A fresh reader states scope, acceptance checks, open choices and next step from the handoff and this section |
+| 2 Draft, inactive | Six files and the new `STANDARDS.md` wording in staging | 100–140K | same | Its own fresh session (WP1 finished in the design session, 23-11-2026) | Draft not discovered as a skill; paper run of every routing scenario passes |
+| 3 Switch on | The activation list, checks, one cross-check helper | 120–170K | + 40–60K helper | Always a fresh session | Activation checks below pass |
+| 4 Test and record | Acceptance checks, measured loading impact, records, research-file deletion proposal | 70–120K | + 150–250K short fresh test sessions | Fresh session | All checks pass, or each failure is labelled |
+
+About **540–830K** rough total for WP2–WP4 plus WP1's main context (main context 350–520K + WP3 helper 40–60K + test sessions 150–250K); WP1's read-test helper (~20–30K) is extra. 3–4 main work sessions, plus short fresh-session tests.
+
+#### Activation and recovery (WP3)
+
+- **Before activation:** Amit's go · a fresh session · `git status` shows only expected changes · HEAD is where WP2 left it. A failed precondition stops the work.
+- **Order:** apply the whole activation list, then run the checks. If the main context runs short before activation, leave the drafts inactive and hand off. Never leave an active instruction pointing to a missing skill.
+- **If checks fail before a commit:** move the skill back to staging; restore only the files on the activation list, one by one, with Amit's approval; confirm no active instruction points to a missing skill.
+- **After a commit:** revert that one commit, with Amit's approval.
+- Never use resets or broad clean-up; unrelated changes are kept.
+- Moving files back does not remove instructions the current conversation already loaded — check the recovered state in a fresh session.
+- Draft commits are optional and need Amit's explicit approval; a package need not end in a commit.
+
+#### Acceptance checks (WP4)
+
+- **Routing**, in short fresh sessions, with compatible scenarios grouped (not twelve separate sessions):
+  1. Question only → no planning.
+  2. Tiny wording fix → tiny-change route.
+  3. One-line login-check change → not the tiny-change route; deep plan.
+  4. Low-risk small enhancement → light plan.
+  5. Small enhancement touching personal data → deep, still a small enhancement.
+  6. Feature → depth from the full trigger list.
+  7. Non-UI bug → focused check, no UI test.
+  8. UI bug → plus a UI check.
+  9. Plain-prose doc → no build.
+  10. Runbook or doc with commands that must run → real verification.
+  11. New app → deep; cross-check before building.
+  12. Risky Setup change → deep; cross-check; fresh-session test.
+- **Loading:** the entry point and only the relevant guide are read.
+- **Activation:** the draft is not discovered before activation and is after it · every pointer resolves · kept references still mean the same thing · a search of the affected files finds no conflicting planning rule (this covers the affected files, not the whole setup) · recovery steps work.
+- **Restart:** a fresh session resumes from the handoff, its linked canonical plan, the relevant rules and the current working state, without the old conversation.
+- **Cross-check:** the existing procedure still works without Phase 9 agents.
+- **Supporting only:** `doc-check.sh`, file sizes, and the description under 1,536 characters. These do not prove behaviour.
+- Report measured loading and context impact where available; no savings promised before testing.
+
+#### Open questions (Q1–Q8)
+
+| Q | Amit decided | Recommendation awaiting approval |
+|---|---|---|
+| Q1 Testing scale | P1–P4 is urgency only | Risk-based testing and acceptance criteria; no extra scale |
+| Q2 When built | Phase 8 | — |
+| Q3 Bug flow | A kind of work inside planning | — |
+| Q4 Idea assessment | Only if really needed | A short section, not a guide |
+| Q5 Research file | Temporary; deletion approved separately, after useful content and sources are kept and references checked | — |
+| Q6 Overlaps | — | Mark "potentially covered by …" (§ *Phase 11*); verify before declaring covered |
+| Q7 Research | Verified for the ideas used, with gaps | — |
+| Q8 Saved plans | Reuse existing places; must survive a restart; handoff points to the plan | The *Saved plans* table above |
+
+Also decided by Amit: test planning stays inside planning · Voice-Flow brief waits for Phase 9 · required cross-checks stay until Phase 9 reviewers exist · Phase 8 migrates only the planning rules it replaces; Phase 10 is the whole-setup clean-up.
+Choices awaiting approval: the retry rule · routing tests in short fresh sessions Amit starts · optional draft commits.
+
+#### Adopted ideas and sources (retrieved 23-11-2026; adapted, not installed)
+
+| Source | What it says | Our adaptation | Gap |
+|---|---|---|---|
+| OpenSpec `docs/concepts.md` (github.com/Fission-AI/OpenSpec) | "Most changes should stay in Lite mode"; full spec for higher-risk changes | Light by default; deep by risk | The docs mark themselves partly out of date; openspec.dev not read |
+| OpenSpec `schemas/spec-driven/schema.yaml` | `design.md` "create only if any apply" | Technical design only when needed | — |
+| OpenSpec README and schema | Requirements with WHEN/THEN scenarios | Acceptance scenarios in plain words | — |
+| OpenSpec `docs/concepts.md` | Archiving merges change specs into the maintained specs | Completion step names lasting docs and decisions to update; no spec folder system | — |
+| Spec Kit `templates/spec-template.md` (github.com/github/spec-kit) | Prioritised user stories, Given/When/Then, `[NEEDS CLARIFICATION]` marks | Acceptance scenarios; "Open:" items block approval | — |
+| Spec Kit `templates/commands/clarify.md` | At most 5 questions, one at a time | Keep our 2–3 questions rule | — |
+| Spec Kit `templates/commands/analyze.md` | Read-only consistency check of spec, plan, tasks | Self-check now; `plan-reviewer` input in Phase 9 | — |
+| Spec Kit `templates/tasks-template.md` | Tasks by user story; first usable version first | Work packages each verifiable alone | — |
+| Spec Kit `templates/plan-template.md` | "Constitution Check" gate | Check the plan against `STANDARDS.md` and the project's rules | — |
+| Spec Kit README | Bug add-on (assess, fix, test; verified / partial / failed); assess add-on (go / needs-clarification / kill) | Bug result labels; idea-assessment section | Add-ons outside the core; only the README read |
+
+Ideas from Amit's summary of zazencodes (not checked against the repos): checks before review · findings back to the builder · bounded retries — adopted above. Risk-based reviewer choice waits for Phase 9. Not adopted: automatic merging, parallel jobs, the author's personal setup.
+Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): skill descriptions load at session start; the body loads when the skill is used and stays; other files in the folder load only when read; description plus `when_to_use` is cut at 1,536 characters; `@imports` always load. The page was cut off after about 100,000 characters.
 
 ### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50)
 
@@ -528,7 +677,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 
 - Recheck coding, testing and other parts; build more agents or skills only for a real repeated need.
 - Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
-- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6.
+- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — *proposed*, awaiting approval: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `setup-cross-check` · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `setup-cross-check`); verify before declaring any fully covered.
 
 #### Old Phase 8 — `SETUP-PLAN.md` split (now inside Phase 10)
 | ID | File | Priority |

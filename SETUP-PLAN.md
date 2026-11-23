@@ -79,7 +79,8 @@ the status column says which.
 | D47 | 10-11-2026 | `DOCUMENT-MAP.md` is the one document map; replaces the three old maps | in force; closed 11-11-2026; supersedes item 16's "setup map = `harness/overview.md`" |
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 | D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
-| D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10) |
+| D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
+| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | design agreed; open (retry rule and choices await approval; build not started) |
 
 ---
 
@@ -1659,6 +1660,26 @@ B24 and B25 are revisited in Phase 10. Open questions Q1–Q8: `.claude/current-
 `harness/backlog.md` · `harness/planning-research.md` · later `STANDARDS.md`,
 `harness/cross-check.md`, `DOCUMENT-MAP.md`, `.gitignore`. **Status:** in force; open until
 those are updated in Phases 8–10. Plan: `harness/doc-structure-plan.md` § 3 *Phase 8* onwards.
+**Clarified 23-11-2026 (Amit, D51):** Phases 8 and 9 update the instructions their own changes
+replace, in the same approved change, so no two conflicting instructions stay active. Phase 10
+remains the whole-setup audit and rewrite.
+
+### D51 · 23-11-2026
+
+**Planning system design (Amit).** One planning entry point (a `planning` skill) with six kinds of
+work: new project · new feature and small enhancement (one shared guide) · bug fix · documentation
+· Claude Setup change. Kind of work and planning depth are chosen separately; depth follows risk,
+and risk is checked before the tiny-change route, so a small diff never skips a risky change's
+care. Always-on gates stay in `STANDARDS.md` (the 10 steps as short signposts); planning detail
+moves to the skill. Session limits (220K checkpoint, 250K maximum) apply to the main context only.
+Ideas adapted from OpenSpec and Spec Kit, neither installed. Built in four packages — save design,
+draft inactive, switch on with the rules it replaces, test — each on Amit's word. Rejected: a
+separate testing scale (P1–P4 stays urgency only) · a new spec folder system · a separate
+idea-assessment guide for now. **Awaiting approval:** the two-attempt / two-review-round escalation
+rule, routing tests in short fresh sessions, optional draft commits, and recommendations Q1, Q4,
+Q6, Q8. **Affected files:** `harness/doc-structure-plan.md` § 3 *Phase 8* (the full plan) · later
+`STANDARDS.md`, `ENVIRONMENT.md`, `.gitignore`, `DOCUMENT-MAP.md`, `templates/handoff.md`,
+`skills/planning/`. **Status:** design agreed; open until WP4 passes.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
