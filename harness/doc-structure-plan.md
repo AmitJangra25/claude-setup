@@ -29,7 +29,7 @@ Last reviewed: 23-11-2026
 - **Phases 6 and 7 done** (Phase 6 Voice-Flow pilot; Phase 7 16-11-2026) — `harness/status.md`.
 - **Phase order changed 20-11-2026 (Amit, D50):** 8 planning system → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs the old Phase 8 `SETUP-PLAN.md` split and the old Phase 9 30-day review) → 11 further checks. § 3 *Phase 8* onwards.
 - **Phase 8 design saved 23-11-2026 (WP1, D51):** § 3 *Phase 8*. Nothing built.
-- **Next step:** Amit approves the final plan (retry rule and open choices), then WP2 on his word. Start from `.claude/current-task.md` and § 3 *Phase 8*.
+- **Final plan approved 24-11-2026.** Next step: WP2 in a fresh session, on Amit's word. Start from `.claude/current-task.md` and § 3 *Phase 8*.
 
 ## 1. Goal and success measure
 
@@ -497,7 +497,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 **Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear.
 **Goal (Amit):** one planning system that gives each job the right amount of planning — small work stays small, risky work gets care — without dropping any safety, approval or verification gate.
 **Success measure:** every WP4 acceptance check passes, and no conflicting active planning instruction remains in the affected files.
-**Status (23-11-2026):** design discussed and saved (WP1). Items marked *proposed* below still wait for Amit's approval of the final plan. WP2–WP4 each need their own go.
+**Status (24-11-2026):** design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026, including every item once marked *proposed*. WP2–WP4 each need their own go.
 
 #### How the planning system works
 
@@ -528,7 +528,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 - Refactoring: feature path, "behaviour must not change", checks before and after. Data migration: always deep (backup, dry run, undo).
 - **Combining kinds:** pick one main kind; add only the lines another kind needs. Never two plans.
 - **Technical design section** (any kind, only when needed): affected parts, interfaces and data, approach, main alternatives, risks. Small, plain work needs no separate technical document.
-- **Idea assessment** (*proposed*, Q4): a short section in the skill ending in go / needs more information / do not do. Not a separate guide for now.
+- **Idea assessment** (approved 24-11-2026, Q4): a short section in the skill ending in go / needs more information / do not do. Not a separate guide for now.
 - **Root cause:** a labelled guess is fine while investigating. It never justifies a speculative real fix — confirm it with evidence, or report the limit and ask Amit.
 
 #### Checks, review and stopping
@@ -537,7 +537,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 - If a check fails, say whether it failed before the change or because of it.
 - Results are **done and verified**, **partly verified** or **blocked**. Only the first may be called done.
 - Independent review follows the existing levels in `harness/cross-check.md` until Phase 9 reviewers exist. No new agent is a Phase 8 dependency.
-- **Retry and escalation (*proposed*, awaiting Amit's approval):**
+- **Retry and escalation (approved 24-11-2026):**
   - After two unsuccessful corrective attempts on the same unresolved issue: checkpoint, show the evidence and a recommended next step, and ask Amit before continuing.
   - New evidence can shape the next approach but must not reset the count again and again.
   - Ordinary development and check cycles that succeed are not failed attempts.
@@ -576,6 +576,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 - **Activation list (WP3):** the skill files · `STANDARDS.md` (signposts, risk check before the tiny-change route, skill pointer, retry rule, § *Plan before building* limits) · `ENVIRONMENT.md` line about the 250K limit and 80% rule · `.gitignore` (allow `skills/planning/`; remove staging lines) · `DOCUMENT-MAP.md` (new row) · `templates/handoff.md` ("Plan:" link line).
 - **Verify only, edit only if a meaning changed:** `harness/cross-check.md` ("step 4" must still mean Approve, including the deletion rule) · `DOCUMENTATION-STANDARD.md` lines 137–139 · `harness/overview.md` · `.gitignore` comment on templates.
 - Writing style for every guide: plain, simple English, the way a person explains it; short sentences; one home per rule.
+- Write in simple, everyday human English. Keep it short where that helps; never force it short or cut facts (Amit, 24-11-2026).
 
 #### Work packages (rough estimates, not targets)
 
@@ -622,7 +623,7 @@ About **540–830K** rough total for WP2–WP4 plus WP1's main context (main con
 
 #### Open questions (Q1–Q8)
 
-| Q | Amit decided | Recommendation awaiting approval |
+| Q | Amit decided | Recommendation (approved 24-11-2026) |
 |---|---|---|
 | Q1 Testing scale | P1–P4 is urgency only | Risk-based testing and acceptance criteria; no extra scale |
 | Q2 When built | Phase 8 | — |
@@ -634,7 +635,7 @@ About **540–830K** rough total for WP2–WP4 plus WP1's main context (main con
 | Q8 Saved plans | Reuse existing places; must survive a restart; handoff points to the plan | The *Saved plans* table above |
 
 Also decided by Amit: test planning stays inside planning · Voice-Flow brief waits for Phase 9 · required cross-checks stay until Phase 9 reviewers exist · Phase 8 migrates only the planning rules it replaces; Phase 10 is the whole-setup clean-up.
-Choices awaiting approval: the retry rule · routing tests in short fresh sessions Amit starts · optional draft commits.
+Choices approved 24-11-2026: the retry rule · routing tests in short fresh sessions Amit starts · optional draft commits.
 
 #### Adopted ideas and sources (retrieved 23-11-2026; adapted, not installed)
 
@@ -655,6 +656,8 @@ Ideas from Amit's summary of zazencodes (not checked against the repos): checks 
 Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): skill descriptions load at session start; the body loads when the skill is used and stays; other files in the folder load only when read; description plus `when_to_use` is cut at 1,536 characters; `@imports` always load. The page was cut off after about 100,000 characters.
 
 ### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50)
+
+- Sub-agents stay one level deep (no sub-sub-agents): plan reviewer, change reviewer, and a researcher if needed (Amit, 24-11-2026).
 
 - `change-reviewer` (merged small-change + feature reviewer) and `plan-reviewer`: read-only tools (Read, Grep, Glob), `omitClaudeMd: true`, no memory; given only agent file + short brief + task context + diff or plan + narrow file list (+ a named test if given); asks for a narrower list if it needs more; verdict `no concerns / concerns / blocked` — reports, never approves. Models: `change-reviewer` Sonnet (Opus for security or data); `plan-reviewer` Opus.
 - Claude Setup brief: `harness/agent-brief.md` (not in `project-rules/`, which holds copies only). Voice-Flow brief later, in a Voice-Flow session, in its own repo, then mirrored.
@@ -677,7 +680,7 @@ Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): ski
 
 - Recheck coding, testing and other parts; build more agents or skills only for a real repeated need.
 - Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
-- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — *proposed*, awaiting approval: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `setup-cross-check` · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `setup-cross-check`); verify before declaring any fully covered.
+- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — approved 24-11-2026: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `setup-cross-check` · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `setup-cross-check`); verify before declaring any fully covered.
 
 #### Old Phase 8 — `SETUP-PLAN.md` split (now inside Phase 10)
 | ID | File | Priority |
