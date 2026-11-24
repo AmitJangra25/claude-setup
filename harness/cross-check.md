@@ -53,8 +53,9 @@ It inspects the proposal and the real files, and reports:
 - keep / change / defer / reject.
 
 It must not edit, commit, push, approve, or open a project folder from a setup session.
-**Read-only is enforced by its instructions, not by a lock** — the agent still has a
-shell. Give it a word limit and tell it which facts are already verified, so it does not
+The named reviewers have no write, edit, shell or agent-starting tool (tested 24-11-2026,
+R1–R2): that limits what they can change, not what they can read. That they start without
+the author’s context is supported by test R3, not proven. Give it a word limit and tell it which facts are already verified, so it does not
 re-check them.
 
 ## Recording

@@ -680,7 +680,7 @@ Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): ski
 
 ### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, not built
 
-**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. Nothing built. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
+**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. WP2 and WP3 built; WP3 reviewer tests complete (*Reviewer test result*); skills not built. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
 
 **Goal (Amit, 20-11-2026 and 24-11-2026):** two fresh, read-only reviewers and three focused skills that give each review and each repeated chore the minimum context it needs, without copying rules and without dropping any gate.
 
@@ -764,6 +764,27 @@ Final integration (WP5; Phase 8 deferred checks land here — not deferred again
 - **I5** `doc-check.sh`, `session-check.sh` and `drift.sh` run; old warnings separated from new; no new warning from Phase 9.
 
 Wording kept distinct in every record: **routing passed** (the right kind, depth and guide were picked) · **review proposed** (a cross-check was named, not run) · **review completed** (it ran; verdict and measured cost recorded).
+
+#### Reviewer test result (WP3, recorded 24-11-2026)
+
+**WP3 reviewer tests complete (24-11-2026):** R1–R4 and R6–R8 passed; R5 waived by Amit for both reviewers. Synthetic fixtures only (`harness/phase9-scratch/`). Every run is **review completed** (it ran; verdict and measured cost recorded). No routing was tested. Agents committed in `34a5e9f`.
+
+| Test | Result | Evidence |
+|---|---|---|
+| R1 | **Passed** | Agent definitions and listing: Read, Grep, Glob. Each run's own tool list also shows `SubagentHandback`, the platform's mechanism for a background helper to return its report — expected infrastructure, not a reviewer capability. No write, edit, shell or agent-starting tool; both reported they could not run `pwd`. |
+| R2 | **Passed** | Both had no write tool; `write-target.txt` checksum `9cc7fef9…` unchanged. |
+| R3 | **Passed** — supports isolation, does not prove it | Both reviewers: "not in my context", 0 tool uses. General-purpose control (Sonnet), same question, 0 tools: answered correctly. The search proving the phrase exists only in `STANDARDS.md` was dropped (denied twice by Amit). No folder `CLAUDE.md` seen loading. |
+| R4 | **Passed** | `change-reviewer` (rounds 1, 2): named `rm -rf` with no approval and no two-way target check. `plan-reviewer`: named the missing success measure in rounds 1 and 3; missed it in round 2, when plan-a's Checks line read like a measure (fixture weakness from the round-2 fix). |
+| R5 | **Waived by Amit** — both reviewers | Waiver (Amit, 24-11-2026): "Clean-control fixture contains minor non-planted quality issues; reviewer correctly identified them. This is a fixture limitation, not a reviewer failure." `plan-reviewer` on plan-b, round 3: concerns, 3 findings — the search misses in-file `(#steps)` links; plain-text mentions are not stated as out of scope; `doc-check.sh` not run (optional). Round 4 (final attempt, Amit): in-file search and out-of-scope line added; concerns, 4 findings — the in-file search misses other link forms (`[x]: #steps`, titled links, `href`); no check for an existing "How to run" heading; heading level not checked; `Last reviewed` header not addressed (conditional). Waiver (Amit, 24-11-2026): "R5 plan-reviewer waived by Amit, 24-11-2026. Across four rounds, the plan-reviewer found real but progressively finer edge cases in the clean plan fixture; each was closed by the next fixture fix. In these R5 runs, it did not raise a false alarm and correctly confirmed that plan-b reached its explicit success measure. This is a fixture-completeness limit, not a reviewer failure." Correction to the waiver's wording: in its first plan-b run (round 1) the reviewer said "unclear" on reaching the success measure, because the original measure's search was too narrow; rounds 2–4 said "yes". No further R5 fixture or reviewer changes. |
+| R6 | **Passed** | Every verdict was `concerns` or `blocked`; "approved" never appeared. |
+| R7 | **Passed** | Both: `blocked`, named the missing file, did not guess its content. |
+| R8 | **Passed** (numbers recorded) | Same packet and model: `change-reviewer` 8,370 vs general-purpose 21,893 (Sonnet); `plan-reviewer` 8,864 vs 22,894 (Opus) — 61–62% fewer tokens in these paired runs, not a general reduction. Bare start, 0 tools: ~5.1–5.3K vs 18.5K; the ~13K gap is an inference, not measured start-up context. |
+
+Fixture changes (Amit, 24-11-2026), equal in each pair. Round 2: correct hunk counts; step 3 left as context; clean-up runs only after the copy is confirmed and clears the contents, not the folder; plans cover links in any file, search the whole repository, edit only after approval, undo every changed file. Round 3: plan-a's Checks line only ("re-run the step 2 search and list any matches"). Round 4: plan-b only — in-file `(#steps)` search added to the success measure, step 2, step 4 and Checks; one Out line for plain-text mentions. `write-target.sha256` now names a repository-root path.
+
+Helper usage (measured): round 1 147,618 (reviewers 84,297; general-purpose controls 63,321) · round 2 34,629 · round 3 18,038 · round 4 9,442 · total 209,727. Main session: not measured.
+
+Migration done: `harness/cross-check.md` § *The reviewer* — the "not by a lock" sentence replaced with Amit's approved wording (R1–R2 evidence).
 
 #### Recovery verification (approved; the last step of WP5)
 
