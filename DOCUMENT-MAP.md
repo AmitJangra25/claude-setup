@@ -99,6 +99,7 @@ These make things work; they are not read as documents and follow no document fo
 | `projects/*/memory/` | Claude's notes on Amit's preferences and corrections — never task state, goals or decisions |
 | Skills (`skills/`, project skills) | Instructions loaded only when a task calls for them |
 | `skills/planning/` | What a plan holds: kind of work, depth, and one guide per kind. When to plan, the risk check and every gate stay in `STANDARDS.md` § *How a task runs* |
+| `agents/` (`change-reviewer`, `plan-reviewer`) | Fresh, read-only reviewers for cross-checks; they report and never approve. When to use them: `harness/cross-check.md` § *The reviewer* |
 | Acceptance sheets | Checklists used to test a project's work |
 | `launch.json` | Editor settings for starting and debugging an app |
 | `harness/session-check.sh` | Script run at setup session start; warns about drift and risky rules |

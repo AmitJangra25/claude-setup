@@ -131,6 +131,12 @@
 !harness/doc-structure-plan.md
 !harness/agent-brief.md
 
+# --- allow: hand-written reviewer agents (Phase 9, D52), by name.
+#     Named files only, same rule as skills/.
+!agents/
+!agents/change-reviewer.md
+!agents/plan-reviewer.md
+
 # --- allow: the setup-only files (D33, D36): CLAUDE.md, and settings.json with the
 #     SessionStart hook and six ask rules (D36, D41, D44). .claude/ also holds current-task.md and
 #     settings.local.json, which stay ignored — `*` still matches them.

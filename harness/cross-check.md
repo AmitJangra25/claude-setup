@@ -39,8 +39,10 @@ Cross-check triggers in full are under *Levels*, Level 2.
 
 ## The reviewer
 
-A fresh `general-purpose` agent, not a fork, so it does not inherit the author's
-reasoning. Opus for design and structure; a smaller model only for narrow fact checks.
+A fresh named reviewer, not a fork, so it does not inherit the author's reasoning:
+`change-reviewer` for a diff or finished change (Sonnet; the requesting session passes
+Opus for security or data), `plan-reviewer` for a plan (Opus). Both are in `agents/`.
+Opus for design and structure; a smaller model only for narrow fact checks.
 It inspects the proposal and the real files, and reports:
 
 - facts verified, with file and line; assumptions made;
