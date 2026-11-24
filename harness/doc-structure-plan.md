@@ -6,8 +6,8 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phases 1–7 done (Phase 7 16-11-2026); Phase 8 (planning system) design saved 23-11-2026 (D51), build not started — phase order changed 20-11-2026 (D50)
-Last reviewed: 23-11-2026
+Status: Phases 1–7 done; Phase 8 implemented, acceptance partly verified (D51); Phase 9 plan approved 24-11-2026 (D52), not built — phase order changed 20-11-2026 (D50)
+Last reviewed: 24-11-2026
 
 ---
 
@@ -30,6 +30,7 @@ Last reviewed: 23-11-2026
 - **Phase order changed 20-11-2026 (Amit, D50):** 8 planning system → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs the old Phase 8 `SETUP-PLAN.md` split and the old Phase 9 30-day review) → 11 further checks. § 3 *Phase 8* onwards.
 - **Phase 8 design saved 23-11-2026 (WP1, D51):** § 3 *Phase 8*. Nothing built.
 - **Final plan approved 24-11-2026.** Next step: WP2 in a fresh session, on Amit's word. Start from `.claude/current-task.md` and § 3 *Phase 8*.
+- **Phase 9 plan approved 24-11-2026 (WP1, D52):** § 3 *Phase 9*. Next: WP2 in a fresh session, on Amit's word.
 
 ## 1. Goal and success measure
 
@@ -677,16 +678,113 @@ Choices approved 24-11-2026: the retry rule · routing tests in short fresh sess
 Ideas from Amit's summary of zazencodes (not checked against the repos): checks before review · findings back to the builder · bounded retries — adopted above. Risk-based reviewer choice waits for Phase 9. Not adopted: automatic merging, parallel jobs, the author's personal setup.
 Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): skill descriptions load at session start; the body loads when the skill is used and stays; other files in the folder load only when read; description plus `when_to_use` is cut at 1,536 characters; `@imports` always load. The page was cut off after about 100,000 characters.
 
-### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50)
+### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, not built
+
+**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. Nothing built. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
+
+**Goal (Amit, 20-11-2026 and 24-11-2026):** two fresh, read-only reviewers and three focused skills that give each review and each repeated chore the minimum context it needs, without copying rules and without dropping any gate.
+
+**Success measure (approved):** yes/no. Yes when every check below (R1–R8, K1–K5, I1–I5) is **passed, or waived by Amit**, and a search of the affected files finds no conflicting active instruction. A failed check is fixed and re-run, or brought to Amit; it never counts towards "yes".
+
+**Phase 8 stays implemented but not fully accepted** until I1–I3 pass or Amit waives them (§ *Phase 8* → *Acceptance result (WP4)*).
+
+#### Agreed design
 
 - Sub-agents stay one level deep (no sub-sub-agents): plan reviewer, change reviewer, and a researcher if needed (Amit, 24-11-2026).
+- `change-reviewer` (merged small-change + feature reviewer) and `plan-reviewer`: fresh and read-only. Tools Read, Grep, Glob · `omitClaudeMd: true` · reviewer memory unset. Behaviour is proven by tests, not by a setting's name. Verdict `no concerns / concerns / blocked`; reports, never approves. Models: `change-reviewer` Sonnet (Opus for security or data); `plan-reviewer` Opus.
+- `omitClaudeMd` leaves out user, project and local `CLAUDE.md` at start. Managed policy may still apply. Folder-specific instructions may load later when files are opened.
+- Context in four layers, minimum sufficient: agent file · short project brief · neutral task packet (no author verdict; earlier checks are evidence the reviewer may challenge; it may ask for a missing file) · linked detail only when needed. No full `STANDARDS.md` copy for any reviewer.
+- Claude Setup brief `harness/agent-brief.md`: purpose, tech stack, features, entry points, critical rules, where to look next — one-liners and links. Not in `project-rules/` (copies only). Its one-line rules need a row in `DOCUMENTATION-STANDARD.md` § *Allowed copies*; listed in `DOCUMENT-MAP.md`; no new registry. Voice-Flow's brief is decided in its own later session.
+- `harness/doc-check.sh` checks dead links only in its own listed files, and only backticked paths in named folders — not `agents/`, not other projects. Link checks for new files are done by hand in this phase.
+- **Three skills** (Amit, 24-11-2026 — `setup-cross-check` dropped, see *Not built*):
+  - `handoff` — reuses `templates/handoff.md`, incl. B2's "Errors and fixes".
+  - `send-for-review` — **manual only: the model never starts it by itself.** Amit typing it is the same as Amit saying "send it for review" (`STANDARDS.md` § *Git*, unchanged): branch off `main`, commit, push to GitHub, open the PR with short details. Then stop. Amit reviews and merges by hand and tells Claude. Claude never merges. After Amit confirms the PR is merged, Claude may delete **only the local branch**, after checking git shows it merged (the deletion is confirmed as `STANDARDS.md` step 4 says). Remote branch deletion follows the repository setting or a separate instruction from Amit. Claude never merges a PR and never pushes outside this approved flow. No `dev` branch; suggest GitHub's "delete branch after merge". VT exception — Claude never pushes there. The skill points to the gates; it does not restate them.
+  - `documents` — checklist pointing to `DOCUMENTATION-STANDARD.md`.
+- Replaced instructions are migrated in the same package that switches on their replacement. The final package only tests and records.
+- Not built: `setup-cross-check` (Amit, 24-11-2026: a 5-line procedure already read on demand in `harness/cross-check.md`; a skill would add a description every session) · `git-safety` (stays in `STANDARDS.md` + settings ask list) · `code-review-checklist` (inside the reviewer agents) · `data-safety-review` (project limits go in each brief) · `test-plan` (inside `planning`) · plan-review template. `bug-fix-workflow`: Q3 (inside planning).
 
-- `change-reviewer` (merged small-change + feature reviewer) and `plan-reviewer`: read-only tools (Read, Grep, Glob), `omitClaudeMd: true`, no memory; given only agent file + short brief + task context + diff or plan + narrow file list (+ a named test if given); asks for a narrower list if it needs more; verdict `no concerns / concerns / blocked` — reports, never approves. Models: `change-reviewer` Sonnet (Opus for security or data); `plan-reviewer` Opus.
-- Claude Setup brief: `harness/agent-brief.md` (not in `project-rules/`, which holds copies only). Voice-Flow brief later, in a Voice-Flow session, in its own repo, then mirrored.
-- Thin skills: `handoff` (reuses `templates/handoff.md`, incl. B2's "Errors and fixes") · `send-for-review` (Amit's PR flow: branch off `main`; PR with short details; Amit reviews and merges; Amit confirms; Claude deletes the local branch after checking it is merged; no `dev` branch; suggest GitHub's "delete branch after merge"; VT exception — Claude never pushes there) · `documents` · `setup-cross-check` (moved from `harness/cross-check.md`). `bug-fix-workflow`: Q3.
-- Not built: `git-safety` (stays in `STANDARDS.md` + settings ask list) · `code-review-checklist` (inside the reviewer agents) · `data-safety-review` (project limits go in each brief) · `test-plan` (inside `planning`) · plan-review template.
-- Tests: `change-reviewer` on a harmless setup doc diff with a planted mistake; `plan-reviewer` on a small doc plan; prove no write access; **measure real token cost** before setting limits; B16 project-map trial feeds the "one map section" input.
-- Daily tokens: agents and skills add ~0.4K per turn until Phase 10 moves sometimes-rules out of `STANDARDS.md` (est. −1.5K to −2K).
+#### Files (exact)
+
+Every WP that changes setup also updates `harness/status.md` (`.claude/CLAUDE.md`) and `.claude/current-task.md`.
+
+| WP | Create | Change (migration in the same WP) |
+|---|---|---|
+| 2 | `harness/agent-brief.md` · disposable `harness/phase9-scratch/` (git-ignored, never tracked) | `.gitignore` (allow the brief by name) · `DOCUMENT-MAP.md` (brief row) · `DOCUMENTATION-STANDARD.md` § *Allowed copies* (brief row) |
+| 3 | `agents/change-reviewer.md` · `agents/plan-reviewer.md` | `.gitignore` (`!agents/` plus each file by name) · `harness/cross-check.md` § *The reviewer* (line 42 "fresh `general-purpose` agent" → the named agents; line 54 "read-only … not by a lock" rewritten only if R1–R2 prove the tool limit) · `DOCUMENT-MAP.md` § *Not documents* |
+| 4 | `skills/handoff/SKILL.md` · `skills/send-for-review/SKILL.md` · `skills/documents/SKILL.md` | `.gitignore` (`!skills/<name>/` plus each file by name) · `STANDARDS.md` step 9 and § *Git*: a skill pointer only — every gate sentence stays · `DOCUMENT-MAP.md` § *Not documents* |
+| 5 | Nothing new | Records only: this section · `harness/status.md` · `.claude/current-task.md` · `SETUP-PLAN.md` (D52 status, D51 status) |
+
+`STANDARDS.md` gates (approval, commit/push, deletion, recording) are never moved into a skill; skills point to them.
+
+#### Disposable test location
+
+- `harness/phase9-scratch/` inside `~/.claude`: already ignored by `.gitignore`'s `*`. Inside the working folder, so no write outside it (D46) and no shell route around the file-tool lock. `session-check.sh`, `doc-check.sh` and `drift.sh` read only their listed files, so they do not walk into it (cross-check, 24-11-2026).
+- **Every search for the K and I checks excludes this folder.**
+- Synthetic data only: a setup-style doc diff with one planted mistake and a clean one; a small doc plan with one planted gap and a clean one; a throwaway write target with a known checksum. No real project data, no secrets, no `.env`.
+- Deleting it at the end needs Amit's approval and the two-method target check (`STANDARDS.md` step 4).
+
+#### Work packages (rough estimates, not targets)
+
+| WP | Scope | Main context | Helper / test-session usage | Session | Done when |
+|---|---|---|---|---|---|
+| 1 Save plan | This section, pointers, one cross-check | 70–90K | + 56K cross-check (measured) | This session (24-11-2026) | Amit approves the plan, or sends changes |
+| 2 Brief and fixtures, inactive | Files row 2; fixtures; loading baseline for I3 | 60–90K | — | Fresh | Brief reviewed by Amit; fixtures in place; baseline recorded |
+| 3 Reviewers on | Files row 3; migration; R1–R8 | 120–160K | + 60–100K reviewer test runs | Fresh | R1–R8 passed or waived by Amit |
+| 4 Skills on | Files row 4; migration; K1–K5; one cross-check | 100–150K | + 40–60K cross-check | Fresh | K1–K5 passed or waived by Amit |
+| 5 Final integration | Tests and records only: I1–I5; recovery copy last | 70–110K | + 150–250K short fresh test sessions Amit starts | Fresh | Every I-check passed or waived by Amit; records updated |
+
+About **420–600K** main context and **300–470K** helpers and test sessions: roughly **0.72–1.07M** total, estimated. 5 main sessions (this one included) plus short test sessions. Priority **P3** (good to have: one review system and less copied context; nothing broken). Model: Opus for the main sessions (agents, rule-file pointers).
+
+Undo per WP: before a commit, restore only that WP's listed files, one by one, with Amit's approval; after a commit, revert that one commit with Amit's approval. No resets, no broad clean-up. Check the recovered state in a fresh session.
+
+#### Acceptance criteria — approved by Amit 24-11-2026 (D52)
+
+Reviewers (WP3), on the synthetic fixtures:
+- **R1** The loaded agent's tool list is exactly Read, Grep, Glob — checked in the agent listing and by asking it to run a shell command (it must report it cannot).
+- **R2** Asked to edit the throwaway target, it cannot; checksum unchanged.
+- **R3** Without being given it, the reviewer cannot state a distinctive phrase that exists only in `STANDARDS.md`; its transcript shows it did not open `STANDARDS.md`. Control run: an ordinary `general-purpose` agent given the same question can state it. A folder `CLAUDE.md` loading later is noted, not failed.
+- **R4** Planted-defect fixture: `change-reviewer` names the planted mistake; `plan-reviewer` names the planted gap.
+- **R5** Clean fixture: `no concerns`, or at most one concern that Amit judges a false alarm.
+- **R6** Verdict is always one of the three words; it never says "approved".
+- **R7** A packet that leaves out one needed file: passes if the reviewer asks for it, or reads it itself and says so; fails if it guesses its content.
+- **R8** Passes when the numbers are recorded: each reviewer run's helper usage and the main-context impact on separate lines, compared with the current `general-purpose` cross-check on the same fixture and model. Any token limit is set from these numbers later, not before.
+
+Skills (WP4):
+- **K1** Each skill is discovered; each description is under 1,536 characters.
+- **K2** `send-for-review` cannot be started by the model on its own. A paper walk-through shows: branch off `main` → commit → push → open PR → stop; never merges; deletes only the local branch, only after Amit confirms the merge and git shows it merged; leaves the remote branch to the repository setting or Amit. No real push in the test.
+- **K3** `handoff` run on a synthetic task in a fresh session gives a note in the `templates/handoff.md` shape.
+- **K4** Every new pointer resolves; any moved text is word for word (`cmp` or diff); pointers counted before and after.
+- **K5** A search of the affected files (scratch folder excluded) finds no conflicting active instruction; `doc-check.sh` shows no new warnings.
+
+Final integration (WP5; Phase 8 deferred checks land here — not deferred again):
+- **I1** Phase 8 routing tests 1–5 and 7–10 (nine) plus test 11 (ten in all), checked against § *Phase 8* → *Acceptance result (WP4)*, which lists exactly these. Grouped into short fresh sessions Amit starts. Test 11 uses a clearly hypothetical, read-only scenario — no real project, repository, install or file. Each must pass, or Amit waives it.
+- **I2** Recovery, in an isolated copy (method below), or Amit waives it.
+- **I3** Loading impact, per session (descriptions load once at session start): `/context` in a fresh session at WP2 start (baseline, Phase 8 already on) and again after WP4. Phase 8's own share cannot be measured live (no earlier baseline); it is estimated from the planning skill's description size and the `STANDARDS.md` word change, labelled *estimated*, and Amit accepts or waives that part. Passes when the numbers are recorded.
+- **I4** Restart: a fresh session resumes from the handoff, its linked plan, the relevant rules and the current working state, without the old conversation (same wording as Phase 8's check).
+- **I5** `doc-check.sh`, `session-check.sh` and `drift.sh` run; old warnings separated from new; no new warning from Phase 9.
+
+Wording kept distinct in every record: **routing passed** (the right kind, depth and guide were picked) · **review proposed** (a cross-check was named, not run) · **review completed** (it ran; verdict and measured cost recorded).
+
+#### Recovery verification (approved; the last step of WP5)
+
+The live setup is never undone to test recovery. Each git command below is approved by Amit at the time.
+1. Make a local copy: `git clone` of `~/.claude` into `harness/phase9-scratch/recovery/` (no network; ignored files such as settings and transcripts are not copied). Only after every other check is done; excluded from all searches.
+2. In the copy only: `git revert --no-commit`, newest first, each Phase 9 switch-on commit, then `a80a494` (Phase 8 switch-on).
+3. Judge each revert: conflicts in record files only (`SETUP-PLAN.md`, `harness/status.md`, `harness/doc-structure-plan.md`) are expected, because later record commits edited them — noted, not failed. A conflict in a rule, skill, agent, brief, `.gitignore` or `DOCUMENT-MAP.md` file fails. Then search the copy: no active instruction points to a missing skill, agent or brief.
+4. Read the copy with Bash and Grep only, never by starting a session in it, so its `CLAUDE.md` files are not loaded.
+5. Limit, stated in the result: this proves the reverts leave no broken pointer. It does not prove how a live session behaves after a revert; that part stays paper-reviewed unless Amit asks for a fresh session in the copy.
+6. Deleting the copy afterwards: Amit's approval plus the two-method target check.
+
+#### Open items
+
+- Decided (Amit, 24-11-2026): no fake `.env` test; R1–R3 prove what it would show.
+- **Open:** exact frontmatter field names for agents (`tools`, `model`, `omitClaudeMd`) and skills (manual-only field) — check against the current Claude Code docs at the start of WP3 and WP4, one page each; R1–R3 and K2 prove the result either way.
+- **Open (WP4):** compare `send-for-review` with the existing `ship-local` skill before writing it; overlap is reported to Amit, not assumed.
+- B16 project-map trial still feeds the brief's "where to look next" line.
+
+#### Decision
+
+**D52** (approved by Amit 24-11-2026) — Phase 9 final design: two reviewers, layered context, setup brief, three skills, migration rule, tests. Numbering checked 24-11-2026: D51 was the newest D-row in `SETUP-PLAN.md`.
 
 ### Phase 10 — Clean-up and rewrite (agreed 20-11-2026, D50)
 
@@ -702,7 +800,7 @@ Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): ski
 
 - Recheck coding, testing and other parts; build more agents or skills only for a real repeated need.
 - Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
-- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — approved 24-11-2026: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `setup-cross-check` · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `setup-cross-check`); verify before declaring any fully covered.
+- Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — approved 24-11-2026: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `harness/cross-check.md` § *Claude Setup cross-check* · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `harness/cross-check.md` § *Claude Setup cross-check*); verify before declaring any fully covered.
 
 #### Old Phase 8 — `SETUP-PLAN.md` split (now inside Phase 10)
 | ID | File | Priority |
