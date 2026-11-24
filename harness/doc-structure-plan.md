@@ -492,12 +492,12 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 |---|---|---|
 | T29 | `templates/new-project.md` | P4 |
 
-### Phase 8 — Planning system (design saved 23-11-2026, D51; build not started)
+### Phase 8 — Planning system (D51; in use since 24-11-2026; acceptance partly verified)
 
 **Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear.
 **Goal (Amit):** one planning system that gives each job the right amount of planning — small work stays small, risky work gets care — without dropping any safety, approval or verification gate.
 **Success measure:** every WP4 acceptance check passes, and no conflicting active planning instruction remains in the affected files.
-**Status (24-11-2026):** design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026, including every item once marked *proposed*. WP2–WP4 each need their own go. WP2 done 24-11-2026; WP3 done 24-11-2026 (uncommitted) — `harness/status.md` has the checks.
+**Status (24-11-2026):** implemented and in use; acceptance partly verified; named checks deferred to Phase 9's final integration package (Amit's scheduling choice, 24-11-2026 — not a technical dependency). The success measure is not yet met. Design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026; WP2 and WP3 done 24-11-2026 (switch-on commit `a80a494`); WP4 results recorded 24-11-2026 in *Acceptance result (WP4)* below — the one detailed record.
 
 #### How the planning system works
 
@@ -620,6 +620,28 @@ About **540–830K** rough total for WP2–WP4 plus WP1's main context (main con
 - **Cross-check:** the existing procedure still works without Phase 9 agents.
 - **Supporting only:** `doc-check.sh`, file sizes, and the description under 1,536 characters. These do not prove behaviour.
 - Report measured loading and context impact where available; no savings promised before testing.
+
+#### Acceptance result (WP4, recorded 24-11-2026)
+
+Phase 8 is implemented, with acceptance partly verified. Named checks are deferred to Phase 9's final integration package by Amit's scheduling choice (24-11-2026); this is not a technical dependency. Phase 8 is not accepted until each deferred check passes or Amit decides otherwise. Recording these results does not declare any untested check passed. Other files point here.
+
+| Check | Result | Evidence, or destination and trigger |
+|---|---|---|
+| Routing 12 — risky Setup change | Routing passed. Cross-check proposed, not performed | Phase 9 planning session, 24-11-2026: Claude Setup change, deep, fresh-session test named; read only `skills/planning/SKILL.md` and `setup-change.md` |
+| Routing 6 — feature | Feature/deep routing supported by the supplied excerpt; full plan acceptance checks not assessed. Cross-check proposed, not performed | VOS Phase 1 planning reply, pasted by Amit 24-11-2026 (excerpt; 75 lines hidden); reported reading only `SKILL.md` and `feature.md` |
+| Look before acting | Supported; not a routing test | VOS discovery session, 24-11-2026: read the folder, stopped and asked; no planning files read |
+| Routing 11 — new app | Deferred | Phase 9 final integration package, when it starts. May use a clearly hypothetical, read-only scenario — no real project, repository, install or file creation |
+| Routing 1–5 and 7–10 | Deferred | Phase 9 final integration package, when it starts |
+| Loading — entry file and one guide only | Passed in 2 sessions (one seen in-session, one self-reported) | Routing 12 and 6 above |
+| Activation — skill listed, pointers resolve, "step 4" still means Approve, no conflicting planning rule | Passed in the affected files checked: `STANDARDS.md`, `ENVIRONMENT.md`, `harness/cross-check.md`, `templates/handoff.md`, the skill files | WP4 self-run checks, 24-11-2026 |
+| Draft not discovered before switch-on | Passed at WP2; not re-checked | WP2 record in `harness/status.md` |
+| Restart | Passed: resumed from the handoff and its referenced documents and current working state, without requiring the old conversation | WP4 session, 24-11-2026 |
+| Cross-check works without Phase 9 agents | Performed and passed at WP3 (Sonnet, two rounds, 63K measured); no separate WP4 run | WP3 record in `harness/status.md` |
+| Recovery | Paper-reviewed, not exercised | Switch-on is one commit, `a80a494`. Phase 9 final integration package, when it starts; whether to exercise it or accept the paper review is Amit's decision |
+| Loading impact | Not measured | Phase 9 final integration package, with the reviewer token measurements |
+| Description length | Passed: 505 characters (limit 1,536) | WP4 self-run checks |
+| Format check | In the checked files, the dead link to the deleted WP2 staging folder in `harness/status.md` is removed by this recording; other existing warnings unchanged | `harness/doc-check.sh`, before and after this recording, 24-11-2026 |
+| VOS safety recommendation (wrong-password test step) | Prepared; delivery not confirmed | VOS-specific; not a setup rule |
 
 #### Open questions (Q1–Q8)
 

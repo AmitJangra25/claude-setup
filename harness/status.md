@@ -15,7 +15,7 @@ Last reviewed: 24-11-2026
 
 ## Current phase
 
-**Phase 8 — planning system — design saved 23-11-2026 (WP1 of 4, D51); final plan approved 24-11-2026; WP2 done 24-11-2026 — drafts inactive in `harness/planning-draft/` (git-ignored), paper run of all 12 routing scenarios passes; WP3 done 24-11-2026 — skill live in `skills/planning/`, core rules kept in `STANDARDS.md` (Amit), two cross-check rounds closed (`a80a494`); WP4 next, in a fresh session, on Amit's word.** Order: 8
+**Phase 8 — planning system (D51) — implemented and in use; acceptance partly verified; named checks deferred to Phase 9's final integration package (Amit's scheduling choice, 24-11-2026).** Design saved 23-11-2026 (WP1); final plan approved 24-11-2026; WP2 done 24-11-2026 — drafts kept inactive in a git-ignored staging folder (deleted 24-11-2026), paper run of all 12 routing scenarios passed; WP3 done 24-11-2026 — skill live in `skills/planning/`, core rules kept in `STANDARDS.md` (Amit), two cross-check rounds closed (`a80a494`); WP4 results recorded 24-11-2026: `harness/doc-structure-plan.md` § 3 *Phase 8* → *Acceptance result (WP4)*. Order: 8
 planning → 9 reviewer agents and skills → 10 clean-up and rewrite (absorbs old Phase 8 T30–T33) → 11
 further checks. Full plan, Q1–Q8 status and sources: `harness/doc-structure-plan.md` § 3 *Phase 8*.
 Research notes: `harness/planning-research.md` (temporary, git-ignored; deletion needs Amit's separate approval).
@@ -91,11 +91,11 @@ None yet
 ## Decisions in force
 
 The D-rows in `SETUP-PLAN.md` (index at its top; moves to `DECISIONS.md` in T30) and the
-rules in `STANDARDS.md`. This harness: D33. Newest: D51 (23-11-2026, planning system design; final plan approved 24-11-2026; switched on 24-11-2026), open until WP4; D50 clarified 23-11-2026.
+rules in `STANDARDS.md`. This harness: D33. Newest: D51 (23-11-2026, planning system design; final plan approved 24-11-2026; switched on 24-11-2026), open until its deferred acceptance checks pass (Phase 9 integration); D50 clarified 23-11-2026.
 
 ## Next gate
 
-**Next: WP4 (test and record) in a fresh session, on Amit's word.** WP3 done 24-11-2026: activation list applied; skill discovered; pointers resolve; "step 4" still means Approve; `ENVIRONMENT.md` 7,716 words; `doc-check.sh` no new warnings; Sonnet cross-check, two rounds (63K measured), all findings closed or decided by Amit. Amit's decisions: "tell Amit first" lives in `STANDARDS.md` step 3; testing = checks that matter plus major tests; a wording fix that keeps the meaning is no risk trigger, *Never* list still applies. Committed (`a80a494`); `harness/planning-draft/` deleted 24-11-2026 (Amit). Waiting on Amit: deleting `harness/planning-research.md` (sources kept first, WP4). The final Phase 8 plan
+**Next: Phase 9 WP1 — finalise and save the Phase 9 plan, on Amit's word. No Phase 9 build is approved.** Phase 8 WP4 recorded 24-11-2026: acceptance partly verified; named checks deferred to Phase 9's final integration package (`harness/doc-structure-plan.md` § 3 *Phase 8* → *Acceptance result (WP4)*). WP3 done 24-11-2026: activation list applied; skill discovered; pointers resolve; "step 4" still means Approve; `ENVIRONMENT.md` 7,716 words; `doc-check.sh` no new warnings; Sonnet cross-check, two rounds (63K measured), all findings closed or decided by Amit. Amit's decisions: "tell Amit first" lives in `STANDARDS.md` step 3; testing = checks that matter plus major tests; a wording fix that keeps the meaning is no risk trigger, *Never* list still applies. Committed (`a80a494`); the WP2 staging folder deleted 24-11-2026 (Amit). Waiting on Amit: deleting `harness/planning-research.md` (sources kept first, WP4). The final Phase 8 plan
 was approved 24-11-2026 (retry rule; routing tests in fresh sessions; optional draft commits;
 Q1, Q4, Q6, Q8) — `harness/doc-structure-plan.md` § 3 *Phase 8*. The `SETUP-PLAN.md` split (T30–T33) moved into Phase 10 (D50). Phase 7 is complete:
 FinNode (done 14-11-2026) · AtWorkpe (done 16-11-2026) · Emp Portal (done 16-11-2026) · vthrudebugger_v1 (done 16-11-2026); VT local-only setup done 16-11-2026. Removed

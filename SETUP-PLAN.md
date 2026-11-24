@@ -80,7 +80,7 @@ the status column says which.
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 | D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
 | D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
-| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); open until WP4 passes |
+| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); WP4 recorded 24-11-2026 — acceptance partly verified, named checks deferred to Phase 9 integration; open until they pass |
 
 ---
 
@@ -1685,7 +1685,10 @@ stay in `STANDARDS.md`, including "tell Amit first" (kind, risk, depth, priority
 step 3 · testing runs the checks that matter for the change plus the project's major tests
 (money, data, security, the main user path), not everything · a wording fix that keeps the
 meaning meets no risk trigger, even in a rule file, but the tiny-change *Never* list still
-applies. **Status:** switched on 24-11-2026; open until WP4 passes.
+applies. **Status:** switched on 24-11-2026. WP4 recorded 24-11-2026: acceptance partly verified;
+named checks deferred to Phase 9's final integration package (Amit's scheduling choice, not a
+technical dependency). Open until they pass. Results: `harness/doc-structure-plan.md` § 3
+*Phase 8* → *Acceptance result (WP4)*.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
