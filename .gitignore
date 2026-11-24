@@ -129,6 +129,7 @@
 !harness/models.md
 !harness/backlog.md
 !harness/doc-structure-plan.md
+!harness/agent-brief.md
 
 # --- allow: the setup-only files (D33, D36): CLAUDE.md, and settings.json with the
 #     SessionStart hook and six ask rules (D36, D41, D44). .claude/ also holds current-task.md and

@@ -152,6 +152,7 @@ A copy is a defect except in these cases. Each copy names its source.
 | The seven guards in each `PROJECT-MAP.md` | `templates/project-map.md` | Allowed for now; final home not decided (`harness/doc-structure-plan.md` § 8) |
 | Memory notes that restate a `STANDARDS.md` rule | `STANDARDS.md` | Agreed (plan Part 4); the rule's home stays `STANDARDS.md` |
 | Voice-Flow rule claims in `CLAUDE.md`, evidence in `docs/` | D24 | Agreed (plan Part 4) |
+| One-line rules in `harness/agent-brief.md` § *Critical rules* | The file each line names (`STANDARDS.md`, `.claude/CLAUDE.md`, `README.md`, `DOCUMENTATION-STANDARD.md`, `harness/cross-check.md`) | Reviewers start without `CLAUDE.md` (D52); one line each, the source named, the source wins on conflict |
 
 ## Growth and rollover
 
