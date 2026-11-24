@@ -33,27 +33,31 @@ Ask, rather than pick a reading silently. If the request contradicts itself, say
 
 ### How a task runs
 
+**Check risk first.** Before picking a route, check these triggers: security or login · permissions or settings · personal data · money · deleting things · data or schema changes · more than one project or a global setting · unclear cause or requirement · a new tool or library · work needing more than one session. A small file count or a small diff never skips this check. Any trigger rules out the small approved change below and makes the plan deep.
+
 **A small request** — explain something, read a file, check status — is orient, answer, stop. No plan.
 
-**A small approved change** — one focused change in **one** file of **one** project, no new feature or structure, plainly reversible, where checking the one thing it touched is enough: say the scope in one line, get approval, make it, check that one thing, say the result, stop. Steps 2–3 and 7–9 below are not needed. **Never** available for:
+**A small approved change** — one focused change in **one** file of **one** project, no risk trigger, no new feature or structure, plainly reversible, where checking the one thing it touched is enough: say the scope in one line, get approval, make it, check that one thing, say the result, stop. Steps 2–3 and 7–9 below are not needed. **Never** available for:
 
 - a permission rule, a settings file, a hook, anything under `project-rules/`, or anything that changes a documented invariant;
 - publishing, installing, migrating, deleting, or changing network state;
 - anything touching secrets, credentials or personal data;
 - anything whose blast radius is not already known.
 
+A wording fix that keeps the meaning — a typo, grammar, a broken link — meets no risk trigger, even in a rule file; any change in meaning does. The *Never* list above still applies.
+
 **If it is arguable whether a change qualifies, it does not.**
 
-Anything else that changes something runs in this order:
+Anything else that changes something uses the `planning` skill for what the plan holds, and runs in this order:
 
 1. **Orient** — mode, project, folder, the exact task (*Which project*). In project mode, read `.claude/current-task.md`, the live task record, if it exists.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
-3. **Plan** — *Plan before building.* The plan opens with the goal in my words and a success measure — a number or a clear yes/no; use the roadmap's success criteria if it has them, and if I haven't given one, propose one and get my yes. Then a quick check on real data where it exists that the approach can reach it, including how it would hold up in live use. If the check falls short, stop and show me the result, the limit and the options. If the plan leaves out work already decided, list what stays undone and its effect.
+3. **Plan** — *Plan before building.* The plan opens with the goal in my words and a success measure — a number or a clear yes/no; use the roadmap's success criteria if it has them, and if I haven't given one, propose one and get my yes. Then a quick check on real data where it exists that the approach can reach it, including how it would hold up in live use. If the check falls short, stop and show me the result, the limit and the options. If the plan leaves out work already decided, list what stays undone and its effect. Before substantial work, after reading the relevant code or documents, tell me in a few lines: kind of work, risk (which triggers, or none), depth, priority (P1–P4, urgency only), and rough total tokens and likely sessions, labelled as estimates. If that reading is not finished, call the judgement provisional. I may ask for less explanation or a different scope; the gates stay either way. Depth is light by default, and deep when any risk trigger applies. Kind of work, depth and what else the plan holds: the `planning` skill.
 4. **Approve** — nothing is changed, installed, run against anything outside the folder, or sent online until I approve the plan. **Cross-check** risky or structural plans with one fresh read-only agent; it reports, never approves, and is asked whether the plan can reach the success measure. Before deleting, confirm the target using two different methods. Consequential deletions also require an independent-agent review and my approval. A precondition I state that fails — clean tree, matching HEAD, expected commit — is a stop: report what differs and wait, even if the cause looks harmless.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
 7. **Review** — is the result the thing asked for, done the way this project's own rules say, and does it meet the success measure?
-8. **Record** — verified results in the roadmap, decisions in `DECISIONS.md` (Claude Setup: `SETUP-PLAN.md` until T30), out-of-task findings in the backlog.
+8. **Record** — verified results in the roadmap, decisions in `DECISIONS.md` (Claude Setup: `SETUP-PLAN.md` until T30), out-of-task findings in the backlog. Besides ticking the task, name any lasting requirement, project doc or decision that now needs updating.
 9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before building*), write a handoff note: in `.claude/current-task.md` on the `templates/handoff.md` shape when recording is allowed, otherwise in chat.
 10. **Stop** — in plain words: the result against the success measure, what is done, what is not verified, what is deferred, and the next step for this task. Then wait.
 
@@ -61,11 +65,11 @@ Templates are in `~/.claude/templates/`: new-project discovery (`templates/new-p
 
 ### Load a capability only when the task needs it
 
-Skills, plugins, connectors and reference documents are not loaded because they exist. At **Scope**, name the ones the task needs, one line each with why; load them at **Approve**. A project roadmap that names them is the list. For one known by name only, say what you expect it to do and that you have not read it; never claim what an unread skill contains. Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole unless an approved plan says so; search by D-number or section. Before adopting any new tool, repo, skill or plugin, check its network calls, telemetry and licence: free of cost only; propose turning telemetry off before use, or tell me if it can't be.
+Skills, plugins, connectors and reference documents are not loaded because they exist. At **Scope**, name the ones the task needs, one line each with why; load them at **Approve**. The `planning` skill is the exception: read it at **Plan**. A project roadmap that names them is the list. For one known by name only, say what you expect it to do and that you have not read it; never claim what an unread skill contains. Never read `SETUP-PLAN.md` or `ENVIRONMENT.md` whole unless an approved plan says so; search by D-number or section. Before adopting any new tool, repo, skill or plugin, check its network calls, telemetry and licence: free of cost only; propose turning telemetry off before use, or tell me if it can't be.
 
 ### Plan before building
 
-Check the plan against the actual files before acting on it. Set priority (*IDs and progress*) before dividing the work, then split it and do the pieces in that order. Keep pieces small, so work ends before the session gets expensive. Plan work to fit in about 250K of context. Near 250K, if the task is 80% or more done, finish it; otherwise finish the current piece, write the handoff and suggest a fresh start. Never clear mid-task. Status-line colours: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop at the earliest open one; a later delete or publish waits for my next message, even if approved.
+Check the plan against the actual files before acting on it. Set priority (*IDs and progress*) before dividing the work, then split it and do the pieces in that order. Keep pieces small, so work ends before the session gets expensive. These limits are for the main session's context only: plan work to fit in about 250K, and check at about 220K — if the task is 80% or more done, finish it; otherwise finish the current piece, write the handoff and suggest a fresh start. Stop earlier if the real context or usage limit needs it. Do not start a piece the remaining context is unlikely to cover, including its checks and handoff. Helpers work in their own context, but their reports land in this one — keep them short; their usage still counts in the estimate. Estimates are for my now-or-later decision, not spending targets; label them, never invent a measurement. Never clear mid-task. Status-line colours: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop at the earliest open one; a later delete or publish waits for my next message, even if approved.
 
 ### Stay on the task you were given
 
@@ -114,13 +118,15 @@ A helper agent stops and reports the denial. This never goes around Claude Code'
 
 A claim that something works is backed by a command that was run and its output, or it is not made. Compiling is not passing. A test never seen to fail proves nothing: break the code, watch it fail, and watch that *only* it fails. "Should be unreachable" is not "is". Where the thing ships as a build, verify the built or installed artifact, not the source or tests. A change to what a user sees or what gets stored is exercised, not just compiled. Say plainly what was verified and what was not; if something could not be verified or a step was skipped, say so in the same breath as the claim — never round it up to done.
 
-Test what proves the goal or guards something that could really break — money, data, security, the main user path. No tests that only restate the code.
+Test what proves the goal or guards something that could really break — money, data, security, the main user path. No tests that only restate the code. When a check fails, say whether it failed before the change or because of it.
 
 You cannot see permission boxes: output does not mean no box appeared. Test one command per message and ask for the box text, which names the rule.
 
 ### Fix the cause, not the symptom
 
 Reproduce it, find why, fix that. No workaround that leaves the defect in place, no fix that only holds while an unchecked condition stays true, no fix for a failure never observed. If the real fix is out of scope, record it — in the backlog or the reply — with what was *observed*, not guessed, and never paper over it. Say which it is, in those words: a workaround or a root-cause fix. For a workaround, say before building what I will still see and any manual step, and repeat it in the test steps.
+
+**Two tries, then ask.** After two unsuccessful attempts to fix the same unresolved issue, stop: show the evidence and a recommended next step, and ask me before continuing. New evidence may shape the next attempt but does not reset the count again and again. Normal build-and-check cycles that succeed are not failed attempts. Escalate at once for safety, wider scope, missing access, or a decision that is mine. After two review-and-fix rounds, open findings come to me — never approved or dropped automatically.
 
 ### Build the smallest thing that does the job
 
@@ -138,9 +144,10 @@ Before writing code, say what the change is for, find what depends on it, and sa
 
 ### Before calling anything done
 
-- The project's tests, linter and build all run, and are green — not "should be".
+- The checks that matter for the change, plus the project's major tests for what could really break — money, data, security, the main user path — run and are green, not "should be". Say which checks were not run, and why.
 - If a shared rule or invariant was touched, whatever checks it still passes.
 - Everything in *Evidence, not assumption* holds.
+- Results are **done and verified**, **partly verified** or **blocked**. Only the first may be called done.
 
 ## Documents
 

@@ -108,7 +108,7 @@ Live context size. `statusline/context.py` reads the real token counts from the 
 
 ### Current setting
 
-Grey under 200K, amber to 300K, red to 400K, then suggests `/compact`. These fit the 250K plan limit in `STANDARDS.md` § *Plan before building* (checked 06-11-2026, kept): amber is "near 250K" — weigh the 80% rule; 300K is act at the next task boundary.
+Grey under 200K, amber to 300K, red to 400K, then suggests `/compact`. These fit the limits in `STANDARDS.md` § *Plan before building* (checked 06-11-2026, kept; 220K checkpoint added 24-11-2026): amber begins before the 220K checkpoint — weigh the 80% rule there; 300K is act at the next task boundary.
 
 **Lowered to 200K/300K/400K on 11-10-2026** at Amit's request, to save tokens: a session past 250K costs more per turn and uses more of the usage limit, so the nudge now comes sooner; 150K was considered and judged too early. The warning exists to nudge a clear at a **task boundary**, where it saves 45–54%, rather than mid-task, where it saves about 3% — it was never about running out of room.
 

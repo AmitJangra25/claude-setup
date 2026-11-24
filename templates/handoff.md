@@ -13,6 +13,7 @@ Session/branch:
 ## Live
 
 - **Goal / success measure:** in the owner's words, with the number or yes/no
+- **Plan:** link to the canonical plan (a section, not a copy), or "chat only" for one-session work
 - **Latest measured result:** the figure, its date, and whether it meets the measure — if it misses, say so first at session start
 - **Approved scope (DD-MM-YYYY):** the exact work approved
 - **Not in scope:** what was excluded

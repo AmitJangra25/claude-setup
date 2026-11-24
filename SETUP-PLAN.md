@@ -80,7 +80,7 @@ the status column says which.
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 | D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
 | D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
-| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; open (build not started) |
+| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); open until WP4 passes |
 
 ---
 
@@ -1680,7 +1680,12 @@ escalation rule, routing tests in short fresh sessions, optional draft commits, 
 Q1, Q4, Q6, Q8; also simple human English for every guide, and sub-agents one level deep in Phase 9.
 **Affected files:** `harness/doc-structure-plan.md` § 3 *Phase 8* (the full plan) · later
 `STANDARDS.md`, `ENVIRONMENT.md`, `.gitignore`, `DOCUMENT-MAP.md`, `templates/handoff.md`,
-`skills/planning/`. **Status:** design agreed; open until WP4 passes.
+`skills/planning/`. **Decided by Amit at switch-on, 24-11-2026 (WP3):** the core planning rules
+stay in `STANDARDS.md`, including "tell Amit first" (kind, risk, depth, priority, estimates) in
+step 3 · testing runs the checks that matter for the change plus the project's major tests
+(money, data, security, the main user path), not everything · a wording fix that keeps the
+meaning meets no risk trigger, even in a rule file, but the tiny-change *Never* list still
+applies. **Status:** switched on 24-11-2026; open until WP4 passes.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

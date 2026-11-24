@@ -95,6 +95,13 @@
 !skills/
 !skills/ollama/
 !skills/ollama/SKILL.md
+!skills/planning/
+!skills/planning/SKILL.md
+!skills/planning/new-project.md
+!skills/planning/feature.md
+!skills/planning/bug-fix.md
+!skills/planning/documentation.md
+!skills/planning/setup-change.md
 
 # --- allow: templates read on demand (STANDARDS.md § How a task runs).
 #     Named files only, same rule as project-rules/.

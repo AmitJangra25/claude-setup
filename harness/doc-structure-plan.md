@@ -497,7 +497,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 **Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear.
 **Goal (Amit):** one planning system that gives each job the right amount of planning — small work stays small, risky work gets care — without dropping any safety, approval or verification gate.
 **Success measure:** every WP4 acceptance check passes, and no conflicting active planning instruction remains in the affected files.
-**Status (24-11-2026):** design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026, including every item once marked *proposed*. WP2–WP4 each need their own go.
+**Status (24-11-2026):** design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026, including every item once marked *proposed*. WP2–WP4 each need their own go. WP2 done 24-11-2026; WP3 done 24-11-2026 (uncommitted) — `harness/status.md` has the checks.
 
 #### How the planning system works
 
@@ -533,7 +533,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 
 #### Checks, review and stopping
 
-- Run only checks relevant to the change and allowed by the project's rules. No "run everything" rule.
+- Run the checks that matter for the change, plus the project's major and important tests (money, data, security, the main user path), as the project's rules allow. No "run everything" rule (Amit, 24-11-2026; home: `STANDARDS.md` § *Before calling anything done*).
 - If a check fails, say whether it failed before the change or because of it.
 - Results are **done and verified**, **partly verified** or **blocked**. Only the first may be called done.
 - Independent review follows the existing levels in `harness/cross-check.md` until Phase 9 reviewers exist. No new agent is a Phase 8 dependency.
@@ -554,7 +554,7 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 
 #### What stays always-on vs. moves to the skill
 
-- **Stays in `STANDARDS.md`:** the 10 steps as short signposts (same names and numbers, so existing references keep their meaning) · every gate · the risk triggers and the rule "check risk before the tiny-change route; anything beyond it uses the planning skill" · verification and done rules · the completion reminder · handoff · fix the cause · the retry rule (once approved) · session limits.
+- **Stays in `STANDARDS.md`:** the 10 steps as short signposts (same names and numbers, so existing references keep their meaning) · every gate · the risk triggers and the rule "check risk before the tiny-change route; anything beyond it uses the planning skill" · verification and done rules · "tell Amit first" (step 3; moved from the skill at switch-on, Amit 24-11-2026) · depth defined (light by default, deep on any trigger) · the completion reminder · handoff · fix the cause · the retry rule (once approved) · session limits.
 - **Moves to the skill:** what a plan contains · the five guides · test planning · technical design · work-package splitting · idea assessment.
 - Project data-safety rules stay in each project's rules; the skill points to them.
 
@@ -641,7 +641,7 @@ Choices approved 24-11-2026: the retry rule · routing tests in short fresh sess
 
 | Source | What it says | Our adaptation | Gap |
 |---|---|---|---|
-| OpenSpec `docs/concepts.md` (github.com/Fission-AI/OpenSpec) | "Most changes should stay in Lite mode"; full spec for higher-risk changes | Light by default; deep by risk | The docs mark themselves partly out of date; openspec.dev not read |
+| OpenSpec `docs/concepts.md` (github.com/Fission-AI/OpenSpec) | Older docs: "Most changes should stay in Lite mode"; full spec for higher-risk changes | Light by default; deep by risk — our own rule | The docs mark themselves partly out of date; the v2.1.1 site has no "Lite mode" (checked 24-11-2026) |
 | OpenSpec `schemas/spec-driven/schema.yaml` | `design.md` "create only if any apply" | Technical design only when needed | — |
 | OpenSpec README and schema | Requirements with WHEN/THEN scenarios | Acceptance scenarios in plain words | — |
 | OpenSpec `docs/concepts.md` | Archiving merges change specs into the maintained specs | Completion step names lasting docs and decisions to update; no spec folder system | — |
