@@ -80,8 +80,8 @@ the status column says which.
 | D48 | 11-11-2026 | Global `CLAUDE.md`: three imports plus one non-loading HTML comment | in force; closed 11-11-2026 (all five affected files checked) |
 | D49 | 13-11-2026 | Done files only by size: one roadmap, backlog and decisions file; split past about 150 *Completed* lines | in force; closed 13-11-2026 (all eight affected files checked) |
 | D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
-| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); WP4 recorded 24-11-2026 — acceptance partly verified, named checks deferred to Phase 9 integration; open until they pass |
-| D52 | 24-11-2026 | Phase 9 design: two fresh read-only reviewers, layered minimum context, setup brief, three skills (`handoff`, `send-for-review`, `documents`), migration in the switch-on package, approved acceptance criteria | approved 24-11-2026; not built; open until Phase 9's checks pass or Amit waives them |
+| D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); deferred checks passed in Phase 9 WP5, 25-11-2026; closed (Amit). |
+| D52 | 24-11-2026 | Phase 9 design: two fresh read-only reviewers, layered minimum context, setup brief, three skills (`handoff`, `send-for-review`, `documents`), migration in the switch-on package, approved acceptance criteria | approved 24-11-2026; built WP2–WP4; R1–R8, K1–K5, I1–I5 passed or waived; closed 25-11-2026 (Amit). |
 
 ---
 
@@ -1688,8 +1688,9 @@ step 3 · testing runs the checks that matter for the change plus the project's 
 meaning meets no risk trigger, even in a rule file, but the tiny-change *Never* list still
 applies. **Status:** switched on 24-11-2026. WP4 recorded 24-11-2026: acceptance partly verified;
 named checks deferred to Phase 9's final integration package (Amit's scheduling choice, not a
-technical dependency). Open until they pass. Results: `harness/doc-structure-plan.md` § 3
-*Phase 8* → *Acceptance result (WP4)*.
+technical dependency). Deferred checks passed in Phase 9 WP5, 25-11-2026; closed (Amit).
+Results: `harness/doc-structure-plan.md` § 3 *Phase 8* → *Acceptance result (WP4)* and § 3
+*Phase 9* → *Integration test result (WP5)*.
 
 ### D52 · 24-11-2026
 
@@ -1709,7 +1710,8 @@ recovery (a local copy is used). Cross-check before approval: Opus, verdict conc
 all closed. **Affected files:** `harness/doc-structure-plan.md` § 3 *Phase 9* (the full plan) ·
 later `harness/agent-brief.md`, `agents/`, `skills/`, `.gitignore`, `harness/cross-check.md`,
 `STANDARDS.md` (pointers only), `DOCUMENT-MAP.md`, `DOCUMENTATION-STANDARD.md`. **Status:**
-approved 24-11-2026; not built. Open until every Phase 9 check passes or Amit waives it.
+approved 24-11-2026; built WP2–WP4; R1–R8, K1–K5, I1–I5 passed or waived; closed 25-11-2026
+(Amit).
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

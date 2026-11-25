@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phases 1–7 done; Phase 8 implemented, acceptance partly verified (D51); Phase 9 plan approved 24-11-2026 (D52), not built — phase order changed 20-11-2026 (D50)
+Status: Phases 1–9 done; Phase 8 (D51) and Phase 9 (D52) complete 25-11-2026 (Amit) — phase order changed 20-11-2026 (D50)
 Last reviewed: 24-11-2026
 
 ---
@@ -493,12 +493,12 @@ FinNode, Emp Portal, vthrudebugger_v1, Debugger v2: T22–T28 each. Plus: task f
 |---|---|---|
 | T29 | `templates/new-project.md` | P4 |
 
-### Phase 8 — Planning system (D51; in use since 24-11-2026; acceptance partly verified)
+### Phase 8 — Planning system (D51; in use since 24-11-2026; complete 25-11-2026, Amit)
 
 **Why (Amit):** planning is the foundation. Good plans make building, review, testing and clean-up easier; reviewers (Phase 9) can only review well if the plan is clear.
 **Goal (Amit):** one planning system that gives each job the right amount of planning — small work stays small, risky work gets care — without dropping any safety, approval or verification gate.
 **Success measure:** every WP4 acceptance check passes, and no conflicting active planning instruction remains in the affected files.
-**Status (24-11-2026):** implemented and in use; acceptance partly verified; named checks deferred to Phase 9's final integration package (Amit's scheduling choice, 24-11-2026 — not a technical dependency). The success measure is not yet met. Design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026; WP2 and WP3 done 24-11-2026 (switch-on commit `a80a494`); WP4 results recorded 24-11-2026 in *Acceptance result (WP4)* below — the one detailed record.
+**Status:** **complete 25-11-2026 (Amit).** The deferred checks passed in Phase 9 WP5 (*Acceptance result (WP4)* below). Earlier (24-11-2026): implemented and in use; acceptance partly verified; named checks deferred to Phase 9's final integration package (Amit's scheduling choice, 24-11-2026 — not a technical dependency). The success measure is not yet met. Design saved (WP1, 23-11-2026); final plan approved by Amit 24-11-2026; WP2 and WP3 done 24-11-2026 (switch-on commit `a80a494`); WP4 results recorded 24-11-2026 in *Acceptance result (WP4)* below — the one detailed record.
 
 #### How the planning system works
 
@@ -624,22 +624,22 @@ About **540–830K** rough total for WP2–WP4 plus WP1's main context (main con
 
 #### Acceptance result (WP4, recorded 24-11-2026)
 
-Phase 8 is implemented, with acceptance partly verified. Named checks are deferred to Phase 9's final integration package by Amit's scheduling choice (24-11-2026); this is not a technical dependency. Phase 8 is not accepted until each deferred check passes or Amit decides otherwise. Recording these results does not declare any untested check passed. Other files point here.
+Phase 8 is implemented, with acceptance partly verified. Named checks are deferred to Phase 9's final integration package by Amit's scheduling choice (24-11-2026); this is not a technical dependency. Phase 8 is not accepted until each deferred check passes or Amit decides otherwise. Recording these results does not declare any untested check passed. Other files point here. **Update 25-11-2026 (Phase 9 WP5):** the deferred routing, recovery and loading checks are recorded below; restart re-tested and passed (I4). WP5 tests passed. Phase 8 marked complete 25-11-2026 (Amit), as a separate decision.
 
 | Check | Result | Evidence, or destination and trigger |
 |---|---|---|
 | Routing 12 — risky Setup change | Routing passed. Cross-check proposed, not performed | Phase 9 planning session, 24-11-2026: Claude Setup change, deep, fresh-session test named; read only `skills/planning/SKILL.md` and `setup-change.md` |
 | Routing 6 — feature | Feature/deep routing supported by the supplied excerpt; full plan acceptance checks not assessed. Cross-check proposed, not performed | VOS Phase 1 planning reply, pasted by Amit 24-11-2026 (excerpt; 75 lines hidden); reported reading only `SKILL.md` and `feature.md` |
 | Look before acting | Supported; not a routing test | VOS discovery session, 24-11-2026: read the folder, stopped and asked; no planning files read |
-| Routing 11 — new app | Deferred | Phase 9 final integration package, when it starts. May use a clearly hypothetical, read-only scenario — no real project, repository, install or file creation |
-| Routing 1–5 and 7–10 | Deferred | Phase 9 final integration package, when it starts |
+| Routing 11 — new app | **Routing passed** (25-11-2026). Cross-check proposed, not performed | Phase 9 WP5, I1 — § *Phase 9* → *Integration test result (WP5)*. Hypothetical, read-only scenario |
+| Routing 1–5 and 7–10 | **Routing passed** (25-11-2026), all nine. Cross-check proposed, not performed, for 3 and 5 | Phase 9 WP5, I1 — § *Phase 9* → *Integration test result (WP5)* |
 | Loading — entry file and one guide only | Passed in 2 sessions (one seen in-session, one self-reported) | Routing 12 and 6 above |
 | Activation — skill listed, pointers resolve, "step 4" still means Approve, no conflicting planning rule | Passed in the affected files checked: `STANDARDS.md`, `ENVIRONMENT.md`, `harness/cross-check.md`, `templates/handoff.md`, the skill files | WP4 self-run checks, 24-11-2026 |
 | Draft not discovered before switch-on | Passed at WP2; not re-checked | WP2 record in `harness/status.md` |
 | Restart | Passed: resumed from the handoff and its referenced documents and current working state, without requiring the old conversation | WP4 session, 24-11-2026 |
 | Cross-check works without Phase 9 agents | Performed and passed at WP3 (Sonnet, two rounds, 63K measured); no separate WP4 run | WP3 record in `harness/status.md` |
-| Recovery | Paper-reviewed, not exercised | Switch-on is one commit, `a80a494`. Phase 9 final integration package, when it starts; whether to exercise it or accept the paper review is Amit's decision |
-| Loading impact | Not measured | Phase 9 final integration package, with the reviewer token measurements |
+| Recovery | **Passed in a local copy** (25-11-2026); live-session behaviour after an undo stays paper-reviewed | Phase 9 WP5, I2 — `a80a494` reverted in the copy with the Phase 9 commits |
+| Loading impact | **Estimated**, accepted by Amit (25-11-2026): about 0.8k tokens per session | Phase 9 WP5, I3 — no pre-Phase-8 measurement exists |
 | Description length | Passed: 505 characters (limit 1,536) | WP4 self-run checks |
 | Format check | In the checked files, the dead link to the deleted WP2 staging folder in `harness/status.md` is removed by this recording; other existing warnings unchanged | `harness/doc-check.sh`, before and after this recording, 24-11-2026 |
 | VOS safety recommendation (wrong-password test step) | Prepared; delivery not confirmed | VOS-specific; not a setup rule |
@@ -678,9 +678,9 @@ Choices approved 24-11-2026: the retry rule · routing tests in short fresh sess
 Ideas from Amit's summary of zazencodes (not checked against the repos): checks before review · findings back to the builder · bounded retries — adopted above. Risk-based reviewer choice waits for Phase 9. Not adopted: automatic merging, parallel jobs, the author's personal setup.
 Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): skill descriptions load at session start; the body loads when the skill is used and stays; other files in the folder load only when read; description plus `when_to_use` is cut at 1,536 characters; `@imports` always load. The page was cut off after about 100,000 characters.
 
-### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, WP2–WP4 built
+### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, **complete 25-11-2026 (Amit)**
 
-**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. WP2, WP3 and WP4 built; WP3 reviewer tests complete (*Reviewer test result*); WP4 skill tests complete (*Skill test result*); WP5 not started. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
+**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. WP2, WP3 and WP4 built; WP3 reviewer tests complete (*Reviewer test result*); WP4 skill tests complete (*Skill test result*); WP5 tests passed — I1–I5 passed and recorded 25-11-2026 (*Integration test result (WP5)*). Phase 9 marked complete 25-11-2026 (Amit), as a separate decision. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
 
 **Goal (Amit, 20-11-2026 and 24-11-2026):** two fresh, read-only reviewers and three focused skills that give each review and each repeated chore the minimum context it needs, without copying rules and without dropping any gate.
 
@@ -801,6 +801,37 @@ Migration done: `harness/cross-check.md` § *The reviewer* — the "not by a loc
 Extra (not a K test): `documents` run by a fresh helper on a synthetic draft — available, invoked, completed; it named the copied rule, mixed type, missing header, section order, ISO date, file name, missing map row and dated log; every pointer led to real text.
 
 Helper usage (measured): docs-field check 22,108 · cross-check 33,185 · K3 helper 24,320 · documents helper 36,794 · total 116,407. Main session: not measured.
+
+#### Integration test result (WP5, recorded 25-11-2026)
+
+**WP5 tests passed: I1–I5.** Separately, Amit marked Phase 8 and Phase 9 complete 25-11-2026. Preconditions held: clean tree, HEAD `37fc42b`. Synthetic or hypothetical scenarios only; no change to agents, skills, fixtures, permissions, hooks or rule files; no commit or push.
+
+| Check | Result | Evidence |
+|---|---|---|
+| I1 routing (10 tests) | **Passed** — routing passed in all ten | Four fresh sessions Amit started in `~/.claude`, one message each, hypothetical scenarios (test 1 a real read-only question). Table below |
+| I2 recovery | **Passed in a local copy** | `git clone` into `harness/phase9-scratch/recovery/`; `git revert --no-commit` of `37fc42b`, `cbd7307`, `34a5e9f`, `8f98442`, `a80a494` (Amit approved adding `cbd7307` and `8f98442`: they hold the reviewer migration in `harness/cross-check.md` and the brief). Conflicts only in `SETUP-PLAN.md`, `harness/status.md`, `harness/doc-structure-plan.md` (expected). Grep of the copy: no active instruction points to a removed skill, agent or brief; the one mention left is backlog row B24, a record. Limit (Amit's wording): "Recovery verification passed in a local copy: no broken active pointers after undoing the relevant commits. It does not prove how a live session behaves after an undo." Copy kept until Amit decides on deletion |
+| I3 loading | **Passed** (numbers recorded) | `/context all` in this fresh WP5 session (Opus 5.5) against `baselines/phase9-context-24-11-2026.md`. Memory 9.2k → 9.2k (`STANDARDS.md` 7.3k → 7.4k) · Skills 698 → 990 · Custom agents 0 → 176 · System prompt 2.8k → 2.8k · system tools 14.4k → 14.1k, deferred 18.4k → 18.5k. Amit's wording: "Phase 9 added about 0.4k tokens to the directly observed session-start categories (custom agents, skills, and STANDARDS.md pointers). Messages, MCP tools, and the autocompact buffer are not part of this comparison." The rest of the skills rise is built-in (`claude-approvals` ~150 new; `ship`, `steward` +10 each). "Estimated Phase 8 loading share: about 0.8k tokens per session; no pre-Phase-8 measurement exists, so this is an estimate, not a measured comparison." (accepted by Amit; basis: `planning` ~170 plus `STANDARDS.md` 3,386 → 3,851 words at `a80a494`) |
+| I4 restart | **Passed** (25-11-2026) | Fresh session Amit started in `~/.claude` after these records; read only the handoff and `harness/status.md`. It stated correctly, without the old conversation: WP5 in progress · I1, I2, I3, I5 passed, I4 pending · limits (no rule, agent or skill change; no commit or push; recovery copy kept) · next gate (judge and record I4, then Amit decides Phase 8 and 9, then the commit). Minor gap: it named only § *Phase 9* as a record place, not § *Phase 8*. It flagged a stale "next gate" line in `harness/status.md`, removed in this recording |
+| I5 scripts | **Passed** — no new warning | `doc-check.sh`: same 2 warnings (`ENVIRONMENT.md` 398 lines; repeated backlog header), "not yet in new format" still 3. `session-check.sh`: same drift and doc warnings. `drift.sh`: Voice-Flow and Emp portal drifted (known, carried over; exit 1 from drift), secret scan 160 files, 0 matches |
+
+Routing tests (I1). "Review proposed" = a cross-check was named, not run. No review was completed in any test.
+
+| Test | Session | Route, kind, depth | Planning files read | Result |
+|---|---|---|---|---|
+| 1 Question only | A | Small request; answered, no plan | `harness/session-check.sh` only | **Routing passed** |
+| 2 Tiny wording fix | A | Small approved change | None | **Routing passed** |
+| 9 Plain-prose doc | A | Documentation, light, P3; fact, link and format check, no build | `SKILL.md`, `documentation.md` | **Routing passed** |
+| 3 One-line login change | B | Full plan; security or login; small enhancement, deep | `SKILL.md`, `feature.md` | **Routing passed.** Review proposed |
+| 4 Low-risk small enhancement | B | Small enhancement, no trigger, light | `SKILL.md`, `feature.md` | **Routing passed** |
+| 5 Personal data | B | Small enhancement, personal data, deep | `SKILL.md`, `feature.md` | **Routing passed.** Review proposed |
+| 7 Non-UI bug | C | Bug fix, cause investigation, no UI test | `SKILL.md`, `bug-fix.md` | **Routing passed** |
+| 8 UI bug | C | Bug fix with a UI check at narrow width | `SKILL.md`, `bug-fix.md` | **Routing passed** |
+| 10 Runbook | C | Documentation, deep; restore really run in a scratch copy, else "partly verified" | `SKILL.md`, `documentation.md` | **Routing passed** |
+| 11 New app | D | New project, deep, 4 triggers; three questions before planning | `SKILL.md`, `new-project.md`, `templates/new-project.md` (named by the guide) | **Routing passed.** Review proposed |
+
+Notes, not failures: tests 7 and 8 went deep because the session read "cause not yet known" as the *unclear cause* trigger — a literal reading that would make most bug fixes deep; the criteria set no depth for 7–8. Amit's decision (25-11-2026): "Bug tests 7–8 went deep because 'cause not yet known' was treated as a risk trigger. Accepted as-is for WP5; review the trigger wording in Phase 10." Grouping three items in one message means a guide loaded for one item stays in context for the next; per-item file lists were asked for and given. Test 3: the session said it had not read `harness/cross-check.md` to confirm the review level.
+
+Usage: helpers 0 (none started). Test sessions: not measured. Main session: 71.5k at `/context all` early in WP5.
 
 #### Recovery verification (approved; the last step of WP5)
 
