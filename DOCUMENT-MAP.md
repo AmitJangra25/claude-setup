@@ -40,9 +40,9 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 | `REPOS.md` | Reference | Short | Shortlist of useful GitHub repos | Starting an integration | A repo is added or dropped | Setup | — |
 | `baselines/global-open-tests.md` | List | Full + Next ID | What is still unproven, and how closed tests closed | Deciding what to test next | A test is opened, closed or deferred | Setup | `harness/overview.md` |
 | `baselines/README.md` | Reference | Short | Index of the dated baseline files | Looking for a past test or audit | A baseline file is added | Setup | `baselines/` (dated files) |
-| `baselines/` (dated files) | Record | Record | Dated test and audit reports | A pointer sends you to one | Never edited; a new run adds a file | Setup | `baselines/README.md` |
+| `baselines/` (dated files) | Record | Record | Dated test and audit reports | A pointer sends you to one | Never edited; a new run adds a file; removed only under `DOCUMENTATION-STANDARD.md` § *Moving and archiving* | Setup | `baselines/README.md` |
 | `archive/README.md` | Reference | Short | Index of the archive | Recovery, or a pointer sends you there | An archive item is added | Setup | `archive/` (items) |
-| `archive/` (items) | Record | Record | Things that cannot be recreated | Recovery, or a pointer sends you there | Never edited; new items only | Setup | `archive/README.md` |
+| `archive/` (items) | Record | Record | Things that cannot be recreated | Recovery, or a pointer sends you there | Never edited; new items only; removed only under `DOCUMENTATION-STANDARD.md` § *Moving and archiving* | Setup | `archive/README.md` |
 | `templates/` | Reference | Each form carries the header its document needs (*Structure per file*) | Blank forms for project documents | A step needs that form | A format in `DOCUMENTATION-STANDARD.md` changes | Setup | `DOCUMENTATION-STANDARD.md` |
 | `DECISIONS.md` — planned (T30) | List | Full + Next ID | Every global D-number in one list | Checking or adding a decision | A decision is made or superseded | Setup | `SETUP-PLAN.md` |
 | `harness/rebuild.md` — planned (T31) | Reference | Full | Steps to rebuild the setup on a new machine or account | Rebuilding | A rebuild step changes | Setup | `SETUP-PLAN.md` |

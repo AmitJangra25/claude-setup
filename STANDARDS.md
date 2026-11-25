@@ -33,7 +33,7 @@ Ask, rather than pick a reading silently. If the request contradicts itself, say
 
 ### How a task runs
 
-**Check risk first.** Before picking a route, check these triggers: security or login · permissions or settings · personal data · money · deleting things · data or schema changes · more than one project or a global setting · unclear cause or requirement · a new tool or library · work needing more than one session. A small file count or a small diff never skips this check. Any trigger rules out the small approved change below and makes the plan deep.
+**Check risk first.** Before picking a route, check these triggers: security or login · permissions or settings · personal data · money · deleting things · data or schema changes · more than one project or a global setting · cause still unknown after a first look, or unclear requirement · a new tool or library · work needing more than one session. A small file count or a small diff never skips this check. Any trigger rules out the small approved change below and makes the plan deep.
 
 **A small request** — explain something, read a file, check status — is orient, answer, stop. No plan.
 
@@ -153,7 +153,7 @@ Before writing code, say what the change is for, find what depends on it, and sa
 
 ### Docs are products
 
-Write documentation about the thing, not the work that produced it; an append-only dated log inside a doc means it is time to rewrite it. New dates and dated filenames: DD-MM-YYYY; old names stay. Do not delete reference or spec docs — relocate them and mark what is superseded. Deletion is for dead code, not documents.
+Write documentation about the thing, not the work that produced it; an append-only dated log inside a doc means it is time to rewrite it. New dates and dated filenames: DD-MM-YYYY; old names stay. Remove a tracked document only under the deletion rule in `DOCUMENTATION-STANDARD.md` § *Moving and archiving*, with my approval of the exact file name; never remove a local-only one this way. Otherwise move it and mark what is superseded.
 
 ## IDs and progress
 

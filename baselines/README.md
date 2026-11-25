@@ -123,7 +123,8 @@ almost always after one session's behaviour rather than one prompt's.
 
 Keep past observations intact. Put a later run in a new dated file; if an
 existing record needs a factual correction, add a dated, labelled correction
-that says what changed. Do not silently rewrite the original result.
+that says what changed. Do not silently rewrite the original result. Removing a whole
+record follows `DOCUMENTATION-STANDARD.md` § *Moving and archiving*.
 
 New dated files use DD-MM-YYYY: `DD-MM-YYYY.md`, then `DD-MM-YYYY-run2.md` and so
 on for further runs that day. Existing historical filenames (`YYYY-MM-DD`) are not

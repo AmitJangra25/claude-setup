@@ -906,6 +906,8 @@ Leave a one-line pointer when the removed file may still be referenced by anothe
 
 Local-only files are never deleted through this rule. `STANDARDS.md` step 4 still applies: the two-method target check, and an agent review for consequential deletions.
 
+**Built in WP2a (25-11-2026):** the rule's home is now `DOCUMENTATION-STANDARD.md` § *Moving and archiving*; `STANDARDS.md` § *Docs are products* points to it. The text below is the plan as approved.
+
 WP2 replaces every "never delete" and "archive always" copy that WP1 finds. Known so far: `STANDARDS.md:156` · `DOCUMENTATION-STANDARD.md:32`, `:161`, `:196`, `:211` and § *Moving and archiving* · `DOCUMENT-MAP.md:42`, `:44` · `skills/documents/SKILL.md:19` · `skills/planning/documentation.md:21` · the templates and *Older records* pointers that depend on them.
 
 #### Link and sync (WP3b)
@@ -929,7 +931,8 @@ Each package is one commit on Amit's word; `git revert` undoes it cleanly only u
 | WP | Scope | Gate | Checks |
 |---|---|---|---|
 | 1 Baseline + inventory (read-only) | Amit types `/context all` as the first message of two fresh Opus sessions (`~/.claude` and FinNode); saved as a dated record in `baselines/`. Inventory of every tracked setup file and the local-only list: size, loads every session?, inbound pointers, type, keep / ask Amit / remove, duplicates and contradictions with file:line. Greps for every copy of each key rule and every limit and waiver. Folds in `harness/status.md` § *Known contradictions*. `archive/` bundle and tarballs default **keep** (not recoverable from git). | Amit classifies the "ask" items and approves the remove list by name | Pointer counts by `grep` |
-| 2 Rule fixes (deep) | Deletion rule, in every copy · bug-depth wording ("unclear cause", `STANDARDS.md:36`, `skills/planning/bug-fix.md:30`; tests 7–8) · "tiny-change route" (`skills/planning/SKILL.md`) vs "small approved change" (`STANDARDS.md`) · `doc-check.sh` duplicate warning (template ↔ backlog line, a by-design copy) + B34 | Amit approves the exact text | `change-reviewer` · fresh-session routing tests 2, 7, 8 |
+| 2a Rule fixes (deep) — split from WP2 by Amit, 25-11-2026 | Deletion rule, in every copy · bug-depth wording ("unclear cause", `STANDARDS.md:36`, `skills/planning/bug-fix.md:30`; tests 7–8) · "tiny-change route" (`skills/planning/SKILL.md`) vs "small approved change" (`STANDARDS.md`) · `doc-check.sh` duplicate warning (template ↔ backlog line, a by-design copy) + B34 · project-data wording, home `PROJECTS.md` § *Project data*, only on lines that do not name Packbly | Amit approves the exact text | `change-reviewer` · fresh-session routing tests 2, 7, 8 |
+| 2b Packbly | Remove Packbly from active setup docs (`OLLAMA.md:7-8`, `skills/ollama/SKILL.md:62-63`, `ENVIRONMENT.md` Packbly lines and § *Sensitive data*, `PROJECTS.md` *Not projects*, `project-rules/README.md` § *Detached*); the `PROJECTS.md` § *Project data* line "Packbly is ignored and never opened." stays. The `settings.json` deny rules stay (Amit's recommendation); removing them would be its own permission change | Separate approval, after WP2a is committed | `change-reviewer` · searches |
 | 3 Design | Document roles (Rules · Reference · State · List · Catalog = `DOCUMENT-MAP.md` · History = git + pointer) · style guide with one before/after sample page · link model (standard markdown links; no `[[wikilinks]]`) · `DECISIONS.md` shape · contents lists only in long docs · the old 30-day format review folded in · names the WP9 prompt file | Amit approves the design and sample page | None (design only) |
 | 3b Link-and-sync check | As in *Link and sync* above | Amit approves the change | Runs on the current repo; warnings listed, not fixed here |
 | 4 Remove approved tracked files | Only the files Amit approved **by name** — never a whole folder. `baselines/global-open-tests.md` (live list), `baselines/phase9-context-24-11-2026.md` and the WP1 baseline stay. Pointer lines as the deletion rule says | Item-by-item; deletion in a separate message | Two-method target check · `change-reviewer` |
@@ -938,6 +941,13 @@ Each package is one commit on Amit's word; `git revert` undoes it cleanly only u
 | 7 Setup memory | Notes in `projects/-Users-amitjangra--claude/memory/` that only restate `STANDARDS.md` become a pointer or are removed. Same package removes the `DOCUMENTATION-STANDARD.md` § *Allowed copies* row that allows memory copies. Other projects' memory → project clean-up list | Amit approves | `MEMORY.md` links resolve |
 | 8 Final test | See *Final checks* | Amit approves the final verification report | As listed |
 | 9 Global project clean-up prompt | See *WP9* below | See *WP9* | See *WP9* |
+
+**WP2a result (25-11-2026, uncommitted):** sections A–E applied as approved, with the review fixes below. Success searches 1–2 passed (remaining hits only in history, this plan, "admin or super-admin users" lines, Voice-Flow memory). `doc-check.sh` 2 → 1 warning (ENVIRONMENT.md size, 6a). Reviews: `plan-reviewer` Opus, concerns, 8 findings, all taken in (71,316 measured) · `change-reviewer` Opus round 1, concerns, 5 findings (33,768 measured): 1, 2, 4 fixed, 5 kept, 3 → WP2b · round 2, concerns, 3 findings (11,494 measured): 2 fixed, 1 (FinNode missing from `ENVIRONMENT.md` § *Sensitive data*) → WP2b, 3 skipped (Amit). Routing tests 2, 7, 8 (25-11-2026, fresh session; self-reported, checked against the saved pass criteria):
+- Test 2: PASS — small approved change; no planning files; no trigger.
+- Test 7: PASS — bug fix, light; reads SKILL.md and bug-fix.md; deep only if the cause remains unknown after a first look; no UI check.
+- Test 8: PASS — bug fix, light; reads SKILL.md and bug-fix.md; deep only if the cause remains unknown after a first look; includes a UI check at about 360px.
+
+Open: commit on Amit's word.
 
 Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixes (Amit picks at session start).
 
@@ -997,9 +1007,9 @@ Yes/no each:
 - **Open, before the repo goes public (C11):** git history still holds the UUIDs and emails. A fresh repo or a history rewrite would both affect commit-based pointers; decide then.
 - **WP1 decisions (Amit, 25-11-2026; full text and evidence: `baselines/phase10-wp1-25-11-2026.md` § 7–8):**
   - Removal approved by name for WP4, not deleted now: `baselines/baselines-readme-old-11-11-2026.md` · `always-loaded-old-11-11-2026.md` · `standards-old-12-11-2026.md` · `projects-old-11-11-2026.md` · `open-tests-old-11-11-2026.md` · `old-document-maps-11-11-2026.md` · `environment-old-12-11-2026.md`. Each deletion waits for its own approval message in WP4, after its pointer lines are in place.
-  - Project-data wording for the active setup files in WP2/WP6 (history records not edited): "Projects are new and not live. No project holds live personal data, except the Vthru Customer app (VT), which is the company's app with real data: treat it as confidential. FinNode has some private documents. Emp Portal uses dummy data. Packbly is ignored and never opened. Do not delete admin or super-admin users."
+  - Project-data wording for the active setup files in WP2/WP6 (history records not edited): "Projects are new and not live. No project holds live personal data, except the Vthru Customer app (VT), which is the company's app with real data: treat it as confidential. FinNode has some private documents. Emp Portal uses dummy data. Packbly is ignored and never opened. Do not delete admin or super-admin users." **Applied in WP2a (25-11-2026):** home `PROJECTS.md` § *Project data*, word for word; lines that also name Packbly wait for WP2b.
   - VT: Claude reads, diagnoses, reproduces and makes requested changes on a separate branch only; never commits (even locally), merges, pushes, opens a pull or merge request, or takes any other git action — Amit does all git actions. Update memory `mobile-vt-nothing-to-gitlab.md`, `PROJECTS.md` and `ENVIRONMENT.md` in the rewrite steps; VT's own `CLAUDE.md` via the project clean-up list.
-  - Packbly: removed from active setup documents in WP2/WP6, keeping one line "Packbly: ignored; do not open." The project folder and GitHub repository are not touched. Permission locks stay; `VS Code/Packbly_web` is not fully locked (no Read deny) — the missing lock waits for Amit's approval of the exact text and a fresh-session test.
+  - Packbly: removed from active setup documents in WP2/WP6, keeping one line "Packbly: ignored; do not open." The project folder and GitHub repository are not touched. Permission locks stay; `VS Code/Packbly_web` is not fully locked (no Read deny) — the missing lock waits for Amit's approval of the exact text and a fresh-session test. **Superseded (Amit, 25-11-2026):** no new lock; the existing `settings.json` deny rules stay; removal from active docs is WP2b; the one line kept is "Packbly is ignored and never opened." in `PROJECTS.md` § *Project data*.
 
 #### Starting facts (discovery, 25-11-2026)
 

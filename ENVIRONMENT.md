@@ -366,11 +366,11 @@ done
 
 ### Sensitive data
 
-These projects hold, or may hold, real personal records, and `OLLAMA.md` has the standing rule about what may be sent to a local model:
+These projects hold, or may hold once live, real personal records, and `OLLAMA.md` has the standing rule about what may be sent to a local model:
 
-- **Emp Portal** — employee records
+- **Emp Portal** — dummy data (`PROJECTS.md` § *Project data*)
 - **Packbly Web** — customer and courier records. Detached from Claude Setup 30-10-2026; the data is still on disk, so the `OLLAMA.md` rule still applies.
-- **Vthru Customer app** (VT) — company code with `.env` files and possibly real user data. Treat as confidential.
+- **Vthru Customer app** (VT) — company code with `.env` files and real data (`PROJECTS.md` § *Project data*). Treat as confidential.
 
 ### Full project descriptions
 
@@ -380,7 +380,7 @@ These projects hold, or may hold, real personal records, and `OLLAMA.md` has the
 - **Voice Flow** — `~/Documents/VS Code/Voice-Flow` — personal macOS dictation app: floating mic widget callable from anywhere, global hotkey, real speech-to-text, an AI cleanup pass, and auto-paste **into whatever app is focused**. Electron + React + Vite. Also runs as a plain web app (`npm run dev`) for development, but the desktop build is the real product.
 - **Debugger** (vthrudebugger) — `~/Documents/VS Code/vthrudebugger_v1` — drop-in in-app debugger library for React Native. **TypeScript + RN peer deps, RN Gesture Handler/Reanimated**. **Auto-captures network, console and errors**; **QA-facing alert toasts**, network inspector, **client-side mocks**. **The Debugger tree Amit is working on** — his decision, 27-09-2026, not a check of which tree is furthest ahead.
 - **SecondBrain schema** — `~/Documents/SecondBrain Obsidian/schema` — schema for an Obsidian vault. **The vault itself is the parent directory**, which holds `raw`, `wiki` and `schema`.
-- **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26` — multi-tenant HR portal. React 18 + Vite **frontend**, Express 5 + better-sqlite3 **backend**, role-based dashboards. Holds real employee records.
+- **Emp Portal** (Vthru-Emp) — `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26` — multi-tenant HR portal. React 18 + Vite **frontend**, Express 5 + better-sqlite3 **backend**, role-based dashboards. Uses dummy data (`PROJECTS.md` § *Project data*).
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React Native, built so **a developer can drop it into an app**. GitHub: `github.com/AmitJangra25/vthrudebugger_v2`. **A separate project from `vthrudebugger_v1`, not a successor**; parked 27-09-2026, **next up and may become an npm package** (Amit, 30-10-2026) — the history is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`, `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 - **AtWorkpe** — `~/Documents/VS Code/AtWorkpe` · `github.com/AmitJangra25/AtWorkpe` — multi-tenant HRMS portal (full list: `PROJECTS.md`). React + Vite client, Express + SQLite server.
 - **Vthru Customer app** (VT) — `~/Documents/VS Code/mobile` — company React Native app (GitLab); the Debugger integrates here. **Never push, pull or merge there**; Claude files stay local (`PROJECTS.md` VT row).

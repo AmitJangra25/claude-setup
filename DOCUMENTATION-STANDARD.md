@@ -29,7 +29,7 @@ Last reviewed: 13-11-2026
 | Reference | Facts as they are now | Each topic: what it is, current setting, how to check, how to change |
 | State | Where things stand now | Overwritten, never added to |
 | List | Tasks, decisions, backlog, tests | One row per ID |
-| Record | History | Dated, never edited (one exception: *Data and security*) |
+| Record | History | Dated, never edited (one exception: *Data and security*); removed only under *Moving and archiving* |
 
 Every document has exactly one type. `DOCUMENT-MAP.md` names it for global documents; project document types follow from *Structure per file*.
 
@@ -153,12 +153,14 @@ A copy is a defect except in these cases. Each copy names its source.
 | Memory notes that restate a `STANDARDS.md` rule | `STANDARDS.md` | Agreed (plan Part 4); the rule's home stays `STANDARDS.md` |
 | Voice-Flow rule claims in `CLAUDE.md`, evidence in `docs/` | D24 | Agreed (plan Part 4) |
 | One-line rules in `harness/agent-brief.md` § *Critical rules* | The file each line names (`STANDARDS.md`, `.claude/CLAUDE.md`, `README.md`, `DOCUMENTATION-STANDARD.md`, `harness/cross-check.md`) | Reviewers start without `CLAUDE.md` (D52); one line each, the source named, the source wins on conflict |
+| The task-file line "After compaction or a new session: …" in each `.claude/current-task.md` | `templates/handoff.md` | Copied on purpose (Amit, 11-11-2026); listed in `harness/doc-check.sh` `ALLOWED_DUP` |
+| The *To build* table header in each backlog | `templates/deferred-improvements.md` | The form's own header; listed in `harness/doc-check.sh` `ALLOWED_DUP` |
 
 ## Growth and rollover
 
 - **Start with one file each:** `ROADMAP.md`, `BACKLOG.md`, `DECISIONS.md`. No `-DONE` or `-OLD` file until a split is needed.
 - **Finished work stays in the file,** in a short `## Completed` section, one line per item: a done task, a closed backlog item, or a superseded decision (naming the D-number that replaced it).
-- **Old detail always goes to the archive** (`docs/archive/` in a project; `baselines/` or `archive/` in Claude Setup) as a dated record. The *Completed* line points to it.
+- **Old detail moves out of the live file.** If anything may still need it, it goes to a dated record (`docs/archive/` in a project; `baselines/` or `archive/` in Claude Setup) and the *Completed* line points to it. Otherwise, if the file is tracked in git, git history keeps it and the *Completed* line names the commit title; a local-only file always moves its old detail to a dated record.
 - **Split only when *Completed* grows past about 150 lines:** its lines move word for word to `ROADMAP-DONE.md`, `BACKLOG-DONE.md` or `DECISIONS-OLD.md`. The original file keeps one pointer line in *Completed* and one in *Older records*.
 - Done files split by year when they grow.
 - Every live file ends with `## Older records`, one line per old file.
@@ -208,7 +210,9 @@ All standard project files are created at setup, even when empty. An empty file 
 
 - Move text word for word; check with a line count or `cmp`.
 - One line is left behind where it was, pointing to the new place.
-- Never delete a document — relocate it and mark what is superseded (`STANDARDS.md` § *Docs are products*).
+- **Removing a document.** Only when all four are true: it is tracked in git · it is obsolete, replaced or no longer needed · its live content, if still needed, already has a new home · Amit approves it by exact file name.
+- Where another file, memory note, skill, agent or outside reference may still point to it, leave a one-line pointer where the file was listed (its index, map row or *Older records* line): the old file name, the date, and the titles of the commit it was last in and the commit that removed it (not commit IDs).
+- Local-only files are never removed under this rule. `STANDARDS.md` step 4 still applies: confirm the target two ways, and get an agent review for consequential deletions.
 - A signpost file keeps old heading names so old links still land.
 
 ## Format check

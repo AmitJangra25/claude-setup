@@ -89,8 +89,8 @@ has since been deleted, confirmed absent 31-10-2026.
 Every file here was read in full before it landed, because this repo is pushed to
 GitHub. The rules files hold architecture, conventions and pitfalls — env var
 *names* appear, values do not, and no customer, employee or account record does.
-Two of these projects hold real personal data in their databases; none of it is in
-their rules files. The settings files were checked the same way: they are
+Which projects hold real or private data: `PROJECTS.md` § *Project data*; none of it
+is in their rules files. The settings files were checked the same way: they are
 permission patterns, and they hold no keys, tokens or credentials.
 
 Read a new one the same way before adding it. The check is not "does it look like

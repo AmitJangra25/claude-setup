@@ -27,8 +27,9 @@ short plan.
 
 ## Add when needed
 
-- **Root-cause investigation:** when the cause is unclear after a first look. This is a
-  risk trigger ("unclear cause"), so the plan is deep.
+- **Root-cause investigation:** when the cause is still unknown after a first look
+  (reading the code and logs, re-running the problem). That is a risk trigger, so the
+  plan becomes deep. A bug whose cause the first look finds stays light.
 - **Regression risks:** what else uses the code you change, and how you will know it
   still works.
 - **A test that locks the fix in,** when the bug could come back and a test is practical.

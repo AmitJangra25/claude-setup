@@ -25,9 +25,9 @@ so **start setup sessions from `~/.claude`**.
 ## Why it stays private
 
 `project-rules/` holds every project's `CLAUDE.md` verbatim, and `archive/` holds
-Voice-Flow's git history from before its rules file was stripped out of it. Two of the
-mirrored projects are ones with real customer and employee records, and their rules
-describe that. None of it is secret material, but all of it is internal.
+Voice-Flow's git history from before its rules file was stripped out of it. One mirrored
+project, the Vthru Customer app (VT), is the company's app with real data (`PROJECTS.md`
+§ *Project data*). None of it is secret material, but all of it is internal.
 
 ## Start here
 

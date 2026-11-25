@@ -18,8 +18,8 @@ it, do not restate it in the plan.
 - Plain, simple, everyday English, the way a person would explain it. Short where that
   helps; never cut a fact to make it shorter.
 - Write about the thing, not the work that produced it.
-- Never delete reference or spec docs; move them and mark what is superseded
-  (`STANDARDS.md` § *Docs are products*).
+- Remove a document only under `DOCUMENTATION-STANDARD.md` § *Moving and archiving*;
+  otherwise move it and mark what is superseded.
 
 ## Testing
 

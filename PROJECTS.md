@@ -7,6 +7,10 @@ Related: `project-rules/manifest.tsv` (mirrored projects) · `ENVIRONMENT.md` (d
 
 ---
 
+## Project data (Amit, 25-11-2026)
+
+Projects are new and not live. No project holds live personal data, except the Vthru Customer app (VT), which is the company's app with real data: treat it as confidential. FinNode has some private documents. Emp Portal uses dummy data. Packbly is ignored and never opened. Do not delete admin or super-admin users.
+
 ## Projects
 
 Paths last checked against the filesystem 20-09-2026; not re-checked since (11-11-2026: the read-only check was blocked — unverified). AW, EP and DB1 paths checked 16-11-2026 (Phase 7 follow-ups). Per-project progress lives in the project's own files — its `README.md` or its roadmap (FinNode: `docs/ROADMAP.md`).

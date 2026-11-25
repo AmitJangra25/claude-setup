@@ -1,6 +1,6 @@
 ---
 name: planning
-description: How to plan any change that is more than the tiny-change route in STANDARDS.md — pick the kind of work (new project, feature or small enhancement, bug fix, documentation, Claude Setup change), pick the depth (light, or deep when a risk trigger applies), tell Amit the judgement, then read only the one guide for that kind. Also covers technical design, test planning, splitting work into packages, saved plans and idea assessment. Use before writing any plan; not for questions or the tiny-change route.
+description: How to plan any change that is more than the small approved change in STANDARDS.md — pick the kind of work (new project, feature or small enhancement, bug fix, documentation, Claude Setup change), pick the depth (light, or deep when a risk trigger applies), tell Amit the judgement, then read only the one guide for that kind. Also covers technical design, test planning, splitting work into packages, saved plans and idea assessment. Use before writing any plan; not for questions or the small approved change.
 ---
 
 # Planning

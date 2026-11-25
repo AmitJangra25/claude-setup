@@ -16,7 +16,7 @@ If they disagree, the standard wins. Read only the sections the change needs.
 - [ ] **IDs, status marks, dates** — § *IDs and progress*.
 - [ ] **Name** — § *Naming*.
 - [ ] **Size** — over the limits in § *Growth and rollover*: propose a rollover.
-- [ ] **Moving or archiving** — § *Moving and archiving*; documents are never deleted.
+- [ ] **Moving, archiving or removing** — § *Moving and archiving*; a document is removed only under its deletion rule.
 - [ ] **Data** — § *Data and security*.
 - [ ] **Decision touched** — § *Decisions and affected files*.
 - [ ] **Map** — a document added, moved or retired: § *When to read and update*.

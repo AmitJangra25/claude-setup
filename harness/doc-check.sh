@@ -56,8 +56,9 @@ ENVIRONMENT.md|full|Contents;The two kinds of rule;1. RTK;2. Status line;3. Perm
 # Named in the documents but not built yet; not counted as dead links.
 PLANNED='DECISIONS.md harness/rebuild.md'
 # Lines allowed to appear in more than one checked file (DOCUMENTATION-STANDARD.md § Allowed copies).
-#     The task-file template's standing line is copied into each task file on purpose (Amit, 11-11-2026).
-ALLOWED_DUP='After compaction or a new session: confirm the scope still applies before further action; ask again if unclear or outside scope.'
+#     The task-file template's standing line and the backlog form's table header are copied on purpose (Amit, 11-11-2026; 25-11-2026).
+ALLOWED_DUP='After compaction or a new session: confirm the scope still applies before further action; ask again if unclear or outside scope.
+| ID | Item | Why | Worth doing | Blocks current task | Priority | Size | Tokens | Status | Next action |'
 TASK_FILE=.claude/current-task.md
 MAX_LINES=300
 
