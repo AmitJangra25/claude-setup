@@ -1730,7 +1730,9 @@ every turn) · status words that force a replacing D-number. Cross-check before 
 `harness/doc-structure-plan.md` · `harness/status.md` · later `DOCUMENTATION-STANDARD.md`,
 `DOCUMENT-MAP.md`, `templates/decisions.md`, `harness/doc-check.sh`, `DECISIONS.md` (WP5),
 `.gitignore` and `harness/project-cleanup-prompt.md` (WP9). **Status:** approved 25-11-2026; open
-until WP5–WP9 apply it.
+until WP5–WP9 apply it. **Amended 25-11-2026 (WP3b, Amit):** `MEMORY.md` index lines may use
+`[Title](file.md)` because Claude Code's memory system requires that format — a second memory
+exception to the link model, alongside `[[name]]` memory-note links.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.

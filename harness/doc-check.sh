@@ -80,6 +80,12 @@ map_docs() {
 }
 known_root=" $(map_docs | tr '\n' ' ') "
 
+# GitHub-style anchors for a file's headings: lowercase, punctuation dropped, spaces to hyphens.
+anchors() {
+  awk '/^```/ { fence=!fence; next } !fence && /^#+ /' "$1" | sed -E 's/^#+ +//' |
+    tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9 _-]//g; s/ /-/g'
+}
+
 checked_paths=$(echo "$CHECKED" | cut -d'|' -f1 | tr '\n' ' ')
 
 run_checks() {
@@ -142,6 +148,18 @@ while IFS='|' read -r f htype sections needs_id; do
       *) case "$known_root" in *" $p "*) ;; *) continue ;; esac ;;
     esac
     [ -e "$p" ] || echo "WARN $f: dead link: $p"
+  done
+
+  # Clickable links: relative to this file; an anchor must match a heading in the target.
+  # Website links, inline code and code blocks are skipped (link model: D53).
+  awk '/^```/ { fence=!fence; next } !fence' "$f" | sed -E 's/`[^`]*`//g' |
+    grep -oE '\]\([^)[:space:]]+\)' | sed -E 's/^\]\(//; s/\)$//' | sort -u | while read -r l; do
+    case "$l" in http://*|https://*|mailto:*) continue ;; esac
+    p=${l%%#*}; t=$(dirname "$f")/$p; [ -n "$p" ] || t=$f
+    if [ ! -e "$t" ]; then echo "WARN $f: dead link: $l"
+    elif [ "$p" != "$l" ] && ! { [ -f "$t" ] && anchors "$t" | grep -qxF -- "${l#*#}"; }; then
+      echo "WARN $f: link to missing section: $l"
+    fi
   done
 
   # Size.

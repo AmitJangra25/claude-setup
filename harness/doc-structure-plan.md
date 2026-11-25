@@ -960,6 +960,16 @@ Phase 10 WP2a committed 56c9fbd and pushed 25-11-2026.
 
 Phase 10 WP2b committed a3846d4 and pushed 25-11-2026.
 
+**WP3b result (25-11-2026), link check only:** Amit split WP3b. Catalog coverage, the *Local-only* section in `DOCUMENT-MAP.md`, the registered-duplicates check, the "what links here" report and session-start timing move to WP3b part 2, in a fresh session.
+- `harness/doc-check.sh` now checks clickable links in the files it already checks. It resolves each link from its own file's folder and checks section anchors against the target's headings (GitHub style). It skips website links, inline code and code blocks; `project-rules/` files are not on its list. A section anchor that points at a folder is reported as a missing section, without an error (O4).
+- D53 amended (Amit): `MEMORY.md` index lines may use `[Title](file.md)`, because Claude Code's memory system requires that format. Recorded in *WP3 design* → *Link model* and in `SETUP-PLAN.md` D53.
+- The four sample-page links in *WP3 design* stay clickable, marked illustrative: they are written as they will sit in `ENVIRONMENT.md` at the root.
+- Findings: no must-fix. S1 applied: `baselines/global-open-tests.md` TC3 now names `ENVIRONMENT.md` § *How numbers are measured*. O4 applied. Accepted or deferred: O1 (old section names in `baselines/README.md` record where content came from) · O2 (repeated and accented headings, known limits) · O3 (link forms the model does not use) · O5 (clickable links in always-loaded files are not flagged; WP3b part 2 or WP6b) · O6 (the dated `PROJECTS.md` heading, WP6d) · O7 (backtick § section names are not checked by the script; 47 checked by hand, 45 match, the other 2 were S1 and O1).
+- Not checked: `backups/` — access was denied, not retried.
+- Test, in a scratch clone: the old check missed a broken clickable link; the new check caught exactly that link and nothing else. Seven valid link forms gave no warning; links in code were skipped.
+- `doc-check.sh` on the real repo: 1 warning before and after (`ENVIRONMENT.md` size, WP6a). Run time 0.98s → 1.08s (`time`, one run each).
+- Review: `change-reviewer` Opus, verdict no concerns, 4 low findings and 1 note (17,358 measured). Finding 4 became O4; the rest are O2, O3 and O5.
+
 #### WP3 design (approved 25-11-2026, Amit; D53)
 
 Design only. Nothing here changes another file until the package named on each line applies it. Cross-check: `plan-reviewer`, Opus, verdict concerns, 9 findings (2 must-fix, 6 should-fix, 1 optional group), all taken in with Amit's approval (55,880 measured).
@@ -1031,6 +1041,8 @@ Homes for known duplicates (WP1 baseline § 6): model rule → `STANDARDS.md` ·
 
 **Sample page — `ENVIRONMENT.md` § 2 *Status line*, after** (approved as the style sample; applied to `ENVIRONMENT.md` only in WP6a; *Known gaps* unchanged):
 
+The sample's links are illustrative: they are written as they will sit in `ENVIRONMENT.md` at the repository root, so they do not resolve from this file.
+
 > ## 2. Status line
 >
 > The status line shows how big the session's context is, so you know when to clear.
@@ -1076,7 +1088,7 @@ Homes for known duplicates (WP1 baseline § 6): model rule → `STANDARDS.md` ·
 - Anchors follow GitHub's style: lowercase, spaces become hyphens, punctuation dropped (`## 3. Permissions` → `#3-permissions`).
 - Backtick paths with § and the section name, not links: in every always-loaded file (`DOCUMENTATION-STANDARD.md` § *Always loaded*: the global rule files, both setup `CLAUDE.md` files, each project's `CLAUDE.md`, each `MEMORY.md`), because they load every turn and Claude does not click (links would add about 400 tokens per session, estimate); and for references across folders such as `~/.claude/…`, which is not a valid relative link.
 - IDs (D46, B34, TC3, T30) stay plain text. Commands, code and file names mentioned in passing stay in backticks.
-- Memory notes are the one exception: Claude Code's memory system uses `[[name]]` links (14 uses in 10 setup notes, counted by `grep -o` 25-11-2026), so those stay. No `[[wiki-links]]` anywhere else.
+- Memory has two exceptions. Memory notes use `[[name]]` links, because Claude Code's memory system uses them (14 uses in 10 setup notes, counted by `grep -o` 25-11-2026), so those stay. No `[[wiki-links]]` anywhere else. `MEMORY.md` index lines may use `[Title](file.md)` because Claude Code's memory system requires that format (D53 amendment, Amit, 25-11-2026).
 - Old files switch to links only when they are rewritten.
 
 **WP9 prompt file:** `harness/project-cleanup-prompt.md` — type Reference. When created in WP9: an allow-line `!harness/project-cleanup-prompt.md` after `.gitignore:139`, a `DOCUMENT-MAP.md` row, and an entry in the `harness/doc-check.sh` CHECKED list. If it becomes a skill later, it moves to `skills/`.
