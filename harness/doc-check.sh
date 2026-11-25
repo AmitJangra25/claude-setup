@@ -4,8 +4,13 @@
 # Runs from: harness/session-check.sh (with --quiet). Later, each project's commit check
 # (Phases 6 and 7, in that project's own session).
 #
-#   harness/doc-check.sh           warnings, then the count of documents not yet in format
-#   harness/doc-check.sh --quiet   warnings only; prints nothing when clean
+#   harness/doc-check.sh           full run: warnings incl. registered rules, then the count
+#                                  of documents not yet in format
+#   harness/doc-check.sh --quiet   session start: warnings only, no registered-rules check;
+#                                  prints nothing when clean
+#   harness/doc-check.sh --links-to <file>[#section]
+#                                  "what links here": every backtick path and clickable link
+#                                  to that file (or section) in any tracked text file
 #
 # Output: "WARN <file>: <rule broken>" per problem, then "n warnings".
 cd "$(dirname "$0")/.." || exit 0
@@ -17,7 +22,7 @@ quiet=0; [ "${1-}" = "--quiet" ] && quiet=1
 #     sections: "##" headings, in order, separated by ";" — each matched by its start
 CHECKED='
 DOCUMENTATION-STANDARD.md|full|Principles;Five file types;Headers;Always loaded;IDs and progress;Naming;Structure per file;When to read and update;Allowed copies;Growth and rollover;Task file rules;Empty files;Data and security;Decisions and affected files;Moving and archiving;Format check|
-DOCUMENT-MAP.md|full|Global documents;Project documents;Other project files;Not documents|
+DOCUMENT-MAP.md|full|Global documents;Project documents;Other project files;Not documents;Local-only|
 templates/handoff.md|task|Live;Resume|
 templates/roadmap.md|full|Summary;Phase;Completed;Older records|yes
 templates/deferred-improvements.md|full|To build;In full;Deferred;Known and accepted;Older records|yes
@@ -61,6 +66,19 @@ ALLOWED_DUP='After compaction or a new session: confirm the scope still applies 
 | ID | Item | Why | Worth doing | Blocks current task | Priority | Size | Tokens | Status | Next action |'
 TASK_FILE=.claude/current-task.md
 MAX_LINES=300
+# Catalog coverage: folder groups one DOCUMENT-MAP.md row may cover; every other tracked file
+#     needs its own path in a row (plan § Link and sync). "*" = one folder level.
+MAP_GROUPS='archive/ baselines/ projects/*/memory/ project-rules/*/'
+# Registered rules: home file|key phrase (homes: plan § WP3 design). Full run only — copies
+#     remain until WP6 removes them. Project descriptions have no single key phrase; not listed.
+REGISTERED='STANDARDS.md|for clear, bounded work
+STANDARDS.md|plan work to fit in about 250K
+PROJECTS.md|never pushes, pulls, merges
+PROJECTS.md|may become an npm package
+README.md|start setup sessions from
+DOCUMENTATION-STANDARD.md|About 80 lines at most
+DOCUMENTATION-STANDARD.md|past about 300 lines
+ENVIRONMENT.md|a plugin key is a silent no-op'
 
 warn() { echo "WARN $1: $2"; }
 
@@ -84,6 +102,59 @@ known_root=" $(map_docs | tr '\n' ' ') "
 anchors() {
   awk '/^```/ { fence=!fence; next } !fence && /^#+ /' "$1" | sed -E 's/^#+ +//' |
     tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9 _-]//g; s/ /-/g'
+}
+
+# "What links here" for one file, or one file#section. Reads every tracked text file.
+# Backtick paths are read from the repo root (also `~/.claude/...`); with a section, only
+# "`file` § *Section*" matches. Clickable links are resolved from their own file's folder.
+# Known limit: a § given only as a number ("§ 1") matches a section only if it is numbered so.
+links_to() {
+  t=${1%%#*}; a=""; [ "$t" != "$1" ] && a=${1#*#}
+  t=${t#./}; t=${t#\~/.claude/}; t=${t#"$HOME"/.claude/}
+  git ls-files -z -- . ':!:*.gz' ':!:*.bundle' | xargs -0 awk -v t="$t" -v a="$a" '
+    function anch(s) { s=tolower(s); gsub(/[^a-z0-9 _-]/, "", s); gsub(/ /, "-", s); return s }
+    function norm(p,   n, i, k, part, out) {
+      n=split(p, part, "/"); k=0
+      for (i=1; i<=n; i++) {
+        if (part[i]=="" || part[i]==".") continue
+        if (part[i]=="..") { if (k>0) k--; continue }
+        out[++k]=part[i] }
+      p=""; for (i=1; i<=k; i++) p=p (i>1 ? "/" : "") out[i]; return p }
+    FNR==1 { fence=0; dir=FILENAME; if (dir ~ /\//) sub(/\/[^\/]*$/, "", dir); else dir="" }
+    /^```/ { fence=!fence }
+    { s=$0
+      while (match(s, /`[^`]+`/)) {
+        p=substr(s, RSTART+1, RLENGTH-2); s=substr(s, RSTART+RLENGTH)
+        sub(/^~\/\.claude\//, "", p)
+        if (p!=t) continue
+        if (a=="") { print FILENAME ":" FNR ": `" p "`"; continue }
+        r=s; if (!sub(/^ § /, "", r)) continue
+        if (match(r, /^[0-9.]* ?\*[^*]+\*/)) { sec=substr(r, RSTART, RLENGTH); sub(/^[^*]*\*/, "", sec); sub(/\*$/, "", sec) }
+        else { match(r, /^[^ ,;)]+/); sec=substr(r, RSTART, RLENGTH) }
+        x=anch(sec); if (x!="" && (x==a || index(a, x "-")==1)) print FILENAME ":" FNR ": `" p "` § " sec }
+      if (fence) next
+      s=$0; gsub(/`[^`]*`/, "", s)
+      while (match(s, /\]\([^) \t]+\)/)) {
+        l=substr(s, RSTART+2, RLENGTH-3); s=substr(s, RSTART+RLENGTH)
+        if (l ~ /^(https?|mailto):/) continue
+        p=l; sec=""; i=index(l, "#"); if (i) { p=substr(l, 1, i-1); sec=substr(l, i+1) }
+        full=(p=="") ? FILENAME : norm((dir=="" ? "" : dir "/") p)
+        if (full!=t) continue
+        if (a!="" && sec!=a) continue
+        print FILENAME ":" FNR ": (" l ")" } }'
+}
+if [ "${1-}" = "--links-to" ]; then
+  [ -n "${2-}" ] || { echo "usage: harness/doc-check.sh --links-to <file>[#section]"; exit 0; }
+  hits=$(links_to "$2")
+  [ -n "$hits" ] && echo "$hits"
+  echo "$(printf '%s' "$hits" | grep -c .) links to $2"
+  exit 0
+fi
+
+# First-cell paths of the DOCUMENT-MAP.md rows in § Global documents and § Not documents.
+map_entries() {
+  awk '/^## (Global documents|Not documents)/{g=1;next} /^## /{g=0} g && /^\|/' DOCUMENT-MAP.md |
+    cut -d'|' -f2 | grep -oE '`[^`]+`' | tr -d '`'
 }
 
 checked_paths=$(echo "$CHECKED" | cut -d'|' -f1 | tr '\n' ' ')
@@ -197,6 +268,36 @@ fi
 # Task file must be ignored by git.
 if [ -f "$TASK_FILE" ] && ! git check-ignore -q "$TASK_FILE"; then
   warn "$TASK_FILE" "task file is not ignored by git"
+fi
+
+# Catalog coverage: every tracked file has a map row, by its own path or by a MAP_GROUPS row.
+entries=$(map_entries 2>/dev/null)
+if [ -z "$entries" ]; then
+  warn DOCUMENT-MAP.md "no map entries found (file missing or headings renamed) — catalog coverage not checked"
+else git -c core.quotepath=off ls-files | awk -v groups="$MAP_GROUPS" '
+  NR==FNR { have[$0]=1; next }
+  $0 in have { next }
+  { n=split(groups, g, " ")
+    for (i=1; i<=n; i++) if (g[i] in have) { re="^" g[i]; gsub(/\*/, "[^/]+", re); if ($0 ~ re) next }
+    print "WARN DOCUMENT-MAP.md: no row for tracked file: " $0 }' <(echo "$entries") -
+fi
+
+# Registered rules (full run only): the key phrase is in its home and nowhere else. Not
+# scanned: history and records (baselines/ except the live list and index, archive/,
+# SETUP-PLAN.md), the plan, this script, other projects' files and memory.
+if [ "$quiet" = 0 ]; then
+  scan=$( { git -c core.quotepath=off ls-files | grep -vE '^(archive|baselines|project-rules|projects)/' |
+      grep -vxE 'SETUP-PLAN\.md|harness/doc-structure-plan\.md|harness/doc-check\.sh'
+    echo baselines/global-open-tests.md; echo baselines/README.md
+    git -c core.quotepath=off ls-files projects/-Users-amitjangra--claude/memory/; } )
+  while IFS='|' read -r home phrase; do
+    grep -qiF -- "$phrase" "$home" || warn "$home" "registered phrase missing from its home: $phrase"
+    echo "$scan" | tr '\n' '\0' | xargs -0 grep -liF -- "$phrase" | while read -r f; do
+      [ "$f" = "$home" ] || warn "$f" "copy of a registered rule (home $home): $phrase"
+    done
+  done <<EOF
+$REGISTERED
+EOF
 fi
 }
 
