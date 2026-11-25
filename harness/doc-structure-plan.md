@@ -942,12 +942,12 @@ Each package is one commit on Amit's word; `git revert` undoes it cleanly only u
 | 8 Final test | See *Final checks* | Amit approves the final verification report | As listed |
 | 9 Global project clean-up prompt | See *WP9* below | See *WP9* | See *WP9* |
 
-**WP2a result (25-11-2026, uncommitted):** sections A–E applied as approved, with the review fixes below. Success searches 1–2 passed (remaining hits only in history, this plan, "admin or super-admin users" lines, Voice-Flow memory). `doc-check.sh` 2 → 1 warning (ENVIRONMENT.md size, 6a). Reviews: `plan-reviewer` Opus, concerns, 8 findings, all taken in (71,316 measured) · `change-reviewer` Opus round 1, concerns, 5 findings (33,768 measured): 1, 2, 4 fixed, 5 kept, 3 → WP2b · round 2, concerns, 3 findings (11,494 measured): 2 fixed, 1 (FinNode missing from `ENVIRONMENT.md` § *Sensitive data*) → WP2b, 3 skipped (Amit). Routing tests 2, 7, 8 (25-11-2026, fresh session; self-reported, checked against the saved pass criteria):
+**WP2a result (25-11-2026):** sections A–E applied as approved, with the review fixes below. Success searches 1–2 passed (remaining hits only in history, this plan, "admin or super-admin users" lines, Voice-Flow memory). `doc-check.sh` 2 → 1 warning (ENVIRONMENT.md size, 6a). Reviews: `plan-reviewer` Opus, concerns, 8 findings, all taken in (71,316 measured) · `change-reviewer` Opus round 1, concerns, 5 findings (33,768 measured): 1, 2, 4 fixed, 5 kept, 3 → WP2b · round 2, concerns, 3 findings (11,494 measured): 2 fixed, 1 (FinNode missing from `ENVIRONMENT.md` § *Sensitive data*) → WP2b, 3 skipped (Amit). Routing tests 2, 7, 8 (25-11-2026, fresh session; self-reported, checked against the saved pass criteria):
 - Test 2: PASS — small approved change; no planning files; no trigger.
 - Test 7: PASS — bug fix, light; reads SKILL.md and bug-fix.md; deep only if the cause remains unknown after a first look; no UI check.
 - Test 8: PASS — bug fix, light; reads SKILL.md and bug-fix.md; deep only if the cause remains unknown after a first look; includes a UI check at about 360px.
 
-Open: commit on Amit's word.
+Phase 10 WP2a committed 56c9fbd and pushed 25-11-2026.
 
 Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixes (Amit picks at session start).
 
