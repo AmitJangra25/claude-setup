@@ -78,11 +78,9 @@ AtWorkpe is on GitHub only and has no `CLAUDE.md`; add a line when it gains one.
 
 ### Detached
 
-Packbly Web (`~/Documents/VS Code/Packbly_web/v1.1-Packbly`) and Voice Flow v1
-(`~/Documents/VS Code/Voice Flow_v1`) were detached from Claude Setup on 30-10-2026:
-removed from `manifest.tsv` and their copies here deleted (they remain in git history).
-The Packbly Web folder and its data stay on disk, untouched. The `Voice Flow_v1` folder
-has since been deleted, confirmed absent 31-10-2026.
+Voice Flow v1 (`~/Documents/VS Code/Voice Flow_v1`) was detached from Claude Setup on
+30-10-2026: removed from `manifest.tsv` and its copy here deleted (it remains in git
+history). The folder has since been deleted, confirmed absent 31-10-2026.
 
 ## Before adding another one
 

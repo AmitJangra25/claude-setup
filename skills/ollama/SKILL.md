@@ -59,8 +59,8 @@ Never present its output as something you verified unless you did.
 
 ## Security
 
-This applies across every project, and two of them hold real personal data —
-Emp Portal (employee records) and Packbly (customer and courier records).
+This applies across every project. Which projects hold real or private data:
+`PROJECTS.md` § *Project data*.
 
 - **What you send it is real.** `summarize`, `triage`, `testplan` and `commit`
   send file contents, logs and diffs verbatim. Treat a task the same way you

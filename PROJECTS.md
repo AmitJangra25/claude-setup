@@ -27,12 +27,11 @@ Paths last checked against the filesystem 20-09-2026; not re-checked since (11-1
 
 ## Not projects
 
-- `~/Documents/extra/v1.1-Packbly` — **holds real personal data** (`OLLAMA.md`).
 - `~/Documents/Skils/PM-skills-Amit`.
 - `~/Documents/SecondBrain Obsidian/schema` — one `CLAUDE.md` (233 lines in the mirror, 29-10-2026), no code, no git: an agent brief for an Obsidian vault. Still mirrored in `project-rules/manifest.tsv`, because that mirror carries rule files through an account switch.
 - `~` and `~/Documents` — Claude opens them as working directories. Not projects, get no `CLAUDE.md`, covered by the global rules.
 - `~/Documents/Voice-Flow-main` — listed until 20-09-2026; no longer exists.
-- Ten further paths in `~/.claude.json` from past sessions no longer exist on disk — old Voice Flow trees, `Packbly_Admin`, `claudetr` and a `Downloads` copy of Emp Portal. History, not projects; deliberately not listed.
+- Ten further paths in `~/.claude.json` from past sessions no longer exist on disk — old Voice Flow trees, `claudetr` and a `Downloads` copy of Emp Portal. History, not projects; deliberately not listed.
 
 ## Names and renames
 

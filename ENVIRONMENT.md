@@ -353,24 +353,17 @@ done
 
 **One Voice Flow tree remains:** `~/Documents/VS Code/Voice-Flow`. The older copies `Voice Flow_v1` and `Voice-Flow-main` are deleted, confirmed absent 31-10-2026; their names in older records and `~/.claude.json` are history.
 
-**Two Packbly trees exist**, `~/Documents/VS Code/Packbly_web/v1.1-Packbly` and an older copy at `~/Documents/extra/v1.1-Packbly`. Both are detached from Claude Setup (30-10-2026); the folders and their data stay on disk.
-
 **Two Debugger trees exist.** Amit chose `~/Documents/VS Code/vthrudebugger_v1` as the tree to work on, 27-09-2026; `Debugger v2` is next up and may become an npm package (30-10-2026). A further copy under `~/Debugger` is gone, and whether `vthrudebugger_v1` holds its work is unknown — see § *Project-tree decisions*.
 
 ### Project-tree decisions
 
-**Both are answered**, each dated below. They were settled by Amit's decisions and by one folder disappearing — not by opening the projects — so where something is still unknown, the entry says so rather than rounding it up.
+**Answered**, dated below. It was settled by Amit's decision and by one folder disappearing — not by opening the projects — so where something is still unknown, the entry says so rather than rounding it up.
 
 - ~~**Which Debugger tree is current?**~~ **Settled by decision on 27-09-2026, not by a check.** Amit is working on `~/Documents/VS Code/vthrudebugger_v1`; `Debugger v2` is parked. *State on 30-10-2026 (audit CL3):* `Debugger v2` is no longer parked — it is next up (§ *Two Debugger trees exist* above; `PROJECTS.md`). Neither replaced the other — both were seeded from V-Thru's `DebugProvider.tsx` and then kept deliberately independent, so "successor" was never right. **Unknown, and not investigated:** whether `vthrudebugger_v1` is the newest or most complete Debugger tree. The 03-08-2026 memory `project-debugger-repo-fresh-start` says `~/Debugger/vthrudebugger_v1` was the furthest-ahead clone — mocks, storage, filter, InfoPanel, report — and `~/Debugger` is gone. Amit deleted a tree and does not recall which; whatever survives is either in `~/Documents/VS Code/vthrudebugger_v1` or on GitHub. No tree was opened to find out, and whether that work survived is not known.
-- ~~**Is `Packbly v2` a real project?**~~ **Amit's decision, 27-09-2026.** Yes, it is. He is not working on it and the entry stays exactly as it is; someone else may pick it up. *State on 30-10-2026 (audit CL3):* Packbly v2 is detached from Claude Setup, with Packbly Web and Voice Flow v1 (`harness/status.md` § *Open*).
 
 ### Sensitive data
 
-These projects hold, or may hold once live, real personal records, and `OLLAMA.md` has the standing rule about what may be sent to a local model:
-
-- **Emp Portal** — dummy data (`PROJECTS.md` § *Project data*)
-- **Packbly Web** — customer and courier records. Detached from Claude Setup 30-10-2026; the data is still on disk, so the `OLLAMA.md` rule still applies.
-- **Vthru Customer app** (VT) — company code with `.env` files and real data (`PROJECTS.md` § *Project data*). Treat as confidential.
+Which projects hold real or private data: `PROJECTS.md` § *Project data*. What may be sent to a local model: `OLLAMA.md`.
 
 ### Full project descriptions
 
@@ -384,7 +377,6 @@ These projects hold, or may hold once live, real personal records, and `OLLAMA.m
 - **Debugger v2** — `~/Documents/VS Code/Debugger v2` — in-app debug overlay for React Native, built so **a developer can drop it into an app**. GitHub: `github.com/AmitJangra25/vthrudebugger_v2`. **A separate project from `vthrudebugger_v1`, not a successor**; parked 27-09-2026, **next up and may become an npm package** (Amit, 30-10-2026) — the history is in § *Project-tree decisions*. **Carries its own** `ARCHITECTURE.md`, `INTEGRATION.md`, `PLAN.md`, `DEPENDENCIES.md`.
 - **AtWorkpe** — `~/Documents/VS Code/AtWorkpe` · `github.com/AmitJangra25/AtWorkpe` — multi-tenant HRMS portal (full list: `PROJECTS.md`). React + Vite client, Express + SQLite server.
 - **Vthru Customer app** (VT) — `~/Documents/VS Code/mobile` — company React Native app (GitLab); the Debugger integrates here. **Never push, pull or merge there**; Claude files stay local (`PROJECTS.md` VT row).
-- `~/Documents/extra/v1.1-Packbly` — a Next.js tree, apparently an older copy of Packbly Web. Last commit 23-06-2026.
 - `~/Documents/Skils/PM-skills-Amit` — **a clone of the public `phuryn/pm-skills` repository. Reference material, not your code.**
 
 ## Older records
