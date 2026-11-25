@@ -99,6 +99,7 @@ These make things work; they are not read as documents and follow no document fo
 | `projects/*/memory/` | Claude's notes on Amit's preferences and corrections — never task state, goals or decisions |
 | Skills (`skills/`, project skills) | Instructions loaded only when a task calls for them |
 | `skills/planning/` | What a plan holds: kind of work, depth, and one guide per kind. When to plan, the risk check and every gate stay in `STANDARDS.md` § *How a task runs* |
+| `skills/handoff/` · `skills/send-for-review/` · `skills/documents/` | Handoff note on the `templates/handoff.md` shape · Amit's "send it for review" flow, started only when he types it · a checklist pointing to `DOCUMENTATION-STANDARD.md`. Gates stay in `STANDARDS.md` |
 | `agents/` (`change-reviewer`, `plan-reviewer`) | Fresh, read-only reviewers for cross-checks; they report and never approve. When to use them: `harness/cross-check.md` § *The reviewer* |
 | Acceptance sheets | Checklists used to test a project's work |
 | `launch.json` | Editor settings for starting and debugging an app |

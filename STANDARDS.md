@@ -58,7 +58,7 @@ Anything else that changes something uses the `planning` skill for what the plan
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
 7. **Review** — is the result the thing asked for, done the way this project's own rules say, and does it meet the success measure?
 8. **Record** — verified results in the roadmap, decisions in `DECISIONS.md` (Claude Setup: `SETUP-PLAN.md` until T30), out-of-task findings in the backlog. Besides ticking the task, name any lasting requirement, project doc or decision that now needs updating.
-9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before building*), write a handoff note: in `.claude/current-task.md` on the `templates/handoff.md` shape when recording is allowed, otherwise in chat.
+9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before building*), write a handoff note: in `.claude/current-task.md` on the `templates/handoff.md` shape when recording is allowed, otherwise in chat. The `handoff` skill walks through it.
 10. **Stop** — in plain words: the result against the success measure, what is done, what is not verified, what is deferred, and the next step for this task. Then wait.
 
 Templates are in `~/.claude/templates/`: new-project discovery (`templates/new-project.md`), roadmap, backlog (`templates/deferred-improvements.md`), handoff. Read one only when a step needs it. A project session that cannot read a template says so and asks me for it; never guess its shape.
@@ -168,6 +168,8 @@ Before working a backlog item I have not approved, judge it against the value ba
 ## Git
 
 **Never commit or push without being asked.** Preparing a commit is not permission to make one. Branch, commit, push and open the PR only once I say "send it for review" or the equivalent — and nothing lands on `main` directly.
+
+Typing `/send-for-review` is the same as saying it; that skill runs the flow and points back here (D52).
 
 **One PR per feature, on its own branch off `main`,** never stacked on an earlier PR's unmerged branch. If another branch is checked out with uncommitted work, stash only the files for the new change, branch fresh off `main` and pop the stash there — never carry the other PR's commits along.
 

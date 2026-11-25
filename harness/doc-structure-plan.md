@@ -678,9 +678,9 @@ Choices approved 24-11-2026: the retry rule · routing tests in short fresh sess
 Ideas from Amit's summary of zazencodes (not checked against the repos): checks before review · findings back to the builder · bounded retries — adopted above. Risk-based reviewer choice waits for Phase 9. Not adopted: automatic merging, parallel jobs, the author's personal setup.
 Claude Code skill loading (code.claude.com/docs/en/skills, read 23-11-2026): skill descriptions load at session start; the body loads when the skill is used and stays; other files in the folder load only when read; description plus `when_to_use` is cut at 1,536 characters; `@imports` always load. The page was cut off after about 100,000 characters.
 
-### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, not built
+### Phase 9 — Reviewer agents and skills (agreed 20-11-2026, D50) — plan **approved 24-11-2026 (D52)**, WP2–WP4 built
 
-**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. WP2 and WP3 built; WP3 reviewer tests complete (*Reviewer test result*); skills not built. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
+**State:** approved by Amit 24-11-2026 (D52), with the acceptance criteria below. WP2, WP3 and WP4 built; WP3 reviewer tests complete (*Reviewer test result*); WP4 skill tests complete (*Skill test result*); WP5 not started. Saved in WP1, revised after one cross-check (24-11-2026, Opus, verdict *concerns*, 10 findings, 56K measured): every finding fixed, decided by Amit, or not applicable after his decision; the overlap with `ship-local` stays an open item for WP4. Amit also decided 24-11-2026: skip the fake `.env` test; recovery is verified in a local copy only, never by undoing the live setup. Kind: Claude Setup change. Depth: deep (agents, skills, rule-file pointers, more than one session).
 
 **Goal (Amit, 20-11-2026 and 24-11-2026):** two fresh, read-only reviewers and three focused skills that give each review and each repeated chore the minimum context it needs, without copying rules and without dropping any gate.
 
@@ -786,6 +786,22 @@ Helper usage (measured): round 1 147,618 (reviewers 84,297; general-purpose cont
 
 Migration done: `harness/cross-check.md` § *The reviewer* — the "not by a lock" sentence replaced with Amit's approved wording (R1–R2 evidence).
 
+#### Skill test result (WP4, recorded 25-11-2026)
+
+**WP4 skill tests complete (25-11-2026):** K1–K5 passed (K3 with an approved substitution). Synthetic scenarios only; no real push, GitHub call or file write in any test. Skills created 24-11-2026: `skills/handoff/`, `skills/send-for-review/` (`disable-model-invocation: true`), `skills/documents/`; no `allowed-tools`. Overlap with the built-in `ship-local` (compared by its description; no file on disk): it self-reviews, fixes and watches until merge, so it is no substitute; kept separate and left alone (Amit). WP4 cross-check 24-11-2026: `change-reviewer`, Sonnet, concerns, 2 low findings, both fixed (Amit), 33,185 measured.
+
+| Test | Result | Evidence |
+|---|---|---|
+| K1 | **Passed** | `handoff` and `documents` in the main session's skill listing and in two fresh helpers' listings; `send-for-review` in no model listing, by design; Amit confirmed 25-11-2026 that `/send` shows `send-for-review` in the menu (Enter not pressed). Descriptions 147, 200, 209 characters (limit 1,536). |
+| K2 | **Passed** | Skill tool refused: "cannot be used with Skill tool due to disable-model-invocation". Paper walk-through: branch per project rules → commit → push → open PR → stop; never merges, approves or closes; local branch only, after Amit confirms the merge, never `-D`; remote branch to the repository setting or Amit. No real push. Clarification (Amit, 25-11-2026): "PR state MERGED is the primary merge verification; git branch --merged main is supporting evidence where applicable. If inconclusive, stop and ask. This clarifies the plan's 'git shows it merged' wording; it is not a test failure." |
+| K3 | **Passed with approved substitution** | Amit, 25-11-2026: "Passed with approved substitution: fresh helper agent instead of a fresh main session. The helper started without this conversation's context, which satisfies the fresh-start purpose." Skill available, invoked, completed: read `templates/handoff.md`, filled every *Live* and *Resume* field incl. *Errors and fixes* and *Map updated*; chat only, no file written. |
+| K4 | **Passed** | Every file and § pointer in the three skills resolves (main session and both helpers). No text moved. Pointers to the new skills in rule and map files: 0 before, 9 after (`STANDARDS.md` 2 · `DOCUMENT-MAP.md` 1 · `.gitignore` 6). |
+| K5 | **Passed** | Search of active files (records and `harness/phase9-scratch/` excluded): no conflicting instruction. `doc-check.sh`: same 2 warnings as session start, none new; "not yet in new format" still 3. |
+
+Extra (not a K test): `documents` run by a fresh helper on a synthetic draft — available, invoked, completed; it named the copied rule, mixed type, missing header, section order, ISO date, file name, missing map row and dated log; every pointer led to real text.
+
+Helper usage (measured): docs-field check 22,108 · cross-check 33,185 · K3 helper 24,320 · documents helper 36,794 · total 116,407. Main session: not measured.
+
 #### Recovery verification (approved; the last step of WP5)
 
 The live setup is never undone to test recovery. Each git command below is approved by Amit at the time.
@@ -799,8 +815,8 @@ The live setup is never undone to test recovery. Each git command below is appro
 #### Open items
 
 - Decided (Amit, 24-11-2026): no fake `.env` test; R1–R3 prove what it would show.
-- **Open:** exact frontmatter field names for agents (`tools`, `model`, `omitClaudeMd`) and skills (manual-only field) — check against the current Claude Code docs at the start of WP3 and WP4, one page each; R1–R3 and K2 prove the result either way.
-- **Open (WP4):** compare `send-for-review` with the existing `ship-local` skill before writing it; overlap is reported to Amit, not assumed.
+- Closed (25-11-2026): frontmatter field names — agents proven by R1–R3; skills' manual-only field is `disable-model-invocation`, proven by K2.
+- Closed (25-11-2026): `send-for-review` vs `ship-local` overlap reported to Amit and decided (*Skill test result*).
 - B16 project-map trial still feeds the brief's "where to look next" line.
 
 #### Decision

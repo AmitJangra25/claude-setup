@@ -102,6 +102,12 @@
 !skills/planning/bug-fix.md
 !skills/planning/documentation.md
 !skills/planning/setup-change.md
+!skills/handoff/
+!skills/handoff/SKILL.md
+!skills/send-for-review/
+!skills/send-for-review/SKILL.md
+!skills/documents/
+!skills/documents/SKILL.md
 
 # --- allow: templates read on demand (STANDARDS.md § How a task runs).
 #     Named files only, same rule as project-rules/.
