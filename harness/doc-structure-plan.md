@@ -936,7 +936,7 @@ Each package is one commit on Amit's word; `git revert` undoes it cleanly only u
 | 3 Design | Document roles (Rules · Reference · State · List · Catalog = `DOCUMENT-MAP.md` · History = git + pointer) · style guide with one before/after sample page · link model (standard markdown links; no `[[wikilinks]]`) · `DECISIONS.md` shape · contents lists only in long docs · the old 30-day format review folded in · names the WP9 prompt file | Amit approves the design and sample page | None (design only) |
 | 3b Link-and-sync check | As in *Link and sync* above | Amit approves the change | Runs on the current repo; warnings listed, not fixed here |
 | 4 Remove approved tracked files | Only the files Amit approved **by name** — never a whole folder. `baselines/global-open-tests.md` (live list), `baselines/phase9-context-24-11-2026.md` and the WP1 baseline stay. Pointer lines as the deletion rule says | Item-by-item; deletion in a separate message | Two-method target check · `change-reviewer` |
-| 5 `SETUP-PLAN.md` split | Build `DECISIONS.md`: live decisions with the text each needs; one index row per closed or replaced D-number so "D46"-style references still work. Rebuild steps to a rebuild guide (`README.md` if short enough, else `harness/rebuild.md`). Fix setup-side pointers, incl. `harness/agent-brief.md:59`. **`SETUP-PLAN.md` stays permanently** as a very short pointer file: to `DECISIONS.md`, the rebuild guide, and git history (original file name, date, commit title). C11: UUIDs and emails leave the working files | Amit approves | D-number references counted before and after · `change-reviewer` |
+| 5 `SETUP-PLAN.md` split | Build `DECISIONS.md`: live decisions with the text each needs; one index row per closed or replaced D-number so "D46"-style references still work. Rebuild steps to a rebuild guide (`README.md` if short enough, else `harness/rebuild.md`). Fix setup-side pointers, incl. `harness/agent-brief.md:59`. After `DECISIONS.md` holds D50–D53, move closed Phases 1–9 out of this file, one pointer per phase; fix `harness/agent-brief.md:8` (D53). **`SETUP-PLAN.md` stays permanently** as a very short pointer file: to `DECISIONS.md`, the rebuild guide, and git history (original file name, date, commit title). C11: UUIDs and emails leave the working files | Amit approves | D-number references counted before and after · `change-reviewer` |
 | 6a–e Rewrite, one per session | 6a `ENVIRONMENT.md` (398 lines) · 6b `DOCUMENTATION-STANDARD.md` + `DOCUMENT-MAP.md` · 6c harness files + backlog (value bar for entries; done rows out; B24, B25 decided) · 6d `PROJECTS.md` + `project-rules/README.md` (wrong on AtWorkpe; omits AtWorkpe and VT; wrong that Voice-Flow keeps `CLAUDE.md` untracked; add a VOS Dashboard row "not set up") + re-copy Voice-Flow `CLAUDE.md` file by file (never `sync.sh --pull`: Emp portal and VT must not be synced) · 6e `STANDARDS.md` last: rarely-used rules move to skills; `agent-brief.md` rule lines and the registered rule list updated | Design per document approved first | List of every rule, limit and waiver kept · `change-reviewer` · restart test after 6e |
 | 7 Setup memory | Notes in `projects/-Users-amitjangra--claude/memory/` that only restate `STANDARDS.md` become a pointer or are removed. Same package removes the `DOCUMENTATION-STANDARD.md` § *Allowed copies* row that allows memory copies. Other projects' memory → project clean-up list | Amit approves | `MEMORY.md` links resolve |
 | 8 Final test | See *Final checks* | Amit approves the final verification report | As listed |
@@ -959,6 +959,127 @@ Phase 10 WP2a committed 56c9fbd and pushed 25-11-2026.
 - Review: `change-reviewer` Opus, verdict no concerns, 3 low findings (24,440 measured). Amit: 1 applied (`OLLAMA.md:7` now also forbids "any real or private project data") · 2 skipped · 3 accepted.
 
 Phase 10 WP2b committed a3846d4 and pushed 25-11-2026.
+
+#### WP3 design (approved 25-11-2026, Amit; D53)
+
+Design only. Nothing here changes another file until the package named on each line applies it. Cross-check: `plan-reviewer`, Opus, verdict concerns, 9 findings (2 must-fix, 6 should-fix, 1 optional group), all taken in with Amit's approval (55,880 measured).
+
+**Document types (seven).** Home from WP6b: `DOCUMENTATION-STANDARD.md` § *Five file types*, renamed. WP6b also sets the headers and sections for Plan, Catalog and History, and renames the `record` header in `harness/doc-check.sh`.
+
+| Type | Holds | Rule |
+|---|---|---|
+| **Rules** | How to work | Short, testable lines. No history, no dates except where a rule needs one. |
+| **Reference** | How things are now | Per topic: what it is · current setting · how to check · how to change · known gaps. |
+| **State** | Where work stands now | Overwritten, never added to. |
+| **Plan** | The active phase's plan and results | Added to while the phase runs. When a phase closes, its detail moves out: decisions to `DECISIONS.md`, the rest to git with a one-line pointer. |
+| **List** | Items with IDs | One row per ID, with `Next ID`. |
+| **Catalog** | Where every file is and what it is for | `DOCUMENT-MAP.md`, plus a folder index where a folder has one. |
+| **History** | How things were | Git is the history. A dated record is kept only as evidence that something live still cites; otherwise a one-line pointer (file name, date, commit title). Items git cannot recover (the `archive/` bundle and tarballs) are kept; removed only under `DOCUMENTATION-STANDARD.md` § *Moving and archiving*. |
+
+**Role of each major document.** Each is the one home for the facts in *Home for*; elsewhere those facts are a link.
+
+| Document | Type | Loads | Home for | Must not hold |
+|---|---|---|---|---|
+| `CLAUDE.md` | Rules | every turn | the three imports | anything else |
+| `STANDARDS.md` | Rules | every turn | how to work: gates, risk check, approval, evidence, session limits, model rule | procedures, measurements, history |
+| `RTK.md` · `OLLAMA.md` | Rules | every turn | how to use rtk · when to use the local model | measurements (`ENVIRONMENT.md`) |
+| `.claude/CLAUDE.md` | Rules | setup sessions | setup-only rules | status |
+| `DOCUMENTATION-STANDARD.md` | Rules | on need | document types, headers, IDs, naming, growth, size limits (300-line document, 80-line task file), deletion rule, writing style, link model | which file is where |
+| `DOCUMENT-MAP.md` | Catalog | on need | one row per tracked setup file or folder group, plus the local-only list | rules or detail |
+| `README.md` | Reference | on need | what this repo is; start setup sessions from `~/.claude`; rebuild steps if they stay short (WP5) | status |
+| `ENVIRONMENT.md` | Reference | on need | machine and tool facts: rtk, status line, permissions, effort, `skillOverrides` facts, loading figures, how numbers are measured | project descriptions (`PROJECTS.md`), rules |
+| `PROJECTS.md` | Reference | on need | each project's path and status; project data (VT, FinNode, Emp Portal, Packbly); the VT git rule | machine facts |
+| `REPOS.md` | Reference | on need | repo shortlist | — |
+| `project-rules/README.md` | Reference | on need | how the rule-file backup works (`manifest.tsv`, `drift.sh`, `sync.sh`) | project status |
+| `DECISIONS.md` (new in WP5) | List | on need | every D-number | rebuild steps, history narrative |
+| `SETUP-PLAN.md` (after WP5) | History | on need | a short pointer page only | anything live |
+| `harness/status.md` | State | setup start | where setup work stands; open items; next gate | finished narrative (git holds it) |
+| `harness/backlog.md` | List | on need | setup items not yet built | done rows beyond one *Completed* line |
+| `harness/doc-structure-plan.md` | Plan | on need | the active phase's plan, gates and results | closed phases' detail, once moved out (WP5) |
+| `harness/cross-check.md` · `models.md` · `agent-brief.md` | Reference | on need | review procedure · model detail · reviewer brief | the model rule itself (`STANDARDS.md`; fixes WP1 duplicate 4) |
+| `harness/overview.md` | Reference | on need | how a session works; the "finished" checklist | status |
+| `harness/project-cleanup-list.md` | List (temporary, no IDs) | on need | project-side findings | secrets, personal data |
+| `baselines/global-open-tests.md` | List | on need | open tests | — |
+| `baselines/README.md` · `archive/README.md` | Catalog (folder index) | on need | one line per file in that folder | — |
+| `templates/` | Forms (Reference) | when a step needs one | blank forms for each document type | rules (they live in `DOCUMENTATION-STANDARD.md`) |
+| `baselines/*` dated · `archive/*` | History | via pointer | evidence | anything live |
+| `.claude/current-task.md` | State | setup start | the one task in progress | the plan itself |
+
+Scripts such as `statusline/context.py` are not documents; WP3b's catalog check covers them.
+
+Homes for known duplicates (WP1 baseline § 6): model rule → `STANDARDS.md` · VT git rule → `PROJECTS.md` · session limits → `STANDARDS.md` · project descriptions → `PROJECTS.md` · Debugger v2 status → `PROJECTS.md` · "start from `~/.claude`" → `README.md` · 300-line and 80-line limits → `DOCUMENTATION-STANDARD.md` · `skillOverrides` facts → `ENVIRONMENT.md` (the memory note links to it, WP7).
+
+**Writing style.** Home from WP6b: `DOCUMENTATION-STANDARD.md` § *Writing style*.
+
+> Write the way you would explain it to a colleague: simple words, short sentences, the point first.
+>
+> - **Conclusion first.** Each section opens with what is true now, in one or two sentences. Detail follows.
+> - **Everyday words.** Use jargon only when the word is the name of the thing, and explain it once.
+> - **As long as the facts need.** Never cut a fact to look short. Five lines are fine when five lines are needed. Cut repeats, not facts.
+> - **Say it once.** A fact has one home. Elsewhere, write one line and a link, not a summary of the home.
+> - **Now, not how we got here.** Live documents say what is true now. Keep a date or a "why" only when the reader needs it to trust or apply the fact — for example, when a figure was measured, or the reason a value was chosen. Keep a dated note when leaving it out would make another statement misleading. Change history stays in git.
+> - **Numbers carry their source.** Every measured figure gives its date and method, or says "estimate" or "not recorded".
+> - **Bold sparingly.** At most one key phrase per paragraph, for a warning or the thing to remember.
+> - **Pick the right shape.** Prose for reasons. A list for steps or separate items. A table when every row has the same fields.
+> - **An example where a rule could be misread.** One short example, not three.
+> - **Stable headings.** Renaming a heading breaks links. If you must rename one, run "what links here" and fix the links in the same change.
+> - **Avoid:** "Note that", "It is important to", stacked hedges, a rule restated in other words.
+
+**Contents lists.** A `## Contents` list goes in any document over about 150 lines, right after the header: one linked line per `##` section, with a few words on what it holds. None in shorter files, in always-loaded files (they cost tokens every turn), or in History records. In `DECISIONS.md`, the Index is the contents list.
+
+**30-day format review — folded in.** In WP6b, `DOCUMENTATION-STANDARD.md:226` becomes: "Formats change only from a real case: a backlog item, then a D-number. There is no calendar review." The WP8 final review is the one format review for Phase 10.
+
+**Sample page — `ENVIRONMENT.md` § 2 *Status line*, after** (approved as the style sample; applied to `ENVIRONMENT.md` only in WP6a; *Known gaps* unchanged):
+
+> ## 2. Status line
+>
+> The status line shows how big the session's context is, so you know when to clear.
+>
+> ### What it is
+>
+> `statusline/context.py` reads the real token counts from the session transcript and prints the current context size. It never estimates. The terminal shows its output, but the output never enters Claude's context, so it costs nothing in tokens and can be changed freely.
+>
+> **Why size matters.** Claude re-reads the whole conversation on every step, so a long session pays for all its history on every small action. Sessions start at about 48K tokens and grow by about 1,200 per turn. The largest seen was 588K. (Measured 15-09-2026 over 50 sessions and 12,623 turns; the data is at the top of [statusline/context.py](statusline/context.py).)
+>
+> **What to do.** Run `/clear` when one task ends and an unrelated one starts, not in the middle of a task. In the measured sessions, clearing between separate tasks saved 45–54%, and clearing during one long task saved about 3% (measured; no date or method recorded here or at the top of `context.py`). The task boundary saves tokens, not the number on screen. The warning is a nudge to clear there, not a sign of running out of room.
+>
+> ### Current setting
+>
+> - Under 200K: grey.
+> - 200K to 300K: amber. This starts before the 220K checkpoint in [STANDARDS.md § Plan before building](STANDARDS.md#plan-before-building); weigh the 80% rule there.
+> - 300K to 400K: red. Act at the next task boundary.
+> - Past 400K: it suggests `/compact`.
+>
+> **Why these values.** Amit lowered them to 200K / 300K / 400K on 11-10-2026 to save tokens. Past 250K, each turn costs more and uses more of the usage limit, so the nudge should come sooner. 150K was considered and judged too early. Checked against `STANDARDS.md` on 06-11-2026 and kept; the 220K checkpoint was added there later, on 24-11-2026.
+>
+> ### How to check
+>
+> The constants at the top of [statusline/context.py](statusline/context.py) are the live values.
+>
+> ### How to change
+>
+> Edit those constants. Earlier values, and why they changed, are at the top of that file. Older notes are in [baselines/environment-history-01-11-2026.md](baselines/environment-history-01-11-2026.md) § D and § E.
+
+**`DECISIONS.md` shape (built in WP5).** Follows `templates/decisions.md`; WP6b gives the template's status line the same words.
+- Full header, then `Next ID:` the last D-number + 1 at WP5.
+- `## Index`: one row for every D-number, closed and superseded ones included, so every "D46"-style reference still resolves. Columns `ID · Title · Date · Status`. It is also the contents list.
+- Status words: `in force` · `in force · closed DD-MM-YYYY` (every affected file checked) · `open` · `partly superseded by D#` or `partly superseded DD-MM-YYYY (which part, what replaced it)` · `superseded by D#` or `superseded DD-MM-YYYY (what replaced it)`. Fixes C13 ("All 45" against D1–D52).
+- `## Active decisions`: one entry per decision in force or open — `### D<n> — <title> (DD-MM-YYYY)` with Status · Decision · Reason · Rejected · Affected files · Linked task. A field the old text lacks says "not recorded" (Linked task: "none"); nothing is made up.
+- `## Completed`: one line per superseded decision, saying what replaced it.
+- `## Older records`: "Original wording: `SETUP-PLAN.md` § *Decisions already made*, last present in commit '<title>', removed in commit '<WP5 title>' (DD-MM-YYYY)."
+- No emails or account IDs (this plan's C11: UUIDs and emails, WP5 row above).
+- D-numbers in other files are plain text, found by search, not anchor links.
+
+**Link model.** Home from WP6b: `DOCUMENTATION-STANDARD.md` § *Links*. WP3b's check enforces it.
+- Standard markdown links: `[STANDARDS.md § Plan before building](STANDARDS.md#plan-before-building)`. The link text names the file and section in words.
+- Clickable links are relative to the file that holds them (from `harness/`: `../STANDARDS.md`). Backtick paths are written from the repo root. WP3b checks each form its own way.
+- Anchors follow GitHub's style: lowercase, spaces become hyphens, punctuation dropped (`## 3. Permissions` → `#3-permissions`).
+- Backtick paths with § and the section name, not links: in every always-loaded file (`DOCUMENTATION-STANDARD.md` § *Always loaded*: the global rule files, both setup `CLAUDE.md` files, each project's `CLAUDE.md`, each `MEMORY.md`), because they load every turn and Claude does not click (links would add about 400 tokens per session, estimate); and for references across folders such as `~/.claude/…`, which is not a valid relative link.
+- IDs (D46, B34, TC3, T30) stay plain text. Commands, code and file names mentioned in passing stay in backticks.
+- Memory notes are the one exception: Claude Code's memory system uses `[[name]]` links (14 uses in 10 setup notes, counted by `grep -o` 25-11-2026), so those stay. No `[[wiki-links]]` anywhere else.
+- Old files switch to links only when they are rewritten.
+
+**WP9 prompt file:** `harness/project-cleanup-prompt.md` — type Reference. When created in WP9: an allow-line `!harness/project-cleanup-prompt.md` after `.gitignore:139`, a `DOCUMENT-MAP.md` row, and an entry in the `harness/doc-check.sh` CHECKED list. If it becomes a skill later, it moves to `skills/`.
 
 Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixes (Amit picks at session start).
 

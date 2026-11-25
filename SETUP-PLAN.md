@@ -82,6 +82,7 @@ the status column says which.
 | D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
 | D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); deferred checks passed in Phase 9 WP5, 25-11-2026; closed (Amit). |
 | D52 | 24-11-2026 | Phase 9 design: two fresh read-only reviewers, layered minimum context, setup brief, three skills (`handoff`, `send-for-review`, `documents`), migration in the switch-on package, approved acceptance criteria | approved 24-11-2026; built WP2–WP4; R1–R8, K1–K5, I1–I5 passed or waived; closed 25-11-2026 (Amit). |
+| D53 | 25-11-2026 | Phase 10 WP3 design: seven document types, a role and home per major document, writing style, contents-list rule, link model, `DECISIONS.md` shape, WP9 prompt file name | approved 25-11-2026; open until WP5–WP9 apply it |
 
 ---
 
@@ -1712,6 +1713,24 @@ later `harness/agent-brief.md`, `agents/`, `skills/`, `.gitignore`, `harness/cro
 `STANDARDS.md` (pointers only), `DOCUMENT-MAP.md`, `DOCUMENTATION-STANDARD.md`. **Status:**
 approved 24-11-2026; built WP2–WP4; R1–R8, K1–K5, I1–I5 passed or waived; closed 25-11-2026
 (Amit).
+
+### D53 · 25-11-2026
+
+**Phase 10 WP3 design (Amit).** Seven document types: Rules · Reference · State · Plan · List ·
+Catalog · History (Record becomes History; Plan and Catalog are new). Each major document has one
+role and is the one home for named facts; other places link. A writing-style guide (simple human
+English, conclusion first, never cut facts), contents lists only in documents over about 150
+lines, standard markdown links (no `[[wikilinks]]` outside memory notes), the `DECISIONS.md` shape
+for WP5, and the WP9 prompt file `harness/project-cleanup-prompt.md`. The old 30-day format review
+is dropped: formats change only from a real case. Rejected: calling the plan file a State
+document (it is added to while a phase runs) · clickable links in always-loaded files (tokens
+every turn) · status words that force a replacing D-number. Cross-check before approval:
+`plan-reviewer`, Opus, verdict concerns, 9 findings, all taken in (55,880 measured). Full design:
+`harness/doc-structure-plan.md` § 3 *Phase 10* → *WP3 design*. **Affected files:**
+`harness/doc-structure-plan.md` · `harness/status.md` · later `DOCUMENTATION-STANDARD.md`,
+`DOCUMENT-MAP.md`, `templates/decisions.md`, `harness/doc-check.sh`, `DECISIONS.md` (WP5),
+`.gitignore` and `harness/project-cleanup-prompt.md` (WP9). **Status:** approved 25-11-2026; open
+until WP5–WP9 apply it.
 
 **D4 governs everything below.** Every removal is listed individually and waits
 for a yes.
