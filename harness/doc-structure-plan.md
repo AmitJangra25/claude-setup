@@ -6,7 +6,7 @@ Read when: Starting or resuming any phase of the documentation structure work.
 Owner: Claude (decisions are Amit's).
 Update rule: Update when a phase starts or ends, or Amit changes a decision. Replace superseded text; history goes to a record.
 Related: `harness/status.md` · `harness/backlog.md` (B16) · `SETUP-PLAN.md` (D46, D47) · `DOCUMENTATION-STANDARD.md` · `DOCUMENT-MAP.md` · Amit's original: `~/Documents/Claude setup doc plan.txt`
-Status: Phases 1–9 done; Phase 8 (D51) and Phase 9 (D52) complete 25-11-2026 (Amit) — phase order changed 20-11-2026 (D50)
+Status: Phases 1–9 done; Phase 8 (D51) and Phase 9 (D52) complete 25-11-2026 (Amit) — phase order changed 20-11-2026 (D50). Phase 10 plan approved 25-11-2026 (Amit); WP1 next, in a fresh session
 Last reviewed: 24-11-2026
 
 ---
@@ -854,15 +854,183 @@ The live setup is never undone to test recovery. Each git command below is appro
 
 **D52** (approved by Amit 24-11-2026) — Phase 9 final design: two reviewers, layered context, setup brief, three skills, migration rule, tests. Numbering checked 24-11-2026: D51 was the newest D-row in `SETUP-PLAN.md`.
 
-### Phase 10 — Clean-up and rewrite (agreed 20-11-2026, D50)
+### Phase 10 — Clean-up and rewrite (plan approved 25-11-2026, Amit)
 
-**Goal (Amit):** Claude Setup clean, simple, scalable, easy to maintain — reuse and pointers, not copies; one update in one place.
-- Recheck every file and folder; find duplication, contradictions, needless complexity; keep / move / remove-candidate list; wait for Amit.
-- Move sometimes-used rules out of `STANDARDS.md` into skills, agents or project docs, leaving a pointer.
-- Rewrite only files that became too complex; old decisions B24, B25 and similar reviewed.
-- Agreed changes to discuss here (Amit, 20-11-2026): backlog takes only findings past the value bar · contents list only in long docs (~150+ lines), checked by `doc-check.sh` · revisit "do not delete reference docs" (git keeps history; leave a pointer) · clickable links, converted file by file during rewrites · archive only for `harness/status.md`, `harness/backlog.md`, `harness/doc-structure-plan.md`, `ENVIRONMENT.md`, `SETUP-PLAN.md` · communication additions ("full detail only when asked"; write like a human, simple Indian English, docs and code) · `doc-check.sh` checks every new skill, agent, repo or project is listed in its one home · tidy the backlog (done rows out, fewer columns).
-- Also here: old Phase 8 tasks T30–T33 (below) · old Phase 9 30-day review (below; B34) · `baselines/` and `archive/` review · C11 (UUIDs and emails before going public) · `harness/status.md` § *Known contradictions* · B15 only if a real case is seen.
-- Cleanup rules: never drop facts, decisions, safety rules, limits or important history; nothing removed just for age or size; check what references a file first; no giant word-for-word history files; not in the same task as Phase 9.
+Replanned 25-11-2026 in a read-only session, using the Phase 8 planning skill and two `plan-reviewer` rounds. This replaces the 20-11-2026 outline (D50) and the old T30–T33 and 30-day-review plans; those are in git history.
+
+#### Goal and success
+
+**Goal (Amit):** Claude Setup clean, simple, fast, easy to update, easy to maintain. One update in one place. Things stay connected and in sync — a rule changed in one place must not survive as copies elsewhere. Model: Wikipedia (one home per fact, others link) · library (one catalog of every file) · Obsidian (clickable links, "what links here").
+
+**Success:** every check in *Final checks* below is yes. Phase 10 is complete only after Amit approves the final verification report.
+
+#### Agreed requirements (Amit, 25-11-2026)
+
+- No removal target, no percentage. Each file is classed **keep · ask Amit · remove**.
+- Delete only files that are not required, or old and safe to delete.
+- Design major documents before rewriting them.
+- One fact or instruction has one home; other places link to it.
+- **Length:** as long as the facts need, in simple words. Never cut facts to look short; no forced one-liners. Five lines are fine when five lines are needed.
+- Never silently drop a live rule, an unresolved limit, a waiver, or evidence of what was actually tested.
+- Check recoverability before proposing a deletion: local-only and ignored files are not in git.
+- Surgical changes; the working system keeps working.
+- Phase 10 changes only `~/.claude`. No change in other projects, no installs, no Phase 11 work.
+- Conflicts with today's deletion and archive rules are resolved by changing the rules first (WP2), never bypassed.
+
+#### Definitions
+
+- **Live:** still in use — a rule, setting, limit, waiver, recovery instruction, open item, or a fact a file or process depends on.
+- **Historical:** how something was, or how we got here. Nothing live depends on it.
+- **Duplicate:** the same rule or fact in more than one place, word for word or same meaning. One place is the home; the others become links.
+- **Obsolete:** was live, but is replaced or no longer true.
+- **Orphan file:** a tracked file that is not in the catalog and that nothing links to.
+
+#### Approval gates
+
+1. Amit approves the final plan text (done 25-11-2026).
+2. Only then: save the plan and update `harness/status.md` and `.claude/current-task.md` (done 25-11-2026).
+3. Every commit needs Amit's separate approval.
+4. Every push needs Amit's separate approval.
+5. WP1 starts only in a fresh session.
+6. Each work package starts only on Amit's word. A deletion waits for a separate message, even when approved (`STANDARDS.md` § *Plan before building*).
+
+#### Deletion rule (built in WP2; stays after Phase 10)
+
+A document may be removed only when **all** of these are true:
+- It is tracked in git.
+- It is obsolete, replaced or no longer needed.
+- Its live content, if still needed, already has a new home.
+- Amit approves it by exact file name.
+
+Leave a one-line pointer when the removed file may still be referenced by another file, memory note, skill, agent, or external reference. The pointer gives the original file name, the date and the commit title (so it still works if commit IDs ever change, see C11).
+
+Local-only files are never deleted through this rule. `STANDARDS.md` step 4 still applies: the two-method target check, and an agent review for consequential deletions.
+
+WP2 replaces every "never delete" and "archive always" copy that WP1 finds. Known so far: `STANDARDS.md:156` · `DOCUMENTATION-STANDARD.md:32`, `:161`, `:196`, `:211` and § *Moving and archiving* · `DOCUMENT-MAP.md:42`, `:44` · `skills/documents/SKILL.md:19` · `skills/planning/documentation.md:21` · the templates and *Older records* pointers that depend on them.
+
+#### Link and sync (WP3b)
+
+- **Catalog:** `DOCUMENT-MAP.md` lists every active **git-tracked** setup file and its purpose.
+  - One row per file for documents, scripts, skills and agents.
+  - One row per folder where the folder has its own index (`baselines/README.md`, `archive/README.md`) or is a group (memory notes, `project-rules/` copies).
+- **Local-only setup files:** listed in a short separate section, *Local-only (not in git)*, name and purpose only; not checked for coverage. Known: `.claude/current-task.md` · both `settings.local.json` · `harness/planning-research.md` · `harness/phase9-scratch/` · `baselines/s4-*.json/.py` · `skills/.trash/` (WP1 confirms).
+- **Never catalogued:** project transcripts, caches, logs and Claude-managed folders — `projects/*/*.jsonl`, `file-history/`, `paste-cache/`, `sessions/`, `plugins/`, `skills/synced/`, `history.jsonl` and similar.
+- **`doc-check.sh` checks:** broken links in both forms (backtick paths and clickable links) · catalog coverage · duplicates only for a short registered list of important rules (home file + key phrase).
+- **"What links here":** a simple search report, run when needed. Not a permanent system.
+- **Not attempted:** catching reworded copies automatically. The final review covers those.
+- **Working habit:** change a rule in its home, run "what links here", fix the linked files in the same commit.
+- **Session start:** checks setup files only; the full scan runs on request. Time it.
+- Old files switch to clickable links only when they are rewritten.
+
+#### Work packages
+
+Each package is one commit on Amit's word; `git revert` undoes it cleanly only until the next package starts. Each names its effect on `harness/doc-check.sh` (CHECKED list, heading lists, PLANNED) and on `.gitignore` allow-lines (a new tracked file needs one, D37). `change-reviewer` runs on any package that deletes something or changes a rule file.
+
+| WP | Scope | Gate | Checks |
+|---|---|---|---|
+| 1 Baseline + inventory (read-only) | Amit types `/context all` as the first message of two fresh Opus sessions (`~/.claude` and FinNode); saved as a dated record in `baselines/`. Inventory of every tracked setup file and the local-only list: size, loads every session?, inbound pointers, type, keep / ask Amit / remove, duplicates and contradictions with file:line. Greps for every copy of each key rule and every limit and waiver. Folds in `harness/status.md` § *Known contradictions*. `archive/` bundle and tarballs default **keep** (not recoverable from git). | Amit classifies the "ask" items and approves the remove list by name | Pointer counts by `grep` |
+| 2 Rule fixes (deep) | Deletion rule, in every copy · bug-depth wording ("unclear cause", `STANDARDS.md:36`, `skills/planning/bug-fix.md:30`; tests 7–8) · "tiny-change route" (`skills/planning/SKILL.md`) vs "small approved change" (`STANDARDS.md`) · `doc-check.sh` duplicate warning (template ↔ backlog line, a by-design copy) + B34 | Amit approves the exact text | `change-reviewer` · fresh-session routing tests 2, 7, 8 |
+| 3 Design | Document roles (Rules · Reference · State · List · Catalog = `DOCUMENT-MAP.md` · History = git + pointer) · style guide with one before/after sample page · link model (standard markdown links; no `[[wikilinks]]`) · `DECISIONS.md` shape · contents lists only in long docs · the old 30-day format review folded in · names the WP9 prompt file | Amit approves the design and sample page | None (design only) |
+| 3b Link-and-sync check | As in *Link and sync* above | Amit approves the change | Runs on the current repo; warnings listed, not fixed here |
+| 4 Remove approved tracked files | Only the files Amit approved **by name** — never a whole folder. `baselines/global-open-tests.md` (live list), `baselines/phase9-context-24-11-2026.md` and the WP1 baseline stay. Pointer lines as the deletion rule says | Item-by-item; deletion in a separate message | Two-method target check · `change-reviewer` |
+| 5 `SETUP-PLAN.md` split | Build `DECISIONS.md`: live decisions with the text each needs; one index row per closed or replaced D-number so "D46"-style references still work. Rebuild steps to a rebuild guide (`README.md` if short enough, else `harness/rebuild.md`). Fix setup-side pointers, incl. `harness/agent-brief.md:59`. **`SETUP-PLAN.md` stays permanently** as a very short pointer file: to `DECISIONS.md`, the rebuild guide, and git history (original file name, date, commit title). C11: UUIDs and emails leave the working files | Amit approves | D-number references counted before and after · `change-reviewer` |
+| 6a–e Rewrite, one per session | 6a `ENVIRONMENT.md` (398 lines) · 6b `DOCUMENTATION-STANDARD.md` + `DOCUMENT-MAP.md` · 6c harness files + backlog (value bar for entries; done rows out; B24, B25 decided) · 6d `PROJECTS.md` + `project-rules/README.md` (wrong on AtWorkpe; omits AtWorkpe and VT; wrong that Voice-Flow keeps `CLAUDE.md` untracked; add a VOS Dashboard row "not set up") + re-copy Voice-Flow `CLAUDE.md` file by file (never `sync.sh --pull`: Emp portal and VT must not be synced) · 6e `STANDARDS.md` last: rarely-used rules move to skills; `agent-brief.md` rule lines and the registered rule list updated | Design per document approved first | List of every rule, limit and waiver kept · `change-reviewer` · restart test after 6e |
+| 7 Setup memory | Notes in `projects/-Users-amitjangra--claude/memory/` that only restate `STANDARDS.md` become a pointer or are removed. Same package removes the `DOCUMENTATION-STANDARD.md` § *Allowed copies* row that allows memory copies. Other projects' memory → project clean-up list | Amit approves | `MEMORY.md` links resolve |
+| 8 Final test | See *Final checks* | Amit approves the final verification report | As listed |
+| 9 Global project clean-up prompt | See *WP9* below | See *WP9* | See *WP9* |
+
+Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixes (Amit picks at session start).
+
+#### WP9 — Global project clean-up prompt
+
+| | |
+|---|---|
+| **Scope** | Write the prompt and test it. Nothing else. It does **not** clean any project. |
+| **Output** | A prompt file in `~/.claude` (name set in WP3, added to the catalog). It uses `harness/project-cleanup-list.md`. |
+| **What the prompt must say** | 1. Start read-only. 2. Follow that project's own rules. 3. Report findings and a proposed plan, then **stop before any change** and wait for Amit's approval. 4. Never copy secrets, tokens, passwords, private keys, environment values, customer data, employee data or other personal data into the project clean-up list, the prompt output, or any setup file. |
+| **First test project** | **AtWorkpe** (dummy data only, Amit 14-11-2026; chosen by Amit 25-11-2026). Never first: Emp Portal, VT, or any project known to hold customer, employee or other sensitive data. |
+| **Test** | One read-only run in AtWorkpe, in a fresh session Amit starts. |
+| **Gates** | 1. Amit approves the prompt text. 2. Amit starts the test run. 3. Amit approves the test result. 4. Commit only on Amit's word; push separately on Amit's word. |
+| **Checks** | **No tracked project file changed:** `git status --short` and `git diff --stat` in AtWorkpe, run before and after, show the same result · **stopped at the approval gate:** the output ends with findings and a plan, with no edit, command or write after it · it used the project clean-up list · no secret or personal data in the prompt file, the test output, or anything added to the list · `doc-check.sh` shows no new warning |
+| **After Phase 10** | Amit runs the prompt in each project, one by one. It may become a skill after 2–3 projects. |
+
+#### Temporary project clean-up list
+
+- **File:** `harness/project-cleanup-list.md` — temporary, tracked in git, one catalog row. Created when the first project finding is recorded.
+- **Holds** project-specific findings only. Each row: project · exact issue · evidence · recommended action · status.
+- **Never holds** secrets, tokens, passwords, private keys, environment values, or personal data.
+- **Deleted** only after the matching project clean-up work is complete, under the deletion rule (Amit approves by name).
+- **Git tracking — checked 25-11-2026, not assumed:**
+  - Blocked today by `.gitignore:22` (`*`). `!harness/` (line 129) only lets git look inside the folder.
+  - `git check-ignore -v --no-index harness/project-cleanup-list.md` → `.gitignore:22:*	harness/project-cleanup-list.md`
+  - Add, after `.gitignore:138`, in the same commit that creates the file: `!harness/project-cleanup-list.md`
+  - Verify: (1) the same `check-ignore` command must print the `!harness/project-cleanup-list.md` line, not `:22:*` — judge by the line, not the exit code (exit is 0 in both cases; checked against `harness/agent-brief.md`) · (2) `git status --short harness/project-cleanup-list.md` → `?? harness/project-cleanup-list.md` · (3) after the approved commit, `git ls-files harness/project-cleanup-list.md` prints the path.
+- **Known entries for it** (25-11-2026 discovery): FinNode memory points to `SETUP-PLAN.md` sections that will move (`MEMORY.md:1`, `setup-review-project-by-project.md:10,19,33`, `rtk-proxy-suppresses-dry-run-output.md:26`) · Voice-Flow memory notes that restate setup rules · Emp portal local folder still on `fix/dead-code-cleanup-and-test-fix` · VOS Dashboard not set up.
+
+#### Loading baseline
+
+- The old figure (9.2k → ≤6.5k, −30%) is not a requirement.
+- WP1 measures fresh: `/context all` as the first message, Opus 5.5, one session in `~/.claude` and one in FinNode. Recorded per memory file, plus skills, custom agents and system prompt.
+- Between measurements: `wc -w` of always-loaded files, labelled an estimate.
+- A token target only if Amit sets one after WP1.
+
+#### Final checks (WP8)
+
+Yes/no each:
+- Every tracked setup file has a keep / ask Amit / remove decision.
+- No document was shortened just to meet a line target.
+- Every active safety rule, limit, waiver and recovery instruction is still available, each in its home. Every limit and waiver found by the WP1 grep is carried over (incl. R3, R5, I2, I3).
+- Every removed file's live content is mapped to a new home, reviewer-checked.
+- A final review covers broken links, orphan files, registered duplicate rules and contradictions, plus a grep across skills, agents and memory for moved rule sentences. A clean review is evidence, not proof.
+- `doc-check.sh`: 0 warnings, or each remaining one accepted by name.
+- The 10 routing scenarios, rebuilt from the WP5 table (exact prompts were never saved — a stated limit), and a restart test pass. Bug tests 7–8 go light unless the cause is still unknown after a first look.
+- `session-check.sh` and `drift.sh` run; results reported.
+- Loading measured against the WP1 baseline and reported.
+- **Phase 10 is complete only after Amit approves the final verification report.**
+
+#### Item dispositions (Amit, 25-11-2026)
+
+- **In Phase 10:** rarely-used rules out of `STANDARDS.md` (6e) · backlog value bar (6c) · contents lists only in long docs (3) · clickable links, during rewrites · write-like-a-human style (3) · `harness/status.md` § *Known contradictions* (1) · every file listed in its one home (3b) · removing the memory-copies allowance (7) · bug-depth wording, doc-check warnings, backlog clean-up, memory duplication, C11.
+- **Dropped:** archive only for five named files (git is the archive) · a separate 30-day review file (folded into 3) · old T32 word-for-word history file and T33 signpost design (replaced by WP5).
+- **Unchanged:** B15 only if a real case is seen.
+- **Phase 11:** installing Obsidian itself (new-tool check first).
+- **Open, before the repo goes public (C11):** git history still holds the UUIDs and emails. A fresh repo or a history rewrite would both affect commit-based pointers; decide then.
+
+#### Starting facts (discovery, 25-11-2026)
+
+- Tracked: 169 files, about 260k words. Biggest: `SETUP-PLAN.md` 3,824 lines · `harness/doc-structure-plan.md` 1,057 · about 40 records in `baselines/`.
+- Always-loaded in a setup session: memory files 9.2k (24-11 and 25-11), `STANDARDS.md` 7.4k of it.
+- `SETUP-PLAN.md` has its own old "PHASE 1–11"; its "PHASE 10" is the September project review — a naming clash.
+- `project-rules/` (hand-made backup of rule files, driven by `manifest.tsv`) and `projects/` (made by Claude Code; only `memory/*.md` tracked) do different jobs and are not meant to match. Every memory note on disk is tracked.
+- Drift: Voice-Flow `CLAUDE.md` changed in its PR #95 (18-11) after the 13-11 copy · Emp portal expected (folder on an old branch).
+- `sync.sh --pull` cannot skip one project; "never sync Emp portal or VT" lives only in `harness/status.md` § *Open*. Guarding it: P3 candidate for Phase 11.
+- Not checked: the Packbly trees (deny rule) · whether POS-Dashboard was renamed to VOS Dashboard.
+- Wording to fix in 6c: `harness/status.md` "Removed 13-11-2026: Debugger v2" means removed from the **Phase 7 list** (commit `2a6c889`), not from the setup — `PROJECTS.md` still lists Debugger v2 as "Next up".
+
+**Project consistency table (25-11-2026).** Tracked: 19 files in `project-rules/`; 57 memory files in 5 `projects/*/memory/` folders. On disk: 18 folders under `projects/`, 13 with no memory notes, plus transcripts (local only).
+
+| Project | Registered path | Rules backup | Memory path(s) | Tracked or local-only | Intentional or issue | Action |
+|---|---|---|---|---|---|---|
+| FinNode | `VS Code/FinNode` | 3 files, current | `…-FinNode` (5 notes) | Tracked | Intentional: copy mirrors `phase3/sms`, not `main` | Re-copy after the merge (existing item) |
+| Voice-Flow | `VS Code/Voice-Flow` | 3 files; `CLAUDE.md` drifted | `…-Voice-Flow` (20 notes) | Tracked | Issue: live file changed in PR #95 (18-11) after the 13-11 copy | Re-copy that one file in 6d, never `sync.sh --pull` |
+| Emp portal | `…/Vthru_Emp_v2.1_jun26` | 3 files; `CLAUDE.md` drifted | `…-jun26` (no notes) + leftover `…-jun26-phase7` | Rules tracked; leftover local | Intentional: folder on `fix/dead-code-cleanup-and-test-fix` (checked 25-11) | Leave; don't sync; leftover is Claude-managed |
+| vthrudebugger_v1 | `VS Code/vthrudebugger_v1` | `CLAUDE.md` + `settings.local.json`, current | `…-vthrudebugger-v1` (5) | Tracked | Intentional | None |
+| Debugger v2 | `VS Code/Debugger v2` | `settings.json` only (no live `CLAUDE.md`, checked) | `…-Debugger-v2` (4) | Tracked | Intentional; status wording unclear (above) | Fix wording in 6c |
+| AtWorkpe | `VS Code/AtWorkpe` | `CLAUDE.md` only (no live settings files, checked) | `…-AtWorkpe` (no notes) | Tracked | Doc issue: `project-rules/README.md` wrong | Fix README in 6d |
+| VT (`mobile`) | `VS Code/mobile` | Sanitized `CLAUDE.md`, matches live | `…-mobile`, `…-mobile-src-debugger` (no notes) | Copy tracked; memory local | Intentional; README omits VT; sync guard only in `status.md` | Fix README in 6d; sync guard → Phase 11 |
+| SecondBrain schema | "Not projects" in `PROJECTS.md` | `CLAUDE.md`, current | None | Tracked | Intentional, documented | None |
+| VOS Dashboard | Not registered | None | `…-VOS-Dashboard` (no notes) | Local | Gap: has `CLAUDE.md`, `.claude/`, git (`.env` present, not opened) | Add `PROJECTS.md` row "not set up" in 6d |
+| POS-Dashboard | None | None | `…-POS-Dashboard` (1 transcript) | Local | Folder gone from `VS Code/`; cause not confirmed | Leave (Claude-managed) |
+| Not projects | — | — | `~`, `~/Documents`, `/private/tmp…`, `~/.local/bin`, a scratch workspace | Local | Claude-managed session folders | Leave |
+
+#### Reviews
+
+- Round 1, 25-11-2026: `plan-reviewer`, Opus, verdict concerns, 9 findings (more deletion-rule copies; git-show pointers vs C11; FinNode memory pointers; `doc-check.sh` and `.gitignore` dependencies; old agreed items; limits list; partial duplicate check; baseline home; revert order) — all taken in. 48.9k measured.
+- Round 2, 25-11-2026: `plan-reviewer`, Opus, verdict concerns, 8 findings (live files in `baselines/`; pointer format vs C11; two link styles; `DOCUMENTATION-STANDARD.md:161`; memory-allowance timing; `agent-brief.md`; session-start speed; rule list in 6e) — all taken in with Amit's approval. 23.8k measured.
+
+#### Estimate
+
+P3 · deep (rule files, deleting, more than one session) · about 9–11 sessions · about 1.2–1.5M tokens in total including reviewers (estimate).
 
 ### Phase 11 — Further checks (agreed 20-11-2026, D50)
 
@@ -870,19 +1038,9 @@ The live setup is never undone to test recovery. Each git command below is appro
 - Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
 - Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — approved 24-11-2026: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `harness/cross-check.md` § *Claude Setup cross-check* · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `harness/cross-check.md` § *Claude Setup cross-check*); verify before declaring any fully covered.
 
-#### Old Phase 8 — `SETUP-PLAN.md` split (now inside Phase 10)
-| ID | File | Priority |
-|---|---|---|
-| T30 | `DECISIONS.md` (new, global) — every D-number plus "no sixth tool". Same change (trigger: T30 build): `STANDARDS.md` step 8 drops "(Claude Setup: `SETUP-PLAN.md` until T30)" and the Recording list in § *IDs and progress* drops `SETUP-PLAN.md` | P3 |
-| T31 | `harness/rebuild.md` (new) | P3 |
-| T32 | `archive/setup-history-to-<date>.md` (new) — word for word | P3 |
-| T33 | `SETUP-PLAN.md` → signpost | P3 |
+- From Phase 10 (25-11-2026): installing Obsidian itself, after the new-tool check · guarding `sync.sh --pull` so it can skip one project (P3 candidate).
 
-Re-homed: "Project rules are separate" → `project-rules/README.md`; names, renames and "Renames are Amit's" → `PROJECTS.md`; how a pass is run + "The method" → `harness/overview.md`; why permissions can't be airtight + precedence rule → `ENVIRONMENT.md` § Permissions; "Never commit" + Git identity (C11) → `harness/rebuild.md`; "The five systems" → archive; open items (Phases 2, 3, 10) checked one by one → backlog. Decisions get "partly superseded" where needed (D17, D33, D36).
-Safety: word-for-word moves, D-numbers counted before and after, about 25 links in 8 files fixed, signpost keeps old heading names (incl. "► START HERE"), line-by-line check by a fresh agent.
-
-#### Old Phase 9 — 30-day review (now inside Phase 10)
-Record: `baselines/doc-review-<date>.md` — | Format | Problem seen | Change | D# |. Size limits, unused fields, rollover triggers: keep or change.
+Old T30–T33 (`SETUP-PLAN.md` split) and the old 30-day review were replaced by Phase 10 WP5 and WP3 (25-11-2026). Their earlier text, including the re-home list for `SETUP-PLAN.md` sections, is in git history (commit `a09c0a3`, "Record deletion of the Phase 9 recovery copy") — WP5 reuses that re-home list as its starting point.
 
 ## 4. Format of every file
 
