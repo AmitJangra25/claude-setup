@@ -949,7 +949,7 @@ Each package is one commit on Amit's word; `git revert` undoes it cleanly only u
 
 Phase 10 WP2a committed 56c9fbd and pushed 25-11-2026.
 
-**WP2b result (25-11-2026, uncommitted):** Packbly removed from active setup docs, as approved by Amit.
+**WP2b result (25-11-2026):** Packbly removed from active setup docs, as approved by Amit.
 - Files: `OLLAMA.md` · `skills/ollama/SKILL.md` · `PROJECTS.md` (*Not projects*) · `ENVIRONMENT.md` (§ *Duplicate trees*, § *Project-tree decisions*, § *Sensitive data*, *Full project descriptions*) · `project-rules/README.md` (§ *Detached*).
 - Kept: `PROJECTS.md:12` "Packbly is ignored and never opened." (no second line) · `ENVIRONMENT.md:145` unchanged — it describes the live deny rules. The existing Packbly deny rules in `settings.json` remain; not touched. Packbly folders and GitHub repo not touched. No file deleted.
 - Emp Portal and sensitive data: `OLLAMA.md`, `skills/ollama/SKILL.md` and `ENVIRONMENT.md` § *Sensitive data* now point to `PROJECTS.md` § *Project data* (closes WP2a review findings on Emp Portal and FinNode).
@@ -958,7 +958,7 @@ Phase 10 WP2a committed 56c9fbd and pushed 25-11-2026.
 - `doc-check.sh`: 1 warning before and after (ENVIRONMENT.md size, 6a; 398 → 390 lines), none new.
 - Review: `change-reviewer` Opus, verdict no concerns, 3 low findings (24,440 measured). Amit: 1 applied (`OLLAMA.md:7` now also forbids "any real or private project data") · 2 skipped · 3 accepted.
 
-Open: commit on Amit's word.
+Phase 10 WP2b committed a3846d4 and pushed 25-11-2026.
 
 Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixes (Amit picks at session start).
 
