@@ -987,6 +987,8 @@ Phase 10 WP3b (link check) committed 2f40fd8 and pushed 25-11-2026.
 - **Fix tests (scratch clone, the pre-fix script kept beside the fixed one):** emptied map tables → old 0 warnings, new 1 (full and `--quiet`) · a mapped file named `harness/café.md` → old 1 false "no row" warning plus 8 `grep` errors, new 0 · `--links-to` with `STANDARDS.md`, `./STANDARDS.md`, `~/.claude/STANDARDS.md` (expanded and literal) → 407 each, same lines; old script with `./` → 0. With the map file deleted, older checks that read the map also print "can't open" errors; known, not changed here.
 - **Final real repo:** `--quiet` (session start) 1 warning (`ENVIRONMENT.md` size, WP6a) · full run 4 (that plus the 3 registered copies) · `session-check.sh` 1.35s median of 3.
 
+Phase 10 WP3b part 2 committed f4513c0 and pushed 25-11-2026.
+
 #### WP3 design (approved 25-11-2026, Amit; D53)
 
 Design only. Nothing here changes another file until the package named on each line applies it. Cross-check: `plan-reviewer`, Opus, verdict concerns, 9 findings (2 must-fix, 6 should-fix, 1 optional group), all taken in with Amit's approval (55,880 measured).
