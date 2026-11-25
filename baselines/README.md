@@ -54,6 +54,7 @@ otherwise.
 | `environment-old-12-11-2026.md` | 12-11-2026 | Old text of `ENVIRONMENT.md`, before Phase 5 (T21) |
 | `doc-test-after-12-11-2026-run2.md` | 12-11-2026 | Phase 5 (T21) doc-test — after |
 | `phase9-context-24-11-2026.md` | 24-11-2026 | Phase 9 I3 context loading — session-start observation, not an empty-session baseline |
+| `phase10-wp1-25-11-2026.md` | 25-11-2026 | Phase 10 WP1 — loading baseline (`~/.claude` and FinNode), inventory of every tracked file, Amit's decisions |
 | `global-open-tests.md` | live | Not a record: the index of open setup tests (TC IDs) |
 | `s4-proposal-30-10-2026.json`, `s4-replay-30-10-2026.py` | 30-10-2026 | Local only, not tracked; content embedded in `s4-permissions-30-10-2026.md` |
 

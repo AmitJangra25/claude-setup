@@ -947,7 +947,7 @@ Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixe
 |---|---|
 | **Scope** | Write the prompt and test it. Nothing else. It does **not** clean any project. |
 | **Output** | A prompt file in `~/.claude` (name set in WP3, added to the catalog). It uses `harness/project-cleanup-list.md`. |
-| **What the prompt must say** | 1. Start read-only. 2. Follow that project's own rules. 3. Report findings and a proposed plan, then **stop before any change** and wait for Amit's approval. 4. Never copy secrets, tokens, passwords, private keys, environment values, customer data, employee data or other personal data into the project clean-up list, the prompt output, or any setup file. |
+| **What the prompt must say** | 1. Start read-only. 2. Follow that project's own rules. 3. Report findings and a proposed plan, then **stop before any change** and wait for Amit's approval. 4. Never copy secrets, tokens, passwords, private keys, environment values, customer data, employee data or other personal data into the project clean-up list, the prompt output, or any setup file. 5. Never delete admin or super-admin users (Amit, 25-11-2026). |
 | **First test project** | **AtWorkpe** (dummy data only, Amit 14-11-2026; chosen by Amit 25-11-2026). Never first: Emp Portal, VT, or any project known to hold customer, employee or other sensitive data. |
 | **Test** | One read-only run in AtWorkpe, in a fresh session Amit starts. |
 | **Gates** | 1. Amit approves the prompt text. 2. Amit starts the test run. 3. Amit approves the test result. 4. Commit only on Amit's word; push separately on Amit's word. |
@@ -956,7 +956,7 @@ Model: Opus for WP1–3b, 5, 6e and 9; Sonnet is enough for WP4 and pointer fixe
 
 #### Temporary project clean-up list
 
-- **File:** `harness/project-cleanup-list.md` — temporary, tracked in git, one catalog row. Created when the first project finding is recorded.
+- **File:** `harness/project-cleanup-list.md` — temporary, tracked in git, one catalog row. Created in WP1 (25-11-2026) with the WP1 project findings and the rule "Never delete admin or super-admin users."
 - **Holds** project-specific findings only. Each row: project · exact issue · evidence · recommended action · status.
 - **Never holds** secrets, tokens, passwords, private keys, environment values, or personal data.
 - **Deleted** only after the matching project clean-up work is complete, under the deletion rule (Amit approves by name).
@@ -995,10 +995,15 @@ Yes/no each:
 - **Unchanged:** B15 only if a real case is seen.
 - **Phase 11:** installing Obsidian itself (new-tool check first).
 - **Open, before the repo goes public (C11):** git history still holds the UUIDs and emails. A fresh repo or a history rewrite would both affect commit-based pointers; decide then.
+- **WP1 decisions (Amit, 25-11-2026; full text and evidence: `baselines/phase10-wp1-25-11-2026.md` § 7–8):**
+  - Removal approved by name for WP4, not deleted now: `baselines/baselines-readme-old-11-11-2026.md` · `always-loaded-old-11-11-2026.md` · `standards-old-12-11-2026.md` · `projects-old-11-11-2026.md` · `open-tests-old-11-11-2026.md` · `old-document-maps-11-11-2026.md` · `environment-old-12-11-2026.md`. Each deletion waits for its own approval message in WP4, after its pointer lines are in place.
+  - Project-data wording for the active setup files in WP2/WP6 (history records not edited): "Projects are new and not live. No project holds live personal data, except the Vthru Customer app (VT), which is the company's app with real data: treat it as confidential. FinNode has some private documents. Emp Portal uses dummy data. Packbly is ignored and never opened. Do not delete admin or super-admin users."
+  - VT: Claude reads, diagnoses, reproduces and makes requested changes on a separate branch only; never commits (even locally), merges, pushes, opens a pull or merge request, or takes any other git action — Amit does all git actions. Update memory `mobile-vt-nothing-to-gitlab.md`, `PROJECTS.md` and `ENVIRONMENT.md` in the rewrite steps; VT's own `CLAUDE.md` via the project clean-up list.
+  - Packbly: removed from active setup documents in WP2/WP6, keeping one line "Packbly: ignored; do not open." The project folder and GitHub repository are not touched. Permission locks stay; `VS Code/Packbly_web` is not fully locked (no Read deny) — the missing lock waits for Amit's approval of the exact text and a fresh-session test.
 
 #### Starting facts (discovery, 25-11-2026)
 
-- Tracked: 169 files, about 260k words. Biggest: `SETUP-PLAN.md` 3,824 lines · `harness/doc-structure-plan.md` 1,057 · about 40 records in `baselines/`.
+- Tracked: 163 files, about 262k words (corrected in WP1 from 169, which was miscounted: `git ls-files | wc -l` → 163, the same at every commit from `37fc42b` to `010becb`; `baselines/phase10-wp1-25-11-2026.md` § 2). Biggest: `SETUP-PLAN.md` 3,824 lines · `harness/doc-structure-plan.md` 1,057 · about 40 records in `baselines/`.
 - Always-loaded in a setup session: memory files 9.2k (24-11 and 25-11), `STANDARDS.md` 7.4k of it.
 - `SETUP-PLAN.md` has its own old "PHASE 1–11"; its "PHASE 10" is the September project review — a naming clash.
 - `project-rules/` (hand-made backup of rule files, driven by `manifest.tsv`) and `projects/` (made by Claude Code; only `memory/*.md` tracked) do different jobs and are not meant to match. Every memory note on disk is tracked.
@@ -1007,7 +1012,7 @@ Yes/no each:
 - Not checked: the Packbly trees (deny rule) · whether POS-Dashboard was renamed to VOS Dashboard.
 - Wording to fix in 6c: `harness/status.md` "Removed 13-11-2026: Debugger v2" means removed from the **Phase 7 list** (commit `2a6c889`), not from the setup — `PROJECTS.md` still lists Debugger v2 as "Next up".
 
-**Project consistency table (25-11-2026).** Tracked: 19 files in `project-rules/`; 57 memory files in 5 `projects/*/memory/` folders. On disk: 18 folders under `projects/`, 13 with no memory notes, plus transcripts (local only).
+**Project consistency table (25-11-2026).** Tracked: 19 files in `project-rules/`; 46 memory files in 5 `projects/*/memory/` folders (corrected in WP1 from 57: `git ls-files projects/ | wc -l` → 46; on disk `find projects -path "*/memory/*" -type f | wc -l` → 46; `baselines/phase10-wp1-25-11-2026.md` § 2). On disk: 18 folders under `projects/`, 13 with no memory notes, plus transcripts (local only).
 
 | Project | Registered path | Rules backup | Memory path(s) | Tracked or local-only | Intentional or issue | Action |
 |---|---|---|---|---|---|---|
