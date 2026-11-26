@@ -103,7 +103,7 @@ Project facts (stack, product words, which tool a project uses) live in small se
 
 A skill is a how-to the main session follows. It adds to agents and never replaces them: a skill may start an agent, but work that needs a fresh, separate context stays an agent's job.
 
-- **Any subject.** The steps read for business, research or personal work too. Detail that only fits one subject (commands, code, a stack) goes in the optional *Subject detail* block.
+- **Coding-first, not coding-only.** A general skill's steps read for any work; stack detail goes in the optional *Subject detail* block. A skill that is coding by nature stays coding all through; never weaken it to look general.
 - **Description: two or three short lines.** What it does and the phrases that should start it. It loads every session.
 - **A small example inside `SKILL.md`;** larger ones in `examples/` inside the same skill folder. Made-up data only. `.gitignore` blocks everything not named, so each new folder needs its own allow-line, and so does each file inside it.
 - **Self-check by importance.** An important skill — anything risky (secrets, deleting, money, data, permissions) or used most days — gets the full check: every step's result against the request, every file, number and claim against its source, no gate skipped, and what was not checked. Every other skill gets the short check: the result matches the request, and what was not checked.

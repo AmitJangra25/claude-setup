@@ -1429,6 +1429,7 @@ Decided by Amit, 26-11-2026. Index row: `SETUP-PLAN.md` D55.
   7. Accepted as they stand: case studies as a record type (re-checked in Phase 16); the agent description limit (Phase 14); the memory-note overlap (Phase 16 audit); D55 cited before it existed.
 - **Rule changes from WP2 (after gate try 1):** an agent's *Why this exists* leaves out the real-case lines when no dated case is logged, never a placeholder (B39); lenses say what to check, what evidence to cite and what counts as a finding; lessons carry their reason; the report is ranked and actionable, with verified facts kept apart from assumptions. Gate passed on try 2.
 - **Rule changes from WP3:** "file kind" names the five shapes, so "type" keeps its `DOCUMENTATION-STANDARD.md` meaning; a new folder and each file inside it need their own `.gitignore` allow-line; drafts live in `harness/drafts/`, never in `agents/` or `skills/`, so they never load.
+- **Amendment (Amit, 26-11-2026, after the Phase 12 commit):** `WRITING-GUIDE.md` § *Skills* — coding-first, not coding-only. A general skill's steps read for any work; stack detail goes in the optional *Subject detail* block. A skill that is coding by nature stays coding all through; never weaken it to look general. Replaces "Any subject … the steps read for business, research or personal work too".
 
 #### What the kit offers (found 26-11-2026)
 
@@ -1473,6 +1474,11 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] *kit* Planning flow (grill → spec → tickets → implement → retro; new-tool check first)
 - [ ] Re-check with the plan reviewer; "blocked vs weak measure" lesson
 - [ ] B37 reviewer report over its word limit
+- [ ] Coding-first filter (Amit, 26-11-2026; memory note `coding-first-not-coding-only`):
+  1. Every planning guide passes two tests: a coding task first (Voice-Flow, FinNode or VOS Dashboard style), then a non-coding task (a business plan or a research question).
+  2. Research and business planning is built in this phase, not skipped (the "research and business" item above).
+  3. Each backend-kit idea is classified before use: general (keep), coding-useful (keep), or backend/stack-only (leave out, or put in an optional block).
+  4. Phase 13 starts by reviewing the kit's planning screenshots with this filter.
 
 **Phase 14 — Sub-agents (~300–400K, 3 sessions)**
 - [ ] Light agents; project facts in separate files (React vs Flutter)
