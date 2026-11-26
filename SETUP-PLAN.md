@@ -82,7 +82,8 @@ the status column says which.
 | D50 | 20-11-2026 | New phase order (8 planning, 9 agents and skills, 10 clean-up, 11 further checks); borrow OpenSpec/Spec Kit ideas, install neither; read-only reviewer agents; no `git-safety` skill | in force; open (affected files change during Phases 8–10); clarified 23-11-2026 (D51) |
 | D51 | 23-11-2026 | Planning system design: one entry point, six kinds of work, depth by risk, risk checked before the tiny-change route; build in four gated packages | final plan approved 24-11-2026; switched on 24-11-2026 (WP3); deferred checks passed in Phase 9 WP5, 25-11-2026; closed (Amit). |
 | D52 | 24-11-2026 | Phase 9 design: two fresh read-only reviewers, layered minimum context, setup brief, three skills (`handoff`, `send-for-review`, `documents`), migration in the switch-on package, approved acceptance criteria | approved 24-11-2026; built WP2–WP4; R1–R8, K1–K5, I1–I5 passed or waived; closed 25-11-2026 (Amit). |
-| D53 | 25-11-2026 | Phase 10 WP3 design: seven document types, a role and home per major document, writing style, contents-list rule, link model, `DECISIONS.md` shape, WP9 prompt file name | approved 25-11-2026; open until WP5–WP9 apply it |
+| D53 | 25-11-2026 | Phase 10 WP3 design: seven document types, a role and home per major document, writing style, contents-list rule, link model, `DECISIONS.md` shape, WP9 prompt file name | approved 25-11-2026; open until WP5–WP9 apply it (now inside Phases 12–19, D54) |
+| D54 | 26-11-2026 | Expert rewrite programme, Phases 12–21: rewrite Claude Setup on its own base in the backend kit's writing style and structure; Phase 10 closed at WP3b, Phase 11 merged in; archive instead of delete; every open item closed (fixed or concluded) | agreed 26-11-2026 (Amit); open. Full brief: `harness/doc-structure-plan.md` § 3 *Phases 12–21* |
 
 ---
 

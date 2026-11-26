@@ -856,6 +856,8 @@ The live setup is never undone to test recovery. Each git command below is appro
 
 ### Phase 10 — Clean-up and rewrite (plan approved 25-11-2026, Amit)
 
+> **Closed at WP3b, 26-11-2026 (Amit, D54).** WP1–WP3b are done. WP4–WP9 were not started; they move into Phases 12–19 — see *Phases 12–21* below. The text of this section stays as the record of what was planned.
+
 Replanned 25-11-2026 in a read-only session, using the Phase 8 planning skill and two `plan-reviewer` rounds. This replaces the 20-11-2026 outline (D50) and the old T30–T33 and 30-day-review plans; those are in git history.
 
 #### Goal and success
@@ -1212,6 +1214,8 @@ P3 · deep (rule files, deleting, more than one session) · about 9–11 session
 
 ### Phase 11 — Further checks (agreed 20-11-2026, D50)
 
+> **Merged into Phases 12–21, 26-11-2026 (Amit, D54).** Every item below now has a home in *Phases 12–21* — the phase list or the *Programme checklist*: candidate agents → Phase 14 · candidate skills → Phase 15 · backlog items and the `sync.sh --pull` guard → Phase 16 · installing Obsidian → Phase 21. The heading stays so old "Phase 11" references still resolve.
+
 - Recheck coding, testing and other parts; build more agents or skills only for a real repeated need.
 - Approved, not started: B21, B14, B9, then B11. Also B12; the parked auto-compact question.
 - Future candidates (Amit's list, 20-11-2026), revisited here: agents `root-cause-finder` · `data-safety-reviewer` · `test-reviewer` · `security-reviewer` · `documentation-reviewer` · `release-readiness-reviewer` · `project-onboarding-reviewer`; skills `testing` · `feature-brief` · `debugging-method` · `documentation-update` · `project-onboarding` · `release-checklist` · `agent-quality-review`. Overlaps flagged: Q6 — approved 24-11-2026: mark each as "potentially covered by …" (`feature-brief` → feature guide · `debugging-method` → bug-fix guide · `documentation-update` → `documents` skill · `project-onboarding` → new-project guide + `harness/cross-check.md` § *Claude Setup cross-check* · `documentation-reviewer`, `project-onboarding-reviewer` → `plan-reviewer` + `harness/cross-check.md` § *Claude Setup cross-check*); verify before declaring any fully covered.
@@ -1219,6 +1223,170 @@ P3 · deep (rule files, deleting, more than one session) · about 9–11 session
 - From Phase 10 (25-11-2026): installing Obsidian itself, after the new-tool check · guarding `sync.sh --pull` so it can skip one project (P3 candidate).
 
 Old T30–T33 (`SETUP-PLAN.md` split) and the old 30-day review were replaced by Phase 10 WP5 and WP3 (25-11-2026). Their earlier text, including the re-home list for `SETUP-PLAN.md` sections, is in git history (commit `a09c0a3`, "Record deletion of the Phase 9 recovery copy") — WP5 reuses that re-home list as its starting point.
+
+### Phases 12–21 — Expert rewrite programme (agreed 26-11-2026, Amit, D54)
+
+The brief for the whole programme. Each phase is re-planned and re-discussed with Amit when it starts; this section is the context it starts from. Agreed in one long setup session on 26-11-2026; nothing here is built yet except the plan reviewer (`5645c5f`).
+
+#### Why we are doing this (Amit's intent)
+
+- Amit built Claude Setup over 5–6 months by trial and error: rules, then skills and repos, then rewrites, then the document map and links, then sub-agents, planning and independent reviewers (Phases 8–10). After Phase 10 WP3 he judged the result "not good enough": the writing reads "intermediate".
+- A friend's Claude Code kit for the V-Thru backend — `~/Documents/VS Code/Vthru backend-claude-main` (a downloaded copy, no `.git`) — reads "like a very nice AI engineer expert" wrote it. Amit's words: "every document is written very well. It feels like it's written by a human."
+- Amit's estimate: today he uses about 10% of what the setup could give; copying the kit's writing style and structure could take that to about 50% "in one jump". He calls this a critical task.
+- The target feel: a **library** where everything is arranged; **Wikipedia**, where a short summary has clickable links to the full page; **Obsidian**, where everything is connected and in sync. "If I have to update one document, it should automatically update on others" — met by one home per fact, links everywhere else, and `doc-check.sh` catching copies (plain files cannot sync text on their own).
+
+#### Goal and final checks
+
+**Goal:** rewrite Claude Setup on its current base so every file follows one expert writing standard (from the backend kit, fitted to our rules), every fact lives in one place and is linked from everywhere else, phases and history line up on one timeline, nothing contradicts anything else, nothing is deleted (archived instead), and daily loading stays light — done in P1 → P2 → P3 order without breaking daily work, for every tool Amit uses.
+
+**Final checks (judged at the end of Phase 19):**
+1. `doc-check.sh`: 0 copy and contradiction warnings.
+2. Every agent and skill passes a review against the writing standard.
+3. Every backlog item, to-do and open test is **closed** — fixed, or concluded with a reason.
+4. One phase timeline exists; no phase number is used twice.
+5. What loads every session is no bigger than today's baseline (measured with `/context` at the start of Phase 12 and again here).
+6. **Blind comparison:** a fresh reviewer compares 5 of our files with 5 matching kit files without being told which is which; ours are judged equal or better.
+
+#### How we work in this programme (Amit's rules, 26-11-2026)
+
+- **Our setup is the base.** Take the kit's **writing style and structure by default**; change only where it clashes with our rules, and ask Amit each time. Take the kit's **ideas one by one**, when they fit solo work across several projects. Our safety rules (approvals, read-only reviewers, success measures, no commit without Amit's word) stay and are never weakened. Do not blindly copy; do not blindly drop ours.
+- **Two levels.** Files that load every session (`STANDARDS.md`, `CLAUDE.md`) are bullets and one-liners, so daily tokens stay low. Files that load on need (agents, skills, guides) get the full teaching style. Bullets where they fit, but never cut a fact to make a line short (the Phase 10 rule still holds).
+- **Rule plus case.** A rule is one line; its story (a case study) lives in a separate file and is linked, with the hook that enforces it if one exists.
+- **The ladder.** When Claude gets something wrong: an instruction; if that keeps breaking, a rule; if the rule keeps breaking, a hook.
+- **Nothing is deleted.** Old material moves to an archive, arranged like a library, kept out of what Claude loads and searches. The deletion rule stays only for true junk (temp and scratch files). Old Phase 10 WP4 ("remove approved files") becomes "move to archive".
+- **Close everything.** Every to-do, backlog item and bug is either fixed or concluded with a reason. Old pending tests are mostly irrelevant after a full rewrite: each is closed as "superseded by the rewrite", unless a phase finds it still matters.
+- **Small useful fixes are done on the spot;** anything bigger goes to the backlog.
+- **New documents are created when needed,** in the new style and registered in the document map.
+- **Light sub-agents** with as little context as possible, but inside our environment: project facts (stack, words to use — React vs Flutter) live in small separate files the agent reads, not in the agent.
+- **Every tool Amit uses** is covered: VS Code, Antigravity, Android Studio and others — not one IDE.
+- **`~/.claude` first**, then each project in its own session.
+- **Cross-check, discuss and plan** before every change; contradictions are cleared with Amit first.
+
+#### Phase list (in order)
+
+| # | Phase | Covers | Done when |
+|---|---|---|---|
+| 12 | Writing standard | Full kit inventory first (every kit file: take, adapt or skip, reason, phase). Then one writing guide: two levels, rule plus case, a shape per file type (agent, skill, rule file, guide, case study) as templates, a glossary with words to avoid, an `examples/` idea. Builds on D53's writing style (home `DOCUMENTATION-STANDARD.md` § *Writing style*) | Blind test passes; Amit approves |
+| 13 | Planning | Planning skill and its five guides (new project, feature, bug fix, documentation, Claude Setup change) in the new style, with kit ideas: start-cold plan format, evidence for every claim, deferrals check, the diagnosis rule (bug-fix guide), the kit's planning flow (Matt Pocock skills: grill, spec, tickets, implement, retro — new-tool check first). Claude Setup planning also covers documentation planning (Amit). Re-check together with the plan reviewer. B37 | A test plan of each kind passes the reviewer; Amit approves |
+| 14 | Sub-agents | Light agents with project facts in separate files (`agents-config/` idea). Rewrite `change-reviewer`. Consider: challenger agent, specialist reviewers, **worker agents** (task executor, bug fixer, test writer — we have reviewers only), parallel work in separate repo copies (worktrees), delegation rules plus a gate hook, the old Phase 11 candidate agents (security, test, data-safety, release, onboarding reviewers). Each only if it earns its place | Each agent passes its own test |
+| 15 | Skills and hooks | Rewrite and add skills in the new style. The ladder in practice. An end-of-session wrap-up (the kit's `/retro` + `/archive-session`) that turns each session's mistakes into proposed rules. Hooks that block unproven excuses ("flaky", "pre-existing" without evidence). A hook test script. Helper scripts. The old Phase 11 candidate skills (testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review), each only if it earns its place. B12, B15, B21 | Hooks proven by tests; skills discovered |
+| 16 | Full audit and priorities | Every file, rule, contradiction, backlog item, test and phase. Every tool Amit uses. The **phase timeline** page (the September series labelled "Early", e.g. "Early Phase 10, Sept 2026"; history text kept, linked to the timeline). The three layers (personal, shared rules, knowledge vault — kit's `CLAUDE.local.example.md`). Old Phase 10 WP4–WP9 and old Phase 11 items folded in. One finish line (`harness/overview.md` § *What "finished" means* merged with the final checks above). Ends with a P1 / P2 / P3 list | Amit approves the list |
+| 17 | Rewrite: P1 | Most important files first — likely `STANDARDS.md`, the decision-log split (`SETUP-PLAN.md` → `DECISIONS.md`, old WP5, C11), `ENVIRONMENT.md` (too long, B38), the document map, a one-command rebuild guide (kit's `setup.sh` + `README.md` idea). Archive, never delete | All P1 items done; nothing broken |
+| 18 | Rewrite: P2 | The next layer | All P2 items done |
+| 19 | Rewrite: P3 | The rest; every backlog item gets its verdict; the final checks | All P3 done; final checks yes |
+| 20 | Projects | Each project's `CLAUDE.md` and rules, one per session (old WP9 prompt idea) | Each project passes its check |
+| 21 | Obsidian | **Amit gives his Obsidian prompt when this phase starts** (Claude asks for it then and cross-checks it). Two sections: Personal (Claude Setup, personal projects, personal content) and Professional (work projects, connected to V-Thru's Obsidian vault, and that vault connected to Claude). Keep company knowledge in its own vault and link to it, never copy it in. Ignore `.obsidian/` in git. New-tool check first. Obsidian is already installed but not set up. Can move to right after Phase 16 if Amit wants to view the library in Obsidian during the rewrite | Amit's prompt goals met |
+
+#### Phase 12 plan (approved 26-11-2026, Amit)
+
+- **Kind:** Claude Setup change · **depth:** deep (changes a rule file) · **model:** Opus.
+- **Goal (Amit's words):** "whatever you write next … as similar as possible as backend cloud setup … written like a very expert engineer", keeping our setup as the base. Writing comes first because "if your writing skills are not good, then planning will never be good".
+- **Success measure:** (1) the guide and one template per file type exist; (2) blind test — a fresh helper given only the guide rewrites `agents/change-reviewer.md`, and Amit judges it "expert, like the backend kit" (yes/no); (3) the every-session load does not grow (the guide and templates load on need); (4) `doc-check.sh` no new warnings; (5) every clash between the guide and our existing rules (D53, `STANDARDS.md` § *Communicate*, memory notes on writing) listed and decided by Amit.
+- **Known clash to decide:** D53 says "now, not how we got here — change history stays in git"; the kit puts real failure stories in its files. Proposed answer: stories live in linked case-study files, rules stay one line.
+- **Files:** `DOCUMENTATION-STANDARD.md` (§ *Writing style*, new § *File shapes*) · new templates in `templates/` (agent, skill, rule file, case study) · `DOCUMENT-MAP.md` rows · `harness/status.md` · this section.
+- **Approach option for WP1 (Amit's suggestion):** "maybe copy the whole context over there and then fit our things … reverse engineer in my style" — start from the kit's own files and reshape them to our rules, rather than writing from zero. WP1 weighs this against writing fresh and recommends one.
+- **Packages:** WP0 full kit inventory (one Sonnet helper, about 80K, estimate), which also covers how the kit links its documents and how it uses its skills; WP0 also records the every-session load baseline for final check 5 (Amit types `/context` as the first message of a fresh session) → WP1 draft the guide and templates → WP2 blind test → WP3 cross-check with the **new** `plan-reviewer` (fresh session) and `change-reviewer` → WP4 record; commit on Amit's word. About 80–120K main-context tokens over 1–2 sessions, plus the inventory (estimate).
+- **Open (not blocking):** where case-study files live (a new `cases/` folder or inside the library) — decided in Phase 16.
+- **Undo:** `git revert` of the package commit.
+- **First step of the next session:** show Amit this whole list (phases, kit items, open items), confirm agreement, then agree how the writing-standard session runs.
+
+#### What the kit offers (found 26-11-2026)
+
+From reading the kit (two Sonnet helpers, 42,865 and 66,612 measured) and its 17 screenshots in `Vthru backend-claude-main/screenshots/` (one Sonnet helper, 71,700 measured; most are slides from the author's talk "We are all engineering managers now"):
+
+- **Writing:** every file teaches — a "why this exists" section with a real failure, concrete examples, numbered "how to apply" steps, awkward cases covered, use-when and not-for lines, `<example>` blocks in agent descriptions, trigger phrases in skill descriptions. Downsides not to copy: shouting capitals ("VIOLATION = IMMEDIATE STOP"), very long files (one skill is 1,228 lines), the same rules repeated in many files.
+- **Structure:** rule files that load only for matching paths (`paths:` frontmatter); rules naming the hook that enforces them; `examples/`; `GLOSSARY.md` with "Avoid" terms; `agents-config/` for project facts; a knowledge vault for product facts only (searched first, written back to); four one-line rule files plus 82 case studies.
+- **Agents (10):** five specialist reviewers run in parallel (conventions and readability on Haiku; architecture, domain, ORM on Sonnet), a plan reviewer, a researcher, and three workers (task executor, bug fixer, test writer). Reviews are checked against the code, de-duplicated, and passed to a **challenger** whose default verdict is "kill" (referenced but not in the folder).
+- **Hooks (about 20 in the talk; 8 in the folder):** destructive git, secrets and writes, delegation gate, sub-agent push, main-checkout switch, code conventions, worktree setup, plus a hook test script. A hook matched on text alone (it fired on a file that only contained "git reset --hard").
+- **Workflow:** ticket → spec → tickets → implement, each in a fresh session; 2–3 in parallel via worktrees; `/retro` then `/archive-session` at the end; "ready" means every review saw the latest commit.
+- **Tips from the talk:** ask for one real example; scripted status checks (a hand-written poll once failed silently); a lint hook caught what reviewers missed.
+- **Where our setup is already stronger:** success measures, risk-based depth, approval gates, read-only reviewers that never approve, a neutral review packet, token and context limits, workload markers, short consistent writing.
+- **Team-only parts (likely skip, still given a verdict in WP0):** GitLab, ClickUp, New Relic, PHP and Docker specifics.
+
+#### Programme checklist (tick as done; archived when every box is ticked — Amit, 26-11-2026)
+
+Every point the programme must cover: phase work, the 9 kit items (marked *kit*), and every open backlog item, to-do and test (about 30, checked 26-11-2026). Tick `[x]` with the date when done or concluded. Token figures are estimates including helpers; each phase is re-estimated when planned. Total about 3.5–5M tokens over about 30–40 sessions.
+
+**Side task, 05-12-2026 (~15–25K, 1 short session)**
+- [ ] B7 write-block trial: keep or remove
+- [ ] B7 + B16 combined review (project map trial; overdue since 20-11-2026)
+
+**Phase 12 — Writing standard (~200–300K, 2 sessions)**
+- [ ] Full kit inventory: every file take / adapt / skip, reason, phase; team-only parts (GitLab, ClickUp, PHP, New Relic) each get a written verdict
+- [ ] How the kit links documents and uses skills
+- [ ] Every-session load baseline (`/context`, for final check 5)
+- [ ] Writing guide: two levels; rule plus case study; D53 history-vs-stories clash decided
+- [ ] Templates: agent, skill, rule file, guide, case study
+- [ ] Glossary with words to avoid
+- [ ] *kit* `examples/` folder idea
+- [ ] Amit's option weighed: copy the kit and reshape it into our style
+- [ ] Blind test on `change-reviewer`; cross-check with the new `plan-reviewer`
+
+**Phase 13 — Planning (~250–350K, 2–3 sessions)**
+- [ ] Planning skill and five guides in the new style (Claude Setup planning also covers documentation planning)
+- [ ] Start-cold plan format · evidence for every claim · deferrals check
+- [ ] *kit* Diagnosis rule (bug-fix guide)
+- [ ] *kit* Planning flow (grill → spec → tickets → implement → retro; new-tool check first)
+- [ ] Re-check with the plan reviewer; "blocked vs weak measure" lesson
+- [ ] B37 reviewer report over its word limit
+
+**Phase 14 — Sub-agents (~300–400K, 3 sessions)**
+- [ ] Light agents; project facts in separate files (React vs Flutter)
+- [ ] Rewrite `change-reviewer`
+- [ ] Challenger agent · specialist reviewers
+- [ ] *kit* Worker agents (task executor, bug fixer, test writer)
+- [ ] *kit* Parallel work in separate repo copies (worktrees)
+- [ ] *kit* Delegation rules plus a gate hook
+- [ ] Old Phase 11 candidate agents, each only if it earns its place
+
+**Phase 15 — Skills and hooks (~350–450K, 3–4 sessions)**
+- [ ] Skills rewritten and added in the new style; old Phase 11 candidate skills judged
+- [ ] Instruction → rule → hook ladder
+- [ ] End-of-session wrap-up (retro → archive) turning mistakes into rules
+- [ ] Hook that blocks unproven excuses · hook test script
+- [ ] *kit* Helper scripts
+- [ ] B12 post-edit checker · B15 acting without approval · B21 git alias reads secrets
+
+**Phase 16 — Full audit and priorities (~300–400K, 2–3 sessions)**
+- [ ] Every file, rule, contradiction, backlog item, test and phase audited
+- [ ] Every tool Amit uses (VS Code, Antigravity, Android Studio, others)
+- [ ] Phase timeline (September series labelled "Early")
+- [ ] *kit* Three layers (personal, shared rules, knowledge vault)
+- [ ] One finish line (`harness/overview.md` merged with the final checks)
+- [ ] Old Phase 10 WP4–WP9 folded in
+- [ ] B9 telemetry · B11 markitdown · B14 Ollama network · C13 rtk log · `sync.sh --pull` guard
+- [ ] The 3 *Known contradictions* in `harness/status.md`
+- [ ] Archive `harness/planning-research.md`
+- [ ] Tests TC3, TC6, TC8, TC12 closed (superseded unless still relevant)
+- [ ] P1 / P2 / P3 list approved; where case-study files live decided
+
+**Phase 17 — Rewrite P1 (~500–700K, 4–6 sessions)**
+- [ ] `STANDARDS.md`
+- [ ] Decision-log split (`SETUP-PLAN.md` → `DECISIONS.md`) · C11 IDs and emails out
+- [ ] `ENVIRONMENT.md` (B38, too long)
+- [ ] Document map
+- [ ] *kit* One-command rebuild guide
+- [ ] Old material archived, never deleted
+
+**Phase 18 — Rewrite P2 (~400–600K, 3–5 sessions)**
+- [ ] Every P2 item from the audit list
+
+**Phase 19 — Rewrite P3 (~400–500K, 3–4 sessions)**
+- [ ] Every P3 item from the audit list
+- [ ] Every backlog item has a verdict
+- [ ] The 6 final checks, including the blind comparison with the kit
+
+**Phase 20 — Projects (~100–150K per project, 1 session each)**
+- [ ] Each project's `CLAUDE.md` and rules, one per session
+- [ ] B38 drift (Voice-Flow, Emp portal) · B33 · A6, A7, A9
+- [ ] FinNode copy after `phase3/sms` reaches `main`
+- [ ] VT and Emp Portal sync rules checked (stay as standing rules)
+- [ ] Tests TC9, TC10
+
+**Phase 21 — Obsidian (~150–250K, 1–2 sessions)**
+- [ ] Ask Amit for his Obsidian prompt; cross-check it
+- [ ] Personal and Professional sections; the V-Thru vault connected, and connected to Claude
+- [ ] Company knowledge linked, never copied · `.obsidian/` hidden from git · new-tool check
 
 ## 4. Format of every file
 
