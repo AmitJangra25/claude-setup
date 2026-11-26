@@ -60,6 +60,7 @@ empty-section test now skips code blocks (Amit, 12-11-2026). Plan:
 | ID | Item | State | Next step | Link |
 |---|---|---|---|---|
 | B7, B16 | FinNode trials: write block, project map | [~] trial | Dates and review: the backlog rows | `harness/backlog.md` |
+| — | `plan-reviewer` rewritten in a teaching style (Amit, 26-11-2026): why-this-exists with a real case, five lenses incl. deferrals, outcome tags, 500-word default (Phase 10). `change-reviewer` Sonnet: concerns, 3 fixes applied (22,584 measured); `change-reviewer` stays at 400 words. First fresh-session R4 (26-11-2026): gap named but ranked second, verdict concerns, about 600 words (B37); cause: `blocked` rule clashed with the success-measure check. Fixed (Amit, 26-11-2026): `blocked` = could not review; a missing, unclear or weak measure is finding 1 with `concerns`; two rewraps. R4 re-test, fresh session (26-11-2026): **passed** — missing measure is finding 1, verdict `concerns`, no "approved", deferrals (2) and outcome tags present; about 550 words by eye, not counted (B37); token cost not measured; one non-finding listed as finding 4 without a tag | [x] tested, committed 26-11-2026 (Amit) | Next: step 2, planning redo against the backend kit; B37, B38 in the backlog | `agents/plan-reviewer.md` |
 
 ## Open
 
