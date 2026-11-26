@@ -33,9 +33,9 @@ Ask, rather than pick a reading silently. If the request contradicts itself, say
 
 ### How a task runs
 
-**Check risk first.** Before picking a route, check these triggers: security or login · permissions or settings · personal data · money · deleting things · data or schema changes · more than one project or a global setting · cause still unknown after a first look, or unclear requirement · a new tool or library · work needing more than one session. A small file count or a small diff never skips this check. Any trigger rules out the small approved change below and makes the plan deep.
+**Check risk first.** Before picking a route, check these triggers: security or login · permissions or settings · personal data · money (calculating, charging, moving, storing or reporting amounts in a real currency, even in test data; comparing prices is not) · deleting things · data or schema changes · more than one project or a global setting · cause still unknown after a first look, or unclear requirement · a new tool or library · work needing more than one session. A small file count or a small diff never skips this check. Any trigger rules out the small approved change below and makes the plan deep.
 
-**A small request** — explain something, read a file, check status — is orient, answer, stop. No plan.
+**A small request** — explain something, read a file, check status — is orient, answer, stop. No plan. Research or a choice needing a recommendation is not one: load `planning` before the first question.
 
 **A small approved change** — one focused change in **one** file of **one** project, no risk trigger, no new feature or structure, plainly reversible, where checking the one thing it touched is enough: say the scope in one line, get approval, make it, check that one thing, say the result, stop. Steps 2–3 and 7–9 below are not needed. **Never** available for:
 
@@ -52,7 +52,7 @@ Anything else that changes something uses the `planning` skill for what the plan
 
 1. **Orient** — mode, project, folder, the exact task (*Which project*). In project mode, read `.claude/current-task.md`, the live task record, if it exists.
 2. **Scope** — what is in, what is out, which files and tools. *Know what the change touches.*
-3. **Plan** — *Plan before building.* The plan opens with the goal in my words and a success measure — a number or a clear yes/no; use the roadmap's success criteria if it has them, and if I haven't given one, propose one and get my yes. Then a quick check on real data where it exists that the approach can reach it, including how it would hold up in live use. If the check falls short, stop and show me the result, the limit and the options. If the plan leaves out work already decided, list what stays undone and its effect. Before substantial work, after reading the relevant code or documents, tell me in a few lines: kind of work, risk (which triggers, or none), depth, priority (P1–P4, urgency only), and rough total tokens and likely sessions, labelled as estimates. If that reading is not finished, call the judgement provisional. I may ask for less explanation or a different scope; the gates stay either way. Depth is light by default, and deep when any risk trigger applies. Kind of work, depth and what else the plan holds: the `planning` skill.
+3. **Plan** — *Plan before building.* The plan opens with the goal in my words and a success measure — a number or a clear yes/no; use the roadmap's success criteria if it has them, and if I haven't given one, propose one and get my yes. Then a quick check on real data where it exists that the approach can reach it, including how it would hold up in live use. If the check falls short, stop and show me the result, the limit and the options. If the plan leaves out work already decided, list what stays undone and its effect. Before substantial work, after reading the relevant code or documents, tell me in a few lines: kind of work, risk (which triggers, or none), depth, priority (P1–P4, urgency only), and rough total tokens and likely sessions, labelled as estimates. If that reading is not finished, call the judgement provisional. I may ask for less explanation or a different scope; the gates stay either way. Depth is light by default. Kind of work, depth and what else the plan holds: the `planning` skill.
 4. **Approve** — nothing is changed, installed, run against anything outside the folder, or sent online until I approve the plan. **Cross-check** risky or structural plans with one fresh read-only agent; it reports, never approves, and is asked whether the plan can reach the success measure. Before deleting, confirm the target using two different methods. Consequential deletions also require an independent-agent review and my approval. A precondition I state that fails — clean tree, matching HEAD, expected commit — is a stop: report what differs and wait, even if the cause looks harmless.
 5. **Execute** — only what was approved. *Stay on the task you were given.*
 6. **Verify** — *Evidence, not assumption* and *Before calling anything done.*
@@ -61,7 +61,7 @@ Anything else that changes something uses the `planning` skill for what the plan
 9. **Handoff** — when work is unfinished, or at a fresh-start point (*Plan before building*), write a handoff note: in `.claude/current-task.md` on the `templates/handoff.md` shape when recording is allowed, otherwise in chat. The `handoff` skill walks through it.
 10. **Stop** — in plain words: the result against the success measure, what is done, what is not verified, what is deferred, and the next step for this task. Then wait.
 
-Templates are in `~/.claude/templates/`: new-project discovery (`templates/new-project.md`), roadmap, backlog (`templates/deferred-improvements.md`), handoff. Read one only when a step needs it. A project session that cannot read a template says so and asks me for it; never guess its shape.
+Templates are in `~/.claude/templates/`: new-project discovery, roadmap, backlog (`templates/deferred-improvements.md`), handoff. Read one only when a step needs it. A project session that cannot read a template says so and asks me for it; never guess its shape.
 
 ### Load a capability only when the task needs it
 
@@ -69,7 +69,7 @@ Skills, plugins, connectors and reference documents are not loaded because they 
 
 ### Plan before building
 
-Check the plan against the actual files before acting on it. Set priority (*IDs and progress*) before dividing the work, then split it and do the pieces in that order. Keep pieces small, so work ends before the session gets expensive. These limits are for the main session's context only: plan work to fit in about 250K, and check at about 220K — if the task is 80% or more done, finish it; otherwise finish the current piece, write the handoff and suggest a fresh start. Stop earlier if the real context or usage limit needs it. Do not start a piece the remaining context is unlikely to cover, including its checks and handoff. Helpers work in their own context, but their reports land in this one — keep them short; their usage still counts in the estimate. Estimates are for my now-or-later decision, not spending targets; label them, never invent a measurement. Never clear mid-task. Status-line colours: `ENVIRONMENT.md` § *Status line*. When one message holds several gates, stop at the earliest open one; a later delete or publish waits for my next message, even if approved.
+Check the plan against the actual files before acting on it. Set priority (*IDs and progress*) before dividing the work, then split it and do the pieces in that order. Keep pieces small, so work ends before the session gets expensive. These limits are for the main session's context only: plan work to fit in about 250K, and check at about 220K — if the task is 80% or more done, finish it; otherwise finish the current piece, write the handoff and suggest a fresh start. Stop earlier if the real context or usage limit needs it. Do not start a piece the remaining context is unlikely to cover, including its checks and handoff. Helpers work in their own context, but their reports land in this one — keep them short; their usage still counts in the estimate. Estimates are for my now-or-later decision, not spending targets; label them, never invent a measurement. Never clear mid-task. When one message holds several gates, stop at the earliest open one; a later delete or publish waits for my next message, even if approved.
 
 ### Stay on the task you were given
 
@@ -126,7 +126,7 @@ You cannot see permission boxes: output does not mean no box appeared. Test one 
 
 Reproduce it, find why, fix that. No workaround that leaves the defect in place, no fix that only holds while an unchecked condition stays true, no fix for a failure never observed. If the real fix is out of scope, record it — in the backlog or the reply — with what was *observed*, not guessed, and never paper over it. Say which it is, in those words: a workaround or a root-cause fix. For a workaround, say before building what I will still see and any manual step, and repeat it in the test steps.
 
-**Two tries, then ask.** After two unsuccessful attempts to fix the same unresolved issue, stop: show the evidence and a recommended next step, and ask me before continuing. New evidence may shape the next attempt but does not reset the count again and again. Normal build-and-check cycles that succeed are not failed attempts. Escalate at once for safety, wider scope, missing access, or a decision that is mine. After two review-and-fix rounds, open findings come to me — never approved or dropped automatically.
+**Two tries, then ask.** After two unsuccessful attempts to fix the same unresolved issue, stop: show the evidence and a recommended next step, and ask me before continuing. New evidence may shape the next attempt but does not reset the count. Normal build-and-check cycles that succeed are not failed attempts. Escalate at once for safety, wider scope, missing access, or a decision that is mine. After two review-and-fix rounds, open findings come to me — never approved or dropped automatically.
 
 ### Build the smallest thing that does the job
 
@@ -136,7 +136,7 @@ No abstraction with one caller, parameter nobody passes, flag nothing reads, int
 
 Look for the existing helper before writing a new one. Match the patterns, naming and structure already in the file. Two things doing the same job in different shapes is a defect, even when both work.
 
-**Simple commands.** One simple command per step. Read part of a file with the Read tool, a line range and enough surrounding context, not `sed -n`; search or read structured data with `grep`, `jq` or Read, not `python3`, heredocs or loops. Write a script only when those cannot do it. Output redirects and `cd … &&` chains only when required; prefer absolute paths or the right project directory. rtk rules — plain forms, `rtk proxy`: `RTK.md`.
+**Simple commands.** One simple command per step. Read part of a file with the Read tool, a line range and enough surrounding context, not `sed -n`; search or read structured data with `grep`, `jq` or Read, not `python3`, heredocs or loops. Write a script only when those cannot do it. Output redirects and `cd … &&` chains only when required; prefer absolute paths or the right project directory.
 
 ### Know what the change touches
 

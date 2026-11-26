@@ -44,7 +44,14 @@ WRITING-GUIDE.md|full|Contents;Summary;Writing style;Two levels;Rule plus case;S
 README.md|short|What this repo is;Why it stays private;Start here|
 harness/status.md|full|Current phase;In progress;Open;Blocked;Known contradictions;Decisions in force;Next gate;Older records|
 harness/backlog.md|full|To build;In full;Deferred;Known and accepted;Older records|yes
-harness/cross-check.md|full|Summary;Levels;Deletion;The reviewer;Recording;Claude Setup cross-check;Markers;Related|
+harness/cross-check.md|full|Summary;Levels;Review sizes;Deletion;The reviewer;Recording;Claude Setup cross-check;Markers;Related|
+skills/planning/SKILL.md|none|When to use;Steps;Example;Self-check;Related|
+skills/planning/new-project.md|full|Summary;When to use;Before you start;Set the depth;Settle the minimum plan;Plan the testing;Set it up;Common mistakes;Quick reference;Related|
+skills/planning/feature.md|full|Summary;When to use;Before you start;Pick the depth;Write the plan;Refactoring;Testing;Common mistakes;Quick reference;Related|
+skills/planning/bug-fix.md|full|Summary;When to use;Before you start;Find the cause;Write the plan;Keep the fix inside the plan;Test the fix;Report the result;Common mistakes;Quick reference;Related|
+skills/planning/documentation.md|full|Summary;When to use;Before you start;Write the plan;Write the doc;Testing;Common mistakes;Quick reference;Related|
+skills/planning/setup-change.md|full|Summary;When to use;Before you start;Write the plan;Testing;Recording;Common mistakes;Quick reference;Related|
+skills/planning/research-business.md|full|Contents;Summary;When to use;Before you start;Set the questions first;Plan the search;Check the answers;Write the result;Common mistakes;Quick reference;Related|
 harness/models.md|full|Summary;Model table;When to pick and switch;The 27k test;Cost rule;When a model is struggling;Helpers in plans;Related|
 harness/overview.md|short|What happens in a session;What "finished" means|
 PROJECTS.md|short|Projects;Not projects;Names and renames|
@@ -68,8 +75,12 @@ ENVIRONMENT.md|full|Contents;The two kinds of rule;1. RTK;2. Status line;3. Perm
 PLANNED='DECISIONS.md harness/rebuild.md'
 # Lines allowed to appear in more than one checked file (DOCUMENTATION-STANDARD.md § Allowed copies).
 #     The task-file template's standing line and the backlog form's table header are copied on purpose (Amit, 11-11-2026; 25-11-2026).
+#     The three doc-planning lines in skills/planning/setup-change.md are copied from documentation.md (C10, Amit, 26-11-2026).
 ALLOWED_DUP='After compaction or a new session: confirm the scope still applies before further action; ask again if unclear or outside scope.
-| ID | Item | Why | Worth doing | Blocks current task | Priority | Size | Tokens | Status | Next action |'
+| ID | Item | Why | Worth doing | Blocks current task | Priority | Size | Tokens | Status | Next action |
+- **Source of truth:** where each fact comes from — code, a command'"'"'s output, a decision
+  (D-number), Amit. One fact, one home; other docs point to it.
+- **Fact check:** how each fact will be checked before it is written.'
 TASK_FILE=.claude/current-task.md
 MAX_LINES=300
 # Catalog coverage: folder groups one DOCUMENT-MAP.md row may cover; every other tracked file

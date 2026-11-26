@@ -50,7 +50,7 @@ What loads every session costs tokens on every turn; what loads on need costs on
 
 | Level | Files | How they read |
 |---|---|---|
-| Every session | The always-loaded files (`DOCUMENTATION-STANDARD.md` § *Always loaded*), plus every agent and skill **description**, which Claude Code lists in each session | Bullets and one-liners. No header, no story, no example unless the line cannot be read without one. Backtick paths, not links |
+| Every session | The always-loaded files (`DOCUMENTATION-STANDARD.md` § *Always loaded*), plus every agent and skill **description**, which Claude Code lists in each session | Bullets and one-liners. No header, no story, no example unless the line cannot be read without one; an agent's description may carry one short example line ([Examples](#examples)). Backtick paths, not links |
 | On need | Agent and skill bodies, guides, reference documents, case studies | The full teaching style: why it exists, one real case, numbered steps, awkward cases, use-when and not-for lines. Clickable links |
 
 The every-session budget is final check 5 in `harness/doc-structure-plan.md` § *Goal and final checks*: our part must not grow. A teaching paragraph that drifts into an always-loaded file breaks it; move the paragraph to an on-need file and leave one line and a pointer.
@@ -79,7 +79,7 @@ Start every new file of these five kinds from its form. A file kind is not a fil
 
 | Kind | Form | Loads | Header | Sections, in order |
 |---|---|---|---|---|
-| Agent | `templates/agent.md` | description every session; body when started | frontmatter only | opening · Why this exists · What you are given · How to work (Subject detail, optional) · Lessons · Report |
+| Agent | `templates/agent.md` | description every session; body when started | frontmatter only | opening · Why this exists · What you are given · How to work (Subject detail, optional) · Example · Lessons · Report |
 | Skill | `templates/skill.md` | description every session; body when used | frontmatter only | opening · When to use · Steps · Example · Subject detail (optional) · Self-check · Related |
 | Rule file | `templates/rule-file.md` | every session, or on need | none if always loaded; full if on need | opening line · one heading per group of rules · Related |
 | Guide | `templates/guide.md` | on need | full | Summary · When to use · Before you start · one section per stage (Subject detail, optional) · Common mistakes · Quick reference · Related |
@@ -89,13 +89,14 @@ Start every new file of these five kinds from its form. A file kind is not a fil
 
 An agent is a separate worker with its own context. It knows only its own file and what it is handed, so the file must stand alone.
 
-1. **Description** (loads every session): two or three short lines — what it does, when to use it, what it is not for — plus at most one short `<example>` block. Every extra example is paid for in every session.
+1. **Description** (loads every session): two or three short lines — what it does, when to use it, what it is not for — plus at most one short example line; the full example goes in the body ([Examples](#examples)). Every extra example is paid for in every session.
 2. **Opening paragraph:** what the agent does, and what it never does (for a reviewer: approve, edit, commit, push, start another agent).
 3. **Why this exists:** the gap the agent closes, and one real case in two to four sentences, with its date. If no dated case is logged yet, leave out the Real case lines; never use a placeholder.
 4. **What you are given:** the inputs, numbered, and what to do when one is missing or unreadable.
 5. **How to work:** numbered steps or named lenses. Each lens says exactly what to check, what evidence to cite, and what counts as a finding — concrete enough that two readers would check the same things.
-6. **Lessons:** practical lessons, each a bold lead phrase plus the reason it matters: the mistake it prevents, or the case behind it. Take them from the agent's own rules and past results; never invent one.
-7. **Report:** the exact shape and word limit; findings ranked by severity, each with file and line, what is wrong, why it matters and the smallest fix; verified facts kept apart from assumptions; and what "nothing found" looks like — the facts verified, never an empty or padded report.
+6. **Example:** the full example, made-up data only; more in `agent-examples/<name>/` ([Examples](#examples)).
+7. **Lessons:** practical lessons, each a bold lead phrase plus the reason it matters: the mistake it prevents, or the case behind it. Take them from the agent's own rules and past results; never invent one.
+8. **Report:** the exact shape and word limit; findings ranked by severity, each with file and line, what is wrong, why it matters and the smallest fix; verified facts kept apart from assumptions; and what "nothing found" looks like — the facts verified, never an empty or padded report.
 
 Project facts (stack, product words, which tool a project uses) live in small separate files the agent reads, not in the agent, so one agent serves every project. Read-only reviewers report and never approve (D52). Give the fewest tools and the cheapest model that do the job (`harness/models.md`).
 
@@ -147,7 +148,12 @@ A case study is the story of one real failure, kept so a rule's reason is never 
 
 ## Examples
 
-**Decision (Amit, D55):** keep the kit's examples idea, placed next to the thing it explains. A skill keeps its larger examples in its own `examples/` folder. An agent keeps one short example inline; a longer one becomes a case study. There is no repo-wide `examples/` folder: the kit's mixes command lists and project patterns, which here already have homes in reference documents, so a shared folder would hold copies. Built in Phases 14–15, when skills and agents are rewritten.
+**Decision (Amit, D55; amended 26-11-2026):** keep the kit's examples idea, placed next to the thing it explains. Made-up data only.
+
+- **Each skill:** one small example in `SKILL.md`; larger examples in its `examples/` folder.
+- **Each agent:** at most one short example line in its description; its full example in its body; additional examples in `agent-examples/<name>/`, outside `agents/` so they never load as agents. When created, that folder and each file inside it need their own `.gitignore` allow-line.
+
+There is no repo-wide `examples/` folder: the kit's mixes command lists and project patterns, which here already have homes in reference documents, so a shared folder would hold copies. Built in Phases 14–15, when skills and agents are rewritten.
 
 ## Words to use and avoid
 

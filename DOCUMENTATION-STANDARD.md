@@ -156,6 +156,7 @@ A copy is a defect except in these cases. Each copy names its source.
 | One-line rules in `harness/agent-brief.md` § *Critical rules* | The file each line names (`STANDARDS.md`, `.claude/CLAUDE.md`, `README.md`, `DOCUMENTATION-STANDARD.md`, `harness/cross-check.md`) | Reviewers start without `CLAUDE.md` (D52); one line each, the source named, the source wins on conflict |
 | The task-file line "After compaction or a new session: …" in each `.claude/current-task.md` | `templates/handoff.md` | Copied on purpose (Amit, 11-11-2026); listed in `harness/doc-check.sh` `ALLOWED_DUP` |
 | The *To build* table header in each backlog | `templates/deferred-improvements.md` | The form's own header; listed in `harness/doc-check.sh` `ALLOWED_DUP` |
+| The *Source of truth* and *Fact check* lines in `skills/planning/setup-change.md` | `skills/planning/documentation.md` | A Setup change reads one guide only (C10, Amit, 26-11-2026); both files say "change both together"; listed in `harness/doc-check.sh` `ALLOWED_DUP` |
 
 ## Growth and rollover
 

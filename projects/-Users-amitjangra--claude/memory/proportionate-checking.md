@@ -15,3 +15,5 @@ Keep full evidence (complete diffs, raw check output, proof of which files chang
 **Why:** Amit, 26-11-2026, during Phase 12 WP2–gate follow-ups: repeating the full WP2 evidence checklist for every one-line record edit was out of proportion.
 
 **How to apply:** decide the evidence level per batch from what changed, not from the last task's checklist. Still push back if something is wrong or risky. Related: [[stay-on-the-asked-task]], [[agreement-is-not-approval]].
+
+**Also (Amit, 26-11-2026):** "you are wasting 100k tokens just to fix 15 tokens … do not waste time in small small things." When a measure misses by a rounding-sized margin, say so in one line with the cost of fixing vs accepting, and recommend the cheap path; never grow a tiny fix into a plan-and-review cycle.

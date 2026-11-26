@@ -7,7 +7,7 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: When the procedure changes. Replace superseded text; history goes to a record.
 Related: `STANDARDS.md` § *How a task runs* · `harness/status.md` · `harness/models.md`
 Status: in force
-Last reviewed: 11-11-2026
+Last reviewed: 26-11-2026
 
 ---
 
@@ -25,10 +25,30 @@ cross-check or a significant workload is happening. The one-line rules are in
    cross-project work; deletion, migration or broad cleanup; conflicting documents; an
    unclear source of truth; a high-risk or ambiguous call; likely context or
    maintenance growth; an unresolved disagreement with Amit; a wrong guess that would
-   be expensive to undo. **One agent.** A second only if the first leaves a serious
-   conflict unresolved.
+   be expensive to undo; a feature-depth plan with no risk trigger (short review, below).
+   **One agent.** A second only if the first leaves a serious conflict unresolved.
 3. **Human approval** — destructive, global, sensitive-data, commit or push, unclear
    intent, possible data loss. An agent's "looks right" never replaces it.
+
+## Review sizes
+
+Every plan gets one of three review sizes, set by its depth. The planning skill names the
+size in the plan; the request to the reviewer names it again.
+
+| Size | Which plans | Level | Reviewer | Report limit |
+|---|---|---|---|---|
+| Self-check | Light plan, no risk trigger, not feature depth | 1 | None; the author checks | — |
+| Short review | Feature-depth plan, no risk trigger | 2 | `plan-reviewer` on Sonnet, passed in the agent call | About 300 words |
+| Full review | Any risk trigger, any other level-2 reason above, or a new project | 2 | `plan-reviewer` on Opus | About 500 words |
+
+- **A self-check can never cover** permissions, hooks, settings, secrets, deleting or
+  other destructive actions, or a rule file. Each of those is a risk trigger, so it is a
+  full review.
+- **Every request names its size.** If it does not, the reviewer uses the full-review
+  limit and says so.
+- **When unsure between two sizes, take the bigger one.**
+- Sizes apply to plans. A finished change is reviewed by `change-reviewer` (see *The
+  reviewer*).
 
 ## Deletion
 
@@ -39,11 +59,18 @@ Cross-check triggers in full are under *Levels*, Level 2.
 
 ## The reviewer
 
-A fresh named reviewer, not a fork, so it does not inherit the author's reasoning:
-`change-reviewer` for a diff or finished change (Sonnet; the requesting session passes
-Opus for security or data), `plan-reviewer` for a plan (Opus). Both are in `agents/`.
-Opus for design and structure; a smaller model only for narrow fact checks.
-It inspects the proposal and the real files, and reports:
+A fresh named reviewer, not a fork, so it does not inherit the author's reasoning. Both
+are in `agents/`:
+
+- **`plan-reviewer`** for a plan, at the plan's review size (*Review sizes*): Sonnet
+  for a short review, Opus for a full review. The request gives the size, the goal, the
+  success measure and the plan.
+- **`change-reviewer`** for a diff or finished change: Sonnet; the requesting session
+  passes Opus for security or data. It keeps its own word limit until its Phase 14
+  rewrite.
+
+It inspects the proposal and the real files. `plan-reviewer` reports only in its
+skeleton (`agents/plan-reviewer.md` § *Report*); `change-reviewer` reports:
 
 - facts verified, with file and line; assumptions made;
 - what already covers this, and any duplication;
@@ -52,11 +79,25 @@ It inspects the proposal and the real files, and reports:
 - project-boundary problems; missing tests or gates;
 - keep / change / defer / reject.
 
-It must not edit, commit, push, approve, or open a project folder from a setup session.
+**Checking a `plan-reviewer` report** (this agent only). The requesting session saves
+a working copy of the report and runs `wc -w` on it: Claude Setup uses `harness/drafts/`;
+a project uses its git-ignored scratch path. The copy is kept until the check ends; it is
+not a record. The session checks the report against the review size named in the
+request: the word limit in *Review sizes* (the stated 300 or 500 is the limit for this
+check), and the skeleton in `agents/plan-reviewer.md` § *Report* — only skeleton lines, in order, no more
+numbered findings or "Other" lines than the skeleton has, each slot one short clause. If
+either fails, it sends the same report back once to the same reviewer, with the word
+count against the limit and each shape break, and asks for the report cut to fit: same
+verdict, no new findings. If the retry passes, use it. If it still fails, or the reviewer
+can no longer be reached, accept the report, record the overrun, and stop; there is no
+second retry.
+
+The reviewer must not edit, commit, push, approve, or open a project folder from a setup session.
 The named reviewers have no write, edit, shell or agent-starting tool (tested 24-11-2026,
 R1–R2): that limits what they can change, not what they can read. That they start without
-the author’s context is supported by test R3, not proven. Give it a word limit and tell it which facts are already verified, so it does not
-re-check them.
+the author’s context is supported by test R3, not proven. Give it its review size (or,
+for `change-reviewer`, a word limit) and tell it which facts are already verified, so it
+does not re-check them.
 
 ## Recording
 

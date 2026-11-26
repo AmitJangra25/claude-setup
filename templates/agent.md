@@ -2,21 +2,16 @@
 name: <agent-name>
 description: >
   <What it does, in one line.> <When to use it.> <What it is not for, and which
-  agent or skill to use instead.>
-
-  <example>
-  Context: <the situation, in one line>
-  user: "<what Amit says>"
-  assistant: "<which agent is started, and what it is handed>"
-  <commentary><why this agent and not another, in one line></commentary>
-  </example>
+  agent or skill to use instead.> Example: <what Amit says> → <which agent is started,
+  and what it is handed>.
 tools: <the fewest that do the job, e.g. Read, Grep, Glob>
 model: <haiku | sonnet | opus — the cheapest that does the job (harness/models.md)>
 omitClaudeMd: <true for a fresh reviewer; leave out otherwise>
 ---
 
 <!-- Form for an agent file in agents/. Shape and style: WRITING-GUIDE.md § Agents.
-     The description loads every session: two or three short lines, one example at most.
+     The description loads every session: two or three short lines, one short example line at most.
+     The full example goes in ## Example; more in agent-examples/<name>/ (outside agents/, so it never loads).
      Delete every comment and every unused optional block before saving. -->
 
 # <Agent title>
@@ -53,6 +48,15 @@ report it as unavailable. Never guess what it holds.> <The scope: what not to su
 
 <Only for detail that fits one kind of work — a stack, a command, a file type. Project
 facts do not go here; the agent reads them from the project's own small facts file.>
+
+## Example
+
+    Context: <the situation, in one line>
+    user: "<what Amit says>"
+    assistant: "<which agent is started, and what it is handed>"
+    Why this agent: <why this agent and not another, in one line>
+
+<Made-up data only. Additional examples: `agent-examples/<name>/`.>
 
 ## Lessons
 
