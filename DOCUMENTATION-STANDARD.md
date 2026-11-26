@@ -113,6 +113,7 @@ Counts tasks done / tasks planned. Backlog items are not counted.
 ## Structure per file
 
 Sections in this order. Templates (`templates/`) are the fill-in forms; this list is the rule.
+Writing style, and the shapes of agents, skills, rule files, guides and case studies: `WRITING-GUIDE.md` § *Writing style* and § *Shapes by file kind* (D55).
 
 | File | Header | Sections |
 |---|---|---|

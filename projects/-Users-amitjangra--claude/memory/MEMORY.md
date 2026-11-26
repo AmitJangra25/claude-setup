@@ -2,6 +2,8 @@
 - [skillOverrides has four states](skill-overrides-name-only.md) — change via /skills and /plugin, never a hand-guessed key
 - [Stay on the asked task](stay-on-the-asked-task.md) — asked task only, reported short; extras go in "noting, not acting on"
 - [Propose skills from observed work](propose-skills-from-observed-work.md) — propose one for a repeated pattern; skip ones restating STANDARDS.md
+- [Proportionate checking](proportionate-checking.md) — tiny approved edits: diff, unchanged check, one format check per batch; full evidence only for drafts, rule/template or risky changes
+- [Agreement is not approval](agreement-is-not-approval.md) — discussion or dictated "I agree" is not a yes; edit only after an explicit yes to the approval question
 - [Preconditions are hard stops](preconditions-are-hard-stops.md) — a stated precondition fails: stop and report, even if harmless
 - [Read any project, write only here](main-session-opens-projects-by-add-dir.md) — reads open (D46); /add-dir only to change another folder, after approval
 - [Vthru Customer app (VT, folder `mobile`): nothing to GitLab](mobile-vt-nothing-to-gitlab.md) — never push/merge/pull; notes local; backup in private claude-setup only

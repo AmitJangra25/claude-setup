@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 20-11-2026
 
-Next ID: B39
+Next ID: B40
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -46,6 +46,7 @@ Phases 8–11 (D50, 20-11-2026) have their tasks in `harness/doc-structure-plan.
 | B36 | Done files only by size | The Voice-Flow Phase 6 pilot (its D22) kept finished work in one file with history in `docs/archive/`; the old trigger (about 300 lines or 10 done rows) created `-DONE`/`-OLD` files too early. This item authorises the § *Growth and rollover* change (D49) | yes | no | P3 | S | ~25k | [x] 13-11-2026 | None — rule in `DOCUMENTATION-STANDARD.md` § *Growth and rollover* |
 | B37 | Plan-reviewer report over its word limit | Plan-reviewer R4 report exceeded its 500-word limit (about 600 words, 26-11-2026); tighten report instructions during the planning redo | yes | no | P3 | S | ~5k | [ ] | Phase 13 (planning), D54 |
 | B38 | Session-start warnings (26-11-2026) | Session-start check: Voice-Flow and Emp portal `CLAUDE.md` drifted from their `project-rules/` copies; `ENVIRONMENT.md` 390 lines, over 300 (needs a rollover proposal) | yes | no | P3 | S | ~10k | [ ] | `ENVIRONMENT.md` size: Phase 17; project drift: Phase 20 (D54); drift resync follows the project-edit rules in `.claude/CLAUDE.md` |
+| B39 | Case study for `change-reviewer` | The agent template asks for one real case with its date under *Why this exists*. Dated `change-reviewer` results exist in `harness/doc-structure-plan.md` (e.g. 25-11-2026, Phase 10 WP3b part 2: an empty map made the coverage check pass silently, confirmed by test), but no case study is written, and the blind-test inputs hold none | yes | no | P3 | S | ~5k | [ ] | Write one case study once case studies have a home (Phase 16); use it in the Phase 14 agent rewrite (D54) |
 Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
 
 ## In full

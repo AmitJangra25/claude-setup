@@ -36,6 +36,7 @@
 !/SETUP-PLAN.md
 !/DOCUMENTATION-STANDARD.md
 !/DOCUMENT-MAP.md
+!/WRITING-GUIDE.md
 
 # --- allow: settings and statusline
 !/settings.json
@@ -124,6 +125,11 @@
 !templates/project-claude.md
 !templates/reference-doc.md
 !templates/record.md
+!templates/agent.md
+!templates/skill.md
+!templates/rule-file.md
+!templates/guide.md
+!templates/case-study.md
 
 # --- allow: harness/ — the setup's control desk (D33). Named files only.
 !harness/
@@ -137,6 +143,11 @@
 !harness/doc-structure-plan.md
 !harness/agent-brief.md
 !harness/project-cleanup-list.md
+#     drafts/: work-in-progress drafts kept outside agents/ and skills/ so they never load
+#     (Phase 12, D55). Named files only.
+!harness/drafts/
+!harness/drafts/change-reviewer-phase12.md
+!harness/drafts/change-reviewer-phase12-try2.md
 
 # --- allow: hand-written reviewer agents (Phase 9, D52), by name.
 #     Named files only, same rule as skills/.

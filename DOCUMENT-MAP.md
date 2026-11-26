@@ -23,6 +23,7 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 | `OLLAMA.md` | Rules | None | When chores may go to a local model | Loaded every turn | Local-model rules change | Setup | `skills/ollama/SKILL.md` |
 | `.claude/CLAUDE.md` | Rules | None | Setup-only rules | Loaded in every setup session | A setup-only rule changes | Setup | `harness/status.md` · `harness/session-check.sh` |
 | `DOCUMENTATION-STANDARD.md` | Rules | Full | How every document is written, numbered, grown and archived | Writing or restructuring a document | A real case changes a format (backlog item + D-number) | Setup | `templates/` · this map |
+| `WRITING-GUIDE.md` | Rules | Full | How every Claude Setup file is written: style, two levels, rule plus case, one form per file kind, words to use and avoid (D55) | Writing or rewriting a document, agent, skill, rule file, guide or case study | A real case changes a writing rule (backlog item + D-number) | Setup | `DOCUMENTATION-STANDARD.md` · `templates/` |
 | `DOCUMENT-MAP.md` | Reference | Full | This list | See header | See header | Setup | `DOCUMENTATION-STANDARD.md` |
 | `README.md` | Reference | Short | Front page: what this repo is, why it stays private | First time in the repo | Repo purpose or privacy reason changes | Setup | this map |
 | `ENVIRONMENT.md` | Reference | Full | Facts about this machine and its tools: permissions, rtk, status line, measurements | Before changing settings, permissions, hooks or thresholds — the relevant section only | A setting or tool changes | Setup | `settings.json` · `RTK.md` |
@@ -44,6 +45,7 @@ Owner "Setup" = a session started in `~/.claude`; "Project" = that project's own
 | `archive/README.md` | Reference | Short | Index of the archive | Recovery, or a pointer sends you there | An archive item is added | Setup | `archive/` (items) |
 | `archive/` (items) | Record | Record | Things that cannot be recreated | Recovery, or a pointer sends you there | Never edited; new items only; removed only under `DOCUMENTATION-STANDARD.md` § *Moving and archiving* | Setup | `archive/README.md` |
 | `templates/`: `templates/new-project.md` · `templates/roadmap.md` · `templates/roadmap-done.md` · `templates/deferred-improvements.md` · `templates/backlog-done.md` · `templates/decisions.md` · `templates/decisions-old.md` · `templates/handoff.md` · `templates/project-map.md` · `templates/project-claude.md` · `templates/reference-doc.md` · `templates/record.md` | Reference | Each form carries the header its document needs (*Structure per file*) | Blank forms for project documents | A step needs that form | A format in `DOCUMENTATION-STANDARD.md` changes | Setup | `DOCUMENTATION-STANDARD.md` |
+| `templates/agent.md` · `templates/skill.md` · `templates/rule-file.md` · `templates/guide.md` · `templates/case-study.md` | Reference | As `WRITING-GUIDE.md` § *Shapes by file kind* gives for each | Blank forms for the five file kinds (D55) | Writing a new file of that kind | The guide changes a shape | Setup | `WRITING-GUIDE.md` |
 | `DECISIONS.md` — planned (T30) | List | Full + Next ID | Every global D-number in one list | Checking or adding a decision | A decision is made or superseded | Setup | `SETUP-PLAN.md` |
 | `harness/rebuild.md` — planned (T31) | Reference | Full | Steps to rebuild the setup on a new machine or account | Rebuilding | A rebuild step changes | Setup | `SETUP-PLAN.md` |
 
@@ -105,6 +107,7 @@ These make things work; they are not read as documents and follow no document fo
 | `skills/handoff/SKILL.md` · `skills/send-for-review/SKILL.md` · `skills/documents/SKILL.md` | Handoff note on the `templates/handoff.md` shape · Amit's "send it for review" flow, started only when he types it · a checklist pointing to `DOCUMENTATION-STANDARD.md`. Gates stay in `STANDARDS.md` |
 | `skills/ollama/SKILL.md` | When and how a chore goes to the local model: task list, security rules, setup facts. `OLLAMA.md` points here |
 | `agents/change-reviewer.md` · `agents/plan-reviewer.md` | Fresh, read-only reviewers for cross-checks; they report and never approve. When to use them: `harness/cross-check.md` § *The reviewer* |
+| `harness/drafts/change-reviewer-phase12.md` · `harness/drafts/change-reviewer-phase12-try2.md` | Blind-test rewrites of `change-reviewer` (Phase 12 WP2, gate try 1 and try 2). Kept outside `agents/` so they never load; input to the Phase 14 rewrite (D55) |
 | Acceptance sheets | Checklists used to test a project's work |
 | `launch.json` | Editor settings for starting and debugging an app |
 | `harness/session-check.sh` | Script run at setup session start; warns about drift and risky rules |

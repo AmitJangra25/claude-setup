@@ -35,6 +35,12 @@ templates/decisions-old.md|short||
 templates/project-claude.md|none|Commands;Hard rules;Past defects;Documents|
 templates/reference-doc.md|full|Summary;Related|
 templates/record.md|record||
+templates/agent.md|none|Why this exists;What you are given;How to work;Lessons;Report|
+templates/skill.md|none|When to use;Steps;Example;Subject detail (optional);Self-check;Related|
+templates/rule-file.md|none|Related|
+templates/guide.md|full|Summary;When to use;Before you start;Common mistakes;Quick reference;Related|
+templates/case-study.md|record|What happened;Why it happened;What it cost;What changed;How to spot it again|
+WRITING-GUIDE.md|full|Contents;Summary;Writing style;Two levels;Rule plus case;Shapes by file kind;Agents;Skills;Rule files;Guides;Case studies;Examples;Words to use and avoid;Related|
 README.md|short|What this repo is;Why it stays private;Start here|
 harness/status.md|full|Current phase;In progress;Open;Blocked;Known contradictions;Decisions in force;Next gate;Older records|
 harness/backlog.md|full|To build;In full;Deferred;Known and accepted;Older records|yes

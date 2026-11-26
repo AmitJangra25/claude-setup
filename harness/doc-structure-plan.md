@@ -1040,21 +1040,7 @@ Scripts such as `statusline/context.py` are not documents; WP3b's catalog check 
 
 Homes for known duplicates (WP1 baseline § 6): model rule → `STANDARDS.md` · VT git rule → `PROJECTS.md` · session limits → `STANDARDS.md` · project descriptions → `PROJECTS.md` · Debugger v2 status → `PROJECTS.md` · "start from `~/.claude`" → `README.md` · 300-line and 80-line limits → `DOCUMENTATION-STANDARD.md` · `skillOverrides` facts → `ENVIRONMENT.md` (the memory note links to it, WP7).
 
-**Writing style.** Home from WP6b: `DOCUMENTATION-STANDARD.md` § *Writing style*.
-
-> Write the way you would explain it to a colleague: simple words, short sentences, the point first.
->
-> - **Conclusion first.** Each section opens with what is true now, in one or two sentences. Detail follows.
-> - **Everyday words.** Use jargon only when the word is the name of the thing, and explain it once.
-> - **As long as the facts need.** Never cut a fact to look short. Five lines are fine when five lines are needed. Cut repeats, not facts.
-> - **Say it once.** A fact has one home. Elsewhere, write one line and a link, not a summary of the home.
-> - **Now, not how we got here.** Live documents say what is true now. Keep a date or a "why" only when the reader needs it to trust or apply the fact — for example, when a figure was measured, or the reason a value was chosen. Keep a dated note when leaving it out would make another statement misleading. Change history stays in git.
-> - **Numbers carry their source.** Every measured figure gives its date and method, or says "estimate" or "not recorded".
-> - **Bold sparingly.** At most one key phrase per paragraph, for a warning or the thing to remember.
-> - **Pick the right shape.** Prose for reasons. A list for steps or separate items. A table when every row has the same fields.
-> - **An example where a rule could be misread.** One short example, not three.
-> - **Stable headings.** Renaming a heading breaks links. If you must rename one, run "what links here" and fix the links in the same change.
-> - **Avoid:** "Note that", "It is important to", stacked hedges, a rule restated in other words.
+**Writing style.** Moved word for word to `WRITING-GUIDE.md` § *Writing style* on 26-11-2026 (Phase 12 WP1), then adapted there. The home moves from `DOCUMENTATION-STANDARD.md` § *Writing style* (planned for WP6b, never built) to the guide; confirmed by Amit 26-11-2026 (WP1 clash 1), recorded in D55.
 
 **Contents lists.** A `## Contents` list goes in any document over about 150 lines, right after the header: one linked line per `##` section, with a few words on what it holds. None in shorter files, in always-loaded files (they cost tokens every turn), or in History records. In `DECISIONS.md`, the Index is the contents list.
 
@@ -1244,7 +1230,7 @@ The brief for the whole programme. Each phase is re-planned and re-discussed wit
 2. Every agent and skill passes a review against the writing standard.
 3. Every backlog item, to-do and open test is **closed** — fixed, or concluded with a reason.
 4. One phase timeline exists; no phase number is used twice.
-5. What loads every session is no bigger than today's baseline (measured with `/context` at the start of Phase 12 and again here).
+5. What loads every session is no bigger than today's baseline (measured with `/context` at the start of Phase 12 and again here). Every-session load baseline, 26-11-2026, Claude Code v2.1.332: 27.6k total; our part 10.7k (memory 9.3k · skills 1.0k · agents 0.4k). Final check 5 judges our part.
 6. **Blind comparison:** a fresh reviewer compares 5 of our files with 5 matching kit files without being told which is which; ours are judged equal or better.
 
 #### How we work in this programme (Amit's rules, 26-11-2026)
@@ -1259,6 +1245,7 @@ The brief for the whole programme. Each phase is re-planned and re-discussed wit
 - **New documents are created when needed,** in the new style and registered in the document map.
 - **Light sub-agents** with as little context as possible, but inside our environment: project facts (stack, words to use — React vs Flutter) live in small separate files the agent reads, not in the agent.
 - **Every tool Amit uses** is covered: VS Code, Antigravity, Android Studio and others — not one IDE.
+- **Any kind of work.** The writing guide, templates and skills serve coding and Claude Setup first, but must also fit business and other work. Subject-specific detail goes in an optional block. Skills add to agents, never replace them (Amit, 26-11-2026).
 - **`~/.claude` first**, then each project in its own session.
 - **Cross-check, discuss and plan** before every change; contradictions are cleared with Amit first.
 
@@ -1277,18 +1264,171 @@ The brief for the whole programme. Each phase is re-planned and re-discussed wit
 | 20 | Projects | Each project's `CLAUDE.md` and rules, one per session (old WP9 prompt idea) | Each project passes its check |
 | 21 | Obsidian | **Amit gives his Obsidian prompt when this phase starts** (Claude asks for it then and cross-checks it). Two sections: Personal (Claude Setup, personal projects, personal content) and Professional (work projects, connected to V-Thru's Obsidian vault, and that vault connected to Claude). Keep company knowledge in its own vault and link to it, never copy it in. Ignore `.obsidian/` in git. New-tool check first. Obsidian is already installed but not set up. Can move to right after Phase 16 if Amit wants to view the library in Obsidian during the rewrite | Amit's prompt goals met |
 
-#### Phase 12 plan (approved 26-11-2026, Amit)
+#### Phase 12 plan (approved 26-11-2026, Amit; revised 26-11-2026 after the plan cross-check, Amit)
 
-- **Kind:** Claude Setup change · **depth:** deep (changes a rule file) · **model:** Opus.
+- **Kind:** Claude Setup change · **depth:** deep (changes a rule file) · **priority:** P2 (blocks Phase 13) · **model:** Opus for the main session.
 - **Goal (Amit's words):** "whatever you write next … as similar as possible as backend cloud setup … written like a very expert engineer", keeping our setup as the base. Writing comes first because "if your writing skills are not good, then planning will never be good".
-- **Success measure:** (1) the guide and one template per file type exist; (2) blind test — a fresh helper given only the guide rewrites `agents/change-reviewer.md`, and Amit judges it "expert, like the backend kit" (yes/no); (3) the every-session load does not grow (the guide and templates load on need); (4) `doc-check.sh` no new warnings; (5) every clash between the guide and our existing rules (D53, `STANDARDS.md` § *Communicate*, memory notes on writing) listed and decided by Amit.
+- **Success measure (all yes):** (1) the writing guide and one template per file type exist — agent, skill, rule file, guide, case study (5); (2) **go/no-go gate** — Amit reads the blind-test rewrite of `change-reviewer` side by side with the kit's `plan-reviewer` and judges it "expert, like the kit" (yes/no; Amit decides, Claude does not); (3) every-session load, **our part only** (memory files + skills + agents in `/context`), is 10.7k or less, measured in a fresh session — the full 27.6k total is not judged, because Claude Code's own system prompt and tools are outside our control; (4) `doc-check.sh` no new warnings, with the new guide and all 5 templates on its checked list; (5) every clash between the guide and our existing rules listed, with every source checked named, and decided by Amit.
 - **Known clash to decide:** D53 says "now, not how we got here — change history stays in git"; the kit puts real failure stories in its files. Proposed answer: stories live in linked case-study files, rules stay one line.
-- **Files:** `DOCUMENTATION-STANDARD.md` (§ *Writing style*, new § *File shapes*) · new templates in `templates/` (agent, skill, rule file, case study) · `DOCUMENT-MAP.md` rows · `harness/status.md` · this section.
+- **Kit content rule:** copy the kit's **shape and writing style only**. Never copy company facts, private data or V-Thru-specific content into this repo.
+- **Files:** new `WRITING-GUIDE.md` (the writing guide; the D53 writing-style text in § *WP3 design* → **Writing style** moved in word for word first, then adapted; words to avoid live here) · `DOCUMENTATION-STANDARD.md` (one pointer line to the guide) · 5 new templates in `templates/` (agent, skill, rule file, guide, case study) · `.gitignore` (allow-lines for the guide, the 5 templates and `harness/drafts/`) · `harness/doc-check.sh` (`CHECKED` rows for the guide and the 5 templates) · `harness/drafts/change-reviewer-phase12.md` (blind-test draft, kept until Phase 14) · `DOCUMENT-MAP.md` rows · `SETUP-PLAN.md` (**D55, required**, citing D54) · `harness/status.md` · `.claude/current-task.md` · this section.
+- **Not changed:** `STANDARDS.md`, any `CLAUDE.md`, `agents/` (the draft never goes there: it would load every session and clash with the real reviewer's name), settings, hooks, permissions, other projects.
 - **Approach option for WP1 (Amit's suggestion):** "maybe copy the whole context over there and then fit our things … reverse engineer in my style" — start from the kit's own files and reshape them to our rules, rather than writing from zero. WP1 weighs this against writing fresh and recommends one.
-- **Packages:** WP0 full kit inventory (one Sonnet helper, about 80K, estimate), which also covers how the kit links its documents and how it uses its skills; WP0 also records the every-session load baseline for final check 5 (Amit types `/context` as the first message of a fresh session) → WP1 draft the guide and templates → WP2 blind test → WP3 cross-check with the **new** `plan-reviewer` (fresh session) and `change-reviewer` → WP4 record; commit on Amit's word. About 80–120K main-context tokens over 1–2 sessions, plus the inventory (estimate).
-- **Open (not blocking):** where case-study files live (a new `cases/` folder or inside the library) — decided in Phase 16.
-- **Undo:** `git revert` of the package commit.
-- **First step of the next session:** show Amit this whole list (phases, kit items, open items), confirm agreement, then agree how the writing-standard session runs.
+- **Packages:**
+  - **Step 0 — plan cross-check:** done 26-11-2026, `plan-reviewer` Opus, verdict concerns, 9 findings and 4 deferrals, all taken into this plan (44,487 measured).
+  - **WP0 — kit inventory:** one Sonnet helper lists **all 79 kit files** (51 `.md` plus 28 others: hooks, scripts, settings, setup files; screenshots and `.DS_Store` excluded) — take, adapt or skip, reason, target phase; team-only parts each get a verdict; also how the kit links its documents and uses its skills. Outside repos and skills the kit uses or links to: listed separately, each marked "discuss with Amit", never "take"; new-tool check before any is used. Done when Amit approves the table. About 95K helper + 10K main (estimate).
+  - **WP1 — guide and templates:** move the D53 text into `WRITING-GUIDE.md`, then write the guide (two levels; one-line rule plus linked case study; words to avoid), the 5 templates, the `.gitignore` and `doc-check.sh` lines, and decide the `examples/` idea (built in Phase 14–15 if kept). **Skill template (Amit, 26-11-2026):** fits any subject, coding detail in an optional block, one non-coding example; description 2–3 short lines (it loads every session); a small example inside `SKILL.md`, larger ones in `examples/` inside the same skill folder, made-up data only (each new folder needs its `.gitignore` allow-line); full self-check for important skills (anything risky — secrets, deleting, money, data, permissions — or used most days), a short check for the rest; before creating a skill Claude may ask Amit up to 5 short questions (an exception to `STANDARDS.md`'s two or three, recorded in D55; `STANDARDS.md` unchanged). Lists every source checked (D53, `STANDARDS.md` § *Communicate*, `DOCUMENTATION-STANDARD.md` § *Five file types*, *Principles* and *Update* rules, memory notes on writing here and in other projects) and every clash. **Amit decides every clash before WP2.** About 70–90K main (estimate).
+  - **WP2 — blind test:** a fresh Sonnet helper gets only the guide, the agent template and today's `agents/change-reviewer.md`, and writes the rewrite to `harness/drafts/change-reviewer-phase12.md`. About 30–40K helper (estimate).
+  - **Gate:** Amit compares the draft with the kit's `plan-reviewer`. At most two tries; after two "no" results, stop and re-plan with Amit.
+  - **WP3 — cross-check:** `change-reviewer` (Opus) on the finished guide, templates and lines; Amit decides each finding. Step 0 was this phase's `plan-reviewer` check. About 30–50K helper (estimate).
+  - **WP4 — record:** D55, `DOCUMENT-MAP.md`, `harness/status.md`, this section, the task record; Amit types `/context` as the first message of a fresh session and our part is recorded against 10.7k or less. Commit only on Amit's word. About 10K main (estimate).
+- **Sessions and cost:** this session — step 0 and WP0, then a handoff; next fresh session — WP1 → clash decisions → WP2 → gate → WP3 → WP4. About 290–360K including helpers, about 120K main (estimate; was 200–300K before the cross-check added the 28 files, the new guide file and the checker lines).
+- **Open (not blocking):** where case-study files live (a new `cases/` folder or inside the library) — decided in Phase 16, which re-checks the case-study template against that decision.
+- **Undo:** `git revert` of the Phase 12 commit (works because the `.gitignore` allow-lines put the new files under git).
+
+#### Phase 12 WP0 result — kit inventory (done 26-11-2026; approved by Amit)
+
+- **Count:** 79 files confirmed with `find` (51 `.md`, 28 others; `screenshots/` and `.DS_Store` excluded). **2 take · 36 adapt · 41 skip.** One Sonnet helper; it read the head of every file and sampled outlines, not every word. Cost 52,015 measured (estimate was about 95K).
+- **Outside repos and tools:** all marked "discuss with Amit"; none taken. New-tool check before any is used.
+- **Decisions (Amit, 26-11-2026):** (1) WP1 reads 5 kit files in full: `CLAUDE.md`, `agents/plan-reviewer.md`, `rules/diagnosis.md`, `GLOSSARY.md`, `skills/gitlab-wiki/references/page-templates.md` (about 15K, estimate). (2) The diagnosis rule does not load every session; it goes in the Phase 13 bug-fix guide. (3) The kit has no case-study files (they live in a separate notes vault outside the kit), so WP1 designs the case-study template from how the kit's rules point to their stories.
+- **Kit content rule applies:** shape and style only; the reasons below describe what a file does, never its contents.
+
+| # | File (kit-relative) | Kind | Verdict | Reason | Phase |
+|---|---|---|---|---|---|
+| 1 | .githooks/pre-commit | hook | adapt | Pre-commit secret and personal-data scan; fit to our files | 15 |
+| 2 | .gitignore | other | adapt | Ignore-by-default: new top-level folders ignored until added on purpose | 16 |
+| 3 | .gitleaks.toml | other | adapt | Secret-pattern config; keep the idea, write our own patterns | 15 |
+| 4 | agents-config/coding-standards.md | doc | skip | PHP review sources and tooling; project-specific | — |
+| 5 | agents-config/domain.md | doc | adapt | Says where glossary, decision records and deep notes live | 16 |
+| 6 | agents-config/issue-tracker.md | doc | skip | Ticket-file layout tied to ClickUp and third-party skills | — |
+| 7 | agents/architecture-reviewer.md | agent | adapt | Design and risk review lens with ranked findings | 14 |
+| 8 | agents/bug-fixer.md | agent | adapt | Reproduce with a test, then minimal fix; fits cause-first rule | 14 |
+| 9 | agents/conventions-reviewer.md | agent | skip | PHP convention checks | — |
+| 10 | agents/doctrine-expert.md | agent | skip | Doctrine/SQL advisor; PHP-specific | — |
+| 11 | agents/domain-reviewer.md | agent | skip | Business-correctness review of their product | — |
+| 12 | agents/plan-reviewer.md | agent | adapt | Plan audit against source of truth; compare with ours | 14 |
+| 13 | agents/readability-reviewer.md | agent | adapt | Clarity-only reviewer; narrow scope per reviewer | 14 |
+| 14 | agents/researcher.md | agent | adapt | Read-only exploration worker | 14 |
+| 15 | agents/task-executor.md | agent | adapt | Bounded task doer; fit to our approval gates | 14 |
+| 16 | agents/test-writer.md | agent | skip | PHP test conventions | — |
+| 17 | CLAUDE.local.example.md | doc | adapt | Personal-notes template kept out of git; structure only | 16 |
+| 18 | CLAUDE.md | rule | adapt | Layout, knowledge-placement rules, flow map; no company content | 16 |
+| 19 | env.sh | other | skip | Shell aliases for Docker | — |
+| 20 | examples/code.md | doc | skip | PHP code examples | — |
+| 21 | examples/commands.md | doc | skip | Docker/make command table | — |
+| 22 | examples/database.md | doc | skip | Their database patterns | — |
+| 23 | examples/delegation.md | doc | adapt | Request-to-agent routing table; examples-file pattern | 14 |
+| 24 | examples/faker-usage.md | doc | skip | PHP test factory guide | — |
+| 25 | examples/firebase-testing.md | doc | skip | Firebase emulator guide | — |
+| 26 | examples/planning-gates.md | doc | adapt | "Plans execute cold", source-verification gate, pilot slice | 13 |
+| 27 | examples/references/em-mocking.md | doc | skip | Doctrine mock patterns | — |
+| 28 | examples/references/faker-api-reference.md | doc | skip | Faker method list | — |
+| 29 | examples/testing.md | doc | skip | PHP testing patterns | — |
+| 30 | GLOSSARY.md | doc | take | Term, meaning, *Avoid* layout; style only, not their terms | 12 |
+| 31 | hooks/ask-main-checkout-switch.sh | hook | adapt | Asks before a branch switch in the main checkout | 15 |
+| 32 | hooks/check-php-conventions.sh | hook | skip | PHP linter; note its "hook, not agent" reasoning | — |
+| 33 | hooks/gate-delegation-rules.sh | hook | adapt | Forces reading the delegation rule before the first helper | 14 |
+| 34 | hooks/guard-destructive-git.sh | hook | adapt | Blocks destructive git; compare with ours | 15 |
+| 35 | hooks/guard-secrets-and-writes.sh | hook | adapt | Guard added where docs alone failed; stack parts removed | 15 |
+| 36 | hooks/guard-subagent-push.sh | hook | adapt | Helpers never push; fits our git rule | 14 |
+| 37 | hooks/on-worktree-created.sh | hook | adapt | Worktree setup; Docker parts removed | 14 |
+| 38 | hooks/on-worktree-removed.sh | hook | skip | Docker cleanup | — |
+| 39 | hooks/test-hooks.sh | hook | adapt | Tests hooks with made-up input in a temp folder | 15 |
+| 40 | README.md | doc | adapt | Numbered setup, verify step, troubleshooting; rebuild-guide model | 17 |
+| 41 | rules/database.md | rule | skip | Doctrine/migration rules | — |
+| 42 | rules/delegation.md | rule | adapt | Orchestrator limits, helper prompt must-haves, review waves | 14 |
+| 43 | rules/diagnosis.md | rule | take | "Silence is not disproof"; short and general (bug-fix guide, not every session) | 13 |
+| 44 | rules/domain-reporting.md | rule | skip | Their product's reporting rules | — |
+| 45 | rules/git.md | rule | adapt | Branch guards, check repo top before moving refs; compare with ours | 15 |
+| 46 | rules/observability.md | rule | skip | New Relic | — |
+| 47 | rules/php-code.md | rule | skip | PHP conventions | — |
+| 48 | rules/planning.md | rule | adapt | Check files before ranking options; drop ClickUp/Figma parts | 13 |
+| 49 | rules/testing.md | rule | skip | PHP test rules | — |
+| 50 | scripts/dump-diff.sh | script | skip | Their database dump diff | — |
+| 51 | scripts/stale-branches.sh | script | adapt | Finds local branches already merged upstream | 15 |
+| 52 | scripts/wait-stack-ready.sh | script | skip | Docker health wait | — |
+| 53 | settings.json | settings | adapt | Hook wiring by event; our hook rules apply; env block not copied | 15 |
+| 54 | setup.sh | setup | adapt | Checks first, then changes; rebuild model | 17 |
+| 55 | skills/code-review-and-quality/scripts/fetch-mr-discussions.py | script | skip | GitLab | — |
+| 56 | skills/code-review-and-quality/scripts/parse-diff.py | script | skip | GitLab | — |
+| 57 | skills/code-review-and-quality/SKILL.md | skill | adapt | Parallel reviewers by level, de-duplication; 1,228 lines, too long | 14 |
+| 58 | skills/git-workflow-and-versioning/SKILL.md | skill | adapt | Commit, hook-failure and branching conventions; compare with ours | 15 |
+| 59 | skills/gitlab-wiki/references/page-templates.md | doc | adapt | Guide, runbook and proposal page shapes for our templates | 12 |
+| 60 | skills/gitlab-wiki/references/wiki-structure.md | doc | skip | GitLab wiki layout | — |
+| 61 | skills/gitlab-wiki/scripts/publish-wiki.sh | script | skip | GitLab | — |
+| 62 | skills/gitlab-wiki/SKILL.md | skill | skip | GitLab | — |
+| 63 | skills/mr/references/glab-cli-reference.md | doc | skip | GitLab CLI | — |
+| 64 | skills/mr/scripts/merge-checked.sh | script | skip | GitLab | — |
+| 65 | skills/mr/scripts/push-branch.sh | script | skip | GitLab | — |
+| 66 | skills/mr/SKILL.md | skill | skip | GitLab | — |
+| 67 | skills/newrelic-cli/references/incident-investigation.md | doc | skip | New Relic | — |
+| 68 | skills/newrelic-cli/references/nerdgraph-dashboard.md | doc | skip | New Relic | — |
+| 69 | skills/newrelic-cli/SKILL.md | skill | skip | New Relic | — |
+| 70 | skills/pipeline-monitor/scripts/watch-pipeline.sh | script | skip | GitLab CI; "fail loud" idea noted | — |
+| 71 | skills/pipeline-monitor/SKILL.md | skill | skip | GitLab CI | — |
+| 72 | skills/resolve-conflicts/SKILL.md | skill | adapt | Conflict help with approval per file | 15 |
+| 73 | skills/review-plan/SKILL.md | skill | adapt | Five review lenses, ranked output, verdict; compare with ours | 13 |
+| 74 | skills/triage-mr-comments/scripts/fetch-triage-comments.py | script | skip | GitLab | — |
+| 75 | skills/triage-mr-comments/scripts/watch-mr-comments.sh | script | skip | GitLab | — |
+| 76 | skills/triage-mr-comments/SKILL.md | skill | adapt | Fix, dismiss or discuss triage idea; no GitLab | 15 |
+| 77 | skills/worktrees/SKILL.md | skill | adapt | Worktree mechanics apart from rules; Docker parts removed | 14 |
+| 78 | worktree/worktree-env | other | skip | Docker env per worktree | — |
+| 79 | worktreeinclude | other | adapt | Ignored files copied into new worktrees | 14 |
+
+**How the kit links documents:** plain path links (not clickable), `file -> Section` pointers; no index file — `CLAUDE.md` holds always-on rules and the flow map, `README.md` a contents table; each rule keeps hard rules short and long examples in `examples/`, which point back; case studies sit in a separate notes vault, named from rules; hooks are cited from the rule they enforce and say which failure caused them; `paths:` frontmatter on 6 of 9 rules; a hook forces reading the delegation rule before the first helper; where personal versus shared knowledge goes is stated outright.
+
+**How the kit uses skills:** one folder each, `SKILL.md` plus `references/` and `scripts/`; frontmatter `name`, `description`, `when_to_use`, `allowed-tools`, sometimes `argument-hint`; descriptions are trigger phrases; some third-party skills are user-only and the flow tells Claude to ask the user to type the next step; the feature flow chains skills by hand (ticket → grill → spec → tickets → implement in a fresh session); skills call agents (parallel reviewers); scripts do the fragile steps; skills point to rules for hard limits and keep only the "how".
+
+**Outside repos and tools (all "discuss with Amit"):** Matt Pocock skills plugin (grill, spec, tickets, implement, retro, review) · an Obsidian notes plugin · their Obsidian vault (product knowledge, case studies) · ClickUp CLI · Figma MCP · GitLab and `glab` (likely irrelevant) · New Relic CLI (likely irrelevant) · Claude Code docs · Docker and other stack tools · Gitleaks (the one clearly relevant to us).
+
+#### Phase 12 WP2 result — blind test (done 26-11-2026; Amit's go on WP2)
+
+- **Run:** one fresh `general-purpose` Sonnet helper (not a fork), told to read only `WRITING-GUIDE.md`, `templates/agent.md` and `agents/change-reviewer.md` and to write only `harness/drafts/change-reviewer-phase12.md`. It made 4 tool calls (Read ×3, Write ×1); 31,007 measured.
+- **Only the draft changed:** `git status` before and after differs by that one file; a file-time search from the start time found only the draft and Claude Code's own `sessions/` bookkeeping.
+- **Partly blind, not fully blind (Amit, 26-11-2026).** Hypothesis, not verified: Claude Code may give every helper the global `CLAUDE.md` and the list of agent types, and the normal helper route may not be able to turn this off.
+- **`plan-reviewer` mention (established):** the draft names `plan-reviewer` twice, but none of the three approved inputs does (checked with `grep`). So it came from outside those inputs; the exact source is not known. Amit's ruling: it counts neither for nor against the draft.
+- **"Real case" placeholder:** the draft leaves this line unfilled because no case study exists and the three blind-test inputs held no case. The template does not allow a placeholder for it. `templates/agent.md` lines 33–34 are not marked optional, while *Subject detail (optional)* is. Line 20 says "Delete every comment and every unused optional block before saving". `WRITING-GUIDE.md` § *Agents* step 3 asks for "one real case in two to four sentences, with its date". Neither file said what to do when no dated case exists, and that gap was the cause. It was fixed at the source on 26-11-2026 (Amit): both files now say "If no dated case is logged yet, leave out the Real case lines; never use a placeholder." The missing case is B39. The draft itself is not edited.
+- **Format check:** `harness/doc-check.sh` does not check the draft. Neither `harness/drafts/` nor `agents/` is in `CHECKED`; the draft path is only in `PLANNED` (line 68). The run showed the same 4 old warnings, none new. The script, `DOCUMENT-MAP.md` and registrations are not edited (Amit).
+- **Gate:** the side-by-side yes/no against the kit's `plan-reviewer` is not recorded here. WP3 waits for Amit's next instruction.
+  - Amit's gate decision: no — the draft is clean and focused, but not yet expert-like: no real case, thinner lenses and lessons, and a less actionable report format than the kit's plan-reviewer. The missing real case is B39. Do not start WP3.
+  - Feedback for try 2 (Amit, 26-11-2026): gate = no; the draft is clean and focused but not yet expert-like. Improve: concrete lenses, practical lessons with reasons, a more actionable report format. Keep the safety boundaries and a scope right for a change reviewer; copy no kit-specific content. Applied as general rules in `WRITING-GUIDE.md` § *Agents* steps 5–7 and `templates/agent.md`; try 2 keeps the same three inputs, so it stays blind.
+  - Amit's gate decision: yes — try 2 is expert-like for a lightweight read-only change reviewer. It has concrete lenses with evidence and finding rules, practical lessons with reasons, a clear actionable report, correct safety boundaries, and an appropriate scope. No real case yet; that remains B39 for the Phase 14 rewrite. The plan-reviewer mention is likely ambient-context contamination (source not verified) and counts neither for nor against the draft.
+
+#### Phase 12 WP3 result — cross-check (done 26-11-2026; Amit: WP3 complete)
+
+- **Run:** one fresh `change-reviewer` on Opus (not a fork; tools Read, Grep, Glob only), with a neutral packet: goal, the 8 changed files or line sets, what they touch, the brief `harness/agent-brief.md`. Drafts in `harness/drafts/` were out of scope and never opened. 19 tool calls, 40,000 measured. Verdict **concerns**, 6 findings.
+- **Nothing else changed by the review:** `git status` was the same before and after; a file-time search found only Claude Code's own `sessions/` bookkeeping.
+- **Findings and outcomes (Amit decided each):**
+  1. No `DOCUMENT-MAP.md` rows for the guide, the 5 templates and both drafts → **deferred to WP4**.
+  2. "Each new folder needs its own allow-line" left the files inside untracked → **fixed**: `WRITING-GUIDE.md` § *Skills* and `templates/skill.md` now say the folder and each file inside it need an allow-line.
+  3. "recorded in D55" stated before D55 exists → **fixed**: "to be recorded in D55".
+  4. "type" in the guide clashed with `DOCUMENTATION-STANDARD.md` § *Five file types* → **fixed**: renamed to "file kind" (not "form", which already means a template); one line says the five types still apply. Round 2 renamed the heading to *Shapes by file kind* and updated all three pointers (the guide's contents list, `DOCUMENTATION-STANDARD.md:116`, the `doc-check.sh` `CHECKED` row).
+  5. Stale `PLANNED` entries for the drafts → **fixed**: removed after confirming the dead-link check uses `[ -e ]`, which sees untracked files; the line is back to its committed form. The try-2 path is not added; no checked document links it.
+  6. Shapes table left out the optional *Subject detail* block → **fixed** in the Agent and Guide rows.
+- **Rounds:** both review-and-fix rounds are used. No re-review.
+- **Checks:** `doc-check.sh` after each round: the same 4 old warnings, none new. Both drafts unchanged (same `shasum` before and after).
+- **WP4 must:** create D55 in `SETUP-PLAN.md` and land it **in the same commit** as the Phase 12 files, so the "(D55)" reference at `DOCUMENTATION-STANDARD.md:116` and the "to be recorded in D55" line in the guide are true when committed; and add the `DOCUMENT-MAP.md` rows (finding 1) in that commit.
+
+#### Phase 12 WP4 result — record and measure (done 26-11-2026)
+
+- **Recorded:** D55 (`SETUP-PLAN.md`, full list below), 8 `DOCUMENT-MAP.md` rows (finding 1), `harness/status.md`.
+- **Measure (3):** missed by about 0.05k (10.75k against 10.7k). Cause: two memory-index lines added on Amit's request during Phase 12; no Phase 12 file loads every session. Accepted by Amit. Measured with `/context` as the first message of a fresh session, 26-11-2026, Claude Code v2.1.332: memory 9.4k · skills 992 · agents 362; total 27.7k.
+- **Measure (4):** `doc-check.sh` the same 4 old warnings, none new; the 8 new files have map rows (checked with the script's own map parsing, as they are not tracked until the commit).
+
+#### Phase 12 decisions and rule changes (D55)
+
+Decided by Amit, 26-11-2026. Index row: `SETUP-PLAN.md` D55.
+
+- **Decisions (WP1 clashes):**
+  1. The writing-style home is `WRITING-GUIDE.md`; `DOCUMENTATION-STANDARD.md` keeps one pointer to it. Amends D53, whose writing-style text moved there word for word first.
+  2. The same pointer covers the shapes of the five file kinds: agent, skill, rule file, guide, case study.
+  3. Agents and skills may tell one case inline in 2–4 sentences; anything longer becomes a linked case study.
+  4. The glossary word is "sub-agent"; `STANDARDS.md` is aligned in Phase 17, not now.
+  5. No repo-wide `examples/` folder: a skill keeps larger examples in its own `examples/` folder, an agent keeps one short example inline; built in Phases 14–15.
+  6. Before creating a skill, Claude may ask Amit up to five short questions, each with a recommended answer — an exception to `STANDARDS.md` § *Communicate*; `STANDARDS.md` unchanged.
+  7. Accepted as they stand: case studies as a record type (re-checked in Phase 16); the agent description limit (Phase 14); the memory-note overlap (Phase 16 audit); D55 cited before it existed.
+- **Rule changes from WP2 (after gate try 1):** an agent's *Why this exists* leaves out the real-case lines when no dated case is logged, never a placeholder (B39); lenses say what to check, what evidence to cite and what counts as a finding; lessons carry their reason; the report is ranked and actionable, with verified facts kept apart from assumptions. Gate passed on try 2.
+- **Rule changes from WP3:** "file kind" names the five shapes, so "type" keeps its `DOCUMENTATION-STANDARD.md` meaning; a new folder and each file inside it need their own `.gitignore` allow-line; drafts live in `harness/drafts/`, never in `agents/` or `skills/`, so they never load.
 
 #### What the kit offers (found 26-11-2026)
 
@@ -1312,18 +1452,21 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] B7 + B16 combined review (project map trial; overdue since 20-11-2026)
 
 **Phase 12 — Writing standard (~200–300K, 2 sessions)**
-- [ ] Full kit inventory: every file take / adapt / skip, reason, phase; team-only parts (GitLab, ClickUp, PHP, New Relic) each get a written verdict
-- [ ] How the kit links documents and uses skills
-- [ ] Every-session load baseline (`/context`, for final check 5)
+- [x] Full kit inventory: every file take / adapt / skip, reason, phase; team-only parts (GitLab, ClickUp, PHP, New Relic) each get a written verdict — 26-11-2026, WP0 result above
+- [x] How the kit links documents and uses skills — 26-11-2026, WP0 result above
+- [x] Every-session load baseline (`/context`, for final check 5) — 26-11-2026: Every-session load baseline, 26-11-2026, Claude Code v2.1.332: 27.6k total; our part 10.7k (memory 9.3k · skills 1.0k · agents 0.4k). Final check 5 judges our part.
 - [ ] Writing guide: two levels; rule plus case study; D53 history-vs-stories clash decided
 - [ ] Templates: agent, skill, rule file, guide, case study
 - [ ] Glossary with words to avoid
 - [ ] *kit* `examples/` folder idea
 - [ ] Amit's option weighed: copy the kit and reshape it into our style
 - [ ] Blind test on `change-reviewer`; cross-check with the new `plan-reviewer`
+- [ ] Go/no-go gate: after the Phase 12 blind test, Amit decides whether the rewritten change-reviewer reads expert and matches the intended style. If not, fix the writing guide before Phase 13 starts. Amit's decision is required; Claude does not decide.
 
 **Phase 13 — Planning (~250–350K, 2–3 sessions)**
+- [ ] Review sizes: small = self-check, no reviewer, only for low-risk one-file changes; medium = short review, Sonnet, about 300 words; big, new project, or any risk trigger = full review, Opus, about 500 words. One plan-reviewer; review size is set by the plan's depth. Small must never include permissions, hooks, settings, secrets, destructive actions, or rule-file changes. A specialist reviewer is added only if Phase 14 testing shows a real gap.
 - [ ] Planning skill and five guides in the new style (Claude Setup planning also covers documentation planning)
+- [ ] A "research and business" planning kind — today's kinds are all coding-shaped (Amit, 26-11-2026)
 - [ ] Start-cold plan format · evidence for every claim · deferrals check
 - [ ] *kit* Diagnosis rule (bug-fix guide)
 - [ ] *kit* Planning flow (grill → spec → tickets → implement → retro; new-tool check first)
@@ -1333,6 +1476,8 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 **Phase 14 — Sub-agents (~300–400K, 3 sessions)**
 - [ ] Light agents; project facts in separate files (React vs Flutter)
 - [ ] Rewrite `change-reviewer`
+- [ ] Start the change-reviewer rewrite from the Phase 12 blind-test version, if it passed the go/no-go gate.
+- [ ] B24: review the separate checker-helper idea.
 - [ ] Challenger agent · specialist reviewers
 - [ ] *kit* Worker agents (task executor, bug fixer, test writer)
 - [ ] *kit* Parallel work in separate repo copies (worktrees)
@@ -1346,6 +1491,7 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] Hook that blocks unproven excuses · hook test script
 - [ ] *kit* Helper scripts
 - [ ] B12 post-edit checker · B15 acting without approval · B21 git alias reads secrets
+- [ ] B25: review the engineering skills that were not copied.
 
 **Phase 16 — Full audit and priorities (~300–400K, 2–3 sessions)**
 - [ ] Every file, rule, contradiction, backlog item, test and phase audited
@@ -1358,14 +1504,18 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] The 3 *Known contradictions* in `harness/status.md`
 - [ ] Archive `harness/planning-research.md`
 - [ ] Tests TC3, TC6, TC8, TC12 closed (superseded unless still relevant)
+- [ ] B4 (TypeScript helper) and B18 (rtk update): give each a verdict, or record a reasoned still-waiting decision with its recheck date.
+- [ ] Audit all memory notes: keep, merge into a rule, or archive. Include the skill-overrides contradiction.
+- [ ] Decide whether Phase 21 (Obsidian) moves earlier.
 - [ ] P1 / P2 / P3 list approved; where case-study files live decided
+- [ ] Re-check the Phase 12 case-study template against where case-study files live
 
 **Phase 17 — Rewrite P1 (~500–700K, 4–6 sessions)**
 - [ ] `STANDARDS.md`
 - [ ] Decision-log split (`SETUP-PLAN.md` → `DECISIONS.md`) · C11 IDs and emails out
 - [ ] `ENVIRONMENT.md` (B38, too long)
 - [ ] Document map
-- [ ] *kit* One-command rebuild guide
+- [ ] *kit* One-command rebuild guide — also usable to set up Claude for another person (Amit, 26-11-2026)
 - [ ] Old material archived, never deleted
 
 **Phase 18 — Rewrite P2 (~400–600K, 3–5 sessions)**
