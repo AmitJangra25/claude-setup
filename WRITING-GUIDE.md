@@ -6,7 +6,7 @@ Read when: Writing or rewriting a document, agent, skill, rule file, guide or ca
 Owner: Claude (rules are Amit's decisions).
 Update rule: Only from a real case logged in the backlog, recorded as a D-number. Replace superseded text; no history here.
 Related: `DOCUMENTATION-STANDARD.md` (types, headers, IDs, naming) · `STANDARDS.md` § *Communicate* (how replies read) · `templates/` (one form per file kind) · `DOCUMENT-MAP.md`
-Status: draft — Phase 12 WP1 (26-11-2026); in force when Amit has decided the open clashes and Phase 12 closes (D55)
+Status: in force (D55)
 Last reviewed: 26-11-2026
 
 ## Contents
@@ -111,7 +111,7 @@ A skill is a how-to the main session follows. It adds to agents and never replac
 - **Fragile steps go in a script** in the skill's own `scripts/` folder, checked like code.
 - **Folder:** `skills/<name>/SKILL.md`, then `examples/` and `scripts/` only when needed.
 
-**Before creating a skill,** Claude may ask Amit up to five short questions, each with a recommended answer — an exception to the two or three in `STANDARDS.md` § *Communicate*, to be recorded in D55. The usual five: what is it for · when should it start, and when not · what does "done" look like · which step is risky · one real example of using it.
+**Before creating a skill,** Claude may ask Amit up to five short questions, each with a recommended answer — an exception to the two or three in `STANDARDS.md` § *Communicate*, recorded in D55. The usual five: what is it for · when should it start, and when not · what does "done" look like · which step is risky · one real example of using it.
 
 ## Rule files
 
@@ -147,7 +147,7 @@ A case study is the story of one real failure, kept so a rule's reason is never 
 
 ## Examples
 
-**Decision (Phase 12 WP1, for Amit to confirm):** keep the kit's examples idea, placed next to the thing it explains. A skill keeps its larger examples in its own `examples/` folder. An agent keeps one short example inline; a longer one becomes a case study. There is no repo-wide `examples/` folder: the kit's mixes command lists and project patterns, which here already have homes in reference documents, so a shared folder would hold copies. Built in Phases 14–15, when skills and agents are rewritten.
+**Decision (Amit, D55):** keep the kit's examples idea, placed next to the thing it explains. A skill keeps its larger examples in its own `examples/` folder. An agent keeps one short example inline; a longer one becomes a case study. There is no repo-wide `examples/` folder: the kit's mixes command lists and project patterns, which here already have homes in reference documents, so a shared folder would hold copies. Built in Phases 14–15, when skills and agents are rewritten.
 
 ## Words to use and avoid
 

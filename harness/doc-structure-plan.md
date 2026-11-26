@@ -1455,13 +1455,14 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [x] Full kit inventory: every file take / adapt / skip, reason, phase; team-only parts (GitLab, ClickUp, PHP, New Relic) each get a written verdict — 26-11-2026, WP0 result above
 - [x] How the kit links documents and uses skills — 26-11-2026, WP0 result above
 - [x] Every-session load baseline (`/context`, for final check 5) — 26-11-2026: Every-session load baseline, 26-11-2026, Claude Code v2.1.332: 27.6k total; our part 10.7k (memory 9.3k · skills 1.0k · agents 0.4k). Final check 5 judges our part.
-- [ ] Writing guide: two levels; rule plus case study; D53 history-vs-stories clash decided
-- [ ] Templates: agent, skill, rule file, guide, case study
-- [ ] Glossary with words to avoid
-- [ ] *kit* `examples/` folder idea
+- [x] Writing guide: two levels; rule plus case study; D53 history-vs-stories clash decided — 26-11-2026, `WRITING-GUIDE.md`, D55
+- [x] Templates: agent, skill, rule file, guide, case study — 26-11-2026, `templates/`, D55
+- [x] Glossary with words to avoid — 26-11-2026, `WRITING-GUIDE.md` § *Words to use and avoid*
+- [x] *kit* `examples/` folder idea — 26-11-2026, decided in D55 (no repo-wide folder; built in Phases 14–15)
 - [ ] Amit's option weighed: copy the kit and reshape it into our style
-- [ ] Blind test on `change-reviewer`; cross-check with the new `plan-reviewer`
-- [ ] Go/no-go gate: after the Phase 12 blind test, Amit decides whether the rewritten change-reviewer reads expert and matches the intended style. If not, fix the writing guide before Phase 13 starts. Amit's decision is required; Claude does not decide.
+  - Not recorded: the WP1 weighing of ‘copy the kit and reshape it into our style’ was not written to a tracked file. Leave open for a separate records task; does not block Phase 13.
+- [x] Blind test on `change-reviewer`; cross-check with the new `plan-reviewer` — 26-11-2026, § *Phase 12 WP2 result*
+- [x] Go/no-go gate: after the Phase 12 blind test, Amit decides whether the rewritten change-reviewer reads expert and matches the intended style. If not, fix the writing guide before Phase 13 starts. Amit's decision is required; Claude does not decide. — 26-11-2026, Amit: no on try 1, yes on try 2
 
 **Phase 13 — Planning (~250–350K, 2–3 sessions)**
 - [ ] Review sizes: small = self-check, no reviewer, only for low-risk one-file changes; medium = short review, Sonnet, about 300 words; big, new project, or any risk trigger = full review, Opus, about 500 words. One plan-reviewer; review size is set by the plan's depth. Small must never include permissions, hooks, settings, secrets, destructive actions, or rule-file changes. A specialist reviewer is added only if Phase 14 testing shows a real gap.
