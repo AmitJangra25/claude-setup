@@ -1846,7 +1846,7 @@ Separate small task (27-11-2026, not part of Phase 15): `STANDARDS.md` rule on n
 - **S3.1 Backlog (T5, T7, T8, T9):** close or move B12, B15, B21, B25, B47; B44 concluded; `WRITING-GUIDE.md` phrase (B47).
 - **S3.1 result (27-11-2026):** B12 moved to Phase 20 (backlog *Deferred*), B15 merged into B44, B21 closed on the S3.0 result, B25 closed, B44 concluded at the instruction rung, B47 closed with the phrase in `WRITING-GUIDE.md` § *Agents* item 1; B69 added for the P6 over-match. **Measure 7 passed.** doc-check.sh: 4 warnings, none new.
 - **S3.2 Record:** D58 results · `harness/status.md` · `doc-structure-plan.md` § 3 Phase 15 section and checklist (each line ticked or concluded) · `.claude/current-task.md`. `change-reviewer` (Sonnet) once on the diff. Use `wrap-up` at this session's own close (its first real run).
-- **S3.2 result (27-11-2026):** D58, `harness/status.md`, this section and the checklist, and `.claude/current-task.md` updated; measures 1–7 yes; the P6 over-match is left for Amit (B69). Phase 15 S3.0–S3.2 records written 27-11-2026; commit pending.
+- **S3.2 result (27-11-2026):** D58, `harness/status.md`, this section and the checklist, and `.claude/current-task.md` updated; measures 1–7 yes; the P6 over-match is left for Amit (B69). change-reviewer Sonnet, concerns; 2 blockers fixed; 3 nits (one accepted, two not acted on); about 48K tokens measured. Records committed 27-11-2026 (`035578f`). **Phase 15 complete 27-11-2026.**
 - **Done when:** measures 4 and 7 yes; checklist closed; commit and push on Amit's word.
 
 ##### Files
