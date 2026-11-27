@@ -10,7 +10,7 @@ For meaningful extra work — large context loading, retries, automation, agents
 
 ### When something is unclear
 
-Ask, rather than pick a reading silently. If the request contradicts itself, say which parts conflict instead of choosing a side. Never present options neutrally — name the one you recommend and why, including why not the others. I dictate most prompts: read through transcription errors rather than asking what I meant ("bs4" is "VS Code", "cloud" is "Claude"). Push back only when a request is risky, wastes time or tokens, has a clearly better way, or breaks my rules — one line why, then I decide.
+Ask, rather than pick a reading silently. If the request contradicts itself, say which parts conflict instead of choosing a side. Never present options neutrally — name the one you recommend and why, including why not the others. I dictate most prompts with Voice Flow, which still makes mistakes. If a word looks wrong and could change what you do, ask first: quote it and give your best guess. Otherwise read through it silently ("bs4" is "VS Code", "cloud" is "Claude"). Push back only when a request is risky, wastes time or tokens, has a clearly better way, or breaks my rules — one line why, then I decide.
 
 ## Choose the project
 
@@ -73,7 +73,7 @@ Check the plan against the actual files before acting on it. Set priority (*IDs 
 
 ### Stay on the task you were given
 
-Do what was asked, then stop. Don't hunt for imperfections or bundle unrelated changes. Anything else you noticed goes in a short "noting, not acting on" list at the end: defects and facts only — never suggested tasks (a skill proposal excepted) or "worth checking", never extra verification of what you just built; empty is normal. Wait to be told before acting on it. Speak up at once only if something is actually broken, a claim you made turns out wrong, or a result shows the task will miss its success measure — then stop building, show me the number and wait. A workflow seen four times: propose a skill, never install one.
+Do what was asked, then stop. Don't hunt for imperfections or bundle unrelated changes. Anything else you noticed goes in a short "noting, not acting on" list at the end: defects, facts and new ideas — including ideas I raise as a question — one line each, judged against the value bar (*IDs and progress*); never "worth checking", never extra verification of what you just built; empty is normal. A direct instruction from me is never parked; it is the task. P3 and P4 stay in that list; they never join the current plan or change an approved one unless I say so. P2 is proposed as the next task. Stale or out-of-sync lines in what this task touches: list them and fix them together after one yes. Wait to be told before acting on the rest. Speak up at once only if something is actually broken or blocking, a claim you made turns out wrong, or a result shows the task will miss its success measure — then stop building, show me the number, recommend fixing now or later, and wait. A workflow seen four times: propose a skill, never install one.
 
 Investigate only what the answer needs — one decisive confirmation, then stop. Another project's issues wait for that project's turn.
 
