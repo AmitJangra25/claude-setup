@@ -1,6 +1,6 @@
 ---
 name: wrap-up
-description: End-of-session wrap-up: turns the session's mistakes into proposed fixes and sorts scratch files.
+description: End-of-session wrap-up — turns the session's mistakes into proposed fixes and sorts scratch files.
   Use when Amit says "wrap up this session" or types /wrap-up at a session end.
   Not for a handoff note alone (handoff) or for committing (send-for-review).
 ---

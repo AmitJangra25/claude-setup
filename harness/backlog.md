@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 20-11-2026
 
-Next ID: B63
+Next ID: B64
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -55,6 +55,7 @@ Phases 8–11 (D50, 20-11-2026) have their tasks in `harness/doc-structure-plan.
 | B45 | `change-reviewer` claimed files read that it never opened | Found 27-11-2026 (Phase 14 WP2, P1 retry): "Facts checked" said RULES.md:5, README.md:15, report.py:20 and test_hours.py:18 were "read in the change-a files". Its transcript shows it read only the brief and `change-a.diff`, plus one Glob for RULES.md; none of those four files was opened. The same line admits the line numbers came from diff hunk offsets. The findings themselves were true . Second case, 27-11-2026 (P2 re-run): "Facts checked" claimed `RULES.md`, `report.py` and `test_hours.py` were read; the transcript shows only the brief, the diff, `hours.py` and `README.md` were opened, and the cited `report.py:58` is a diff line number (the file has 23 lines) | yes | no | P3 | S | ~3k | [x] 27-11-2026 | None — *Files opened* slot, `diff:<n>` rule and requester log check (B45 fix); fresh-session test P1, P2, P3 passed 27-11-2026, every *Files opened* entry in its log (D57) |
 | B46 | Agent template and `plan-reviewer`: unused numbered finding slots | Found 27-11-2026 (Phase 14 WP2, P2 re-run): the report skeleton did not say what happens to the numbered finding lines when only Nits are found. `agents/change-reviewer.md` § *Report* now says "Delete unused numbered lines too." (Amit, 27-11-2026); `templates/agent.md` and `agents/plan-reviewer.md` § *Report* do not yet say the same, so `plan-reviewer`, or a new agent built from the template, could repeat the gap | yes | no | P4 | S | ~2k | [x] 27-11-2026 | None — line added to both in the B45 fix; P3 test 27-11-2026 passed with the line in place (D57) |
 | B47 | Agent description example line must not name the agent itself | Found 27-11-2026 (Phase 14 cross-check, O2): `templates/agent.md` says the description's example line "does not name the agent itself"; `WRITING-GUIDE.md` § *Agents* item 1 lacks that rule, so the two disagree | yes | no | P4 | S | ~1k | [ ] | Add the missing phrase to `WRITING-GUIDE.md` § *Agents* item 1 when it is next edited, or in the Phase 16 audit |
+| B63 | Skill-header parse check in `harness/doc-check.sh` | Found 27-11-2026 (S2.0 early check): two skill headers did not parse as YAML — an unquoted `: ` in the description (`skills/wrap-up/SKILL.md` line 3, `skills/send-for-review/SKILL.md` line 4); wrap-up's description never loaded, and both passed session 1 and its review. Fixed with ` —`; no check catches the next one | yes | no | P2 | S | ~3k | [ ] | Add a check that parses every `skills/*/SKILL.md` header and warns on failure; not built in the S2.0 fix task |
 Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
 
 ## In full

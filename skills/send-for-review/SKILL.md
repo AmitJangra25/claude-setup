@@ -1,7 +1,7 @@
 ---
 name: send-for-review
 description: Amit's "send it for review" — branch, commit, push to GitHub, open a pull request, then stop.
-  Manual only: Amit types /send-for-review. Amit reviews and merges by hand; Claude never merges.
+  Manual only — Amit types /send-for-review. Amit reviews and merges by hand; Claude never merges.
   Not for CI watching, self-review or merging.
 disable-model-invocation: true
 ---
