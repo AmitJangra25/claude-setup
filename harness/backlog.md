@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 20-11-2026
 
-Next ID: B64
+Next ID: B68
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
