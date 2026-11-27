@@ -110,6 +110,8 @@
 !skills/send-for-review/SKILL.md
 !skills/documents/
 !skills/documents/SKILL.md
+!skills/wrap-up/
+!skills/wrap-up/SKILL.md
 
 # --- allow: templates read on demand (STANDARDS.md § How a task runs).
 #     Named files only, same rule as project-rules/.
