@@ -89,7 +89,7 @@ Start every new file of these five kinds from its form. A file kind is not a fil
 
 An agent is a separate worker with its own context. It knows only its own file and what it is handed, so the file must stand alone.
 
-1. **Description** (loads every session): two or three short lines — what it does, when to use it, what it is not for — plus at most one short example line; the full example goes in the body ([Examples](#examples)). Every extra example is paid for in every session. The example line is one `Example: <what Amit says> → <what the agent is handed>` line, never an `<example>` block. The body's *Example* adds the context and why this agent, and does not repeat the description's sentence.
+1. **Description** (loads every session): two or three short lines — what it does, when to use it, what it is not for — plus at most one short example line; the full example goes in the body ([Examples](#examples)). Every extra example is paid for in every session. The example line is one `Example: <what Amit says> → <what the agent is handed>` line, never an `<example>` block, and it does not name the agent itself. The body's *Example* adds the context and why this agent, and does not repeat the description's sentence.
 2. **Opening paragraph:** what the agent does, and what it never does (for a reviewer: approve, edit, commit, push, start another agent).
 3. **Why this exists:** the gap the agent closes, and one real case in two to four sentences, with its date. If no dated case is logged yet, leave out the Real case lines; never use a placeholder.
 4. **What you are given:** the inputs, numbered, and what to do when one is missing or unreadable.

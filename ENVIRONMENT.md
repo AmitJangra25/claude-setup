@@ -137,10 +137,10 @@ What stops and asks.
 ### Current setting
 
     allow   36 rules    read-only things stop prompting
-    ask    191 rules    all on things that change something, plus gist and Ollama cloud
+    ask    199 rules    all on things that change something, plus gist and Ollama cloud
     deny    74 rules    .env (34), private stores (34), project private data (6); not airtight
 
-Counted with `jq` on `settings.json`; re-checked 12-11-2026.
+Counted with `jq` on `settings.json`; re-checked 27-11-2026.
 
 **Read everywhere, write only here (D46, 10-11-2026).** `blockReadsOutsideWorkingDirectories` is **false** and `blockWritesOutsideWorkingDirectories` is **true**, globally. Any session reads `~/Documents/VS Code/**` and `~/.claude/**` with no box (other folders ask); Claude's Edit and Write tools cannot write outside the working folder — `/add-dir` a folder to change it. Denied for every session, Read and Bash: FinNode `private/`, Emp Portal `vthru.db*`, the Packbly folder.
 
@@ -153,6 +153,8 @@ Counted with `jq` on `settings.json`; re-checked 12-11-2026.
 **Re-measured 30-10-2026 (S4, D41)** (`jq`): `allow` **39 → 37** (`tree *`, `xxd *` out) and `ask` **96 → 188**. Read forms of `gh pr|repo|auth|api`, `git merge-base`, `security` and words inside grep or echo text no longer ask; the writing forms of those commands do, and so do the `git -<opt> …` spellings of dangerous git commands (`git -C dir push` matched no rule before), `git … --output`, `--upload-pack`, forced or discarding `switch` and `pull --rebase|--force`. Replayed against past Bash history: boxed calls 2,241 → 1,722. Record and the full rule list: `baselines/s4-permissions-30-10-2026.md`.
 
 **Asks added 01-11-2026 (audit C4, C5):** `*gh gist create*`, `*gh gist edit*`, `*ollama run *cloud*`. The `gist` token scope stays: the GitHub CLI cannot remove it (D45).
+
+**Asks added 27-11-2026 (B21, F1 closed):** `*git -c *`, `*git -* -c *`, `*git *--config-env*`, `*git config *`, `*git -* config *`, `*git *--exec-path*`, `*GIT_CONFIG_*`, `*GIT_EXEC_PATH*` — one-off git config can run an alias, so `git -c alias.x='!cat' x .env` printed a made-up `.env` with no box. Box tests on a throwaway repo (S3.0, 27-11-2026): that alias read boxed in auto mode ("overrides auto mode") and default mode on `Bash(*git -c *)`; `git switch -c x`, `git log -c` and `git -C <dir> status` did not box; matching is case-sensitive (inferred from P3 and P5); git rejects the joined `-calias…` form. Not proof against every route — see *Known gaps*.
 
 **Setup-only `ask` rules.** Sessions started in `~/.claude` also load six setup-only `ask` rules from `.claude/settings.json`: `git stash pop` and `git stash apply` (**D36**; four until S4 removed the blanket `git pull` and `git switch`, **D41**), and `git add`, `git -* add`, `git stage`, `git -* stage` (**D44**, 01-11-2026); they are not in the counts above.
 
@@ -227,7 +229,8 @@ The top-level file carried a single rule, `Bash(git add *)`, and an empty `skill
 - **`curl` and `rm` are the noisiest ask rules**, ~1.1 and ~1.2 prompts a session (date and method not recorded here). Most `curl` calls are the local Ollama health check on `127.0.0.1`, and most `rm` calls are scratchpad cleanup. Both were kept because narrowing a rule by argument is fragile — the docs are explicit that argument-constrained Bash patterns don't hold.
 - **Write-only-here limits (D46):** shell commands can still write anywhere — default mode boxes them ("sensitive file" for `~/.claude`), auto mode may approve them silently; the Write tool is blocked from `/private/tmp` in Voice-Flow despite its `additionalDirectories` (cause not found; shell use of `/tmp` works). A recursive search can still walk into personal data not named here.
 - **Private-store limits (D44):** a recursive search from a parent folder (`grep -rn x .` inside `~/.claude`, `grep -r x ~`) walks these files without naming them — in `~/.claude` use `git grep` or the Grep tool; globs and variables (`.ss?`, `${d}`); folder *names* via `|`, `;` or `$(…)` (contents still need a `/` and are denied); relative `backups/…` from `~/.claude`; other projects' personal data is not covered. Side effects: any command containing these words is refused — a commit message or doc grep must avoid them or use the Grep tool; a project command naming `.npmrc` is refused. Grep and Glob tools were not tested (not available in the testing session).
-- **`git add`:** `git -c alias.x=add` is not fenced (F1).
+- **git config bypass routes not fenced (B21, 27-11-2026; S2.3 review, not tested):** the Edit or Write tool can change `.git/config` directly; `--git-dir` or `GIT_DIR`; `GIT_PAGER`, `PAGER`, `GIT_EXTERNAL_DIFF`, `GIT_SSH_COMMAND`, `GIT_EDITOR`; a quoted or double-spaced `-c`. No rules added for these (Amit, 27-11-2026).
+- **`*git -* -c *` over-matches (27-11-2026):** `git -C <dir> switch -c y` boxed in auto mode on that rule (S3.0 P6, tested). By the same pattern, not tested: `git -C <dir> log -c`. Read-only `git config --get` and `git --exec-path` also box (S2.3 review, not tested). Rule fix not decided.
 - **`git remote`:** still untested whether `git remote -v add` matches.
 
 ## 4. Effort on Opus 5.5

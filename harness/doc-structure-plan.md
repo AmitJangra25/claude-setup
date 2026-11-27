@@ -1842,8 +1842,11 @@ Separate small task (27-11-2026, not part of Phase 15): `STANDARDS.md` rule on n
 
 **Session 3 — Box tests, wrap-up and backlog (fresh, Opus).** About 45–60K main + 20–30K helper (estimate).
 - **S3.0 B21 box tests (fresh session after the edit):** Amit creates the made-up `.env` by hand (the `.env` deny rule blocks Claude's Write tool); one command per message, Amit reads each box: alias read boxes in default and auto mode; the three ordinary commands do not; `git -cX` rejected by git. The made-up `.env` is deleted only after a two-method check and Amit's approval. Measure 4.
+- **S3.0 result (27-11-2026, fresh Opus session):** made-up `.env` in a throwaway repo `harness/drafts/s30/` (made by Amit with `!`). Seven probes, one per message, box text read by Amit. Alias read `git -c alias.x='!cat' x .env` **boxed** in auto mode (P1, `Bash(*git -c *)` "overrides auto mode"; the first run executed, box most likely approved unnoticed; rerun boxed) and default mode (P7, same rule). `git switch -c x`, `git log -c`, `git -C <dir> status` **no box** (P3–P5); rule matching is case-sensitive (inferred from P3 and P5). `git -calias…` (P2): no box; auto mode's safety check blocked it; Amit ran it and git rejected it (`unknown option`). **Measure 4 passed for the plan's three must-not-box probes (P3–P5); the added P6 failed.** P6 `git -C <dir> switch -c y`, added by Amit as a must-not-box probe: **FAILED planned expectation** — boxed on `Bash(*git -* -c *)`, rule over-match; rule fix not decided (rule change, out of S3.0). Test folder deleted 27-11-2026 after a two-method check (Amit).
 - **S3.1 Backlog (T5, T7, T8, T9):** close or move B12, B15, B21, B25, B47; B44 concluded; `WRITING-GUIDE.md` phrase (B47).
+- **S3.1 result (27-11-2026):** B12 moved to Phase 20 (backlog *Deferred*), B15 merged into B44, B21 closed on the S3.0 result, B25 closed, B44 concluded at the instruction rung, B47 closed with the phrase in `WRITING-GUIDE.md` § *Agents* item 1; B69 added for the P6 over-match. **Measure 7 passed.** doc-check.sh: 4 warnings, none new.
 - **S3.2 Record:** D58 results · `harness/status.md` · `doc-structure-plan.md` § 3 Phase 15 section and checklist (each line ticked or concluded) · `.claude/current-task.md`. `change-reviewer` (Sonnet) once on the diff. Use `wrap-up` at this session's own close (its first real run).
+- **S3.2 result (27-11-2026):** D58, `harness/status.md`, this section and the checklist, and `.claude/current-task.md` updated; measures 1–7 yes; the P6 over-match is left for Amit (B69). Phase 15 S3.0–S3.2 records written 27-11-2026; commit pending.
 - **Done when:** measures 4 and 7 yes; checklist closed; commit and push on Amit's word.
 
 ##### Files
@@ -1971,14 +1974,14 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [x] Every agent has its one example (`WRITING-GUIDE.md` § *Examples*); settle the description-versus-body wording, with its every-session load measured — 27-11-2026, one `Example:` line and one `## Example` per agent; rule in `WRITING-GUIDE.md` § *Agents* (B43); agents load 240 tokens (`/context`, fresh session 27-11-2026), under the 0.26k cap
 
 **Phase 15 — Skills and hooks (~350–450K, 3–4 sessions)**
-- [ ] Skills rewritten and added in the new style; old Phase 11 candidate skills judged
-- [ ] Instruction → rule → hook ladder
-- [ ] End-of-session wrap-up (retro → archive) turning mistakes into rules
-- [ ] Hook that blocks unproven excuses · hook test script
-- [ ] *kit* Helper scripts
-- [ ] B12 post-edit checker · B15 acting without approval · B21 git alias reads secrets
-- [ ] B25: review the engineering skills that were not copied.
-- [ ] Every skill has its one small example in `SKILL.md`, with larger examples in its `examples/` folder (`WRITING-GUIDE.md` § *Examples*)
+- [x] Skills rewritten and added in the new style; old Phase 11 candidate skills judged — 27-11-2026: `documents`, `handoff`, `ollama`, `send-for-review` rewritten, `wrap-up` added (measure 2); candidate skills: no S1.2 result recorded, so none built and B57 stays deferred with its trigger
+- [x] Instruction → rule → hook ladder — 27-11-2026, concluded: B44 stays at the instruction rung, B15 merged into it; `wrap-up` logs second cases (D58 T5)
+- [x] End-of-session wrap-up (retro → archive) turning mistakes into rules — 27-11-2026: `wrap-up` skill built (S1.3) and discovered (S2.0); first real run at the Phase 15 close
+- [x] Hook that blocks unproven excuses · hook test script — 27-11-2026: `harness/hook-test.sh` built and seen to fail (measure 5); unproven-excuse hook concluded later, no logged case (B54)
+- [x] *kit* Helper scripts — 27-11-2026, concluded: `harness/hook-test.sh` (kit 39, adapted); the stale-branches script waits for Phase 20 (B49)
+- [x] B12 post-edit checker · B15 acting without approval · B21 git alias reads secrets — 27-11-2026: B12 moved to Phase 20, B15 merged into B44, B21 closed (measure 4)
+- [x] B25: review the engineering skills that were not copied. — 27-11-2026, closed: built-in `code-review`, `security-review`, `simplify` and our rules cover them (D58 T7)
+- [x] Every skill has its one small example in `SKILL.md`, with larger examples in its `examples/` folder (`WRITING-GUIDE.md` § *Examples*) — 27-11-2026: one `## Example` in each of our six skills (`grep -c`, checked today); no `examples/` folder needed (D58 T6)
 
 **Phase 16 — Full audit and priorities (~300–400K, 2–3 sessions)**
 - [ ] Every file, rule, contradiction, backlog item, test and phase audited
