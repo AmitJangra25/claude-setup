@@ -113,6 +113,7 @@ These make things work; they are not read as documents and follow no document fo
 | `launch.json` | Editor settings for starting and debugging an app |
 | `harness/session-check.sh` | Script run at setup session start; warns about drift and risky rules, and prints the current next gate from `harness/status.md` |
 | `harness/doc-check.sh` | Warn-only format check (`DOCUMENTATION-STANDARD.md` § *Format check*): format, links, catalog coverage; registered rules in the full run; `--links-to <file>[#section]` lists what links there |
+| `harness/hook-test.sh` | Hook test: in a temp clone, the pre-commit hook blocks a staged made-up secret and passes a clean commit; checks the rtk `git status` rewrite and that `session-check.sh` runs; `--no-hook` for the seen-to-fail run |
 
 ## Local-only (not in git)
 
