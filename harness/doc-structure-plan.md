@@ -1737,7 +1737,7 @@ Reports: `harness/drafts/phase14/reports/P1-b45.md`, `P2-b45.md`, `P3-b45.md` an
 - **Kind:** Claude Setup change · **depth:** deep (settings, permissions, hooks) · **review size:** full (`plan-reviewer` Opus; concerns, all findings applied) · **priority:** P3 (programme work; nothing broken).
 - **Models:** session 1 Sonnet (skills) · session 2 Opus (hooks and permissions) · session 3 Opus (permission box tests first, then wrap-up).
 - **Shape:** 9 items taken now, 12 later (L1–L10 from Phase 15 plus two Phase 14 additions, the researcher L11 and kit 23 routing; each with its trigger), 4 rejected, plus the kit code-review skill rejected from Phase 14. Most kit hooks have no logged case here and our ask rules already cover what they block, so the ladder (`WRITING-GUIDE.md` § *Rule plus case*) puts them in "later".
-- **Total (estimate):** about 310–425K including helpers, over 3 fresh sessions.
+- **Total (estimate):** about 285–390K including helpers, over 3 fresh sessions (planning not included; see § *Tokens*).
 
 ##### Goal and success measures
 
@@ -1796,7 +1796,7 @@ Reports: `harness/drafts/phase14/reports/P1-b45.md`, `P2-b45.md`, `P3-b45.md` an
 | L7 | Unproven-excuse hook | First logged case (`wrap-up` records it) |
 | L8 | Kit 35 part 2: no shell writes into `.claude/` or memory | First logged case; owner: `wrap-up`; recheck at Phase 16 audit |
 | L9 | Kit 53: hook wiring in `settings.json` | With the first new Claude Code hook |
-| L10 | Old candidate skills: testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review | S1.2 gap check finds a real gap; otherwise stays later with "covered by …" |
+| L10 | Old candidate skills: testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review | S1.2 gap check finds a real gap; otherwise stays later with "covered by …". S1.2 not run; carried by B57 into the Phase 16 audit |
 | L11 | Researcher helper (Phase 14 addition) | Research jobs repeat |
 
 **Don't (4):** kit 35 part 1 (stage database guard; their server only) · kit 76 comment triage (GitLab; built-in `/steward` covers GitHub) · kit 45 `rules/git.md` (`STANDARDS.md` § *Git* covers it) · kit 58 git-workflow skill (`send-for-review` and § *Git* cover it).
@@ -1844,7 +1844,7 @@ Separate small task (27-11-2026, not part of Phase 15): `STANDARDS.md` rule on n
 - **S3.0 B21 box tests (fresh session after the edit):** Amit creates the made-up `.env` by hand (the `.env` deny rule blocks Claude's Write tool); one command per message, Amit reads each box: alias read boxes in default and auto mode; the three ordinary commands do not; `git -cX` rejected by git. The made-up `.env` is deleted only after a two-method check and Amit's approval. Measure 4.
 - **S3.0 result (27-11-2026, fresh Opus session):** made-up `.env` in a throwaway repo `harness/drafts/s30/` (made by Amit with `!`). Seven probes, one per message, box text read by Amit. Alias read `git -c alias.x='!cat' x .env` **boxed** in auto mode (P1, `Bash(*git -c *)` "overrides auto mode"; the first run executed, box most likely approved unnoticed; rerun boxed) and default mode (P7, same rule). `git switch -c x`, `git log -c`, `git -C <dir> status` **no box** (P3–P5); rule matching is case-sensitive (inferred from P3 and P5). `git -calias…` (P2): no box; auto mode's safety check blocked it; Amit ran it and git rejected it (`unknown option`). **Measure 4 passed for the plan's three must-not-box probes (P3–P5); the added P6 failed.** P6 `git -C <dir> switch -c y`, added by Amit as a must-not-box probe: **FAILED planned expectation** — boxed on `Bash(*git -* -c *)`, rule over-match; rule fix not decided (rule change, out of S3.0). Test folder deleted 27-11-2026 after a two-method check (Amit).
 - **S3.1 Backlog (T5, T7, T8, T9):** close or move B12, B15, B21, B25, B47; B44 concluded; `WRITING-GUIDE.md` phrase (B47).
-- **S3.1 result (27-11-2026):** B12 moved to Phase 20 (backlog *Deferred*), B15 merged into B44, B21 closed on the S3.0 result, B25 closed, B44 concluded at the instruction rung, B47 closed with the phrase in `WRITING-GUIDE.md` § *Agents* item 1; B69 added for the P6 over-match. **Measure 7 passed.** doc-check.sh: 4 warnings, none new.
+- **S3.1 result (27-11-2026):** B12 moved to Phase 20 (backlog *Deferred*), B15 merged into B44, B21 closed on the S3.0 result, B25 closed, B44 concluded at the instruction rung (reopened 27-11-2026 at the wrap-up: second case, backlog B44), B47 closed with the phrase in `WRITING-GUIDE.md` § *Agents* item 1; B69 added for the P6 over-match. **Measure 7 passed.** doc-check.sh: 4 warnings, none new.
 - **S3.2 Record:** D58 results · `harness/status.md` · `doc-structure-plan.md` § 3 Phase 15 section and checklist (each line ticked or concluded) · `.claude/current-task.md`. `change-reviewer` (Sonnet) once on the diff. Use `wrap-up` at this session's own close (its first real run).
 - **S3.2 result (27-11-2026):** D58, `harness/status.md`, this section and the checklist, and `.claude/current-task.md` updated; measures 1–7 yes; the P6 over-match is left for Amit (B69). change-reviewer Sonnet, concerns; 2 blockers fixed; 3 nits (one accepted, two not acted on); about 48K tokens measured. Records committed 27-11-2026 (`035578f`). **Phase 15 complete 27-11-2026.**
 - **Done when:** measures 4 and 7 yes; checklist closed; commit and push on Amit's word.
@@ -1856,8 +1856,8 @@ Separate small task (27-11-2026, not part of Phase 15): `STANDARDS.md` rule on n
 | `harness/doc-structure-plan.md`, `SETUP-PLAN.md` (D58), `harness/status.md`, `.claude/current-task.md`, `harness/backlog.md` | 1, 3 | records |
 | `skills/{documents,handoff,ollama,send-for-review}/SKILL.md` | 1 | rewrite |
 | `skills/wrap-up/SKILL.md` (new) | 1 | new skill |
-| `settings.json` | 2 | 6 ask rules (edited by Amit) |
-| `ENVIRONMENT.md` § 3 | 2 | counts, F1, limit |
+| `settings.json` | 2 | 8 ask rules; `ship-local` and `steward` set to `user-invocable-only` (D58) (both edited by Amit) |
+| `ENVIRONMENT.md` § 3 | 3 | counts, F1, limit |
 | `harness/hook-test.sh` (new), `.gitignore` | 2 | test script, allow-line(s) |
 | `WRITING-GUIDE.md` | 3 | one phrase (B47) |
 
@@ -1899,7 +1899,7 @@ Each needs Amit's word in that session: before moving the plan and writing D58 (
 | **Phase 15 build (sessions 1–3)** | | | **285–390K** |
 | **Including planning** | | | **425–550K** |
 
-Planning cost is shown separately because it is already spent; the build itself (285–390K) sits inside the outline's 350–450K range.
+Planning cost is shown separately because it is already spent; the build itself (285–390K) is at or below the outline's 350–450K range.
 
 ##### Rules check
 
@@ -1974,8 +1974,8 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [x] Every agent has its one example (`WRITING-GUIDE.md` § *Examples*); settle the description-versus-body wording, with its every-session load measured — 27-11-2026, one `Example:` line and one `## Example` per agent; rule in `WRITING-GUIDE.md` § *Agents* (B43); agents load 240 tokens (`/context`, fresh session 27-11-2026), under the 0.26k cap
 
 **Phase 15 — Skills and hooks (~350–450K, 3–4 sessions)**
-- [x] Skills rewritten and added in the new style; old Phase 11 candidate skills judged — 27-11-2026: `documents`, `handoff`, `ollama`, `send-for-review` rewritten, `wrap-up` added (measure 2); candidate skills: no S1.2 result recorded, so none built and B57 stays deferred with its trigger
-- [x] Instruction → rule → hook ladder — 27-11-2026, concluded: B44 stays at the instruction rung, B15 merged into it; `wrap-up` logs second cases (D58 T5)
+- [x] Skills rewritten and added in the new style; old Phase 11 candidate skills judged — 27-11-2026: `documents`, `handoff`, `ollama`, `send-for-review` rewritten, `wrap-up` added (measure 2); candidate skills: S1.2 gap check not run; none built; carried by B57 into the Phase 16 audit
+- [x] Instruction → rule → hook ladder — 27-11-2026, concluded: B44 stays at the instruction rung, B15 merged into it; `wrap-up` logs second cases (D58 T5). Reopened 27-11-2026: the wrap-up logged a second case (backlog B44)
 - [x] End-of-session wrap-up (retro → archive) turning mistakes into rules — 27-11-2026: `wrap-up` skill built (S1.3) and discovered (S2.0); first real run at the Phase 15 close
 - [x] Hook that blocks unproven excuses · hook test script — 27-11-2026: `harness/hook-test.sh` built and seen to fail (measure 5); unproven-excuse hook concluded later, no logged case (B54)
 - [x] *kit* Helper scripts — 27-11-2026, concluded: `harness/hook-test.sh` (kit 39, adapted); the stale-branches script waits for Phase 20 (B49)
@@ -1999,6 +1999,14 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] Decide whether Phase 21 (Obsidian) moves earlier.
 - [ ] P1 / P2 / P3 list approved; where case-study files live decided
 - [ ] Re-check the Phase 12 case-study template against where case-study files live
+- Phase 12–15 audit findings (27-11-2026), each with priority and handling phase:
+  - [ ] B63 skill-header check — P2, first Phase 16 task
+  - [ ] B69 `*git -* -c *` over-match — P2, open for Amit's decision; rule narrowing and box tests
+  - [ ] B44 and B67 one-line instructions — P2, open for Amit's wording decision
+  - [ ] `plan-reviewer` vs `WRITING-GUIDE.md` mismatches (description length, two cases, no "why it matters" slot, extra sections recorded only in D57, no project facts-file path) — P3, B61 / Phase 16 final check
+  - [ ] `harness/status.md` housekeeping (finished *In progress* rows, old Phase 11 pointers, known-contradictions count) — P3, Phase 16
+  - [ ] Old plan history and timeline (superseded Phase 13 bullets unmarked, entries out of date order, stale "nothing here is built yet") — P3, Phase 16
+  - [ ] `STANDARDS.md` "until T30" and `WRITING-GUIDE.md` status wording — P3, Phase 17
 
 **Phase 17 — Rewrite P1 (~500–700K, 4–6 sessions)**
 - [ ] `STANDARDS.md`
