@@ -107,7 +107,7 @@ These make things work; they are not read as documents and follow no document fo
 | `skills/handoff/SKILL.md` · `skills/send-for-review/SKILL.md` · `skills/documents/SKILL.md` | Handoff note on the `templates/handoff.md` shape · Amit's "send it for review" flow, started only when he types it · a checklist pointing to `DOCUMENTATION-STANDARD.md`. Gates stay in `STANDARDS.md` |
 | `skills/ollama/SKILL.md` | When and how a chore goes to the local model: task list, security rules, setup facts. `OLLAMA.md` points here |
 | `agents/change-reviewer.md` · `agents/plan-reviewer.md` | Fresh, read-only reviewers for cross-checks; they report and never approve. When to use them: `harness/cross-check.md` § *The reviewer* |
-| `harness/drafts/change-reviewer-phase12.md` · `harness/drafts/change-reviewer-phase12-try2.md` | Blind-test rewrites of `change-reviewer` (Phase 12 WP2, gate try 1 and try 2). Kept outside `agents/` so they never load; input to the Phase 14 rewrite (D55) |
+| `harness/drafts/change-reviewer-phase12.md` · `harness/drafts/change-reviewer-phase12-try2.md` | Blind-test rewrites of `change-reviewer` (Phase 12 WP2, gate try 1 and try 2). Kept outside `agents/` so they never load; try 2 was the input to the Phase 14 rewrite, completed 27-11-2026 (D55, D57) |
 | Acceptance sheets | Checklists used to test a project's work |
 | `launch.json` | Editor settings for starting and debugging an app |
 | `harness/session-check.sh` | Script run at setup session start; warns about drift and risky rules |
