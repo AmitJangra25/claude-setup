@@ -140,6 +140,7 @@
 !harness/cross-check.md
 !harness/session-check.sh
 !harness/doc-check.sh
+!harness/hook-test.sh
 !harness/overview.md
 !harness/models.md
 !harness/backlog.md
