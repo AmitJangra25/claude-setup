@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 20-11-2026
 
-Next ID: B68
+Next ID: B69
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -60,6 +60,7 @@ Phases 8–11 (D50, 20-11-2026) have their tasks in `harness/doc-structure-plan.
 | B65 | Unchecked data claim before an Ollama decision | Found 27-11-2026 (S2.0 retest): Claude said "The Vthru projects hold real data" without reading `PROJECTS.md` § *Project data*, which says only VT holds real data; Emp Portal (Vthru-Emp) uses dummy data. The claim was partly wrong. First case | yes | no | P3 | S | ~1k | [ ] | No new text now: `OLLAMA.md` already points to that section. On a second case, propose one line in the `ollama` skill |
 | B66 | Handoff presented an unapproved measure as agreed, and called drift "Known" without a check | Found 27-11-2026 (S2.0 retest): the chat handoff's *Goal / success measure* gave a measure Claude wrote, never approved by Amit; its *Noting* list called the Voice-Flow and Emp portal drift "Known" unchecked (it is in `harness/status.md` § *Open*, so true, but not checked). First case | yes | no | P3 | S | ~1.5k | [ ] | One line in `skills/handoff/SKILL.md` step 4: "If no measure was agreed, write *proposed, not approved*; say where each 'known' claim was checked" |
 | B67 | Claude trusted a summary instead of the source | Found 27-11-2026 (Phase 15 S2.0), three cases in one session, each one read away from the source: (1) did not read `harness/status.md` at Orient (`.claude/CLAUDE.md`), treating the first S2.0 probe as a simple task, so the vague `documents` and `ollama` probes were not flagged before they failed; (2) recommended `/skills` for built-in skills from the one-line memory index, without opening the note; `/skills` does not list them; (3) gave the key `ship` before checking, while saying it was unsure; the real name is `ship-local`. First logged case | yes | no | P2 | S | ~2k | [~] | Applied (Amit, 27-11-2026): `harness/session-check.sh` prints the next gate every setup session; memory note `skill-overrides-name-only.md` and its index line corrected. No new rule (`STANDARDS.md` § *Evidence, not assumption* covers it). On a second case, propose a one-line rule |
+| B68 | Skill loaded after work started | Found 27-11-2026 (Phase 15 S2.0 probe 1): on "check `templates/handoff.md` before I restructure it", Claude read the file and ran three searches before loading `documents`, treating it as a simple read; the description matched from the start. First logged case | yes | no | P3 | S | ~1k | [ ] | Logged at the lowest rung, no change now. On a second case, propose one instruction line |
 Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
 
 ## In full
