@@ -1,5 +1,5 @@
 - [Claude setup status](claude-setup-status.md) — status lives in ~/.claude/harness/status.md; when to read it: .claude/CLAUDE.md
-- [skillOverrides has four states](skill-overrides-name-only.md) — change via /skills and /plugin, never a hand-guessed key
+- [skillOverrides has four states](skill-overrides-name-only.md) — /skills, /plugin; built-ins by hand under their real name; check in a fresh /context
 - [Stay on the asked task](stay-on-the-asked-task.md) — asked task only, reported short; extras go in "noting, not acting on"
 - [Propose skills from observed work](propose-skills-from-observed-work.md) — propose one for a repeated pattern; skip ones restating STANDARDS.md
 - [Proportionate checking](proportionate-checking.md) — tiny approved edits: diff, unchanged check, one format check per batch; full evidence only for drafts, rule/template or risky changes

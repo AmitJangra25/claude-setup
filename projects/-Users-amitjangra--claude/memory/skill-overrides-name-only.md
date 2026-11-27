@@ -1,11 +1,11 @@
 ---
 name: skill-overrides-name-only
-description: "skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; bare keys work, plugin skills are locked and only /plugin reaches them"
+description: "skillOverrides has four states, not two — name-only keeps a skill usable and suggestable for ~15 tokens instead of its full description; built-in skills are not in /skills, so they are set by hand in settings.json under their real internal name; plugin skills are locked and only /plugin reaches them"
 metadata:
   node_type: memory
   type: reference
   originSessionId: 42a18e81-f0ae-4b86-9292-2e939ca73c2f
-  modified: 2026-10-29T14:06:27.441Z
+  modified: 2026-11-27T08:47:28.725Z
 ---
 
 `skillOverrides` in `settings.json` sets each skill to one of four states:
@@ -33,6 +33,13 @@ definition, and it is not the name `/context` prints — `/context` shows
 `doc-coauthoring` under "claude.ai sync", while the menu wrote
 `anthropic-skills:doc-coauthoring`. Three key formats were guessed here before the menu
 was asked, and every one was a silent no-op.
+
+**Built-in skills are not in the `/skills` menu — found 27-11-2026.** Amit opened `/skills`
+to set `ship` and `steward`; neither was listed ("No changes"). They are set by hand in
+`settings.json` → `skillOverrides`, using the **real internal name**, not the one `/context`
+shows: `/ship` is an alias of the built-in `ship-local` (the name list inside Claude Code
+2.1.332 reads `Q_e="ship-local"`, `XA="steward"`, next to `loop` and `schedule`). Find the
+real name before anyone edits; verify with `/context` in a **fresh** session.
 
 **`/skills` writes to `~/.claude/settings.local.json`, which is gitignored.** Its
 `skillOverrides` **merges** with the block in `settings.json` rather than replacing it

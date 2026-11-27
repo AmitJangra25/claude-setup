@@ -1,7 +1,8 @@
 #!/bin/bash
 # T3 — setup-session start check. Warns; never fixes, never blocks.
 # Run by .claude/settings.json → hooks.SessionStart, so only sessions started in ~/.claude.
-# Prints nothing when all is well. Whatever it prints is added to the session's context.
+# Prints only the current next gate when all is well. Whatever it prints is added to the
+# session's context.
 cd "$(dirname "$0")/.." || exit 0
 
 if ! out=$(./project-rules/drift.sh 2>&1); then
@@ -36,5 +37,14 @@ doc_out=$(./harness/doc-check.sh --quiet 2>&1)
 if [ -n "$doc_out" ]; then
   echo "Session-start check: documentation format warnings. Read-only — nothing was changed."
   echo "$doc_out"
+fi
+
+# Current next gate (B67): the first paragraph under status.md's "## Next gate", printed
+# every session so setup work starts from it instead of from Claude's guess.
+gate=$(awk '/^## Next gate/{f=1;next} f&&/^## /{exit} f&&NF{print;exit}' harness/status.md 2>/dev/null)
+if [ -n "$gate" ]; then
+  echo "Session-start check: next gate (harness/status.md § Next gate): $gate"
+else
+  echo "Session-start check: no next gate found in harness/status.md § Next gate."
 fi
 exit 0
