@@ -7,7 +7,7 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: When the procedure changes. Replace superseded text; history goes to a record.
 Related: `STANDARDS.md` § *How a task runs* · `harness/status.md` · `harness/models.md`
 Status: in force
-Last reviewed: 26-11-2026
+Last reviewed: 27-11-2026
 
 ---
 
@@ -66,25 +66,24 @@ are in `agents/`:
   for a short review, Opus for a full review. The request gives the size, the goal, the
   success measure and the plan.
 - **`change-reviewer`** for a diff or finished change: Sonnet; the requesting session
-  passes Opus for security or data. It keeps its own word limit until its Phase 14
-  rewrite.
+  passes Opus for security or data. Word limit 400 unless the request names another.
 
-It inspects the proposal and the real files. `plan-reviewer` reports only in its
-skeleton (`agents/plan-reviewer.md` § *Report*); `change-reviewer` reports:
+It inspects the proposal and the real files. Each reviewer reports only in its own
+skeleton, and what it checks is in its own file: `agents/plan-reviewer.md` § *Report*
+and the lenses above it; `agents/change-reviewer.md` § *Report* and § *How to work*.
 
-- facts verified, with file and line; assumptions made;
-- what already covers this, and any duplication;
-- source-of-truth conflicts; stale statements;
-- context and maintenance cost; a smaller or safer alternative;
-- project-boundary problems; missing tests or gates;
-- keep / change / defer / reject.
+**Project facts file.** A project's facts for reviewers and helpers live in
+`<project>/.claude/agent-brief.md`: the shape of `harness/agent-brief.md` plus a *Words
+to use and avoid* section. The request names its path; Claude Setup uses
+`harness/agent-brief.md`. Each project's file is written in that project's own session.
 
-**Checking a `plan-reviewer` report** (this agent only). The requesting session saves
-a working copy of the report and runs `wc -w` on it: Claude Setup uses `harness/drafts/`;
-a project uses its git-ignored scratch path. The copy is kept until the check ends; it is
-not a record. The session checks the report against the review size named in the
-request: the word limit in *Review sizes* (the stated 300 or 500 is the limit for this
-check), and the skeleton in `agents/plan-reviewer.md` § *Report* — only skeleton lines, in order, no more
+**Checking a reviewer's report** (`plan-reviewer` and `change-reviewer`). The requesting
+session saves a working copy of the report and runs `wc -w` on it: Claude Setup uses
+`harness/drafts/`; a project uses its git-ignored scratch path. The copy is kept until the
+check ends; it is not a record. The session checks the report against its limit — for
+`plan-reviewer`, the review size named in the request (the stated 300 or 500 in *Review
+sizes* is the limit for this check); for `change-reviewer`, the word limit in the request,
+or 400 — and against the skeleton in that agent's § *Report*: only skeleton lines, in order, no more
 numbered findings or "Other" lines than the skeleton has, each slot one short clause. If
 either fails, it sends the same report back once to the same reviewer, with the word
 count against the limit and each shape break, and asks for the report cut to fit: same
@@ -95,9 +94,9 @@ second retry.
 The reviewer must not edit, commit, push, approve, or open a project folder from a setup session.
 The named reviewers have no write, edit, shell or agent-starting tool (tested 24-11-2026,
 R1–R2): that limits what they can change, not what they can read. That they start without
-the author’s context is supported by test R3, not proven. Give it its review size (or,
-for `change-reviewer`, a word limit) and tell it which facts are already verified, so it
-does not re-check them.
+the author’s context is supported by test R3, not proven. Give `plan-reviewer` its review
+size and `change-reviewer` its word limit, and tell it which facts are already verified,
+so it does not re-check them.
 
 ## Recording
 

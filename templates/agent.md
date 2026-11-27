@@ -2,16 +2,17 @@
 name: <agent-name>
 description: >
   <What it does, in one line.> <When to use it.> <What it is not for, and which
-  agent or skill to use instead.> Example: <what Amit says> → <which agent is started,
-  and what it is handed>.
+  agent or skill to use instead.> Example: <what Amit says> → <what the agent is handed>.
 tools: <the fewest that do the job, e.g. Read, Grep, Glob>
 model: <haiku | sonnet | opus — the cheapest that does the job (harness/models.md)>
 omitClaudeMd: <true for a fresh reviewer; leave out otherwise>
 ---
 
 <!-- Form for an agent file in agents/. Shape and style: WRITING-GUIDE.md § Agents.
-     The description loads every session: two or three short lines, one short example line at most.
-     The full example goes in ## Example; more in agent-examples/<name>/ (outside agents/, so it never loads).
+     The description loads every session: two or three short lines, one short example line at most,
+     in the "Example: … → …" form, never an <example> block; it does not name the agent itself.
+     The full example goes in ## Example, with the context and why this agent; it does not repeat the
+     description's sentence. More in agent-examples/<name>/ (outside agents/, so it never loads).
      Delete every comment and every unused optional block before saving. -->
 
 # <Agent title>
@@ -65,10 +66,21 @@ facts do not go here; the agent reads them from the project's own small facts fi
 
 ## Report
 
-Within the packet's word limit (<n> words if none is given):
+Copy the skeleton exactly and fill only the <…> slots. Write nothing outside it. Delete
+unused "Other" lines, and the "More" line if nothing remains; write "none" in any other
+slot with nothing to report. Each slot is one short clause. The report stays at or under
+the packet's word limit, or <n> words if none is given; the requesting session checks it
+(`harness/cross-check.md` § *The reviewer*).
 
-    <The exact report shape, one field per line: findings ranked by severity (file:line ·
-    what is wrong · why it matters · smallest fix), facts verified, assumptions.>
+    Verdict: <verdict word>. <Does it meet its goal: yes | no | unclear> — <why>.
+    1. <where>: <what is wrong> — <why it matters>. Fix: <smallest fix>. Tag: <tag>.
+    2. <where>: <what is wrong> — <why it matters>. Fix: <smallest fix>. Tag: <tag>.
+    Other: <where> · <what is wrong> · <tag>
+    More: <n> minor findings, not listed.
+    Facts checked: <what was read and matched>; assumptions and files read beyond the packet: <…>; scope: <one item | first of n reviewed>.
+
+<!-- Set the number of numbered and "Other" lines to the job; agents/change-reviewer.md and
+     agents/plan-reviewer.md are worked examples. Name the tags and what each means. -->
 
 <Ranking, most serious first.> <What "nothing found" looks like — said plainly, never
 padded with invented findings.> <The words the verdict may use, and the words it never
