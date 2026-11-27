@@ -1723,6 +1723,191 @@ From reading the kit (two Sonnet helpers, 42,865 and 66,612 measured) and its 17
 
 Reports: `harness/drafts/phase14/reports/P1-b45.md`, `P2-b45.md`, `P3-b45.md` and a `-retry` each.
 
+#### Phase 15 plan (cross-checked and approved 27-11-2026, Amit; moved from the draft at S1.0, 27-11-2026)
+
+##### Start cold
+
+- **Branch and commit:** `main` in `~/.claude`, level with `origin/main` at `94025b2` (27-11-2026).
+- **Read first:** this section · `harness/doc-structure-plan.md` § 3 *Phases 12–21* (Phase 15 row, *How we work*, kit inventory) and the *Programme checklist* Phase 15 block · `harness/backlog.md` B7, B12, B15, B21, B25, B44, B47 · `ENVIRONMENT.md` § 3 *Permissions* · `templates/skill.md` · `WRITING-GUIDE.md` § *Rule plus case*.
+- **Decisions taken (Amit, 27-11-2026):** session order skills → hooks and permissions → wrap-up and backlog, each a fresh session · every verdict in § *Decisions* as listed (take now / later / don't) · all plan-reviewer findings applied (review 1 and its retry, `harness/drafts/phase15/plan-review-1*.md`) · three Phase 14 sub-agent verdicts (§ *Phase 14 additions*) · moved here and D58 written at S1.0 (27-11-2026).
+- **Open items:** none that change the approach. **Blockers:** none.
+
+##### Summary
+
+- **Kind:** Claude Setup change · **depth:** deep (settings, permissions, hooks) · **review size:** full (`plan-reviewer` Opus; concerns, all findings applied) · **priority:** P3 (programme work; nothing broken).
+- **Models:** session 1 Sonnet (skills) · session 2 Opus (hooks and permissions) · session 3 Opus (permission box tests first, then wrap-up).
+- **Shape:** 9 items taken now, 12 later (L1–L10 from Phase 15 plus two Phase 14 additions, the researcher L11 and kit 23 routing; each with its trigger), 4 rejected, plus the kit code-review skill rejected from Phase 14. Most kit hooks have no logged case here and our ask rules already cover what they block, so the ladder (`WRITING-GUIDE.md` § *Rule plus case*) puts them in "later".
+- **Total (estimate):** about 310–425K including helpers, over 3 fresh sessions.
+
+##### Goal and success measures
+
+**Goal (Amit, phase list 26-11-2026):** "Rewrite and add skills in the new style. The ladder in practice. An end-of-session wrap-up … that turns each session's mistakes into proposed rules. Hooks that block unproven excuses … A hook test script. Helper scripts. The old Phase 11 candidate skills …, each only if it earns its place. B12, B15, B21." Done when: "Hooks proven by tests; skills discovered."
+
+**Success measures (all yes):**
+
+1. **Decisions recorded first:** D58 holds every verdict in § *Decisions* (23 Phase 15 items: 9 take now, 10 later, 4 don't; plus 3 Phase 14 additions = 26; L11 is the researcher addition, counted once) before S1.1 starts.
+2. **Skills in the new style:** `documents`, `handoff`, `ollama`, `send-for-review` and the new `wrap-up` each have the five required `templates/skill.md` headings (*When to use*, *Steps*, *Example*, *Self-check*, *Related*; *Subject detail* only where needed) and one small example. Today: 0, 0, 0 and 1 of them (`grep -c`, 27-11-2026). `doc-check.sh` no new warnings.
+3. **Skills discovered:** in a fresh session, one plain request per skill loads it — 5 of 5 (requests in S2.0).
+4. **B21 closed:** in a fresh session after the edit, a `git -c alias…` read of a made-up `.env` boxes in default and auto mode; `git switch -c x`, `git log -c` and `git -C <dir> status` do not box.
+5. **Hooks proven by tests:** `harness/hook-test.sh` passes on the live setup for all three hooks (pre-commit secret check, rtk rewrite, session-start check), and is seen to fail when the pre-commit hook is missing in a temp copy.
+6. **Every-session load:** our part (memory + skills + agents in `/context`) at or under 10.7k (today 10.6k: 9.4k + 0.96k + 0.24k, `/context` 27-11-2026), measured at S2.0.
+7. **Backlog closed:** B12 moved (Phase 20), B15 merged into B44, B21 closed, B25 closed, B44 concluded, B47 closed.
+
+##### Real cases and evidence
+
+| Item | Evidence (where checked) |
+|---|---|
+| Older skills not in the new style | `grep -c` of template headings: `documents` 0, `handoff` 0, `ollama` 0, `send-for-review` 1, `planning` 5 (27-11-2026); Phase 12 final check 2 |
+| Ladder cases | B44 (scratch files deleted without approval; first case; rule exists) · B15 (waited for a real case — B44 is one) |
+| Wrap-up need | B44–B47 found by hand at session ends; audit items a–f (27-11-2026) lost in a cleared chat (`.claude/current-task.md`) |
+| B21 | Reproduced 06-11-2026: `git -c alias.x='!cat' x .env` printed a made-up `.env` (backlog B21); no matching rule in `settings.json` (`grep`, 27-11-2026) |
+| Hooks untested | Pre-commit hook untracked: "a fresh clone lacks it" (`ENVIRONMENT.md` § 3); rtk hook in `settings.json` `hooks.PreToolUse`; session-start check in `.claude/settings.json` `SessionStart` (`grep`, 27-11-2026); no script tests any of them |
+| Settings edits by hand | B7: while the write block is on, Claude's file tools cannot edit settings files; Amit edits them (backlog § *B7*, checked 27-11-2026) |
+| Test script vs secret scan | `drift.sh` scans tracked and untracked files (`git ls-files --cached --others`, checked 27-11-2026), so a literal secret pattern in a new file is flagged |
+| Unproven excuses | `git grep -i "flaky\|pre-existing"` over records: no case of Claude using the word as an excuse (27-11-2026) |
+| Kit hooks | Read 27-11-2026 (shape only): each cites its own incident; none has a counterpart in our records |
+
+##### Decisions (Amit, 27-11-2026)
+
+**Take now (9):**
+
+| # | Item | Why |
+|---|---|---|
+| T1 | Rewrite `documents`, `handoff`, `ollama`, `send-for-review` in the new style, one small example each | Old style; final check 2 |
+| T2 | B21: ask rules for `git -c` alias reads | Reproduced security gap; design approved 06-11-2026 |
+| T3 | `harness/hook-test.sh` for our three existing hooks (kit 39, adapted) | Pre-commit hook can go missing silently |
+| T4 | New `wrap-up` skill, typed at every session end: mistakes → ladder rung → proposed backlog rows; scratch files → keep or move to archive (never delete). Covers the kit's retro + archive idea and the Phase 13 retro carry-over | Lost a–f items; `handoff` runs only at some session ends |
+| T5 | Ladder verdicts: B44 stays at the instruction rung, reopen on a second case (caught by `wrap-up`); B15 merged into B44 | Ladder |
+| T6 | Skill examples: one small example in each `SKILL.md`; no `examples/` folder now (no skill needs a larger example) | Checklist line |
+| T7 | Close B25 | Built-in `code-review`, `security-review`, `simplify` and our rules cover it |
+| T8 | B47: add "it does not name the agent itself" to `WRITING-GUIDE.md` § *Agents* item 1 | Two files disagree |
+| T9 | Move B12 to Phase 20 | Project code checker, not Claude Setup |
+
+**Later (12: L1–L11 here, kit 23 under *Phase 14 additions*), each with its trigger:**
+
+| # | Item | Bring back when |
+|---|---|---|
+| L1 | Kit 1 + 3: pre-commit with gitleaks for projects | Phase 20 (needs an install and a new-tool check; B26) |
+| L2 | Kit 51: stale-branches script | Phase 20 (projects use feature branches) |
+| L3 | Kit 72: resolve-conflicts skill | First real merge conflict in a project |
+| L4 | Kit 34: destructive-git guard | A destructive git command gets past the ask rules |
+| L5 | Kit 31: main-checkout switch guard | Amit runs several sessions on one repo |
+| L6 | Kit 36: sub-agent push guard | Any helper gets a shell tool |
+| L7 | Unproven-excuse hook | First logged case (`wrap-up` records it) |
+| L8 | Kit 35 part 2: no shell writes into `.claude/` or memory | First logged case; owner: `wrap-up`; recheck at Phase 16 audit |
+| L9 | Kit 53: hook wiring in `settings.json` | With the first new Claude Code hook |
+| L10 | Old candidate skills: testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review | S1.2 gap check finds a real gap; otherwise stays later with "covered by …" |
+| L11 | Researcher helper (Phase 14 addition) | Research jobs repeat |
+
+**Don't (4):** kit 35 part 1 (stage database guard; their server only) · kit 76 comment triage (GitLab; built-in `/steward` covers GitHub) · kit 45 `rules/git.md` (`STANDARDS.md` § *Git* covers it) · kit 58 git-workflow skill (`send-for-review` and § *Git* cover it).
+
+**Phase 14 additions (3):** researcher helper → later (L11) · kit 57 multi-reviewer code-review skill → don't (built-in `/code-review`) · kit 23 job-to-helper routing table → later, with any future worker-agent decision (I4).
+
+##### Parked ideas from the planning chat (Amit, 27-11-2026)
+
+New ideas raised while planning are not built in Phase 15. Each is a backlog row (added at S1.0, IDs below) with priority, size, tokens and its trigger; revisited after Phase 21 unless its trigger comes first. The plan above is unchanged.
+
+| Idea | Priority | Size, tokens | Bring back |
+|---|---|---|---|
+| Skill tiers (B60): daily = on, sometimes = `name-only`, rare = `user-invocable-only` (D28 mechanism; earlier decision "no skill folders by P1–P4", `SETUP-PLAN.md` Phase 8–9 notes) | P4 | S, ~5K | With the `STANDARDS.md` rewrite (Phase 17); saving about 100–300 tokens a session (estimate) |
+| Lighter agents (B61; recheck what each agent file carries) | P4 | M, ~15K | Phase 16 audit, then the rewrite phases |
+| Researcher helper (L11; same row as L11, B58) | P4 | M, ~20K | Research jobs repeat |
+| Job-to-helper routing table (kit 23; same row as kit 23, B59) | P4 | S, ~5K | With any future worker-agent decision (I4) |
+| Recheck reviewer word limits (B62; 5 of 7 first reports were over the limit on 27-11-2026; each fit after one retry) | P4 | S, ~5K | Phase 16 audit, together with lighter agents |
+
+Separate small task (27-11-2026, not part of Phase 15): `STANDARDS.md` rule on new findings and dictation (version 4), three review rounds; reports in `harness/drafts/rule-sorting/`.
+
+##### Work packages and sessions
+
+**Session 1 — Skills (fresh, Sonnet).** About 80–105K main + 25–35K helper (estimate).
+- **S1.0 Records first:** move this plan into `harness/doc-structure-plan.md` § 3 *Phase 15 plan*; write D58 (every decision above); add the backlog rows for § *Parked ideas* and the "later" items; `.claude/current-task.md` points to the new section; `harness/status.md` updated. Stop for Amit's approval of the move. Done when measure 1 is yes.
+- **S1.1 Rewrite T1:** four skills to `templates/skill.md`; facts kept (each old line accounted for); `send-for-review` keeps pointing to `STANDARDS.md` § *Git* (D52); `wc -w` of each description before and after.
+- **S1.2 Gap check L10:** read each named guide's *When to use* and steps against the candidate skill; a gap needs a real case. Results to Amit; no new skill without his yes.
+- **S1.3 New `wrap-up` skill (T4):** `skills/wrap-up/SKILL.md` on the template; `.gitignore` allow-line if `skills/` needs one per folder.
+- **S1.4 Review:** `change-reviewer` (Sonnet) on the diff; requester check incl. *Files opened*; findings to Amit.
+- **Done when:** measure 2 yes; findings decided; commit on Amit's word; handoff.
+
+**Session 2 — Hooks and permissions (fresh, Opus).** About 75–100K main + 40–60K helper (estimate).
+- **S2.0 Discovery test:** Amit types `/context`, then five requests: "check this doc before I restructure it" → `documents`; "write a handoff" → `handoff`; "summarise this log with the local model" → `ollama`; "send it for review" → `send-for-review`; "wrap up this session" → `wrap-up`. Measures 3 and 6.
+- **S2.1 B21 (T2):** re-read `ENVIRONMENT.md` § 3; check every spelling with `rtk hook check` (D16, D35). The rules: `*git -c *`, `*git -C * -c *`, `*GIT_CONFIG_*`, `*git *--exec-path*`, `*git config *` and its `-C` form. **Amit makes the edit by hand** (B7 write block); Claude gives the exact lines and the five-line risky-box explanation first. `ENVIRONMENT.md` § 3: counts, F1 *Known gap* closed, remaining limit (Edit tool on `.git/config`) recorded.
+- **S2.2 `hook-test.sh` (T3):** new `harness/hook-test.sh` + `.gitignore` allow-line. Checks: (a) pre-commit hook present and executable; in a `mktemp -d` clone, a staged made-up secret is blocked and a clean commit passes — **the secret pattern is built at run time from parts, never written whole in the script**; (b) `rtk hook check` rewrites `git status` to `rtk git status`; (c) `session-check.sh` runs and exits 0 on the live setup. The script removes its own temp folder. Seen to fail: once against a temp copy without the pre-commit hook. **Stop before the first run.**
+- **S2.3 Review:** `change-reviewer` **Opus** on S2.1 + S2.2's diff (security; `cross-check.md` § *The reviewer*), requester check; findings to Amit. **Stop before commit.**
+- **Done when:** measure 5 yes; findings decided; commit on Amit's word; handoff naming S3.0.
+
+**Session 3 — Box tests, wrap-up and backlog (fresh, Opus).** About 45–60K main + 20–30K helper (estimate).
+- **S3.0 B21 box tests (fresh session after the edit):** Amit creates the made-up `.env` by hand (the `.env` deny rule blocks Claude's Write tool); one command per message, Amit reads each box: alias read boxes in default and auto mode; the three ordinary commands do not; `git -cX` rejected by git. The made-up `.env` is deleted only after a two-method check and Amit's approval. Measure 4.
+- **S3.1 Backlog (T5, T7, T8, T9):** close or move B12, B15, B21, B25, B47; B44 concluded; `WRITING-GUIDE.md` phrase (B47).
+- **S3.2 Record:** D58 results · `harness/status.md` · `doc-structure-plan.md` § 3 Phase 15 section and checklist (each line ticked or concluded) · `.claude/current-task.md`. `change-reviewer` (Sonnet) once on the diff. Use `wrap-up` at this session's own close (its first real run).
+- **Done when:** measures 4 and 7 yes; checklist closed; commit and push on Amit's word.
+
+##### Files
+
+| File | Session | Change |
+|---|---|---|
+| `harness/doc-structure-plan.md`, `SETUP-PLAN.md` (D58), `harness/status.md`, `.claude/current-task.md`, `harness/backlog.md` | 1, 3 | records |
+| `skills/{documents,handoff,ollama,send-for-review}/SKILL.md` | 1 | rewrite |
+| `skills/wrap-up/SKILL.md` (new) | 1 | new skill |
+| `settings.json` | 2 | 6 ask rules (edited by Amit) |
+| `ENVIRONMENT.md` § 3 | 2 | counts, F1, limit |
+| `harness/hook-test.sh` (new), `.gitignore` | 2 | test script, allow-line(s) |
+| `WRITING-GUIDE.md` | 3 | one phrase (B47) |
+
+**Not changed:** `STANDARDS.md`, any `CLAUDE.md`, `agents/`, git hooks, `project-rules/`, other projects; no install.
+
+##### Loading, safety, undo
+
+- **Loading impact:** four rewritten descriptions aim for the same or fewer words; `wrap-up` adds one description (estimate +40–60 tokens). Measured at S2.0 (measure 6).
+- **Safety and permission impact:** ask rules only (they can only add a box, `ENVIRONMENT.md` § 3); no allow or deny change; no new Claude Code hook; no install. Box tests in a fresh session, default and auto mode.
+- **Cross-project effect:** global ask rules apply in every project (intended); no `project-rules/` change.
+- **Undo:** one commit per session, `git revert`; after reverting session 2, re-run the S3.0 box tests.
+
+##### Stops
+
+Each needs Amit's word in that session: before moving the plan and writing D58 (S1.0) · before any new skill beyond `wrap-up` (S1.2) · before the `settings.json` lines are handed over (S2.1) · before the first run of `hook-test.sh` (S2.2) · before deleting the made-up `.env` (S3.0) · before each commit · before each push. No install is planned; one would need a new plan.
+
+##### Risks
+
+| Risk | Impact | Likelihood | Mitigation (step) |
+|---|---|---|---|
+| A B21 pattern boxes an ordinary command | Noisy prompts | Medium | Exact 06-11 patterns; three "must not box" probes (S3.0) |
+| A spelling the rtk hook produces is missed | Gap stays open | Medium | `rtk hook check` on every spelling before handing over (S2.1) |
+| `hook-test.sh` touches the real repo | Data loss | Low | `mktemp -d` clone only; Amit approves the first run (S2.2) |
+| A literal secret in `hook-test.sh` trips `drift.sh` and blocks its own commit | Commit blocked; false alarm every session | High if written whole | Pattern built at run time; `drift.sh` run before the commit shows no hit (S2.2) |
+| Rewrite drops a fact from a skill | Lost rule | Medium | Each old line accounted for; `change-reviewer` (S1.4) |
+| A description stops a skill triggering | Skill not found | Low–medium | Discovery test, 5 probes (S2.0) |
+| `wrap-up` is forgotten at session end | Mistakes lost again | Medium | Discovery probe; first real run at S3.2; `wrap-up` itself is the ladder's first rung — a second miss is logged |
+| A "later" item gets a case and nobody notices | Missed value | Low | `wrap-up` logs cases; Phase 16 audit rechecks every "later" trigger |
+| Session runs past 220K | Rushed checks | Low | Sessions sized 65–165K; handoff before the next |
+
+##### Tokens (estimates)
+
+| Session | Main | Helper | Total |
+|---|---|---|---|
+| Planning (this session, Opus; reviewer 79K measured) | 60–80K | 79K | 140–160K |
+| 1 Skills (Sonnet) | 80–105K | 25–35K | 105–140K |
+| 2 Hooks and permissions (Opus) | 75–100K | 40–60K | 115–160K |
+| 3 Box tests, wrap-up, backlog (Opus) | 45–60K | 20–30K | 65–90K |
+| **Phase 15 build (sessions 1–3)** | | | **285–390K** |
+| **Including planning** | | | **425–550K** |
+
+Planning cost is shown separately because it is already spent; the build itself (285–390K) sits inside the outline's 350–450K range.
+
+##### Rules check
+
+- Ladder and "each only if it earns its place" (`doc-structure-plan.md` § *How we work*) → later/don't verdicts.
+- Permission rules: `ENVIRONMENT.md` § 3 first; every rtk spelling (`STANDARDS.md` § *Explaining a permission request*).
+- Fresh-session tests for permission and loading changes (`setup-change.md`) → S2.0 and S3.0.
+- Value bar (`STANDARDS.md` § *IDs and progress*) → items without a case are "later".
+- Settings edits by Amit while the B7 write block is on.
+- Commit and push only on Amit's word; `~/.claude` commits on `main` (`.claude/CLAUDE.md`).
+
+##### Concerns checked and dropped
+
+- *Kit 1 conflicts with ours:* no — ours runs `drift.sh` for `~/.claude` only; kit 1 is "later" for projects.
+- *B21 rules already exist:* no — `grep` of `settings.json`, no match (27-11-2026).
+- *`planning` needs a rewrite:* no — five required headings present.
+- *Session-start check not testable:* it is — wired in `.claude/settings.json` `SessionStart` (27-11-2026).
+
 #### Programme checklist (tick as done; archived when every box is ticked — Amit, 26-11-2026)
 
 Every point the programme must cover: phase work, the 9 kit items (marked *kit*), and every open backlog item, to-do and test (about 30, checked 26-11-2026). Tick `[x]` with the date when done or concluded. Token figures are estimates including helpers; each phase is re-estimated when planned. Total about 3.5–5M tokens over about 30–40 sessions.

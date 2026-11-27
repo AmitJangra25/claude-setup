@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 20-11-2026
 
-Next ID: B48
+Next ID: B63
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -108,6 +108,21 @@ Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D4
 | B4 | TypeScript code helper — does `typescript-lsp` support TypeScript 7? | 05-01-2027 |
 | B12 | Own post-edit checker (Kotlin, lint, project checks; must not clash with B4) — P3 · M · ~30k | Not set — deferred 06-11-2026; revisit in Phase 11 (D50) |
 | B18 | rtk update | 05-01-2027 |
+| B48 | L1 kit 1 + 3: pre-commit with gitleaks for projects — P4 · M · ~30k (D58) | Phase 20; needs an install and a new-tool check (B26) |
+| B49 | L2 kit 51: stale-branches script — P4 · S · ~10k (D58) | Phase 20 (projects use feature branches) |
+| B50 | L3 kit 72: resolve-conflicts skill — P4 · M · ~20k (D58) | First real merge conflict in a project |
+| B51 | L4 kit 34: destructive-git guard hook — P4 · S · ~10k (D58) | A destructive git command gets past the ask rules |
+| B52 | L5 kit 31: main-checkout switch guard — P4 · S · ~10k (D58) | Amit runs several sessions on one repo |
+| B53 | L6 kit 36: sub-agent push guard — P4 · S · ~10k (D58) | Any helper gets a shell tool |
+| B54 | L7 unproven-excuse hook — P4 · S · ~10k (D58) | First logged case (`wrap-up` records it) |
+| B55 | L8 kit 35 part 2: no shell writes into `.claude/` or memory — P4 · S · ~10k (D58) | First logged case (owner: `wrap-up`); recheck at the Phase 16 audit |
+| B56 | L9 kit 53: hook wiring in `settings.json` — P4 · S · ~5k (D58) | With the first new Claude Code hook |
+| B57 | L10 old candidate skills: testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review — P4 · M · ~25k (D58) | S1.2 gap check finds a real gap; otherwise stays here with "covered by …" |
+| B58 | L11 researcher helper (Phase 14 addition) — P4 · M · ~20k (D58) | Research jobs repeat |
+| B59 | Kit 23 job-to-helper routing table (Phase 14 addition) — P4 · S · ~5k (D58) | With any future worker-agent decision (I4) |
+| B60 | Skill tiers: daily = on, sometimes = `name-only`, rare = `user-invocable-only` (D28; earlier "no skill folders by P1–P4", `SETUP-PLAN.md` Phase 8–9 notes); saves about 100–300 tokens a session (estimate) — P4 · S · ~5k (D58) | With the `STANDARDS.md` rewrite (Phase 17) |
+| B61 | Lighter agents: recheck what each agent file carries — P4 · M · ~15k (D58) | Phase 16 audit, then the rewrite phases |
+| B62 | Recheck reviewer word limits (5 of 7 first reports over the limit on 27-11-2026; each fit after one retry) — P4 · S · ~5k (D58) | Phase 16 audit, with B61 |
 
 ## Known and accepted
 
