@@ -354,7 +354,9 @@
     "simplify": "name-only",
     "claude-api": "name-only",
     "plugin-authoring": "name-only",
-    "ollama": "name-only"
+    "ollama": "name-only", 
+    "steward": "user-invocable-only",
+    "ship-local": "user-invocable-only"
   },
   "hooks": {
     "PreToolUse": [
