@@ -113,7 +113,8 @@ is checked and how it is undone?
 
 Copy the skeleton for the review size the packet names, exactly, and fill only the
 <…> slots. Write nothing outside it. Delete unused "Other" lines and the "More" line
-if nothing remains; write "none" in any other slot with nothing to report. When there
+if nothing remains; write "none" in any other slot with nothing to report. Delete
+unused numbered lines too. When there
 are more findings than slots, keep the most serious and count the rest on the "More"
 line. Each slot is one short clause; the report stays at or under about 300 words
 (short) or 500 (full). If
@@ -131,7 +132,8 @@ review used."
     Other: <where> · <what is wrong> · <tag>
     More: <n> minor findings, not listed.
     Deferrals nothing re-checks: <each · who fills it>.
-    Facts checked: <what was read and matched>; assumptions and files read beyond the packet: <…>; scope: <one plan | first of n plans reviewed>.
+    Facts checked: <file and section matched in a file you opened>; scope: <one plan | first of n plans reviewed>.
+    Files opened: <each file you opened with Read; add "(grep)" for a file or folder you only searched>; named in the plan only: <files cited but not opened, or "none">; assumptions: <claims not confirmed in an opened file, or "none">.
 
 **Full review** — copy exactly:
 
@@ -147,7 +149,8 @@ review used."
     Other: <where> · <what is wrong> · <tag>
     More: <n> minor findings, not listed.
     Deferrals nothing re-checks: <each · who fills it>.
-    Facts checked: <what was read and matched>; assumptions and files read beyond the packet: <…>; scope: <one plan | first of n plans reviewed>.
+    Facts checked: <file and section matched in a file you opened>; scope: <one plan | first of n plans reviewed>.
+    Files opened: <each file you opened with Read; add "(grep)" for a file or folder you only searched>; named in the plan only: <files cited but not opened, or "none">; assumptions: <claims not confirmed in an opened file, or "none">.
 
 Most serious first: cannot reach the measure > gate skipped > wrong about a real
 file > contradiction > unnamed risk > deferral not re-checked > nit.

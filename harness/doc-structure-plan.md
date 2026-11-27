@@ -1672,6 +1672,57 @@ From reading the kit (two Sonnet helpers, 42,865 and 66,612 measured) and its 17
 
 **Next:** Phase 15 (skills and hooks), on Amit's word.
 
+#### B45 fix (plan approved 27-11-2026, Amit; built and tested 27-11-2026; B45, B46 closed)
+
+**Start cold.** Branch `main` in `~/.claude`, level with `origin/main` at `4d51f29` (27-11-2026). Read first: this section · backlog B45, B46 · `agents/change-reviewer.md` § *Report* · `agents/plan-reviewer.md` § *Report* · `templates/agent.md` § *Report* · `harness/cross-check.md` § *The reviewer*. Decisions taken (Amit, 27-11-2026): `plan-reviewer` uses "named in the plan only"; test P1, P2 and P3; B46 and the template folded in; one `change-reviewer` review after the edits instead of a full plan review. Open items: none. Blockers: none.
+
+- **Kind:** Claude Setup change · **depth:** deep (agent rule files, cross-check procedure) · **priority:** P3 (two logged cases) · **model:** Opus main; Sonnet test reviewers.
+- **Goal (Amit's words):** "stop change-reviewer and plan-reviewer from claiming they read files they did not open."
+- **Evidence:** P1 (Phase 14 WP2): "Facts checked" claimed all four changed files read; B45 records the transcript showed none opened; its `README.md:12` and `report.py:46` are diff lines (key: 15 and 20). P2 re-run: claimed `RULES.md`, `report.py`, `test_hours.py` read; its log shows Read only on the brief, the diff, `hours.py`, `README.md` (`grep -o` on the log, 27-11-2026); `report.py:58` is a diff line. Root cause: the facts slot does not separate opened from seen in the diff; the prose rule "goes under assumptions" broke twice.
+- **Success measures (all yes):** (1) fresh session: P1, P2, P3 pass their existing key criteria after at most one retry each; (2) in all three, every file under *Files opened* appears in that reviewer's tool log; (3) the new check, run on `reports/P2-rerun.md` and its log, flags `RULES.md`, `report.py`, `test_hours.py` (seen to fail); (4) `doc-check.sh` same 4 warnings; both agent descriptions unchanged.
+
+**Changes.**
+
+1. `agents/change-reviewer.md` § *Report*: the last skeleton line becomes two:
+   `Facts checked: <file:line matched in a file you opened>; scope: <one change | first of n changes reviewed>.`
+   `Files opened: <each file you opened with Read; add "(grep)" for a file or folder you only searched>; from the diff only: <files cited but not opened, or "none">; assumptions: <claims not confirmed in an opened file, or "none">.`
+   Plus one rule sentence: "Cite `file:line` only from a file you opened; a line seen only in the diff is cited as `diff:<n>`."
+2. `agents/plan-reviewer.md` § *Report*, both skeletons: the same two lines with "named in the plan only" in place of "from the diff only"; plus "Delete unused numbered lines too." (B46).
+3. `templates/agent.md` § *Report*: the same two-line form and the B46 line.
+4. `harness/cross-check.md` § *The reviewer*, after the skeleton check: "It also checks the *Files opened* slot against the reviewer's tool log: `grep -o` the `file_path` and `path` fields of the agent's output file (never read it whole). Every file named under *Files opened* must match the end of a logged path; a file under a folder listed as "(grep)" counts. A named file missing from the log is a shape break and goes in the same one retry. A file opened but not listed is not a failure. If the log cannot be read, record "check not run"; that is not a failure."
+
+**Packages.**
+
+- **Build (next session, ~40–50K incl. review, estimate):** changes 1–4; hand-run the new check on `reports/P2-rerun.md` and its log (measure 3; that log is in a `/private/tmp` folder and may be gone — if so, record "not run" and use the P1 evidence in B45 instead); `doc-check.sh`; `wc -w` of both descriptions before and after; `change-reviewer` (Sonnet) once on the diff with the requester check, findings to Amit. Done when the diff matches 1–4 and findings are decided.
+- **Test (the session after, fresh, ~45–60K, estimate):** Amit types `/context` first; P1, P2, P3 word for word from `harness/drafts/phase14/packets.md` on Sonnet; save as `reports/P1-b45.md`, `P2-b45.md`, `P3-b45.md` (never overwrite); full requester check incl. the new step, one retry at most; score against `harness/drafts/phase14-key.md` (packets and key unchanged). A failure follows the two-tries rule.
+- **Record (~5–10K):** close B45 and B46 if the test passes; D57 amended "B45 fix 27-11-2026"; `harness/status.md`; this section; `.claude/current-task.md`. Commit and push only on Amit's word.
+
+**Loading impact:** none — descriptions unchanged; `cross-check.md` loads on need. **Safety:** no hook, setting or permission change; agent `tools:` lines unchanged (checked in Build).
+
+**Risks.**
+
+| Risk | Impact | Likelihood | Mitigation (package) |
+|---|---|---|---|
+| Reviewer writes `RULES.md`, log holds the full path | False retry | Medium | Match on the end of the path (change 4) |
+| Reviewer only grepped a folder | False retry | Medium | "(grep)" marker; files under it count (change 4) |
+| Log missing or moved in a later Claude Code version | Check cannot run | Low | "Check not run", not a failure (change 4) |
+| Reading the log whole floods the main session | Context overflow | Low | `grep -o` only (change 4) |
+| Claims inside findings not checked against the log | Some overclaims slip | Medium | `diff:<n>` citation rule (change 1); known limit, accepted |
+| Longer facts slot pushes the 300-word short review | Limit pressure | Low | About +10 words; recent short reviews 201–243 (Test) |
+| Reviewer still overclaims after the retry | Measure 2 fails | Low–medium | Existing rule: accept, record, stop; a hook only after that (ladder) |
+
+**Total:** about 85–120K over 2 sessions (estimate). **Undo:** `git revert` of the B45 commit.
+
+**Build result (27-11-2026, uncommitted).** Changes 1–4 applied as listed, with one approved wording change (Amit, 27-11-2026): `plan-reviewer`'s *Facts checked* slot reads "<file and section matched in a file you opened>" with "named in the plan only", to match its own rule (file and section, line numbers only as a hint); `templates/agent.md` uses "<where, matched in a file you opened>" and "from the <item> only". B46 line added to both. Descriptions and `tools:` lines unchanged (no frontmatter hunks in the diff); `doc-check.sh` same 4 warnings. Measure 3: **check not run** — reading saved transcripts under `~/.claude/projects/` was permission-blocked, so the P2 re-run log could not be read; the P1 evidence in B45 is the fallback (not a failure). Review: `change-reviewer` Sonnet on the diff, **concerns**, 1 Fix now and 3 Nits; first report 404 words, shape breaks, and the new log check flagged `doc-structure-plan.md (grep)` (the log showed a grep of the whole folder only); retried once, 255 words, shape and log check passed. The first report still cited diff-only files as `file:line`, so the fresh-session test is required. Finding 1 applied (Amit): `cross-check.md` now says to start the reviewer in the background and use the launch result's `output_file` path as the log, else "check not run". Findings 2–4 left (Amit). Reports: `harness/drafts/phase14/b45-build-review.md`, `b45-build-review-retry.md`. **Next:** Test package in a fresh session, because agent files load at session start.
+
+**Test result (27-11-2026, fresh session, Sonnet): pass — measures 1, 2, 4 met; measure 3 not run (Build).** `/context`: agents 240 tokens (`change-reviewer` 93, `plan-reviewer` 147), same as WP3, so descriptions unchanged; memory files 9.4k (`STANDARDS.md` 7.4k), skills 963, total 27.8k. Each reviewer ran in the background; its log was checked with `grep -o` on `file_path`, `path` and `pattern`. Each was retried once for shape; the retries made no tool calls.
+- **P1:** 226 → 149 / 400 words; `concerns`; (a) first, (b) and (c) found, one true Nit (one test window). The first report cited `RULES.md:5` from a file only found by Glob, and had four numbered lines; the retry fixed both (`diff:23-24`). *Files opened* matched the log (the brief, the diff, a Glob for `RULES.md` in `change-a/`).
+- **P2:** 212 → 84 / 400; `no concerns`; the same two true Nits as the re-run; no planted defect reported. The first report cited `test_hours.py:19`, a file listed as "from the diff only"; the retry used `diff:68`. *Files opened* matched the log (the brief, the diff, `hours.py`, `README.md`).
+- **P3:** 372 → 194 / about 300; `concerns`; T7 only, "first of 2 plans reviewed"; findings checked true (no Methods row for questions 1 and 6; Ravi is 10 March in `ENTRIES`; "changes nothing" against the trials). The first report was over the limit, had three numbered lines and a "More: 0" line. *Files opened* matched the log. Pronoun check on `agents/plan-reviewer.md`: no match.
+- **Known limit, seen twice:** both first `change-reviewer` reports still cited an unopened file as `file:line` inside a finding; the log check does not cover findings (Risks table: accepted). The requester's shape check caught both.
+
+Reports: `harness/drafts/phase14/reports/P1-b45.md`, `P2-b45.md`, `P3-b45.md` and a `-retry` each.
+
 #### Programme checklist (tick as done; archived when every box is ticked — Amit, 26-11-2026)
 
 Every point the programme must cover: phase work, the 9 kit items (marked *kit*), and every open backlog item, to-do and test (about 30, checked 26-11-2026). Tick `[x]` with the date when done or concluded. Token figures are estimates including helpers; each phase is re-estimated when planned. Total about 3.5–5M tokens over about 30–40 sessions.

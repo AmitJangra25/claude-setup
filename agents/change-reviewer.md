@@ -73,7 +73,10 @@ Copy the skeleton exactly and fill only the <…> slots. Write nothing outside i
     Other: <file:line> · <what is wrong> · <tag>
     Other: <file:line> · <what is wrong> · <tag>
     More: <n> minor findings, not listed.
-    Facts checked: <file:line read and matched>; assumptions and files read beyond the packet: <…>; scope: <one change | first of n changes reviewed>.
+    Facts checked: <file:line matched in a file you opened>; scope: <one change | first of n changes reviewed>.
+    Files opened: <each file you opened with Read; add "(grep)" for a file or folder you only searched>; from the diff only: <files cited but not opened, or "none">; assumptions: <claims not confirmed in an opened file, or "none">.
+
+Cite `file:line` only from a file you opened; a line seen only in the diff is cited as `diff:<n>`.
 
 Most serious first: secret or personal data > gate or rule dropped or weakened > does not do what the goal says > wrong behaviour or broken link > stale or conflicting statement > avoided word, overlap or boundary > missing check > smaller way > nit.
 

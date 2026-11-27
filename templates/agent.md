@@ -68,7 +68,8 @@ facts do not go here; the agent reads them from the project's own small facts fi
 
 Copy the skeleton exactly and fill only the <…> slots. Write nothing outside it. Delete
 unused "Other" lines, and the "More" line if nothing remains; write "none" in any other
-slot with nothing to report. Each slot is one short clause. The report stays at or under
+slot with nothing to report. Delete unused numbered lines too. Each slot is one short
+clause. The report stays at or under
 the packet's word limit, or <n> words if none is given; the requesting session checks it
 (`harness/cross-check.md` § *The reviewer*).
 
@@ -77,7 +78,8 @@ the packet's word limit, or <n> words if none is given; the requesting session c
     2. <where>: <what is wrong> — <why it matters>. Fix: <smallest fix>. Tag: <tag>.
     Other: <where> · <what is wrong> · <tag>
     More: <n> minor findings, not listed.
-    Facts checked: <what was read and matched>; assumptions and files read beyond the packet: <…>; scope: <one item | first of n reviewed>.
+    Facts checked: <where, matched in a file you opened>; scope: <one item | first of n reviewed>.
+    Files opened: <each file you opened with Read; add "(grep)" for a file or folder you only searched>; from the <item> only: <files cited but not opened, or "none">; assumptions: <claims not confirmed in an opened file, or "none">.
 
 <!-- Set the number of numbered and "Other" lines to the job; agents/change-reviewer.md and
      agents/plan-reviewer.md are worked examples. Name the tags and what each means. -->

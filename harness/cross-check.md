@@ -84,7 +84,15 @@ check ends; it is not a record. The session checks the report against its limit 
 `plan-reviewer`, the review size named in the request (the stated 300 or 500 in *Review
 sizes* is the limit for this check); for `change-reviewer`, the word limit in the request,
 or 400 — and against the skeleton in that agent's § *Report*: only skeleton lines, in order, no more
-numbered findings or "Other" lines than the skeleton has, each slot one short clause. If
+numbered findings or "Other" lines than the skeleton has, each slot one short clause. It
+also checks the *Files opened* slot against the reviewer's tool log: `grep -o` the
+`file_path` and `path` fields of the agent's output file (never read it whole). Start the
+reviewer in the background; its log is the `output_file` path in the launch result. With
+no path, record "check not run". Every file
+named under *Files opened* must match the end of a logged path; a file under a folder
+listed as "(grep)" counts. A named file missing from the log is a shape break and goes in
+the same one retry. A file opened but not listed is not a failure. If the log cannot be
+read, record "check not run"; that is not a failure. If
 either fails, it sends the same report back once to the same reviewer, with the word
 count against the limit and each shape break, and asks for the report cut to fit: same
 verdict, no new findings. If the retry passes, use it. If it still fails, or the reviewer
