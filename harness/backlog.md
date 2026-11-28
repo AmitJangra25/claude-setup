@@ -9,7 +9,7 @@ Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) �
 Status: active
 Last reviewed: 27-11-2026
 
-Next ID: B71
+Next ID: B79
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -126,11 +126,18 @@ Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D4
 | B55 | L8 kit 35 part 2: no shell writes into `.claude/` or memory — P4 · S · ~10k (D58) | First logged case (owner: `wrap-up`); recheck at the Phase 16 audit |
 | B56 | L9 kit 53: hook wiring in `settings.json` — P4 · S · ~5k (D58) | With the first new Claude Code hook |
 | B57 | L10 old candidate skills: testing, feature-brief, debugging-method, documentation-update, project-onboarding, release-checklist, agent-quality-review — P4 · M · ~25k (D58) | Phase 16 audit: the S1.2 gap check (not run in Phase 15) — a real gap brings it back; otherwise it stays here with "covered by …" |
-| B58 | L11 researcher helper (Phase 14 addition) — P4 · M · ~20k (D58) | Research jobs repeat |
+| B58 | L11 researcher helper (Phase 14 addition) — P4 · M · ~20k (D58). **Merged into B74, 28-11-2026 (D59)** | See B74 |
 | B59 | Kit 23 job-to-helper routing table (Phase 14 addition) — P4 · S · ~5k (D58) | With any future worker-agent decision (I4) |
 | B60 | Skill tiers: daily = on, sometimes = `name-only`, rare = `user-invocable-only` (D28; earlier "no skill folders by P1–P4", `SETUP-PLAN.md` Phase 8–9 notes); saves about 100–300 tokens a session (estimate) — P4 · S · ~5k (D58). Part pulled forward into D58 (Amit, 27-11-2026): `ship-local` and `steward` set to `user-invocable-only` | With the `STANDARDS.md` rewrite (Phase 17) |
 | B61 | Lighter agents: recheck what each agent file carries — P4 · M · ~15k (D58) | Phase 16 audit, then the rewrite phases |
 | B62 | Recheck reviewer word limits (5 of 7 first reports over the limit on 27-11-2026; each fit after one retry) — P4 · S · ~5k (D58) | Phase 16 audit, with B61 |
+| B71 | Coder agent — future work, not scheduled (D59). Job: build the smallest approved change. Inputs: approved plan, named files, project facts file. Output: the change and a short report (files, checks, open items). Use: approved work too large for the main session, or independent parts. Not for: unapproved work, design choices, risky changes. May read: only files named in the plan. Run about 30–80K, about 120 tokens every session once built (estimates). Never approves, commits, pushes, deletes, installs, publishes, deploys, changes permissions or bypasses a box. Building it also triggers B53 and I5 (a shell can commit and push) | Phase 20 or later; trigger: a logged case of the main session running out of context while building |
+| B72 | Tester agent — future work, not scheduled (D59). Job: write and run only the tests that prove the approved goal. Inputs: goal, success measure, changed files. Output: tests, run output, pass/fail against the goal. Use: testing would overload the main session. Not for: weakening a test, testing outside the goal. May read: changed files, tests, the goal. Run about 20–60K, about 120 every session (estimates). Same never-list as B71; also triggers B53 and I5 | Phase 20 or later; trigger: a logged case of missed tests or context overloaded by test runs |
+| B73 | Documentation-writer agent — future work, not scheduled (D59). Job: update only docs an approved change affects. Inputs: the diff, affected docs from the map. Output: updated docs and links checked. Use: after an approved change whose affected docs the map lists. Not for: new docs, rule files. May read: the diff and those docs. Run about 15–30K, about 120 every session (estimates). Same never-list as B71 | Phase 20 or later; trigger: a logged case of docs left stale after an approved change (`wrap-up` logs it) |
+| B74 | Business-analyst agent — future work, not scheduled (D59); merges B58. Job: business, market, product, customer, competitor, pricing or similar analysis when Amit asks. Inputs: the question, named sources, limits. Output: short findings with sources and one recommendation. Use: research that needs a recommendation, when Amit asks. Not for: building anything; private data. May read: named sources; the web only if the plan approves. Run about 40–100K, about 120 every session (estimates). Same never-list as B71 | Phase 20 or later; trigger: the same kind of analysis asked for 4 times |
+| B76 | `AGENTS.md` for Amit's other AI tools — future work (D59) | After Phase 19; trigger: Amit uses another AI tool on a project regularly |
+| B77 | Remove the 9 Office notes already on GitHub (5 DB1, 4 DB2) from git history (D59) | Amit's separate decision and approval; history rewrite is hard to undo |
+| B78 | Full VOS Dashboard setup (`~/Documents/VS Code/VOS Dashboard`): rules backup, `Area: Office` line (D59) | Phase 20 |
 
 ## Known and accepted
 
@@ -145,6 +152,7 @@ Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D4
 | B28 | GitHub write commands not separately boxed (old F2) | 0 historical uses; auto mode is a second guard (30-10-2026). If asked later, propose only `gh release create\|delete`, `gh secret set\|delete`, `gh workflow run` |
 | B29 | Allowed test/build commands (`./gradlew *` and similar, 4 projects) can run any code (old C8) | A normal development trade-off (Amit, 01-11-2026) |
 | B30 | Claude Desktop's own bypass toggle (old C9) | Left as it is (Amit, Team plan, 01-11-2026); bypass is off in Claude Code (D45) |
+| B75 | Separate Office Claude setup (a second config only for Office) | Not needed, 28-11-2026 (Amit, D59): Claude's suggestion, not Amit's request; project separation and keeping Office notes off GitHub cover the need today |
 | B31 | A per-project `SessionStart` drift check | Rejected 10-10-2026 (Amit): a project session would reach into `~/.claude` (D23, D31); the setup-session check catches drift. Revisit if drift goes unnoticed in between |
 
 ## Older records

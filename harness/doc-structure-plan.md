@@ -1248,6 +1248,7 @@ The brief for the whole programme. Each phase is re-planned and re-discussed wit
 - **Any kind of work.** The writing guide, templates and skills serve coding and Claude Setup first, but must also fit business and other work. Subject-specific detail goes in an optional block. Skills add to agents, never replace them (Amit, 26-11-2026).
 - **`~/.claude` first**, then each project in its own session.
 - **Cross-check, discuss and plan** before every change; contradictions are cleared with Amit first.
+- **Deciding rule (Amit, 28-11-2026, D59).** If skipping an item now means rewriting the same live file again later, it goes in Phases 16–18. A new capability, a project-specific task, or anything that can wait without another rewrite is future work for Phase 20 or later.
 
 #### Phase list (in order)
 
@@ -1263,6 +1264,8 @@ The brief for the whole programme. Each phase is re-planned and re-discussed wit
 | 19 | Rewrite: P3 | The rest; every backlog item gets its verdict; the final checks | All P3 done; final checks yes |
 | 20 | Projects | Each project's `CLAUDE.md` and rules, one per session (old WP9 prompt idea) | Each project passes its check |
 | 21 | Obsidian | **Amit gives his Obsidian prompt when this phase starts** (Claude asks for it then and cross-checks it). Two sections: Personal (Claude Setup, personal projects, personal content) and Professional (work projects, connected to V-Thru's Obsidian vault, and that vault connected to Claude). Keep company knowledge in its own vault and link to it, never copy it in. Ignore `.obsidian/` in git. New-tool check first. Obsidian is already installed but not set up. Can move to right after Phase 16 if Amit wants to view the library in Obsidian during the rewrite | Amit's prompt goals met |
+
+**Phase 16 plan (approved 28-11-2026, Amit; D59):** `harness/phase-16-plan.md`. D59 renames Phases 17–19 to Rewrite 1 (structure), Rewrite 2 (loaded and reference files) and Rewrite 3 (polish and close), and re-scopes them: that plan's § 10 is the current phase scope for 17–20 where it differs from the rows above.
 
 #### Phase 12 plan (approved 26-11-2026, Amit; revised 26-11-2026 after the plan cross-check, Amit)
 
@@ -1983,7 +1986,7 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [x] B25: review the engineering skills that were not copied. — 27-11-2026, closed: built-in `code-review`, `security-review`, `simplify` and our rules cover them (D58 T7)
 - [x] Every skill has its one small example in `SKILL.md`, with larger examples in its `examples/` folder (`WRITING-GUIDE.md` § *Examples*) — 27-11-2026: one `## Example` in each of our six skills (`grep -c`, checked today); no `examples/` folder needed (D58 T6)
 
-**Phase 16 — Full audit and priorities (~300–400K, 2–3 sessions)**
+**Phase 16 — Full audit and priorities (~0.95–1.3M, 6 sessions, D59; each line's work package: `harness/phase-16-plan.md` § *Work packages*)**
 - [ ] Every file, rule, contradiction, backlog item, test and phase audited
 - [ ] Every tool Amit uses (VS Code, Antigravity, Android Studio, others)
 - [ ] Phase timeline (September series labelled "Early")
@@ -2008,24 +2011,27 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
   - [ ] Old plan history and timeline (superseded Phase 13 bullets unmarked, entries out of date order, stale "nothing here is built yet") — P3, Phase 16
   - [ ] `STANDARDS.md` "until T30" and `WRITING-GUIDE.md` status wording — P3, Phase 17
 
-**Phase 17 — Rewrite P1 (~500–700K, 4–6 sessions)**
-- [ ] `STANDARDS.md`
+**Phase 17 — Rewrite 1: structure (~500–700K, about 6 sessions; renamed and re-scoped by D59, `harness/phase-16-plan.md` § 10)**
 - [ ] Decision-log split (`SETUP-PLAN.md` → `DECISIONS.md`) · C11 IDs and emails out
-- [ ] `ENVIRONMENT.md` (B38, too long)
 - [ ] Document map
+- [ ] Apply Amit's Writing Guide draft, with the six identified fixes, the nothing-lost check, review, and Amit's approval before replacing `WRITING-GUIDE.md`. Draft: `harness/drafts/writing-guide-amit-28-11-2026.md`; the six fixes: `.claude/current-task.md` § *Resume*
+- [ ] D59 items: size and archive rule · `PROJECTS.md` Area column, VOS Dashboard row, DB2 fix · named memory allow-lines, Office notes untracked · cross-area read sentence · "until T30"
 - [ ] *kit* One-command rebuild guide — also usable to set up Claude for another person (Amit, 26-11-2026)
 - [ ] Old material archived, never deleted
 
-**Phase 18 — Rewrite P2 (~400–600K, 3–5 sessions)**
-- [ ] Every P2 item from the audit list
+**Phase 18 — Rewrite 2: loaded and reference files (~400–600K, about 5 sessions; D59)**
+- [ ] `STANDARDS.md` (Area checkpoint; saves at least what it adds) — moved from Phase 17 (D59)
+- [ ] `ENVIRONMENT.md` (B38, too long), with the pre-commit hook as a tracked script — moved from Phase 17 (D59)
+- [ ] Every Phase 18 item from the approved audit list
 
-**Phase 19 — Rewrite P3 (~400–500K, 3–4 sessions)**
-- [ ] Every P3 item from the audit list
+**Phase 19 — Rewrite 3: polish and close (~400–500K, about 4 sessions; D59)**
+- [ ] Every Phase 19 item from the approved audit list
 - [ ] Every backlog item has a verdict
 - [ ] The 6 final checks, including the blind comparison with the kit
 
 **Phase 20 — Projects (~100–150K per project, 1 session each)**
 - [ ] Each project's `CLAUDE.md` and rules, one per session
+- [ ] `Area:` line in each project's `CLAUDE.md`, checked against the `PROJECTS.md` Area column · B78 VOS Dashboard setup (D59)
 - [ ] B38 drift (Voice-Flow, Emp portal) · B33 · A6, A7, A9
 - [ ] FinNode copy after `phase3/sms` reaches `main`
 - [ ] VT and Emp Portal sync rules checked (stay as standing rules)
