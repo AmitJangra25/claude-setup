@@ -287,6 +287,38 @@ if [ -f "$TASK_FILE" ] && ! git check-ignore -q "$TASK_FILE"; then
   warn "$TASK_FILE" "task file is not ignored by git"
 fi
 
+# Skill headers: the block between the first two "---" lines of each skills/*/SKILL.md must
+# parse as YAML and give a description, or the skill's description never loads (B63).
+# Python 3 with PyYAML; -P keeps this folder off the import path; safe_load runs no code.
+if ! python3 -P -c 'import yaml' 2>/dev/null; then
+  warn skills "headers not checked — PyYAML not found"
+else
+  python3 -P - skills/*/SKILL.md <<'PY'
+import os, sys, yaml
+for f in sys.argv[1:]:
+    if not os.path.isfile(f):
+        continue
+    try:
+        lines = open(f, encoding="utf-8").read().split("\n")
+    except (OSError, UnicodeDecodeError):
+        print(f"WARN {f}: skill header not readable")
+        continue
+    if lines[0] != "---" or "---" not in lines[1:]:
+        print(f"WARN {f}: skill header missing (no --- block at the top)")
+        continue
+    end = lines.index("---", 1)
+    try:
+        d = yaml.safe_load("\n".join(lines[1:end]))
+    except yaml.YAMLError as e:
+        m = getattr(e, "problem_mark", None)
+        why = getattr(e, "problem", None) or str(e).splitlines()[0]
+        print(f"WARN {f}: skill header is not valid YAML: {why}" + (f" (line {m.line + 2})" if m else ""))
+        continue
+    if not isinstance(d, dict) or not d.get("description"):
+        print(f"WARN {f}: skill header has no description")
+PY
+fi
+
 # Catalog coverage: every tracked file has a map row, by its own path or by a MAP_GROUPS row.
 entries=$(map_entries 2>/dev/null)
 if [ -z "$entries" ]; then

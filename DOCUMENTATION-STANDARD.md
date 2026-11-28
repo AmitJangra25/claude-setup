@@ -222,7 +222,7 @@ All standard project files are created at setup, even when empty. An empty file 
 `harness/doc-check.sh`.
 
 - Warn-only, never blocks; no AI cost.
-- Checks: headers · section order · IDs and Next ID · dead links · duplicates · size limits · `None yet` in empty files · task file ignored by git · secret patterns in project docs · files affected by a decision.
+- Checks: headers · section order · IDs and Next ID · dead links · duplicates · size limits · `None yet` in empty files · task file ignored by git · skill headers parse as YAML and have a description · secret patterns in project docs · files affected by a decision.
 - Output: `WARN <file>: <rule broken>` per problem, then `n warnings`.
 - Runs at each setup session start (from `harness/session-check.sh`) and in each project's commit check.
 - Formats change only after real use (Phase 9, 30-day review).
