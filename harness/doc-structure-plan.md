@@ -2003,7 +2003,7 @@ Every point the programme must cover: phase work, the 9 kit items (marked *kit*)
 - [ ] P1 / P2 / P3 list approved; where case-study files live decided
 - [ ] Re-check the Phase 12 case-study template against where case-study files live
 - Phase 12–15 audit findings (27-11-2026), each with priority and handling phase:
-  - [ ] B63 skill-header check — P2, first Phase 16 task
+  - [x] B63 skill-header check — P2, first Phase 16 task — 28-11-2026: done and verified (WP0), committed and pushed `29aedeb`
   - [ ] B69 `*git -* -c *` over-match — P2, open for Amit's decision; rule narrowing and box tests
   - [ ] B44 and B67 one-line instructions — P2, open for Amit's wording decision
   - [ ] `plan-reviewer` vs `WRITING-GUIDE.md` mismatches (description length, two cases, no "why it matters" slot, extra sections recorded only in D57, no project facts-file path) — P3, B61 / Phase 16 final check

@@ -7,9 +7,9 @@ Owner: Setup sessions (changes are Amit's decision).
 Update rule: When an item is found, planned (row says "→ T#"), deferred or closed. Overwrite rows; history goes to a dated record.
 Related: `harness/status.md` · `STANDARDS.md` § *IDs and progress* (P1–P4) · `baselines/backlog-log-11-11-2026.md`
 Status: active
-Last reviewed: 27-11-2026
+Last reviewed: 28-11-2026
 
-Next ID: B79
+Next ID: B81
 
 Not built without a plan and Amit's approval. Raise it at once if it blocks the approved task or risks safety, security or data loss.
 
@@ -63,6 +63,8 @@ Phases 8–11 (D50, 20-11-2026) have their tasks in `harness/doc-structure-plan.
 | B68 | Skill loaded after work started | Found 27-11-2026 (Phase 15 S2.0 probe 1): on "check `templates/handoff.md` before I restructure it", Claude read the file and ran three searches before loading `documents`, treating it as a simple read; the description matched from the start. First logged case | yes | no | P3 | S | ~1k | [ ] | Logged at the lowest rung, no change now. On a second case, propose one instruction line |
 | B69 | `*git -* -c *` ask rule over-matches | Found 27-11-2026 (S3.0 P6): `git -C <dir> switch -c y` boxed on `Bash(*git -* -c *)` in auto mode; the rule cannot tell `switch -c` from `git -c`. Same pattern, not tested: `git -C <dir> log -c`; read-only `git config --get` and `git --exec-path` also box (S2.3 review) | yes | no | P3 | S | ~10k | [ ] | Amit decides whether and how to narrow the rule; a rule change needs a plan, `rtk hook check` on every spelling and new box tests |
 | B70 | Box probe sent without asking Amit to watch | 27-11-2026 (S3.0): P1 and P3 sent without 'watch for a box'; results unknown; both rerun. The rule exists (`STANDARDS.md` § *Evidence, not assumption*: ask for the box text). First case | yes | no | P3 | S | ~1k | [ ] | No new rule text now. On a second case, propose one instruction line (`WRITING-GUIDE.md` § *Rule plus case*) |
+| B79 | `.env` gap for unnamed-file reads | 28-11-2026 (Phase 16 WP1/WP2): `Read()` deny covers Grep and Glob best-effort, and in Bash `cat`, `head`, `tail`, `sed`, `tee` and redirects; it does not cover `grep -r pattern .` run inside a folder holding a `.env` (`permissions.md`). `settings.json` has no rule for `rg`, `python3`, `cp`, `base64`, `strings` or `diff` either. Helpers inherit the same rules (`sub-agents.md`). Named case: a helper running `grep -r` inside a project folder could print `.env` lines. Not tested (testing would read a `.env`) | yes | no | P2 | M | ~15k | [ ] | WP4 verdict; fix in the Phase 18 settings work with Amit's approval and box tests (ask list stays 199 unless Amit approves) |
+| B80 | Emp Portal mirror direction | 28-11-2026 (Phase 16 WP1): `project-rules/Emp portal/CLAUDE.md` (16-11-2026) is newer than the live `~/Documents/VS Code/Emp portal/Vthru_Emp_v2.1_jun26/CLAUDE.md` (28-09-2026); a second project folder `…-phase7` exists. The next normal `sync.sh` run could overwrite one side | yes | no | P2 | S | ~8k | [ ] | Before any sync: compare the two files and the manifest path, read-only; Amit decides which copy is right |
 Done-file rollover: see `DOCUMENTATION-STANDARD.md` § *Growth and rollover* (D49).
 
 ## In full
